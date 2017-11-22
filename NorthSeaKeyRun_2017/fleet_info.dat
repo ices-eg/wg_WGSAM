@@ -1,0 +1,168 @@
+# minimum CV of CPUE observations
+0.20
+# number of fleets by species
+# COD
+2
+# WHG
+3
+# HAD
+2
+# POK
+2
+# MAC
+2
+# HER
+3
+# NSA
+5
+# SSA
+5
+# NOP
+4
+# SPR
+3
+# Ple 
+6
+# SOL
+2
+########################################################################
+# 1-2, First year last year, 
+# 3-4. Alpha and beta - the start and end of the fishing period for the fleet given as fractions of the season (or year if annual data are used)
+# 5-6   first and last age, 
+# 7.   last age with age dependent catchability, 
+# 8.   last age for stock size dependent catchability (power model), -1 indicated no ages uses power model 
+# 9.   season for survey,
+# 10.  number of variance groups for estimated cathability
+# by species and fleet
+########################################################################
+# COD   ##########################
+1983 2017 0 1 1 5   4 -1 1 2  # Fleet01: IBTS_Q1_gam 
+1992 2016 0 1 1 4   4 -1 1 2  # Fleet02: IBTS_Q3_gam
+#
+# WHG   ##########################
+1978 1988 0 0 1 5   4 -1 1 2 # Fleet01: IBTS_Q1 -1988
+1989 2017 0 0 1 5   4 -1 1 2 # Fleet02: IBTS_Q1  1989-
+1991 2016 0 0 0 5   4 -1 3 3 # Fleet03: IBTS_Q3
+#
+# HAD   ##########################
+1974 2017 0 1 1 5   2 -1 1 1 # Fleet01: IBTS_Q1
+1991 2016 0 1 0 5   2 -1 3 3 # Fleet02: IBTS_Q3
+#
+# POK   ##########################
+1992 2016 0 1 3 8   4 -1 3 2 # Fleet01: IBTS Q3
+1997 2016 0 1 3 9   3 -1 1 1  # Fleet02: SAM output with noise 
+#
+# MAC   ##########################
+2010 2017 0 1 1 9   6 -1 1 2  # Fleet01: Swept-idx  SHOULD HAVE BEEN QUARTER 3
+1980 2016 0 1 0 9   0 -1 1 1  # Fleet02: SAM output
+#
+# HER   ##########################
+1989 2016 0 0 1 9   3 -1 1 3 # Fleet01: HERAS
+1984 2017 0 0 1 5   3 -1 1 2 # Fleet02: IBTS Q1
+1992 2017 0 0 0 0   0 -1 3 1 # Fleet03: MIK
+#
+# NSA, SAN north   ##########################
+2004 2016 0 1 0 2  2 -1 4 2 # Fleet01: Dregde surve (new data)
+1982 1998 0 1 1 3  3 -1 2 1 # Fleet02: Commercial, first half year 1982-1998 (new data)
+1999 2016 0 1 1 3  3 -1 2 2 # Fleet03: Commercial, first half year 1999- (new data)
+#1976 1981 0 1 1 3  3 -1 2 2 # Fleet04: Commercial, first half year (old data)
+1976 2004 0 1 0 0  0 -1 3 1 # Fleet05: Commercial, second half year (old data)
+2009 2016 0.5  0.7 1  4 3  -1   2   2 # acoustic 
+#
+# SSA, SAN South   ##########################
+2004 2016 0 1 0 2  2 -1 4 2  # Fleet01: Dregde surve (new data)
+1982 1998 0 1 1 3  3 -1 2 2  # Fleet02: Commercial, first half year 1982-1998 (new data)
+1999 2004 0 1 1 3  3 -1 2 1  # Fleet03: Commercial, first half year 1999-2004 (new data)
+2005 2009 0 1 1 3  3 -1 2 1  # Fleet04: Commercial, first half year 2005-2009 (new data)
+2010 2016 0 1 1 3  3 -1 2 1  # Fleet05: Commercial, first half year 2010-2016 (new data)
+#
+# NOP   ##########################
+1982 1991 0 1 0 3  3 -1 3 3 # Fleet01: EGFS
+1992 2017 0 1 0 2  2 -1 3 3 # Fleet02: EGFS 
+1974 2017 0 0 1 3  3 -1 1 2 # Fleet03: IBTS Q1
+1998 2017 0 0 0 2  2 -1 3 2 # Fleet04: SGFS
+#
+# SPR   ##########################
+1975 2017 0 0 1 3  3 -1 1 1 # Fleet01: IBTS Q1
+2003 2016 0 1 1 3  3 -1 2 2 # Fleet02: HERAS Acoustic Q2
+1991 2016 0 1 1 3  2 -1 3 3 # Fleet03: IBTS Q3
+#
+# PLE   ##########################
+1985 1995 0 1 1 8 4 -1 3 3 # Fleet01: BTS-Isis-early 1985-1995
+1996 2016 0 1 1 9 4 -1 3 3 # Fleet02: BTS-Combined   1996-
+1974 1999 0 1 1 6 5 -1 3 3 # Fleet03: SNS1 1974-1999 
+2000 2016 0 1 1 6 4 -1 3 3 # Fleet04: SNS2 2000-
+1997 2016 0 1 1 9 3 -1 3 3 # Fleet05: IBTS_Q3 
+2007 2016 0 1 1 7 3 -1 1 3 # Fleet06: IBTS_Q1 
+#
+# SOL ###########################       
+1985 2016 0 1 1 9 4 -1 4 4 # Fleet01: BTS-ISIS  
+1974 2016 0 1 1 6 3 -1 4 3 # Fleet02: SNS 
+#
+########################################################################
+# First age group in groups for estimates of variance of catcahability at age
+# COD   ##########################
+1 2  # Fleet01: IBTS_Q1_gam 
+1 2  # Fleet02: IBTS_Q3_gam
+#
+# WHG   ##########################
+1 2    # Fleet01: IBTS_Q1 -1988
+1 2    # Fleet02: IBTS_Q1 1988-
+0 1 2  # Fleet03: IBTS_Q3
+#
+# HAD   ##########################
+1     # Fleet01: IBTS_Q1
+0 1 3 # Fleet02: IBTS_Q3
+#
+# POK   ##########################
+3 5     # Fleet01: IBTS Q3
+3       # Fleet02: SAM output with noise shifted
+#
+# MAC   ##########################
+1 2   # Fleet01: Swept-idx
+0     # Fleet02: SAM output
+#
+# HER   ##########################
+1 2 3 # Fleet01: HERAS
+1 2   # Fleet02: IBTS Q1
+0     # Fleet03: MIK
+#
+# NSA, SAN north   ##########################
+0 1 # Fleet01: Dregde surve (new data)
+1  # Fleet02: Commercial, first half year 1982-1998 (new data)
+1 2 # Fleet03: Commercial, first half year 1999- (new data)
+#1 2 # Fleet04: Commercial, first half year (old data)
+0   # Fleet05: Commercial, second half year (old data)
+1 3  # acoustic 
+#
+# SSA, SAN South   ##########################
+0 1  # Fleet01: Dregde surve (new data)
+1 2 # Fleet02: Commercial, first half year 1982-1998 (new data)
+1  # Fleet03: Commercial, first half year 1999-2004 (new data)
+1  # Fleet04: Commercial, first half year 2005-2009 (new data)
+1  # Fleet05: Commercial, first half year 2010-2016 (new data)
+#
+# NOP   ##########################
+0 1 2  # Fleet01: EGFS
+0 1 2  # Fleet02: EGFS 
+1 2    # Fleet03: IBTS Q1
+0 1    # Fleet04: SGFS
+#
+# SPR   ##########################
+ 1 # Fleet01: IBTS Q1
+ 1 2 # Fleet02: HERAS Acoustic Q2
+ 1 2 3 # Fleet03: IBTS Q3
+#
+# PLE   ##########################
+1 3 5  # Fleet01: BTS-Isis-early
+1 2 3  # Fleet02: BTS-Combined
+1 3 5   # Fleet03: SNS1 
+1 3 5  # Fleet04: SNS2 
+1 2 3   # Fleet05: IBTS_Q3 
+1 3 5  # Fleet06: IBTS_Q1 
+#
+# SOL ###########################       
+1 2 3 6 # Fleet01: BTS-ISIS  
+1 2 5     # Fleet02: SNS 
+#
+-999 # check

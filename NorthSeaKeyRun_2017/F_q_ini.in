@@ -1,0 +1,108 @@
+# relative F by quarter 1 - 4 by species, first age in separable season age group and first year in separable year group
+#
+0.25  0.25  0.25 	# 0.25 COD,  age: 1  year: 1974 
+0.25  0.25  0.25 	# 0.25 COD,  age: 1  year: 1993 
+0.25  0.25  0.25        # 0.25 COD,  age: 1  year: 2007 
+0.25  0.25  0.25 	# 0.25 COD,  age: 2  year: 1974 
+0.25  0.25  0.25 	# 0.25 COD,  age: 2  year: 1993 
+0.25  0.25  0.25        # 0.25 COD,  age: 2  year: 2007
+
+0.25  0.25  0.25	# 0.25 COD,  age: 3  year: 1974 
+0.25  0.25  0.25 	# 0.25 COD,  age: 3  year: 1993 
+0.25  0.25  0.25        # 0.25 COD,  age: 3  year: 2007
+0.25  0.25  0.25 	# 0.25 COD,  age: 5  year: 1974 
+0.25  0.25  0.25	# 0.25 COD,  age: 5  year: 1993
+0.25  0.25  0.25        # 0.25 COD,  age: 5  year: 2007 
+#
+            0.5 	# 0.5 WHG,  age: 0  year: 1974 
+            0.5 	# 0.5 WHG,  age: 0  year: 1991 
+            0.5 	# 0.5 WHG,  age: 0  year: 2007 
+0.25 0.25 0.25 	        # 0.25 WHG,  age: 1  year: 1974 
+0.25 0.25 0.25	        # 0.25 WHG,  age: 1  year: 1991 
+0.25 0.25 0.25	        # 0.25 WHG,  age: 1  year: 2007 
+0.25 0.25 0.25     	# 0.25 WHG,  age: 2  year: 1974 
+0.25 0.25 0.25 	        # 0.25 WHG,  age: 2  year: 1991 
+0.25 0.25 0.25 	        # 0.25 WHG,  age: 2  year: 2007 
+0.25 0.25 0.25 	        # 0.25 WHG,  age: 3  year: 1974 
+0.25 0.25 0.25 	        # 0.25 WHG,  age: 3  year: 1991 
+0.25 0.25 0.25 	        # 0.25 WHG,  age: 3  year: 2007 
+#
+            0.5 	# 0.5 HAD,  age: 0  year: 1974 
+            0.5 	# 0.5 HAD,  age: 0  year: 1985 
+            0.5 	# 0.5 HAD,  age: 0  year: 2000 
+0.25 0.25 0.25   	# 0.25 HAD,  age: 1  year: 1974 
+0.25 0.25 0.25  	# 0.25 HAD,  age: 1  year: 1985 
+0.25 0.25 0.25  	# 0.25 HAD,  age: 1  year: 2000 
+0.25 0.25 0.25  	# 0.25 HAD,  age: 2  year: 1974 
+0.25 0.25 0.25  	# 0.25 HAD,  age: 2  year: 1985
+0.25 0.25 0.25  	# 0.25 HAD,  age: 2  year: 2000 
+#
+0.25 0.25 0.25 	        # 0.25 POK,  age: 3  year: 1974 
+0.25 0.25 0.25 	        # 0.25 POK,  age: 3  year: 1992 
+0.25 0.25 0.25   	# 0.25 POK,  age: 4  year: 1974 
+0.25 0.25 0.25   	# 0.25 POK,  age: 4  year: 1992 
+#
+0.25 0.25 0.25 	# 0.25 MAC,  age: 1  year: 1974 
+0.25 0.25 0.25 	# 0.25 MAC,  age: 1  year: 1980 
+0.25 0.25 0.25 	# 0.25 MAC,  age: 1  year: 2004
+0.25 0.25 0.25 	# 0.25 MAC,  age: 2  year: 1974 
+0.25 0.25 0.25 	# 0.25 MAC,  age: 2  year: 1980 
+0.25 0.25 0.25 	# 0.25 MAC,  age: 2  year: 2004
+0.25 0.25 0.25 	# 0.25 MAC,  age: 4  year: 1974 
+0.25 0.25 0.25 	# 0.25 MAC,  age: 4  year: 1980
+0.25 0.25 0.25 	# 0.25 MAC,  age: 4  year: 2004 
+#
+#
+            2 	# 0.5 HER,  age: 0  year: 1974 
+            2 	# 0.5 HER,  age: 0  year: 1978 
+            2 	# 0.5 HER,  age: 0  year: 1983 
+            2 	# 0.5 HER,  age: 0  year: 1998        
+0.25 0.25 0.25 	# 0.25 HER,  age: 1  year: 1974 
+0.25 0.25 0.25 	# 0.25 HER,  age: 1  year: 1978
+0.25 0.25 0.25 	# 0.25 HER,  age: 1  year: 1983 
+0.25 0.25 0.25 	# 0.25 HER,  age: 1  year: 1998 
+# parameters are estimated for NSA  SMS
+#            -1	        # 0.5 NSA,  age: 0  year: 1974 
+#            -1           # 0.5 NSA,  age: 0  year: 2005
+-1 	# 0.5 NSA,  age: 1  year: 1974
+-1       # 0.5 NSA,  age: 1  year: 2005                                                             
+-1 	# 0.5 NSA,  age: 2  year: 1974 
+-1       # 0.5 NSA,  age: 2  year: 2005 
+# parameters are estimated for SSA within SMS
+#        -2     	  # 0.5 SSA,  age: 0  year: 1974 
+#        -2               # 0.5 SSA,  age: 0  year: 2005
+-2 	# 0.5 SSA,  age: 1  year: 1974
+-2      # 0.5 SSA,  age: 1  year: 2005                                                              
+-2 	# 0.5 SSA,  age: 2  year: 1974 
+-2      # 0.5 SSA,  age: 2  year: 2005 
+# parameters are estimated for NOP within SMS
+            -3 	# 0.5 NOP,  age: 0  year: 1974 
+#            -3	# 0.5 NOP,  age: 0  year: 1982 
+            -3	# 0.5 NOP,  age: 0  year: 2003
+-3 -3 -3	# 0.25 NOP,  age: 1  year: 1974 
+#-3 -3 -3 	# 0.25 NOP,  age: 1  year: 1982 
+-3 -3 -3 	# 0.25 NOP,  age: 1  year: 2003 
+-3 -3 -3	# 0.25 NOP,  age: 3  year: 1974 
+#-3 -3 -3 	# 0.25 NOP,  age: 3  year: 1982 
+-3 -3 -3 	# 0.25 NOP,  age: 3  year: 2003 
+# parameters are estimated for Sprat within SMS
+#  
+-4 -4 -4	# 0.25 SPR age: 1  year: 1974 
+-4 -4 -4	# 0.25 SPR age: 1  year: 1996 
+-4 -4 -4	# 0.25 SPR age: 2  year: 1974 
+-4 -4 -4 	# 0.25 SPR age: 2  year: 1996 
+-4 -4 -4	# 0.25 SPR age: 3  year: 1974 
+-4 -4 -4 	# 0.25 SPR age: 3  year: 1996 
+#
+0.25 0.25 0.25 	# 0.25 PLE,  age: 1  year: 1974 
+0.25 0.25 0.25 	# 0.25 PLE,  age: 1  year: 1990 
+0.25 0.25 0.25 	# 0.25 PLE,  age: 1  year: 2003 
+0.25 0.25 0.25 	# 0.25 PLE,  age: 2  year: 1974 
+0.25 0.25 0.25 	# 0.25 PLE,  age: 2  year: 1990
+0.25 0.25 0.25 	# 0.25 PLE,  age: 2  year: 2003
+#
+0.25 0.25 0.25 	# 0.25 SOL,  age: 2  year: 1974 
+0.25 0.25 0.25 	# 0.25 SOL,  age: 2  year: 1990
+
+#
+-999 # check value

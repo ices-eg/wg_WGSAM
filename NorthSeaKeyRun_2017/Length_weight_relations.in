@@ -1,0 +1,63 @@
+# length weight relation W=a * Power(L,b)
+# L in mm, W in kg
+# Source Coull, K.K et al. Length/weight relationships for 88 species
+# of fish Encountered in the North East Atlantic
+# Scottish Fisheries Research Report, 43, 1989
+#
+# FUL
+0.01 1
+# GLT
+0.01 1
+# HEG
+0.01 1
+# KTW
+0.01 1
+# GBG
+0.01 1
+# GNT
+0.01 1
+# PUF
+0.01 1
+# RAZ
+0.01 1
+# RAJ, Coull et al 1989
+4.09E-08 2.896
+# GUR, Coull et al 1989
+6.2E-9 3.1
+# Western Horse Mackerel
+#7.2E-09     3.033 # (Bay of Bicay, Fish base)
+1.05E-8     2.9622 #Silva et al 2013
+# North Sea Horse Mackerel
+#7.2E-09     3.033 # (Bay of Bicay, Fish base)
+1.05E-8     2.9622 #Silva et al 2013
+# GSE, dummy
+0.01 1
+# HBP, dummy
+0.01 1
+#Hake,
+6.59E-9  3.017 #  N and NW Iberian waters, 1980-98 (79159 fish, unsexed, Fishbase)
+# Cod, Coull et al 1989
+2.0475E-08  2.8571
+# Whiting, Coull et al 1989
+1.0509E-08  2.9456
+# Haddock, Coull et al 1989
+1.8212E-08  2.8268
+# Saithe, Coull et al 1989
+2.8322E-08 2.7374
+# Mackerel
+3.81E-09     3.210  #  Coull et al 1989 (Clyde)
+# Herring, Coull et al 1989
+6.03E-09    3.0904
+# N Sandeel, Stock coordinator, Anna Rindorh, pers comm.
+2.66875E-09   3.06
+# S Sandeel, Stock coordinator, Anna Rindorh, pers comm.
+2.66875E-09   3.06
+# Norway Pout, Silva et al 2013 (IBTS)
+7.5E-09 3.0244
+# Sprat, Stock coordinator, Anna Rindorh, pers comm.
+8.729E-10 3.4746
+# Plaice, Silva et al 2013
+1.51E-08     2.8876
+# Sole, Silva et al 2013
+8.0E-09     3.04999
+-999 # checksum

@@ -9,4 +9,4 @@ WGSAM, covers both model development and integration into practical management a
 * providing a scientific forum for establishing best practice in multi-species assessment methods through review, evaluation and comparison
 * aligning ToR with emerging policy needs to support implementation of the Common Fisheries Policy CFP and MSFD.
 
-Within ICES, the group collaborates with WGMIXFISH (the Working Group on Mixed Fisheries), WGFE (the Working Group on Fish Ecology), WGECO (the Working Group on Ecosystem Effects of Fishing Activities), and WGMG (the Working Group on Methods of Fish Stock Assessments). 
+ 

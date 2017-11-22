@@ -1,0 +1,228 @@
+# minimum CV of CPUE observations
+0.20
+# number of fleets by species
+# COD
+5
+# WHG
+3
+# HAD
+2
+# POK
+6
+# HER
+3
+# NSA
+5
+# SSA
+4
+# NOP
+4
+# SPR
+3
+# Ple 
+3
+# SOL
+3
+########################################################################
+# 1-2, First year last year, 
+# 3-4. Alpha and beta - the start and end of the fishing period for the fleet given as fractions of the season (or year if annual data are used)
+# 5-6   first and last age, 
+# 7.   last age with age dependent catchability, 
+# 8.   last age for stock size dependent catchability (power model), -1 indicated no ages uses power model 
+# 9.   season for survey,
+# 10.  number of variance groups for estimated cathability
+# by species and fleet
+########################################################################
+# COD   ##########################
+# Fleet01: ENGGFS (granton) 
+1977 1991 0 1 1 6   1 -1 3 3
+# Fleet02: IBTS_Q1_IV 
+1983 2014 0 0 1 5   3 -1 1 3
+# Fleet03: DGFS0 Q3
+1981 1996 0 1 0 0   0 -1 3 1
+# Fleet04: ENGFS RCT3 Q3
+1975 1991 0 1 0 0   0 -1 3 1
+# Fleet05: ENGFS RCT3 Q3
+1992 2000 0 1 0 0   0 -1 3 1
+# WHG   ##########################
+# Fleet: IBTS_Q1_IV
+1978 1988 0 0 1 5   3 -1 1 2 
+# Fleet: IBTS_Q1_IV
+1989 2014 0 0 1 5   3 -1 1 2 
+# Fleet: IBTS_Q3_IV
+1991 2013 0 1 0 5   2 -1 3 2 
+# HAD   ##########################
+# Fleet: IBTS_Q1
+1974 2014 0 1 1 5   2 -1 1 1 
+# Fleet: IBTS_Q3
+1991 2013 0 1 0 5   2 -1 3 3 
+# POK   ##########################
+# Fleet: ENGGFS_IV
+#1977 2000 0 1 2 3   3 -1 3 2
+# Fleet 02 : FRATRB_IV
+1990 2013 0 1 3 9  6  -1 2  1
+# Fleet 03 : NORTR 
+1980 1992 0 1 3 9   6 -1 2 1    #quarter?
+# Fleet 04 : NORTR 
+1993 2013 0 1 3 9   6 -1 2 1    #quarter?
+# Fleet 05: GEROTB
+1995 2013 0 1 3 9   6 -1 2 1    #quarter?
+# Fleet 06: NORACU
+1995 2013 0 1 3 6   4 -1 3 2 
+# Fleet 07: IBTS Q3
+1991 2013 0 1 3 5   4  -1 3 2
+# HER   ##########################
+# Fleet: HERAS
+1989 2013 0 0 1 7   3 -1 1 3
+# Fleet: IBTS
+1984 2014 0 0 1 5   3 -1 1 2
+# Fleet: MIK
+1992 2014 0 0 0 0   0 -1 3 1
+# NSA, SAN north   ##########################
+# Fleet 01: N_1
+1976 1998 0 1 1 3 2 -1 2 2
+# Fleet 02: N_2
+1976 2004 0 1 0 0 0 -1 3 1
+# Fleet 03:  Dregde surve, area 3
+2004    2013    0.75  1.0  0   1   1  -1   4   2 
+# Fleet 04:  Dregde surve, area 4
+1999    2013    0.75  1.0  0   2   2  -1   4   2
+# Fleet 05: SA3 1 half year
+1999 2013 0 1 1 3 2 -1 2 1 
+# SSA, SAN South   ##########################
+# Fleet 01: S_1
+1982 1998 0 1 1 4 3 -1 2 2 
+# Fleet 02: SA1 commercial CPUE 
+1999 2013 0 1 1 4 3 -1 2 1 
+#  Fleet 03: Dregde surve, area 1
+2004    2013    0.75  1.0  0   1   1  -1   4   2 
+# Fleet 04: SA2  commercial CPUE 
+1999 2013 0 1 1 4 3 -1 2 2 
+# NOP   ##########################
+# Fleet: EGFS
+1982 1991 0 1 0 3   3 -1 3 3
+#Fleet:EGFS 
+1992 2013 0 1 0 2   2 -1 3 3
+# Fleet: IBTS
+1974 2014 0 0 1 3   3 -1 1 2 
+# Fleet: SGFS
+1998 2013 0 1 1 3   3 -1 3 2 
+# SPR   ##########################
+### IBTS Q1
+1975    2014    0  0  1   3   3  -1   1   1
+#  Acoustic Q2
+2003    2013    0  1  1   3   3  -1   2   1
+### IBTS Q3
+1991    2013    0  1  1   3   2  -1   3   1
+#
+# PLE   ##########################
+# Fleet BTS
+1985 1995 0 1 1 9 4 -1 3 4
+# Fleet BTS-Tridens
+1996 2013 0 1 1 9 4 -1 3 2
+# Fleet SNS 
+1974 2013 0 1 1 5 3 -1 3 2 
+# SOL ###########################
+# Fleet NL Beam Trawl
+1997 2013 0 1 2 9 4 -1 2 2
+# BTS-ISIS           
+ 1985 2013 0 1 1 9 4 -1 2 4  
+# SNS 
+1974 2013 0 1 1 4 3 -1 3 2
+########################################################################
+# First age group in groups for estimates of variance of catcahability at age
+# COD   ##########################
+# Fleet: ENGGFS (granton) 
+1  2 3
+# Fleet: IBTS_Q1_IV 
+1 2 3
+# Fleet: DGFS0 Q3
+0
+# Fleet: ENGFS RCT3 Q3
+0
+# Fleet: ENGFS RCT3 Q3
+0
+# WHG   ##########################
+# Fleet: IBTS_Q1_IV
+1 2  
+# Fleet: IBTS_Q1_IV
+1 2  
+# Fleet 02: IBTS_Q3_IV
+0 1  
+# HAD   ##########################
+# Fleet: IBTS_Q1
+1 
+# Fleet: IBTS_Q3 
+0 1 3
+# POK   ##########################
+# Fleet: ENGGFS_IV
+#2 3
+# Fleet: FRATRB_IV
+3 
+#Fleet NORTR 1
+3 
+#Fleet NORTR 2
+3
+# Fleet: GER OTB
+3
+# Fleet: NORACU
+3 4  
+# Fleet IBTS Q3
+3 4
+# HER   ##########################
+# Fleet: HERAS
+1 2 4
+# Fleet: IBTSA
+1 2 
+# Fleet: MIK
+0
+# SAN   North ##########################
+# Fleet: N_1
+1 3   
+# Fleet: N_2
+0
+# Fleet Dredge SA 3
+0 1
+# Fleet Dredge SA 4
+0 1
+# Fleet 02: SA3 1 half year
+1 
+# SAN   South ##########################
+# Fleet: S_1
+1 3 
+# Fleet: SA1 commercial 
+1  
+# Dregde surve 2004-2009 area 1
+0 1 
+# Fleet:  SA2 commercial 
+1  3
+# NOP   ##########################
+# Fleet: EGFS
+0 1 2
+# Fleet: EGFS
+0 1 2
+# Fleet: IBTS
+1 2
+# Fleet: SGFS
+1 2
+# SPR   ##########################
+#### IBTS Q1
+ 1  
+#  Acoustic Q3
+1 
+#### IBTS Q3
+ 1
+# PLE ############################
+# Fleet BTS
+1 2 4 6
+# Fleet BTS-Tridens
+1   6
+# Fleet SNS
+1 2
+# SOL ###########################
+# Fleet NL Beam Trawl
+2 6
+# Fleet: BTS   
+1 2 4 6
+# Fleet SNS
+1 2 

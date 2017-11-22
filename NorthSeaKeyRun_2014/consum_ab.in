@@ -1,0 +1,106 @@
+# paramter a and b for consumption=a*weight^b
+#  Fulmar 
+34.42 0 	# Quarter 1 
+28.72 0 	# Quarter 2 
+27.091 0 	# Quarter 3 
+34.42 0 	# Quarter 4 
+#  Guillemot 
+32.456 0 	# Quarter 1 
+32.258 0 	# Quarter 2 
+32.828 0 	# Quarter 3 
+32.148 0 	# Quarter 4 
+#  Her. Gull 
+28.55 0 	# Quarter 1 
+33.688 0 	# Quarter 2 
+36.829 0 	# Quarter 3 
+62.3 0 	# Quarter 4 
+#  Kittiwake 
+21.865 0 	# Quarter 1 
+20.971 0 	# Quarter 2 
+20.971 0 	# Quarter 3 
+21.865 0 	# Quarter 4 
+#  GBB. Gull 
+42.956 0 	# Quarter 1 
+43.412 0 	# Quarter 2 
+44.178 0 	# Quarter 3 
+48.95 0 	# Quarter 4 
+#  Gannet 
+84.2 0 	# Quarter 1 
+89.9 0 	# Quarter 2 
+89.9 0 	# Quarter 3 
+84.2 0 	# Quarter 4 
+#  Puffin 
+14.95 0 	# Quarter 1 
+15.084 0 	# Quarter 2 
+15.084 0 	# Quarter 3 
+14.95 0 	# Quarter 4 
+#  Razorbill 
+20.116 0 	# Quarter 1 
+20.916 0 	# Quarter 2 
+21.159 0 	# Quarter 3 
+20.116 0 	# Quarter 4 
+#  R. radiata 
+0.198334 0.5480336 	# Quarter 1 
+0.1864647 0.5085402 	# Quarter 2 
+0.2359388 0.4626387 	# Quarter 3 
+0.4204371 0.5931598 	# Quarter 4 
+#  G. gurnards 
+0.4225661 0.8666354 	# Quarter 1 
+0.702246 0.79016 	# Quarter 2 
+0.786019 0.7019422 	# Quarter 3 
+0.591875 0.7709086 	# Quarter 4 
+#  W. mackerel 
+0.237574 0.656365 	# Quarter 1 
+0.5291405 0.6542257 	# Quarter 2 
+0.820912 0.6539125 	# Quarter 3 
+0.5268966 0.6539552 	# Quarter 4 
+#  N. mackerel 
+0.4225688 1.018961 	# Quarter 1 
+0.4603444 0.584092 	# Quarter 2 
+0.3976469 0.09980261 	# Quarter 3 
+0.3111027 0.1474654 	# Quarter 4 
+#  W.horse mac 
+0 0 	# Quarter 1 
+0 0 	# Quarter 2 
+4.507176 1.764745 	# Quarter 3 
+1.572821 1.035422 	# Quarter 4 
+#  N.horse mac 
+0 0 	# Quarter 1 
+0.9539222 0.4832271 	# Quarter 2 
+2.289194 0.8923198 	# Quarter 3 
+0.9744051 0.4841842 	# Quarter 4 
+#  Grey seal 
+477.855 0 	# Quarter 1 
+438.48 0 	# Quarter 2 
+382.284 0 	# Quarter 3 
+708.882 0 	# Quarter 4 
+#  H. porpoise 
+219 0 	# Quarter 1 
+219 0 	# Quarter 2 
+219 0 	# Quarter 3 
+219 0 	# Quarter 4 
+#  Hake 
+0.7715594 0.7610102 	# Quarter 1 
+2.179571 0.8018587 	# Quarter 2 
+1.301652 0.8252103 	# Quarter 3 
+1.527419 0.7657291 	# Quarter 4 
+#  Cod 
+1.03698 0.8254135 	# Quarter 1 
+1.398892 0.8267122 	# Quarter 2 
+1.415316 0.8306592 	# Quarter 3 
+1.600505 0.8278058 	# Quarter 4 
+#  Whiting 
+0.4296749 0.7017603 	# Quarter 1 
+0.4592597 0.7025217 	# Quarter 2 
+0.6846185 0.7077445 	# Quarter 3 
+0.577186 0.7017787 	# Quarter 4 
+#  Haddock 
+0.4043471 0.7901068 	# Quarter 1 
+0.550341 0.7881895 	# Quarter 2 
+0.7210062 0.7709854 	# Quarter 3 
+0.7132571 0.7725938 	# Quarter 4 
+#  Saithe 
+0.4528014 1.033433 	# Quarter 1 
+1.312719 1.016041 	# Quarter 2 
+0.6991048 1.015343 	# Quarter 3 
+0.8230132 1.012278 	# Quarter 4 

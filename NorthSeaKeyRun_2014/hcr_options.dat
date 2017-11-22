@@ -1,0 +1,335 @@
+#  HCR_option.dat option file
+# the character "#" is used as comment character, such that all text and numbers after #  in a line are skipped by the SMS program
+#
+########################################
+# last year in prediction
+2015
+########################################
+# no of iteration within each MCMC prediction (default=1)
+1
+########################################
+# first and last year for calc of mean weight in the sea
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+       2013        2013        2013        2013        2013        2013        2013        2013        2013        2013        2013 
+       2013        2013        2013        2013        2013        2013        2013        2013        2013        2013        2013 
+########################################
+# first and last year for calc of mean weight in the catch
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+       2013        2013        2013        2013        2013        2013        2013        2013        2013        2013        2013 
+       2013        2013        2013        2013        2013        2013        2013        2013        2013        2013        2013 
+########################################
+# first and last year for calc of proportion of the catch landed
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+       2013        2013        2013        2013        2013        2013        2013        2013        2013        2013        2013 
+       2013        2013        2013        2013        2013        2013        2013        2013        2013        2013        2013 
+########################################
+# first and last year for calc of proportion mature
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+       2013        2013        2013        2013        2013        2013        2013        2013        2013        2013        2013 
+       2013        2013        2013        2013        2013        2013        2013        2013        2013        2013        2013 
+########################################
+# Growth model:
+#   1  : Type  0=no growth;  1=density dependent
+#   2-3: First and last age for growth
+#   4-5: Additional info1 and info2 
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+# assumed F year adjustment factor for 'missing' seasons in the last assessment year (default=1)
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1 
+########################################
+# Stochastic recruitment. 0=No, 1=Yes
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1 
+########################################
+# truncation of standardised normal distribution used to produce noise on recruitment
+# lower and upper   (values -15.0 and 15.0 give no truncation, -2 and 2 give approximately 95% of the distribution)
+#   values 0 and 0 gives no noise
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+        -10         -10         -10         -10         -10         -10         -10         -10         -10         -10         -10 
+         10          10          10          10          10          10          10          10          10          10          10 
+########################################
+# use recruitment noise from input parameters
+#   0=no, estimate from input R/SSB parameters
+#   1=yes, read residuals from file  recruit_residuals.in
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+#  option HCR :
+#           0=make data for SMS simulations
+#           1=constant F 
+#           2=constant TAC
+#          10=  F from trigger T1&T2 and SSB in the beginning of the TAC year
+#          11=TAC from trigger T1&T2 and SSB in the beginning of the TAC year
+#
+#          15=  F from target SSB (target.SSB) in the beginning of the TAC year+1
+#
+#          real time-monitoring
+#          20=  F from trigger T1&T2 and N1 in the beginning of the TAC year
+#          21=TAC from trigger T1&T2 and N1 in the beginning of the TAC year
+#          22=  F from target SSB (target.SSB) in the beginning of the TAC year+1, derived from real time N1
+#          23=TAC from target SSB (target.SSB) in the beginning of the TAC year+1, derived from real time N1
+#          24=TAC from target SSB (target.SSB) in the beginning of the TAC year+1, derived from real time N1, however F<=constant F
+#          30=  F from trigger T1&T2 and TSB in the beginning of the TAC year
+#          31=TAC from trigger T1&T2 and TSB in the beginning of the TAC year
+#
+#          Baltic cod
+#          44= Reduce F by 10% per year until target F (at 0.3 Eastern Baltic, or 0.6 Western Baltic) is reached
+#              & apply a +-15% TAC constrain if F is below 0.6 (East) or 1.0 (West)
+#              & target F must be given as constant.F
+#              & F reduction rate (e.g. 0.1)  must be given as FT1a
+#              & upper limit F for TAC constraint must be given as T1
+#
+#          North Sea and Kattegat Cod
+#          47= Reduce F by 25% per year if SSB < T1  (blim)
+#              & reduce by 15% per year if SSB < T2  (bpa), however minimum F=0.4 (constantF)
+#              & reduce by 10 per year if SSB > T2 (bpa), however minimum F=0.4 (constantF)
+#              & apply a +-20% TAC constraint (TAC.constraints) in all cases
+#
+#          Norway pout
+#          98= TAC in quarter 1 from T1 and T2 and survey indices (0-group) in the previous year (using survey.dist error)
+#               & closure if the fishery in second quarter
+#               & TAC for quarter 3 and 4 from first quarter 1-group index and assessment results (using real.T.dist error)
+#               & and 25% of normal recruitment, with target at SSB at Bpa? the following year
+#          99=  Closure if the fishery in first and second quarter
+#               & TAC for quarter 3 and 4 from first quarter 1-group index and assessment results (using real.T.dist error)
+#               & and 25% of normal recruitment, with target at SSB at Bpa? the following year
+#
+#          Blue whiting
+#           334:  2008 management plan
+#                 Decrease F to Ftarget (constantF) in initial phase.
+#                 &  by decreasing F by xx percent per year.
+#                 &  real.T.dist is used as input var for xx
+#                 after initial phase (when observed F in the TAC year is below Ftarget switch to HCR rule yy
+#                 &  real.T.bias is used as input var for yy
+#                 Init condition: Calc F.second from the F derived from TAC.first and the specified % reduction
+#
+#           335:  2008 management plan. As 334 but different init condition;
+#                 Init condition: Use TAC.second for F. Use value from external forecast to estimate in accordance with the HCR
+#
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1 
+########################################
+# option T1.  Trigger 1,  (SSB, TSB, F  or stock N depending on HCR in use)
+# option T2.  Trigger 2,  (SSB, TSB, F  or stock N depending on HCR in use)
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+# options FT1a and FT1b. a1 and b1: intercept and slope for regression to calc max F or TAC for observed values below T1.
+#           e.g.    F  =a1+b1 * SSB using HCR=10 and SSB in TAC year
+# options FT12a and FT12b. a2 and b2: intercept and slope for regression to calc max F or TAC for observed values above T1 but below T2.
+#           e.g.    F = a2+b2 *(SSB-T1) using HCR=10 and SSB in TAC year
+# options FT2a and FT2b. a3 and b3: intercept and slope for regression to calc max F or TAC for observed values above T2.
+#          e.g.     F  = a3+b3 *(SSB-T2) using HCR=10 and SSB in TAC year
+#  one column gives a1, b1, a2, b2, a3, and b3
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+# option HCR.F.TAC. Implement HCR result F as effort (option=0) or use TAC (option=1) to estimate real F
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+# value constant.F. F for constant F scenarios (HCR=1)
+#    A value >0 gives absolute F, a value<0 gives fraction of F status quo, e.g. opiton=-0.5 gives F=0.5*Fsq
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+         -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1 
+########################################
+# value constant.TAC. TAC for constant TAC scenarios (HCR=2). Values as for constant.F
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+# option target.SSB.  Target SSB, if relevant (for HCR options in 15, 16, 22 or 23)
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+# option real.time.F. 	Mean F to obtain real time estimate, if relevant  
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+# option cap.TAC	Max TAC(true) irrespective of HCR and constraints (=0 is no max TAC) 
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+# option min.TAC	Min TAC(true) irrespective of HCR and constraints (=0 is no min TAC) 
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+# option cap.F 		Maximum F(true) irrespective of HCR and constraints (=0 is no max F)
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+# #### %%%%%%%%%%%%  constraints %%%%%%%%%%%%%%%% ### 
+# options min.F.change and max.F.change
+#    min and max variation in F between years calculated as (F_forecast_year/F_forcast_previous_year)
+#    0=no constrains
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+# options  min.yield.change and max.yield.change
+#    min and max variation in YIELD between years calc. as < (YIELD forecast year/YIELD forecast previous year)
+#    0=no constrains
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+# options min.SSB.change and max.SSB.change
+ #    min and max variation in SSB between years calc.
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+#### %%%%%%%%%%%%%  'observation and implementation errors'  %%%%%%%%%%%%%%%%%%% ###
+# options obs.noise.lower and obs.noise.upper
+#      truncation of standardised normal distribution used to produce noise on observations
+#      lower and upper   (values -15.0 and 15.0 give no truncation, -2 and 2 give approximately 95% of the distribution
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+        -10         -10         -10         -10         -10         -10         -10         -10         -10         -10         -10 
+         10          10          10          10          10          10          10          10          10          10          10 
+########################################
+# options real.T.dist and real.T.bias and  real.T.std
+#       real time monitoring stock numbers observation uncertainties: model, mean and std deviation,
+#            distribution model (-1=not used, 0=normal, 1=log normal)
+#            mean (mean is mean bias factor, mean=1 produces no bias)
+#            std dev for log normal dist, or CV for normal dist
+#            same noise. Use same noise for all ages (same noise=1) or independent noise per age(same noise=0)
+#        special for HCR 334 (Normally used for real-time monitoring, see above)
+#        first=annual decrease percentage in F until target has been reached
+#        second= HCR when target has been reached
+#        third= adjustment factor for TAC constraints in rebuilding (init) phase.
+#        i.e. factor=x. Init min.yield.change=0.85 and max.yield.change=1.15 are change to 0.85*x and 1.15/x
+#        fourth=not relevant 
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+         -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+# options survey.dist and survey.bias and  survey.std (used for Real Time monitoring options)
+#        survey indices observation uncertainties: model, mean and std deviation,
+#             	distribution model (-1=not used, 0=normal, 1=log normal)
+#             	mean (mean is mean bias factor, mean=1 produces no bias)
+#             	std dev for log normal dist, or CV for normal dist
+#              same noise. Use same noise for all ages (same noise=1) or independent noise per age(same noise=0)
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+         -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+# options asess.error.dist and assess.bias and assess.std
+#          assessment observation uncertainties (on stock numbers) - model, mean and std deviation
+#             	distribution model (-1=not used, 0=normal, 1=log normal,
+#                2=log normal using covariance matrix from file covariance_N.in, does not work!!!
+#                4=log normal using CV by age from file assessment_CV_age.in, does not work!!!)
+#             	mean (mean is mean bias factor, mean=1 produces no bias)
+#             	std dev for log normal dist, or CV for normal dist
+#              same noise. Use same noise for all ages (same noise=1) or independent noise per age(same noise=0)
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+         -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+# options implemt.error.dist and implemt.bias and implemt.std
+#         implementation uncertainties on result of HCR (TAC or F).  model, mean and std deviation,
+#             	distribution model (-1= not used, 0=normal, 1=log normal)
+#             	mean (mean is mean bias factor, mean=1 produces no bias)
+#             	std dev for log normal dist, or CV for normal dist
+#              same noise. dummy value(same value always used) 
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+         -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+#### %%%%%%%%%%%%% various options and input values for the first two years after the last assessment year  %%%%%%%%%%%%%%%%%%% ###
+# TAC.first.	TAC in the first year after the last assessment year
+#                 -1= not relevant
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+         -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1 
+         -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1 
+########################################
+# F.first.  F factor for scaling of F staus quo in the first two years after the last assessment year
+#              -1= not relevant 
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1 
+          1           1           1           1           1           1           1           1           1           1           1 
+########################################
+# option inter.year  	No. of intermediate years (1 | 2)
+#   intermidiat year is the number of years between the last year with known catches and the year for which a TAC is set
+#    example: Sandeel catches for 2006 are known (at the 2006 WGNSSK) and TAC for 2007 has to be produces. Intermediateyear=2007-2006=1
+#         Cod catches for 2005 are known (at the 2006 WGNSSK) and TAC for 2007 has to be produces. Intermediate year=2007-2005=2 
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          2           2           2           2           2           2           2           2           2           2           2 
+########################################
+# option Inter.F.TAC. 	 Implement HCR result in the second intermediate year as F (option=0) or use TAC (option=1) to estimate real F
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+#### %%%%%%%%%%%%% various for recruitment %%%%%%%%%%%%%%%%%%% ### 
+# no of years in recruitment noise autocorrelation and
+#   autocorrelation term(s) use 0 for no terms
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0 
+########################################
+# factor to adjust expected recruits (adjust.recruits)
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1 
+########################################
+# adjust recruitment with half of the variance (factor exp(-(CV^2)/2) option recruit.adjust.CV
+# 0=no adjustment, 1=do adjustment
+#         Cod     Whiting     Haddock      Saithe     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1 
+########################################
+# read SSB recruitment parameters from file ssb_r.in
+#  (0=no use estimated parm, 1=yes, read in new parameters)
+0
+########################################
+#### %%%%%%%%%%%%% various for output %%%%%%%%%%%%%%%%%%% ###
+#         F          M2           Z           N           C         FLR    constraints    closure
+#   0=no output, 1=output 
+          0           0           0           0           0           0           0           0 
+########################################
+#### %%%%%%%%%%%%% various for predicted N (for FLR operating model) %%%%%%%%%%%%%%%%%%% ###
+# read prediction stock numbers incl. recruits from file predict_stock_n.in
+# first and last year for including stock numbers
+# use years before first prediction year for no inclusion of data= use values from assessment
+#  first and last year 
+          0           0 
+########################################
+# number of initial population (default=1)
+1
+########################################
+#### %%%%%%%%%%%%% various for F and exploitation pattern %%%%%%%%%%%%%%%%%%% ###
+# read F/exploitation pattern from file exploitation_pattern.in
+# first and last year for including  values
+# use years before first prediction year for no inclusion of data, that is to use values from exploitation pattern and HCR
+#             
+          0           0 
+########################################
+#  use values from file exploitation_pattern.in as
+#  0 = absolute F (without applying HCR afterwards) or 1=exploitation pattern
+0
+########################################
+#### %%%%%%%%%%%%% various for other predators %%%%%%%%%%%%%%%%%%% ###
+# annual change factor for population number
+# first year (relative to first prediction year) year of change  (-1 is no change)
+# last year (relative to first prediction year) of change (-1 is no change)
+# other predator stock numbers  
+#      Fulmar   Guillemot   Her. Gull   Kittiwake   GBB. Gull      Gannet      Puffin   Razorbill  R. radiata G. gurnards W. mackerel N. mackerel W.horse mac N.horse mac   Grey seal H. porpoise        Hake 
+          1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1 
+         -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1 
+         -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1 

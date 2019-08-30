@@ -40,16 +40,72 @@ knitr::include_graphics("p20012bfeg107001.jpg")
 
 WGSAM receives most requests for model review after the problem identification and conceptual model stage. However, it is important to provide documentation of these processes to reviewers so that the completed model can be evaluated. 
 
+In addition, models involved in a management process may face the tradeoff between complexity and transparency, where the need to account for many interactions and processes may render the model harder to explain, and perhaps accept, by decision-makers [@nrc_chapter_2007]. Because the audience for WGSAM key runs tends to be other scientsts, evaluating the extent to which models are transparent to a scientific, stock assessment oriented audience is appropriate here.
+
+We consider WGSAM reviews to be "peer review". 
+>Peer review attempts to ensure that the model is technically adequate, competently performed, properly documented, and satisfies established quality requirements through the review of assumptions, calculations, extrapolations, alternate interpretations, methodology, acceptance criteria, and/or conclusions pertaining from a model or its application.[@nrc_chapter_2007]
+
 ## Key Run Reviews
 
-As described above, model key runs are currently used to provide inputs to other assessment models; specifically, natural mortality ($M$) time series. This places key runs clearly within the "Model Use" phase of the life cycle.
+As described above, model key runs are currently used to provide inputs to other assessment models; specifically, natural mortality ($M$) time series. This places key runs clearly within the "Model Use" phase of the life cycle. This means that reviews should evaluate (from the figure above):
 
+1. Appropriateness of the model for the problem (problem identification)
+1. Assumptions (scientific basis, computational infrastructure; adequacy of conceptual model)
+1. Model extrapolation (*unsure what this means: extension of a model framework for this particular application? extrapolations made to get it up and running? using it beyond the data it was parameterized with?*)
+1. Input data quality
+1. Comparison with observations
+1. Uncertainty/sensitivity analysis
+1. Peer review (WGSAM's role, but consider previous reviews from model construction)
+
+Reviewers will rely on submitted documentation to address these issues. At each point, if documentation is inadequate to address the problem, that will be noted. Review criteria for each point are outlined below.
+
+### Is the model appropriate for the problem?
+
+Define the problem, and why this model is or is not appropriate
+
+For example, is a total mortality time series enough or does the time series need to be M by age? What other outputs are used in the assessments?
+
+### Is the scientific basis of the model sound?
+
+This could get deep.
+
+### Whatever model extrapolation means?
+
+
+
+### Is the input data quality sufficient for the problem?
+
+See above defining the problem. Which datasets are adequate, which could be improved, and which are missing?
+
+### Does model output compare well with observations?
+
+How well? and which observations are most important? We know we wont match them all
+
+### Uncertainty
+
+Has uncertainty been assessed in the output of interest? Has sensitivity analysis been performed and how does it affect those outputs?
+
+### Previous peer review
+
+What did they point out and have issues been addressed?
+
+Review of constructed models should have evaluated spatial and temporal resolution, algorithm choices, data availability and software tools, quality assurance/quality control of code, and test scenarios.
 
 ## General Model Reviews
 
 WGSAM has provided model framework reviews for the LeMans ensemble (2016), FLBEIA (2017), and a multispecies state-space model (2017). Here we outline more general model framework review guidelines for future meetings.
 
-Model frameworks may be at different stages of the model life cycle than the key runs described above, although to date WGSAM has received requests for review closest to the "Constructed Model" phase. 
+Model frameworks may be at different stages of the model life cycle than the key runs described above, although to date WGSAM has received requests for review closest to the "Constructed Model" phase. This means that reviews should evaluate (from the figure above):
+
+1. Spatial and temporal resolution
+1. Algorithm choices
+1. Assumptions (scientific basis, computational infrastructure; adequacy of conceptual model)
+1. Data availability/software tools
+1. Quality assurance/quality control (code testing)
+1. Test scenarios
+1. Corroboration with observations
+1. Uncertainty/sensitivity analysis
+1. Peer review (WGSAM's role, but consider previous reviews from prior steps)
 
 ## References
 

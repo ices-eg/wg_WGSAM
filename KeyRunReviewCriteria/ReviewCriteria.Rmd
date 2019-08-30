@@ -42,7 +42,8 @@ WGSAM receives most requests for model review after the problem identification a
 
 In addition, models involved in a management process may face the tradeoff between complexity and transparency, where the need to account for many interactions and processes may render the model harder to explain, and perhaps accept, by decision-makers [@nrc_chapter_2007]. Because the audience for WGSAM key runs tends to be other scientsts, evaluating the extent to which models are transparent to a scientific, stock assessment oriented audience is appropriate here.
 
-We consider WGSAM reviews to be "peer review". 
+We consider WGSAM reviews to be "peer review".
+
 >Peer review attempts to ensure that the model is technically adequate, competently performed, properly documented, and satisfies established quality requirements through the review of assumptions, calculations, extrapolations, alternate interpretations, methodology, acceptance criteria, and/or conclusions pertaining from a model or its application.[@nrc_chapter_2007]
 
 ## Key Run Reviews

@@ -20,13 +20,13 @@ WGSAM Term of Reference b for 2019-2021 reads:
 
 >Update of key-runs (standardized model runs updated with recent data, producing agreed output and agreed upon by WGSAM participants) of multispecies and ecosystem models for different ICES regions. The key runs provide information on natural mortality for inclusion in various single species assessments. Deliverables: Report on output of multispecies models including stock biomass and numbers and natural mortalities for use by single species assessment groups and external users.
 
-Because WGSAM is increasingly asked to provide model framework reviews as well as key run reviews, we have drafted this document to provide consistent guidelines and review critiera for both reviewers and groups submitting models for review. Guidelines are based on experience from past reviews as well as best practices outlined in the literature [@national_research_council_chapter_2007].
+Because WGSAM is increasingly asked to provide model framework reviews as well as key run reviews, we have drafted this document to provide consistent guidelines and review critiera for both reviewers and groups submitting models for review. Guidelines are based on experience from past reviews (see WGSAM reports from 2013-2018 as well as, e.g., https://www.st.nmfs.noaa.gov/science-quality-assurance/cie-peer-reviews/peer-review-reports) as well as best practices outlined in the literature [@nrc_chapter_2007; @kaplan_guinea_2016].
 
 ## Model Life Cycle and Objectives for Evaluation
 
-The U.S. National Research Council has summarized the general objectives for model evaluation and tailored them to different stages of the model life cycle with reference to models used in enviromental regulation processes[@national_research_council_chapter_2007]. The application of multispecies and ecosystem models within fishery management processes is similar enough that this summary provides a useful framework for our criteria. 
+The U.S. National Research Council has summarized the general objectives for model evaluation and tailored them to different stages of the model life cycle with reference to models used in enviromental regulation processes[@nrc_chapter_2007]. The application of multispecies and ecosystem models within fishery management processes is similar enough that this summary provides a useful framework for our criteria. 
 
-The genereal objectives of model review are threefold:[@national_research_council_model_2007], p 108
+The genereal objectives of model review are threefold:[@nrc_chapter_2007], p 108
 
 >Is the model based on generally accepted science and computational methods?  
 Does it work, that is, does it fulfill its designated task or serve its intended purpose?  
@@ -34,7 +34,7 @@ Does its behavior approximate that observed in the system being modeled?
 
 The model life cycle further specifies review priorities. 
 
-```{r lifecycle, fig.cap="Model Life Cycle, NRC 2007", out.width='50%', fig.align='center'}
+```{r lifecycle, fig.cap="Model Life Cycle, NRC 2007, redraw this poor quality figure", out.width='50%', fig.align='center'}
 knitr::include_graphics("p20012bfeg107001.jpg")
 ```
 
@@ -49,7 +49,7 @@ As described above, model key runs are currently used to provide inputs to other
 
 WGSAM has provided model framework reviews for the LeMans ensemble (2016), FLBEIA (2017), and a multispecies state-space model (2017). Here we outline more general model framework review guidelines for future meetings.
 
-Model frameworks may be at different stages of the model life cycle than the key runs described above, although to date WGSAM has received requests for review in the "Model Construction" phase. 
+Model frameworks may be at different stages of the model life cycle than the key runs described above, although to date WGSAM has received requests for review closest to the "Constructed Model" phase. 
 
 ## References
 

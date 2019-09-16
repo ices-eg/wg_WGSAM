@@ -80,17 +80,39 @@ See above defining the problem. Which datasets are adequate, which could be impr
 
 ### Does model output compare well with observations?
 
-How well? and which observations are most important? We know we wont match them all
+Here we refer to the more detailed performance criteria developed in @kaplan_guinea_2016. 
+
+1. All functional groups persist
+
+1. Model stabilizes for the last ~20 years of an unfished, unperturbed 80-100 year run
+
+1. Hindcast period established where we have survey/assessment time series with error bounds
+
+1. Species groups totaling ~80% of system biomass should qualitatively match hindcast biomass trends
+
+1. Patterns of temporal variability captured (emergent or forced with e.g. recruitment time series)
+
+1. Productivity for groups totaling ~80% of system biomass should qualitatively match FMSY or life history expectations
+
+1. Natural mortality decreases with age for majority of groups
+
+1. Age and length structure qualitatively matches expectations for majority of groups
+
+1. Diet predicted qualitatively matches empirical diet comp for majority of groups
 
 ### Uncertainty
 
 Has uncertainty been assessed in the output of interest? Has sensitivity analysis been performed and how does it affect those outputs?
 
+For complex models with long runtimes, simpler ways to address uncertainty may be appropriate [@kaplan_guinea_2016].
+
+Best practice is to retain multiple parameterizations that meet the above criteria to allow scenario testing across a range of parameterizations. Parameter uncertainty can be addressed even in complex models. A simple method uses bounding (e.g. base, low bound, and high bound productivity scenarios).
+
 ### Previous peer review
 
 What did they point out and have issues been addressed?
 
-Review of constructed models should have evaluated spatial and temporal resolution, algorithm choices, data availability and software tools, quality assurance/quality control of code, and test scenarios.
+Review of constructed models should have evaluated spatial and temporal resolution, algorithm choices, data availability and software tools, quality assurance/quality control of code, and test scenarios. Please 
 
 ## General Model Reviews
 
@@ -107,6 +129,31 @@ Model frameworks may be at different stages of the model life cycle than the key
 1. Corroboration with observations
 1. Uncertainty/sensitivity analysis
 1. Peer review (WGSAM's role, but consider previous reviews from prior steps)
+
+### Spatial and temporal resolution
+
+Does the model address the scales appropriate to its proposed use? Or, reviewers should identify what spatial and temporal scale the model is best suited to.
+
+### Algorithm choices
+
+### Assumptions (scientific basis, computational infrastructure; adequacy of conceptual model)
+
+### Data availability/software tools
+
+### Quality assurance/quality control (code testing)
+
+Has code been made available to reviewers? While a full code review is beyond the scope of WGSAM, reviewers with expertise in a particular model type may ask to review portions of the model code and/or data inputs. 
+
+### Test scenarios
+
+### Corroboration with observations
+
+Once again, criteria developed by @kaplan_guinea_2016 are relevant; see above.
+
+### Uncertainty/sensitivity analysis
+
+### Peer review (WGSAM's role, but consider previous reviews from prior steps)
+
 
 ## References
 

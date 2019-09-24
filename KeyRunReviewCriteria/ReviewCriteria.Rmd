@@ -66,6 +66,10 @@ Define the problem, and why this model is or is not appropriate
 
 For example, is a total mortality time series enough or does the time series need to be M by age? What other outputs are used in the assessments?
 
+From Daniel on model purpose for the WKIRISH:
+
+>The aim with the Irish Sea Ecopath is to use the model to “fine tune” the quota advice within the predefined EU Fmsy ranges. In “good” conditions you could fish at the top of the range, in “poor” conditions you should fish lower in the range. The range has already been evaluated as giving good yield while still being precautionary, so this should be fine for ICES to use in advice, so any reviewers should have this in mind.
+
 ### Is the scientific basis of the model sound?
 
 This could get deep.

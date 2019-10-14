@@ -57,17 +57,25 @@ As described above, model key runs are currently used to provide inputs to other
 1. Uncertainty/sensitivity analysis
 1. Peer review (WGSAM's role, but consider previous reviews from model construction)
 
-Reviewers will rely on submitted documentation to address these issues. At each point, if documentation is inadequate to address the problem, that will be noted. Review criteria for each point are outlined below.
+Reviewers will rely on submitted documentation to address these issues. At each point, if documentation is inadequate to address the problem, that will be noted. Review criteria for each point are outlined below, and presentations should include this information.
 
 ### Is the model appropriate for the problem?
 
-Define the problem, and why this model is or is not appropriate
+Define the problem, and why this model is (or reviewers to explain why it is not) appropriate. 
 
-For example, is a total mortality time series enough or does the time series need to be M by age? What other outputs are used in the assessments?
+Define the focal species, spatial, and temporal resolution needed to address the problem. 
 
-From Daniel on model purpose for the WKIRISH:
+Current uses:
+
+For example, we are asked to provide M-at-age time series for North Sea and Baltic herring, cod, whiting, haddock, sprat, sandeel, and possibly other species. Spatial scale is at the stock level and temporal resolution is annual, starting at a stock-specific year and going to 2018. 
+
+Therefore, the multispecies model(s) must provide this output and sensitivity in this particular output is most important. However, there are other potential uses for these models that have yet to be defined.
+
+A new use for WKIRISH:
 
 >The aim with the Irish Sea Ecopath is to use the model to “fine tune” the quota advice within the predefined EU Fmsy ranges. In “good” conditions you could fish at the top of the range, in “poor” conditions you should fish lower in the range. The range has already been evaluated as giving good yield while still being precautionary, so this should be fine for ICES to use in advice, so any reviewers should have this in mind.
+
+For the Irish Sea EwE model, key outputs will be used to determine where the reference point should be within the MSY range for each species. Therefore, outputs defining Ecosystem conditions and both ecosystem and species productivity under the prevailing conditions are most important.
 
 ### Is the scientific basis of the model sound?
 
@@ -77,21 +85,27 @@ Make a general comment that it is an established and reviewed model and move on.
 
 See above defining the problem. Which datasets are adequate, which could be improved, and which are missing?
 
+Show the input data as a simple chart: beginning and end of time series, gaps, different length of time series, spatial resolution of data.
+
+Categorize the assumptions behind modeled ecological or biological processes. Emphasize those related to species interactions (predation, competition), environmental pressures, and also fleet dynamics if needed to address the problem. If the model is spatial, how do these processes happen in space?
+
+Is the parameterization consistent with scientific knowledge (e.g. Prebal assumptions for general relationships across trophic levels, sizes, etc).
+
 ### Does model output compare well with observations?
 
-Here we refer to the more detailed performance criteria developed in @kaplan_guinea_2016. 
+Here we refer to the more detailed performance criteria developed in @kaplan_guinea_2016. We have modified them for our purposes. 
 
-1. (if important to use--projection) All functional groups persist
+1. (if important to use--projection) All functional groups persist in an unfished unperturbed run
 
 1. (if important to use--projection) Model stabilizes for the last ~20 years of an unfished, unperturbed 80-100 year run
 
-1. Hindcast period established where we have survey/assessment time series with error bounds (this will come from the keyrun itself and we will endorse for this period if appropriate)
+1. The keyrun should define the hindcast time period where agreement with other data sources or assessments is needed. Review will determine if the model fits adequately within that time period. Error ranges are needed for comparison or reference datasets.
 
-1. Species groups totaling ~80% of system biomass should qualitatively match hindcast biomass trends (or species groups needed for model purpose)
+1. Focal species should match biomass and catch trends over the hindcast time period. For full system models, species comprising a majority of biomass should also match general hindcast trends. 
 
 1. Patterns of temporal variability captured (emergent or forced with e.g. recruitment time series)
 
-1. Productivity for groups totaling ~80% of system biomass should qualitatively match FMSY or life history expectations
+1. Productivity for groups totaling ~80% of system biomass should qualitatively match  life history expectations (prebal diagnostics)
 
 1. Natural mortality decreases with age for majority of groups
 
@@ -99,9 +113,21 @@ Here we refer to the more detailed performance criteria developed in @kaplan_gui
 
 1. Diet predicted qualitatively matches empirical diet comp for majority of groups
 
+1. Spatial distribution of outputs match reference datasets for spatial models (most important if output required at spatial resolution of model, comment if a match in aggregate but not at higher resolution)
+
+1. Ecosystem indicators (relationship between abundance and body size, pelagic to demersal, Large Fish Indicator) match reference data if needed for problem
+
 ### Uncertainty
 
 Has uncertainty been assessed in the output of interest? Has sensitivity analysis been performed and how does it affect those outputs?
+
+Specific analyses, sensitivity of key output in:
+
+1. Retrospective analysis (5 year peel of all input data)
+
+1. Sensitivity to stomach data and other key data sources
+
+1. Sensitivity to key parameters: consumption rates, residual mortality (M1, M0)
 
 For complex models with long runtimes, simpler ways to address uncertainty may be appropriate [@kaplan_guinea_2016].
 
@@ -111,7 +137,7 @@ Best practice is to retain multiple parameterizations that meet the above criter
 
 What did they point out and have issues been addressed?
 
-Review of constructed models should have evaluated spatial and temporal resolution, algorithm choices, data availability and software tools, quality assurance/quality control of code, and test scenarios. Please 
+Review of constructed models should have evaluated spatial and temporal resolution, algorithm choices, data availability and software tools, quality assurance/quality control of code, and test scenarios. 
 
 ## General Model Reviews
 

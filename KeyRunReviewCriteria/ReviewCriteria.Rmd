@@ -95,13 +95,15 @@ Is the parameterization consistent with scientific knowledge (e.g. Prebal assump
 
 Here we refer to the more detailed performance criteria developed in @kaplan_guinea_2016. We have modified them for our purposes. 
 
+Characterize the reference dataset used for comparisons. Has the data been used to construct this model? Is the reference dataset from another model? Describe referece data source(s). 
+
 1. (if important to use--projection) All functional groups persist in an unfished unperturbed run
 
 1. (if important to use--projection) Model stabilizes for the last ~20 years of an unfished, unperturbed 80-100 year run
 
 1. The keyrun should define the hindcast time period where agreement with other data sources or assessments is needed. Review will determine if the model fits adequately within that time period. Error ranges are needed for comparison or reference datasets.
 
-1. Focal species should match biomass and catch trends over the hindcast time period. For full system models, species comprising a majority of biomass should also match general hindcast trends. 
+1. Focal species should match biomass and catch trends over the hindcast time period. For full system models, species comprising a majority of biomass should also match general hindcast trends. Suggested tests include modeling efficiency, RMSE, etc as outlined in [@olsen]
 
 1. Patterns of temporal variability captured (emergent or forced with e.g. recruitment time series)
 
@@ -121,15 +123,19 @@ Here we refer to the more detailed performance criteria developed in @kaplan_gui
 
 Has uncertainty been assessed in the output of interest? Has sensitivity analysis been performed and how does it affect those outputs?
 
+The key run should show estimates of uncertainty in the output quantity of interest. Uncertainty analysis is best if possible to estimate confidence intervals. If not possible list key sources of uncertainty, expected bounds on outputs based on those (possibly from sensitivity analysis)--i.e. design sensitivity analysis to approximate uncertainty analysis. 
+
 Specific analyses, sensitivity of key output in:
 
 1. Retrospective analysis (5 year peel of all input data)
 
-1. Forecast uncertainty: remove last 5 years of survey index only to see how well the model works in forecast mode, given the catch that actually happened.
+1. Forecast uncertainty: remove last 3-5 years of survey index only to see how well the model works in forecast mode, given the catch that actually happened. 
 
 1. Sensitivity to stomach data and other key data sources
 
 1. Sensitivity to key parameters: consumption rates, residual mortality (M1, M0)
+
+1. Sensitivity to initial conditions 
 
 For complex models with long runtimes, simpler ways to address uncertainty may be appropriate [@kaplan_guinea_2016].
 

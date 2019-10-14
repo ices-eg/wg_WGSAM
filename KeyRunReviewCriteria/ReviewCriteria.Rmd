@@ -52,7 +52,6 @@ As described above, model key runs are currently used to provide inputs to other
 
 1. Appropriateness of the model for the problem (problem identification)
 1. Assumptions (scientific basis, computational infrastructure; adequacy of conceptual model)
-1. Model extrapolation (*unsure what this means: extension of a model framework for this particular application? extrapolations made to get it up and running? using it beyond the data it was parameterized with?*)
 1. Input data quality
 1. Comparison with observations
 1. Uncertainty/sensitivity analysis
@@ -72,13 +71,9 @@ From Daniel on model purpose for the WKIRISH:
 
 ### Is the scientific basis of the model sound?
 
-This could get deep.
+Make a general comment that it is an established and reviewed model and move on. Unless it isnt, then go more deeply into this question.
 
-### Whatever model extrapolation means?
-
-
-
-### Is the input data quality sufficient for the problem?
+### Is the input data quality and parameterization sufficient for the problem?
 
 See above defining the problem. Which datasets are adequate, which could be improved, and which are missing?
 
@@ -86,13 +81,13 @@ See above defining the problem. Which datasets are adequate, which could be impr
 
 Here we refer to the more detailed performance criteria developed in @kaplan_guinea_2016. 
 
-1. All functional groups persist
+1. (if important to use--projection) All functional groups persist
 
-1. Model stabilizes for the last ~20 years of an unfished, unperturbed 80-100 year run
+1. (if important to use--projection) Model stabilizes for the last ~20 years of an unfished, unperturbed 80-100 year run
 
-1. Hindcast period established where we have survey/assessment time series with error bounds
+1. Hindcast period established where we have survey/assessment time series with error bounds (this will come from the keyrun itself and we will endorse for this period if appropriate)
 
-1. Species groups totaling ~80% of system biomass should qualitatively match hindcast biomass trends
+1. Species groups totaling ~80% of system biomass should qualitatively match hindcast biomass trends (or species groups needed for model purpose)
 
 1. Patterns of temporal variability captured (emergent or forced with e.g. recruitment time series)
 

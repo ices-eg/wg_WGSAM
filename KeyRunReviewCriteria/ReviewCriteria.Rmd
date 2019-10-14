@@ -105,7 +105,7 @@ Here we refer to the more detailed performance criteria developed in @kaplan_gui
 
 1. Patterns of temporal variability captured (emergent or forced with e.g. recruitment time series)
 
-1. Productivity for groups totaling ~80% of system biomass should qualitatively match  life history expectations (prebal diagnostics)
+1. Productivity for focal species (or groups totaling ~80% of system biomass in full system models) should qualitatively match life history expectations (prebal diagnostics)
 
 1. Natural mortality decreases with age for majority of groups
 
@@ -124,6 +124,8 @@ Has uncertainty been assessed in the output of interest? Has sensitivity analysi
 Specific analyses, sensitivity of key output in:
 
 1. Retrospective analysis (5 year peel of all input data)
+
+1. Forecast uncertainty: remove last 5 years of survey index only to see how well the model works in forecast mode, given the catch that actually happened.
 
 1. Sensitivity to stomach data and other key data sources
 

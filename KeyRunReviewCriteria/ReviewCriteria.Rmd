@@ -147,6 +147,15 @@ What did they point out and have issues been addressed?
 
 Review of constructed models should have evaluated spatial and temporal resolution, algorithm choices, data availability and software tools, quality assurance/quality control of code, and test scenarios. 
 
+## Review recommendations
+
+WGSAM key run review reports will address the sections above, and then make a recommendation for the appropriate uses of model outputs.
+
+WGSAM key run review reports will also end with a list of recommendations for items to be addressed in future key runs. 
+
+
+# Section below not used in 2019
+
 ## General Model Reviews
 
 WGSAM has provided model framework reviews for the LeMans ensemble (2016), FLBEIA (2017), and a multispecies state-space model (2017). Here we outline more general model framework review guidelines for future meetings.

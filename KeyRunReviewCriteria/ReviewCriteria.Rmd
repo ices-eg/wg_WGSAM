@@ -1,32 +1,38 @@
 ---
 title: "WGSAM Key Run Review Criteria"
-author: "Sarah Gaichas and Alex Kempf"
+author: "Sarah Gaichas, Alexander Kempf, and WGSAM 2019"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-output: html_document
-bibliography: modreview.bib
-csl: plos.csl
+output:
+  html_document: default
+  word_document: default
 link-citations: yes
+csl: plos.csl
+bibliography: modreview.bib
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+## Important outcome of 2019 review
+
+WGSAM notes that streamlining processes for updating data would be helpful to facilitate future key-runs. For all meetings after 2019, WGSAM will require draft key-run results and documentation 1 month to 2 weeks prior to the meeting so that a more thorough review can be completed prior to the meeting, reserving meeting time for model comparisons, ensemble modelling, and coming to agreement on recommendations. This means that data updates must be requested and provided in a timely manner. If the full results and documentation are not available prior to the meeting, no key-run review will be conducted by WGSAM.
+
 ## Background
 
-This document provides criteria for consistent review of models by the multispecies assessment working group of the International Council for the Exploration of the Sea (ICES WGSAM). For nearly a decade, WGSAM has reviewed model "key runs" as part of its Terms of Reference. Recently, WGSAM reviewed key runs for the North Sea SMS model in 2014 and 2017, the North Sea EwE model in 2015, and the Baltic EwE model in 2016. Key run reviews are scheduled for Baltic Sea Gadget and SMS models and the Irish Sea EwE model in 2019. 
+This document provides criteria for consistent review of models by the multispecies assessment working group of the International Council for the Exploration of the Sea (ICES WGSAM). For nearly a decade, WGSAM has reviewed model "key-runs" as part of its Terms of Reference. Recently, WGSAM reviewed key-runs for the North Sea SMS model in 2014 and 2017, the North Sea EwE model in 2015, and the Baltic EwE model in 2016. key-run reviews are scheduled for Baltic Sea Gadget and SMS models and the Irish Sea EwE model in 2019. 
 
 WGSAM Term of Reference b for 2019-2021 reads:
 
->Update of key-runs (standardized model runs updated with recent data, producing agreed output and agreed upon by WGSAM participants) of multispecies and ecosystem models for different ICES regions. The key runs provide information on natural mortality for inclusion in various single species assessments. Deliverables: Report on output of multispecies models including stock biomass and numbers and natural mortalities for use by single species assessment groups and external users.
+>Update of key-runs (standardized model runs updated with recent data, producing agreed output and agreed upon by WGSAM participants) of multispecies and ecosystem models for different ICES regions. The key-runs provide information on natural mortality for inclusion in various single species assessments. Deliverables: Report on output of multispecies models including stock biomass and numbers and natural mortalities for use by single species assessment groups and external users.
 
-Because WGSAM is increasingly asked to provide model framework reviews as well as key run reviews, we have drafted this document to provide consistent guidelines and review critiera for both reviewers and groups submitting models for review. Guidelines are based on experience from past reviews (see WGSAM reports from 2013-2018 as well as, e.g., https://www.st.nmfs.noaa.gov/science-quality-assurance/cie-peer-reviews/peer-review-reports) as well as best practices outlined in the literature [@nrc_chapter_2007; @kaplan_guinea_2016].
+Because WGSAM is increasingly asked to provide model framework reviews as well as key-run reviews, we have drafted this document to provide consistent guidelines and review critiera for both reviewers and groups submitting models for review. Guidelines are based on experience from past reviews (see WGSAM reports from 2013-2018 as well as, e.g., https://www.st.nmfs.noaa.gov/science-quality-assurance/cie-peer-reviews/peer-review-reports) as well as best practices outlined in the literature [@nrc_chapter_2007; @kaplan_guinea_2016].
 
 ## Model Life Cycle and Objectives for Evaluation
 
 The U.S. National Research Council has summarized the general objectives for model evaluation and tailored them to different stages of the model life cycle with reference to models used in enviromental regulation processes[@nrc_chapter_2007]. The application of multispecies and ecosystem models within fishery management processes is similar enough that this summary provides a useful framework for our criteria. 
 
-The genereal objectives of model review are threefold:[@nrc_chapter_2007], p 108
+The general objectives of model review are threefold:[@nrc_chapter_2007], p 108
 
 >Is the model based on generally accepted science and computational methods?  
 Does it work, that is, does it fulfill its designated task or serve its intended purpose?  
@@ -40,15 +46,15 @@ knitr::include_graphics("p20012bfeg107001.jpg")
 
 WGSAM receives most requests for model review after the problem identification and conceptual model stage. However, it is important to provide documentation of these processes to reviewers so that the completed model can be evaluated. 
 
-In addition, models involved in a management process may face the tradeoff between complexity and transparency, where the need to account for many interactions and processes may render the model harder to explain, and perhaps accept, by decision-makers [@nrc_chapter_2007]. Because the audience for WGSAM key runs tends to be other scientsts, evaluating the extent to which models are transparent to a scientific, stock assessment oriented audience is appropriate here.
+In addition, models involved in a management process may face the tradeoff between complexity and transparency, where the need to account for many interactions and processes may render the model harder to explain, and perhaps accept, by decision-makers [@nrc_chapter_2007]. Because the audience for WGSAM key-runs tends to be other scientsts, evaluating the extent to which models are transparent to a scientific, stock assessment oriented audience is appropriate here.
 
 We consider WGSAM reviews to be "peer review".
 
 >Peer review attempts to ensure that the model is technically adequate, competently performed, properly documented, and satisfies established quality requirements through the review of assumptions, calculations, extrapolations, alternate interpretations, methodology, acceptance criteria, and/or conclusions pertaining from a model or its application.[@nrc_chapter_2007]
 
-## Key Run Reviews
+## Key-run Reviews
 
-As described above, model key runs are currently used to provide inputs to other assessment models; specifically, natural mortality ($M$) time series. This places key runs clearly within the "Model Use" phase of the life cycle. This means that reviews should evaluate (from the figure above):
+As described above, model key-runs are currently used to provide inputs to other assessment models; specifically, natural mortality ($M$) time series. This places key-runs clearly within the "Model Use" phase of the life cycle. This means that reviews should evaluate (from the figure above):
 
 1. Appropriateness of the model for the problem (problem identification)
 1. Assumptions (scientific basis, computational infrastructure; adequacy of conceptual model)
@@ -79,7 +85,22 @@ For the Irish Sea EwE model, key outputs will be used to determine where the ref
 
 ### Is the scientific basis of the model sound?
 
-Make a general comment that it is an established and reviewed model and move on. Unless it isnt, then go more deeply into this question.
+Make a general comment that it is an established and reviewed model and move on. Unless it isnt, then WGSAM would use methods outlined for “Constructed Model” review in the flowchart above, or a model framework review.
+
+WGSAM has provided model framework reviews for the LeMans ensemble (2016), FLBEIA (2017), and a multispecies state-space model (2017). Here we outline more general model framework review guidelines for future meetings.
+
+Model frameworks may be at different stages of the model life cycle than the key runs described above, although to date WGSAM has received requests for review closest to the "Constructed Model" phase. This means that reviews should evaluate (from the figure above):
+
+1. Spatial and temporal resolution
+1. Algorithm choices
+1. Assumptions (scientific basis, computational infrastructure; adequacy of conceptual model)
+1. Data availability/software tools
+1. Quality assurance/quality control (code testing)
+1. Test scenarios
+1. Corroboration with observations
+1. Uncertainty/sensitivity analysis
+1. Peer review (WGSAM's role, but consider previous reviews from prior steps)
+
 
 ### Is the input data quality and parameterization sufficient for the problem?
 
@@ -87,9 +108,11 @@ See above defining the problem. Which datasets are adequate, which could be impr
 
 Show the input data as a simple chart: beginning and end of time series, gaps, different length of time series, spatial resolution of data.
 
+Give information on input data pedigree/quality, reference for where it comes from, whether it is survey data or comes from other model output, whether confidence intervals or other uncertainty measures are available and used in the model.
+
 Categorize the assumptions behind modeled ecological or biological processes. Emphasize those related to species interactions (predation, competition), environmental pressures, and also fleet dynamics if needed to address the problem. If the model is spatial, how do these processes happen in space?
 
-Is the parameterization consistent with scientific knowledge (e.g. Prebal assumptions for general relationships across trophic levels, sizes, etc).
+Is the parameterization consistent with scientific knowledge (e.g. (PREBAL) diagnostics @link_adding_2010 for general relationships across trophic levels, sizes, etc).
 
 ### Does model output compare well with observations?
 
@@ -103,7 +126,7 @@ Characterize the reference dataset used for comparisons. Has the data been used 
 
 1. The keyrun should define the hindcast time period where agreement with other data sources or assessments is needed. Review will determine if the model fits adequately within that time period. Error ranges are needed for comparison or reference datasets.
 
-1. Focal species should match biomass and catch trends over the hindcast time period. For full system models, species comprising a majority of biomass should also match general hindcast trends. Suggested tests include modeling efficiency, RMSE, etc as outlined in [@olsen]
+1. Focal species should match biomass and catch trends over the hindcast time period. For full system models, species comprising a majority of biomass should also match general hindcast trends. Suggested tests include modeling efficiency, RMSE, etc. [@sterman_appropriate_1984; @stow_skill_2009; @joliff_summary_2009; @allen_multivariate_200; @lehuta_selection_2013; @lehuta_reconciling_2016; @olsen_ecosystem_2016]
 
 1. Patterns of temporal variability captured (emergent or forced with e.g. recruitment time series)
 
@@ -123,7 +146,7 @@ Characterize the reference dataset used for comparisons. Has the data been used 
 
 Has uncertainty been assessed in the output of interest? Has sensitivity analysis been performed and how does it affect those outputs?
 
-The key run should show estimates of uncertainty in the output quantity of interest. Uncertainty analysis is best if possible to estimate confidence intervals. If not possible list key sources of uncertainty, expected bounds on outputs based on those (possibly from sensitivity analysis)--i.e. design sensitivity analysis to approximate uncertainty analysis. 
+The key-run should show estimates of uncertainty in the output quantity of interest. Uncertainty analysis is best if possible to estimate confidence intervals. If not possible list key sources of uncertainty, expected bounds on outputs based on those (possibly from sensitivity analysis)--i.e. design sensitivity analysis to approximate uncertainty analysis. 
 
 Specific analyses, sensitivity of key output in:
 
@@ -131,7 +154,7 @@ Specific analyses, sensitivity of key output in:
 
 1. Forecast uncertainty: remove last 3-5 years of survey index only to see how well the model works in forecast mode, given the catch that actually happened. 
 
-1. Sensitivity to stomach data and other key data sources
+1. Sensitivity to stomach data and other key or low-confidence data sources
 
 1. Sensitivity to key parameters: consumption rates, residual mortality (M1, M0)
 
@@ -139,7 +162,7 @@ Specific analyses, sensitivity of key output in:
 
 For complex models with long runtimes, simpler ways to address uncertainty may be appropriate [@kaplan_guinea_2016].
 
-Best practice is to retain multiple parameterizations that meet the above criteria to allow scenario testing across a range of parameterizations. Parameter uncertainty can be addressed even in complex models. A simple method uses bounding (e.g. base, low bound, and high bound productivity scenarios).
+Best practice is to retain multiple parameterizations that meet the above criteria to allow scenario testing across a range of parameterizations. Parameter uncertainty can be addressed even in complex models. A simple method uses bounding (e.g. base, low bound, and high bound productivity scenarios; @saltelli_how_2010).
 
 ### Previous peer review
 
@@ -149,9 +172,9 @@ Review of constructed models should have evaluated spatial and temporal resoluti
 
 ## Review recommendations
 
-WGSAM key run review reports will address the sections above, and then make a recommendation for the appropriate uses of model outputs.
+WGSAM key-run review reports will address the sections above, and then make a recommendation for the appropriate uses of model outputs.
 
-WGSAM key run review reports will also end with a list of recommendations for items to be addressed in future key runs. 
+WGSAM key-run review reports will also end with a list of recommendations for items to be addressed in future key-runs. 
 
 
 # Section below not used in 2019
@@ -160,7 +183,7 @@ WGSAM key run review reports will also end with a list of recommendations for it
 
 WGSAM has provided model framework reviews for the LeMans ensemble (2016), FLBEIA (2017), and a multispecies state-space model (2017). Here we outline more general model framework review guidelines for future meetings.
 
-Model frameworks may be at different stages of the model life cycle than the key runs described above, although to date WGSAM has received requests for review closest to the "Constructed Model" phase. This means that reviews should evaluate (from the figure above):
+Model frameworks may be at different stages of the model life cycle than the key-runs described above, although to date WGSAM has received requests for review closest to the "Constructed Model" phase. This means that reviews should evaluate (from the figure above):
 
 1. Spatial and temporal resolution
 1. Algorithm choices

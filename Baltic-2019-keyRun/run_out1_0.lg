@@ -1,0 +1,136 @@
+SMS version August 2019 using ADMB version 12.0
+November 06, 2019 18:56:20
+no. of species: 3  no. of predators: 1  no. of other predators:1
+first VPA species no.:2  first VPA species as prey:2
+cons_multiplier:
+ 1
+PRELIMINARY_CALCS_SECTION begins
+
+observed min predator prey size ratio: 
+                  Herring    Sprat      
+Cod                1.6        3.4
+
+observed max predator prey size ratio: 
+                  Herring    Sprat      
+Cod               1024       1550
+
+                  Herring    Sprat      
+Cod         ALK exist for all prey length classes
+
+Adjusted min predator prey size ratio (according to option max.prey.pred.size.fac), to be used for calculation of M2: 
+                  Herring    Sprat      
+Cod                3.3        3.4        3.3
+
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:3 pred length group:150 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:9 pred length group:500 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:10 pred length group:600 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:11 pred length group:700 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:3 pred length group:150 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:9 pred length group:500 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:10 pred length group:600 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:11 pred length group:700 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1975 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1975 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1975 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1976 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1976 Q:4 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1976 Q:4 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1977 Q:1 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1977 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:9 pred length group:500 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1982 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1984 Q:3 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1988 Q:1 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1988 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1988 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1988 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1991 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1991 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1993 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1993 Q:2 pred length class:9 pred length group:500 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1993 Q:2 pred length class:10 pred length group:600 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1993 Q:2 pred length class:11 pred length group:700 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1998 Q:2 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1998 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1998 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1999 Q:2 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1999 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1999 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1999 Q:4 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2001 Q:4 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2001 Q:4 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2005 Q:1 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2012 Q:3 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2012 Q:3 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2012 Q:3 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2012 Q:3 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2013 Q:4 pred length class:3 pred length group:150 not included, as exclusion specified in input file incl_stom.in
+
+Min observed stomach contents observations to be used:  1.000e-003
+
+Species, number of stomachs observations totally, and used
+Cod                               5581    4765
+
+Number of predator-prey interaction observation used
+                  Herring    Sprat      
+Cod               1780       2315
+
+PRELIMINARY_CALCS_SECTION done
+Set current phase to 2
+
+Initial statistics: 6 variables; iteration 0; function evaluation 0; phase 2
+Function value  7.8524395e+002; maximum gradient component mag -2.9098e+004
+
+Intermediate statistics: 6 variables; iteration 10; function evaluation 19; phase 2
+Function value -9.8826529e+001; maximum gradient component mag  7.7934e+002
+6 variables; iteration 20; function evaluation 36; phase 2
+Function value -1.2977329e+002; maximum gradient component mag  1.7060e+003
+6 variables; iteration 30; function evaluation 46; phase 2
+Function value -1.4367592e+002; maximum gradient component mag  1.7832e+003
+6 variables; iteration 40; function evaluation 59; phase 2
+Function value -1.5450170e+002; maximum gradient component mag  4.5681e+002
+6 variables; iteration 50; function evaluation 70; phase 2
+Function value -1.5501196e+002; maximum gradient component mag  6.4044e-001
+6 variables; iteration 60; function evaluation 80; phase 2
+Function value -1.5501222e+002; maximum gradient component mag -1.6926e-003
+
+ - final statistics:
+6 variables; iteration 61; function evaluation 81
+Function value -1.5501e+002; maximum gradient component mag -8.2220e-005
+Exit code = 1;  converg criter  1.0000e-004
+report file: sms.r02
+
+
+Initial statistics: 11 variables; iteration 0; function evaluation 0; phase 3
+Function value -1.5501222e+002; maximum gradient component mag -6.3085e+002
+
+Intermediate statistics: 11 variables; iteration 10; function evaluation 20; phase 3
+Function value -2.3601536e+002; maximum gradient component mag -8.5203e+002
+11 variables; iteration 20; function evaluation 32; phase 3
+Function value -2.6171818e+002; maximum gradient component mag -4.6452e+000
+11 variables; iteration 30; function evaluation 42; phase 3
+Function value -2.6171838e+002; maximum gradient component mag -4.3496e-002
+
+ - final statistics:
+11 variables; iteration 33; function evaluation 45
+Function value -2.6172e+002; maximum gradient component mag  7.8431e-005
+Exit code = 1;  converg criter  1.0000e-004
+report file: sms.rep
+
+
+Successfull completion, HURRAH - HURRAH 

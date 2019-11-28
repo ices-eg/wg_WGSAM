@@ -1,0 +1,8 @@
+#Predator prey season overlap
+#----------------------
+# Predator:Cod        
+# Other-food  Herring     Sprat       
+       1           1           1    
+       0.486       0.354       1    
+       0.486       0.354       0.356
+        1.78       1           0.902

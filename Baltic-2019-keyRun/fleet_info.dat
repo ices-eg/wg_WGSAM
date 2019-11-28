@@ -1,0 +1,39 @@
+# minimum CV of CPUE observations
+0.30
+# number of fleets by species
+# HER SPR
+   2    3
+########################################################################
+# 1-2, First year last year, 
+# 3-4. Alpha and beta - the start and end of the fishing period for the fleet given as fractions of the season (or year if annual data are used)
+# 5-6   first and last age, 
+# 7.   last age with age dependent catchability, 
+# 8.   last age for stock size dependent catchability (power model), -1 indicated no ages uses power model 
+# 9.   season for survey,
+# 10.  number of variance groups for estimated cathability
+# by species and fleet
+########################################################################
+# HER_ACU_29_32_ex_Riga
+1982 1996 0.2 0.7 1 8 4 -1 4 2
+# Herring BIAS SD 25-27&28.2&29S+N
+1998 2018 0.0 0.3 1 7  4 -1 4 3
+# SPRAT FLT01:	International acoustic in October, area corrected
+1991 2018 0.0 0.1 1 7 4 -1 4 3
+# FLT02: International acoustic in May, area corrected 2001,2018 ages 1-7	
+2001 2018 0.3 0.6 1 7  4 -1 2 3
+# FLT03: Latvian/Russian acoustic on age 0 shifted to represent age 1, 1992-2018, age 1	
+1992 2018 0.0 0.0 1 1  1 -1 1 1
+######################################################################
+# First age group in groups for estimates of variance of catcahability at age
+###
+# HER_ACU_29_32_ex_Riga
+1   4
+# Herring BIAS SD 25-27&28.2&29S+N
+1 2 6 
+# SPRAT FLT01:	International acoustic in October, area corrected
+1 2 4
+# FLT02: International acoustic in May, area corrected 2001,2018 ages 1-8
+1 2 4
+# FLT03: Latvian/Russian acoustic on age 0 shifted to represent age 1, 1992-2018, age 1	
+1
+-999 # Checksum

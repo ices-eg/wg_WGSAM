@@ -1,0 +1,526 @@
+SMS version August 2019 using ADMB version 12.0
+November 06, 2019 18:57:28
+no. of species: 3  no. of predators: 1  no. of other predators:1
+first VPA species no.:2  first VPA species as prey:2
+cons_multiplier:
+ 1
+PRELIMINARY_CALCS_SECTION begins
+
+observed min predator prey size ratio: 
+                  Herring    Sprat      
+Cod                1.6        3.4
+
+observed max predator prey size ratio: 
+                  Herring    Sprat      
+Cod               1024       1550
+
+                  Herring    Sprat      
+Cod         ALK exist for all prey length classes
+
+Adjusted min predator prey size ratio (according to option max.prey.pred.size.fac), to be used for calculation of M2: 
+                  Herring    Sprat      
+Cod                3.3        3.4        3.3
+
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:3 pred length group:150 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:9 pred length group:500 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:10 pred length group:600 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:11 pred length group:700 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:3 pred length group:150 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:9 pred length group:500 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:10 pred length group:600 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:11 pred length group:700 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1975 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1975 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1975 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1976 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1976 Q:4 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1976 Q:4 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1977 Q:1 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1977 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:9 pred length group:500 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1982 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1984 Q:3 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1988 Q:1 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1988 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1988 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1988 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1991 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1991 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1993 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1993 Q:2 pred length class:9 pred length group:500 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1993 Q:2 pred length class:10 pred length group:600 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1993 Q:2 pred length class:11 pred length group:700 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1998 Q:2 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1998 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1998 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1999 Q:2 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1999 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1999 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1999 Q:4 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2001 Q:4 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2001 Q:4 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2005 Q:1 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2012 Q:3 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2012 Q:3 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2012 Q:3 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2012 Q:3 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2013 Q:4 pred length class:3 pred length group:150 not included, as exclusion specified in input file incl_stom.in
+
+Min observed stomach contents observations to be used:  1.000e-003
+
+Species, number of stomachs observations totally, and used
+Cod                               5581    4765
+
+Number of predator-prey interaction observation used
+                  Herring    Sprat      
+Cod               1780       2315
+
+PRELIMINARY_CALCS_SECTION done
+Set current phase to 2
+
+Initial statistics: 287 variables; iteration 0; function evaluation 0; phase 2
+Function value -1.2322343e+003; maximum gradient component mag -5.4774e+001
+
+Intermediate statistics: 287 variables; iteration 10; function evaluation 12; phase 2
+Function value -1.2322524e+003; maximum gradient component mag -5.3120e+001
+287 variables; iteration 20; function evaluation 24; phase 2
+Function value -1.2322531e+003; maximum gradient component mag  4.0135e+001
+287 variables; iteration 30; function evaluation 34; phase 2
+Function value -1.2322535e+003; maximum gradient component mag  4.1208e+001
+287 variables; iteration 40; function evaluation 47; phase 2
+Function value -1.2322537e+003; maximum gradient component mag  4.0558e+001
+287 variables; iteration 50; function evaluation 59; phase 2
+Function value -1.2322538e+003; maximum gradient component mag  4.1630e+001
+287 variables; iteration 60; function evaluation 73; phase 2
+Function value -1.2322542e+003; maximum gradient component mag  4.1275e+001
+287 variables; iteration 70; function evaluation 84; phase 2
+Function value -1.2322569e+003; maximum gradient component mag  4.0632e+001
+287 variables; iteration 80; function evaluation 95; phase 2
+Function value -1.2322661e+003; maximum gradient component mag  4.3949e+001
+287 variables; iteration 90; function evaluation 105; phase 2
+Function value -1.2322697e+003; maximum gradient component mag  4.9548e+001
+287 variables; iteration 100; function evaluation 115; phase 2
+Function value -1.2322750e+003; maximum gradient component mag  5.9108e+001
+287 variables; iteration 110; function evaluation 127; phase 2
+Function value -1.2322806e+003; maximum gradient component mag  4.3561e+001
+287 variables; iteration 120; function evaluation 138; phase 2
+Function value -1.2322822e+003; maximum gradient component mag  4.1140e+001
+287 variables; iteration 130; function evaluation 148; phase 2
+Function value -1.2322827e+003; maximum gradient component mag  3.9993e+001
+287 variables; iteration 140; function evaluation 159; phase 2
+Function value -1.2322830e+003; maximum gradient component mag  3.9457e+001
+287 variables; iteration 150; function evaluation 170; phase 2
+Function value -1.2322834e+003; maximum gradient component mag  3.8475e+001
+287 variables; iteration 160; function evaluation 180; phase 2
+Function value -1.2322846e+003; maximum gradient component mag  3.6875e+001
+287 variables; iteration 170; function evaluation 191; phase 2
+Function value -1.2322861e+003; maximum gradient component mag  3.4736e+001
+287 variables; iteration 180; function evaluation 204; phase 2
+Function value -1.2322867e+003; maximum gradient component mag  3.4719e+001
+287 variables; iteration 190; function evaluation 216; phase 2
+Function value -1.2322875e+003; maximum gradient component mag  3.2337e+001
+287 variables; iteration 200; function evaluation 226; phase 2
+Function value -1.2322916e+003; maximum gradient component mag  2.2042e+001
+287 variables; iteration 210; function evaluation 237; phase 2
+Function value -1.2322978e+003; maximum gradient component mag  7.8035e+000
+287 variables; iteration 220; function evaluation 247; phase 2
+Function value -1.2322983e+003; maximum gradient component mag  7.8704e+000
+287 variables; iteration 230; function evaluation 257; phase 2
+Function value -1.2322984e+003; maximum gradient component mag  8.3526e+000
+287 variables; iteration 240; function evaluation 267; phase 2
+Function value -1.2322984e+003; maximum gradient component mag  8.9941e+000
+287 variables; iteration 250; function evaluation 277; phase 2
+Function value -1.2322986e+003; maximum gradient component mag  6.8327e+000
+287 variables; iteration 260; function evaluation 287; phase 2
+Function value -1.2322987e+003; maximum gradient component mag  2.0911e+000
+287 variables; iteration 270; function evaluation 298; phase 2
+Function value -1.2322987e+003; maximum gradient component mag  2.0214e+000
+287 variables; iteration 280; function evaluation 312; phase 2
+Function value -1.2322987e+003; maximum gradient component mag  6.1479e-001
+287 variables; iteration 290; function evaluation 324; phase 2
+Function value -1.2322988e+003; maximum gradient component mag  1.0777e-001
+
+ - final statistics:
+287 variables; iteration 292; function evaluation 326
+Function value -1.2323e+003; maximum gradient component mag -8.3063e-005
+Exit code = 1;  converg criter  1.0000e-004
+report file: sms.r02
+
+
+Initial statistics: 292 variables; iteration 0; function evaluation 0; phase 3
+Function value -1.2322988e+003; maximum gradient component mag  1.8864e+000
+
+Intermediate statistics: 292 variables; iteration 10; function evaluation 14; phase 3
+Function value -1.2322990e+003; maximum gradient component mag  4.2131e+001
+292 variables; iteration 20; function evaluation 25; phase 3
+Function value -1.2322991e+003; maximum gradient component mag  4.1625e+001
+292 variables; iteration 30; function evaluation 35; phase 3
+Function value -1.2322992e+003; maximum gradient component mag  4.1593e+001
+292 variables; iteration 40; function evaluation 47; phase 3
+Function value -1.2322992e+003; maximum gradient component mag  4.1641e+001
+292 variables; iteration 50; function evaluation 58; phase 3
+Function value -1.2322992e+003; maximum gradient component mag  4.1641e+001
+292 variables; iteration 60; function evaluation 72; phase 3
+Function value -1.2322992e+003; maximum gradient component mag  4.1628e+001
+292 variables; iteration 70; function evaluation 84; phase 3
+Function value -1.2322992e+003; maximum gradient component mag  4.1612e+001
+292 variables; iteration 80; function evaluation 95; phase 3
+Function value -1.2322992e+003; maximum gradient component mag  4.1515e+001
+292 variables; iteration 90; function evaluation 105; phase 3
+Function value -1.2322992e+003; maximum gradient component mag  4.1359e+001
+292 variables; iteration 100; function evaluation 115; phase 3
+Function value -1.2322992e+003; maximum gradient component mag  4.1078e+001
+292 variables; iteration 110; function evaluation 125; phase 3
+Function value -1.2322992e+003; maximum gradient component mag  4.0404e+001
+292 variables; iteration 120; function evaluation 135; phase 3
+Function value -1.2322992e+003; maximum gradient component mag  3.9074e+001
+292 variables; iteration 130; function evaluation 145; phase 3
+Function value -1.2322992e+003; maximum gradient component mag  3.7383e+001
+292 variables; iteration 140; function evaluation 155; phase 3
+Function value -1.2322992e+003; maximum gradient component mag  3.5524e+001
+292 variables; iteration 150; function evaluation 166; phase 3
+Function value -1.2322992e+003; maximum gradient component mag  3.1907e+001
+292 variables; iteration 160; function evaluation 178; phase 3
+Function value -1.2322993e+003; maximum gradient component mag  2.8972e+001
+292 variables; iteration 170; function evaluation 189; phase 3
+Function value -1.2322993e+003; maximum gradient component mag  2.6808e+001
+292 variables; iteration 180; function evaluation 201; phase 3
+Function value -1.2322993e+003; maximum gradient component mag  2.4004e+001
+292 variables; iteration 190; function evaluation 213; phase 3
+Function value -1.2322993e+003; maximum gradient component mag  2.0891e+001
+292 variables; iteration 200; function evaluation 224; phase 3
+Function value -1.2322993e+003; maximum gradient component mag  1.4172e+001
+292 variables; iteration 210; function evaluation 234; phase 3
+Function value -1.2322993e+003; maximum gradient component mag  5.3622e+000
+292 variables; iteration 220; function evaluation 244; phase 3
+Function value -1.2322993e+003; maximum gradient component mag  3.6344e+000
+292 variables; iteration 230; function evaluation 254; phase 3
+Function value -1.2322993e+003; maximum gradient component mag  3.1698e+000
+292 variables; iteration 240; function evaluation 264; phase 3
+Function value -1.2322993e+003; maximum gradient component mag  2.5800e+000
+292 variables; iteration 250; function evaluation 275; phase 3
+Function value -1.2322993e+003; maximum gradient component mag  1.1470e+000
+292 variables; iteration 260; function evaluation 287; phase 3
+Function value -1.2322993e+003; maximum gradient component mag  4.3646e-001
+292 variables; iteration 270; function evaluation 299; phase 3
+Function value -1.2322993e+003; maximum gradient component mag  1.6096e-001
+292 variables; iteration 280; function evaluation 310; phase 3
+Function value -1.2322993e+003; maximum gradient component mag  1.3241e-001
+292 variables; iteration 290; function evaluation 323; phase 3
+Function value -1.2322993e+003; maximum gradient component mag  2.2348e-002
+
+ - final statistics:
+292 variables; iteration 296; function evaluation 330
+Function value -1.2323e+003; maximum gradient component mag  5.5994e-007
+Exit code = 1;  converg criter  1.0000e-004
+report file: sms.rep
+
+Estimating row 1 out of 292 for hessian
+Estimating row 2 out of 292 for hessian
+Estimating row 3 out of 292 for hessian
+Estimating row 4 out of 292 for hessian
+Estimating row 5 out of 292 for hessian
+Estimating row 6 out of 292 for hessian
+Estimating row 7 out of 292 for hessian
+Estimating row 8 out of 292 for hessian
+Estimating row 9 out of 292 for hessian
+Estimating row 10 out of 292 for hessian
+Estimating row 11 out of 292 for hessian
+Estimating row 12 out of 292 for hessian
+Estimating row 13 out of 292 for hessian
+Estimating row 14 out of 292 for hessian
+Estimating row 15 out of 292 for hessian
+Estimating row 16 out of 292 for hessian
+Estimating row 17 out of 292 for hessian
+Estimating row 18 out of 292 for hessian
+Estimating row 19 out of 292 for hessian
+Estimating row 20 out of 292 for hessian
+Estimating row 21 out of 292 for hessian
+Estimating row 22 out of 292 for hessian
+Estimating row 23 out of 292 for hessian
+Estimating row 24 out of 292 for hessian
+Estimating row 25 out of 292 for hessian
+Estimating row 26 out of 292 for hessian
+Estimating row 27 out of 292 for hessian
+Estimating row 28 out of 292 for hessian
+Estimating row 29 out of 292 for hessian
+Estimating row 30 out of 292 for hessian
+Estimating row 31 out of 292 for hessian
+Estimating row 32 out of 292 for hessian
+Estimating row 33 out of 292 for hessian
+Estimating row 34 out of 292 for hessian
+Estimating row 35 out of 292 for hessian
+Estimating row 36 out of 292 for hessian
+Estimating row 37 out of 292 for hessian
+Estimating row 38 out of 292 for hessian
+Estimating row 39 out of 292 for hessian
+Estimating row 40 out of 292 for hessian
+Estimating row 41 out of 292 for hessian
+Estimating row 42 out of 292 for hessian
+Estimating row 43 out of 292 for hessian
+Estimating row 44 out of 292 for hessian
+Estimating row 45 out of 292 for hessian
+Estimating row 46 out of 292 for hessian
+Estimating row 47 out of 292 for hessian
+Estimating row 48 out of 292 for hessian
+Estimating row 49 out of 292 for hessian
+Estimating row 50 out of 292 for hessian
+Estimating row 51 out of 292 for hessian
+Estimating row 52 out of 292 for hessian
+Estimating row 53 out of 292 for hessian
+Estimating row 54 out of 292 for hessian
+Estimating row 55 out of 292 for hessian
+Estimating row 56 out of 292 for hessian
+Estimating row 57 out of 292 for hessian
+Estimating row 58 out of 292 for hessian
+Estimating row 59 out of 292 for hessian
+Estimating row 60 out of 292 for hessian
+Estimating row 61 out of 292 for hessian
+Estimating row 62 out of 292 for hessian
+Estimating row 63 out of 292 for hessian
+Estimating row 64 out of 292 for hessian
+Estimating row 65 out of 292 for hessian
+Estimating row 66 out of 292 for hessian
+Estimating row 67 out of 292 for hessian
+Estimating row 68 out of 292 for hessian
+Estimating row 69 out of 292 for hessian
+Estimating row 70 out of 292 for hessian
+Estimating row 71 out of 292 for hessian
+Estimating row 72 out of 292 for hessian
+Estimating row 73 out of 292 for hessian
+Estimating row 74 out of 292 for hessian
+Estimating row 75 out of 292 for hessian
+Estimating row 76 out of 292 for hessian
+Estimating row 77 out of 292 for hessian
+Estimating row 78 out of 292 for hessian
+Estimating row 79 out of 292 for hessian
+Estimating row 80 out of 292 for hessian
+Estimating row 81 out of 292 for hessian
+Estimating row 82 out of 292 for hessian
+Estimating row 83 out of 292 for hessian
+Estimating row 84 out of 292 for hessian
+Estimating row 85 out of 292 for hessian
+Estimating row 86 out of 292 for hessian
+Estimating row 87 out of 292 for hessian
+Estimating row 88 out of 292 for hessian
+Estimating row 89 out of 292 for hessian
+Estimating row 90 out of 292 for hessian
+Estimating row 91 out of 292 for hessian
+Estimating row 92 out of 292 for hessian
+Estimating row 93 out of 292 for hessian
+Estimating row 94 out of 292 for hessian
+Estimating row 95 out of 292 for hessian
+Estimating row 96 out of 292 for hessian
+Estimating row 97 out of 292 for hessian
+Estimating row 98 out of 292 for hessian
+Estimating row 99 out of 292 for hessian
+Estimating row 100 out of 292 for hessian
+Estimating row 101 out of 292 for hessian
+Estimating row 102 out of 292 for hessian
+Estimating row 103 out of 292 for hessian
+Estimating row 104 out of 292 for hessian
+Estimating row 105 out of 292 for hessian
+Estimating row 106 out of 292 for hessian
+Estimating row 107 out of 292 for hessian
+Estimating row 108 out of 292 for hessian
+Estimating row 109 out of 292 for hessian
+Estimating row 110 out of 292 for hessian
+Estimating row 111 out of 292 for hessian
+Estimating row 112 out of 292 for hessian
+Estimating row 113 out of 292 for hessian
+Estimating row 114 out of 292 for hessian
+Estimating row 115 out of 292 for hessian
+Estimating row 116 out of 292 for hessian
+Estimating row 117 out of 292 for hessian
+Estimating row 118 out of 292 for hessian
+Estimating row 119 out of 292 for hessian
+Estimating row 120 out of 292 for hessian
+Estimating row 121 out of 292 for hessian
+Estimating row 122 out of 292 for hessian
+Estimating row 123 out of 292 for hessian
+Estimating row 124 out of 292 for hessian
+Estimating row 125 out of 292 for hessian
+Estimating row 126 out of 292 for hessian
+Estimating row 127 out of 292 for hessian
+Estimating row 128 out of 292 for hessian
+Estimating row 129 out of 292 for hessian
+Estimating row 130 out of 292 for hessian
+Estimating row 131 out of 292 for hessian
+Estimating row 132 out of 292 for hessian
+Estimating row 133 out of 292 for hessian
+Estimating row 134 out of 292 for hessian
+Estimating row 135 out of 292 for hessian
+Estimating row 136 out of 292 for hessian
+Estimating row 137 out of 292 for hessian
+Estimating row 138 out of 292 for hessian
+Estimating row 139 out of 292 for hessian
+Estimating row 140 out of 292 for hessian
+Estimating row 141 out of 292 for hessian
+Estimating row 142 out of 292 for hessian
+Estimating row 143 out of 292 for hessian
+Estimating row 144 out of 292 for hessian
+Estimating row 145 out of 292 for hessian
+Estimating row 146 out of 292 for hessian
+Estimating row 147 out of 292 for hessian
+Estimating row 148 out of 292 for hessian
+Estimating row 149 out of 292 for hessian
+Estimating row 150 out of 292 for hessian
+Estimating row 151 out of 292 for hessian
+Estimating row 152 out of 292 for hessian
+Estimating row 153 out of 292 for hessian
+Estimating row 154 out of 292 for hessian
+Estimating row 155 out of 292 for hessian
+Estimating row 156 out of 292 for hessian
+Estimating row 157 out of 292 for hessian
+Estimating row 158 out of 292 for hessian
+Estimating row 159 out of 292 for hessian
+Estimating row 160 out of 292 for hessian
+Estimating row 161 out of 292 for hessian
+Estimating row 162 out of 292 for hessian
+Estimating row 163 out of 292 for hessian
+Estimating row 164 out of 292 for hessian
+Estimating row 165 out of 292 for hessian
+Estimating row 166 out of 292 for hessian
+Estimating row 167 out of 292 for hessian
+Estimating row 168 out of 292 for hessian
+Estimating row 169 out of 292 for hessian
+Estimating row 170 out of 292 for hessian
+Estimating row 171 out of 292 for hessian
+Estimating row 172 out of 292 for hessian
+Estimating row 173 out of 292 for hessian
+Estimating row 174 out of 292 for hessian
+Estimating row 175 out of 292 for hessian
+Estimating row 176 out of 292 for hessian
+Estimating row 177 out of 292 for hessian
+Estimating row 178 out of 292 for hessian
+Estimating row 179 out of 292 for hessian
+Estimating row 180 out of 292 for hessian
+Estimating row 181 out of 292 for hessian
+Estimating row 182 out of 292 for hessian
+Estimating row 183 out of 292 for hessian
+Estimating row 184 out of 292 for hessian
+Estimating row 185 out of 292 for hessian
+Estimating row 186 out of 292 for hessian
+Estimating row 187 out of 292 for hessian
+Estimating row 188 out of 292 for hessian
+Estimating row 189 out of 292 for hessian
+Estimating row 190 out of 292 for hessian
+Estimating row 191 out of 292 for hessian
+Estimating row 192 out of 292 for hessian
+Estimating row 193 out of 292 for hessian
+Estimating row 194 out of 292 for hessian
+Estimating row 195 out of 292 for hessian
+Estimating row 196 out of 292 for hessian
+Estimating row 197 out of 292 for hessian
+Estimating row 198 out of 292 for hessian
+Estimating row 199 out of 292 for hessian
+Estimating row 200 out of 292 for hessian
+Estimating row 201 out of 292 for hessian
+Estimating row 202 out of 292 for hessian
+Estimating row 203 out of 292 for hessian
+Estimating row 204 out of 292 for hessian
+Estimating row 205 out of 292 for hessian
+Estimating row 206 out of 292 for hessian
+Estimating row 207 out of 292 for hessian
+Estimating row 208 out of 292 for hessian
+Estimating row 209 out of 292 for hessian
+Estimating row 210 out of 292 for hessian
+Estimating row 211 out of 292 for hessian
+Estimating row 212 out of 292 for hessian
+Estimating row 213 out of 292 for hessian
+Estimating row 214 out of 292 for hessian
+Estimating row 215 out of 292 for hessian
+Estimating row 216 out of 292 for hessian
+Estimating row 217 out of 292 for hessian
+Estimating row 218 out of 292 for hessian
+Estimating row 219 out of 292 for hessian
+Estimating row 220 out of 292 for hessian
+Estimating row 221 out of 292 for hessian
+Estimating row 222 out of 292 for hessian
+Estimating row 223 out of 292 for hessian
+Estimating row 224 out of 292 for hessian
+Estimating row 225 out of 292 for hessian
+Estimating row 226 out of 292 for hessian
+Estimating row 227 out of 292 for hessian
+Estimating row 228 out of 292 for hessian
+Estimating row 229 out of 292 for hessian
+Estimating row 230 out of 292 for hessian
+Estimating row 231 out of 292 for hessian
+Estimating row 232 out of 292 for hessian
+Estimating row 233 out of 292 for hessian
+Estimating row 234 out of 292 for hessian
+Estimating row 235 out of 292 for hessian
+Estimating row 236 out of 292 for hessian
+Estimating row 237 out of 292 for hessian
+Estimating row 238 out of 292 for hessian
+Estimating row 239 out of 292 for hessian
+Estimating row 240 out of 292 for hessian
+Estimating row 241 out of 292 for hessian
+Estimating row 242 out of 292 for hessian
+Estimating row 243 out of 292 for hessian
+Estimating row 244 out of 292 for hessian
+Estimating row 245 out of 292 for hessian
+Estimating row 246 out of 292 for hessian
+Estimating row 247 out of 292 for hessian
+Estimating row 248 out of 292 for hessian
+Estimating row 249 out of 292 for hessian
+Estimating row 250 out of 292 for hessian
+Estimating row 251 out of 292 for hessian
+Estimating row 252 out of 292 for hessian
+Estimating row 253 out of 292 for hessian
+Estimating row 254 out of 292 for hessian
+Estimating row 255 out of 292 for hessian
+Estimating row 256 out of 292 for hessian
+Estimating row 257 out of 292 for hessian
+Estimating row 258 out of 292 for hessian
+Estimating row 259 out of 292 for hessian
+Estimating row 260 out of 292 for hessian
+Estimating row 261 out of 292 for hessian
+Estimating row 262 out of 292 for hessian
+Estimating row 263 out of 292 for hessian
+Estimating row 264 out of 292 for hessian
+Estimating row 265 out of 292 for hessian
+Estimating row 266 out of 292 for hessian
+Estimating row 267 out of 292 for hessian
+Estimating row 268 out of 292 for hessian
+Estimating row 269 out of 292 for hessian
+Estimating row 270 out of 292 for hessian
+Estimating row 271 out of 292 for hessian
+Estimating row 272 out of 292 for hessian
+Estimating row 273 out of 292 for hessian
+Estimating row 274 out of 292 for hessian
+Estimating row 275 out of 292 for hessian
+Estimating row 276 out of 292 for hessian
+Estimating row 277 out of 292 for hessian
+Estimating row 278 out of 292 for hessian
+Estimating row 279 out of 292 for hessian
+Estimating row 280 out of 292 for hessian
+Estimating row 281 out of 292 for hessian
+Estimating row 282 out of 292 for hessian
+Estimating row 283 out of 292 for hessian
+Estimating row 284 out of 292 for hessian
+Estimating row 285 out of 292 for hessian
+Estimating row 286 out of 292 for hessian
+Estimating row 287 out of 292 for hessian
+Estimating row 288 out of 292 for hessian
+Estimating row 289 out of 292 for hessian
+Estimating row 290 out of 292 for hessian
+Estimating row 291 out of 292 for hessian
+Estimating row 292 out of 292 for hessian
+
+Successfull completion, HURRAH - HURRAH 

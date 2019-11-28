@@ -1,0 +1,4813 @@
+##############################################################
+# Number of samples by year, quarter, area, predator, predator length, prey and prey length
+##############################################################
+# year: 1974 
+##############################################################
+#  1974  quarter: 1 
+##############################################################
+#  1974  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   77
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+  167
+# prey: HER  no: 2  first size: 0085-0099 
+  167  167  167  167  167  167
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  264
+# prey: HER  no: 2  first size: 0070-0084 
+  264  264  264  264  264  264  264  264  264
+# prey: SPR  no: 3  first size: 0060-0069 
+  264  264  264  264  264  264  264  264
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  196
+# prey: HER  no: 2  first size: 0070-0084 
+  196  196  196  196  196  196  196  196  196
+# prey: SPR  no: 3  first size: 0060-0069 
+  196  196  196  196  196  196  196  196  196
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  114
+# prey: HER  no: 2  first size: 0100-0119 
+  114
+# prey: SPR  no: 3  first size: 0100-0109 
+  114
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  387
+# prey: HER  no: 2  first size: 0085-0099 
+  387  387  387  387
+# prey: SPR  no: 3  first size: 0090-0099 
+  387  387
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  227
+# prey: HER  no: 2  first size: 0085-0099 
+  227  227  227
+# prey: SPR  no: 3  first size: 0070-0079 
+  227  227  227  227  227  227  227  227
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   84
+# prey: HER  no: 2  first size: 0070-0084 
+   84   84   84   84   84   84   84   84   84   84   84
+# prey: SPR  no: 3  first size: 0060-0069 
+   84   84   84   84   84   84   84   84   84
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   29
+# prey: HER  no: 2  first size: 0085-0099 
+   29   29
+##############################################################
+#  1974  quarter: 2 
+##############################################################
+#  1974  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+  102
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+  162
+# prey: HER  no: 2  first size: 0100-0119 
+  162
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  313
+# prey: HER  no: 2  first size: 0070-0084 
+  313  313  313
+# prey: SPR  no: 3  first size: 0060-0069 
+  313  313  313  313  313  313
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  345
+# prey: HER  no: 2  first size: 0085-0099 
+  345  345  345
+# prey: SPR  no: 3  first size: 0060-0069 
+  345  345  345  345  345  345  345  345  345
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  270
+# prey: HER  no: 2  first size: 0085-0099 
+  270  270  270
+# prey: SPR  no: 3  first size: 0090-0099 
+  270  270
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  386
+# prey: HER  no: 2  first size: 0085-0099 
+  386  386  386
+# prey: SPR  no: 3  first size: 0090-0099 
+  386  386  386  386
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  187
+# prey: HER  no: 2  first size: 0085-0099 
+  187  187  187
+# prey: SPR  no: 3  first size: 0110-0119 
+  187
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   56
+# prey: HER  no: 2  first size: 0085-0099 
+   56   56   56   56   56   56   56   56   56   56
+# prey: SPR  no: 3  first size: 0060-0069 
+   56   56   56   56   56   56   56   56   56
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   30
+# prey: HER  no: 2  first size: 0100-0119 
+   30   30   30   30   30   30   30
+##############################################################
+#  1974  quarter: 4 
+##############################################################
+#  1974  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   19
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   49
+# prey: HER  no: 2  first size: 0085-0099 
+   49   49   49   49   49   49   49
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   84
+# prey: HER  no: 2  first size: 0070-0084 
+   84   84   84   84   84   84   84
+# prey: SPR  no: 3  first size: 0060-0069 
+   84   84   84   84   84   84   84   84   84
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   75
+# prey: HER  no: 2  first size: 0070-0084 
+   75   75   75   75   75   75   75   75
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  102
+# prey: HER  no: 2  first size: 0070-0084 
+  102  102  102  102  102  102  102  102  102
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   14
+# prey: HER  no: 2  first size: 0050-0069 
+   14   14   14   14   14   14   14   14   14   14   14
+##############################################################
+# year: 1975 
+##############################################################
+#  1975  quarter: 1 
+##############################################################
+#  1975  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   21
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   15
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   69
+# prey: HER  no: 2  first size: 0070-0084 
+   69   69   69   69   69   69   69   69   69
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  199
+# prey: HER  no: 2  first size: 0070-0084 
+  199  199  199  199  199  199  199  199  199
+# prey: SPR  no: 3  first size: 0060-0069 
+  199  199  199  199  199  199  199  199  199
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  211
+# prey: HER  no: 2  first size: 0070-0084 
+  211  211  211  211  211  211  211  211
+# prey: SPR  no: 3  first size: 0060-0069 
+  211  211  211  211  211  211  211  211  211
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  219
+# prey: HER  no: 2  first size: 0070-0084 
+  219  219  219  219  219  219  219  219  219
+# prey: SPR  no: 3  first size: 0060-0069 
+  219  219  219  219  219  219  219  219  219
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   74
+# prey: HER  no: 2  first size: 0070-0084 
+   74   74   74   74   74   74   74   74   74   74   74
+# prey: SPR  no: 3  first size: 0060-0069 
+   74   74   74   74   74   74   74   74   74
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   23
+# prey: HER  no: 2  first size: 0070-0084 
+   23   23   23   23   23   23   23   23   23   23   23
+# prey: SPR  no: 3  first size: 0060-0069 
+   23   23   23   23   23   23   23   23   23
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   11
+# prey: HER  no: 2  first size: 0070-0084 
+   11   11   11   11   11   11   11   11   11   11   11
+# prey: SPR  no: 3  first size: 0080-0089 
+   11   11   11   11   11   11   11
+##############################################################
+#  1975  quarter: 2 
+##############################################################
+#  1975  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   21
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   62
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  148
+# prey: HER  no: 2  first size: 0070-0084 
+  148  148  148
+# prey: SPR  no: 3  first size: 0060-0069 
+  148  148  148  148  148  148
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  264
+# prey: HER  no: 2  first size: 0070-0084 
+  264  264  264  264  264  264  264  264  264  264
+# prey: SPR  no: 3  first size: 0060-0069 
+  264  264  264  264  264  264  264  264  264
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  303
+# prey: HER  no: 2  first size: 0070-0084 
+  303  303  303  303  303  303
+# prey: SPR  no: 3  first size: 0060-0069 
+  303  303  303  303  303  303  303  303
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  417
+# prey: HER  no: 2  first size: 0070-0084 
+  417  417  417  417  417  417  417  417
+# prey: SPR  no: 3  first size: 0110-0119 
+  417  417  417  417
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   99
+# prey: HER  no: 2  first size: 0070-0084 
+   99   99   99   99   99   99   99   99
+# prey: SPR  no: 3  first size: 0060-0069 
+   99   99   99   99   99   99   99   99   99
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   24
+# prey: HER  no: 2  first size: 0085-0099 
+   24   24   24   24   24   24   24   24   24   24
+# prey: SPR  no: 3  first size: 0120-0129 
+   24   24   24
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   12
+# prey: HER  no: 2  first size: 0085-0099 
+   12   12   12   12   12   12   12   12
+# prey: SPR  no: 3  first size: 0140-9999 
+   12
+##############################################################
+#  1975  quarter: 3 
+##############################################################
+#  1975  quarter: 3  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   39
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   18
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   62
+# prey: HER  no: 2  first size: 0050-0069 
+   62   62   62   62
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   64
+# prey: HER  no: 2  first size: 0050-0069 
+   64   64   64   64   64   64   64   64   64
+# prey: SPR  no: 3  first size: 0050-0059 
+   64   64   64   64   64   64   64   64   64
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   88
+# prey: HER  no: 2  first size: 0070-0084 
+   88   88   88   88   88   88   88   88
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   38
+# prey: HER  no: 2  first size: 0070-0084 
+   38   38   38   38   38   38   38   38
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   21
+# prey: HER  no: 2  first size: 0100-0119 
+   21   21   21   21   21   21   21   21   21
+##############################################################
+#  1975  quarter: 4 
+##############################################################
+#  1975  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   18
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   12
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   22
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   50
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   75
+# prey: SPR  no: 3  first size: 0070-0079 
+   75   75   75   75   75   75   75   75
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   20
+# prey: SPR  no: 3  first size: 0060-0069 
+   20   20   20   20   20   20   20   20   20
+##############################################################
+# year: 1976 
+##############################################################
+#  1976  quarter: 1 
+##############################################################
+#  1976  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   22
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   45
+# prey: SPR  no: 3  first size: 0060-0069 
+   45   45   45   45   45   45   45   45   45
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   87
+# prey: HER  no: 2  first size: 0070-0084 
+   87   87   87   87   87   87   87
+# prey: SPR  no: 3  first size: 0060-0069 
+   87   87   87   87   87   87   87   87   87
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   80
+# prey: SPR  no: 3  first size: 0060-0069 
+   80   80   80   80   80   80   80   80   80
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   22
+# prey: SPR  no: 3  first size: 0060-0069 
+   22   22   22   22   22   22   22   22   22
+##############################################################
+#  1976  quarter: 2 
+##############################################################
+#  1976  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   82
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   20
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   88
+# prey: HER  no: 2  first size: 0070-0084 
+   88   88   88
+# prey: SPR  no: 3  first size: 0070-0079 
+   88   88   88   88   88
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  188
+# prey: HER  no: 2  first size: 0070-0084 
+  188  188  188  188  188  188  188  188  188  188
+# prey: SPR  no: 3  first size: 0080-0089 
+  188  188
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  273
+# prey: HER  no: 2  first size: 0100-0119 
+  273
+# prey: SPR  no: 3  first size: 0080-0089 
+  273  273  273  273  273
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  472
+# prey: HER  no: 2  first size: 0085-0099 
+  472  472
+# prey: SPR  no: 3  first size: 0070-0079 
+  472  472  472  472  472  472  472
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  207
+# prey: HER  no: 2  first size: 0085-0099 
+  207  207  207  207  207  207  207
+# prey: SPR  no: 3  first size: 0080-0089 
+  207  207  207  207  207  207
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   71
+# prey: HER  no: 2  first size: 0160-0179 
+   71   71   71
+# prey: SPR  no: 3  first size: 0080-0089 
+   71   71   71   71   71
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   15
+# prey: HER  no: 2  first size: 0100-0119 
+   15   15
+##############################################################
+#  1976  quarter: 3 
+##############################################################
+#  1976  quarter: 3  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   37
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   46
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   73
+# prey: SPR  no: 3  first size: 0050-0059 
+   73   73   73   73   73   73   73
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  121
+# prey: HER  no: 2  first size: 0050-0069 
+  121  121  121  121
+# prey: SPR  no: 3  first size: 0080-0089 
+  121
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   97
+# prey: HER  no: 2  first size: 0070-0084 
+   97   97   97   97   97   97   97   97
+# prey: SPR  no: 3  first size: 0070-0079 
+   97   97   97   97   97
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  172
+# prey: HER  no: 2  first size: 0100-0119 
+  172
+# prey: SPR  no: 3  first size: 0060-0069 
+  172  172  172  172  172  172  172
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   67
+# prey: HER  no: 2  first size: 0100-0119 
+   67   67
+# prey: SPR  no: 3  first size: 0060-0069 
+   67   67   67   67   67   67   67   67
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   12
+# prey: HER  no: 2  first size: 0100-0119 
+   12   12   12   12   12   12   12   12   12
+# prey: SPR  no: 3  first size: 0060-0069 
+   12   12   12   12   12   12   12   12   12
+##############################################################
+#  1976  quarter: 4 
+##############################################################
+#  1976  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   39
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  196
+# prey: SPR  no: 3  first size: 0060-0069 
+  196  196  196  196  196  196  196  196  196
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  156
+# prey: HER  no: 2  first size: 0070-0084 
+  156  156  156  156  156  156  156
+# prey: SPR  no: 3  first size: 0050-0059 
+  156  156  156  156  156  156  156  156  156  156
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   84
+# prey: HER  no: 2  first size: 0085-0099 
+   84   84   84   84   84   84   84
+# prey: SPR  no: 3  first size: 0060-0069 
+   84   84   84   84   84   84   84   84   84
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  188
+# prey: HER  no: 2  first size: 0050-0069 
+  188  188  188  188  188  188  188  188  188  188
+# prey: SPR  no: 3  first size: 0060-0069 
+  188  188  188  188  188  188  188  188  188
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   95
+# prey: HER  no: 2  first size: 0050-0069 
+   95   95   95   95   95   95   95   95   95   95   95
+# prey: SPR  no: 3  first size: 0090-0099 
+   95
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   31
+# prey: HER  no: 2  first size: 0220-0239 
+   31
+# prey: SPR  no: 3  first size: 0060-0069 
+   31   31   31   31   31   31   31   31   31
+##############################################################
+# year: 1977 
+##############################################################
+#  1977  quarter: 1 
+##############################################################
+#  1977  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   74
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   42
+# prey: SPR  no: 3  first size: 0060-0069 
+   42   42   42   42   42   42
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  201
+# prey: HER  no: 2  first size: 0070-0084 
+  201  201  201  201  201  201  201  201  201
+# prey: SPR  no: 3  first size: 0060-0069 
+  201  201  201  201  201  201  201  201
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  252
+# prey: HER  no: 2  first size: 0070-0084 
+  252  252  252  252  252  252  252  252  252
+# prey: SPR  no: 3  first size: 0080-0089 
+  252
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  239
+# prey: HER  no: 2  first size: 0070-0084 
+  239  239  239  239  239  239  239
+# prey: SPR  no: 3  first size: 0070-0079 
+  239  239  239  239
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  496
+# prey: HER  no: 2  first size: 0085-0099 
+  496  496  496  496  496
+# prey: SPR  no: 3  first size: 0070-0079 
+  496  496  496  496  496
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  184
+# prey: HER  no: 2  first size: 0070-0084 
+  184  184  184  184  184
+# prey: SPR  no: 3  first size: 0090-0099 
+  184  184  184
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   76
+# prey: HER  no: 2  first size: 0070-0084 
+   76   76   76   76   76   76   76   76   76   76   76
+# prey: SPR  no: 3  first size: 0070-0079 
+   76   76   76   76   76
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   37
+# prey: HER  no: 2  first size: 0070-0084 
+   37   37   37   37   37   37   37   37   37   37   37
+# prey: SPR  no: 3  first size: 0070-0079 
+   37   37   37   37   37   37   37   37
+##############################################################
+#  1977  quarter: 2 
+##############################################################
+#  1977  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+  122
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   61
+# prey: HER  no: 2  first size: 0100-0119 
+   61
+# prey: SPR  no: 3  first size: 0060-0069 
+   61   61   61   61   61   61   61
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   69
+# prey: HER  no: 2  first size: 0070-0084 
+   69   69   69
+# prey: SPR  no: 3  first size: 0060-0069 
+   69   69   69   69   69   69
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  140
+# prey: HER  no: 2  first size: 0070-0084 
+  140  140  140  140  140  140  140  140  140  140
+# prey: SPR  no: 3  first size: 0060-0069 
+  140  140  140  140  140  140  140  140  140
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  161
+# prey: HER  no: 2  first size: 0070-0084 
+  161  161  161  161  161  161
+# prey: SPR  no: 3  first size: 0090-0099 
+  161  161
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  421
+# prey: HER  no: 2  first size: 0120-0139 
+  421
+# prey: SPR  no: 3  first size: 0070-0079 
+  421  421  421
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  242
+# prey: HER  no: 2  first size: 0070-0084 
+  242  242  242  242  242  242  242  242
+# prey: SPR  no: 3  first size: 0110-0119 
+  242
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+  111
+# prey: HER  no: 2  first size: 0085-0099 
+  111  111  111  111  111  111  111  111  111  111
+# prey: SPR  no: 3  first size: 0060-0069 
+  111  111  111  111  111  111  111  111  111
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   49
+# prey: HER  no: 2  first size: 0100-0119 
+   49   49   49   49   49   49   49
+# prey: SPR  no: 3  first size: 0060-0069 
+   49   49   49   49   49   49   49   49   49
+##############################################################
+#  1977  quarter: 3 
+##############################################################
+#  1977  quarter: 3  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   21
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   17
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   14
+# prey: HER  no: 2  first size: 0050-0069 
+   14   14   14   14   14   14   14   14   14
+# prey: SPR  no: 3  first size: 0050-0059 
+   14   14   14   14   14   14   14   14   14
+##############################################################
+#  1977  quarter: 4 
+##############################################################
+#  1977  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   73
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  110
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   38
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   21
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   34
+# prey: SPR  no: 3  first size: 0090-0099 
+   34   34
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   22
+# prey: HER  no: 2  first size: 0050-0069 
+   22   22   22   22   22   22   22   22   22   22   22
+# prey: SPR  no: 3  first size: 0090-0099 
+   22   22   22   22   22
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   15
+# prey: HER  no: 2  first size: 0180-0199 
+   15   15   15
+# prey: SPR  no: 3  first size: 0100-0109 
+   15   15   15
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   10
+# prey: HER  no: 2  first size: 0180-0199 
+   10
+##############################################################
+# year: 1978 
+##############################################################
+#  1978  quarter: 1 
+##############################################################
+#  1978  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   81
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+  251
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  465
+# prey: HER  no: 2  first size: 0085-0099 
+  465
+# prey: SPR  no: 3  first size: 0080-0089 
+  465  465  465
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  202
+# prey: HER  no: 2  first size: 0070-0084 
+  202  202  202  202  202  202  202  202  202
+# prey: SPR  no: 3  first size: 0080-0089 
+  202  202  202
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   92
+# prey: HER  no: 2  first size: 0120-0139 
+   92
+# prey: SPR  no: 3  first size: 0080-0089 
+   92   92   92   92   92
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  152
+# prey: HER  no: 2  first size: 0070-0084 
+  152  152  152  152  152  152  152  152  152
+# prey: SPR  no: 3  first size: 0070-0079 
+  152  152  152  152  152  152  152
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  100
+# prey: HER  no: 2  first size: 0100-0119 
+  100  100
+# prey: SPR  no: 3  first size: 0090-0099 
+  100  100  100  100  100  100
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   39
+# prey: HER  no: 2  first size: 0120-0139 
+   39   39   39   39
+# prey: SPR  no: 3  first size: 0100-0109 
+   39   39   39   39
+##############################################################
+#  1978  quarter: 2 
+##############################################################
+#  1978  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   25
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+  149
+# prey: HER  no: 2  first size: 0100-0119 
+  149
+# prey: SPR  no: 3  first size: 0060-0069 
+  149  149  149  149  149  149  149
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  163
+# prey: HER  no: 2  first size: 0070-0084 
+  163  163  163
+# prey: SPR  no: 3  first size: 0070-0079 
+  163  163  163
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  123
+# prey: HER  no: 2  first size: 0070-0084 
+  123  123  123  123  123  123  123  123  123  123
+# prey: SPR  no: 3  first size: 0080-0089 
+  123  123  123
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   84
+# prey: HER  no: 2  first size: 0070-0084 
+   84   84   84   84   84   84
+# prey: SPR  no: 3  first size: 0090-0099 
+   84   84
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  168
+# prey: HER  no: 2  first size: 0070-0084 
+  168  168  168  168  168  168  168  168
+# prey: SPR  no: 3  first size: 0090-0099 
+  168  168  168  168
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   94
+# prey: HER  no: 2  first size: 0180-0199 
+   94
+# prey: SPR  no: 3  first size: 0090-0099 
+   94   94   94
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   28
+# prey: HER  no: 2  first size: 0200-0219 
+   28
+# prey: SPR  no: 3  first size: 0120-0129 
+   28
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   17
+# prey: HER  no: 2  first size: 0200-0219 
+   17
+##############################################################
+#  1978  quarter: 4 
+##############################################################
+#  1978  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   37
+# prey: SPR  no: 3  first size: 0060-0069 
+   37   37   37   37   37   37
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  130
+# prey: SPR  no: 3  first size: 0080-0089 
+  130  130  130  130
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  207
+# prey: HER  no: 2  first size: 0070-0084 
+  207  207  207  207  207  207  207
+# prey: SPR  no: 3  first size: 0060-0069 
+  207  207  207  207  207  207  207
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  145
+# prey: HER  no: 2  first size: 0120-0139 
+  145
+# prey: SPR  no: 3  first size: 0060-0069 
+  145  145  145  145  145  145  145
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  203
+# prey: HER  no: 2  first size: 0100-0119 
+  203  203  203  203
+# prey: SPR  no: 3  first size: 0060-0069 
+  203  203  203  203  203  203  203  203
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   54
+# prey: HER  no: 2  first size: 0050-0069 
+   54   54   54   54   54   54   54   54   54   54   54
+# prey: SPR  no: 3  first size: 0080-0089 
+   54   54   54   54   54   54
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   16
+# prey: HER  no: 2  first size: 0180-0199 
+   16
+# prey: SPR  no: 3  first size: 0110-0119 
+   16   16   16
+##############################################################
+# year: 1979 
+##############################################################
+#  1979  quarter: 1 
+##############################################################
+#  1979  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   73
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   51
+# prey: SPR  no: 3  first size: 0060-0069 
+   51   51   51   51   51   51
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  195
+# prey: HER  no: 2  first size: 0070-0084 
+  195  195  195  195  195  195  195  195  195
+# prey: SPR  no: 3  first size: 0060-0069 
+  195  195  195  195  195
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  324
+# prey: HER  no: 2  first size: 0070-0084 
+  324  324  324  324  324  324  324  324  324
+# prey: SPR  no: 3  first size: 0070-0079 
+  324  324  324  324  324  324  324
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  278
+# prey: HER  no: 2  first size: 0100-0119 
+  278
+# prey: SPR  no: 3  first size: 0070-0079 
+  278  278  278  278  278  278
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  299
+# prey: HER  no: 2  first size: 0120-0139 
+  299  299
+# prey: SPR  no: 3  first size: 0070-0079 
+  299  299  299  299  299  299
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   84
+# prey: HER  no: 2  first size: 0200-0219 
+   84
+# prey: SPR  no: 3  first size: 0060-0069 
+   84   84   84   84   84   84   84   84   84
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   36
+# prey: HER  no: 2  first size: 0070-0084 
+   36   36   36   36   36   36   36   36   36   36   36
+# prey: SPR  no: 3  first size: 0110-0119 
+   36   36
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   20
+# prey: HER  no: 2  first size: 0180-0199 
+   20   20
+# prey: SPR  no: 3  first size: 0120-0129 
+   20
+##############################################################
+#  1979  quarter: 2 
+##############################################################
+#  1979  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   14
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   60
+# prey: HER  no: 2  first size: 0070-0084 
+   60
+# prey: SPR  no: 3  first size: 0090-0099 
+   60
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   68
+# prey: HER  no: 2  first size: 0070-0084 
+   68
+# prey: SPR  no: 3  first size: 0060-0069 
+   68   68   68   68   68   68
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   78
+# prey: HER  no: 2  first size: 0120-0139 
+   78
+# prey: SPR  no: 3  first size: 0080-0089 
+   78   78   78   78   78
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   87
+# prey: HER  no: 2  first size: 0070-0084 
+   87   87   87   87
+# prey: SPR  no: 3  first size: 0080-0089 
+   87   87   87   87   87
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   19
+# prey: HER  no: 2  first size: 0085-0099 
+   19
+# prey: SPR  no: 3  first size: 0110-0119 
+   19
+##############################################################
+#  1979  quarter: 3 
+##############################################################
+#  1979  quarter: 3  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   50
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  104
+# prey: HER  no: 2  first size: 0050-0069 
+  104  104  104  104
+# prey: SPR  no: 3  first size: 0110-0119 
+  104
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  124
+# prey: HER  no: 2  first size: 0070-0084 
+  124  124  124  124  124  124  124  124
+# prey: SPR  no: 3  first size: 0110-0119 
+  124  124
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  106
+# prey: HER  no: 2  first size: 0100-0119 
+  106  106  106
+# prey: SPR  no: 3  first size: 0110-0119 
+  106  106
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   36
+# prey: HER  no: 2  first size: 0160-0179 
+   36
+# prey: SPR  no: 3  first size: 0120-0129 
+   36
+##############################################################
+#  1979  quarter: 4 
+##############################################################
+#  1979  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   75
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  128
+# prey: HER  no: 2  first size: 0085-0099 
+  128  128  128  128  128  128  128
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  335
+# prey: HER  no: 2  first size: 0070-0084 
+  335  335  335  335  335
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  542
+# prey: HER  no: 2  first size: 0070-0084 
+  542  542  542  542
+# prey: SPR  no: 3  first size: 0060-0069 
+  542  542  542  542  542  542  542  542
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  595
+# prey: HER  no: 2  first size: 0070-0084 
+  595  595  595  595  595  595
+# prey: SPR  no: 3  first size: 0060-0069 
+  595  595  595  595
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  112
+# prey: HER  no: 2  first size: 0085-0099 
+  112  112  112
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   29
+# prey: HER  no: 2  first size: 0200-0219 
+   29
+##############################################################
+# year: 1980 
+##############################################################
+#  1980  quarter: 1 
+##############################################################
+#  1980  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   13
+# prey: SPR  no: 3  first size: 0060-0069 
+   13   13   13   13   13   13   13   13
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   84
+# prey: HER  no: 2  first size: 0070-0084 
+   84   84   84   84   84   84   84   84   84
+# prey: SPR  no: 3  first size: 0120-0129 
+   84
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  184
+# prey: HER  no: 2  first size: 0070-0084 
+  184  184  184  184  184  184  184
+# prey: SPR  no: 3  first size: 0070-0079 
+  184  184  184  184  184  184
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  261
+# prey: HER  no: 2  first size: 0120-0139 
+  261
+# prey: SPR  no: 3  first size: 0060-0069 
+  261  261  261  261  261  261  261  261
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   90
+# prey: HER  no: 2  first size: 0140-0159 
+   90   90   90   90
+# prey: SPR  no: 3  first size: 0080-0089 
+   90   90   90   90   90   90
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   30
+# prey: HER  no: 2  first size: 0160-0179 
+   30
+# prey: SPR  no: 3  first size: 0070-0079 
+   30   30   30   30   30   30   30
+##############################################################
+#  1980  quarter: 2 
+##############################################################
+#  1980  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   38
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  169
+# prey: HER  no: 2  first size: 0085-0099 
+  169  169  169  169  169  169
+# prey: SPR  no: 3  first size: 0080-0089 
+  169  169  169  169  169
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  274
+# prey: HER  no: 2  first size: 0070-0084 
+  274  274  274  274  274  274
+# prey: SPR  no: 3  first size: 0070-0079 
+  274
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  332
+# prey: HER  no: 2  first size: 0100-0119 
+  332  332  332  332
+# prey: SPR  no: 3  first size: 0070-0079 
+  332  332  332  332  332  332  332
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   97
+# prey: HER  no: 2  first size: 0085-0099 
+   97   97   97   97   97   97   97
+# prey: SPR  no: 3  first size: 0080-0089 
+   97
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   22
+# prey: HER  no: 2  first size: 0085-0099 
+   22   22   22   22   22   22   22   22   22   22
+##############################################################
+#  1980  quarter: 3 
+##############################################################
+#  1980  quarter: 3  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   50
+# prey: HER  no: 2  first size: 0100-0119 
+   50
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   44
+# prey: HER  no: 2  first size: 0120-0139 
+   44
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  110
+# prey: HER  no: 2  first size: 0100-0119 
+  110  110  110  110
+# prey: SPR  no: 3  first size: 0120-0129 
+  110
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   36
+# prey: HER  no: 2  first size: 0100-0119 
+   36   36   36   36
+# prey: SPR  no: 3  first size: 0120-0129 
+   36   36   36
+##############################################################
+#  1980  quarter: 4 
+##############################################################
+#  1980  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   24
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   25
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   31
+# prey: HER  no: 2  first size: 0070-0084 
+   31   31   31   31   31   31   31
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  103
+# prey: HER  no: 2  first size: 0085-0099 
+  103  103  103  103  103
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  321
+# prey: HER  no: 2  first size: 0050-0069 
+  321  321  321  321  321  321  321
+# prey: SPR  no: 3  first size: 0070-0079 
+  321  321  321  321  321  321
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  123
+# prey: HER  no: 2  first size: 0070-0084 
+  123  123  123  123  123  123  123  123
+# prey: SPR  no: 3  first size: 0070-0079 
+  123  123  123  123  123  123  123
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   23
+# prey: HER  no: 2  first size: 0070-0084 
+   23   23   23   23   23   23
+# prey: SPR  no: 3  first size: 0100-0109 
+   23   23
+##############################################################
+# year: 1981 
+##############################################################
+#  1981  quarter: 1 
+##############################################################
+#  1981  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   43
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   23
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   28
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   52
+# prey: SPR  no: 3  first size: 0110-0119 
+   52
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   87
+# prey: HER  no: 2  first size: 0070-0084 
+   87   87   87   87   87   87   87
+# prey: SPR  no: 3  first size: 0060-0069 
+   87   87   87   87   87   87
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  269
+# prey: HER  no: 2  first size: 0070-0084 
+  269  269  269  269  269  269  269  269  269
+# prey: SPR  no: 3  first size: 0060-0069 
+  269  269  269  269  269  269  269  269  269
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   61
+# prey: HER  no: 2  first size: 0160-0179 
+   61   61
+# prey: SPR  no: 3  first size: 0070-0079 
+   61   61   61   61   61   61   61   61
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   17
+# prey: HER  no: 2  first size: 0140-0159 
+   17   17   17
+# prey: SPR  no: 3  first size: 0070-0079 
+   17   17   17
+##############################################################
+#  1981  quarter: 2 
+##############################################################
+#  1981  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   12
+# prey: HER  no: 2  first size: 0070-0084 
+   12   12   12   12   12   12   12   12   12   12
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   35
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  249
+# prey: HER  no: 2  first size: 0120-0139 
+  249
+# prey: SPR  no: 3  first size: 0070-0079 
+  249  249  249  249  249  249
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  146
+# prey: HER  no: 2  first size: 0120-0139 
+  146  146
+# prey: SPR  no: 3  first size: 0060-0069 
+  146  146  146  146  146  146  146  146  146
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   20
+##############################################################
+#  1981  quarter: 3 
+##############################################################
+#  1981  quarter: 3  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   18
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   21
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   16
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   27
+# prey: HER  no: 2  first size: 0050-0069 
+   27   27   27   27
+# prey: SPR  no: 3  first size: 0090-0099 
+   27
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   31
+# prey: HER  no: 2  first size: 0050-0069 
+   31   31   31   31   31   31   31   31   31
+# prey: SPR  no: 3  first size: 0100-0109 
+   31
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   67
+# prey: HER  no: 2  first size: 0100-0119 
+   67   67   67   67
+# prey: SPR  no: 3  first size: 0080-0089 
+   67
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   53
+# prey: HER  no: 2  first size: 0160-0179 
+   53
+# prey: SPR  no: 3  first size: 0080-0089 
+   53   53
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   14
+# prey: HER  no: 2  first size: 0160-0179 
+   14   14   14
+##############################################################
+#  1981  quarter: 4 
+##############################################################
+#  1981  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   19
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   17
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  108
+# prey: HER  no: 2  first size: 0085-0099 
+  108  108  108  108
+# prey: SPR  no: 3  first size: 0070-0079 
+  108  108  108
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  113
+# prey: HER  no: 2  first size: 0100-0119 
+  113  113  113  113  113
+# prey: SPR  no: 3  first size: 0050-0059 
+  113  113  113  113  113  113
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   80
+# prey: HER  no: 2  first size: 0070-0084 
+   80   80   80   80   80   80   80   80
+# prey: SPR  no: 3  first size: 0070-0079 
+   80   80   80   80   80
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  156
+# prey: HER  no: 2  first size: 0100-0119 
+  156  156
+# prey: SPR  no: 3  first size: 0070-0079 
+  156  156  156  156  156  156  156  156
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   70
+# prey: HER  no: 2  first size: 0070-0084 
+   70   70   70   70   70   70   70
+# prey: SPR  no: 3  first size: 0070-0079 
+   70   70   70   70   70   70   70   70
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   16
+# prey: HER  no: 2  first size: 0085-0099 
+   16   16   16   16   16   16   16   16   16
+# prey: SPR  no: 3  first size: 0050-0059 
+   16   16   16   16   16
+##############################################################
+# year: 1982 
+##############################################################
+#  1982  quarter: 1 
+##############################################################
+#  1982  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   29
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   39
+# prey: SPR  no: 3  first size: 0070-0079 
+   39   39   39
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  281
+# prey: HER  no: 2  first size: 0085-0099 
+  281
+# prey: SPR  no: 3  first size: 0060-0069 
+  281  281  281  281  281  281  281
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  265
+# prey: HER  no: 2  first size: 0070-0084 
+  265  265  265  265
+# prey: SPR  no: 3  first size: 0060-0069 
+  265  265  265  265  265
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  160
+# prey: HER  no: 2  first size: 0070-0084 
+  160  160  160  160  160
+# prey: SPR  no: 3  first size: 0060-0069 
+  160  160  160  160  160  160  160
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  235
+# prey: HER  no: 2  first size: 0070-0084 
+  235  235  235  235  235  235
+# prey: SPR  no: 3  first size: 0060-0069 
+  235  235  235  235  235  235  235
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  121
+# prey: HER  no: 2  first size: 0085-0099 
+  121  121  121  121  121  121  121
+# prey: SPR  no: 3  first size: 0070-0079 
+  121  121  121  121  121  121
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   42
+# prey: HER  no: 2  first size: 0120-0139 
+   42   42   42   42
+# prey: SPR  no: 3  first size: 0070-0079 
+   42   42   42   42   42
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   15
+# prey: HER  no: 2  first size: 0160-0179 
+   15   15   15   15   15   15
+# prey: SPR  no: 3  first size: 0080-0089 
+   15   15   15   15
+##############################################################
+#  1982  quarter: 2 
+##############################################################
+#  1982  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   12
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   18
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  145
+# prey: HER  no: 2  first size: 0070-0084 
+  145
+# prey: SPR  no: 3  first size: 0080-0089 
+  145  145  145
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  186
+# prey: HER  no: 2  first size: 0070-0084 
+  186  186  186  186  186  186  186
+# prey: SPR  no: 3  first size: 0080-0089 
+  186  186  186  186
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  169
+# prey: HER  no: 2  first size: 0120-0139 
+  169
+# prey: SPR  no: 3  first size: 0070-0079 
+  169  169  169  169  169  169  169
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  461
+# prey: HER  no: 2  first size: 0085-0099 
+  461  461  461  461
+# prey: SPR  no: 3  first size: 0070-0079 
+  461  461  461  461  461  461  461  461
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  222
+# prey: HER  no: 2  first size: 0120-0139 
+  222  222
+# prey: SPR  no: 3  first size: 0060-0069 
+  222  222  222  222  222  222  222  222  222
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   55
+# prey: HER  no: 2  first size: 0140-0159 
+   55
+# prey: SPR  no: 3  first size: 0110-0119 
+   55   55   55   55
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   13
+# prey: SPR  no: 3  first size: 0100-0109 
+   13   13   13
+##############################################################
+#  1982  quarter: 3 
+##############################################################
+#  1982  quarter: 3  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   44
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   55
+# prey: SPR  no: 3  first size: 0060-0069 
+   55   55   55   55   55   55
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  185
+# prey: HER  no: 2  first size: 0050-0069 
+  185  185  185
+# prey: SPR  no: 3  first size: 0060-0069 
+  185  185  185  185  185  185  185
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  345
+# prey: HER  no: 2  first size: 0050-0069 
+  345  345  345  345  345  345
+# prey: SPR  no: 3  first size: 0050-0059 
+  345  345  345  345  345  345  345  345  345
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  412
+# prey: HER  no: 2  first size: 0050-0069 
+  412  412  412  412  412  412  412  412
+# prey: SPR  no: 3  first size: 0060-0069 
+  412  412  412  412  412  412  412
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  170
+# prey: HER  no: 2  first size: 0070-0084 
+  170  170  170  170  170  170  170  170
+# prey: SPR  no: 3  first size: 0060-0069 
+  170  170  170  170  170  170  170
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   49
+# prey: HER  no: 2  first size: 0050-0069 
+   49   49   49   49   49   49   49   49   49
+# prey: SPR  no: 3  first size: 0060-0069 
+   49   49   49   49   49   49   49
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   20
+# prey: HER  no: 2  first size: 0070-0084 
+   20   20   20   20   20   20   20   20   20   20   20
+# prey: SPR  no: 3  first size: 0090-0099 
+   20   20   20   20   20
+##############################################################
+#  1982  quarter: 4 
+##############################################################
+#  1982  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   19
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   42
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   77
+# prey: HER  no: 2  first size: 0120-0139 
+   77   77
+# prey: SPR  no: 3  first size: 0060-0069 
+   77
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  116
+# prey: SPR  no: 3  first size: 0060-0069 
+  116  116  116  116  116  116  116
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  132
+# prey: HER  no: 2  first size: 0050-0069 
+  132  132  132  132
+# prey: SPR  no: 3  first size: 0060-0069 
+  132  132  132  132  132  132  132
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   37
+# prey: HER  no: 2  first size: 0050-0069 
+   37   37   37   37   37
+# prey: SPR  no: 3  first size: 0070-0079 
+   37   37   37   37   37   37   37
+##############################################################
+# year: 1983 
+##############################################################
+#  1983  quarter: 1 
+##############################################################
+#  1983  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   10
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   41
+# prey: SPR  no: 3  first size: 0060-0069 
+   41   41   41   41   41   41   41   41
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  160
+# prey: HER  no: 2  first size: 0070-0084 
+  160  160  160  160
+# prey: SPR  no: 3  first size: 0060-0069 
+  160  160  160
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  251
+# prey: HER  no: 2  first size: 0070-0084 
+  251  251  251  251  251  251  251
+# prey: SPR  no: 3  first size: 0060-0069 
+  251  251  251  251  251  251  251
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  350
+# prey: HER  no: 2  first size: 0070-0084 
+  350  350  350  350  350  350  350
+# prey: SPR  no: 3  first size: 0060-0069 
+  350  350  350  350  350  350  350  350
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  114
+# prey: HER  no: 2  first size: 0100-0119 
+  114  114  114  114  114  114
+# prey: SPR  no: 3  first size: 0070-0079 
+  114  114  114  114  114  114  114
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   29
+# prey: HER  no: 2  first size: 0180-0199 
+   29
+# prey: SPR  no: 3  first size: 0070-0079 
+   29   29   29   29   29   29   29
+##############################################################
+#  1983  quarter: 2 
+##############################################################
+#  1983  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   24
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  109
+# prey: HER  no: 2  first size: 0160-0179 
+  109  109
+# prey: SPR  no: 3  first size: 0070-0079 
+  109  109  109  109  109
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  148
+# prey: HER  no: 2  first size: 0160-0179 
+  148
+# prey: SPR  no: 3  first size: 0060-0069 
+  148  148  148  148  148  148  148
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  293
+# prey: HER  no: 2  first size: 0100-0119 
+  293  293  293  293  293  293
+# prey: SPR  no: 3  first size: 0060-0069 
+  293  293  293  293  293  293  293
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  126
+# prey: HER  no: 2  first size: 0100-0119 
+  126
+# prey: SPR  no: 3  first size: 0060-0069 
+  126  126  126  126  126  126
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   45
+# prey: HER  no: 2  first size: 0085-0099 
+   45   45   45   45   45   45   45   45   45   45
+# prey: SPR  no: 3  first size: 0060-0069 
+   45   45   45   45   45   45   45
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   10
+# prey: SPR  no: 3  first size: 0060-0069 
+   10   10   10   10   10
+##############################################################
+#  1983  quarter: 3 
+##############################################################
+#  1983  quarter: 3  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   18
+# prey: SPR  no: 3  first size: 0070-0079 
+   18   18   18   18   18   18
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   12
+# prey: SPR  no: 3  first size: 0070-0079 
+   12   12   12   12   12   12
+##############################################################
+#  1983  quarter: 4 
+##############################################################
+#  1983  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   46
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   32
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   83
+# prey: SPR  no: 3  first size: 0090-0099 
+   83   83   83   83
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  155
+# prey: HER  no: 2  first size: 0100-0119 
+  155
+# prey: SPR  no: 3  first size: 0050-0059 
+  155  155  155  155  155  155  155
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  302
+# prey: HER  no: 2  first size: 0070-0084 
+  302  302  302  302  302  302  302
+# prey: SPR  no: 3  first size: 0060-0069 
+  302  302  302  302  302  302
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  761
+# prey: HER  no: 2  first size: 0070-0084 
+  761  761  761  761  761  761  761  761
+# prey: SPR  no: 3  first size: 0050-0059 
+  761  761  761  761  761  761  761  761  761
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  355
+# prey: HER  no: 2  first size: 0070-0084 
+  355  355  355  355  355  355  355  355
+# prey: SPR  no: 3  first size: 0060-0069 
+  355  355  355  355  355  355  355  355  355
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   59
+# prey: HER  no: 2  first size: 0050-0069 
+   59   59   59   59   59   59   59   59   59   59
+# prey: SPR  no: 3  first size: 0060-0069 
+   59   59   59   59   59   59   59
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   14
+# prey: HER  no: 2  first size: 0100-0119 
+   14   14   14   14   14   14   14   14
+# prey: SPR  no: 3  first size: 0070-0079 
+   14   14   14   14   14   14
+##############################################################
+# year: 1984 
+##############################################################
+#  1984  quarter: 1 
+##############################################################
+#  1984  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   31
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   15
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   11
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   67
+# prey: HER  no: 2  first size: 0100-0119 
+   67   67   67   67   67   67   67
+# prey: SPR  no: 3  first size: 0090-0099 
+   67
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  123
+# prey: HER  no: 2  first size: 0070-0084 
+  123  123  123  123  123  123
+# prey: SPR  no: 3  first size: 0060-0069 
+  123  123  123  123  123  123  123  123
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  423
+# prey: HER  no: 2  first size: 0070-0084 
+  423  423  423  423  423  423
+# prey: SPR  no: 3  first size: 0060-0069 
+  423  423  423  423  423  423  423
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  227
+# prey: HER  no: 2  first size: 0070-0084 
+  227  227  227  227  227  227  227  227
+# prey: SPR  no: 3  first size: 0060-0069 
+  227  227  227  227  227  227  227  227  227
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   55
+# prey: HER  no: 2  first size: 0100-0119 
+   55   55   55   55   55   55
+# prey: SPR  no: 3  first size: 0060-0069 
+   55   55   55   55   55   55
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   13
+# prey: HER  no: 2  first size: 0070-0084 
+   13   13   13   13   13   13   13   13   13   13   13
+# prey: SPR  no: 3  first size: 0070-0079 
+   13   13   13   13   13   13   13
+##############################################################
+#  1984  quarter: 2 
+##############################################################
+#  1984  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   21
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   22
+# prey: HER  no: 2  first size: 0120-0139 
+   22
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   45
+# prey: HER  no: 2  first size: 0120-0139 
+   45
+# prey: SPR  no: 3  first size: 0060-0069 
+   45
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  140
+# prey: HER  no: 2  first size: 0100-0119 
+  140  140  140  140  140
+# prey: SPR  no: 3  first size: 0080-0089 
+  140  140  140  140  140  140
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   55
+# prey: HER  no: 2  first size: 0120-0139 
+   55   55
+# prey: SPR  no: 3  first size: 0110-0119 
+   55
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   23
+# prey: HER  no: 2  first size: 0120-0139 
+   23   23   23   23   23
+# prey: SPR  no: 3  first size: 0070-0079 
+   23   23   23   23   23   23   23
+##############################################################
+#  1984  quarter: 3 
+##############################################################
+#  1984  quarter: 3  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   11
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   17
+# prey: SPR  no: 3  first size: 0080-0089 
+   17   17
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   38
+# prey: HER  no: 2  first size: 0140-0159 
+   38   38   38   38
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   23
+# prey: HER  no: 2  first size: 0160-0179 
+   23   23   23
+# prey: SPR  no: 3  first size: 0070-0079 
+   23   23   23   23   23
+##############################################################
+#  1984  quarter: 4 
+##############################################################
+#  1984  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   27
+# prey: HER  no: 2  first size: 0085-0099 
+   27   27   27   27   27   27   27
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   76
+# prey: SPR  no: 3  first size: 0070-0079 
+   76   76   76
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   75
+# prey: SPR  no: 3  first size: 0060-0069 
+   75   75   75   75   75
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  164
+# prey: HER  no: 2  first size: 0070-0084 
+  164  164  164  164  164  164
+# prey: SPR  no: 3  first size: 0060-0069 
+  164  164  164  164  164  164
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   84
+# prey: HER  no: 2  first size: 0050-0069 
+   84   84   84   84   84   84   84   84
+# prey: SPR  no: 3  first size: 0060-0069 
+   84   84   84   84   84
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   16
+# prey: HER  no: 2  first size: 0070-0084 
+   16   16   16   16
+# prey: SPR  no: 3  first size: 0060-0069 
+   16   16   16   16   16   16
+##############################################################
+# year: 1985 
+##############################################################
+#  1985  quarter: 1 
+##############################################################
+#  1985  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   16
+# prey: SPR  no: 3  first size: 0060-0069 
+   16   16   16   16
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   26
+# prey: SPR  no: 3  first size: 0070-0079 
+   26   26   26   26
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  150
+# prey: HER  no: 2  first size: 0100-0119 
+  150
+# prey: SPR  no: 3  first size: 0070-0079 
+  150  150  150  150  150  150
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  128
+# prey: HER  no: 2  first size: 0070-0084 
+  128  128  128  128  128  128  128
+# prey: SPR  no: 3  first size: 0070-0079 
+  128  128  128  128  128
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  313
+# prey: HER  no: 2  first size: 0120-0139 
+  313  313  313
+# prey: SPR  no: 3  first size: 0060-0069 
+  313  313  313  313  313  313
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  181
+# prey: HER  no: 2  first size: 0070-0084 
+  181  181  181  181  181  181  181  181
+# prey: SPR  no: 3  first size: 0060-0069 
+  181  181  181  181  181  181  181
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   55
+# prey: HER  no: 2  first size: 0070-0084 
+   55   55   55   55   55   55   55   55   55   55
+# prey: SPR  no: 3  first size: 0070-0079 
+   55   55   55   55   55
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   16
+# prey: HER  no: 2  first size: 0070-0084 
+   16   16   16   16   16   16   16   16   16   16
+##############################################################
+#  1985  quarter: 2 
+##############################################################
+#  1985  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   29
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  161
+# prey: HER  no: 2  first size: 0070-0084 
+  161  161  161  161  161  161  161  161  161  161
+# prey: SPR  no: 3  first size: 0080-0089 
+  161  161  161  161
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  129
+# prey: HER  no: 2  first size: 0085-0099 
+  129  129  129  129  129
+# prey: SPR  no: 3  first size: 0070-0079 
+  129  129  129  129  129  129  129
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  443
+# prey: HER  no: 2  first size: 0070-0084 
+  443  443  443  443  443  443  443
+# prey: SPR  no: 3  first size: 0080-0089 
+  443  443  443  443  443  443  443
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  282
+# prey: HER  no: 2  first size: 0085-0099 
+  282  282  282  282  282  282  282
+# prey: SPR  no: 3  first size: 0070-0079 
+  282  282  282  282  282  282  282  282
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   99
+# prey: HER  no: 2  first size: 0120-0139 
+   99   99   99   99   99   99
+# prey: SPR  no: 3  first size: 0090-0099 
+   99   99   99   99   99   99
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   25
+# prey: HER  no: 2  first size: 0200-0219 
+   25
+# prey: SPR  no: 3  first size: 0080-0089 
+   25   25   25   25   25
+##############################################################
+#  1985  quarter: 4 
+##############################################################
+#  1985  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   14
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   55
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   57
+# prey: HER  no: 2  first size: 0070-0084 
+   57   57   57   57
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   35
+# prey: HER  no: 2  first size: 0100-0119 
+   35   35   35   35   35
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   98
+# prey: HER  no: 2  first size: 0070-0084 
+   98   98   98   98   98   98
+# prey: SPR  no: 3  first size: 0080-0089 
+   98   98   98   98   98   98
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   59
+# prey: HER  no: 2  first size: 0100-0119 
+   59   59   59   59   59   59   59
+# prey: SPR  no: 3  first size: 0090-0099 
+   59
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   29
+# prey: HER  no: 2  first size: 0085-0099 
+   29   29   29   29   29   29   29   29
+##############################################################
+# year: 1986 
+##############################################################
+#  1986  quarter: 1 
+##############################################################
+#  1986  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   29
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   72
+# prey: HER  no: 2  first size: 0140-0159 
+   72   72   72   72
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   79
+# prey: HER  no: 2  first size: 0100-0119 
+   79
+# prey: SPR  no: 3  first size: 0100-0109 
+   79   79
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  176
+# prey: HER  no: 2  first size: 0070-0084 
+  176  176  176  176  176  176  176
+# prey: SPR  no: 3  first size: 0070-0079 
+  176  176  176  176  176  176
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  158
+# prey: HER  no: 2  first size: 0070-0084 
+  158  158  158  158  158  158  158  158  158
+# prey: SPR  no: 3  first size: 0070-0079 
+  158  158  158  158  158  158  158
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   59
+# prey: HER  no: 2  first size: 0085-0099 
+   59   59   59   59   59   59
+# prey: SPR  no: 3  first size: 0070-0079 
+   59   59   59   59   59   59
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   11
+# prey: HER  no: 2  first size: 0085-0099 
+   11   11   11   11   11
+# prey: SPR  no: 3  first size: 0100-0109 
+   11   11   11   11
+##############################################################
+#  1986  quarter: 2 
+##############################################################
+#  1986  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  114
+# prey: HER  no: 2  first size: 0070-0084 
+  114
+# prey: SPR  no: 3  first size: 0070-0079 
+  114  114  114  114  114
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  207
+# prey: HER  no: 2  first size: 0070-0084 
+  207  207  207  207  207  207
+# prey: SPR  no: 3  first size: 0090-0099 
+  207  207  207
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  199
+# prey: HER  no: 2  first size: 0140-0159 
+  199
+# prey: SPR  no: 3  first size: 0060-0069 
+  199  199  199  199  199  199  199  199
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  532
+# prey: HER  no: 2  first size: 0070-0084 
+  532  532  532  532  532  532  532  532
+# prey: SPR  no: 3  first size: 0060-0069 
+  532  532  532  532  532  532  532  532
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  578
+# prey: HER  no: 2  first size: 0070-0084 
+  578  578  578  578  578  578  578  578
+# prey: SPR  no: 3  first size: 0070-0079 
+  578  578  578  578  578  578  578  578
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+  298
+# prey: HER  no: 2  first size: 0100-0119 
+  298  298  298  298  298  298
+# prey: SPR  no: 3  first size: 0070-0079 
+  298  298  298  298  298  298  298
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   75
+# prey: HER  no: 2  first size: 0120-0139 
+   75   75   75   75
+# prey: SPR  no: 3  first size: 0090-0099 
+   75   75   75   75   75
+##############################################################
+#  1986  quarter: 4 
+##############################################################
+#  1986  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   10
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   75
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   92
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  107
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  278
+# prey: HER  no: 2  first size: 0085-0099 
+  278  278  278  278  278  278
+# prey: SPR  no: 3  first size: 0100-0109 
+  278  278
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   77
+# prey: HER  no: 2  first size: 0085-0099 
+   77   77   77   77   77   77   77
+# prey: SPR  no: 3  first size: 0090-0099 
+   77   77
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   24
+# prey: HER  no: 2  first size: 0140-0159 
+   24   24   24   24
+# prey: SPR  no: 3  first size: 0100-0109 
+   24   24
+##############################################################
+# year: 1987 
+##############################################################
+#  1987  quarter: 1 
+##############################################################
+#  1987  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   12
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   43
+# prey: HER  no: 2  first size: 0085-0099 
+   43   43
+# prey: SPR  no: 3  first size: 0070-0079 
+   43   43   43   43   43
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   70
+# prey: HER  no: 2  first size: 0070-0084 
+   70
+# prey: SPR  no: 3  first size: 0070-0079 
+   70   70   70   70   70   70
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  216
+# prey: HER  no: 2  first size: 0070-0084 
+  216  216  216  216  216  216  216
+# prey: SPR  no: 3  first size: 0060-0069 
+  216  216  216  216  216  216  216
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  135
+# prey: HER  no: 2  first size: 0070-0084 
+  135  135  135  135  135
+# prey: SPR  no: 3  first size: 0060-0069 
+  135  135  135  135  135  135  135  135
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   44
+# prey: HER  no: 2  first size: 0085-0099 
+   44   44   44   44   44
+# prey: SPR  no: 3  first size: 0060-0069 
+   44   44   44   44   44   44   44   44
+##############################################################
+#  1987  quarter: 2 
+##############################################################
+#  1987  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   31
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  249
+# prey: HER  no: 2  first size: 0070-0084 
+  249
+# prey: SPR  no: 3  first size: 0060-0069 
+  249  249  249  249  249  249
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  381
+# prey: HER  no: 2  first size: 0120-0139 
+  381  381  381  381  381  381  381
+# prey: SPR  no: 3  first size: 0060-0069 
+  381  381  381  381  381  381  381  381  381
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  206
+# prey: HER  no: 2  first size: 0070-0084 
+  206  206  206  206  206  206
+# prey: SPR  no: 3  first size: 0060-0069 
+  206  206  206  206  206  206  206  206
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  563
+# prey: HER  no: 2  first size: 0085-0099 
+  563  563  563  563  563
+# prey: SPR  no: 3  first size: 0060-0069 
+  563  563  563  563  563  563  563  563
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  360
+# prey: HER  no: 2  first size: 0070-0084 
+  360  360  360  360  360  360  360  360
+# prey: SPR  no: 3  first size: 0070-0079 
+  360  360  360  360  360  360  360
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+  142
+# prey: HER  no: 2  first size: 0120-0139 
+  142  142  142  142  142  142  142  142
+# prey: SPR  no: 3  first size: 0070-0079 
+  142  142  142  142  142  142  142
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   68
+# prey: HER  no: 2  first size: 0140-0159 
+   68   68   68
+# prey: SPR  no: 3  first size: 0080-0089 
+   68   68   68   68   68   68   68
+##############################################################
+#  1987  quarter: 4 
+##############################################################
+#  1987  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   24
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   31
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   20
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   61
+# prey: HER  no: 2  first size: 0120-0139 
+   61   61   61   61
+# prey: SPR  no: 3  first size: 0130-0139 
+   61
+##############################################################
+# year: 1988 
+##############################################################
+#  1988  quarter: 1 
+##############################################################
+#  1988  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   28
+# prey: HER  no: 2  first size: 0085-0099 
+   28
+# prey: SPR  no: 3  first size: 0060-0069 
+   28   28   28   28   28   28
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  144
+# prey: HER  no: 2  first size: 0085-0099 
+  144
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  294
+# prey: HER  no: 2  first size: 0070-0084 
+  294  294  294  294  294  294  294  294  294
+# prey: SPR  no: 3  first size: 0090-0099 
+  294  294  294  294
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  157
+# prey: HER  no: 2  first size: 0120-0139 
+  157  157  157
+# prey: SPR  no: 3  first size: 0070-0079 
+  157  157  157  157  157  157  157
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  402
+# prey: HER  no: 2  first size: 0070-0084 
+  402  402  402  402  402  402
+# prey: SPR  no: 3  first size: 0070-0079 
+  402  402  402  402  402  402  402
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  175
+# prey: HER  no: 2  first size: 0100-0119 
+  175  175  175  175  175  175
+# prey: SPR  no: 3  first size: 0070-0079 
+  175  175  175  175  175  175  175
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   44
+# prey: HER  no: 2  first size: 0120-0139 
+   44   44   44   44   44   44
+# prey: SPR  no: 3  first size: 0070-0079 
+   44   44   44   44   44   44   44   44
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   27
+# prey: HER  no: 2  first size: 0100-0119 
+   27   27   27   27   27   27   27   27   27
+# prey: SPR  no: 3  first size: 0080-0089 
+   27   27   27   27   27   27
+##############################################################
+#  1988  quarter: 2 
+##############################################################
+#  1988  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   46
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   76
+# prey: SPR  no: 3  first size: 0080-0089 
+   76
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   40
+# prey: HER  no: 2  first size: 0070-0084 
+   40
+# prey: SPR  no: 3  first size: 0090-0099 
+   40   40   40   40
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  213
+# prey: HER  no: 2  first size: 0070-0084 
+  213  213  213  213
+# prey: SPR  no: 3  first size: 0070-0079 
+  213  213  213  213  213  213  213  213
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  171
+# prey: SPR  no: 3  first size: 0070-0079 
+  171  171  171  171  171  171  171
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   71
+# prey: HER  no: 2  first size: 0085-0099 
+   71   71
+# prey: SPR  no: 3  first size: 0100-0109 
+   71   71   71
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   34
+# prey: HER  no: 2  first size: 0085-0099 
+   34   34   34   34   34   34   34
+# prey: SPR  no: 3  first size: 0090-0099 
+   34   34   34   34
+##############################################################
+#  1988  quarter: 4 
+##############################################################
+#  1988  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   37
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  147
+# prey: HER  no: 2  first size: 0050-0069 
+  147  147  147  147  147  147  147  147  147
+# prey: SPR  no: 3  first size: 0060-0069 
+  147
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   18
+# prey: HER  no: 2  first size: 0100-0119 
+   18   18   18   18
+##############################################################
+# year: 1989 
+##############################################################
+#  1989  quarter: 1 
+##############################################################
+#  1989  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   35
+# prey: HER  no: 2  first size: 0085-0099 
+   35   35   35
+# prey: SPR  no: 3  first size: 0070-0079 
+   35   35
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  114
+# prey: HER  no: 2  first size: 0085-0099 
+  114  114
+# prey: SPR  no: 3  first size: 0060-0069 
+  114  114  114  114  114  114  114  114
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  423
+# prey: HER  no: 2  first size: 0070-0084 
+  423  423  423  423  423  423  423  423  423
+# prey: SPR  no: 3  first size: 0070-0079 
+  423  423  423  423  423  423  423  423
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  252
+# prey: HER  no: 2  first size: 0100-0119 
+  252  252  252  252  252  252
+# prey: SPR  no: 3  first size: 0070-0079 
+  252  252  252  252  252  252  252  252
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+  107
+# prey: HER  no: 2  first size: 0085-0099 
+  107  107  107  107  107  107  107  107  107
+# prey: SPR  no: 3  first size: 0070-0079 
+  107  107  107  107  107  107  107  107
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   38
+# prey: HER  no: 2  first size: 0100-0119 
+   38   38   38   38   38   38   38   38
+# prey: SPR  no: 3  first size: 0070-0079 
+   38   38   38   38   38   38   38
+##############################################################
+#  1989  quarter: 2 
+##############################################################
+#  1989  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   14
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   64
+# prey: SPR  no: 3  first size: 0090-0099 
+   64   64   64   64   64
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  398
+# prey: HER  no: 2  first size: 0100-0119 
+  398  398  398  398
+# prey: SPR  no: 3  first size: 0070-0079 
+  398  398  398  398  398  398  398  398
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  344
+# prey: HER  no: 2  first size: 0085-0099 
+  344  344  344  344  344  344
+# prey: SPR  no: 3  first size: 0070-0079 
+  344  344  344  344  344  344  344  344
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+  198
+# prey: HER  no: 2  first size: 0100-0119 
+  198  198  198  198  198  198
+# prey: SPR  no: 3  first size: 0080-0089 
+  198  198  198  198  198  198  198
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   78
+# prey: HER  no: 2  first size: 0120-0139 
+   78   78
+# prey: SPR  no: 3  first size: 0070-0079 
+   78   78   78   78   78   78   78   78
+##############################################################
+#  1989  quarter: 4 
+##############################################################
+#  1989  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   61
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  134
+# prey: SPR  no: 3  first size: 0080-0089 
+  134
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   74
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   52
+# prey: HER  no: 2  first size: 0160-0179 
+   52
+# prey: SPR  no: 3  first size: 0060-0069 
+   52   52   52   52   52
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   59
+# prey: HER  no: 2  first size: 0085-0099 
+   59   59   59
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   41
+# prey: SPR  no: 3  first size: 0090-0099 
+   41   41   41   41   41
+##############################################################
+# year: 1990 
+##############################################################
+#  1990  quarter: 1 
+##############################################################
+#  1990  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   56
+# prey: SPR  no: 3  first size: 0100-0109 
+   56   56
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  272
+# prey: SPR  no: 3  first size: 0070-0079 
+  272  272  272  272  272  272  272  272
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  217
+# prey: HER  no: 2  first size: 0120-0139 
+  217
+# prey: SPR  no: 3  first size: 0070-0079 
+  217  217  217  217  217  217  217
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  178
+# prey: HER  no: 2  first size: 0160-0179 
+  178
+# prey: SPR  no: 3  first size: 0060-0069 
+  178  178  178  178  178  178  178  178  178
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  246
+# prey: HER  no: 2  first size: 0085-0099 
+  246  246  246  246  246  246
+# prey: SPR  no: 3  first size: 0060-0069 
+  246  246  246  246  246  246  246  246  246
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+  151
+# prey: HER  no: 2  first size: 0070-0084 
+  151  151  151  151  151  151  151  151  151
+# prey: SPR  no: 3  first size: 0060-0069 
+  151  151  151  151  151  151  151  151  151
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   64
+# prey: HER  no: 2  first size: 0140-0159 
+   64   64   64
+# prey: SPR  no: 3  first size: 0080-0089 
+   64   64   64   64   64   64   64
+##############################################################
+#  1990  quarter: 2 
+##############################################################
+#  1990  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   10
+# prey: SPR  no: 3  first size: 0080-0089 
+   10
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   79
+# prey: HER  no: 2  first size: 0085-0099 
+   79
+# prey: SPR  no: 3  first size: 0080-0089 
+   79   79   79   79
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  112
+# prey: HER  no: 2  first size: 0100-0119 
+  112
+# prey: SPR  no: 3  first size: 0070-0079 
+  112  112  112  112  112  112  112
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   96
+# prey: HER  no: 2  first size: 0070-0084 
+   96   96   96   96   96   96
+# prey: SPR  no: 3  first size: 0060-0069 
+   96   96   96   96   96   96   96
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  160
+# prey: HER  no: 2  first size: 0100-0119 
+  160  160  160  160  160
+# prey: SPR  no: 3  first size: 0060-0069 
+  160  160  160  160  160  160  160  160  160
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+  105
+# prey: HER  no: 2  first size: 0160-0179 
+  105  105
+# prey: SPR  no: 3  first size: 0080-0089 
+  105  105  105  105  105  105  105
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   38
+# prey: HER  no: 2  first size: 0140-0159 
+   38
+# prey: SPR  no: 3  first size: 0080-0089 
+   38   38   38   38   38   38
+##############################################################
+#  1990  quarter: 3 
+##############################################################
+#  1990  quarter: 3  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   24
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   78
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   17
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   15
+# prey: HER  no: 2  first size: 0140-0159 
+   15   15   15   15
+# prey: SPR  no: 3  first size: 0070-0079 
+   15   15   15
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  194
+# prey: HER  no: 2  first size: 0085-0099 
+  194  194  194  194  194
+# prey: SPR  no: 3  first size: 0050-0059 
+  194  194  194  194  194  194  194  194  194  194
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   67
+# prey: HER  no: 2  first size: 0070-0084 
+   67   67   67   67   67   67   67   67
+# prey: SPR  no: 3  first size: 0070-0079 
+   67   67   67   67   67   67   67
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   22
+# prey: HER  no: 2  first size: 0140-0159 
+   22   22   22   22   22   22
+# prey: SPR  no: 3  first size: 0110-0119 
+   22   22   22   22
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   17
+# prey: HER  no: 2  first size: 0120-0139 
+   17   17   17   17   17   17   17
+# prey: SPR  no: 3  first size: 0110-0119 
+   17
+##############################################################
+# year: 1991 
+##############################################################
+#  1991  quarter: 1 
+##############################################################
+#  1991  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   95
+# prey: HER  no: 2  first size: 0070-0084 
+   95   95   95   95   95   95   95   95   95
+# prey: SPR  no: 3  first size: 0060-0069 
+   95   95   95   95   95   95   95   95   95
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  206
+# prey: HER  no: 2  first size: 0100-0119 
+  206  206  206
+# prey: SPR  no: 3  first size: 0060-0069 
+  206  206  206  206  206  206  206
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  268
+# prey: HER  no: 2  first size: 0100-0119 
+  268  268  268  268  268  268
+# prey: SPR  no: 3  first size: 0060-0069 
+  268  268  268  268  268  268  268  268
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  259
+# prey: HER  no: 2  first size: 0085-0099 
+  259  259  259  259  259  259  259
+# prey: SPR  no: 3  first size: 0060-0069 
+  259  259  259  259  259  259  259  259  259
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   41
+# prey: HER  no: 2  first size: 0100-0119 
+   41   41   41   41   41   41
+# prey: SPR  no: 3  first size: 0070-0079 
+   41   41   41   41   41   41   41
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   21
+# prey: HER  no: 2  first size: 0100-0119 
+   21   21   21   21   21   21   21
+# prey: SPR  no: 3  first size: 0080-0089 
+   21   21   21   21   21   21   21
+##############################################################
+#  1991  quarter: 2 
+##############################################################
+#  1991  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   13
+# prey: SPR  no: 3  first size: 0110-0119 
+   13
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   13
+# prey: HER  no: 2  first size: 0070-0084 
+   13   13   13   13   13   13   13   13
+# prey: SPR  no: 3  first size: 0080-0089 
+   13   13   13   13
+##############################################################
+#  1991  quarter: 3 
+##############################################################
+#  1991  quarter: 3  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   12
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   30
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   26
+# prey: HER  no: 2  first size: 0140-0159 
+   26
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   30
+# prey: HER  no: 2  first size: 0140-0159 
+   30   30   30   30
+# prey: SPR  no: 3  first size: 0110-0119 
+   30   30
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   10
+# prey: HER  no: 2  first size: 0160-0179 
+   10   10   10   10   10   10
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   14
+# prey: HER  no: 2  first size: 0140-0159 
+   14   14   14
+# prey: SPR  no: 3  first size: 0090-0099 
+   14   14   14   14
+##############################################################
+# year: 1993 
+##############################################################
+#  1993  quarter: 1 
+##############################################################
+#  1993  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   19
+# prey: SPR  no: 3  first size: 0090-0099 
+   19   19   19
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   63
+# prey: HER  no: 2  first size: 0100-0119 
+   63
+# prey: SPR  no: 3  first size: 0090-0099 
+   63   63   63   63   63
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   49
+# prey: SPR  no: 3  first size: 0090-0099 
+   49   49   49   49   49
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   49
+# prey: HER  no: 2  first size: 0085-0099 
+   49   49   49   49   49
+# prey: SPR  no: 3  first size: 0090-0099 
+   49   49   49   49   49
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   45
+# prey: SPR  no: 3  first size: 0090-0099 
+   45   45   45   45   45   45
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   11
+# prey: SPR  no: 3  first size: 0100-0109 
+   11   11   11
+##############################################################
+#  1993  quarter: 2 
+##############################################################
+#  1993  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   20
+# prey: SPR  no: 3  first size: 0120-0129 
+   20
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   11
+# prey: HER  no: 2  first size: 0085-0099 
+   11   11   11   11   11   11   11
+# prey: SPR  no: 3  first size: 0100-0109 
+   11   11   11
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   11
+# prey: SPR  no: 3  first size: 0100-0109 
+   11   11   11   11
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   15
+# prey: SPR  no: 3  first size: 0080-0089 
+   15   15   15   15   15   15
+##############################################################
+# year: 1994 
+##############################################################
+#  1994  quarter: 2 
+##############################################################
+#  1994  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   22
+# prey: SPR  no: 3  first size: 0080-0089 
+   22
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   76
+# prey: SPR  no: 3  first size: 0080-0089 
+   76   76   76   76   76   76
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   52
+# prey: HER  no: 2  first size: 0100-0119 
+   52   52   52   52
+# prey: SPR  no: 3  first size: 0100-0109 
+   52   52   52
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   18
+# prey: HER  no: 2  first size: 0140-0159 
+   18
+# prey: SPR  no: 3  first size: 0100-0109 
+   18   18   18
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   13
+# prey: HER  no: 2  first size: 0140-0159 
+   13   13
+# prey: SPR  no: 3  first size: 0100-0109 
+   13
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   10
+# prey: HER  no: 2  first size: 0160-0179 
+   10   10
+# prey: SPR  no: 3  first size: 0110-0119 
+   10
+##############################################################
+# year: 1995 
+##############################################################
+#  1995  quarter: 1 
+##############################################################
+#  1995  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   57
+# prey: HER  no: 2  first size: 0140-0159 
+   57
+# prey: SPR  no: 3  first size: 0060-0069 
+   57   57   57   57   57   57   57   57
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   67
+# prey: HER  no: 2  first size: 0085-0099 
+   67   67   67
+# prey: SPR  no: 3  first size: 0070-0079 
+   67   67   67   67   67   67   67   67
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   40
+# prey: HER  no: 2  first size: 0100-0119 
+   40   40   40
+# prey: SPR  no: 3  first size: 0100-0109 
+   40   40   40   40   40
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   37
+# prey: HER  no: 2  first size: 0100-0119 
+   37   37   37
+# prey: SPR  no: 3  first size: 0110-0119 
+   37   37
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   42
+# prey: HER  no: 2  first size: 0100-0119 
+   42   42   42   42   42   42
+# prey: SPR  no: 3  first size: 0100-0109 
+   42   42   42   42   42
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   29
+# prey: HER  no: 2  first size: 0100-0119 
+   29   29   29   29
+# prey: SPR  no: 3  first size: 0080-0089 
+   29   29   29   29   29   29
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   17
+# prey: HER  no: 2  first size: 0100-0119 
+   17   17   17   17
+# prey: SPR  no: 3  first size: 0100-0109 
+   17   17   17   17   17
+##############################################################
+# year: 1996 
+##############################################################
+#  1996  quarter: 1 
+##############################################################
+#  1996  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   16
+# prey: SPR  no: 3  first size: 0080-0089 
+   16   16   16   16
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   76
+# prey: HER  no: 2  first size: 0140-0159 
+   76
+# prey: SPR  no: 3  first size: 0070-0079 
+   76   76   76   76   76
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   53
+# prey: SPR  no: 3  first size: 0080-0089 
+   53   53   53   53   53   53
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   71
+# prey: HER  no: 2  first size: 0140-0159 
+   71   71   71
+# prey: SPR  no: 3  first size: 0060-0069 
+   71   71   71   71   71   71   71   71
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   54
+# prey: HER  no: 2  first size: 0120-0139 
+   54   54   54
+# prey: SPR  no: 3  first size: 0070-0079 
+   54   54   54   54   54   54   54
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   31
+# prey: HER  no: 2  first size: 0120-0139 
+   31   31   31   31   31   31
+# prey: SPR  no: 3  first size: 0080-0089 
+   31   31   31   31   31   31   31
+##############################################################
+# year: 1997 
+##############################################################
+#  1997  quarter: 4 
+##############################################################
+#  1997  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   13
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   18
+# prey: HER  no: 2  first size: 0085-0099 
+   18   18   18   18   18   18   18
+# prey: SPR  no: 3  first size: 0070-0079 
+   18   18   18   18   18
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  126
+# prey: HER  no: 2  first size: 0050-0069 
+  126  126  126  126  126  126  126
+# prey: SPR  no: 3  first size: 0070-0079 
+  126  126  126  126  126  126
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   24
+# prey: HER  no: 2  first size: 0120-0139 
+   24   24
+# prey: SPR  no: 3  first size: 0080-0089 
+   24
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   13
+# prey: HER  no: 2  first size: 0120-0139 
+   13   13   13   13   13   13   13
+# prey: SPR  no: 3  first size: 0080-0089 
+   13   13   13   13   13   13
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   18
+# prey: HER  no: 2  first size: 0120-0139 
+   18   18   18   18
+# prey: SPR  no: 3  first size: 0070-0079 
+   18   18   18   18   18   18
+##############################################################
+# year: 1998 
+##############################################################
+#  1998  quarter: 2 
+##############################################################
+#  1998  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   37
+# prey: HER  no: 2  first size: 0100-0119 
+   37
+# prey: SPR  no: 3  first size: 0060-0069 
+   37   37   37   37   37
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   29
+# prey: HER  no: 2  first size: 0070-0084 
+   29
+# prey: SPR  no: 3  first size: 0090-0099 
+   29   29
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   13
+# prey: HER  no: 2  first size: 0100-0119 
+   13   13   13   13   13
+# prey: SPR  no: 3  first size: 0060-0069 
+   13   13   13   13   13   13
+##############################################################
+# year: 1999 
+##############################################################
+#  1999  quarter: 1 
+##############################################################
+#  1999  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   52
+# prey: HER  no: 2  first size: 0085-0099 
+   52
+# prey: SPR  no: 3  first size: 0060-0069 
+   52   52   52   52   52   52
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   53
+# prey: SPR  no: 3  first size: 0090-0099 
+   53   53
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   42
+# prey: HER  no: 2  first size: 0085-0099 
+   42
+# prey: SPR  no: 3  first size: 0090-0099 
+   42   42   42
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   36
+# prey: HER  no: 2  first size: 0070-0084 
+   36   36   36   36   36   36   36
+# prey: SPR  no: 3  first size: 0090-0099 
+   36   36   36
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   99
+# prey: HER  no: 2  first size: 0100-0119 
+   99   99   99   99
+# prey: SPR  no: 3  first size: 0090-0099 
+   99   99   99   99   99
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   36
+# prey: HER  no: 2  first size: 0140-0159 
+   36   36   36
+# prey: SPR  no: 3  first size: 0090-0099 
+   36   36   36   36   36
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   10
+# prey: HER  no: 2  first size: 0070-0084 
+   10   10   10   10   10   10   10   10   10   10   10
+# prey: SPR  no: 3  first size: 0100-0109 
+   10   10   10
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   10
+# prey: HER  no: 2  first size: 0070-0084 
+   10   10   10   10   10   10   10   10   10   10   10
+# prey: SPR  no: 3  first size: 0100-0109 
+   10
+##############################################################
+#  1999  quarter: 2 
+##############################################################
+#  1999  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   10
+# prey: SPR  no: 3  first size: 0090-0099 
+   10
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   12
+# prey: SPR  no: 3  first size: 0100-0109 
+   12
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   15
+# prey: HER  no: 2  first size: 0140-0159 
+   15
+# prey: SPR  no: 3  first size: 0090-0099 
+   15   15   15
+##############################################################
+#  1999  quarter: 4 
+##############################################################
+#  1999  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   71
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   25
+# prey: SPR  no: 3  first size: 0060-0069 
+   25   25   25   25   25   25
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   15
+# prey: SPR  no: 3  first size: 0070-0079 
+   15
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   10
+# prey: HER  no: 2  first size: 0180-0199 
+   10
+# prey: SPR  no: 3  first size: 0060-0069 
+   10   10   10   10   10   10   10   10   10
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   35
+# prey: HER  no: 2  first size: 0100-0119 
+   35   35   35   35
+# prey: SPR  no: 3  first size: 0100-0109 
+   35
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   20
+# prey: HER  no: 2  first size: 0120-0139 
+   20   20   20
+# prey: SPR  no: 3  first size: 0100-0109 
+   20
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   12
+# prey: HER  no: 2  first size: 0140-0159 
+   12   12   12   12
+# prey: SPR  no: 3  first size: 0060-0069 
+   12   12   12   12   12   12   12   12   12
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   10
+# prey: HER  no: 2  first size: 0120-0139 
+   10   10   10
+##############################################################
+# year: 2000 
+##############################################################
+#  2000  quarter: 1 
+##############################################################
+#  2000  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   17
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   83
+# prey: HER  no: 2  first size: 0140-0159 
+   83
+# prey: SPR  no: 3  first size: 0080-0089 
+   83   83   83   83
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   89
+# prey: HER  no: 2  first size: 0070-0084 
+   89
+# prey: SPR  no: 3  first size: 0080-0089 
+   89   89   89   89
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   14
+# prey: HER  no: 2  first size: 0140-0159 
+   14
+# prey: SPR  no: 3  first size: 0120-0129 
+   14
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   12
+# prey: HER  no: 2  first size: 0160-0179 
+   12
+# prey: SPR  no: 3  first size: 0100-0109 
+   12
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   43
+# prey: HER  no: 2  first size: 0070-0084 
+   43   43   43   43   43   43   43
+# prey: SPR  no: 3  first size: 0100-0109 
+   43   43
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   11
+# prey: HER  no: 2  first size: 0160-0179 
+   11   11
+# prey: SPR  no: 3  first size: 0110-0119 
+   11
+##############################################################
+#  2000  quarter: 4 
+##############################################################
+#  2000  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   24
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   31
+# prey: HER  no: 2  first size: 0070-0084 
+   31   31   31   31   31   31   31   31
+# prey: SPR  no: 3  first size: 0060-0069 
+   31   31   31   31   31   31   31   31   31
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  113
+# prey: HER  no: 2  first size: 0050-0069 
+  113  113  113  113  113  113  113  113  113  113
+# prey: SPR  no: 3  first size: 0060-0069 
+  113  113  113  113  113  113  113  113  113
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   34
+# prey: HER  no: 2  first size: 0050-0069 
+   34   34   34   34   34   34   34   34   34   34   34
+# prey: SPR  no: 3  first size: 0060-0069 
+   34   34   34   34   34   34   34   34   34
+##############################################################
+# year: 2001 
+##############################################################
+#  2001  quarter: 1 
+##############################################################
+#  2001  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   11
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   12
+# prey: SPR  no: 3  first size: 0060-0069 
+   12   12   12   12   12   12   12   12
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   11
+# prey: HER  no: 2  first size: 0070-0084 
+   11   11   11   11   11   11   11   11   11
+# prey: SPR  no: 3  first size: 0110-0119 
+   11
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   21
+# prey: HER  no: 2  first size: 0140-0159 
+   21
+# prey: SPR  no: 3  first size: 0100-0109 
+   21   21   21   21
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   30
+# prey: HER  no: 2  first size: 0140-0159 
+   30   30
+# prey: SPR  no: 3  first size: 0100-0109 
+   30   30
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   10
+# prey: HER  no: 2  first size: 0120-0139 
+   10   10
+# prey: SPR  no: 3  first size: 0060-0069 
+   10   10   10   10   10   10   10   10   10
+##############################################################
+#  2001  quarter: 4 
+##############################################################
+#  2001  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   45
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   35
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   35
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   20
+# prey: SPR  no: 3  first size: 0080-0089 
+   20
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   27
+# prey: HER  no: 2  first size: 0140-0159 
+   27
+# prey: SPR  no: 3  first size: 0080-0089 
+   27
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   28
+# prey: HER  no: 2  first size: 0120-0139 
+   28   28   28
+# prey: SPR  no: 3  first size: 0110-0119 
+   28
+##############################################################
+# year: 2002 
+##############################################################
+#  2002  quarter: 1 
+##############################################################
+#  2002  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   14
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   39
+# prey: HER  no: 2  first size: 0085-0099 
+   39   39   39   39   39   39
+# prey: SPR  no: 3  first size: 0060-0069 
+   39   39   39   39   39   39
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   25
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   22
+# prey: SPR  no: 3  first size: 0060-0069 
+   22   22   22   22   22   22   22   22   22
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   12
+# prey: SPR  no: 3  first size: 0060-0069 
+   12   12   12   12   12   12   12   12   12
+##############################################################
+#  2002  quarter: 4 
+##############################################################
+#  2002  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   31
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   36
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   21
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   19
+# prey: HER  no: 2  first size: 0070-0084 
+   19   19   19   19   19   19   19
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   15
+# prey: HER  no: 2  first size: 0070-0084 
+   15   15   15   15   15   15   15   15
+# prey: SPR  no: 3  first size: 0060-0069 
+   15
+##############################################################
+# year: 2003 
+##############################################################
+#  2003  quarter: 1 
+##############################################################
+#  2003  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   10
+# prey: HER  no: 2  first size: 0070-0084 
+   10   10   10   10   10   10   10   10   10
+# prey: SPR  no: 3  first size: 0060-0069 
+   10   10   10   10   10   10   10   10   10
+##############################################################
+#  2003  quarter: 4 
+##############################################################
+#  2003  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   38
+# prey: SPR  no: 3  first size: 0070-0079 
+   38
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   65
+# prey: HER  no: 2  first size: 0160-0179 
+   65   65
+# prey: SPR  no: 3  first size: 0060-0069 
+   65   65   65   65   65   65
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   49
+# prey: HER  no: 2  first size: 0085-0099 
+   49   49   49   49
+# prey: SPR  no: 3  first size: 0070-0079 
+   49   49
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   50
+# prey: HER  no: 2  first size: 0160-0179 
+   50
+# prey: SPR  no: 3  first size: 0060-0069 
+   50   50   50   50   50   50   50   50
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   47
+# prey: HER  no: 2  first size: 0050-0069 
+   47   47   47   47   47   47   47   47
+# prey: SPR  no: 3  first size: 0070-0079 
+   47   47   47   47   47   47   47   47
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   58
+# prey: HER  no: 2  first size: 0120-0139 
+   58   58   58   58
+# prey: SPR  no: 3  first size: 0060-0069 
+   58   58   58   58   58   58
+##############################################################
+# year: 2004 
+##############################################################
+#  2004  quarter: 1 
+##############################################################
+#  2004  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   34
+# prey: HER  no: 2  first size: 0070-0084 
+   34
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   46
+# prey: SPR  no: 3  first size: 0070-0079 
+   46
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   39
+# prey: HER  no: 2  first size: 0070-0084 
+   39   39   39
+# prey: SPR  no: 3  first size: 0060-0069 
+   39   39   39   39   39   39
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   25
+# prey: SPR  no: 3  first size: 0100-0109 
+   25
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   28
+# prey: HER  no: 2  first size: 0070-0084 
+   28   28   28
+# prey: SPR  no: 3  first size: 0070-0079 
+   28   28   28
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   65
+# prey: HER  no: 2  first size: 0070-0084 
+   65   65   65   65   65
+# prey: SPR  no: 3  first size: 0060-0069 
+   65   65   65   65   65   65
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   37
+# prey: HER  no: 2  first size: 0070-0084 
+   37   37   37   37   37   37   37
+# prey: SPR  no: 3  first size: 0070-0079 
+   37   37
+##############################################################
+#  2004  quarter: 4 
+##############################################################
+#  2004  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   22
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   32
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   40
+# prey: SPR  no: 3  first size: 0090-0099 
+   40
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   26
+# prey: HER  no: 2  first size: 0070-0084 
+   26   26   26   26   26   26   26
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   53
+# prey: HER  no: 2  first size: 0100-0119 
+   53   53   53
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   74
+# prey: HER  no: 2  first size: 0120-0139 
+   74   74   74
+# prey: SPR  no: 3  first size: 0060-0069 
+   74   74   74   74   74   74   74   74   74
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   40
+# prey: HER  no: 2  first size: 0100-0119 
+   40   40   40   40
+##############################################################
+# year: 2005 
+##############################################################
+#  2005  quarter: 1 
+##############################################################
+#  2005  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   40
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   58
+# prey: HER  no: 2  first size: 0085-0099 
+   58   58   58   58   58   58
+# prey: SPR  no: 3  first size: 0080-0089 
+   58   58   58
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   57
+# prey: HER  no: 2  first size: 0070-0084 
+   57   57   57   57   57   57   57   57   57
+# prey: SPR  no: 3  first size: 0080-0089 
+   57   57   57
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   57
+# prey: HER  no: 2  first size: 0070-0084 
+   57
+# prey: SPR  no: 3  first size: 0080-0089 
+   57   57   57   57   57
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   34
+# prey: HER  no: 2  first size: 0070-0084 
+   34
+# prey: SPR  no: 3  first size: 0070-0079 
+   34   34   34   34
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   56
+# prey: HER  no: 2  first size: 0070-0084 
+   56   56   56   56   56
+# prey: SPR  no: 3  first size: 0080-0089 
+   56   56   56   56   56
+##############################################################
+#  2005  quarter: 4 
+##############################################################
+#  2005  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   44
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   17
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   19
+# prey: SPR  no: 3  first size: 0060-0069 
+   19   19   19   19   19   19   19   19   19
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   17
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   25
+# prey: HER  no: 2  first size: 0100-0119 
+   25
+# prey: SPR  no: 3  first size: 0060-0069 
+   25   25   25   25   25   25   25   25   25
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   95
+# prey: HER  no: 2  first size: 0070-0084 
+   95   95   95   95   95   95   95
+# prey: SPR  no: 3  first size: 0080-0089 
+   95   95   95   95   95   95
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   45
+# prey: HER  no: 2  first size: 0100-0119 
+   45   45   45   45   45
+# prey: SPR  no: 3  first size: 0100-0109 
+   45
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   11
+# prey: HER  no: 2  first size: 0070-0084 
+   11   11   11   11   11
+##############################################################
+# year: 2006 
+##############################################################
+#  2006  quarter: 1 
+##############################################################
+#  2006  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   25
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   21
+# prey: SPR  no: 3  first size: 0080-0089 
+   21   21   21
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   40
+# prey: HER  no: 2  first size: 0100-0119 
+   40
+# prey: SPR  no: 3  first size: 0070-0079 
+   40   40   40
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   52
+# prey: HER  no: 2  first size: 0120-0139 
+   52
+# prey: SPR  no: 3  first size: 0060-0069 
+   52   52   52   52   52   52   52
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   57
+# prey: HER  no: 2  first size: 0070-0084 
+   57   57   57   57   57   57   57
+# prey: SPR  no: 3  first size: 0060-0069 
+   57   57   57   57   57   57   57   57   57
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   84
+# prey: HER  no: 2  first size: 0085-0099 
+   84   84   84   84   84
+# prey: SPR  no: 3  first size: 0080-0089 
+   84   84   84   84   84
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   22
+# prey: HER  no: 2  first size: 0100-0119 
+   22   22   22   22   22   22
+# prey: SPR  no: 3  first size: 0070-0079 
+   22   22   22   22   22
+##############################################################
+#  2006  quarter: 4 
+##############################################################
+#  2006  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   52
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+  105
+# prey: SPR  no: 3  first size: 0070-0079 
+  105  105
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  104
+# prey: HER  no: 2  first size: 0085-0099 
+  104  104  104  104  104  104  104
+# prey: SPR  no: 3  first size: 0060-0069 
+  104
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  109
+# prey: HER  no: 2  first size: 0140-0159 
+  109
+# prey: SPR  no: 3  first size: 0070-0079 
+  109  109  109  109
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  100
+# prey: HER  no: 2  first size: 0070-0084 
+  100  100  100  100
+# prey: SPR  no: 3  first size: 0070-0079 
+  100  100  100  100  100
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  133
+# prey: HER  no: 2  first size: 0100-0119 
+  133  133  133  133  133
+# prey: SPR  no: 3  first size: 0070-0079 
+  133  133  133  133  133  133
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   38
+# prey: HER  no: 2  first size: 0100-0119 
+   38   38   38   38   38   38
+# prey: SPR  no: 3  first size: 0080-0089 
+   38   38   38   38
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   10
+# prey: HER  no: 2  first size: 0100-0119 
+   10   10   10   10   10
+# prey: SPR  no: 3  first size: 0070-0079 
+   10   10   10   10   10   10   10
+##############################################################
+# year: 2007 
+##############################################################
+#  2007  quarter: 1 
+##############################################################
+#  2007  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   60
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   92
+# prey: SPR  no: 3  first size: 0080-0089 
+   92   92
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   85
+# prey: HER  no: 2  first size: 0070-0084 
+   85   85
+# prey: SPR  no: 3  first size: 0070-0079 
+   85   85   85   85
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   52
+# prey: SPR  no: 3  first size: 0070-0079 
+   52   52   52   52   52   52
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   79
+# prey: HER  no: 2  first size: 0100-0119 
+   79   79   79   79   79
+# prey: SPR  no: 3  first size: 0070-0079 
+   79   79   79   79   79   79   79
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  127
+# prey: HER  no: 2  first size: 0085-0099 
+  127  127  127  127  127  127
+# prey: SPR  no: 3  first size: 0070-0079 
+  127  127  127  127  127  127
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   21
+# prey: HER  no: 2  first size: 0100-0119 
+   21   21   21   21   21
+# prey: SPR  no: 3  first size: 0090-0099 
+   21   21
+##############################################################
+#  2007  quarter: 4 
+##############################################################
+#  2007  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   76
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   93
+# prey: HER  no: 2  first size: 0140-0159 
+   93   93   93
+# prey: SPR  no: 3  first size: 0110-0119 
+   93
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  126
+# prey: HER  no: 2  first size: 0200-0219 
+  126
+# prey: SPR  no: 3  first size: 0100-0109 
+  126  126  126  126  126
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  108
+# prey: HER  no: 2  first size: 0140-0159 
+  108
+# prey: SPR  no: 3  first size: 0090-0099 
+  108  108  108  108  108  108
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  105
+# prey: HER  no: 2  first size: 0120-0139 
+  105  105  105  105  105
+# prey: SPR  no: 3  first size: 0080-0089 
+  105  105  105  105  105  105
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  163
+# prey: HER  no: 2  first size: 0085-0099 
+  163  163  163  163  163  163  163  163
+# prey: SPR  no: 3  first size: 0070-0079 
+  163  163  163  163  163  163  163  163
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  114
+# prey: HER  no: 2  first size: 0070-0084 
+  114  114  114  114  114  114  114  114  114  114
+# prey: SPR  no: 3  first size: 0080-0089 
+  114  114  114  114  114  114  114
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   81
+# prey: HER  no: 2  first size: 0140-0159 
+   81   81   81   81   81
+# prey: SPR  no: 3  first size: 0120-0129 
+   81   81   81
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   76
+# prey: HER  no: 2  first size: 0140-0159 
+   76   76   76   76   76   76   76
+# prey: SPR  no: 3  first size: 0110-0119 
+   76   76   76
+##############################################################
+# year: 2008 
+##############################################################
+#  2008  quarter: 1 
+##############################################################
+#  2008  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+  115
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+  161
+# prey: SPR  no: 3  first size: 0070-0079 
+  161  161  161  161
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  141
+# prey: SPR  no: 3  first size: 0070-0079 
+  141  141  141  141  141  141  141
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  124
+# prey: HER  no: 2  first size: 0070-0084 
+  124  124  124  124  124  124  124  124  124
+# prey: SPR  no: 3  first size: 0070-0079 
+  124  124  124  124  124  124  124
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  149
+# prey: HER  no: 2  first size: 0120-0139 
+  149  149  149  149
+# prey: SPR  no: 3  first size: 0070-0079 
+  149  149  149  149  149  149  149
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  220
+# prey: HER  no: 2  first size: 0120-0139 
+  220  220  220  220  220  220
+# prey: SPR  no: 3  first size: 0070-0079 
+  220  220  220  220  220  220  220  220
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   88
+# prey: HER  no: 2  first size: 0120-0139 
+   88   88   88   88   88   88   88
+# prey: SPR  no: 3  first size: 0070-0079 
+   88   88   88   88   88   88   88   88
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   31
+# prey: HER  no: 2  first size: 0100-0119 
+   31   31   31   31   31   31   31
+# prey: SPR  no: 3  first size: 0090-0099 
+   31   31   31   31   31
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   18
+# prey: HER  no: 2  first size: 0140-0159 
+   18   18   18   18   18
+# prey: SPR  no: 3  first size: 0090-0099 
+   18   18   18   18   18
+##############################################################
+#  2008  quarter: 4 
+##############################################################
+#  2008  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   73
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   82
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  110
+# prey: SPR  no: 3  first size: 0070-0079 
+  110  110  110
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  121
+# prey: HER  no: 2  first size: 0100-0119 
+  121  121  121  121  121
+# prey: SPR  no: 3  first size: 0060-0069 
+  121  121  121  121
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   99
+# prey: HER  no: 2  first size: 0070-0084 
+   99   99   99   99   99
+# prey: SPR  no: 3  first size: 0060-0069 
+   99   99   99   99   99   99   99   99
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  154
+# prey: HER  no: 2  first size: 0120-0139 
+  154  154  154  154  154
+# prey: SPR  no: 3  first size: 0050-0059 
+  154  154  154  154  154  154  154  154  154  154
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   91
+# prey: HER  no: 2  first size: 0100-0119 
+   91   91   91   91   91   91
+# prey: SPR  no: 3  first size: 0060-0069 
+   91   91   91   91   91   91   91   91
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   45
+# prey: HER  no: 2  first size: 0120-0139 
+   45   45   45   45   45   45
+# prey: SPR  no: 3  first size: 0070-0079 
+   45   45   45   45   45   45   45   45
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   27
+# prey: HER  no: 2  first size: 0120-0139 
+   27   27   27   27   27   27
+# prey: SPR  no: 3  first size: 0070-0079 
+   27   27   27   27   27   27   27   27
+##############################################################
+# year: 2009 
+##############################################################
+#  2009  quarter: 1 
+##############################################################
+#  2009  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   89
+# prey: HER  no: 2  first size: 0085-0099 
+   89   89   89   89   89   89
+# prey: SPR  no: 3  first size: 0060-0069 
+   89   89   89   89   89
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   72
+# prey: HER  no: 2  first size: 0070-0084 
+   72   72   72   72   72   72   72   72   72
+# prey: SPR  no: 3  first size: 0060-0069 
+   72   72   72   72   72   72
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  102
+# prey: HER  no: 2  first size: 0120-0139 
+  102
+# prey: SPR  no: 3  first size: 0070-0079 
+  102  102  102  102  102  102  102
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  111
+# prey: HER  no: 2  first size: 0120-0139 
+  111  111  111  111
+# prey: SPR  no: 3  first size: 0060-0069 
+  111  111  111  111  111  111  111  111
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  163
+# prey: HER  no: 2  first size: 0070-0084 
+  163  163  163  163  163  163  163  163
+# prey: SPR  no: 3  first size: 0070-0079 
+  163  163  163  163  163  163  163  163
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  101
+# prey: HER  no: 2  first size: 0160-0179 
+  101  101  101  101
+# prey: SPR  no: 3  first size: 0060-0069 
+  101  101  101  101  101  101  101
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   50
+# prey: HER  no: 2  first size: 0120-0139 
+   50   50   50   50   50   50
+# prey: SPR  no: 3  first size: 0080-0089 
+   50   50   50   50   50   50   50
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   39
+# prey: HER  no: 2  first size: 0140-0159 
+   39   39   39   39   39   39   39
+# prey: SPR  no: 3  first size: 0080-0089 
+   39   39   39   39   39   39
+##############################################################
+#  2009  quarter: 4 
+##############################################################
+#  2009  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   42
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   36
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   37
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   39
+# prey: SPR  no: 3  first size: 0090-0099 
+   39   39   39   39
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   43
+# prey: HER  no: 2  first size: 0085-0099 
+   43
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   70
+# prey: HER  no: 2  first size: 0120-0139 
+   70   70   70   70   70   70
+# prey: SPR  no: 3  first size: 0090-0099 
+   70   70   70   70   70
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   70
+# prey: HER  no: 2  first size: 0050-0069 
+   70   70   70   70   70   70   70   70   70   70
+# prey: SPR  no: 3  first size: 0090-0099 
+   70   70   70   70   70   70
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   69
+# prey: HER  no: 2  first size: 0120-0139 
+   69   69   69   69   69   69   69
+# prey: SPR  no: 3  first size: 0100-0109 
+   69   69   69   69
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   61
+# prey: HER  no: 2  first size: 0100-0119 
+   61   61   61   61   61   61   61   61
+# prey: SPR  no: 3  first size: 0090-0099 
+   61   61   61   61   61   61
+##############################################################
+# year: 2010 
+##############################################################
+#  2010  quarter: 1 
+##############################################################
+#  2010  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   23
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   37
+# prey: SPR  no: 3  first size: 0060-0069 
+   37   37   37   37
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   55
+# prey: SPR  no: 3  first size: 0080-0089 
+   55   55   55   55   55
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   64
+# prey: HER  no: 2  first size: 0120-0139 
+   64
+# prey: SPR  no: 3  first size: 0070-0079 
+   64   64   64   64   64   64   64
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   58
+# prey: HER  no: 2  first size: 0100-0119 
+   58   58   58
+# prey: SPR  no: 3  first size: 0070-0079 
+   58   58   58   58   58   58   58   58
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  129
+# prey: HER  no: 2  first size: 0100-0119 
+  129  129  129  129  129  129
+# prey: SPR  no: 3  first size: 0070-0079 
+  129  129  129  129  129  129  129  129
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  115
+# prey: HER  no: 2  first size: 0100-0119 
+  115  115  115  115  115  115  115  115  115
+# prey: SPR  no: 3  first size: 0070-0079 
+  115  115  115  115  115  115  115  115
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   78
+# prey: HER  no: 2  first size: 0085-0099 
+   78   78   78   78   78   78   78   78   78   78
+# prey: SPR  no: 3  first size: 0080-0089 
+   78   78   78   78   78   78   78
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   82
+# prey: HER  no: 2  first size: 0100-0119 
+   82   82   82   82   82   82   82   82
+# prey: SPR  no: 3  first size: 0080-0089 
+   82   82   82   82   82   82   82
+##############################################################
+# year: 2011 
+##############################################################
+#  2011  quarter: 1 
+##############################################################
+#  2011  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   22
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   32
+# prey: HER  no: 2  first size: 0180-0199 
+   32
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   40
+# prey: SPR  no: 3  first size: 0070-0079 
+   40   40   40   40   40
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   38
+# prey: SPR  no: 3  first size: 0060-0069 
+   38   38   38   38   38   38
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   36
+# prey: HER  no: 2  first size: 0100-0119 
+   36
+# prey: SPR  no: 3  first size: 0070-0079 
+   36   36   36   36   36   36   36   36
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   61
+# prey: HER  no: 2  first size: 0100-0119 
+   61   61   61   61   61   61
+# prey: SPR  no: 3  first size: 0060-0069 
+   61   61   61   61   61   61   61   61   61
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   60
+# prey: HER  no: 2  first size: 0120-0139 
+   60   60   60   60   60   60
+# prey: SPR  no: 3  first size: 0060-0069 
+   60   60   60   60   60   60   60   60   60
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   55
+# prey: HER  no: 2  first size: 0085-0099 
+   55   55   55   55   55   55   55   55   55
+# prey: SPR  no: 3  first size: 0070-0079 
+   55   55   55   55   55   55   55   55
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   35
+# prey: HER  no: 2  first size: 0100-0119 
+   35   35   35   35   35   35   35   35
+# prey: SPR  no: 3  first size: 0080-0089 
+   35   35   35   35   35   35
+##############################################################
+#  2011  quarter: 4 
+##############################################################
+#  2011  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   29
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   35
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   38
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   49
+# prey: HER  no: 2  first size: 0085-0099 
+   49   49   49   49   49   49
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   42
+# prey: HER  no: 2  first size: 0120-0139 
+   42
+# prey: SPR  no: 3  first size: 0130-0139 
+   42
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   81
+# prey: HER  no: 2  first size: 0160-0179 
+   81   81
+# prey: SPR  no: 3  first size: 0080-0089 
+   81   81   81   81   81   81
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   61
+# prey: HER  no: 2  first size: 0100-0119 
+   61   61   61   61   61   61   61
+# prey: SPR  no: 3  first size: 0060-0069 
+   61   61   61   61   61   61   61
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   22
+# prey: HER  no: 2  first size: 0085-0099 
+   22   22   22   22   22   22
+# prey: SPR  no: 3  first size: 0090-0099 
+   22   22   22   22   22
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   29
+# prey: HER  no: 2  first size: 0140-0159 
+   29   29   29   29   29   29   29
+# prey: SPR  no: 3  first size: 0080-0089 
+   29   29   29   29   29   29
+##############################################################
+# year: 2012 
+##############################################################
+#  2012  quarter: 1 
+##############################################################
+#  2012  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   27
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   53
+# prey: SPR  no: 3  first size: 0090-0099 
+   53   53
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   57
+# prey: HER  no: 2  first size: 0220-0239 
+   57
+# prey: SPR  no: 3  first size: 0060-0069 
+   57   57   57   57   57
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   68
+# prey: HER  no: 2  first size: 0140-0159 
+   68
+# prey: SPR  no: 3  first size: 0070-0079 
+   68   68   68   68   68   68
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   69
+# prey: HER  no: 2  first size: 0100-0119 
+   69   69   69   69   69   69
+# prey: SPR  no: 3  first size: 0060-0069 
+   69   69   69   69   69   69   69   69
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  102
+# prey: HER  no: 2  first size: 0100-0119 
+  102  102  102  102  102  102
+# prey: SPR  no: 3  first size: 0060-0069 
+  102  102  102  102  102  102  102  102
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   83
+# prey: HER  no: 2  first size: 0100-0119 
+   83   83   83   83   83   83
+# prey: SPR  no: 3  first size: 0060-0069 
+   83   83   83   83   83   83   83   83
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   29
+# prey: HER  no: 2  first size: 0120-0139 
+   29   29   29   29   29   29
+# prey: SPR  no: 3  first size: 0070-0079 
+   29   29   29   29   29   29   29
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   20
+# prey: HER  no: 2  first size: 0120-0139 
+   20   20   20
+# prey: SPR  no: 3  first size: 0080-0089 
+   20   20   20   20   20   20   20
+##############################################################
+#  2012  quarter: 2 
+##############################################################
+#  2012  quarter: 2  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   22
+# prey: HER  no: 2  first size: 0120-0139 
+   22
+# prey: SPR  no: 3  first size: 0060-0069 
+   22   22   22   22   22   22   22
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   12
+# prey: HER  no: 2  first size: 0140-0159 
+   12
+# prey: SPR  no: 3  first size: 0070-0079 
+   12   12   12   12   12   12
+##############################################################
+#  2012  quarter: 3 
+##############################################################
+#  2012  quarter: 3  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   12
+# prey: SPR  no: 3  first size: 0050-0059 
+   12   12
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   30
+# prey: SPR  no: 3  first size: 0050-0059 
+   30   30   30
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+   62
+# prey: HER  no: 2  first size: 0070-0084 
+   62   62
+# prey: SPR  no: 3  first size: 0050-0059 
+   62   62   62   62   62   62   62   62   62
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+   91
+# prey: HER  no: 2  first size: 0085-0099 
+   91   91   91   91   91   91
+# prey: SPR  no: 3  first size: 0050-0059 
+   91   91   91   91   91   91   91   91   91
+##############################################################
+#  2012  quarter: 4 
+##############################################################
+#  2012  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+  116
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+  124
+# prey: SPR  no: 3  first size: 0100-0109 
+  124
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  143
+# prey: HER  no: 2  first size: 0100-0119 
+  143
+# prey: SPR  no: 3  first size: 0070-0079 
+  143  143  143  143  143  143
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  135
+# prey: HER  no: 2  first size: 0120-0139 
+  135  135  135
+# prey: SPR  no: 3  first size: 0080-0089 
+  135  135  135  135  135
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  114
+# prey: HER  no: 2  first size: 0140-0159 
+  114
+# prey: SPR  no: 3  first size: 0060-0069 
+  114  114  114  114  114  114  114  114
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  191
+# prey: HER  no: 2  first size: 0085-0099 
+  191  191  191  191  191  191  191
+# prey: SPR  no: 3  first size: 0060-0069 
+  191  191  191  191  191  191  191  191  191
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   65
+# prey: HER  no: 2  first size: 0120-0139 
+   65   65   65   65   65   65
+# prey: SPR  no: 3  first size: 0060-0069 
+   65   65   65   65   65   65   65   65
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   24
+# prey: HER  no: 2  first size: 0100-0119 
+   24   24   24   24   24   24
+# prey: SPR  no: 3  first size: 0060-0069 
+   24   24   24   24   24   24   24   24   24
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   15
+# prey: HER  no: 2  first size: 0120-0139 
+   15   15   15   15
+# prey: SPR  no: 3  first size: 0130-0139 
+   15
+##############################################################
+# year: 2013 
+##############################################################
+#  2013  quarter: 1 
+##############################################################
+#  2013  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   99
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+  175
+# prey: SPR  no: 3  first size: 0080-0089 
+  175  175  175  175
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  207
+# prey: SPR  no: 3  first size: 0070-0079 
+  207  207  207  207  207  207
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  195
+# prey: HER  no: 2  first size: 0085-0099 
+  195  195  195  195  195
+# prey: SPR  no: 3  first size: 0060-0069 
+  195  195  195  195  195  195  195  195  195
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  197
+# prey: HER  no: 2  first size: 0085-0099 
+  197  197  197  197  197  197  197  197  197
+# prey: SPR  no: 3  first size: 0060-0069 
+  197  197  197  197  197  197  197  197  197
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  450
+# prey: HER  no: 2  first size: 0070-0084 
+  450  450  450  450  450  450  450  450
+# prey: SPR  no: 3  first size: 0060-0069 
+  450  450  450  450  450  450  450  450  450
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+  129
+# prey: HER  no: 2  first size: 0140-0159 
+  129  129  129  129
+# prey: SPR  no: 3  first size: 0060-0069 
+  129  129  129  129  129  129  129  129  129
+# predator size: 0600-0699  class: 10 
+# prey: OTH  no: 0  first size: 9999-9999 
+   12
+# prey: HER  no: 2  first size: 0140-0159 
+   12   12   12   12
+# prey: SPR  no: 3  first size: 0090-0099 
+   12   12   12   12
+# predator size: 0700-9999  class: 11 
+# prey: OTH  no: 0  first size: 9999-9999 
+   12
+# prey: HER  no: 2  first size: 0160-0179 
+   12   12   12   12   12
+# prey: SPR  no: 3  first size: 0120-0129 
+   12   12
+##############################################################
+#  2013  quarter: 4 
+##############################################################
+#  2013  quarter: 4  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+  119
+# prey: SPR  no: 3  first size: 0070-0079 
+  119  119  119  119  119
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+  134
+# prey: SPR  no: 3  first size: 0080-0089 
+  134  134
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+  138
+# prey: SPR  no: 3  first size: 0060-0069 
+  138  138  138  138  138  138
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+  159
+# prey: HER  no: 2  first size: 0140-0159 
+  159  159
+# prey: SPR  no: 3  first size: 0070-0079 
+  159  159  159  159  159  159
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  142
+# prey: HER  no: 2  first size: 0100-0119 
+  142  142  142  142  142
+# prey: SPR  no: 3  first size: 0070-0079 
+  142  142  142  142  142  142
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  171
+# prey: HER  no: 2  first size: 0100-0119 
+  171  171  171  171  171  171  171
+# prey: SPR  no: 3  first size: 0070-0079 
+  171  171  171  171  171  171  171
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   45
+# prey: HER  no: 2  first size: 0120-0139 
+   45   45   45   45   45
+# prey: SPR  no: 3  first size: 0080-0089 
+   45   45   45   45   45   45
+##############################################################
+# year: 2014 
+##############################################################
+#  2014  quarter: 1 
+##############################################################
+#  2014  quarter: 1  area: 1 
+##############################################################
+# predator: COD  no: 1 
+# predator size: 0150-0199  class: 3 
+# prey: OTH  no: 0  first size: 9999-9999 
+   36
+# predator size: 0200-0249  class: 4 
+# prey: OTH  no: 0  first size: 9999-9999 
+   65
+# prey: HER  no: 2  first size: 0085-0099 
+   65
+# prey: SPR  no: 3  first size: 0060-0069 
+   65   65   65   65   65
+# predator size: 0250-0299  class: 5 
+# prey: OTH  no: 0  first size: 9999-9999 
+   95
+# prey: SPR  no: 3  first size: 0070-0079 
+   95   95   95   95   95   95
+# predator size: 0300-0349  class: 6 
+# prey: OTH  no: 0  first size: 9999-9999 
+   82
+# prey: HER  no: 2  first size: 0160-0179 
+   82
+# prey: SPR  no: 3  first size: 0060-0069 
+   82   82   82   82   82   82   82
+# predator size: 0350-0399  class: 7 
+# prey: OTH  no: 0  first size: 9999-9999 
+  106
+# prey: HER  no: 2  first size: 0100-0119 
+  106  106  106
+# prey: SPR  no: 3  first size: 0060-0069 
+  106  106  106  106  106  106  106  106  106
+# predator size: 0400-0499  class: 8 
+# prey: OTH  no: 0  first size: 9999-9999 
+  237
+# prey: HER  no: 2  first size: 0070-0084 
+  237  237  237  237  237  237  237  237  237
+# prey: SPR  no: 3  first size: 0060-0069 
+  237  237  237  237  237  237  237  237  237
+# predator size: 0500-0599  class: 9 
+# prey: OTH  no: 0  first size: 9999-9999 
+   30
+# prey: HER  no: 2  first size: 0160-0179 
+   30   30
+# prey: SPR  no: 3  first size: 0060-0069 
+   30   30   30   30   30   30   30   30   30
+-999 # Checksum

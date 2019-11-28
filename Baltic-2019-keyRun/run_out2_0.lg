@@ -1,0 +1,307 @@
+SMS version August 2019 using ADMB version 12.0
+November 06, 2019 18:56:26
+no. of species: 3  no. of predators: 1  no. of other predators:1
+first VPA species no.:2  first VPA species as prey:2
+cons_multiplier:
+ 1
+PRELIMINARY_CALCS_SECTION begins
+
+observed min predator prey size ratio: 
+                  Herring    Sprat      
+Cod                1.6        3.4
+
+observed max predator prey size ratio: 
+                  Herring    Sprat      
+Cod               1024       1550
+
+                  Herring    Sprat      
+Cod         ALK exist for all prey length classes
+
+Adjusted min predator prey size ratio (according to option max.prey.pred.size.fac), to be used for calculation of M2: 
+                  Herring    Sprat      
+Cod                3.3        3.4        3.3
+
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:3 pred length group:150 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:9 pred length group:500 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:10 pred length group:600 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:11 pred length group:700 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:3 pred length group:150 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:9 pred length group:500 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:10 pred length group:600 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:11 pred length group:700 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1975 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1975 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1975 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1976 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1976 Q:4 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1976 Q:4 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1977 Q:1 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1977 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:9 pred length group:500 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1982 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1984 Q:3 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1988 Q:1 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1988 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1988 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1988 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1991 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1991 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1993 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1993 Q:2 pred length class:9 pred length group:500 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1993 Q:2 pred length class:10 pred length group:600 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1993 Q:2 pred length class:11 pred length group:700 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1998 Q:2 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1998 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1998 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1999 Q:2 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1999 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1999 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1999 Q:4 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2001 Q:4 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2001 Q:4 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2005 Q:1 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2012 Q:3 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2012 Q:3 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2012 Q:3 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2012 Q:3 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2013 Q:4 pred length class:3 pred length group:150 not included, as exclusion specified in input file incl_stom.in
+
+Min observed stomach contents observations to be used:  1.000e-003
+
+Species, number of stomachs observations totally, and used
+Cod                               5581    4765
+
+Number of predator-prey interaction observation used
+                  Herring    Sprat      
+Cod               1780       2315
+
+PRELIMINARY_CALCS_SECTION done
+Set current phase to 2
+
+Initial statistics: 286 variables; iteration 0; function evaluation 0; phase 2
+Function value  2.6198929e+004; maximum gradient component mag -3.0428e+006
+
+Intermediate statistics: 286 variables; iteration 10; function evaluation 22; phase 2
+Function value  1.7049309e+004; maximum gradient component mag -1.3614e+006
+286 variables; iteration 20; function evaluation 35; phase 2
+Function value  1.4602719e+004; maximum gradient component mag -2.0760e+006
+286 variables; iteration 30; function evaluation 45; phase 2
+Function value  1.3348162e+004; maximum gradient component mag -1.7754e+006
+286 variables; iteration 40; function evaluation 58; phase 2
+Function value  1.1449610e+004; maximum gradient component mag -1.4978e+006
+286 variables; iteration 50; function evaluation 70; phase 2
+Function value  1.0816776e+004; maximum gradient component mag -1.4460e+006
+286 variables; iteration 60; function evaluation 85; phase 2
+Function value  1.0177518e+004; maximum gradient component mag -1.3953e+006
+286 variables; iteration 70; function evaluation 97; phase 2
+Function value  9.1967456e+003; maximum gradient component mag -1.0219e+006
+286 variables; iteration 80; function evaluation 107; phase 2
+Function value  8.6972924e+003; maximum gradient component mag -9.0928e+005
+286 variables; iteration 90; function evaluation 117; phase 2
+Function value  8.4856261e+003; maximum gradient component mag -9.2424e+005
+286 variables; iteration 100; function evaluation 127; phase 2
+Function value  8.0917069e+003; maximum gradient component mag -8.4421e+005
+286 variables; iteration 110; function evaluation 137; phase 2
+Function value  7.7560825e+003; maximum gradient component mag -8.0436e+005
+286 variables; iteration 120; function evaluation 147; phase 2
+Function value  7.5414347e+003; maximum gradient component mag -7.7326e+005
+286 variables; iteration 130; function evaluation 157; phase 2
+Function value  7.3826270e+003; maximum gradient component mag -7.3282e+005
+286 variables; iteration 140; function evaluation 167; phase 2
+Function value  7.1502717e+003; maximum gradient component mag -6.8214e+005
+286 variables; iteration 150; function evaluation 177; phase 2
+Function value  6.7924137e+003; maximum gradient component mag -5.3250e+005
+286 variables; iteration 160; function evaluation 190; phase 2
+Function value  6.2748190e+003; maximum gradient component mag -3.8546e+005
+286 variables; iteration 170; function evaluation 201; phase 2
+Function value  5.9810684e+003; maximum gradient component mag -3.8867e+005
+286 variables; iteration 180; function evaluation 214; phase 2
+Function value  5.6384864e+003; maximum gradient component mag -3.6064e+005
+286 variables; iteration 190; function evaluation 225; phase 2
+Function value  5.5008196e+003; maximum gradient component mag -3.5606e+005
+286 variables; iteration 200; function evaluation 236; phase 2
+Function value  5.1774872e+003; maximum gradient component mag -3.6116e+005
+286 variables; iteration 210; function evaluation 247; phase 2
+Function value  4.2181041e+003; maximum gradient component mag -3.4641e+005
+286 variables; iteration 220; function evaluation 257; phase 2
+Function value  3.6384597e+003; maximum gradient component mag -3.4258e+005
+286 variables; iteration 230; function evaluation 267; phase 2
+Function value  3.1778624e+003; maximum gradient component mag -3.4180e+005
+286 variables; iteration 240; function evaluation 278; phase 2
+Function value  2.6326532e+003; maximum gradient component mag -3.1814e+005
+286 variables; iteration 250; function evaluation 288; phase 2
+Function value  2.1854380e+003; maximum gradient component mag -2.3334e+005
+286 variables; iteration 260; function evaluation 300; phase 2
+Function value  1.6527436e+003; maximum gradient component mag -2.4515e+005
+286 variables; iteration 270; function evaluation 313; phase 2
+Function value  1.4615003e+003; maximum gradient component mag -2.1522e+005
+286 variables; iteration 280; function evaluation 324; phase 2
+Function value  1.1677131e+003; maximum gradient component mag -2.1378e+005
+286 variables; iteration 290; function evaluation 337; phase 2
+Function value  7.5169552e+002; maximum gradient component mag -1.5222e+005
+286 variables; iteration 300; function evaluation 348; phase 2
+Function value -7.3704416e+001; maximum gradient component mag -2.9556e+004
+286 variables; iteration 310; function evaluation 359; phase 2
+Function value -5.2633680e+002; maximum gradient component mag -1.3143e+004
+286 variables; iteration 320; function evaluation 370; phase 2
+Function value -7.9545495e+002; maximum gradient component mag  8.7868e+003
+286 variables; iteration 330; function evaluation 382; phase 2
+Function value -1.0398671e+003; maximum gradient component mag  1.7943e+004
+286 variables; iteration 340; function evaluation 392; phase 2
+Function value -1.1067035e+003; maximum gradient component mag  1.7047e+004
+286 variables; iteration 350; function evaluation 402; phase 2
+Function value -1.1523492e+003; maximum gradient component mag -7.4222e+003
+286 variables; iteration 360; function evaluation 412; phase 2
+Function value -1.1690153e+003; maximum gradient component mag  4.8707e+003
+286 variables; iteration 370; function evaluation 422; phase 2
+Function value -1.1889689e+003; maximum gradient component mag -3.7295e+003
+286 variables; iteration 380; function evaluation 432; phase 2
+Function value -1.1983658e+003; maximum gradient component mag  2.5761e+003
+286 variables; iteration 390; function evaluation 442; phase 2
+Function value -1.2072341e+003; maximum gradient component mag -1.1874e+003
+286 variables; iteration 400; function evaluation 452; phase 2
+Function value -1.2093792e+003; maximum gradient component mag -5.8010e+002
+286 variables; iteration 410; function evaluation 462; phase 2
+Function value -1.2099299e+003; maximum gradient component mag -1.6364e+003
+286 variables; iteration 420; function evaluation 472; phase 2
+Function value -1.2110237e+003; maximum gradient component mag -6.4455e+002
+286 variables; iteration 430; function evaluation 482; phase 2
+Function value -1.2133989e+003; maximum gradient component mag -1.1806e+003
+286 variables; iteration 440; function evaluation 492; phase 2
+Function value -1.2144261e+003; maximum gradient component mag  9.0109e+002
+286 variables; iteration 450; function evaluation 502; phase 2
+Function value -1.2165699e+003; maximum gradient component mag -1.7670e+003
+286 variables; iteration 460; function evaluation 512; phase 2
+Function value -1.2189168e+003; maximum gradient component mag -8.8354e+002
+286 variables; iteration 470; function evaluation 522; phase 2
+Function value -1.2207566e+003; maximum gradient component mag -1.0542e+003
+286 variables; iteration 480; function evaluation 532; phase 2
+Function value -1.2225008e+003; maximum gradient component mag  1.1236e+003
+286 variables; iteration 490; function evaluation 542; phase 2
+Function value -1.2234895e+003; maximum gradient component mag  6.5288e+002
+286 variables; iteration 500; function evaluation 552; phase 2
+Function value -1.2237002e+003; maximum gradient component mag  1.9569e+002
+286 variables; iteration 510; function evaluation 562; phase 2
+Function value -1.2237494e+003; maximum gradient component mag  1.6100e+002
+286 variables; iteration 520; function evaluation 572; phase 2
+Function value -1.2237923e+003; maximum gradient component mag  5.1264e+001
+286 variables; iteration 530; function evaluation 582; phase 2
+Function value -1.2237928e+003; maximum gradient component mag  2.8626e+001
+286 variables; iteration 540; function evaluation 592; phase 2
+Function value -1.2237949e+003; maximum gradient component mag  1.1032e+002
+286 variables; iteration 550; function evaluation 603; phase 2
+Function value -1.2238769e+003; maximum gradient component mag -3.9158e+002
+286 variables; iteration 560; function evaluation 613; phase 2
+Function value -1.2242437e+003; maximum gradient component mag -7.6516e+002
+286 variables; iteration 570; function evaluation 624; phase 2
+Function value -1.2243901e+003; maximum gradient component mag -1.0728e+003
+286 variables; iteration 580; function evaluation 635; phase 2
+Function value -1.2253220e+003; maximum gradient component mag  1.5960e+003
+286 variables; iteration 590; function evaluation 645; phase 2
+Function value -1.2258336e+003; maximum gradient component mag -2.6715e+002
+286 variables; iteration 600; function evaluation 657; phase 2
+Function value -1.2266539e+003; maximum gradient component mag -1.0708e+003
+286 variables; iteration 610; function evaluation 667; phase 2
+Function value -1.2272587e+003; maximum gradient component mag  6.5421e+001
+286 variables; iteration 620; function evaluation 677; phase 2
+Function value -1.2272711e+003; maximum gradient component mag -2.7839e+001
+286 variables; iteration 630; function evaluation 687; phase 2
+Function value -1.2272714e+003; maximum gradient component mag  2.7844e-002
+  ic > imax  in fminim is answer attained ?
+Function minimizer not making progress ... is minimum attained?
+Minimprove criterion =  0.0000e+000
+
+ - final statistics:
+286 variables; iteration 635; function evaluation 721
+Function value -1.2273e+003; maximum gradient component mag  7.7687e-004
+Exit code = 1;  converg criter  1.0000e-004
+report file: sms.r02
+
+
+Initial statistics: 291 variables; iteration 0; function evaluation 0; phase 3
+Function value -1.2272714e+003; maximum gradient component mag -2.9943e+002
+
+Intermediate statistics: 291 variables; iteration 10; function evaluation 13; phase 3
+Function value -1.2287808e+003; maximum gradient component mag  2.9818e+003
+291 variables; iteration 20; function evaluation 24; phase 3
+Function value -1.2293366e+003; maximum gradient component mag  2.9483e+003
+291 variables; iteration 30; function evaluation 34; phase 3
+Function value -1.2297875e+003; maximum gradient component mag  2.9084e+003
+291 variables; iteration 40; function evaluation 45; phase 3
+Function value -1.2303669e+003; maximum gradient component mag  2.8670e+003
+291 variables; iteration 50; function evaluation 58; phase 3
+Function value -1.2305745e+003; maximum gradient component mag  2.8676e+003
+291 variables; iteration 60; function evaluation 71; phase 3
+Function value -1.2306614e+003; maximum gradient component mag  2.8875e+003
+291 variables; iteration 70; function evaluation 84; phase 3
+Function value -1.2308048e+003; maximum gradient component mag  2.8815e+003
+291 variables; iteration 80; function evaluation 94; phase 3
+Function value -1.2308877e+003; maximum gradient component mag  2.8326e+003
+291 variables; iteration 90; function evaluation 104; phase 3
+Function value -1.2309240e+003; maximum gradient component mag  2.6946e+003
+291 variables; iteration 100; function evaluation 114; phase 3
+Function value -1.2309398e+003; maximum gradient component mag  2.6472e+003
+291 variables; iteration 110; function evaluation 124; phase 3
+Function value -1.2309627e+003; maximum gradient component mag  2.6130e+003
+291 variables; iteration 120; function evaluation 134; phase 3
+Function value -1.2309988e+003; maximum gradient component mag  2.5766e+003
+291 variables; iteration 130; function evaluation 144; phase 3
+Function value -1.2310486e+003; maximum gradient component mag  2.4703e+003
+291 variables; iteration 140; function evaluation 154; phase 3
+Function value -1.2310961e+003; maximum gradient component mag  2.3632e+003
+291 variables; iteration 150; function evaluation 166; phase 3
+Function value -1.2312090e+003; maximum gradient component mag  2.1451e+003
+291 variables; iteration 160; function evaluation 177; phase 3
+Function value -1.2313481e+003; maximum gradient component mag  1.8204e+003
+291 variables; iteration 170; function evaluation 189; phase 3
+Function value -1.2314836e+003; maximum gradient component mag  1.5356e+003
+291 variables; iteration 180; function evaluation 200; phase 3
+Function value -1.2316600e+003; maximum gradient component mag -1.1942e+003
+291 variables; iteration 190; function evaluation 212; phase 3
+Function value -1.2317539e+003; maximum gradient component mag -1.0330e+003
+291 variables; iteration 200; function evaluation 223; phase 3
+Function value -1.2318879e+003; maximum gradient component mag -7.5862e+002
+291 variables; iteration 210; function evaluation 234; phase 3
+Function value -1.2320252e+003; maximum gradient component mag -4.4067e+002
+291 variables; iteration 220; function evaluation 244; phase 3
+Function value -1.2320596e+003; maximum gradient component mag -5.4201e+002
+291 variables; iteration 230; function evaluation 254; phase 3
+Function value -1.2320777e+003; maximum gradient component mag -5.0468e+002
+291 variables; iteration 240; function evaluation 264; phase 3
+Function value -1.2321051e+003; maximum gradient component mag -5.2174e+002
+291 variables; iteration 250; function evaluation 275; phase 3
+Function value -1.2321595e+003; maximum gradient component mag -7.0275e+002
+291 variables; iteration 260; function evaluation 287; phase 3
+Function value -1.2321815e+003; maximum gradient component mag -6.8508e+002
+291 variables; iteration 270; function evaluation 300; phase 3
+Function value -1.2321893e+003; maximum gradient component mag -6.6688e+002
+291 variables; iteration 280; function evaluation 311; phase 3
+Function value -1.2322184e+003; maximum gradient component mag -4.3480e+002
+291 variables; iteration 290; function evaluation 323; phase 3
+Function value -1.2322360e+003; maximum gradient component mag -1.3035e+002
+291 variables; iteration 300; function evaluation 335; phase 3
+Function value -1.2322617e+003; maximum gradient component mag  3.9331e+001
+
+ - final statistics:
+291 variables; iteration 308; function evaluation 343
+Function value -1.2323e+003; maximum gradient component mag -7.0821e-005
+Exit code = 1;  converg criter  1.0000e-004
+report file: sms.rep
+
+
+Successfull completion, HURRAH - HURRAH 

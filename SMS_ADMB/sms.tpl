@@ -40,7 +40,7 @@ GLOBALS_SECTION
                              
 DATA_SECTION
 
- !! cout<<"SMS version October 2017 using ADMB version 11.4"<<endl;
+ !! cout<<"SMS version August 2019 using ADMB version 12.0"<<endl;
 
  
 
@@ -101,7 +101,7 @@ DATA_SECTION
 
  init_int OP_output       // # Produce output for SMS-OP program. 0=no, 1=yes
  !! if (test_output==1) cout<<"op.output: "<<OP_output<<endl;
- !! if (mceval==1) OP_output=0;
+ !! if (mceval==1 || multi<2) OP_output=0;
 
  init_int multi             // multispecies mode (multi>=1) or single species(multi=0)
  !! if (test_output==1) cout <<"ms.mode: "<<multi<<endl;
@@ -203,7 +203,9 @@ DATA_SECTION
  int first_VPA              // species number for the first species where the stock numbers are estimated 
  int min_first_VPA         // first VPA species nummer; used to select a subset of speices (works only in single species mode)
  int max_last_VPA         // last VPA species nummer; used to select a subset of speices (works only in single species mode)
-
+ int max_a_VPA            // max age for VPA species
+ !! max_a_VPA=0;
+ 
  int max_nsp
  int first_VPA_prey         // species number for the first species where the stock numbers are estimated and which is a prey
  int nprey; 
@@ -218,6 +220,7 @@ DATA_SECTION
  !!  if (is_pred(s)==2) nOthPred=nOthPred+1;
  !!  if (is_pred(s)==1 || is_pred(s)==2) npr=npr+1;
  !!  is_prey(s)=int(tmp(s,8));
+ !!  if (is_pred(s)!=2 & max_a_VPA<la(s))  max_a_VPA=la(s);
  !! }
  
  !! first_VPA=nOthPred+1;
@@ -241,30 +244,32 @@ DATA_SECTION
  !!  nprey=sum(is_prey);
 
  ivector SSB_Rec_model(first_VPA,nsp) 
+ ivector spawning_q(first_VPA,nsp) 
  ivector use_beta_SSB_Rec(first_VPA,nsp)
  vector SSB_Rec_hockey_breakpoint(first_VPA,nsp)
  int read_temperature
  !! read_temperature=0;
-
- // STN int n_use_opt61_Rec;    // special for option 61 (Stefan's temperature dependent recruitment model   STN
- // STN ivector use_opt61_Rec(first_VPA,nsp)
- // STN !! n_use_opt61_Rec=0;
- // STN int phase_alfa_61
- // STN int phase_beta_61
  
- // STN int n_use_opt71_Rec;    // special for option 71 (Stefan's Oxygen dependent recruitment model   STN
- // STN ivector use_opt71_Rec(first_VPA,nsp)
- // STN !! n_use_opt71_Rec=0;
- // STN int phase_alfa_71
- // STN int phase_beta_71
+ //int n_use_opt61_Rec;    // special for option 61 (Stefan's temperature dependent recruitment model   STN
+ //ivector use_opt61_Rec(first_VPA,nsp)   // STN
+ //!! n_use_opt61_Rec=0;                  // STN
+ //int phase_alfa_61                      // STN
+ //int phase_beta_61                    //STN
+ 
+ //int n_use_opt71_Rec;    // special for option 71 (Stefan's Oxygen dependent recruitment model   STN
+ //ivector use_opt71_Rec(first_VPA,nsp)     //STN
+ //!! n_use_opt71_Rec=0;                  //STN
+ //int phase_alfa_71                        //STN
+ //int phase_beta_71                       //STN
 
   
  !! for (s=first_VPA;s<=nsp;s++) {
  !!    SSB_Rec_model(s)=int(tmp(s,9));
- // STN !!    use_opt61_Rec(s)=0; use_opt71_Rec(s)=0;
+ !!    spawning_q(s)=int(tmp(s,10));
+ //!!    use_opt61_Rec(s)=0; use_opt71_Rec(s)=0;    //STN
  !!    if (SSB_Rec_model(s)==51 || SSB_Rec_model(s)==52) read_temperature=1;
- // STN !!    if (SSB_Rec_model(s)==61) { use_opt61_Rec(s)=1; n_use_opt61_Rec=n_use_opt61_Rec+1; }
- // STN !!    if (SSB_Rec_model(s)==71) { use_opt71_Rec(s)=1; n_use_opt71_Rec=n_use_opt71_Rec+1; }
+ //!!    if (SSB_Rec_model(s)==61) { use_opt61_Rec(s)=1; n_use_opt61_Rec=n_use_opt61_Rec+1; }       //STN
+ //!!    if (SSB_Rec_model(s)==71) { use_opt71_Rec(s)=1; n_use_opt71_Rec=n_use_opt71_Rec+1; }        //STN
  !!    if (SSB_Rec_model(s)>100) {
  !!      SSB_Rec_hockey_breakpoint(s)=tmp(s,9);
  !!      SSB_Rec_model(s)=100;
@@ -498,7 +503,7 @@ DATA_SECTION
  !!}
  !! if (est_calc_sigma(1)==0) est_catch_sigma=1; else est_catch_sigma=0;
 
-  init_int read_HCR_file;
+ init_int read_HCR_file;
  !! if (test_output==1) cout<<"read.HCR.File: " <<read_HCR_file<<endl;
  !! if (mceval==1 && (read_HCR_file==0)) {
  !!    cout<<"ERROR: you have to set option read.HCR.File=0 and want to make prediction!?"<<endl;
@@ -720,7 +725,7 @@ DATA_SECTION
  init_3darray zero_catch_y_season(first_VPA,nsp,fyData,lyData,fq,lq)
  !! if (zero_catch_year_season==1 &&  test_output==2) cout<<"zero_catch_y_season:\n"<<zero_catch_y_season<<endl;
  init_number check1;
- !! checkSum(check1,"zero_catch_year_season.in"); 
+ !! if (zero_catch_year_season==1) checkSum(check1,"zero_catch_year_season.in"); 
 
 
   // start to process seasons and age combinations with zero catch
@@ -729,7 +734,7 @@ DATA_SECTION
  init_3darray incl_catch_season_age(first_VPA,nsp,fq,lq,fa,max_a);
  !! if (test_output==2 && zero_catch_season_age==1) cout<<"input incl_catch_season_age(s,q,a):"<<endl<<incl_catch_season_age<<endl;
  init_number check2;
- !! checkSum(check2,"zero_catch_season_ages.in"); 
+ !!  if (zero_catch_season_age==1) checkSum(check2,"zero_catch_season_ages.in"); 
 
  !! for (s=first_VPA;s<=nsp;s++)  for (q=fq;q<=lq;q++) {
  !!   for (a=fa;a<cfa(s);a++) incl_catch_season_age(s,q,a)=0;
@@ -783,6 +788,7 @@ DATA_SECTION
  !!   }
  !! }
 
+
  // read quaterly distribution of F
  !! if (seasonal_annual_catches_any==1) ad_comm::change_datafile_name("f_q_ini.in"); 
  !! else ad_comm::change_datafile_name("just_one.in");
@@ -810,14 +816,13 @@ DATA_SECTION
  !!  }
  
  
-
  
  !! ad_comm::change_datafile_name("recruitment_years.in"); 
  init_imatrix recruitment_years(first_VPA,nsp,fyData,lyData)
  init_number check4;
  !! checkSum(check4,"recruitment_years.in"); 
 
- !! if (test_output>=1) cout<<"recruitment years:"<< endl<<recruitment_years<<endl;
+ !! if (test_output==1) cout<<"recruitment years:"<< endl<<recruitment_years<<endl;
  
  int save_SSB_Rec_residuals;
  !! save_SSB_Rec_residuals=0;
@@ -825,21 +830,21 @@ DATA_SECTION
  matrix SSB_Rec_residuals(first_VPA,nsp,1,ny_model)
 
 
- // STN
- // STN !! if (n_use_opt61_Rec>0) ad_comm::change_datafile_name("Sprat_rec_61.in");
- // STN !! else ad_comm::change_datafile_name("just_one.in");
- // STN init_vector R61Parms(1,3); 
- // STN init_vector T_61(fyData,lyData)
- // STN !! if (n_use_opt61_Rec>0) cout<<"R61Parms"<<endl<<R61Parms<<endl<<"T_61"<<endl<<T_61<<endl;
+
+ //!! if (n_use_opt61_Rec>0) ad_comm::change_datafile_name("Sprat_rec_61.in");        //STN
+ //!! else ad_comm::change_datafile_name("just_one.in");                               //STN
+ //init_vector R61Parms(1,3);                                                           //STN
+ //init_vector T_61(fyData,lyData)                                                       //STN
+ //!! if (n_use_opt61_Rec>0) cout<<"R61Parms"<<endl<<R61Parms<<endl<<"T_61"<<endl<<T_61<<endl;    //STN
  
  // STN
- // STN !! if (n_use_opt71_Rec>0) ad_comm::change_datafile_name("COd_rec_71.in");
- // STN !! else ad_comm::change_datafile_name("just_one.in");
- // STN init_vector R71Parms(1,3); 
- // STN init_vector O_71(fyData,lyData)
- // STN  !! if (n_use_opt71_Rec>0) cout<<"R71Parms"<<endl<<R71Parms<<endl<<"O_71"<<endl<<O_71<<endl;
+ //!! if (n_use_opt71_Rec>0) ad_comm::change_datafile_name("COd_rec_71.in");      //STN
+ //!! else ad_comm::change_datafile_name("just_one.in");                           //STN
+ //init_vector R71Parms(1,3);                                                      //STN
+ //init_vector O_71(fyData,lyData)                                                  //STN
+ //!! if (n_use_opt71_Rec>0) cout<<"R71Parms"<<endl<<R71Parms<<endl<<"O_71"<<endl<<O_71<<endl;      //STN
  
- 
+
   
  // ##################### Start to read OP.dat if requested
  int pnsp            // prediction, number of species, normally nsp
@@ -889,8 +894,14 @@ DATA_SECTION
  !! if (OP_output==1) if (test_output>=1) cout<<"OP.consum: "<<OP_consum <<endl;
  !! check_yrpred(OP_consum)
 
+ imatrix OP_n_proportion_M2(1,2,first_VPA,pnsp)    // first year and last year for calc of proportion of the stock within the model area (used for calc of M2)
+ !! if (OP_output==1) if (test_output>=1) {
+ !!   for (i=1;i<=2;i++) for (s=first_VPA;s<=pnsp;s++)  OP_n_proportion_M2(i,s)= lyModel;
+ !!   cout<< "OP_n_proportion_M2:"<<endl<<OP_n_proportion_M2<<endl;
+ !! }
+ 
  init_matrix OP_growth_model(1,5,first_VPA,pnsp)    //  Growth model 0=no growth; food; 2=density dependent
- !! if (read_HCR_file==1) if (test_output==51) cout<<"OP.growth.model: "<<endl<<OP_growth_model <<endl;
+  !! if (read_HCR_file==1) if (test_output==51) cout<<"OP.growth.model: "<<endl<<OP_growth_model <<endl;
  int OP_do_growth_all
  int OP_do_growth_type_1
  ivector OP_do_growth_sp(first_VPA,pnsp)
@@ -918,13 +929,13 @@ DATA_SECTION
   
  !! if (read_HCR_file==1 ) pnsp=nsp; else pnsp=1; 
    
-  init_int lpy        // last year in prediction
+ init_int lpy        // last year in prediction
  !! if (read_HCR_file!=1) lpy=lyModel+1; 
  !!  if (read_HCR_file==1) if (test_output==51) cout <<"Last.prediction.year: "<< lpy<<endl;
  
-  init_int no_MCMC_iterations       // no of iterations within each MCMC prediction
+ init_int no_MCMC_iterations       // no of iterations within each MCMC prediction
  !! if (read_HCR_file==1) if (test_output==51) cout<<"no.MCMC.iterations: "<<no_MCMC_iterations <<endl;
- 
+  
  init_ivector first_year_wsea(first_VPA,pnsp)    // first year for calc of prediction mean weight in the sea
  !! if (read_HCR_file==1) if (test_output==51) cout<<"first.year.wsea: "<<first_year_wsea <<endl;
  
@@ -937,7 +948,7 @@ DATA_SECTION
  init_ivector last_year_weca(first_VPA,pnsp)    //  last year for calc of prediction mean weight in the catch
  !! if (read_HCR_file==1) if (test_output==51) cout<<"last.year.weca: "<<last_year_weca <<endl;
 
-  init_ivector first_year_prop_landed(first_VPA,pnsp)    // first year for calc of proportion of the catch landed
+ init_ivector first_year_prop_landed(first_VPA,pnsp)    // first year for calc of proportion of the catch landed
  !! if (read_HCR_file==1) if (test_output==51) cout<<"first.year.prop_landed:  "<<first_year_prop_landed <<endl;
 
  init_ivector last_year_prop_landed(first_VPA,pnsp)    //  last year for calc of proportion of the catch landed
@@ -994,7 +1005,8 @@ DATA_SECTION
  vector constantTAC(first_VPA,pnsp)
  vector target_SSB(first_VPA,pnsp)
  vector real_time_F(first_VPA,pnsp);
- vector F_cap(first_VPA,pnsp);
+ vector F_cap_true(first_VPA,pnsp);  // the upper F in the operation system
+ vector F_cap_forecast(first_VPA,pnsp);  // the upper F used for forecast
  vector TAC_cap(first_VPA,pnsp)
  vector TAC_min(first_VPA,pnsp)
  matrix F_constraint(first_VPA,pnsp,1,2)
@@ -1013,6 +1025,7 @@ DATA_SECTION
  vector F_second(first_VPA,pnsp);
  ivector interYear(first_VPA,pnsp);
  vector inter_F_TAC(first_VPA,pnsp);
+ 
  int make_sim_data; 
   // Reorganise
  !! for (s=first_VPA;s<=pnsp;s++) {
@@ -1032,7 +1045,7 @@ DATA_SECTION
  !!     real_time_F(s)          =tmp2(14,s);
  !!     TAC_cap(s)              =tmp2(15,s);
  !!     TAC_min(s)              =tmp2(16,s);
- !!     F_cap(s)                =tmp2(17,s);
+ !!     F_cap_true(s)                =tmp2(17,s);
  !!     F_constraint(s,1)       =tmp2(18,s);
  !!     F_constraint(s,2)       =tmp2(19,s);
  !!     TAC_constraint(s,1)     =tmp2(20,s);
@@ -1097,7 +1110,7 @@ DATA_SECTION
  !!   cout<<"real.time.F: "; if (pnsp>1) cout<<endl; cout<<real_time_F<<endl;
  !!   cout<<"cap.TAC: "; if (pnsp>1) cout<<endl; cout<<TAC_cap<<endl;
  !!   cout<<"min.TAC: "; if (pnsp>1) cout<<endl; cout<<TAC_min<<endl;
- !!   cout<<"cap.F: "; if (pnsp>1) cout<<endl; cout<<F_cap<<endl;
+ !!   cout<<"cap.F: "; if (pnsp>1) cout<<endl; cout<<F_cap_true<<endl;
  !!   cout<<"min.F.change: "; if (pnsp>1) cout<<endl<<" ";  for (s=first_VPA;s<=pnsp;s++)cout<<F_constraint(s,1)<<" "; cout<<endl;
  !!   cout<<"max.F.change: "; if (pnsp>1) cout<<endl<<" ";  for (s=first_VPA;s<=pnsp;s++)cout<<F_constraint(s,2)<<" "; cout<<endl;
  !!   cout<<"min.TAC.change: "; if (pnsp>1) cout<<endl<<" ";  for (s=first_VPA;s<=pnsp;s++)cout<<TAC_constraint(s,1)<<" "; cout<<endl;
@@ -1136,8 +1149,8 @@ DATA_SECTION
  !!     cout <<endl<<"You cannot have both TAC and F for the first prediction years for species: "<<s<<endl;
  !!     exit(9); 
  !!    }
- !!    if ((HCR(s)==15 || HCR(s)==20 || HCR(s)==21) && interYear(s)>1) {
- !!      cout <<"ERROR: species:"<<s<<". Intermediate year must 1 used with HCR=15, 20 or 21"<<endl;
+ !!    if ((HCR(s)==15 ) && interYear(s)>1) {
+ !!      cout <<"ERROR: species:"<<s<<". Intermediate year must be 1 used with HCR=15"<<endl;
  !!      exit(9);
  !!    }
  !! }
@@ -1219,23 +1232,86 @@ DATA_SECTION
  !!   cout<<"other_pred_N_first_year:"<<endl<<other_pred_N_first_year<<endl;
  !!   cout<<"other_pred_N_last_year:"<<endl<<other_pred_N_last_year<<endl;
  !! }
-
- // co-variance matrix of log stock numbers
+  
+   
+   
+ // multivariate normal distribution log stock numbers from co-variance matrix:  
  !! int read_cov=0; int tmpA=0;
- !! if (read_HCR_file==1) for (s=first_VPA;s<=nsp;s++) if (assess_uncertanty(s,1)==2 || assess_uncertanty(s,1)==3) read_cov=1;
+ !! if (read_HCR_file==1) for (s=first_VPA;s<=nsp;s++) if (assess_uncertanty(s,1)==2) read_cov=1;
  !! if (read_cov==0) { ad_comm::change_datafile_name("just_one.in"); tmpA=-100;}
  !! else { ad_comm::change_datafile_name("covariance_n.in"); tmpA=fa;}
-  init_3darray coVariance(first_VPA,nsp,fa,max_a,tmpA,la_VPA);
- !! if (test_output==51 && read_HCR_file==1) for (s=first_VPA;s<=pnsp;s++) if (assess_uncertanty(s,1)==2) cout <<"co-Variance:"<<endl<< coVariance(s)<<endl;
- 
+ init_int coBlock;
+ init_ivector coDim(1,coBlock);                                                    
+ ivector coDimn(1,coBlock);
+ !! coDimn=coDim;
+ imatrix coDimn1(1,coBlock,1,coDimn);
+ !! coDimn1=1;
+ imatrix coDimn2(1,coBlock,1,coDimn);
+ !! for (k=1;k<=coBlock;k++) for(i=1;i<=coDim(k);i++) coDimn2(k,i)=coDim(k); 
+ init_3darray coVariance_n(1,coBlock,1,coDimn,coDimn1,coDimn2);
+ !! if (test_output==53 && read_HCR_file==1 && read_cov==1) 
+ !!  for (s=1;s<=coBlock;s++) cout <<"cov of N for multivariate normal distribution, block :"<<s<<endl<< coVariance_n(s)<<endl;
+  
+  // multivariate normal distribution log stock numbers and log exploitation pattern from co-variance matrix:  
+ !! read_cov=0; tmpA=0;
+ !! if (read_HCR_file==1) for (s=first_VPA;s<=nsp;s++) if (assess_uncertanty(s,1)==4) read_cov=1;
+ !! if (read_cov==0) { ad_comm::change_datafile_name("just_one.in"); tmpA=-100;}
+ !! else { ad_comm::change_datafile_name("covariance_nf.in"); tmpA=fa;}
+ init_int cofBlock;
+ init_ivector cofDim(1,cofBlock);                                                    
+ ivector cofDimn(1,cofBlock);
+ !! cofDimn=cofDim;
+ imatrix cofDimn1(1,cofBlock,1,cofDimn);
+ !! cofDimn1=1;
+ imatrix cofDimn2(1,cofBlock,1,cofDimn);
+ !! for (k=1;k<=cofBlock;k++) for(i=1;i<=cofDim(k);i++) cofDimn2(k,i)=cofDim(k);
+ init_3darray coVariance_nf(1,cofBlock,1,cofDimn,cofDimn1,cofDimn2);
+ !! if (test_output==53 && read_HCR_file==1 && read_cov==1) 
+ !!  for (s=1;s<=cofBlock;s++) cout <<"cov of N&F for multivariate normal distribution, block :"<<s<<endl<< coVariance_nf(s)<<endl;
+  
+ // multivariate normal distribution log stock numbers from decomposed covariance matrix:  
+ !! read_cov=0; tmpA=0;
+ !! if (read_HCR_file==1) for (s=first_VPA;s<=nsp;s++) if (assess_uncertanty(s,1)==3) read_cov=1;
+ !! if (read_cov==0) { ad_comm::change_datafile_name("just_one.in"); tmpA=-100;}
+ !! else { ad_comm::change_datafile_name("decomposition_n.in"); tmpA=fa;}
+ init_int decBlock;
+ init_ivector decDim(1,decBlock); 
+ ivector decDimn(1,decBlock);
+ !! decDimn=decDim;
+ imatrix decDimn1(1,decBlock,1,decDimn);
+ !! decDimn1=1;
+ imatrix decDimn2(1,decBlock,1,decDimn);
+ !! for (k=1;k<=decBlock;k++) for(i=1;i<=decDim(k);i++) decDimn2(k,i)=decDim(k);
+ init_3darray decomposed_n(1,decBlock,1,decDimn,decDimn1,decDimn2);
+ !! if (test_output==53 && read_HCR_file==1 && read_cov==1) 
+ !!  for (s=1;s<=decBlock;s++) cout <<"decomposed cov of N for multivariate normal distribution, block :"<<s<<endl<< decomposed_n(s)<<endl;
+
+   
+ // multivariate normal distribution log stock numbers end exploitation pattern from decomposed covariance matrix:  
+ !! read_cov=0; tmpA=0;
+ !! if (read_HCR_file==1) for (s=first_VPA;s<=nsp;s++) if (assess_uncertanty(s,1)==5) read_cov=1;
+ !! if (read_cov==0) { ad_comm::change_datafile_name("just_one.in"); tmpA=-100;}
+ !! else { ad_comm::change_datafile_name("decomposition_nf.in"); tmpA=fa;}
+ init_int decfBlock;
+ init_ivector decfDim(1,decfBlock); 
+ ivector decfDimn(1,decfBlock);
+ !! decfDimn=decfDim;
+ imatrix decfDimn1(1,decfBlock,1,decfDimn);
+ !! decfDimn1=1;
+ imatrix decfDimn2(1,decfBlock,1,decfDimn);
+ !! for (k=1;k<=decfBlock;k++) for(i=1;i<=decfDim(k);i++) decfDimn2(k,i)=decfDim(k);
+ init_3darray decomposed_nf(1,decfBlock,1,decfDimn,decfDimn1,decfDimn2);
+ !! if (test_output==53 && read_HCR_file==1 && read_cov==1) 
+ !!  for (s=1;s<=decfBlock;s++) cout <<"decomposed cov of N & exploitation pattern for multivariate normal distribution, block :"<<s<<endl<< decomposed_nf(s)<<endl;
+
+      
  // CV of stock numbers
  !! int read_var_age=0; tmpA=0;
- !! if (read_HCR_file==1) for (s=first_VPA;s<=nsp;s++) if (assess_uncertanty(s,1)==4) read_var_age=1;
+ !! if (read_HCR_file==1) for (s=first_VPA;s<=nsp;s++) if (assess_uncertanty(s,1)==6) read_var_age=1;
  !! if (read_var_age==0) { ad_comm::change_datafile_name("just_one.in"); tmpA=-100;}
  !! else { ad_comm::change_datafile_name("assessment_cv_age.in"); tmpA=fa;}
   init_matrix assessment_CV_age(first_VPA,nsp,tmpA,la_VPA);
- !! if (test_output==51 && read_HCR_file==1) for (s=first_VPA;s<=pnsp;s++) if (assess_uncertanty(s,1)==4) cout <<"co-Variance:"<<endl<< assessment_CV_age(s)<<endl;
- 
+ !! if (test_output==51 && read_HCR_file==1) for (s=first_VPA;s<=pnsp;s++) if (assess_uncertanty(s,1)==6) cout <<"assessment_CV_age:"<<endl<< assessment_CV_age(s)<<endl;
 
  // read in recruitment residuals
  int local_lpy
@@ -1248,21 +1324,20 @@ DATA_SECTION
  !!    ad_comm::change_datafile_name("just_one.in");
  !! }
  !! else ad_comm::change_datafile_name("recruit_residuals.in");
-
  init_matrix rec_residuals(first_VPA,nsp,lyModel,local_lpy)
  
  //Species.n model alfa  beta std
  !! if (read_SSB_R==0) ad_comm::change_datafile_name("just_one.in");
  !! else if (read_SSB_R==1) ad_comm::change_datafile_name("ssb_r.in");
- init_matrix SSB_R_in(first_VPA,nsp,1,4)
+ init_matrix SSB_R_in(first_VPA,nsp,1,6)
  !! if (read_SSB_R==1 && test_output==51) cout<<"Init SSB_R_in:"<<endl<<SSB_R_in<<endl;
 
- // predicted recrutiment (and stock numbers
+ // predicted recrutiment (and stock numbers)
  !! if (read_predict_N==0) ad_comm::change_datafile_name("just_one.in");
  !! else if (read_predict_N==1) ad_comm::change_datafile_name("predict_stock_n.in");
  init_4darray init_predict_N(first_VPA,nsp,read_predict_N_first_year,read_predict_N_last_year,1,n_init_pop,fa,max_a)
 
- !! if (read_predict_N==1 && test_output>=51) cout<<"Init prediction N:"<<endl<<init_predict_N<<endl;
+ !! if (read_predict_N==1 && test_output>=51) cout<<"Init prediction N, from file predict_stock_n.in:"<<endl<<init_predict_N<<endl;
  
  !! if (read_expl_pat==0) ad_comm::change_datafile_name("just_one.in");
  !! else if (read_expl_pat==1) ad_comm::change_datafile_name("exploitation_pattern.in");
@@ -1412,6 +1487,12 @@ DATA_SECTION
  !!        endl<<"Species:"<<s<<" fleet:"<<f<<endl<<"program stopped"<<endl;
  !!     exit(9);
  !!   }
+  !!   if (fleet_info(s,f,6)>la(s)) {
+ !!     cout<<"ERROR in CPUE data input. Last CPUE age higher than than oldest  species age."<<
+ !!        endl<<"Species:"<<s<<" fleet:"<<f<<endl<<"program stopped"<<endl;
+ !!     exit(9);
+ !!   }
+
  !!   if (fleet_info(s,f,7)>fleet_info(s,f,6)) {
  !!     cout<<"ERROR in CPUE data input. Last age with age dependent catchability higher than oldest age."<<
  !!        endl<<"Species:"<<s<<" fleet:"<<f<<endl<<"program stopped"<<endl;
@@ -1756,6 +1837,7 @@ DATA_SECTION
  int yq2;
  !! yq2=(lyData-fyData+2)*lq+lq;
 
+ 
  ivector v_last_sp2(1,yq2)           // last species no, for used in ragged array for all species
  !! v_last_sp2=nsp;
  imatrix vAll_fa2(1,yq2,1,nsp)       // first age VPA species, for used in ragged array for VPA species
@@ -1962,13 +2044,14 @@ DATA_SECTION
  
  !! MOVE(prop_landed_input,prop_landed,first_VPA,nsp,lyData);
  //********************************************************************************************* 
- 
   // Proportion of N used for calculation of M2
  !! if (multi>0) ad_comm::change_datafile_name("n_proportion_m2.in");   
  !! else ad_comm::change_datafile_name("just_one.in");
 
- init_4darray N_prop_M2_input(first_VPA,nsp,fyData,lyData,fq,lq,fa,max_a)
+  init_4darray N_prop_M2_input(first_VPA,nsp,fyData,lyData,fq,lq,fa,max_a)
+
  !! if (test_output==2) cout<<"Proportion of N used for calculation of M2 from  file n_proportion_m2.in:"<<setfixed()<<setprecision(3)<<endl<<N_prop_M2_input<<endl;
+
  init_number check10a;
  !!  if (multi>0) checkSum(check10a,"n_proportion_m2.in");
  
@@ -2090,13 +2173,16 @@ DATA_SECTION
  !! else ad_comm::change_datafile_name("just_one.in");
  !! if (multi==0) Mindex=-1; else Mindex=nsp;
  init_5darray overlap(1,no_areas,1,Mnpr,fyData,Mly,fq,Mlq,0,Mindex)
+ init_number check16ov;
+ !! if (multi>=1 && use_overlap>=1) checkSum(check16ov,"overlap.in");
+  
  !! if (test_output==3 && multi>0 && use_overlap==1) cout<<"Overlap from file overlap.in:"<<endl<<overlap<<endl;
  // fill in 1.0 into overlap array if overlap should not be used 
  !!  if (use_overlap==0 && multi>0) for(d=1;d<=no_areas;d++) for(s=1;s<=Mnpr;s++) for(y=fyData;y<=Mly;y++) overlap(d,s,y)=1.0;
 
  !! if (test_output==3 && multi>0 && use_overlap==2) cout<<"starts reading file: overlap_forecast.in"<<endl;
  !! if (multi>=1 && use_overlap==2) ad_comm::change_datafile_name("overlap_forcast.in");
- !! if (multi==0) Mindex=-1; else Mindex=nsp;
+ !! if (multi==0 && use_overlap<2) Mindex=-1; else Mindex=nsp;
  init_5darray overlap_forecast(1,no_areas,1,Mnpr,lyModel+1,lpy,fq,Mlq,0,Mindex)
  !! if (test_output==3 && multi>0 && use_overlap==2) cout<<"Overlap from file overlap_forcast.in:"<<endl<<overlap<<endl;
  // fill in 1.0 into overlap array if overlap should not be used 
@@ -2105,15 +2191,19 @@ DATA_SECTION
  //********************************************************************************************* 
  // season_overlap_input, Predator prey overlap by quarter
  !! if (test_output==3 && multi>0) cout<<"starts reading file: season_overlap.in"<<endl;
- !! if (multi>=1) ad_comm::change_datafile_name("season_overlap.in");
+
  !! if (multi==0) Mindex=-1; else Mindex=nsp;
+  !! if (multi>=1) ad_comm::change_datafile_name("season_overlap.in");
+
  init_4darray season_overlap_input(1,no_areas,1,Mnpr,fq,Mlq,0,Mindex)
  init_number check13;
+ 
  !! if (test_output==3 && multi>0) cout<<"Overlap from file season_overlap.in:"<<endl<<season_overlap_input<<endl;
  !! if (multi>0) checkSum(check13,"season_overlap.in");
 
  int no_season_overlap_to_estimate       //number of overlap factors to be estimated
  !! if (multi==0) Mindex=-1; else Mindex=nsp;
+
  4darray season_overlap_index(1,no_areas,1,Mnpr,fq,Mlq,0,Mindex) ;
  int p
  !! no_season_overlap_to_estimate=0;
@@ -2136,7 +2226,6 @@ DATA_SECTION
  !!   cout <<"season_overlap_index:"<<endl<<season_overlap_index<<endl; 
  !!  }
 
-
 //*********************************************************************************************
  // presence of a predator in a given area
  !! if (multi>=1 && no_areas>1) ad_comm::change_datafile_name("predator_area_presence.in");
@@ -2147,7 +2236,6 @@ DATA_SECTION
  !! if (multi>=1 && no_areas>1) checkSum(check14,"predator_area_presence.in"); 
 
  //*********************************************************************************************
-
  !! if (multi>=1 && consum_op>=1) { ad_comm::change_datafile_name("consum_ab.in"); Mindex=lq;}
  !! else {ad_comm::change_datafile_name("just_one.in"); Mindex=-1; }
  init_4darray consum_ab(1,no_areas,1,Mnpr,fq,Mindex,1,2)
@@ -2155,7 +2243,6 @@ DATA_SECTION
 
  !! if (multi>=1 && consum_op>=1) checkSum(check15,"consum_ab.in"); 
  !! if (test_output==3 && multi>0 && consum_op>0) cout<<"Consumption parameters from file consum_ab.in:"<<endl<<setprecision(3)<<consum_ab<<endl;
-
 
  //********************************************************************************************* 
  // Consumption weight (Ration) per individual,
@@ -2167,7 +2254,6 @@ DATA_SECTION
  !! if (test_output==3 && multi>0 && consum_op==0) cout<<"Consum (ration) from file consum.in:"<<endl<<consum_input<<endl;
  3darray consum(1,def_yqd,1,yqdPred,yqdsPred_fa,yqdsPred_la)
  !! if (multi>0 && consum_op==0) MOVEd(consum_input,consum,1,npr);
- 
  //********************************************************************************************* 
   // Proportion of the stock number by area,
  
@@ -2202,7 +2288,7 @@ DATA_SECTION
  init_5darray lsea_input(1,no_areas,1,Mnsp,fyData,lyData,fq,Mlq,fa,Mindex)
  !! if (test_output==3 && multi>0) cout<<"Mean length in the sea from file lsea.in:"<<endl<<lsea_input<<endl;
  init_number check18;
- !! if (multi>=1 && no_areas>1) checkSum(check18,"Mean length in the sea from file lsea.in"); 
+ !! if (multi>=1 ) checkSum(check18,"Mean length in the sea from file lsea.in");
 
  3darray lsea(1,def_yqd,1,yqdAll,yqdsAll_fa,yqdsAll_la)
  !! if (multi>0) MOVEd(lsea_input,lsea,1,nsp);
@@ -2271,6 +2357,8 @@ DATA_SECTION
 
  init_number check19;
  !! if (multi>=1 && no_areas>1) checkSum(check19,"alk_stom.in"); 
+
+
 
  //********************************************************************************************* 
  // Data for splitting numbers per ages on length groups. Used for calc of M2 Length at Age Key
@@ -2444,6 +2532,15 @@ DATA_SECTION
   4darray consum_l(1,def_yqd,1,npr,fa,max_a,minl,maxl)  //Consumption (food ration) per length class
  
  //********************************************************************************************* 
+ !! if (test_output==3 && multi>0) cout<<"starts reading file: length_weight_relations.in"<<endl;
+ !!  if (multi>=1) ad_comm::change_datafile_name("length_weight_relations.in");
+ !! if (multi==0) Mindex=-1; else Mindex=2;
+ init_matrix L_W_ab(1,nsp,1,2); //W=a*L**b relations, a and b by species
+ !! if (test_output==3 && multi>0) cout<<"Length-weight relations parameters from file length_weight_relations.in:"<<endl<<L_W_ab<<endl;
+ init_number check23;
+ !! if (multi>0) checkSum(check23,"length_weight_relations.in"); 
+
+ //********************************************************************************************* 
  // Data for relative stomach contents weight by length groups
  !! if (test_output==3 && multi>0) cout<<"####################\nstarts reading file: stom_struc_at_length.in"<<endl;
  !! if (multi>=1) ad_comm::change_datafile_name("stom_struc_at_length.in");
@@ -2540,7 +2637,16 @@ DATA_SECTION
  !! if (test_output==3 && multi>0) cout<<"Number of prey from file Stomnumber_at_length.in:"<<endl<<stl_nopreystom<<endl;
  
  init_number check22;
- !! if (multi>0) checkSum(check22,"stomcon_at_length.in");
+ !! if (multi>0) checkSum(check22,"stomnumber_at_length.in");
+ // !! HEJ("HUSK AT 鷹DRE TILBAGE")
+ //********************************************************************************************* 
+ !! if (test_output==3 && multi>0) cout<<"starts reading file: stomweight_at_length.in"<<endl;
+ !!  if (multi>=1) ad_comm::change_datafile_name("stomweight_at_length.in");
+ init_matrix stl_wstom(1,n_stl_yqdpl,1,l_stl_yqdplpl); //mean weight of prey per lenght group
+ !! if (test_output==3 && multi>0) cout<<"Prey mean weight from file stomweight_at_length.in:"<<endl<<stl_wstom<<endl;
+ init_number check24;
+ !! if (multi>0) checkSum(check24,"stomweight_at_length.in"); 
+ matrix prey_size(1,n_stl_yqdpl,1,l_stl_yqdplpl);     //size (length or weight) of prey per lenght class group
 
 
  //********************************************************************************************* 
@@ -2554,24 +2660,8 @@ DATA_SECTION
  matrix  Prey_number_fac_term(1,n_stl_yqdpl,1,l_stl_yqdplpl);   // fixed term for multinomial likelihood of prey numbers  (the structure does really not fit, I use only the first ll index by species)        // PL
  matrix  Prey_number_like(1,n_stl_yqdpl,1,l_stl_yqdplpl);   // likelihood contribution for multinomial likelihood of prey numbers  (the structure does really not fit, I use only the first ll index by species)        // PL
  !! Prey_number_like=0;
- //********************************************************************************************* 
- !! if (test_output==3 && multi>0) cout<<"starts reading file: length_weight_relations.in"<<endl;
- !!  if (multi>=1) ad_comm::change_datafile_name("length_weight_relations.in");
- !! if (multi==0) Mindex=-1; else Mindex=2;
- init_matrix L_W_ab(1,nsp,1,2); //W=a*L**b relations, a and b by species
- !! if (test_output==3 && multi>0) cout<<"Length-weight relations parameters from file length_weight_relations.in:"<<endl<<L_W_ab<<endl;
- init_number check23;
- !! if (multi>0) checkSum(check23,"length_weight_relations.in"); 
-
- //********************************************************************************************* 
- !! if (test_output==3 && multi>0) cout<<"starts reading file: stomweight_at_length.in"<<endl;
- !!  if (multi>=1) ad_comm::change_datafile_name("stomweight_at_length.in");
- init_matrix stl_wstom(1,n_stl_yqdpl,1,l_stl_yqdplpl); //mean weight of prey per lenght group
- !! if (test_output==3 && multi>0) cout<<"Prey mean weight from file stomweight_at_length.in:"<<endl<<stl_wstom<<endl;
- init_number check24;
- !! if (multi>0) checkSum(check24,"stomweight_at_length.in"); 
- matrix prey_size(1,n_stl_yqdpl,1,l_stl_yqdplpl);     //size (length or weight) of prey per lenght class group
  
+  
   //********************************************************************************************* 
   
  !! int mil=100;
@@ -2593,7 +2683,7 @@ DATA_SECTION
  5darray incl_stom_out(1,no_areas,1,Mnpr,fq,lq,mil,mal,1,n_stl_y);  // copy of above, for output purposes
  !! if (test_output==3 && multi>0 && incl_stom_all==1) cout<<"Include stomach data in likelihood from file Number of hauls from file incl_stom.in:"<<endl<<incl_stom<<endl;
    init_number check25;
- !! if (multi>0) checkSum(check25,"incl_stom.in");                   // you can comment this line out if you want to produce incl_stom.out
+ !! if (multi>0 && incl_stom_all==1) checkSum(check25,"incl_stom.in");                   // you can comment this line out if you want to produce incl_stom.out
 
  !! if (incl_stom_all==0){
  !!  for (d=1;d<=no_areas;d++) for (p=1;p<=Mnpr;p++) for (q=fq;q<=lq;q++) { incl_stom(d,p,q)=1; incl_stom_out(d,p,q)=0; }
@@ -2625,6 +2715,7 @@ DATA_SECTION
  vector max_sumP(1,Mnpr);     // maximum sumpP (alfa0) used in Dirichlet
  int sd;
  LOCAL_CALCS
+
   for (s=1;s<=Mnpr;s++)  {min_no_samples(s)=10000; max_no_samples(s)=0;}
    
     for (sy=1;sy<=n_stl_y;sy++) {
@@ -2646,7 +2737,8 @@ DATA_SECTION
                          "    predator:"<<s<<" year:"<<stl_y(sy,1)<<" q:"<<stl_yq(sy,1)<<"  size:"<<stl_yqdpl(spl,1)<<"  no of stomachs:"<< stl_no_samples(spl,1)<<endl;
                 }
                 if (stl_lstom(spl,1) != 9999) {
-                   cout<<endl<<"WARNING: something might be wrong with the data structure of stomach data. Mean length of other food is different from 9999"<<endl;
+                   cout<<endl<<"WARNING: something might be wrong with the data structure of stomach data. ";
+                   cout<< "Mean length of other food is different from 9999, observed: "<<stl_lstom(spl,1)<<endl;
                    cout<<"    Area:"<<d<<" predator:"<<s<<" year:"<<stl_y(sy,1)<<" q:"<<stl_yq(sy,1)<<"  size:"<<stl_yqdpl(spl,1)<<endl;
                 }
                 incl_stom_out(d,stl_yqdp(sp,1),stl_yq(sq,1),stl_yqdpl(spl,1),sy)= stl_no_samples(spl,1);
@@ -2690,7 +2782,7 @@ DATA_SECTION
   !!     res <<endl;  
   !!     for (i=mil;i<=mal;i++) {
   !!      for (j=1;j<=n_stl_y;j++) {
-  !!        if (incl_stom(d,p,q,i,j)<0) res<< setw(6)<<-incl_stom_out(d,p,q,i,j);
+  !!        if (incl_stom(d,p,q,i,j)<0) res<< setw(6)<< -incl_stom_out(d,p,q,i,j);
   !!        else res<< setw(6)<<incl_stom_out(d,p,q,i,j);
   !!      }
   !!      res<<" # Size: "<<i<<endl; 
@@ -2868,7 +2960,7 @@ DATA_SECTION
     ndim=i;
   }
  END_CALCS
-
+  
  // variables used for predictions 
  3darray    pred_west(1,nsp,fq,lq,fa,max_a);
  3darray    pred_west_old(1,nsp,fq,lq,fa,max_a);
@@ -2876,6 +2968,13 @@ DATA_SECTION
  3darray    pred_prop_landed(first_VPA,nsp,fq,lq,fa,max_a);
  3darray    pred_propmat(first_VPA,nsp,fq,lq,fa,max_a);
  3darray    pred_size_sea(1,nsp,fq,lq,fa,max_a);
+
+ int rep;
+ !! rep=1;  // ERROR in multispecies 
+ !! if (read_HCR_file==1)if (assess_uncertanty(1,1)>=2 && assess_uncertanty(1,1)<=5) rep=assess_uncertanty(1,4);
+ 3darray    N_obs_rep(first_VPA,nsp,1,rep,fa,max_a);        // "observed" N(Q1)) at age by replicates   
+ 4darray    F_obs_rep(first_VPA,nsp,1,rep,fq,lq,fa,max_a);        // "observed" F (by quarter and age) by replicates   
+
 
  4darray              tmp_SSB(1,ndim,1,no_MCMC_iterations,first_VPA,nsp,fyModel,lpy);
  4darray    tmp_SSB_percieved(1,ndim,1,no_MCMC_iterations,first_VPA,nsp,lyModel+1,lpy);
@@ -2888,6 +2987,8 @@ DATA_SECTION
 
  int sdReportYear;
  !! sdReportYear=min(30,lyModel-fyModel);        // number of years in SD report for mean F and SSB
+ !! sdReportYear=lyModel-fyModel;        // number of years in SD report for mean F and SSB
+ 
   // !! cout <<"sdReportYear"<<sdReportYear<<endl;
 
   
@@ -2896,6 +2997,38 @@ DATA_SECTION
  // !! ad_comm::change_datafile_name("environment.in");
  matrix environment(lyModel+1,lyModel+93,1,2);
  // !! cout<<"environment:"<<endl<<setfixed()<<setprecision(3)<<setw(11)<<environment<<endl;
+ 
+ 
+ 
+  // Consumption multiplier
+ LOC_CALCS
+  if (multi>=1) {
+    ad_comm::change_datafile_name("cons_multiplier_options.in");
+    Mnpr=npr;
+  } else {
+     ad_comm::change_datafile_name("just_one.in");
+     Mnpr=0;
+  }
+ END_CALCS
+  
+ init_matrix cons_multiplier_options(1,Mnpr,1,3)          // lower limit, upper limit and phase by species
+ vector lb_cons_multiplier_options(1,Mnpr);
+ vector ub_cons_multiplier_options(1,Mnpr);
+ ivector ph_cons_multiplier_options(1,Mnpr);
+ int cons_multiplier_Mnpr
+ 
+ LOC_CALCS
+   cons_multiplier_Mnpr=Mnpr;  // stored for later use
+   for (s=1;s<=cons_multiplier_Mnpr;s++) {
+     lb_cons_multiplier_options(s)=cons_multiplier_options(s,1);
+     ub_cons_multiplier_options(s)=cons_multiplier_options(s,2);
+     if (multi>=2) ph_cons_multiplier_options(s)=cons_multiplier_options(s,3);
+     else ph_cons_multiplier_options(s)= -1;
+   }
+ END_CALCS
+ // END Consumption multiplier
+  
+  
 
 
  // 中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中
@@ -2910,7 +3043,7 @@ INITIALIZATION_SECTION
   log_rec 0.0
   log_rec_older 0.0     //overwritten in PRELIMINARY_CALCS_SECTION
   SSB_R_alfa 1.0        //overwritten in BETWEEN_PHASES_SECTION
-  SSB_R_beta_ini 0.5       //overwritten in BETWEEN_PHASES_SECTION
+  SSB_R_beta_ini 0.5    //overwritten in BETWEEN_PHASES_SECTION
 
   qq_ini 1.0            //overwritten in BETWEEN_PHASES_SECTION
   //qq_efficiency 0.0
@@ -2918,6 +3051,10 @@ INITIALIZATION_SECTION
   init_s1 10.0
   // creep 1.0             // technical creep
   //init_L50 100
+
+ 
+ 
+  
  
 // 中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中
  // 中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中
@@ -2931,6 +3068,7 @@ PARAMETER_SECTION
  !! ofstream parexp("par_exp.out",ios::out);
  !! parexp<<" par parNo species year quarter area age predator prey fleet"<<endl;
 
+       
  // Initial value guessed for recruitment all years
  vector log_rec_scale(first_VPA,nsp)  
 
@@ -3168,22 +3306,22 @@ PARAMETER_SECTION
  !! if (phase_SSB_R_beta>0)  for (s=first_VPA;s<=nsp;s++) if (SSB_Rec_model(s)==51) {parNo++; parexp<<"RecTempVar "<<parNo<<" "<<s<<" -1 -1 -1 -1 -1 -1 -1"<<endl;}
 
  // STN sprat model,opion 61
- // STN !! if (n_use_opt61_Rec>0) {
- // STN !!   if (alfa_61 ==0) phase_alfa_61=phase_SSB_R_beta; else phase_alfa_61=-1;
- // STN !!   if (beta_61 ==0) phase_beta_61=phase_SSB_R_beta; else phase_beta_61=-1;
- // STN !! } 
+ //!! if (n_use_opt61_Rec>0) {                                                          //STN
+ //!!   if (alfa_61 ==0) phase_alfa_61=phase_SSB_R_beta; else phase_alfa_61=-1;          //STN
+ //!!   if (beta_61 ==0) phase_beta_61=phase_SSB_R_beta; else phase_beta_61=-1;           //STN
+ //!! }                                                                                   //STN
 
- // STN init_bounded_number alfa_61(0,2,phase_alfa_61)
- // STN init_bounded_number beta_61(0,1,phase_beta_61)
+ //init_bounded_number alfa_61(0,2,phase_alfa_61)                                     //STN
+ //init_bounded_number beta_61(0,1,phase_beta_61)                                      //STN
 
-  // STN cod model,opion 71
- // STN !! if (n_use_opt71_Rec>0) {
- // STN !!   if (alfa_71 ==0) phase_alfa_71=phase_SSB_R_beta; else phase_alfa_71=-1;
- // STN !!   if (beta_71 ==0) phase_beta_71=phase_SSB_R_beta; else phase_beta_71=-1;
- // STN !! } 
+ // STN cod model,opion 71
+ //!! if (n_use_opt71_Rec>0) {                                                        //STN
+ //!!   if (alfa_71 ==0) phase_alfa_71=phase_SSB_R_beta; else phase_alfa_71=-1;        //STN
+ //!!   if (beta_71 ==0) phase_beta_71=phase_SSB_R_beta; else phase_beta_71=-1;         //STN
+ //!! }                                                                                //STN
  
- // STN init_bounded_number alfa_71(-5e-5,-0.5e-5,phase_alfa_71)
- // STN init_bounded_number beta_71(-3,0,phase_beta_71)
+ //init_bounded_number alfa_71(-5e-5,-0.5e-5,phase_alfa_71)                            //STN
+ //init_bounded_number beta_71(-3,0,phase_beta_71)                                     //STN
 
  
 
@@ -3232,8 +3370,8 @@ PARAMETER_SECTION
  3darray   other_bio(1,Mnopr,fyModel,lpy,fq,lq)      // Biomass of other predators
  
  matrix    TSB(first_VPA,nsp,fyModel,lpy)           // Total Stock Biomass, first season
- matrix    SSB(first_VPA,nsp,fyModel,lpy)           // Spawning Stock Biomass, first season
- matrix    SSB_percieved(first_VPA,nsp,lyModel+1,lpy)           // Percieved Spawning Stock Biomass, first season
+ matrix    SSB(first_VPA,nsp,fyModel,lpy)           // Spawning Stock Biomass, spawning season season
+ matrix    SSB_percieved(first_VPA,nsp,lyModel+1,lpy)           // Percieved Spawning Stock Biomass, spawning season
  matrix    CWsum(first_VPA,nsp,fyModel,lpy)         // total catch weight
  matrix    CWsum_hat(first_VPA,nsp,fyModel,lpy)     // expected total catch weight
  matrix    yield(first_VPA,nsp,fyModel,lpy)         // Yield
@@ -3260,6 +3398,16 @@ PARAMETER_SECTION
  
  vector     sum_p_Dirichlet(1,n_stl_yqdpl);                 // used for Dirichlet ditribution
  vector      like_Dirichlet(1,n_stl_yqdpl);                 // used for Dirichlet ditribution
+
+ 
+ init_bounded_number_vector cons_multiplier(1,cons_multiplier_Mnpr,lb_cons_multiplier_options,ub_cons_multiplier_options,ph_cons_multiplier_options)
+ !! for (s=1;s<=cons_multiplier_Mnpr;s++)  cons_multiplier(s)=1.0;
+ !! if (multi>0) cout<<"cons_multiplier:"<<endl<<cons_multiplier<<endl;
+
+ !!  if (multi>0) for (s=1;s<=cons_multiplier_Mnpr;s++) if (ph_cons_multiplier_options(s)>0 ) {  
+ !!     parNo++; parexp<<"cons_multiplier "<<parNo<<" -1 -1 -1 -1 -1 "<<s<<" -1 -1"<<endl; 
+ !! }
+
 
  !! if(multi==0) no_of_pred_prey_comb=0;
  init_bounded_vector vulnera(1,no_of_pred_prey_comb,1E-3,1E3,phase_vulnera)   // predation vulnerability
@@ -3292,7 +3440,7 @@ PARAMETER_SECTION
  !! }
  
  
- // prefered predator:prey size ratio
+ // preferred predator:prey size ratio
  !! int n=0;
  !! for (s=1;s<=npr;s++) {if (size_selection(s)>=1 && size_selection(s)!=4) n++;}    //count number of parameters needed
  !! n=max(n,1);  // use at least one parameter to avoid warnings
@@ -3341,7 +3489,7 @@ PARAMETER_SECTION
  !! }
 
   
- // prefered predator:prey size ratio size correction factor
+ // preferred predator:prey size ratio size correction factor
  !!  n=0;  // single species mode
  !! if (multi>0 && phase_pref_size_ratio_correction>-1)  n=npr;
 
@@ -3354,7 +3502,7 @@ PARAMETER_SECTION
  !! }
 
  
- // variance of prefered predator:prey size ratio
+ // variance of preferred predator:prey size ratio
  !! n=0;
  !! for (s=1;s<=Mnpr;s++) { if (size_selection(s)==2) n=n+2; else if (size_selection(s)!=0 && size_selection(s)!=4 ) n++;}   //count number of parameters needed
  !! n=max(n,1);  // use at least one parameter to avoid warnings
@@ -3416,8 +3564,9 @@ PARAMETER_SECTION
  !! ivector phase_Stom_var2(1,n);
  !! phase_Stom_var2=phase_Stom_var;  
  //!! cout<<"phase_Stom_var2:"<<phase_Stom_var2<<endl;
- // !! cout<<"n:"<<n<<endl;    
+ // !! cout<<"n:"<<n<<endl;  
  !! for (s=1;s<=n;s++) { 
+ //  !!  if ( max_no_samples(s) > max_stom_sampl(s))  max_no_samples(s)= max_stom_sampl(s);  // NY
  !!  if (stomach_variance==1 || stomach_variance==2) {
  !!   Stom_var_l(s)= 0.0001;
  !!   Stom_var_u(s)= 1000.0;
@@ -3451,6 +3600,7 @@ PARAMETER_SECTION
  
  matrix stl_N_bar(1,n_stl_yqdpl,1,l_stl_yqdplpl)         //N-bar at length for prey species
  vector stl_avail_food(1,n_stl_yqdpl)                   // available food weightfor a predator-length
+ 
 
  // mesh selection adjustment for stomach ALK
  // Selection = 1 /(1 + exp(s1 - s2*length))
@@ -3481,9 +3631,9 @@ PARAMETER_SECTION
  // optional sdreport  variables ///////////////////////////////////////////////////////////
 
  
-  sdreport_matrix avg_F(first_VPA,nsp,lyModel-sdReportYear,lyModel)
-  !! for (s=first_VPA;s<=nsp;s++) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"avg_F "<<parNo<<" "<<s<<" "<<y<<" -1 -1 -1 -1 -1 -1"<<endl; }
-  //matrix avg_F(first_VPA,nsp,lyModel-sdReportYear,lyModel)
+  //sdreport_matrix avg_F(first_VPA,nsp,lyModel-sdReportYear,lyModel)
+  // !! for (s=first_VPA;s<=nsp;s++) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"avg_F "<<parNo<<" "<<s<<" "<<y<<" -1 -1 -1 -1 -1 -1"<<endl; }
+  matrix avg_F(first_VPA,nsp,lyModel-sdReportYear,lyModel)
   
   
  sdreport_matrix hist_SSB(first_VPA,nsp,lyModel-sdReportYear,lyModel) 
@@ -3496,43 +3646,54 @@ PARAMETER_SECTION
  // terminal population 1. Jan last assessment year 
  vector term_N(1,na_sp)
  //sdreport_vector term_N(1,na_sp)
- //!! for (s=first_VPA;s<=nsp;s++) for (a=fa;a<=la_VPA(s);a++) if (!(lq>1 && a==fa)) {parNo++; parexp<<"term_N "<<parNo<<" "<<s<<" "<<lyModel<<" "<<fq<<" -1 "<<a<<"  -1 -1 -1"<<endl; }
+ // !! for (s=first_VPA;s<=nsp;s++) for (a=fa;a<=la_VPA(s);a++) if (!(lq>1 && a==fa)) {parNo++; parexp<<"term_N "<<parNo<<" "<<s<<" "<<lyModel<<" "<<fq<<" -1 "<<a<<"  -1 -1 -1"<<endl; }
 
-
-
+ 
  !! na_sp=0;
  !! for (s=first_VPA;s<=nsp;s++) for (a=fa;a<=la_VPA(s);a++) na_sp++;
+ 
+   // Geometric recruitment using the  full time series of estimated recruits minus one
+ // sdreport_vector GMminOne(1,nsp)
+ //!! for (s=first_VPA;s<=nsp;s++) {parNo++;  parexp<<"GMminOne "<<parNo<<" "<<s<<" "<<lyModel+1<<" "<<fq<<" -1 "<<fa<<"  -1 -1 -1"<<endl; }
+  vector GMminOne(1,nsp)
+
 
  // terminal population in the beginning og period following the last model year and last model season
- //sdreport_vector term_N_next(1,na_sp)
+ // sdreport_vector term_N_next(1,na_sp)
  // !! for (s=first_VPA;s<=nsp;s++) for (a=fa;a<=la_VPA(s);a++) {parNo++;  parexp<<"term_N_next "<<parNo<<" "<<s<<" "<<lyModel+1<<" "<<fq<<" -1 "<<a<<"  -1 -1 -1"<<endl; }
  vector term_N_next(1,na_sp)
    
  // log terminal population in the beginning og period following the last model year and last model season 
  //sdreport_vector term_logN_next(1,na_sp)
- //!! for (s=first_VPA;s<=nsp;s++) for (a=fa;a<=la_VPA(s);a++) {parNo++;  parexp<<"term_logN_next "<<parNo<<" "<<s<<" "<<lyModel+1<<" "<<fq<<" -1 "<<a<<"  -1 -1 -1"<<endl; }
+ // !! for (s=first_VPA;s<=nsp;s++) for (a=fa;a<=la_VPA(s);a++) {parNo++;  parexp<<"term_logN_next "<<parNo<<" "<<s<<" "<<lyModel+1<<" "<<fq<<" -1 "<<a<<"  -1 -1 -1"<<endl; }
  vector term_logN_next(1,na_sp)
  
  // Fishing mortality at age, last assessment year 
  !! int na_spF=0;
  !! for (s=first_VPA;s<=nsp;s++) for (a=cfa(s);a<=la(s);a++) na_spF++;
 
+ 
  //sdreport_vector term_F(1,na_spF)
  //!!  for (s=first_VPA;s<=nsp;s++) for (a=cfa(s);a<=la(s);a++) {parNo++;  parexp<<"term_F "<<parNo<<" "<<s<<" "<<lyModel<<" -1 -1 "<<a<<"  -1 -1 -1"<<endl; }
  vector term_F(1,na_spF)
 
- //sdreport_matrix exploi_pattern(fq,lq,1,na_spF)
- //!! for (q=fq;q<=lq;q++) for (s=first_VPA;s<=nsp;s++) for (a=cfa(s);a<=la(s);a++) {parNo++;  parexp<<"exploi_pattern "<<parNo<<" "<<s<<" "<<lyModel<<" "<<q<<"  -1 "<<a<<"  -1 -1 -1"<<endl; }
- matrix exploi_pattern(fq,lq,1,na_spF)
+ !! int na_spFQ=0;
+ !! for (s=first_VPA;s<=nsp;s++) for (q=1;q<=lq;q++) for (a=faq(q);a<=las(s);a++) if (a >=cfa(s)) na_spFQ++ ;
+  
+ //sdreport_vector log_exploi_pattern(1,na_spFQ)
+ // for (s=first_VPA;s<=nsp;s++) for (q=1;q<=lq;q++) for (a=faq(q);a<=las(s);a++) {
+ // !!  if (a >=cfa(s))  parNo++;  parexp<<"log_exploi_pattern "<<parNo<<" "<<s<<" "<<lyModel<<" "<<q<<"  -1 "<<a<<"  -1 -1 -1"<<endl; }
+ vector  log_exploi_pattern(1,na_spFQ)
+
 
  //sdreport_vector log_term_F(1,na_spF)
- // !! for (s=first_VPA;s<=nsp;s++) for (a=cfa(s);a<=la(s);a++) {parNo++;  parexp<<"log_term_F "<<parNo<<" "<<s<<" "<<lyModel<<" -1 -1 "<<a<<"  -1 -1 -1"<<endl; }
+ //  for (s=first_VPA;s<=nsp;s++) for (a=cfa(s);a<=la(s);a++) {parNo++;  parexp<<"log_term_F "<<parNo<<" "<<s<<" "<<lyModel<<" -1 -1 "<<a<<"  -1 -1 -1"<<endl; }
  vector log_term_F(1,na_spF)
 
  // SSB in the first year after the last model year
- //matrix next_SSB(first_VPA,nsp,lyModel+1,lyModel+1);
- sdreport_matrix next_SSB(first_VPA,nsp,lyModel+1,lyModel+1);
- !! for (s=first_VPA;s<=nsp;s++)  for (y=lyModel+1;y<=lyModel+1;y++) {parNo++;  parexp<<"next_SSB "<<parNo<<" "<<s<<" "<<y<<" "<<fq<<" -1 -1 -1 -1 -1"<<endl; }
+ matrix next_SSB(first_VPA,nsp,lyModel+1,lyModel+1);
+ //sdreport_matrix next_SSB(first_VPA,nsp,lyModel+1,lyModel+1);
+ // !! for (s=first_VPA;s<=nsp;s++)  for (y=lyModel+1;y<=lyModel+1;y++) {parNo++;  parexp<<"next_SSB "<<parNo<<" "<<s<<" "<<y<<" "<<fq<<" -1 -1 -1 -1 -1"<<endl; }
 
  matrix short_term_SSB(first_VPA,nsp,1,no_F_multipliers);
  //sdreport_matrix short_term_SSB(first_VPA,nsp,1,no_F_multipliers);
@@ -3544,13 +3705,13 @@ PARAMETER_SECTION
  //!! for (s=first_VPA;s<=nsp;s++)  for (int i=1;i<=no_F_multipliers;i++) {parNo++;  parexp<<"log_short_term_SSB "<<parNo<<" "<<s<<" "<<y<<" "<<fq<<" "<<i<<" -1 -1 -1 -1"<<endl; }
  !! log_short_term_SSB=0;
  
- likeprof_number SSB_likeprof;
- !! parNo++; parexp<<"SSB_likeprof "<<parNo<<" "<<first_VPA<<" "<<lyModel+2<<" "<<fq<<" "<<-1<<" -1 -1 -1 -1"<<endl;
- !! SSB_likeprof=0;
+ // likeprof_number SSB_likeprof;
+ // !! parNo++; parexp<<"SSB_likeprof "<<parNo<<" "<<first_VPA<<" "<<lyModel+2<<" "<<fq<<" "<< -1<<" -1 -1 -1 -1"<<endl;
+ // !! SSB_likeprof=0;
  
  //likeprof_number stock_N_likeprof;
  //!! stock_N_likeprof=0;
- //!! parNo++; parexp<<"stock_N_likeprof "<<parNo<<" "<<first_VPA<<" "<<lyModel+1<<" "<<fq<<" "<<-1<<" -1 -1 -1 -1"<<endl;
+ //!! parNo++; parexp<<"stock_N_likeprof "<<parNo<<" "<<first_VPA<<" "<<lyModel+1<<" "<<fq<<" "<< -1<<" -1 -1 -1 -1"<<endl;
 
 
  matrix short_term_yield(first_VPA,nsp,1,no_F_multipliers);
@@ -3563,9 +3724,9 @@ PARAMETER_SECTION
  //sdreport_matrix next_TSB(first_VPA,nsp,lyModel+1,lyModel+1);
  //!! for (s=first_VPA;s<=nsp;s++)  for (y=lyModel+1;y<=lyModel+1;y++) {parNo++;  parexp<<"next_TSB "<<parNo<<" "<<s<<" "<<y<<" "<<fq<<" -1 -1 -1 -1 -1"<<endl; }
 
- //matrix M2_sd0(1,nprey,lyModel-sdReportYear,lyModel)
- sdreport_matrix M2_sd0(1,nprey,lyModel-sdReportYear,lyModel)
- !! for (s=first_VPA;s<=nsp;s++) if (is_prey(s)==1) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"M2_sd0 "<<parNo<<" "<<s<<" "<<y<<" -1 -1 0 -1 -1 -1"<<endl; }
+ matrix M2_sd0(1,nprey,lyModel-sdReportYear,lyModel)
+ //sdreport_matrix M2_sd0(1,nprey,lyModel-sdReportYear,lyModel)
+ //!! for (s=first_VPA;s<=nsp;s++) if (is_prey(s)==1) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"M2_sd0 "<<parNo<<" "<<s<<" "<<y<<" -1 -1 0 -1 -1 -1"<<endl; }
 
  //matrix M2_sd1(1,nprey,fyModel,lyModel)
  sdreport_matrix M2_sd1(1,nprey,lyModel-sdReportYear,lyModel)
@@ -3576,9 +3737,9 @@ PARAMETER_SECTION
  !! for (s=first_VPA;s<=nsp;s++) if (is_prey(s)==1) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"M2_sd2 "<<parNo<<" "<<s<<" "<<y<<" -1 -1 2 -1 -1 -1"<<endl; }
 
  // recruitment
- sdreport_matrix rec_sd(first_VPA,nsp,lyModel-sdReportYear,lyModel);
- !!for (s=first_VPA;s<=nsp;s++) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"rec_sd "<<parNo<<" "<<s<<" "<<y<<" "<<recq<<" -1 "<<fa<<" -1 -1 -1"<<endl; }
- // matrix rec_sd(first_VPA,nsp,lyModel-sdReportYear,lyModel);
+ // sdreport_matrix rec_sd(first_VPA,nsp,lyModel-sdReportYear,lyModel);
+ // !!for (s=first_VPA;s<=nsp;s++) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"rec_sd "<<parNo<<" "<<s<<" "<<y<<" "<<recq<<" -1 "<<fa<<" -1 -1 -1"<<endl; }
+ matrix rec_sd(first_VPA,nsp,lyModel-sdReportYear,lyModel);
   
  objective_function_value obf
 
@@ -3721,7 +3882,7 @@ PRELIMINARY_CALCS_SECTION
             }
             else log_obs_C(yq,s,a)=0.0+log(obs_C(yq,s,a));
           }
-          else if (min_catch(s)<-100) {                    // substitute by a percentage of the average catch
+          else if (min_catch(s)< -100) {                    // substitute by a percentage of the average catch
             if (sum_C(s,q,a)>0) tmp=-sum_C(s,q,a)/(lyModel-fyModel+1)*min_catch(s)/10000.0;
             else tmp=1.0;
             tmp=tmp*exp(0.2*randn(rnd));
@@ -3834,7 +3995,7 @@ PRELIMINARY_CALCS_SECTION
  // calc biomass of other predators and check that a stock number has a consumption
  if (multi>=1 && nOthPred>0 ) {
  ofstream othp("other_predators.out",ios::out);
- othp<<"Species.n Year Quarter Age N west consum"<<endl; 
+ othp<<"Species.n Year Quarter Age N west consum size"<<endl; 
  for (s=1;s<=nOthPred;s++){
    for (y=fyModel;y<=lyModel;y++) {
      lqLocal=(y==lyModel)?lqly:lq;
@@ -3848,7 +4009,7 @@ PRELIMINARY_CALCS_SECTION
         if (mceval==0 ) {
          if (( (consum_op=0 && other_pred_N(yq,s,a)>0 && consum(yqd,s,a)==0) )&& test_output>=1 )
             cout<<"Warning. Stock number>0, but consumption are =0: pred:"<<species_names[s]<<" age:"<<a<<" y:"<<y<<" q:"<<q<<" N:"<<other_pred_N(yq,s,a)<<" consum:"<<consum(yqd,s,a)<<endl;
-         othp<<s<<" "<<y<<" "<<q<<" " <<a<<" " <<other_pred_N(yq,s,a)<<" "<<west(yq,s,a)<<" "<<consum(yqd,s,a)<<endl;
+         othp<<s<<" "<<y<<" "<<q<<" " <<a<<" " <<other_pred_N(yq,s,a)<<" "<<west(yq,s,a)<<" "<<consum(yqd,s,a)<<" "<<lsea(yqd,s,a)<<endl;
          }
       }
      }
@@ -3856,7 +4017,7 @@ PRELIMINARY_CALCS_SECTION
   }
   othp.close();
  }
-
+   
  //  find min and max predator length, 
  if (multi>=1) {
   max_pred_length=0;
@@ -4535,6 +4696,16 @@ PRELIMINARY_CALCS_SECTION
  
   if (mceval==1) { 
     //reset temporaty ASCII files
+  
+  
+  ofstream res("SSB_dist.out",ios::out);
+     res<< no_MCMC_iterations<<"  # number of iterations" <<endl<<
+           lyModel+1<<" #first year"<<endl <<
+           lpy-1 <<"  # last year" <<endl <<
+           rep<<" # no of repetitions for each forecast"<<endl;
+
+  res.close();
+
  
     if (at_age_output(1)) {   
       ofstream mcout_F("mcout_f.out",ios::out);
@@ -4608,14 +4779,13 @@ PROCEDURE_SECTION
  int iter,s,y,q,a;
  int yqMaster;
  dvariable tmp;
- 
  //check_print_par();
+  // for testing print_ALK();
  Rec_parm_adm();
  predation_parm_adm();          // reorganise parameters for biological interaction
  CPUE_parm_adm();
  get_initial_N_at_age();
  calc_F(0);
-   
  //  testing !!nsp=first_VPA+4;
  for (y=fyModel;y<=lyModel;y++) {
    lqLocal=(y==lyModel)?lqly:lq; 
@@ -4655,9 +4825,9 @@ PROCEDURE_SECTION
      }     // End Multi species mode 
      get_N_at_age(y,q); //calc N for the next period (q=q+1 or y=y+1 and q=1)
    } // end quarter loop
- }  // end year-loop
+ }  // end year-loop 
+
  if (!mceval_phase()) evaluate_the_objective_function(); else get_biomass();
- 
  // test_out_test();  // print test_output
  // check_print_par();
  // print_survey_residuals();
@@ -4665,17 +4835,18 @@ PROCEDURE_SECTION
  if ((test_output==3 || test_output==19) && !sd_phase() && !mceval_phase() ) cout <<endl<<setw(8)<<
                  setfixed()<<setprecision(1)<<"obj_func:       "<<obf<<endl<<obj_func<<endl;
  calc_avg_F();
- if (sd_phase()) {
+ if (sd_phase() ) {
        calc_hist_SSB();
        calc_term_N();
        calc_term_F();
+       calc_exploitation_pattern();
        move_recruitment_to_sdreport();
        if (multi>=2) move_M2_to_sdreport(); 
  }
-
- if (sd_phase() && do_short_term_forecast==1) make_short_term_forecast_F();
  
+ if (sd_phase() && do_short_term_forecast==1) make_short_term_forecast_F();
  else if (mceval_phase() ) {
+    cout<<"do_short_term_forecast: "<<do_short_term_forecast<<endl;
    if (do_short_term_forecast==0) {
      if (multi==2) calc_eaten_M2_hist();
      predict();
@@ -4796,7 +4967,7 @@ FUNCTION void make_short_term_forecast_F();
      for (q=fq;q<=lq;q++) {
         CALC_yq
         //cout<<"y:"<<y<<" q:"<<q<<endl;
-        for (s=first_VPA;s<=nsp;s++) F(yq,s)=F(yq-lq,s)* F_multipliers(s,Fm);    // prediction F, use F in the prvious year as forecast exploitation pattern
+        for (s=first_VPA;s<=nsp;s++) F(yq,s)=F(yq-lq,s)* F_multipliers(s,Fm);    // prediction F, use F in the previous year as forecast exploitation pattern
         //cout<<" F: "<<F(yq)<<endl;
         calc_Z(y,q);  
         // cout<<" Z: "<<Z(yq)<<endl;                           
@@ -4822,7 +4993,7 @@ FUNCTION void make_short_term_forecast_F();
    for (s=first_VPA;s<=nsp;s++){
      for (a=faq(q);a<=la(s);a++) if (propmat(yq,s,a)>0) short_term_SSB(s,Fm)+=N(yq,s,a)*west(yq,s,a)*propmat(yq,s,a);
      log_short_term_SSB(s,Fm)=log(short_term_SSB(s,Fm));
-     if (Fm==1 && s==first_VPA) SSB_likeprof=short_term_SSB(s,Fm);
+    // if (Fm==1 && s==first_VPA) SSB_likeprof=short_term_SSB(s,Fm);
    }    
 
   } // Fm
@@ -4896,7 +5067,7 @@ FUNCTION void calc_M2_simple(int y, int q, int d, dvector other_food, dmatrix si
       }}}}
       //cout<<"y:"<<y<<" q:"<<q<<" d:"<<d<<" pred:"<<pred<<" age:"<<pred_a<<endl;
      avail_food(pred,pred_a)+=other_food(pred)*other_suit(pred,pred_size,y,q,d);  // add other food     
-     tmp=N_bar(pred,pred_a)*consum(pred,pred_a)/avail_food(pred,pred_a);
+     tmp=N_bar(pred,pred_a)*consum(pred,pred_a)*cons_multiplier(pred)/avail_food(pred,pred_a);
        //calc M2
       for (prey=first_VPA;prey<=nsp;prey++) {
         if (pred_prey_comb(d,pred,prey)>0) {
@@ -4970,7 +5141,7 @@ FUNCTION void calc_M2_ALK(int y, int q, int d, dvector other_food, d3_array size
          }}}}
  
          avail_food_l(pred,pred_a,pred_l)+=other_food(pred)*other_suit(pred,pred_size,y,q,d);  // add other food     
-         tmp=N_l_bar(pred,pred_a,pred_l)*consum(pred,pred_a,pred_l) /avail_food_l(pred,pred_a,pred_l);  
+         tmp=N_l_bar(pred,pred_a,pred_l)*consum(pred,pred_a,pred_l)*cons_multiplier(pred) /avail_food_l(pred,pred_a,pred_l);  
          
          //calc M2 at age and size class
          for (prey=first_VPA;prey<=nsp;prey++) {
@@ -5020,7 +5191,7 @@ FUNCTION void calc_M2_one_area(int y, int q);
  int yqd;  // quarter division index
  d3_array size(1,nsp,fa,max_a,minl,maxl);            //length or weight of species at age in the sea 
  d3_array consum_local(1,nsp,fa,max_a,minl,maxl);    //consumption by age and length
-
+  
  CALC_yq
  d=1; // one area only;
  CALC_yqd
@@ -5202,7 +5373,6 @@ FUNCTION dvariable other_suit(int pred,double pred_size,int y, int q, int d)
  dvariable tmp;
 
  tmp=exp(stl_other_suit_slope(pred)*log(pred_size/AV_other_food_size(pred)))*season_overlap(d,pred,q,0);
- //if (y==2011 and q==1) cout<<"pred: "<<pred<<" pred_size:"<<pred_size<<" AV_other_food_size:" <<AV_other_food_size(pred)<<" Suit:"<<tmp<<endl;
 
  if (use_overlap>1 && y<=lyModel) tmp*=overlap(d,pred,y,q,0); 
  else if (use_overlap==2 && y>lyModel) tmp*=overlap_forecast(d,pred,y,q,0); 
@@ -5222,27 +5392,27 @@ FUNCTION N_at_length_like
    for (Lq=ALK_y(Ly,2);Lq<=ALK_y(Ly,3);Lq++) {
      q=ALK_yq(Lq,1);
      CALC_yq 
-     for (Ld=ALK_yq(Lq,2);Ld<=ALK_yq(Lq,3);Ld++) {
+      for (Ld=ALK_yq(Lq,2);Ld<=ALK_yq(Lq,3);Ld++) {
        d=ALK_yqd(Ld,1);
        CALC_yqd
-       //if (y==2005 & q==3) cout<<endl<<" yqd:"<<yqd<<" y:"<<y<<" q:"<<q<<" d:"<<d<<endl;
+       //cout<<endl<<" yqd:"<<yqd<<" y:"<<y<<" q:"<<q<<" d:"<<d<<endl;
        N_l_bar_like(yqd)=0.0;
        for (Ls=ALK_yqd(Ld,2);Ls<=ALK_yqd(Ld,3);Ls++) {
          s=ALK_yqds(Ls,1); 
          // if (y==2005 & q==3) cout<<" s:"<<s;
          for (La=ALK_yqds(Ls,2);La<=ALK_yqds(Ls,3);La++) {
            a=ALK_yqdsa(La,1);
-            //if (y==2005 & q==3) cout<<" a:"<<a<<" tot N_bar_stom:"<<setprecision(3)<<setfixed()<<N_bar_stom(yq,s,a)<<" tot N_bar:"<<N_bar(yq,s,a)<<setprecision(0)<<endl;
+             //cout<<" a:"<<a<<" tot N_bar_stom:"<<setprecision(3)<<setfixed()<<N_bar_stom(yq,s,a)<<" tot N_bar:"<<N_bar(yq,s,a)<<setprecision(0)<<endl;
            if (L50(s)>0 && active(init_s1) ) {  
              for (Ll=ALK_yqdsa(La,2);Ll<=ALK_yqdsa(La,3);Ll++) ALK_adjusted(La,Ll)=ALK(La,Ll)*(1+exp(s1(s)-s1(s)/L50(s)*ALK_length(La,Ll)));
              ALK_adjusted(La)/=sum(ALK_adjusted(La));  //adjust proportion at size to sum up to 1
              //cout <<"sp:"<<s<<" age:"<<a<<" Q:"<<q<<" s1:"<<s1(s)<<endl<<setfixed()<<setprecision(3)<< ALK(La)<<endl<<ALK_adjusted(La)<<endl<<endl;;
            }
-           // if (y==2005 & q==3) cout<<"y:"<<y<<" q:"<<q<<" d:"<<d<<" s:"<<s<<" a:"<<a<<" minl:"<<ALK_yqdsa(La,2)<<" maxl:"<<ALK_yqdsa(La,3)<<endl;
+           //cout<<"y:"<<y<<" q:"<<q<<" d:"<<d<<" s:"<<s<<" a:"<<a<<" minl:"<<ALK_yqdsa(La,2)<<" maxl:"<<ALK_yqdsa(La,3)<<endl;
            for (Ll=max(ALK_yqdsa(La,2),min_prey_length(d,s));Ll<=min(ALK_yqdsa(La,3),max_prey_length(d,s));Ll++) {     // CHECK BRUG AF min og max ????
-             //if (y==2005 & q==3) cout<<" Ll:"<<Ll;
+             //cout<<" Ll:"<<Ll;
              N_l_bar_like(yqd,s,Ll)+= ALK_adjusted(La,Ll)*N_bar_stom(yq,s,a);
-             //if (y==2005 & q==3) cout<<" N_l_bar:"<<N_l_bar_like(yqd,s,Ll)<<endl;
+             //cout<<" N_l_bar:"<<N_l_bar_like(yqd,s,Ll)<<endl;
            }
         }
       }
@@ -5276,7 +5446,7 @@ FUNCTION N_at_length_like
               if (s>0)stl_N_bar(spl,ll)=N_l_bar_like(yqd,s,l);        
            }
          }
-        // if (y==2005 & q==3) cout<<"stl_N_bar(spl):"<<"y:"<<y<<" q:"<<q<<" d:"<<d<<" sp="<<sp<<" predator:"<<stl_yqdp(sp,1)<<" spl="<<spl<<" pred l:"<<stl_yqdpl(spl,1)<<endl<<stl_N_bar(spl)<<endl;
+         //if (y==1987 & q==4) cout<<"stl_N_bar(spl):"<<"y:"<<y<<" q:"<<q<<" d:"<<d<<" sp="<<sp<<" predator:"<<stl_yqdp(sp,1)<<" spl="<<spl<<" pred l:"<<stl_yqdpl(spl,1)<<endl<<stl_N_bar(spl)<<endl;
         }
       }
      
@@ -5334,9 +5504,10 @@ FUNCTION calc_expected_stomach_content
                    tmp=stl_N_bar(spl,ll)*wstom*suit(y,q,d,pred, prey, pred_s,prey_s,observed);
    
                    if (tmp==0) {
-                        cout<<"Something is wrong !!! (prey availeble food=0.0  y:"<<y<<" q:"<<q<<" pred:"<<pred<<" pred_s:"<<pred_s;
+                        cout<<"Something is wrong !!! (prey availeble food=0.0)  y:"<<y<<" q:"<<q<<" pred:"<<pred<<" pred_s:"<<pred_s;
                         cout<<" prey:"<< prey<<" prey_s:"<<setprecision(5)<<prey_s<<setprecision(3)<<" log(pred size/prey size):"<<log(pred_s/prey_s)<<endl;
-                        cout<<"Number prey at length:"<<stl_N_bar(spl,ll)<<" mean weight:"<<setprecision(3)<<wstom<<" suitability "<<suit(y,q,d,pred, prey, pred_s,prey_s,observed)<<endl;;
+                        cout<<"Number prey in the sea at length:"<<stl_N_bar(spl,ll);
+                        cout<<" mean weight:"<<setprecision(5)<<wstom<<" suitability "<<suit(y,q,d,pred, prey, pred_s,prey_s,observed)<<endl;;
                    }
 
                    stl_prey_avail_part(spl,ll)=tmp;   // just for output file "summary_stom.out"               
@@ -5423,14 +5594,14 @@ FUNCTION Rec_parm_adm;
     if (SSB_Rec_model(s)==52) RecTempVar(s)=Rec_add_inf(s,1);
  }
 
- // STN if (n_use_opt61_Rec>0) {  // STN
- // STN    if (R61Parms(1) !=0) alfa_61=R61Parms(1);   
- // STN    if (R61Parms(2) !=0) beta_61=R61Parms(2);
- // STN }
- // STN if (n_use_opt71_Rec>0) {  // STN
- // STN    if (R71Parms(1) !=0) alfa_71=R71Parms(1);   
- // STN    if (R71Parms(2) !=0) beta_71=R71Parms(2);
- // STN }
+ //if (n_use_opt61_Rec>0) {  // STN
+ //   if (R61Parms(1) !=0) alfa_61=R61Parms(1);          //STN
+ //    if (R61Parms(2) !=0) beta_61=R61Parms(2);          //STN
+ // }                                                      //STN
+ //if (n_use_opt71_Rec>0) {  // STN
+ //  if (R71Parms(1) !=0) alfa_71=R71Parms(1);         //STN
+ //    if (R71Parms(2) !=0) beta_71=R71Parms(2);          //STN
+ //}                                                     //STN
 
 
 
@@ -5492,7 +5663,7 @@ FUNCTION predation_parm_adm;
     if ((test_output==13 || test_output==19) && active(vulnera)) { 
      cout <<"################"<<endl<<setprecision(3) << setfixed()<<setw(12)<<endl; 
      cout <<"vulnera: "<<active(vulnera)<<endl<<vulnera<<endl;
-     if (init_pref_size_ratio.indexmin()>0) cout <<"Prefered size ratio:          "<<active(init_pref_size_ratio(1))<<"     "<< pref_size_ratio<<endl;
+     if (init_pref_size_ratio.indexmin()>0) cout <<"Preferred size ratio:          "<<active(init_pref_size_ratio(1))<<"     "<< pref_size_ratio<<endl;
        cout <<"Variance of size ratio      : "<<"     "<<var_size_ratio<<endl;
  
      cout <<setprecision(6) << setfixed()<<setw(12)<<endl; 
@@ -5746,9 +5917,10 @@ FUNCTION get_biomass
   dvariable tmp;
   TSB=0.0;
   SSB=0.0;
-  q=fq;
+  //q=fq;
   for (s=first_VPA;s<=nsp;s++){ 
     for (y=fyModel;y<=lyModel+1;y++){
+      q=fq;
       CALC_yq
       yqn=yq; if (y>lyModel) yq=yq-lq;;
       for (a=faq(q);a<=la(s);a++) {
@@ -5934,8 +6106,7 @@ FUNCTION  evaluate_CPUE_contributions
   epsilon=mins/10;
   minsPlusEpsilon=mins+epsilon;
   sp_fl=0;
-  
-  for (s=first_VPA;s<=nsp;s++){
+    for (s=first_VPA;s<=nsp;s++){
    tmp=0.0; sum_penalty=0.0;
    for (f=1; f<=n_fleet(s);f++) {
       localMaxFleetYear=(int)min(last_fleet_year(s,f),lyModel+1); // to allow model last year +1 to be used
@@ -5954,11 +6125,10 @@ FUNCTION  evaluate_CPUE_contributions
          else s2_la=int(CPUE_s2_group(s,f,s2_group+1))-1;
          for (a=s2_fa;a<=s2_la;a++) {
             for (y=max(fyModel,first_fleet_year(s,f));y<=localMaxFleetYear;y++){
-                 CALC_yq
+                 CALC_yq               
                 if ((y<lyModel)|| (y==lyModel && q<=lqly) || 
                    (y==lyModel && q==(lqly+1) && duration==0) ||
                    (y>lyModel && q==fq && duration==0 && a>fa)) {
-               //cout<<"survey obs from last assessment year plus 1 is used"<<endl;
                //if ((log_CPUE(sp_fl,y,a) < 998.0) && (!((a==fa) && (q <recq))) && (!((y==localMaxFleetYear)))) {
                if ( (log_CPUE(sp_fl,y,a) < 998.0) && (!((a==fa) && (q <recq))) )  {
                   if (duration==1) {N_survey=N_bar(yq,s,a); }
@@ -5972,8 +6142,11 @@ FUNCTION  evaluate_CPUE_contributions
                     //  " qq:"<<qq(s,f,a)<< " qq_power:"<< qq_power(s,f,a)<<" log_CPUE:"<<log_CPUE(sp_fl,y,a)<<endl;;
                   }
                   else if (fleet_alfa(s,f)==1 && fleet_beta(s,f)==1) N_survey=N(yq,s,a)*exp(-Z(yq,s,a));
-
-                  x=log(N_survey)*qq_power(s,f,a)+log(qq(s,f,a))-log_CPUE(sp_fl,y,a);
+                  
+                  // changed Dec 2018, catchability (qq) on log scale if power model is applied, to avoid very low parameter value
+                  if  (qq_power_index(s,f,a)>0)   x=log(N_survey)*qq_power(s,f,a)+qq(s,f,a)-log_CPUE(sp_fl,y,a);       
+                  else x=log(N_survey)+log(qq(s,f,a))-log_CPUE(sp_fl,y,a);        
+ 
                   //x=log(N_survey)*qq_power(s,f,a)+log(qq(s,f,a))+log_year_effect(s,f,y)-log_CPUE(sp_fl,y,a);
                   //x=log(N_survey)*qq_power(s,f,a)+log(qq(s,f,a))+ log(qq_efficiency(s,f))*(y-first_fleet_year(s,f))-log_CPUE(sp_fl,y,a);
                   //cout<<"x: "<<x<<endl;
@@ -5988,7 +6161,6 @@ FUNCTION  evaluate_CPUE_contributions
              }
            }
          }
-
          if (est_calc_sigma(2)!=0) qq_s2(sp_fl,s2_group)=(no*sumx2-square(sumx))/square(no);  // calc sigma
         
          if (est_calc_sigma(2)==1)   {  // truncate if below limit
@@ -6204,7 +6376,8 @@ FUNCTION  cacl_like_stom_number_multinomial;
           if (do_number_like(pred)==1) for (spl=stl_yqdp(sp,2);spl<=stl_yqdp(sp,3);spl++) {
             // cout<<"     pred_l:"<<stl_yqdpl(spl,1)<<endl;
 
-           if (incl_stom(d,pred,q,stl_yqdpl(spl,1),sy)>=1) { //for the predator and predator length group, include stomach observations in likelihood 0=no inlusion, >=1 include data
+           //for the predator and predator length group, include stomach observations in likelihood 0=no inlusion, >=1 include data
+           if (incl_stom(d,pred,q,stl_yqdpl(spl,1),sy)>=1) { 
              ll=0;
              for (splp=stl_yqdpl(spl,2);splp<=stl_yqdpl(spl,3);splp++) {
                prey=stl_yqdplp(splp,1);
@@ -6243,33 +6416,35 @@ FUNCTION  evaluate_stomach_contributions
  int sy,sq,sp,spl,splp,ll,pred,prey_l;  //stomach index counters
 
  dvariable sum,samp_var,sum_of_squares,p;
- calc_expected_stomach_content();
- // allready done. for (s=1;s<=nsp;s++) obj_func(s,4)=0.0;
 
- for (sy=1;sy<=n_stl_y;sy++) {       
-     //cout<<"Year:"<<stl_y(sy,1)<<endl;
+ calc_expected_stomach_content();
+ 
+ // allready done. for (s=1;s<=nsp;s++) obj_func(s,4)=0.0;
+  for (sy=1;sy<=n_stl_y;sy++) {       
+    // cout<<"Year:"<<stl_y(sy,1)<<endl;
     if (stl_y(sy,1)>=fyModel) for (sq=stl_y(sy,2);sq<=stl_y(sy,3);sq++) {
        q=stl_yq(sq,1); 
-       // cout<<" quarter:"<<q<<endl;
+       //cout<<" quarter:"<<q<<endl;
        for (sd=stl_yq(sq,2);sd<=stl_yq(sq,3);sd++) {
          d=stl_yqd(sd,1);
-         // cout<<"  area:"<<d<<endl;
+          //cout<<"  area:"<<d<<endl;
          for (sp=stl_yqd(sd,2);sp<=stl_yqd(sd,3);sp++) {
           pred=stl_yqdp(sp,1);
-          // cout<<"    pred:"<<pred<<endl;
+            //cout<<"    pred:"<<pred<<endl;
           for (spl=stl_yqdp(sp,2);spl<=stl_yqdp(sp,3);spl++) {
-             //cout<<"     pred_l:"<<stl_yqdpl(spl,1)<<endl;
+              //cout<<"     pred_l:"<<stl_yqdpl(spl,1)<<endl;
          
-           if (incl_stom(d,pred,q,stl_yqdpl(spl,1),sy)>=1) { //for the predator and predator length group, include stomach observations in likelihood 0=no inlusion, >=1 include data
+           //for the predator and predator length group,include stomach observations in likelihood 0=no inlusion, >=1 include data
+           if (incl_stom(d,pred,q,stl_yqdpl(spl,1),sy)>=1) { 
              ll=0;
              sum=0.0;
              first_Dirichlet=1;
 
              for (splp=stl_yqdpl(spl,2);splp<=stl_yqdpl(spl,3);splp++) {
-               //cout << "       Prey:"<<stl_yqdplp(splp,1);
+                 //cout << "       Prey:"<<stl_yqdplp(splp,1);
                for(prey_l=stl_yqdplp(splp,2);prey_l<=stl_yqdplp(splp,3);prey_l++) {
                  ll++;
-                  //cout <<"      Len:"<<prey_l<< " ";
+                   //cout <<"      Len:"<<prey_l<< " ";
                   if (first_Dirichlet==1 && (stomach_variance==3) ) {
                    samp_var=calc_stom_var(pred,spl,ll); 
                    first_Dirichlet=0;
@@ -6291,19 +6466,24 @@ FUNCTION  evaluate_stomach_contributions
                    }
                    else if (stomach_variance==3){   //Dirichlet
                       if (stl_E_stom(spl,ll)<1E-7) {
-                     //   cout<<"Something might be wrong (Expected stomach contents<1E-7) !!! Year:"<<stl_y(sy,1)<<" quarter:"<<q<<" pred:"<<pred<<" pred_l:"<<stl_yqdpl(spl,1)<<" Prey:"<<stl_yqdplp(splp,1)<<" Len:"<<prey_l<<endl;
+                     //   cout<<"Something might be wrong (Expected stomach contents<1E-7) !!! Year:"<<stl_y(sy,1)<<
+                     //    " quarter:"<<q<<" pred:"<<pred<<" pred_l:"<<stl_yqdpl(spl,1)<<" Prey:"<<stl_yqdplp(splp,1)<<" Len:"<<prey_l<<endl;
                       //  cout<<"  min no of samples: "<<setprecision(0)<<min_no_samples(pred)<<"  no of stomachs:"<<stl_no_samples(spl,ll)<<setprecision(6);
                       //  cout<<" Stom_var_fac: "<<Stom_var_fac(pred);
-                      //  cout <<" Observed stom: "<<setprecision(10)<<exp(log_stl_stom(spl,ll))<<" Expected stom:"<<stl_E_stom(spl,ll)<<" samp_var:"<<setprecision(5)<<samp_var<<endl;
+                      //  cout <<" Observed stom: "<<setprecision(10)<<exp(log_stl_stom(spl,ll))<<" Expected stom:"<<
+                      //     stl_E_stom(spl,ll)<<" samp_var:"<<setprecision(5)<<samp_var<<endl;
                        stl_E_stom(spl,ll)=1E-6;
                        }
                       p=samp_var*stl_E_stom(spl,ll);
                       sum+=gammln(p)-(p-1)*log_stl_stom(spl,ll);
                       if (p==0) {
-                        cout<<"Something is wrong (p=0.0) !!! Year:"<<stl_y(sy,1)<<" quarter:"<<q<<" pred:"<<pred<<" pred_l:"<<stl_yqdpl(spl,1)<<" Prey:"<<stl_yqdplp(splp,1)<<" Len:"<<prey_l<<endl;
-                        cout<<"  min no of samples: "<<setprecision(0)<<min_no_samples(pred)<<"  no of stomachs:"<<stl_no_samples(spl,ll)<<setprecision(6);
+                        cout<<"Something is wrong (p=0.0) !!! Year:"<<stl_y(sy,1)<<" quarter:"<<q<<" pred:"<<pred<<" pred_l:"<<
+                            stl_yqdpl(spl,1)<<" Prey:"<<stl_yqdplp(splp,1)<<" Len:"<<prey_l<<endl;
+                        cout<<"  min no of samples: "<<setprecision(0)<<min_no_samples(pred)<<"  no of stomachs:"
+                              <<stl_no_samples(spl,ll)<<setprecision(6);
                         cout<<" Stom_var_fac: "<<Stom_var_fac(pred);
-                        cout <<" Observed stom: "<<setprecision(5)<<exp(log_stl_stom(spl,ll))<<" Expected stom:"<<stl_E_stom(spl,ll)<<" samp_var:"<<samp_var<<" p:"<<p<<endl;
+                        cout <<" Observed stom: "<<setprecision(5)<<exp(log_stl_stom(spl,ll))<<" Expected stom:"<<
+                            stl_E_stom(spl,ll)<<" samp_var:"<<samp_var<<" p:"<<p<<endl;
                       }
                    }
                  }
@@ -6357,7 +6537,6 @@ FUNCTION evaluate_the_objective_function
  evaluate_CPUE_contributions();
  evaluate_SSB_recruitment_contributions();
  if  ((multi>=1 && current_phase()>=stom_phase) || (test_output==-1)) evaluate_stomach_contributions();
-
  //********************************************************************************************* 
 
 FUNCTION move_M2_to_sdreport
@@ -6489,6 +6668,27 @@ FUNCTION dvariable SSB_recruit_last(int s);
            //break;
   }  
              
+FUNCTION calc_exploitation_pattern
+ int s,y,a,q,rc,i;
+ int yq;
+
+ calc_F(1);  // calc F from parameters, without considering observed catches
+ y=lyModel;
+ i=0;
+ for (s=first_VPA;s<=nsp;s++) {
+   for (q=1;q<=lq;q++) {
+     CALC_yq
+     for (a=faq(q);a<=las(s);a++) if (a >=cfa(s))  {
+       i++;
+      log_exploi_pattern(i) = log(F(yq,s,a));
+     }
+   }
+ }
+ calc_F(0);  // calc F from parameters,  considering observed catches
+
+ 
+ 
+ 
  
 FUNCTION calc_term_F
  int s,y,a,q,sa;
@@ -6527,22 +6727,6 @@ FUNCTION calc_term_F
      }
  }
  
- 
- exploi_pattern=0;
- i=0;
- y=lyModel;
- for (q=fq;q<=lq;q++){
-   i=0;
-   CALC_yq
-   for (s=first_VPA;s<=nsp;s++){
-     for (a=cfa(s);a<=la(s);a++) {
-       i++;
-       if (!(a==fa && q<recq)) {
-          exploi_pattern(q,i)=F(yq,s,a);
-       }
-      }
-    }
-  }   
  
 
  
@@ -6603,7 +6787,17 @@ FUNCTION calc_term_N
       if (a==fa && lqly==lq) term_N_next(sa)=SSB_recruit_last(s); else term_N_next(sa)=N(yq,s,a);
       term_logN_next(sa)= log(term_N_next(sa));
     }
-  }
+  } 
+  q=recq;
+  for (s=first_VPA;s<=nsp;s++){
+    GMminOne(s)=0; 
+    for (y=fyModel;y<=lyModel-1;y++){
+       CALC_yq
+       GMminOne(s)+= log(N(yq,s,fa)) ;
+    }
+    GMminOne(s) = GMminOne(s) /(lyModel-fyModel);
+    //cout<<"GM minus one year:"<< GMminOne(s)<<endl;
+   }  
 
 
  
@@ -6612,29 +6806,31 @@ FUNCTION calc_hist_SSB
   int y,s,a,q,yq1;
   int yq;
   hist_SSB=0.0;
-  q=fq;
-  for (y=lyModel-sdReportYear;y<=lyModel;y++){
-   CALC_yq
-    for (s=first_VPA;s<=nsp;s++){  
+  for (s=first_VPA;s<=nsp;s++){  
+    q=fq;
+    for (y=lyModel-sdReportYear;y<=lyModel;y++){
+      CALC_yq
       for (a=faq(q);a<=la(s);a++) {
         if (N(yq,s,a)>0 && propmat(yq,s,a)>0) {
            hist_SSB(s,y)+=N(yq,s,a)*west(yq,s,a)*propmat(yq,s,a);
          }
        }
-     }    
+    }    
    }
    
    y=lyModel+1;
-   CALC_yq
-   if (any_do_effort) yq1=yq;  else yq1=yq-lq;
+   //CALC_yq
+   //if (any_do_effort) yq1=yq;  else yq1=yq-lq;
    
    for (s=first_VPA;s<=nsp;s++){ 
       next_SSB(s)=0; 
-      for (a=faq(q);a<=la(s);a++) {
-        if (N(yq,s,a)>0 && propmat(yq1,s,a)>0) {
-           next_SSB(s,lyModel+1)+=N(yq,s,a)*west(yq1,s,a)*propmat(yq1,s,a);
+      q=fq;
+      if (q==1)for (a=faq(q);a<=la(s);a++) {
+        if (N(yq,s,a)>0 && propmat(yq,s,a)>0) {
+           next_SSB(s,lyModel+1)+=N(yq,s,a)*west(yq,s,a)*propmat(yq,s,a);
          }
        }
+       else next_SSB(s,lyModel+1)= -1;
     }   
    
  
@@ -6963,10 +7159,13 @@ FUNCTION double calc_SSB_from_Fscaling( int s, double F_scaling, int first_q, dm
 
   for (q=first_q;q<=lq;q++)  F(q)=F_sq(q)*F_scaling;
   N=N_obs;
+  
+  //cout<<setprecision(0)<<"recruit:"<<rec<<" older:"<<endl<<N<<endl;
+  
   if (multi==2) Z=F+M1+M2;
   else Z=F+M;
-  //calc prediction N 1.jan next year 
-    
+  
+  //calc prediction N 1.jan next year   
   for (q=first_q;q<=lq;q++){                     
      //predict next season's N   
      for (a=la(s);a>=fa;a--) {
@@ -6979,7 +7178,8 @@ FUNCTION double calc_SSB_from_Fscaling( int s, double F_scaling, int first_q, dm
           else N(q+1,a)=N(q,a)*exp(-Z(q,a)); 
         }
         else { 
-          if (a==fa && q==recq && fa==1) N(recq,fa)=rec;
+          //if (a==fa && q==recq && fa==1) N(recq,fa)=rec;
+          if (a==fa && q==recq ) N(recq,fa)=rec;
         }      
      }
   }
@@ -7016,6 +7216,139 @@ FUNCTION double calc_Yield_from_Fscaling( int s, int firstQ, double F_scaling, d
  
  //*********************************************************************************************    
 
+
+  //  Simulates an assessment. Put assessment noise and bias on stock numbers and F at age
+  
+FUNCTION void do_assessment(int s,int rep, dmatrix N, dmatrix F);       
+ int a,q,i,lastNindex,r;
+   
+  random_number_generator rng(seed);
+  seed++;
+
+    //if (test_output==53) cout<<"do_assessment: s:"<<s<<"  type:"<<assess_uncertanty(s,1)<<"  rep:"<<rep<<"  N:"<<endl<<N<<endl;
+      
+    if (assess_uncertanty(s,1)==1 ) {
+       if (assess_uncertanty(s,4)==1) {
+          for (r=1;r<=rep;r++ ) N_obs_rep(s,r)= N(fq)*uncertanty(s,assess_uncertanty(s),randn(rng));    // same noise on all ages
+       }  else if (assess_uncertanty(s,4)==1) for(a=fa;a<=la(s);a++) 
+          for (r=1;r<=rep;r++) N_obs_rep(s,r,a)=N(fq,a)*uncertanty(s,assess_uncertanty(s),randn(rng));   // different noise on all ages
+    } 
+    
+    else  if (assess_uncertanty(s,1)==2 ) {
+      dvector nf(1,k);
+      i=0; lastNindex=la(s)-fa+1;
+      for (a=fa;a<=la(s);a++)  {i++; nf(i)=N(fq,a);}
+      cov_uncertanty(rep,s,la(s)-fa+1, log(nf),coVariance_n(s),assess_uncertanty(s,1));      // populates  N_obs_rep
+    }
+
+    else  if (assess_uncertanty(s,1)==3 ) {
+      dvector nf(1,k);
+      i=0; lastNindex=la(s)-fa+1;
+      for (a=fa;a<=la(s);a++)  {i++; nf(i)=N(fq,a);}
+     cov_uncertanty(rep,s, la(s)-fa+1,log(nf),decomposed_n(s),assess_uncertanty(s,1));    // populates  N_obs_rep
+    }
+
+
+    else  if (assess_uncertanty(s,1)=5 ) {
+     int k=decomposed_nf.colmax();
+     //cout<<"tmp N:"<<endl<<setprecision(0)<<N<<endl<<"F:"<<endl<<setprecision(6)<<F<<endl;
+     dvector nf(1,k);
+      i=0; lastNindex=la(s)-fa+1;
+      for (a=fa;a<=la(s);a++)  {i++; nf(i)=N(fq,a);}
+      for (q=fq;q<=lq;q++) for (a=cfa(s);a<=la(s);a++) if (a>=faq(q)) {i++; nf(i)=F(q,a);}
+      
+      //cout<<"nf: "<<setprecision(7)<<setw(12)<<setfixed()<<nf<<endl;
+     cov_uncertanty(rep,s, lastNindex,log(nf),decomposed_nf(s),assess_uncertanty(s,1));    // populates  N_obs_rep & F_obs_rep
+    }
+
+    
+    else  if (assess_uncertanty(s,1)==6) {
+        //cout<<"assessment_CV_age(s):"<<setprecision(3)<<assessment_CV_age(s)<<endl;
+        N_obs_rep(s,1)=age_uncertanty(s, assess_uncertanty(s),N(fq), assessment_CV_age(s));       
+    } 
+    else {
+      cout<<"ERROR in chosen assessment noise option Option="<<assess_uncertanty(s,1)<<" is not valid."<<endl;
+      cout<<"  program stopped"<<endl;
+      exit(9);
+    }
+       
+  
+FUNCTION dmatrix exploitation_fromF(int s,dmatrix F);
+ int q,a;
+ double sum;
+
+ sum=0;
+ for (a=avg_F_ages(s,1);a<=avg_F_ages(s,2);a++)  sum+= F(q,a);
+ sum=sum/(avg_F_ages(s,2)-avg_F_ages(s,1)+1);
+ for (q=fq;q<=lq;q++) for (a=fa;a<=la(s);a++) F(q,a)=F(q,a)/sum;
+ return (F);
+ 
+ 
+
+FUNCTION double find_Fscaling_from_target_SSB_rep(int s,int rep,int first_q,double lower,double upper,double target_SSB,dmatrix M,dmatrix M1,dmatrix M2,dmatrix pred_F,dmatrix N_obs_rep, d3_array F_obs_rep, dmatrix west, dmatrix propmat,double rec1, int year);
+
+  double dif,x,y;
+  double SSB0;
+  dvector SSBrep(1,rep);
+  int iter,a;
+  int repHalf=rep/2+1;
+  dmatrix    dummy(1,1,1,1);
+  dmatrix N_obs(fq,lq,fa,la(s));
+  dmatrix F_obs(fq,lq,fa,la(s));
+  double risk;
+  adstring txt;
+  
+  if (test_output==53) {
+    cout<<"ind_Fscaling_from_target_SSB_rep"<<endl<<"input target SSB:"<<target_SSB<<endl; 
+    cout<<"no of repetions:"<<rep<<endl;
+    cout<<"Lower and upper limit for F:"<<setprecision(3)<<setw(6)<<setfixed()<<lower<<"  "<<upper<<endl; 
+  }
+
+  dif=100.0;
+  iter=0;
+  x=1.0;
+ 
+  // for fa=1, fa might be included in the SSB. rec1 is observed recruits for the next year
+  if (fa==1 && propmat(fq,fa)>0) {  
+    SSB0=0.0;    
+    for (a=fa; a<=la(s);a++) SSB0+=N_obs(fq,a)*west(fq,a)*propmat(fq,a);
+    rec1=SSB_recruit(s,SSB0,0.0,dummy,year);    
+    if (test_output==53) cout<<"N start of the year:"<<N_obs<<endl;
+  } // else rec1=0; // it is assumed that the recruits (at age 0) do not contribute to SSB in the same year
+
+  while ((dif>1E-5) && (iter<100) && (x >=1E-6)) {
+     //cout<<setprecision(6)<<setw(6)<<setfixed()<<"lower: "<<lower<<"  upper:"<<upper<<endl;
+    x=(upper+lower)/2;
+    risk=0;
+    for (int r=1;r<=rep;r++) {
+      //calc prediction N 1.jan next year
+      N_obs(fq)=N_obs_rep(r);  
+      F_obs=F_obs_rep(r);    
+      SSBrep(r)=calc_SSB_from_Fscaling(s, x, first_q,M, M1, M2, F_obs, N_obs,rec1, west, propmat);  
+      if (SSBrep(r)< target_SSB) risk++; 
+    }
+
+    y=risk/rep;
+    if (test_output==53) cout<<endl<<setprecision(6)<<setw(10)<<setfixed()<<"multiplier x: "<<x<< "      sumrisk: "<<risk<<"  risk:"<<y<<endl;
+    SSBrep=sort(SSBrep);
+    if (test_output==53) cout<<"Median SSB:  "<< setprecision(0)<<setw(10)<<setfixed()<<SSBrep(repHalf) <<endl;
+    if (y < 0.05) lower=x; else upper=x;
+    dif=fabs(upper-lower);
+ 
+    iter++;
+  }
+  if (test_output==53) {
+    ofstream res("SSB_dist.out",ios::app);
+    res<<"#year "<<year <<endl<<SSBrep<<endl;
+    res.close();
+   }
+   
+  if (test_output==53) cout<<"final  F scaling:"<<setprecision(3)<<x<<endl; 
+  if ((iter<100) || (x<=1E-6))  return(x);
+  else return(-1000.0);
+ 
+ 
+ 
 FUNCTION double find_Fscaling_from_target_SSB(int s, int first_q, double lower, double upper, double target_SSB, dmatrix M, dmatrix M1, dmatrix M2, dmatrix pred_F, dmatrix N_obs, dmatrix west, dmatrix propmat,int year);
   double dif,x,y;
   double SSB0,rec1;
@@ -7049,6 +7382,8 @@ FUNCTION double find_Fscaling_from_target_SSB(int s, int first_q, double lower, 
   if (test_output==53) cout<<"realised target SSB:"<<y<<"  F scaling:"<<setprecision(3)<<x<<endl; 
   if ((iter<100) || (x<=1E-6))  return(x);
   else return(-1000.0);
+
+ 
                                                   
  //********************************************************************************************* 
  
@@ -7108,7 +7443,7 @@ FUNCTION double find_Fscaling_from_target_SSB_two_years(int s, int first_q, doub
     for (a=faq(fq); a<=la(s);a++) SSB0+=N(fq,a)*west(fq,a)*propmat(fq,a);
     rec2=SSB_recruit(s,SSB0,0.0,dummy,1);
     //if (test_output==53) cout<<setprecision(0)<<"SSB at start of second year:"<<SSB0<<" and resulting recruitment:"<<rec2<<endl;
-    N(recq,fa)<-rec2;    
+    N(recq,fa)=rec2;    
      
     //calc prediction next year 
     F=pred_F_year2*x;
@@ -7242,6 +7577,7 @@ FUNCTION void get_pred_Nbar_stom_at_age(int q, d3_array pred_N, d3_array& pred_N
   }
 
 
+
  // *****************************************************************************************
 FUNCTION double SSB_recruit(int s, double SSB, double noise, dmatrix hist_rec_noise,int year);
   double noiseFac, rec;
@@ -7252,7 +7588,8 @@ FUNCTION double SSB_recruit(int s, double SSB, double noise, dmatrix hist_rec_no
    else   noiseFac=value(exp(sqrt(SSB_R_s2(s))*noise));
   }
   
-  
+   //if (test_output==53) cout<< "noiseFac: "<<setprecision(3)<<noiseFac<<endl;
+   
   if (no_recruit_autocor(s)>0 && noise != 0.0) {
     int i;
     //cout<<"start noise:"<<noise<<"  hist_rec_noise:"<<hist_rec_noise<<endl;
@@ -7290,6 +7627,13 @@ FUNCTION double SSB_recruit(int s, double SSB, double noise, dmatrix hist_rec_no
                      }
                      else return(recruit_adjust(s)*value(exp(SSB_R_alfa(s))*SSB*noiseFac));
                      //break;
+             case 101: SSB<-SSB*SSB_R_in(s,5) ;   // factor real Q4 SSB o real Q1 SSB
+                     if (SSB>SSB_Rec_hockey_breakpoint(s)) {
+                       return(recruit_adjust(s)*value(SSB_Rec_hockey_breakpoint(s)*exp(SSB_R_alfa(s))*noiseFac));
+                     }
+                     else return(recruit_adjust(s)*value(exp(SSB_R_alfa(s))*SSB*noiseFac));
+                     //break;
+
            default: return(-1.0);  // error
            //break;
   }  
@@ -7303,6 +7647,7 @@ FUNCTION void estimate_recruits(int y, int first_s, int last_s, int add_noise, i
  double noise=0.0;
  double ssb,tmp;
  int s,a;
+ 
     // recruits, recruiting at age 1 or older
     if (fa>0) for (s=first_s;s<=last_s;s++){
       if (add_noise) noise=rn(s,y);
@@ -7358,7 +7703,7 @@ FUNCTION void estimate_recruits(int y, int first_s, int last_s, int add_noise, i
          <<"   SSB("<<y<<"):"<<setfixed()<<setprecision(0)<<SSB(s,y)<<
           " reruits("<<y<<"):"<<recruit(s,y);
        if (y>=read_predict_N_first_year && y<=read_predict_N_last_year && read_predict_N==1) {
-         cout<<" produced from input file"<<endl;
+         cout<<" produced from N in  input file"<<endl;
        } 
        else{ 
          cout <<"  produced by SSB("<<y-fa<<"):"<<SSB(s,y-fa)<<" and ";
@@ -7401,8 +7746,9 @@ FUNCTION double uncertanty(int s, dvector un, double noise);
  // assessment uncertanties from age dependen CV
              
      
-FUNCTION void age_uncertanty(int s, dvector un, dvector& N, dvector CV);
+FUNCTION dvector age_uncertanty(int s, dvector un, dvector N, dvector CV);
  dvector noise(fa,la(s));
+ dvector N_out(fa,la(s));
 
  int a;
  
@@ -7419,89 +7765,70 @@ FUNCTION void age_uncertanty(int s, dvector un, dvector& N, dvector CV);
     if      (noise(a)<obs_noise_trunc(s,1)) noise(a)=obs_noise_trunc(s,1);   
     else if (noise(a)>obs_noise_trunc(s,2)) noise(a)=obs_noise_trunc(s,2);
     
-    N(a)=N(a)*un(2)*exp(CV(a)*noise(a))*exp(-CV(a)*CV(a)/2);     // log-normal distributed noise 
-    //    N(a)=N(a)*un(2)*exp(CV(a)*noise(a));     // log-normal distributed noise , no correction
+    N_out(a)=N(a)*un(2)*exp(CV(a)*noise(a))*exp(-CV(a)*CV(a)/2);     // log-normal distributed noise 
+    //    N_out(a)=N(a)*un(2)*exp(CV(a)*noise(a));                   // log-normal distributed noise , no correction
 
 
  }
+ 
+ return N_out;
  
     
  //********************************************************************************************* 
 
   
  // assessment uncertanty from var-co-variance matrix
-     
-FUNCTION void cov_uncertanty(int s, dvector un, dvector& N, dmatrix cov);
- dmatrix result(1,1,fa,la(s));
- dmatrix noise(1,1,fa,la(s));
- dmatrix chol(fa,la(s),fa,la(s));
 
- int a,i;
+  
+    
+ // draw  n set of values of mu with noise using the covariance in cov    
  
- //cout<<"dim cov:"<< cov.colmin()<<" " <<cov.colmax()<<" "<< cov.rowmin()<<" "<< cov.rowmax() <<" "<<endl;
- 
+FUNCTION void cov_uncertanty(int n,int s,int lastNindex, dvector mu , dmatrix cov,double typeVar ); 
+ int k=cov.colmax();
+ dmatrix noise(1,n,1,k);
+ dmatrix result(1,n,1,k);
+ dmatrix chol(1,k,1,k);
+ int f_mu=mu.indexmin();
+ int l_mu=mu.indexmax();
+ int a,kk;
  random_number_generator rng(seed);
  seed++;
- 
  noise.fill_randn(rng);
+  
+ /*
+ if (test_output==53) cout<<"covN_uncertanty:"<<endl<<"n:"<<n<<"  s:"<<s<<"   lastNindex:"<<lastNindex<<"  k:"<<k<<endl<<"mu:"<<endl<<setfixed()<<setprecision(3)<<setw(10)<<mu<<endl<<
+     "COV:"<<endl<<setfixed()<<setprecision(3)<<setw(6)<<cov<<endl;
+ */
  
- // decrease "outlier" noise
- for (a=fa;a<=la(s);a++) {
-    if (noise(1,a)<obs_noise_trunc(s,1)) noise(1,a)=obs_noise_trunc(s,1);   
-    else if (noise(1,a)>obs_noise_trunc(s,2)) noise(1,a)=obs_noise_trunc(s,2);
+ if (typeVar==2 || typeVar==4)chol=trans(choleski_decomp(cov));      // it is an invariant - should go out of this function
+ else if (typeVar==3 || typeVar==5) chol=cov;
+ 
+ // cout<<"chol:"<<endl; cout<<setfixed()<<setprecision(3)<<setw(6)<<chol<<endl;
+ 
+ result=noise*chol;  // note matrix multiplication
+ //cout<<"    result: "<<endl<<setprecision(3)<<setw(6)<<result<<endl;
+
+  
+ for (int nn=1;nn<=n;nn++) for (kk=1;kk<=k;kk++)  result(nn,kk)=exp(mu(kk)+result(nn,kk)); 
+ if (test_output==53) {
+    cout<<"mu before noise: "<<setprecision(3)<<endl<<mu<<endl;
+    cout<<"exp(mu before noise): "<<setprecision(3)<<endl<<exp(mu)<<endl;
+    cout<<"Mean of exp(mu) after noise:"<<endl<<colsum(result)/n<<endl;
  }
- /*
- cout<<"cov_uncertanty:"<<endl<<"N:"<<endl<<setfixed()<<setprecision(0)<<setw(10)<<N<<endl<<
-     "COV:"<<endl<<setfixed()<<setprecision(3)<<setw(6)<<cov<<endl<<
-      "noise:"<<endl<<setfixed()<<setprecision(3)<<setw(6)<<noise<<endl;
- */
+   
+ for (int nn=1;nn<=n;nn++) {
+   for (kk=1;kk<=lastNindex;kk++) N_obs_rep(s,nn,fa+kk-1)=result(nn,kk); 
+   kk=lastNindex;
+   if (k>lastNindex)  for (int q=fq;q<=lq;q++) for (int a=cfa(s);a<=las(s);a++) if (a>=faq(q)) {
+     kk++;     
+     F_obs_rep(s,nn,q,a)=result(nn,kk);
+     if (a==las(s)) for (int aa=las(s)+1;aa<=la(s);aa++)  F_obs_rep(s,nn,q,aa)=F_obs_rep(s,nn,q,a);
+   }
+ } 
  
- chol=trans(choleski_decomp(cov));      // it is an invariant - should go out of this function
+ //cout <<"   F_obs_rep(1,1):"<<endl<<F_obs_rep(1,1)<<endl;                                                 
  
- //cout<<"chol:"<<endl; cout<<setfixed()<<setprecision(3)<<setw(6)<<chol<<endl;
- 
- result=noise*chol;
- //cout<<"    result: "<<endl<<setprecision(3)<<setw(6)<<result<<endl;
- 
- i=0; 
- if (un(1)==2) {for (a=fa;a<=la(s);a++) {i++; N(a)=exp(result(1,a)-cov(i,i)/2)*N(a)*un(2);}}    // reduce by half of variance
- else if (un(1)==3) {for (a=fa;a<=la(s);a++) { N(a)=exp(result(1,a))*N(a)*un(2);}}              // do not reduce 
- //cout<<"N:"<<endl<<setfixed()<<setprecision(0)<<setw(10)<<N<<endl;
-  
-  
- // same as above, but no recruits involved   
-FUNCTION void cov_uncertanty_no_rec(int s, dvector un, dvector& N, dmatrix cov);
- dmatrix result(1,1,fa+1,la(s));
- dmatrix noise(1,1,fa+1,la(s));
- dmatrix chol(fa+1,la(s),fa+1,la(s));
- 
- int a,i;
- 
- //cout<<"dim cov:"<< cov.colmin()<<" " <<cov.colmax()<<" "<< cov.rowmin()<<" "<< cov.rowmax() <<" "<<endl;
- 
- random_number_generator rng(seed);
- seed++;
- 
- noise.fill_randn(rng);
- /*
- cout<<"cov_uncertanty:"<<endl<<"N:"<<endl<<setfixed()<<setprecision(0)<<setw(10)<<N<<endl<<
-     "COV:"<<endl<<setfixed()<<setprecision(3)<<setw(6)<<cov<<endl<<
-      "noise:"<<endl<<setfixed()<<setprecision(3)<<setw(6)<<noise<<endl;
- 
- */
- 
- chol=trans(choleski_decomp(cov));      // it is an invariant - should go out of this function
- 
- //cout<<"chol:"<<endl<<setfixed()<<setprecision(3)<<setw(6)<<chol<<endl;
- result=noise*chol;
- //cout<<"    result: "<<endl<<setprecision(3)<<setw(6)<<result<<endl;
- i=0; 
- if (un(1)==2) {for (a=fa+1;a<=la(s);a++) {i++; N(a)=exp(result(1,a)-cov(i,i)/2)*N(a)*un(2);}}
- else {for (a=fa+1;a<=la(s);a++) { N(a)=exp(result(1,a))*N(a)*un(2);}}
- 
- //cout<<"N:"<<endl<<setfixed()<<setprecision(0)<<setw(10)<<N<<endl;
-  
- 
+
  //********************************************************************************************* 
 
  
@@ -7679,8 +8006,8 @@ FUNCTION predict
    CALC_yqd
   for (s=1;s<=nsp;s++) for (a=faq(q);a<=la(s);a++)   pred_size_sea(s,q,a)= size_sea(yqd,s,a);
  }
- 
-  // calc prediction mean weigth in the catch
+
+   // calc prediction mean weigth in the catch
   for (s=first_VPA;s<=nsp;s++) {
     for (q=fq;q<=lq;q++){
       for (a=faq(q);a<=la(s);a++){
@@ -7696,6 +8023,7 @@ FUNCTION predict
          if (i>0) pred_weca(s,q,a)=sumW/i; else pred_weca(s,q,a)=0.0;
        }
      } 
+
      // adjust in case of annual cataches is used in likelihood option seasonal_annual_catches =1
      if (seasonal_annual_catches(s)==1) for (a=fa;a<=la(s);a++) for (q=fq+1;q<=lq;q++) pred_weca(s,q,a)=pred_weca(s,fq,a);    
    }  
@@ -7717,7 +8045,6 @@ FUNCTION predict
    }
 
   // adjust seasonal_annual_catches
-   
   // calc prediction mean weigth in the sea
   for (s=1;s<=nsp;s++) {
    pred_west(s)=0.0;
@@ -7742,7 +8069,7 @@ FUNCTION predict
      }  
    }
 
-   
+
   // calc prediction proportion mature
   for (s=first_VPA;s<=nsp;s++) {
     for (q=fq;q<=lq;q++) { 
@@ -7759,7 +8086,7 @@ FUNCTION predict
      }  
    }   
    
-   
+         
   if (at_age_output[6]) {
   ofstream FLR("flr_cnf.out",ios::out);
   FLR<<"Species.n Year Quarter Age C N F M west weca propmat";
@@ -7842,32 +8169,25 @@ FUNCTION void do_predict(int MCMC_iteration)
   int s,y,a,q,TAC_year;
   int yq;
   int do_M2, do_catch, add_rec_noise, true_N, new_year;
-
   double tmp, upper_F,max_F_scale,capF_local;
-  
-  int BW_init_phase=1;  // initial conditions according to para. 4 in Blue whiting HCR
-  
+   
   dmatrix rn(first_VPA,nsp,lyModel,lpy+2);  // random numbers for SSB/R noise
 
   dvector meanFsq(first_VPA,nsp);   // mean F stautus quo
   dvector meanFsq_copy(first_VPA,nsp);
   double meanFsq_tmp;
-  double meanFsq_tmp2;
   
   dvector min_noise(first_VPA,nsp);
   dvector TACcurrent(first_VPA,nsp);
 
   ivector has_changed_exploitation_pattern(first_VPA,nsp);
-  ivector sub_HCR(first_VPA,nsp);
    
   dmatrix TAC_true(first_VPA,nsp,lyModel,lpy+1);      // real (implemented) TAC
   dmatrix TAC_F_true(first_VPA,nsp,lyModel,lpy+1);    // real (implemented) F 
   dmatrix TAC_obs(first_VPA,nsp,lyModel,lpy+1);       //  TAC estimated from HCR
   dmatrix TAC_F_obs(first_VPA,nsp,lyModel,lpy+1);     //  F estimated from HCR
-
-  d3_array TAC_true_half(first_VPA,nsp,lyModel,lpy+1,1,2);
   
-  dmatrix SSB_obs(first_VPA,nsp,lyModel,lpy+1);
+  dmatrix SSB_obs(first_VPA,nsp,lyModel,lpy+1);     // observed SSB
 
   double TSB0, yield1,  change,tacMax;
   double yieldQ4, yieldQ1Q3;
@@ -7896,19 +8216,13 @@ FUNCTION void do_predict(int MCMC_iteration)
 
   d3_array    pred_N_obs(first_VPA,nsp,fq,lq,fa,max_a);        // "observed" N  that is real stock N (pred_N_true)
                                                        // and optional some "observation noise"
-
-  d3_array    pred_N_other(1,first_VPA,fq,lq,fa,max_a);  // other predator stock numbers
   
-  d3_array    pred_N_real_time(first_VPA,nsp,fq,lq,fa,max_a);  // N estimated from real time (within quota year)
-                                                       //  estimation
-
-   
+  d3_array    pred_N_other(1,first_VPA,fq,lq,fa,max_a);  // other predator stock numbers
+     
   d3_array    pred_C(first_VPA,nsp,fq,lq,fa,max_a);
   dmatrix     recruit(first_VPA,nsp,fyModel,lpy);
   dmatrix     hist_rec_noise(first_VPA,nsp,1,no_recruit_autocor); // recruitment noise for the most recent 
-                                                                 //   years, used for autocorrelation
-  dmatrix     cov_noise(fa+1,max_a,fa+1,max_a);
-  
+                                                                 //   years, used for autocorrelation  
   char txt[2];
   char txtL[15];
                                                                    
@@ -7928,7 +8242,6 @@ FUNCTION void do_predict(int MCMC_iteration)
   HCR_state=1;
   
   has_changed_exploitation_pattern=0;
-  
   random_number_generator rng(seed);
   //cout<<"seed: "<<seed<<endl;
   rn.fill_randn(rng);  // random numbers for SSB-recuit noise 
@@ -8089,15 +8402,7 @@ FUNCTION void do_predict(int MCMC_iteration)
   pred_F_true=pred_F_sq; 
   for (s=first_VPA;s<=nsp;s++) TAC_F_true(s,lyModel)=meanFsq(s);
   
-  for (s=first_VPA;s<=nsp;s++) if (HCR(s)>=101  && HCR(s)<=111) {
-    if (test_output>=52) cout<<"Special case. Norway pout 2012 MSE"<<endl;
-    for (q=fq;q<=lq;q++){
-       for (a=faq(q);a<=la(s);a++){
-         pred_F_true(s,q,a)=pred_F_true(s,q,a)*0.01;
-       }
-       }
-  } 
-    
+     
   if (test_output>=52) cout<<endl<<"YEAR (for which the catches are known) :"<<lyModel<<endl<<endl;
   if (test_output==53) {
     cout<<"assessment N:"<<setw(12) << setprecision(0) << setfixed()<<endl;;
@@ -8227,7 +8532,7 @@ FUNCTION void do_predict(int MCMC_iteration)
        if (nsp>1) cout<<species_names[s]<<" ";
        cout <<"N_true("<<y<<"):"<<setw(10) 
                                 << setfixed()<<setprecision(0)<<pred_N_true(s,fq);
-       if (recq != fq) cout<<" recruitment:"<<pred_N_true(s,recq,fa)<<endl;  
+       if (recq != fq) cout<<" True recruitment:"<<pred_N_true(s,recq,fa)<<endl;  
     }
    
     // special case for overwriting recruits or predicted stock numbers, used mainly for FLR simulations
@@ -8250,6 +8555,7 @@ FUNCTION void do_predict(int MCMC_iteration)
                                 << setfixed()<<setprecision(0)<<pred_N_true(s,fq)<<"  Recruitment:"<<pred_N_true(s,recq,fa)<<endl;
       }
     }
+   
    
     //make table of single species input values
     if ((y==lyModel+1) && (MCMC_iteration==1) ) {
@@ -8284,24 +8590,17 @@ FUNCTION void do_predict(int MCMC_iteration)
       }
       sht.close();
     }
-
+    
+    
+    
+    
     // first year only. Implement externally given TAC and F without error
+        
     if (y==lyModel+1) {
       
       for (s=first_VPA;s<=nsp;s++) {
-        TAC_true_half(s)=0.0; 
         if (TAC_first(s)>0) TAC_true(s,lyModel+1)=TAC_first(s);
-        if (HCR(s)>=102 && HCR(s)<110) {
-           TAC_true_half(s,lyModel+1,1)= TAC_first(s)*TAC_second(s);
-           TAC_true_half(s,lyModel+1,2)= TAC_first(s)*(1.0-TAC_second(s));
-           if (test_output==53) cout<< "TAC_true_half first and second half-year of "<<lyModel+1<< ": "<<TAC_true_half(s,lyModel+1)<<"  from input"<<endl;
-        }  
-        
-        if (HCR(s)==100 || HCR(s)==101){
-          TAC_true_half(s,lyModel+2,1)=TAC_second(s);
-          if (test_output==53) cout<<"TAC for year "<<lyModel+2<<" has been set to "<< TAC_true_half(s,lyModel+2,1)<<" from input "<<endl; 
-        }  
-         
+                
         if (F_first(s)>0) TAC_F_true(s,lyModel+1)=F_first(s)*meanFsq(s);
         if  (interYear(s)==2) {
            if (F_second(s)>0) TAC_F_true(s,lyModel+2)=F_second(s)*meanFsq(s);
@@ -8314,17 +8613,7 @@ FUNCTION void do_predict(int MCMC_iteration)
       //cout<<"TAC_F_obs:"<<setprecision(3)<<TAC_F_obs<<endl     
     }
 
-    // first year only. Change TAC constraints in recovery phase
-    if (y==lyModel+1) {
-      for (s=first_VPA;s<=nsp;s++) {
-        if (HCR(s)==334 || HCR(s)==335) {
-           TAC_constraint(s,1)=TAC_constraint(s,1)*real_time_uncertanty(s,3);
-           TAC_constraint(s,2)=TAC_constraint(s,2)/real_time_uncertanty(s,3);
-           if (test_output==53) cout<<" HCR=334&335 initialization. TAC constraints changed to:"<<setprecision(3)<< TAC_constraint(s)<<endl;
-        }
-       } 
-     }
-    
+   
     // ##############################################
     //estimate F from previously set of TACs (or F)
    
@@ -8354,13 +8643,12 @@ FUNCTION void do_predict(int MCMC_iteration)
      }
      
      else for (s=first_VPA;s<=nsp;s++) {
-        //cout<<"TAC_F_true:"<<setprecision(3)<<TAC_F_true<<endl;
-        //cout<<"TAC_true:"<<setprecision(0)<<TAC_true<<endl;
+        // if (test_output==53) cout<<"TAC_F_true:"<<setprecision(3)<<TAC_F_true<<"       TAC_true:"<<setprecision(0)<<TAC_true<<endl;
 
      // Estimate F, using HCR F or HCR TAC from previously year, or from first year input
        if (TAC_F_true(s,y)>-1.0) { //calc F from HCR F
 
-         // adjust true F according to cap TAC (F has been adjusted earlier according to cap F )
+         // adjust true F according to cap TAC (F has been adjusted earlier according to upper F )
          if (TAC_cap(s)>0 && (y-lyModel>interYear(s))) {
             //calc yield from F and true stock numbers
             yield1=calc_Yield_from_Fscaling(s,fq,TAC_F_true(s,y)/meanFsq(s),pred_M(s), 
@@ -8403,9 +8691,11 @@ FUNCTION void do_predict(int MCMC_iteration)
          }
       }
       
-      else if (TAC_true(s,y)>0) { //calc F from TAC and N. F cannot exceed F cap 
+      else if (TAC_true(s,y)>0) { //calc F from TAC and N. F cannot exceed F upper 
 
-        if (F_cap(s)>0) upper_F=F_cap(s)/meanFsq(s); else upper_F=max_F_scale; 
+
+         if (F_cap_true(s)>0) upper_F=F_cap_true(s); else  upper_F=max_F_scale; 
+         
         if (TAC_true(s,y)>0) Fscaling=find_Fscaling_from_target_yield(s,fq,real_time_F(s)/meanFsq(s),upper_F, TAC_true(s,y), pred_M(s), pred_M1(s),
                   pred_M2_true(s), pred_F_sq(s), pred_N_true(s), pred_weca(s),pred_prop_landed(s));
         else Fscaling=0.0;
@@ -8428,7 +8718,7 @@ FUNCTION void do_predict(int MCMC_iteration)
         if (test_output==53) {
            if (nsp>1) cout<<species_names[s]<<" "; 
            cout<<"F("<<y<<") is estimated from TAC="<<setprecision(0)<<TAC_true(s,y)<< " test tmp:"<<setprecision(3)<<tmp<<endl;;
-           if (tmp>=F_cap(s) && F_cap(s)>0 ) cout<<" and F cap "<<setprecision(3)<<F_cap(s)<<" ";
+           if (tmp>=F_cap_true(s) && F_cap_true(s)>0 ) cout<<" and F cap "<<setprecision(3)<<F_cap_true(s)<<" ";
            cout<<" resulting in mean F_true:"<<setprecision(3)<<Mean_F(s,y)<<endl;
          }   
       }
@@ -8438,20 +8728,9 @@ FUNCTION void do_predict(int MCMC_iteration)
       } 
       if (test_output==53) {
         if (nsp>1) cout<<species_names[s]<<" ";
-        cout<<"F_true("<<y<<"):"<<setprecision(3)<<endl<<pred_F_true(s)<<endl;
+        cout<<"F_true("<<y<<"):"<<setprecision(6)<<endl<<pred_F_true(s)<<endl;
       }
       
-      if  (y==lyModel+1) { 
-       if (HCR(s)==334) {  // special case for rule 334
-         if (TAC_F_obs(s,y)>constantF(s)) {
-           TAC_F_true(s,y+1)=TAC_F_obs(s,y)*(1.0-real_time_uncertanty(s,1)/100);   // reduce F by x%
-           TAC_F_obs(s,y+1)=TAC_F_true(s,y+1);
-           TAC_true(s,y+1)=-1;
-           if (test_output==53) cout<<"BW (HCR=334) Init condition:  TAC_F_true("<<y+1<<")="<<setprecision(3)<<
-                           TAC_F_true(s,y+1)<<" from TAC_F_obs("<<y<<")="<<TAC_F_obs(s,y)<<" and "<<setprecision(0)<<real_time_uncertanty(s,1)<<"% reduction"<<endl;
-         }          
-       } 
-      }
       
       if (has_changed_exploitation_pattern(s)==1) {
          pred_F_sq(s)=pred_F_sq_copy(s);
@@ -8546,41 +8825,22 @@ FUNCTION void do_predict(int MCMC_iteration)
     predict_year(0,first_VPA, nsp, do_M2, do_catch, new_year, pred_N_obs, pred_N_other, pred_F_true, 
                    pred_C, pred_M, pred_M1, pred_M2_true, pred_Z_true);
                    
-    for (s=first_VPA;s<=nsp;s++) if (HCR(s)>=98 && HCR(s)<=125)   {   // special Norway pout cases, save the true N
-      pred_N_true_tmp(s)=pred_N_obs(s);
-      if (test_output==53) for (s=first_VPA;s<=nsp;s++)cout<<"NOP HCR, pred_N_true_tmp ("<<y+1<<")"<<endl<<setprecision(0)<<pred_N_true_tmp(s)<<endl;
-    }
     
     if (test_output==53) for (s=first_VPA;s<=nsp;s++) {
       if (nsp>1) cout<<species_names[s]<<" "; 
-      cout <<"N_obs("<<y+1<<") before noise:"<<setw(10) 
-                                << setfixed()<<setprecision(0)<<pred_N_obs(s,fq)<<endl;  
-    }
-    
-    for (s=first_VPA;s<=nsp;s++)   {      // assessment noise and bias on stock numbers, first season (this simulates an assessment)
-      SSB_obs(s,y+1)=0.0;
-      if (assess_uncertanty(s,1)==1 ) {
-         if (assess_uncertanty(s,4)==1) pred_N_obs(s,fq)=                           // same noise on all ages
-                       pred_N_obs(s,fq)*uncertanty(s,assess_uncertanty(s),randn(rng));
-         else for (a=fa;a<=la(s);a++) pred_N_obs(s,fq,a)=                                // different noise on all ages
-                 pred_N_obs(s,fq,a)*uncertanty(s,assess_uncertanty(s),randn(rng));
-      } 
-      else  if (assess_uncertanty(s,1)==2 || assess_uncertanty(s,1)==3) {
-           cov_uncertanty(s, assess_uncertanty(s), pred_N_obs(s,fq),coVariance(s).sub(fa,la(s)));
-      }
-      else  if (assess_uncertanty(s,1)==4) {
-          //cout<<"assessment_CV_age(s):"<<setprecision(3)<<assessment_CV_age(s)<<endl;
-          age_uncertanty(s, assess_uncertanty(s),pred_N_obs(s,fq), assessment_CV_age(s));
-      } 
-      else {
-        cout<<"ERROR in chosen assessment noise option Option="<<assess_uncertanty(s,1)<<" is not valid."<<endl;
-        cout<<"  program stopped"<<endl;
-        exit(9);
-      }
+      cout <<"N_obs("<<y+1<<") beginning of the year, before noise:"<<setw(10) 
+                                << setfixed()<<setprecision(0)<<pred_N_obs(s,fq)<<endl; 
+    }                            
       
-      for (a=fa;a<=la(s);a++){
+    for (s=first_VPA;s<=nsp;s++)   {      // assessment noise and bias on stock numbers, first season (this simulates an assessment)
+       pred_N_obs(s,fq,fa)=1; // recruits in first quarter set to 1, to fit structure; 
+       do_assessment(s,    rep,      pred_N_obs(s),pred_F_true(s)) ;   // populates N_obs_rep(s) and F_obs_rep(s)) 
+        pred_N_obs(s,fq)= N_obs_rep(s,1);  // keep the first replicate in any case
+       
+       SSB_obs(s,y+1)=0;
+       for (a=fa;a<=la(s);a++){
          SSB_obs(s,y+1)+=pred_N_obs(s,fq,a)*pred_west(s,fq,a)*pred_propmat(s,fq,a); 
-      }
+       }
       
       if (test_output==53) if (assess_uncertanty(s,1)>=0){
           if (nsp>1) cout<<species_names[s]<<" ";
@@ -8593,28 +8853,30 @@ FUNCTION void do_predict(int MCMC_iteration)
     add_rec_noise=0;
     true_N=0;           // update obs SSB and estimate Rec from obs SSB.
     estimate_recruits(y+1, first_VPA, nsp, add_rec_noise, true_N, pred_N_obs, recruit, SSB_obs,
-                      pred_west, pred_propmat,rn, hist_rec_noise);
+                      pred_west, pred_propmat,rn, hist_rec_noise);                 
+    // forecast recruits in   pred_N(s,recq,fa)                  
     
+    if (test_output==53) {
+     cout<<"Recruits("<<y+1<<"):"; 
+     for (s=first_VPA;s<=nsp;s++) cout << "s:"<<s<<"  Rec:"<<pred_N_obs(s,recq,fa)<<endl;
+    }
      
     if (test_output==53 && recq==fq) for (s=first_VPA;s<=nsp;s++) 
          cout <<"N_obs after calc of recruit("<<y+1<<") and noise "<<endl<<"N: "<<setw(10)<<setfixed()<<setprecision(0)<<pred_N_obs(s,fq)<<endl;
 
+
      for (s=first_VPA;s<=nsp;s++) if (y<lpy) SSB_percieved(s,y+1)=SSB_obs(s,y+1);
               
-   // we have now observed N 1. Jan year y+1, which is the basis for HCR 
+   // we have now observed N 1. Jan year y+1,and observed F(y) at age and season  which is the basis for HCR 
    
    
-    for (s=first_VPA;s<=nsp;s++) if (HCR(s)>=98 && HCR(s)<=111) {  // that night be wrong !!?
-      pred_N_true_tmp(s,recq,fa)=pred_N_obs(s,recq,fa);
-    }
-    // and we have now true N 1. Jan year y+1, and guess on true recruitment which is the basis for HCR 
-     
+   
      
     // estimate percieved F, used in some HCR
     for (s=first_VPA;s<=nsp;s++) {
       if (y-lyModel<=interYear(s)) {           // initial condition
-        if (TAC_F_true(s,y+1)>-1.0) Mean_F_percieved(s,y+1)= TAC_F_true(s,y+1);
-        else if (TAC_true(s,y+1)>-1.0) Mean_F_percieved(s,y+1)=meanFsq(s)*
+        if (TAC_F_true(s,y+1)> -1.0) Mean_F_percieved(s,y+1)= TAC_F_true(s,y+1);
+        else if (TAC_true(s,y+1)> -1.0) Mean_F_percieved(s,y+1)=meanFsq(s)*
                find_Fscaling_from_target_yield(s,fq,0.0,max_F_scale, TAC_true(s,y+1), pred_M(s), pred_M1(s),
                pred_M2_true(s), pred_F_sq(s), pred_N_obs(s), pred_weca(s),pred_prop_landed(s));
       }
@@ -8637,7 +8899,8 @@ FUNCTION void do_predict(int MCMC_iteration)
             
    // ##### calc new TAC or F according to HCR and constraints       
    for (s=first_VPA;s<=nsp;s++) if (y+interYear(s)<lpy+1) {
-     TAC_year=y+interYear(s);      
+     TAC_year=y+interYear(s);  
+         
      // project through intermediate year
      if(interYear(s)>1 && TAC_true(s,TAC_year)<0.0 && TAC_F_true(s,TAC_year)<0.0){      
 
@@ -8656,12 +8919,6 @@ FUNCTION void do_predict(int MCMC_iteration)
            if (test_output==53) {
               cout<<"F is estimated from TAC_F_obs("<<y+1<<")="<<setprecision(3)<<TAC_F_obs(s,y+1)<<endl;
            }
-         //  if ((HCR(s)==44 || HCR(s)==45) && y==lyModel+1) {
-         //      TAC_obs(s,y+1)=66000;
-         //       //TAC_obs(s,y+1)=80500;
-         //       // TAC_obs(s,y+1)=44300;
-         //      if (test_output==53) cout<<"Special case HCR=44 or 45. TAC("<<y+1<<")"<<TAC_obs(s,y+1)<<endl;
-         //   }
         }
         else if (inter_F_TAC(s)==1  && TAC_obs(s,y+1)>=0) { //calc F from TAC and "observed" N 
           Fscaling=find_Fscaling_from_target_yield(s,fq,0.0,max_F_scale, TAC_obs(s,y+1), pred_M(s), pred_M1(s), 
@@ -8742,1168 +8999,70 @@ FUNCTION void do_predict(int MCMC_iteration)
                 if (Fscaling>0) Fmax=meanFsq(s)*Fscaling; else Fmax=0.0;
                 break;
 
-      case 15: // Estimate F from a target SSB in the TAC year+1
-                Fscaling=find_Fscaling_from_target_SSB(s,1,0.0,max_F_scale/meanFsq(s),target_SSB(s),pred_M(s),
+      case 15: // Estimate F from a target SSB in the TAC year+1  (Escapement strategy)
+                if (F_cap_true(s)==0) F_cap_true(s)=max_F_scale;
+                Fscaling=find_Fscaling_from_target_SSB(s,1,0.0,F_cap_true(s)/meanFsq(s),target_SSB(s),pred_M(s),
                     pred_M1(s),pred_M2_true(s),pred_F_sq(s),pred_N_obs(s),pred_west(s),pred_propmat(s),y);
                 if (Fscaling>0) Fmax=meanFsq(s)*Fscaling; else Fmax=0.0;
                 break;             
-       
-       case 20: //Estimate F from real-time estimate of stock number (N age 1 or more precisely age fa+1) 
-                //     and trigger rule
-                //estimate observed N1 from true N and real-time uncertanties
-                pred_N_obs(s,fq,fa+1)=real_time_estimate(s, TAC_year, pred_N_true, pred_Z_true, randn(rng));
-
-                Fmax=do_HCR_trigger(s,pred_N_obs(s,fq,fa+1));   // F according to HCR
-                Fmin=real_time_F(s);                // F used to obtaine N1
-                if (Fmin>Fmax) closure(s,y)=1;      // closure of the fishery
-                break;
- 
-      case 21:  //Estimate TAC from real-time estimate of stock number (N age 1 or more precisely age fa+1) 
-                //     and trigger rule
-                //Estimate observed N1 from true N and real-time uncertanties
-                pred_N_obs(s,fq,fa+1)=real_time_estimate(s, TAC_year, pred_N_true, pred_Z_true, randn(rng));
-
-                Fmin=real_time_F(s);
-                tacMax=do_HCR_trigger(s,pred_N_obs(s,fq,fa+1));   // TAC according to HCR
-                Fscaling=find_Fscaling_from_target_yield(s,fq,Fmin/meanFsq(s),max_F_scale/meanFsq(s),tacMax,
-                                pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq(s), 
-                                pred_N_obs(s), pred_weca(s),pred_prop_landed(s));
-                if (Fscaling>0) Fmax=meanFsq(s)*Fscaling;
-                else  Fmax=0.0; 
-                if (Fmin>Fmax) closure(s,y)=1;      // closure of the fishery
-                break;
-       
-       case 22: //Estimate TAC from real-time estimate of stock number (N age 1 or more precisely age fa+1) 
-                //     and target SSB for SSB after the TAC year
-       case 23: //Estimate F from real-time estimate of stock number (N age 1 or more precisely age fa+1) 
-                //     and target SSB for SSB after the TAC year
-                
-                //Estimate observed N1 from true N and real-time uncertanties
-                pred_N_obs(s,fq,fa+1)=real_time_estimate(s, TAC_year, pred_N_true, pred_Z_true, randn(rng));
-                
-                Fscaling=find_Fscaling_from_target_SSB(s,1,0.0,max_F_scale/meanFsq(s),target_SSB(s),pred_M(s),
-                           pred_M1(s),pred_M2_true(s),pred_F_sq(s),pred_N_obs(s),pred_west(s),pred_propmat(s),y);
-                if (Fscaling>0) Fmax=meanFsq(s)*Fscaling; else Fmax=0.0;
-                Fmin=real_time_F(s);
-                if (test_output==53) cout<<"Real time F from SSB(TAC year+1):"<<Fmax<<endl;
-                if (Fmin>Fmax) closure(s,y)=1;      // closure of the fishery
-                break;
-       case 24: //Estimate F from real-time estimate of stock number (N age 1 or more precisely age fa+1) 
-                //     and target SSB for SSB after the TAC year However F <= Fconstant
-                
-                //Estimate observed N1 from true N and real-time uncertanties
-                pred_N_obs(s,fq,fa+1)=real_time_estimate(s, TAC_year, pred_N_true, pred_Z_true, randn(rng));
-                
-                Fscaling=find_Fscaling_from_target_SSB(s,1,0.0,max_F_scale/meanFsq(s),target_SSB(s),pred_M(s),
-                           pred_M1(s),pred_M2_true(s),pred_F_sq(s),pred_N_obs(s),pred_west(s),pred_propmat(s),y);
-                if (Fscaling>0) Fmax=meanFsq(s)*Fscaling; else Fmax=0.0;
-                if (Fmax>constantF(s)) Fmax=constantF(s);
-                Fmin=real_time_F(s);
-                if (test_output==53) cout<<"Real time F from SSB(TAC year+1):"<<Fmax<<endl;
-                if (Fmin>Fmax) closure(s,y)=1;      // closure of the fishery
-                break;
-                                
-      case 30: //Estimate F from real-time estimate of TSB in the start of TAC year and trigger rule
-                if (real_time_uncertanty(s,4)==1) 
-                   pred_N_obs(s,fq)=pred_N_true(s,fq)*uncertanty(s,real_time_uncertanty(s),randn(rng));
-                else for (a=fa;a<=la(s);a++)
-                   pred_N_obs(s,fq,a)=pred_N_true(s,fq,a)*uncertanty(s,real_time_uncertanty(s),randn(rng));
-                TSB0=0.0;
-                for (a=fa;a<=la(s);a++)TSB0+=pred_N_obs(s,fq,a)*pred_west(s,fq,a);      
-                Fmax=do_HCR_trigger(s,TSB0);
-                Fmin=real_time_F(s);
-                if (Fmin>Fmax) closure(s,y)=1;      // closure of the fishery
-                break;
-
-      case 31: //Estimate TAC from real-time estimate of TSB and trigger rule
-                if (real_time_uncertanty(s,4)==1) 
-                   pred_N_obs(s,fq)=pred_N_true(s,fq)*uncertanty(s,real_time_uncertanty(s),randn(rng));
-                else for (a=fa;a<=la(s);a++)
-                   pred_N_obs(s,fq,a)=pred_N_true(s,fq,a)*uncertanty(s,real_time_uncertanty(s),randn(rng));
-                 TSB0=0.0;
-                for (a=fa;a<=la(s);a++)TSB0+=pred_N_obs(s,fq,a)*pred_west(s,fq,a);
-                tacMax=do_HCR_trigger(s,TSB0);
-                Fmin=real_time_F(s);
-                Fscaling=find_Fscaling_from_target_yield(s,fq,Fmin/meanFsq(s),max_F_scale/meanFsq(s),tacMax,
-                               pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq(s), 
-                               pred_N_obs(s), pred_weca(s),pred_prop_landed(s));
-                if (Fscaling>0) Fmax=meanFsq(s)*Fscaling; else Fmax=0.0;
-                if (Fmin>Fmax) closure(s,y)=1;      // closure of the fishery
-                break;
-                
-     case  42: // SPECIAL CASE, F is the highest value of FMSY (constant F input) and F last year
-                 Fmax=constantF(s);
-                 if (TAC_F_obs(s,y-1) >Fmax) Fmax=TAC_F_obs(s,y-1);
-                 cout<<setfixed()<<setprecision(3)<<TAC_F_obs<<endl;
-                break;
-                
-     case  43: // SPECIAL CASE, Commission "Stocks outside biological limits"
-
-                 // Estimate F from a target SSB (Bpa) in the TAC year+1
-                 // use variable target_SSB as Bpa
-                Fscaling=find_Fscaling_from_target_SSB(s,1,0.0,max_F_scale/meanFsq(s),target_SSB(s),pred_M(s),
-                    pred_M1(s),pred_M2_true(s),pred_F_sq(s),pred_N_obs(s),pred_west(s),pred_propmat(s),y);
-
-                    
-                if (Fscaling>0) Fmax=meanFsq(s)*Fscaling; else Fmax=0.0;
-
-
-                break;
-
-     case  44: // SPECIAL CASE, Blatic Sea cod: reduce F by 10% per year compared to F estimated
-               // for the proceeding year until F=0.3 is reached. After that apply a +-15% constraints on TAC, except for cases where F>0.6
-               
-                 if (TAC_F_obs(s,TAC_year-1)>constantF(s)) {
-                   Fmax=TAC_F_obs(s,TAC_year-1)*(1.0-maxFT1(s,1)); // reduce F by x%
-                   if (Fmax<=constantF(s)) {
-                     Fmax=constantF(s);
-                   }
-                 } else Fmax=constantF(s);
- 
-               break;
-  
-    case  47: // SPECIAL CASE, North Sea,and Kattegat Cod
-              // a) reduce F by 25% if SSB < Blim
-              // b) reduce F by 15 if SSB>Blim and SSB <Bpa, min F at 0.4, apply 20 TAC constraint
-              // c) reduce F by 10 if SSB >Bpa, min F at 0.4, apply 20 TAC constraint
-              
-                 if (SSB_obs(s,TAC_year) <=T1(s)) {Fmax=TAC_F_obs(s,TAC_year-1)*0.75;  } 
-                 else if (SSB_obs(s,TAC_year) <=T2(s)) {Fmax=TAC_F_obs(s,TAC_year-1)*0.85; if (Fmax<=constantF(s)) Fmax=constantF(s); } 
-                 else if (SSB_obs(s,TAC_year) >T2(s)) {Fmax=TAC_F_obs(s,TAC_year-1)*0.90;  if (Fmax<=constantF(s)) Fmax=constantF(s);}  
-               break;
-
-
-       case 98: //(only 98) Norway pout, Estimate TAC in quarter 1 from T1 and T2 and survey indices (0-group) in the previous year (using survey.dist error)
-       case 99: // (both 98 and 99) & closure if the fishery in second quarter
-                // & TAC for quarter 3 and 4 from first quarter 1-group index and assessment results (using real.T.dist error)
-                // & and 25% "normal" recruitment with target at SSB at Bpa? the following year
-
-                int season_last_year_survey;
-                int  season_for_re_opening_fishery;
-
-                season_last_year_survey=3;
-
-                season_for_re_opening_fishery=3;
-              
-                has_changed_exploitation_pattern(s)=1;  // yes, we do change expl pattern
-
-             if (HCR(s)==98) {
-                // find absolute F for first quarter based on survey index
-                tmp=survey_estimate_last_year(s, season_last_year_survey, previous_year_N_true, randn(rng));
-                tacMax=do_HCR_trigger(s,tmp);
-
-                meanFsq_tmp=0.0;
-                for (q=fq;q<=lq;q++) {
-                   if (q<=2) {
-                     pred_F_sq_tmp(q)=pred_F_sq(s,q);
-                     for (a=fa;a<=la(s);a++) if (a>=avg_F_ages(s,1) && a<=avg_F_ages(s,2)) meanFsq_tmp+=pred_F_sq_tmp(q,a);
-                   }
-                   else pred_F_sq_tmp(q)=0;
-                }
-                meanFsq_tmp=meanFsq_tmp/(avg_F_ages(s,2)-avg_F_ages(s,1)+1);
-                if (test_output==53) {
-                   cout<<"survey index:"<<tmp<<". Resulting TAC:"<<tacMax<<endl;
-                   cout<<"Exploitation pattern for survey:"<<endl<<pred_F_sq_tmp<<endl;
-                }
-
-                Fscaling=find_Fscaling_from_target_yield(s,fq,Fmin/meanFsq_tmp,max_F_scale/meanFsq_tmp,tacMax,
-                                pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq_tmp,
-                                pred_N_true(s), pred_weca(s),pred_prop_landed(s));
-                                
-                if (Fscaling>1E-4) {
-                  pred_F_sq_tmp(1)=pred_F_sq_tmp(1)* Fscaling;
-                  pred_F_sq_tmp(2)=pred_F_sq_tmp(2)* Fscaling;
-                  if (test_output==53) cout<<"survey resulting pred_F_sq_tmp:"<<endl<<pred_F_sq_tmp<<endl;
-                }
-                else {
-                    pred_F_sq_tmp(1)=0.0;
-                    pred_F_sq_tmp(2)=0.0;
-                    closure(s,y)=1;    // closure of the fishery
-                }
-              } // end HCR==98
-              
-                // HCR==99 starts here
-                //Estimate F from real-time estimate of stock number (N age 1 or more precisely age fa+1)
-                //     and target SSB for SSB after the TAC year
-
-                // if no survey based TAC for first quarter close it;
-                if (HCR(s)==99)   {
-                  pred_F_sq_tmp(1)=0.0;
-                  pred_F_sq_tmp(2)=0.0;
-                }
-                
-                // Start to prepare F matrix which consists of real F for the first and the second quarter,
-                //  and exploitation pattern for third and fourth quarters
-
-                
-                meanFsq_tmp=0.0; // used just for third and fourth quarters
-                for (q=season_for_re_opening_fishery;q<=lq;q++) {
-                     pred_F_sq_tmp(q)=pred_F_sq(s,q);
-                     for (a=fa;a<=la(s);a++) if (a>=avg_F_ages(s,1) && a<=avg_F_ages(s,2)) meanFsq_tmp+=pred_F_sq_tmp(q,a);
-                }
-                //meanFsq_tmp=meanFsq_tmp/(avg_F_ages(s,2)-avg_F_ages(s,1)+1);
-                if (test_output==53) {
-                    cout<<"F pattern (quarter 1 &2) and exploitation pattern (quarter 3 &4) to calc TAC for third and fourth quarter:";
-                    cout<<setfixed()<<setprecision(3)<<endl<<pred_F_sq_tmp<<endl;
-                }
-
-                //Estimate observed N1 from true N and real-time uncertanties
-                pred_N_obs(s,fq,fa+1)=real_time_estimate(s, TAC_year, pred_N_true, pred_Z_true, randn(rng));
-
-                // reduce expected recruitment by input factor
-                pred_N_obs(s,recq,fa)=pred_N_obs(s,recq,fa)*recruit_adjust(s);
-                
-                Fscaling=find_Fscaling_from_target_SSB(s,season_for_re_opening_fishery,0.0,
-                              3.0,target_SSB(s),pred_M(s),
-                              pred_M1(s),pred_M2_true(s),pred_F_sq_tmp,pred_N_obs(s),pred_west(s),pred_propmat(s),y);
-
-                Fmin=real_time_F(s);
-
-                for (q=season_for_re_opening_fishery;q<=lq;q++) {
-                  if (Fscaling>0) pred_F_sq_tmp(q)=pred_F_sq_tmp(q)*Fscaling;
-                  else pred_F_sq_tmp(q)=0.0;
-                }
-
-                if (test_output==53) cout<<"final absolute F from HCR="<<HCR(s)<<":"<<endl<<pred_F_sq_tmp<<endl;
-
-                // calc new mean F based on new exploitation pattern
-                meanFsq_tmp=0.0; // used just for third and fourth quarters
-                for (q=fq;q<=lq;q++) for (a=fa;a<=la(s);a++) {
-                  if (a>=avg_F_ages(s,1) && a<=avg_F_ages(s,2))meanFsq_tmp+=pred_F_sq_tmp(q,a);
-                }
-                meanFsq_tmp=meanFsq_tmp/(avg_F_ages(s,2)-avg_F_ages(s,1)+1);
-                Fmax=meanFsq_tmp;
-                //if (Fmax<1E-4) Fmax=0.0;
-                if (Fmin>=Fmax) closure(s,y)=closure(s,y)+2;      // closure of the fishery
-
-                if (test_output==53) cout<<"final Fmax from HCR=99:"<<Fmax<<endl;
-                //overwrite with new exploitation pattern
-                meanFsq(s)=meanFsq_tmp;
-                pred_F_sq(s)=pred_F_sq_tmp;
-                
-                 if (test_output==53) if (Fmax>1.5) {
-                   cout <<"HIGH F: "<<endl<<"N_true:"<<endl<<setprecision(0)<<pred_N_true(s,fq)<<endl;
-                   cout <<"N_obs:"<<endl<<pred_N_obs(s,fq)<<endl;
-                }
-                break;
-                
-     case 101:  // 2012 Norway pout MSE  with two assessment per year
-              // cout<<"TAC_true_half"<<endl<<TAC_true_half<<endl;
-              has_changed_exploitation_pattern(s)=1;  // yes, we do change expl pattern
-              
-              if (growth_model(2,s)>0 || growth_model(3,s)>0) {                 // growth_model(2,s) and growth_model(3,s) is used for cap F by half-year
-                   upper_F=growth_model(2,s)+growth_model(3,s);
-                   if (test_output==53)  cout<<"Upper F (for the whole year):"<<setprecision(3)<<upper_F<<endl;
-              } else upper_F=max_F_scale;
-              
-              if (test_output==53) cout<<"step 3: pred_N_true_tmp("<<y+1<<"):  "<<setprecision(0)<<pred_N_true_tmp(s,fq)<<endl;
-              if (test_output==53) cout<<"Step 3: pred_N_obs("<<y+1<<"):  "<<setprecision(0)<<pred_N_obs(s,fq)<<endl;
-              if (test_output==53) cout<<"upper_F:"<<setprecision(3)<<upper_F<<endl;
- 
-              // Adjust the initial TAC such that the real F does not exceed  input Cap-F.
-              tacMax=TAC_true_half(s,y+1,1)+TAC_true_half(s,y+1,2);
-              if (test_output==53) {
-                cout<<"Step 4: TAC_obs("<<y+1<<") before adjustment:"<<setprecision(0)<< tacMax<<" from:"<<TAC_true_half(s,y+1,1)<<"  and second hy TAC:"<<TAC_true_half(s,y+1,2)<<endl;
-                cout<<"pred_F_sq(s)"<<endl<<setprecision(3)<<pred_F_sq(s)<<endl<<"meanFsq(s): "<<meanFsq(s)<<endl;
-              } 
-              Fscaling=find_Fscaling_from_target_yield(s,fq,0,upper_F/meanFsq(s),tacMax,
-                              pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq(s),
-                              pred_N_true_tmp(s), pred_weca(s),pred_prop_landed(s));
-
-              if (test_output==53) cout<<" step 4: Mean True F: "<<setprecision(5)<<meanFsq*Fscaling<<
-                                  "  Fscaling:"<<Fscaling<<"  Cap-F:"<<upper_F<<endl;
-              
-              // Calc adjusted (realised) first half-year TAC  
-              // prepare explotion pattern for first half year only
-              meanFsq_tmp=0.0;
-              for (q=fq;q<=lq;q++) {
-                 if (q<=2) {
-                   pred_F_sq_tmp(q)=pred_F_sq(s,q);
-                   for (a=fa;a<=la(s);a++) if (a>=avg_F_ages(s,1) && a<=avg_F_ages(s,2)) meanFsq_tmp+=pred_F_sq_tmp(q,a);
-                 }
-                 else pred_F_sq_tmp(q)=0;
-              }
-              meanFsq_tmp=meanFsq_tmp/(avg_F_ages(s,2)-avg_F_ages(s,1)+1);
-
-              if (Fscaling>0) { 
-                  yield1=calc_Yield_from_Fscaling(s,fq,Fscaling,pred_M(s),pred_M1(s),pred_M2_true(s),pred_F_sq_tmp,
-                         pred_N_true_tmp(s),pred_weca(s),pred_prop_landed(s));
-                  tacMax=yield1;
-              } 
-              if (test_output==53) cout<<" step 4:True TAC(adjusted) first half-year:  "<<setprecision(0)<<tacMax<<endl;
-              TAC_true_half(s,y+1,1)=tacMax;
-               
-              pred_F_sq(s,1)=pred_F_sq_tmp(1)* Fscaling;  // calc and save real F
-              pred_F_sq(s,2)=pred_F_sq_tmp(2)* Fscaling;
-              if (test_output==53) cout<<" step 3:True F first half-year:  "<<setprecision(3)<<endl<<pred_F_sq(s,1)<<endl<<pred_F_sq(s,2)<<endl;
-              
-              // udate true stock size to 1st July and calculate TAC for second half-year
-              tmp=0;
-              for (q=fq;q<recq;q++){
-                 for (a=faq(q);a<=la(s);a++){
-                 if (q==fq) tmp+=pred_N_true_tmp(s,q,a)*pred_west(s,q,a)*pred_propmat(s,q,a);  // SSB
-                  // Total mortality
-                  if (multi==2) pred_Z_true(s,q,a)=pred_F_sq(s,q,a)+pred_M1(s,q,a)+pred_M2_true(s,q,a);  //used muli species
-                  else  pred_Z_true(s,q,a)=pred_F_sq(s,q,a)+pred_M(s,q,a);  
-                  pred_N_true_tmp(s,q+1,a)= pred_N_true_tmp(s,q,a)*exp(-pred_Z_true(s,q,a));
-                } //age loop
-               }  // q loop
- 
-               // estimation of recruits
-               pred_N_true_tmp(s,recq,fa)=SSB_recruit(s,tmp,rn(s,y+1),hist_rec_noise,0);
-               if (test_output==53) cout<<"step 4: Q3: pred_N_true_tmp: "<<setprecision(0)<<pred_N_true_tmp(s,recq)<<endl;                
-              
-              // Step 5 calculate observed F for first half-year
-              if (test_output==53) {
-                 cout<<"step 5: TAC (realised) first half-year:"<<tacMax<<endl;
-                 cout<<"step 5: (obs) Exploitation pattern for first half-year:"<<endl<<setprecision(3)<<pred_F_sq_tmp<<endl;
-              }
-
-              Fscaling=find_Fscaling_from_target_yield(s,fq,0,2*upper_F/meanFsq_tmp,tacMax,          // the upper F limit is twice any realistic value
-                              pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq_tmp,
-                              pred_N_obs(s), pred_weca(s),pred_prop_landed(s));
-                              
-              pred_F_sq_tmp(1)=pred_F_sq_tmp(1)* Fscaling;
-              pred_F_sq_tmp(2)=pred_F_sq_tmp(2)* Fscaling;
-
-              if (test_output==53) cout<<" step 5: Mean obs F,first half year: "<<meanFsq_tmp*Fscaling<<endl;
-
-              // udate observed stock size to 1st July 
-              for (q=fq;q<recq;q++){
-                 for (a=faq(q);a<=la(s);a++){
-                  // Total mortality
-                  if (multi==2) pred_Z_obs(s,q,a)=pred_F_sq_tmp(q,a)+pred_M1(s,q,a)+pred_M2_true(s,q,a);  //used muli species
-                  else  pred_Z_obs(s,q,a)=pred_F_sq_tmp(q,a)+pred_M(s,q,a);  
-                  // observed stock numbers
-                   pred_N_obs(s,q+1,a)= pred_N_obs(s,q,a)*exp(-pred_Z_obs(s,q,a));
-                } //age loop
-                if (test_output==53) cout<<"step 5: Obs F quarter "<<setprecision(0)<<q<<endl<<setprecision(3)<<pred_F_sq_tmp(q)<<endl; 
-               }  // q loop
-               if (test_output==53) cout<<"step 5: Q3: pred_N_obs: "<<setprecision(0)<<pred_N_obs(s,recq)<<endl;                
-               
-              
-              // step 6, calculate (observed) TAC for second half-year
-              if (growth_model(3,s)>0) {                 // growth_model(3,s) is used for cap F for second half-year TACs
-                   upper_F=growth_model(3,s);
-                   if (test_output==53)  cout<<"Upper F second half year:"<<setprecision(3)<<upper_F<<endl;
-              } else upper_F=max_F_scale;
-
-              pred_F_sq_tmp=pred_F_sq_copy(s);   // fresh copy of exploitation pattern
-              meanFsq_tmp=meanFsq_copy(s);
-
-              Fscaling=find_Fscaling_from_target_SSB(s,recq,0.0,5*meanFsq_tmp,          // starts in quarter 3 (recq)
-                            target_SSB(s),pred_M(s),
-                            pred_M1(s),pred_M2_true(s),pred_F_sq_tmp,pred_N_obs(s),pred_west(s),pred_propmat(s),y);
-  
-              if (Fscaling>0) yield1=calc_Yield_from_Fscaling(s,recq,Fscaling,pred_M(s),pred_M1(s),pred_M2_true(s),pred_F_sq_tmp,
-                        pred_N_obs(s),pred_weca(s),pred_prop_landed(s));
-              else {yield1=0.0; Fscaling=0; }
-              TAC_true_half(s,y+1,2)=yield1;
-              if (test_output==53)  cout<<setprecision(0)<<"step 6: TAC("<<TAC_year<<")second half-year before TAC constraints:"<<yield1<<endl;
-
-              if ((sum(TAC_true_half(s,y+1)) < growth_model(4,s)) || (sum(TAC_true_half(s,y+1)) > growth_model(5,s))) {   // annual TAC outside TAC constarints 
-                 if (sum(TAC_true_half(s,y+1)) < growth_model(4,s)) tmp=growth_model(4,s)-TAC_true_half(s,y+1,1);
-                 else if (sum(TAC_true_half(s,y+1)) > growth_model(5,s)) tmp=growth_model(5,s)-TAC_true_half(s,y+1,1);
-                 if (test_output==53) cout<<"step 6: target TAC second half-year due to constatints: "<<tmp<<endl; 
-                 Fscaling=find_Fscaling_from_target_yield(s,recq,0,2,tmp,pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq_tmp,
-                                                          pred_N_obs(s), pred_weca(s),pred_prop_landed(s));
-                if (Fscaling>1E-4) {
-                  pred_F_sq_tmp(recq)=pred_F_sq_tmp(recq)* Fscaling;
-                  pred_F_sq_tmp(recq+1)=pred_F_sq_tmp(recq+1)* Fscaling;
-                }
-                if (test_output==53) cout<<"Step 6: pred_F_sq_tmp after TAC constraints:"<<endl<<setprecision(3)<<pred_F_sq_tmp<<endl<<
-                        "Fscaling: "<<Fscaling<<"  mean F: "<<meanFsq_tmp*Fscaling<<endl;;
-                if (Fscaling>0) yield1=calc_Yield_from_Fscaling(s,recq,1,pred_M(s),pred_M1(s),pred_M2_true(s),pred_F_sq_tmp,
-                      pred_N_obs(s),pred_weca(s),pred_prop_landed(s));
-                 else {yield1=0.0; Fscaling=0; } 
-                 if (test_output==53) cout<<"step 6: TAC second half year after TAC constraints:"<<yield1<<endl;
-                 TAC_true_half(s,y+1,2)=yield1;
-              }  
-                    
-            // Step 7: Calculate true F (and true TAC) for second half-year from observed TAC and true N
-              meanFsq_tmp=0.0;
-              for (q=fq;q<=lq;q++) {
-                 if (q>2) {
-                   pred_F_sq_tmp(q)=pred_F_sq_copy(s,q);
-                   for (a=fa;a<=la(s);a++) if (a>=avg_F_ages(s,1) && a<=avg_F_ages(s,2)) meanFsq_tmp+=pred_F_sq_tmp(q,a);
-                 }
-                 else pred_F_sq_tmp(q)=0;
-              }
-              meanFsq_tmp=meanFsq_tmp/(avg_F_ages(s,2)-avg_F_ages(s,1)+1);
-             
-             if (test_output==53) {
-               cout<<"Step 7: pred_F_true before scaling:"<<endl<<setprecision(3)<<pred_F_sq_tmp<<endl;
-               cout<<"Step 7: target yield:"<<setprecision(0)<<TAC_true_half(s,y+1,2)<<endl;
-             }
-             Fscaling=find_Fscaling_from_target_yield(s,recq,0,upper_F/meanFsq_tmp,TAC_true_half(s,y+1,2),
-                                pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq_tmp,
-                                pred_N_true_tmp(s), pred_weca(s),pred_prop_landed(s));
-             
-             if (test_output==53) cout<<" step 7: Mean True F, second half year: "<<setprecision(3)<<meanFsq_tmp*Fscaling<<
-                                  "  Fscaling:"<<Fscaling<<"  Cap-F second half-year:"<<upper_F<<endl;
-                                 
-             if (Fscaling>1E-4) {
-                pred_F_sq_tmp(recq)=pred_F_sq_tmp(recq)* Fscaling;
-                pred_F_sq_tmp(recq+1)=pred_F_sq_tmp(recq+1)* Fscaling;
-              }
-              else {
-                pred_F_sq_tmp(recq)=0.0;
-                pred_F_sq_tmp(recq+1)=0.0;
-              }
-              if (test_output==53) cout<<"Step 7: pred_F_sq_tmp after scaling:"<<endl<<setprecision(3)<<pred_F_sq_tmp<<endl;
-              
-              if (Fscaling>0) yield1=calc_Yield_from_Fscaling(s,recq,1,pred_M(s),pred_M1(s),pred_M2_true(s),pred_F_sq_tmp,
-                      pred_N_true_tmp(s),pred_weca(s),pred_prop_landed(s));
-               else {yield1=0.0; Fscaling=0; } 
-               if (test_output==53) cout<<"step 7: realised TAC second half year:"<<yield1<<endl;
-               TAC_true_half(s,y+1,2)=yield1;
-               
-              // update pred_F_sq to include the absolute F for the year
-              pred_F_sq(s,recq)=pred_F_sq_tmp(recq);
-              pred_F_sq(s,recq+1)=pred_F_sq_tmp(recq+1);
-              
-              // calc new mean F 
-              meanFsq_tmp=0.0; 
-              for (q=fq;q<=lq;q++) for (a=avg_F_ages(s,1);a<=avg_F_ages(s,2);a++) meanFsq_tmp+=pred_F_sq(s,q,a);
-              meanFsq(s)=meanFsq_tmp/(avg_F_ages(s,2)-avg_F_ages(s,1)+1);
-
-              Fmax=meanFsq(s);
-              if (test_output==53) cout<<"step 7: true F for year "<<y+1<<endl<<setprecision(3)<< pred_F_sq<<endl;
-              if (test_output==53) cout<<"step 7: realised TAC for year "<<y+1<<":  "<<setprecision(0)<< 
-               " first half:"<<TAC_true_half(s,y+1,1)<<" second half:"<<TAC_true_half(s,y+1,2)<<"  sum:"<<sum(TAC_true_half(s,y+1))<<endl;
-          
-             // Step 8, simulate the September assessment
-              // assessment noise and bias on stock numbers, first season (this simulates an assessment)
-             if (real_time_uncertanty(s,1)==2 || real_time_uncertanty(s,1)==3) {
-                ; 
-                //cov_uncertanty(s, assess_uncertanty(s),pred_N_obs(s,fq).sub(fa+1,la(s)),coVariance(s).sub(fa+1,la(s)));
-              }
-            else if (real_time_uncertanty(s,4)==1) pred_N_obs(s,recq)=
-                             pred_N_true_tmp(s,recq)*uncertanty(s,real_time_uncertanty(s),randn(rng));
-            else for (a=fa;a<=la(s);a++) pred_N_obs(s,recq,a)=
-                       pred_N_true_tmp(s,recq,a)*uncertanty(s,real_time_uncertanty(s),randn(rng));
-          
-            if (test_output==53) cout<<"Step 8: pred_N_obs:  "<<setprecision(0)<<endl<<pred_N_obs(s)<<endl;
       
-            // step  9; Update observed stock to 1 Jan next year 
-            // estimate observed F second half year
-            pred_F_sq_tmp=pred_F_sq_copy(s); meanFsq_tmp=meanFsq_copy(s); // fresh copy
-            Fscaling=find_Fscaling_from_target_yield(s,recq,0,upper_F/meanFsq_tmp*2,TAC_true_half(s,y+1,2),
-                                pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq_tmp,
-                                pred_N_obs(s), pred_weca(s),pred_prop_landed(s));
-
-             if (test_output==53) cout<<" step 9: Target TAC second half:"<<setprecision(0)<<TAC_true_half(s,y+1,2)<<"  Mean observed F, second half year: "<<setprecision(3)<<meanFsq_tmp*Fscaling<<
-                                  "  Fscaling:"<<Fscaling<<endl;
-                                 
-             if (Fscaling>1E-4) {
-                pred_F_obs(s,recq)=pred_F_sq_tmp(recq)* Fscaling;
-                pred_F_obs(s,recq+1)=pred_F_sq_tmp(recq+1)* Fscaling;
-              }
-              else {
-                pred_F_obs(s,recq)=0.0;
-                pred_F_obs(s,recq+1)=0.0;
-              }
-              if (test_output==53) cout<<"Step 9: pred_F_obs after scaling:"<<endl<<setprecision(3)<<pred_F_obs<<endl;
-              // update obs_N to 1 st Jan
-              for (q=recq;q<=lq;q++){
-                 for (a=faq(q);a<=la(s);a++){
-                  // Total mortality
-                  if (multi==2) pred_Z_obs(s,q,a)=pred_F_obs(s,q,a)+pred_M1(s,q,a)+pred_M2_true(s,q,a);  //used muli species
-                  else  pred_Z_obs(s,q,a)=pred_F_obs(s,q,a)+pred_M(s,q,a);  
-                  if  (q<lq) pred_N_obs(s,q+1,a)= pred_N_obs(s,q,a)*exp(-pred_Z_true(s,q,a));
-                  else {
-                    if (a<la(s)) pred_N_obs(s,fq,a+1)=pred_N_obs(s,q,a)*exp(-pred_Z_true(s,q,a));
-                    if (a==la(s) && nplus(s)==1)  pred_N_obs(s,fq,a)=pred_N_obs(s,q,a)*exp(-pred_Z_true(s,q,a))+pred_N_obs(s,fq,a);
-                  }
-                } //age loop
-               }  // q loop
-               tmp=0;
-               for (a=faq(fq);a<=la(s);a++) tmp+=pred_N_obs(s,fq,a)*pred_west(s,fq,a)*pred_propmat(s,fq,a);
-               pred_N_obs(s,recq,fa)=SSB_recruit(s,tmp,0,hist_rec_noise,0);
-               if (test_output==53)  cout<<setprecision(0)<<"step 9: Observed stock N:"<<endl<< pred_N_obs(s,fq)<<"  Recruitment:"<< pred_N_obs(s,recq,fa)<<endl;
-              
-               // calc TAC for next year
-              // Start to prepare F matrix which consists of exploitation pattern for the full year
-              meanFsq_tmp=meanFsq_copy(s);  
-              pred_F_sq_tmp=pred_F_sq_copy(s);
-              Fscaling=find_Fscaling_from_target_SSB(s,recq,0.0,5*meanFsq_tmp,
-                                target_SSB(s),pred_M(s),
-                                pred_M1(s),pred_M2_true(s),pred_F_sq_tmp,pred_N_obs(s),pred_west(s),pred_propmat(s),y);
-  
-               if (Fscaling>1E-4) yield1=calc_Yield_from_Fscaling(s,recq,Fscaling,pred_M(s),pred_M1(s),pred_M2_true(s),pred_F_sq_tmp,
-                      pred_N_obs(s),pred_weca(s),pred_prop_landed(s));
-               else {yield1=0.0; Fscaling=0; }
-               if (test_output==53)  cout<<setprecision(0)<<"step 9: observed TAC (full year) before TAC constraints :"<<yield1<<endl;
-             
-               if (yield1 < growth_model(4,s) || yield1> growth_model(5,s)) {   // annual TAC outside TAC constarints 
-                 if (yield1 < growth_model(4,s)) tmp=growth_model(4,s);
-                 else if (yield1 > growth_model(5,s)) tmp=growth_model(5,s);
-                  
-                 Fscaling=find_Fscaling_from_target_yield(s,recq,0,upper_F/meanFsq_tmp*5,tmp,
-                    pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq_tmp,
-                    pred_N_obs(s), pred_weca(s),pred_prop_landed(s));
-
-                 if (Fscaling>1E-4) {
-                  pred_F_sq_tmp(recq)=pred_F_sq_tmp(recq)* Fscaling;
-                  pred_F_sq_tmp(recq+1)=pred_F_sq_tmp(recq+1)* Fscaling;
-                 }
-                 if (test_output==53) cout<<"Step 9: pred_F_sq_tmp after TAC constraints:"<<endl<<setprecision(3)<<pred_F_sq_tmp<<endl;
-                 if (Fscaling>0) yield1=calc_Yield_from_Fscaling(s,recq,1,pred_M(s),pred_M1(s),pred_M2_true(s),pred_F_sq_tmp,
-                      pred_N_obs(s),pred_weca(s),pred_prop_landed(s));
-                 else {yield1=0.0; Fscaling=0; } 
-                 if (test_output==53) cout<<"step 9: TAC("<<y+2<<") after TAC constraints:"<<yield1<<endl;
-               } 
-               if (test_output==53) cout<<"step 9: final TAC("<<y+2<<"):"<<yield1<<endl; 
-               TAC_true_half(s,y+2,1)=yield1;
-
-       break;  // end Norway pout MSE 101
-
-      case 102: //simulate an September assessment (where recruitment index is availeble) and esimate TAC for the next calender year  from escapement strategy
-                // adjust observed recruitment index from real recruiment and noise 
-
-                if (test_output==53) cout<<"HCR 102: pred_N_obs:  "<<setprecision(0)<<endl<<pred_N_obs(s)<<endl;
-                
-                Fscaling=find_Fscaling_from_target_SSB(s,1,0.0,max_F_scale/meanFsq(s),target_SSB(s),pred_M(s),
-                    pred_M1(s),pred_M2_true(s),pred_F_sq(s),pred_N_obs(s),pred_west(s),pred_propmat(s),y);
-                if (Fscaling>0) Fmax=meanFsq(s)*Fscaling; else Fmax=0.0;
-                if (test_output==53) cout<<"Fscaling after esacpement strategy:"<<setprecision(3)<<Fscaling<<"  Fmax:"<<Fmax<<endl;
-                yield1=calc_Yield_from_Fscaling(s,fq,Fscaling,pred_M(s),pred_M1(s),pred_M2_true(s),pred_F_sq(s),
-                         pred_N_obs(s),pred_weca(s),pred_prop_landed(s));
-                if (test_output==53) cout<<"Escapement strategy TAC before TAC adjustment:"<<setprecision(0)<<yield1<<endl;
-                         
-                if (yield1< growth_model(2,s))  {      //HCR@growth.model[2,1] is used as option for minimum observed TAC 
-                  if (test_output==53) cout<<"Escapement strategy gave TAC:"<<setprecision(0)<<yield1<<" which is below min TAC:"<<growth_model(2,s)<<endl;
-                     Fscaling=find_Fscaling_from_target_yield(s,fq,0,max_F_scale/meanFsq(s),growth_model(2,s),
-                              pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq(s),
-                              pred_N_obs(s), pred_weca(s),pred_prop_landed(s)); 
-                  if (Fscaling>0) Fmax=meanFsq(s)*Fscaling; else Fmax=0.0;
-                  if (test_output==53) cout<<"updated Fscaling after min TAC:"<<setprecision(3)<<Fscaling<<"  Fmax:"<<Fmax<<endl;   
-                } 
-                else if (yield1> growth_model(3,s))  {      //HCR@growth.model[3,1] is used as option for maximum observed TAC 
-                  if (test_output==53) cout<<"Escapement strategy gave TAC:"<<setprecision(0)<<yield1<<" which is above max TAC:"<<growth_model(3,s)<<endl;
-                     Fscaling=find_Fscaling_from_target_yield(s,fq,0,max_F_scale/meanFsq(s),growth_model(3,s),
-                              pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq(s),
-                              pred_N_obs(s), pred_weca(s),pred_prop_landed(s)); 
-                  if (Fscaling>0) Fmax=meanFsq(s)*Fscaling; else Fmax=0.0;
-                  if (test_output==53) cout<<"updated Fscaling after max TAC:"<<setprecision(3)<<Fscaling<<"  Fmax:"<<Fmax<<endl;   
-                }                                                                 
-                if (Fmin>Fmax) closure(s,y)=1;      // closure of the fishery
-                
-                
-       break;
- 
-
-      case 103: //simulatet a MAY assessment (where recruitment index is not availeble) and esimate TAC for the next calender year  from escapement strategy
-                // adjust observed recruitment index from real recruiment and noise 
-
-                if (test_output==53) cout<<"HCR 103: pred_N_obs:  "<<setprecision(0)<<endl<<pred_N_obs(s)<<endl;
-                
-                Fscaling=find_Fscaling_from_target_SSB(s,1,0.0,max_F_scale/meanFsq(s),target_SSB(s),pred_M(s),
-                    pred_M1(s),pred_M2_true(s),pred_F_sq(s),pred_N_obs(s),pred_west(s),pred_propmat(s),y);
-                if (Fscaling>0) Fmax=meanFsq(s)*Fscaling; else Fmax=0.0;
-                if (test_output==53) cout<<"Fscaling after esacpement strategy:"<<setprecision(3)<<Fscaling<<"  Fmax:"<<Fmax<<endl;
-                yield1=calc_Yield_from_Fscaling(s,fq,Fscaling,pred_M(s),pred_M1(s),pred_M2_true(s),pred_F_sq(s),
-                         pred_N_obs(s),pred_weca(s),pred_prop_landed(s));
-                if (test_output==53) cout<<"Escapement strategy TAC before TAC adjustment:"<<setprecision(0)<<yield1<<endl;
-                         
-                if (yield1< growth_model(2,s))  {      //HCR@growth.model[2,1] is used as option for minimum observed TAC 
-                  if (test_output==53) cout<<"Escapement strategy gave TAC:"<<setprecision(0)<<yield1<<" which is below min TAC:"<<growth_model(2,s)<<endl;
-                     Fscaling=find_Fscaling_from_target_yield(s,fq,0,max_F_scale/meanFsq(s),growth_model(2,s),
-                              pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq(s),
-                              pred_N_obs(s), pred_weca(s),pred_prop_landed(s)); 
-                  if (Fscaling>0) Fmax=meanFsq(s)*Fscaling; else Fmax=0.0;
-                  if (test_output==53) cout<<"updated Fscaling after min TAC:"<<setprecision(3)<<Fscaling<<"  Fmax:"<<Fmax<<endl;   
-                } 
-                else if (yield1> growth_model(3,s))  {      //HCR@growth.model[3,1] is used as option for maximum observed TAC 
-                  if (test_output==53) cout<<"Escapement strategy gave TAC:"<<setprecision(0)<<yield1<<" which is above max TAC:"<<growth_model(3,s)<<endl;
-                     Fscaling=find_Fscaling_from_target_yield(s,fq,0,max_F_scale/meanFsq(s),growth_model(3,s),
-                              pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq(s),
-                              pred_N_obs(s), pred_weca(s),pred_prop_landed(s)); 
-                  if (Fscaling>0) Fmax=meanFsq(s)*Fscaling; else Fmax=0.0;
-                  if (test_output==53) cout<<"updated Fscaling after max TAC:"<<setprecision(3)<<Fscaling<<"  Fmax:"<<Fmax<<endl;   
-                }                                                                 
-                if (Fmin>Fmax) closure(s,y)=1;      // closure of the fishery
-                
-                
-       break;
- 
-       case 110: // TAC for first half year is fixed (input option constant.TAC.) . The TAC is assummed taken however limited by Cap F 
-                 // TAC for the full year is based on the May assessment (which provides Stock numbers by 1. January) and an anual target F of 0.35
-
-       case 111: // TAC for first half year is fixed (input option constant.TAC.) . The TAC is assummed taken however limited by Cap F 
-                 // TAC for the full year is based on the May assessment (which provides Stock numbers by 1. January) and the Escapement strategy
-                 
- 
-              
-              has_changed_exploitation_pattern(s)=1;  // yes, we do change expl pattern
-              
-              if (growth_model(2,s)>0) {                 // growth_model(2,s) is used for cap F for first half-year TACs
-                   upper_F=growth_model(2,s);
-                   if (test_output==53)  cout<<"Upper F:"<<setprecision(3)<<upper_F<<endl;
-              } else upper_F=max_F_scale;
-              
-              // input TAC for first half-year
-              tacMax=constantTAC(s);
-              
-              // Adjust the initial TAC such that the real F does not exceed the input Cap-F.
-              // change exploitation pattern to include only the first half year 
-              
-              //if (test_output==53) cout<<"step 3: initial exploitation pattern:"<<setprecision(3)<<endl<<pred_F_sq(s)<<endl;
-               if (test_output==53) cout<<"pred_N_true_tmp("<<y+1<<"):  "<<setprecision(0)<<pred_N_true_tmp(s,fq)<<endl;
-
-              meanFsq_tmp=0.0;
-              for (q=fq;q<=lq;q++) {
-                 if (q<=2) {
-                   pred_F_sq_tmp(q)=pred_F_sq(s,q);
-                   for (a=fa;a<=la(s);a++) if (a>=avg_F_ages(s,1) && a<=avg_F_ages(s,2)) meanFsq_tmp+=pred_F_sq_tmp(q,a);
-                 }
-                 else pred_F_sq_tmp(q)=0;
-              }
-              meanFsq_tmp=meanFsq_tmp/(avg_F_ages(s,2)-avg_F_ages(s,1)+1);
-              if (test_output==53) {
-                 cout<<"step 3: Initial Fixed TAC:"<<setprecision(0)<<tacMax<<endl;
-                 cout<<"step 3: Exploitation pattern for first half-year:"<<endl<<setprecision(3)<<pred_F_sq_tmp<<endl<<"  meanFsq_tmp:"<<meanFsq_tmp<<endl;
-              }
-             //cout<<"check:"<<upper_F*maxFT1(s,2)/meanFsq_tmp<<endl;
-             Fscaling=find_Fscaling_from_target_yield(s,fq,0,upper_F/meanFsq_tmp,tacMax,
-                              pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq_tmp,
-                              pred_N_true_tmp(s), pred_weca(s),pred_prop_landed(s));
-                              
-
-              if (test_output==53) cout<<" step 3: Mean True F,first half year: "<<setprecision(3)<<meanFsq_tmp*Fscaling<<
-                                  "  Fscaling:"<<Fscaling<<"  Cap-F first half-year:"<<upper_F<<endl;
-              
-              // Calc adjusted (realised) TAC for first half-year 
-              if (Fscaling>0) { 
-                  yield1=calc_Yield_from_Fscaling(s,fq,Fscaling,pred_M(s),pred_M1(s),pred_M2_true(s),pred_F_sq_tmp,
-                         pred_N_true_tmp(s),pred_weca(s),pred_prop_landed(s));
-                  tacMax=yield1;
-              } 
-              if (test_output==53) cout<<" step 3:True fixed TAC (adjusted):  "<<setprecision(0)<<tacMax<<endl;
-              TAC_true_half(s,y,1)=tacMax;
-              pred_F_sq(s,1)=pred_F_sq_tmp(1)* Fscaling;  // calc and save real F
-              pred_F_sq(s,2)=pred_F_sq_tmp(2)* Fscaling;
-              if (test_output==53) cout<<" step 3:True fixed F first half-year:  "<<setprecision(3)<<endl<<pred_F_sq(s,1)<<endl<<pred_F_sq(s,2)<<endl;
-              
-              // udate true stock size to 1st July and calculate TAC for second half-year
-              tmp=0;
-              for (q=fq;q<recq;q++){
-                 for (a=faq(q);a<=la(s);a++){
-                 if (q==fq) tmp+=pred_N_true_tmp(s,q,a)*pred_west(s,q,a)*pred_propmat(s,q,a);  // SSB
-                  // Total mortality
-                  if (multi==2) pred_Z_true(s,q,a)=pred_F_sq(s,q,a)+pred_M1(s,q,a)+pred_M2_true(s,q,a);  //used muli species
-                  else  pred_Z_true(s,q,a)=pred_F_sq(s,q,a)+pred_M(s,q,a);  
-                  pred_N_true_tmp(s,q+1,a)= pred_N_true_tmp(s,q,a)*exp(-pred_Z_true(s,q,a));
-                } //age loop
-               }  // q loop
- 
-               // estimation of recruits
-               pred_N_true_tmp(s,recq,fa)=SSB_recruit(s,tmp,rn(s,y+1),hist_rec_noise,0);
-               if (test_output==53) cout<<"step 3: Q3: pred_N_true_tmp: "<<setprecision(0)<<pred_N_true_tmp(s,recq)<<endl;                
-               
-              // step 4, simulate the May assessment 
-              
-              // Step 5 calculate observed F for first half-year
-               if (test_output==53) {
-                 cout<<"step 5: Fixed TAC (realised):"<<tacMax<<endl;
-                 cout<<"step 5: (obs) Exploitation pattern for first half-year:"<<endl<<setprecision(3)<<pred_F_sq_tmp<<endl;
-              }
-
-              Fscaling=find_Fscaling_from_target_yield(s,fq,0,2*upper_F/meanFsq_tmp,tacMax,          // the upper F limit is twice any realistic value
-                              pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq_tmp,
-                              pred_N_obs(s), pred_weca(s),pred_prop_landed(s));
-                              
-              pred_F_sq_tmp(1)=pred_F_sq_tmp(1)* Fscaling;
-              pred_F_sq_tmp(2)=pred_F_sq_tmp(2)* Fscaling;
-
-              if (test_output==53) cout<<" step 5: Mean obs F,first half year: "<<meanFsq_tmp*Fscaling<<endl;
-
-              // udate observed stock size to 1st July 
-              for (q=fq;q<recq;q++){
-                 for (a=faq(q);a<=la(s);a++){
-                  // Total mortality
-                  if (multi==2) pred_Z_obs(s,q,a)=pred_F_sq_tmp(q,a)+pred_M1(s,q,a)+pred_M2_true(s,q,a);  //used muli species
-                  else  pred_Z_obs(s,q,a)=pred_F_sq_tmp(q,a)+pred_M(s,q,a);  
-                  // observed stock numbers
-                   pred_N_obs(s,q+1,a)= pred_N_obs(s,q,a)*exp(-pred_Z_obs(s,q,a));
-                } //age loop
-                if (test_output==53) cout<<"step 5: Obs F quarter "<<setprecision(0)<<q<<endl<<setprecision(3)<<pred_F_sq_tmp(q)<<endl; 
-               }  // q loop
-               if (test_output==53) cout<<"step 5: Q3: pred_N_obs: "<<setprecision(0)<<pred_N_obs(s,recq)<<endl;                
-               
-              
-              // step 6, calculate (observed) TAC for second half-year
-               if (growth_model(3,s)>0) {                 // growth_model(3,s) is used for cap F for second half-year TACs
-                   upper_F=growth_model(3,s);
-                   if (test_output==53)  cout<<"Upper F:"<<setprecision(3)<<upper_F<<endl;
-              } else upper_F=max_F_scale;
-
-              if (HCR(s)==110) {   // TAC from target F for the full year
-                 // Start to calculate F left over for second half year
-                  meanFsq_tmp=meanFsq_tmp*Fscaling;  // mean F  (observed) first haf year
-                  tmp=growth_model(4,s)-meanFsq_tmp; // growth_model(4,s) includes target F. meanFsq_tmp include mean F for first half year
-                  if (tmp<0) tmp=0.0;
-                  if (test_output==53) cout<<setprecision(3)<<"step 6: Target F for the full year: "<<growth_model(4,s)<<" mean F for first half year:"<< meanFsq_tmp<<
-                                            " mean F for second half year:"<<tmp<<endl;
-                  
-                  if  (tmp>0) {
-                    double mult;
-                    mult=0;
-                    meanFsq_tmp=0;
-                    while (meanFsq_tmp<tmp) {
-                      mult+=0.0025;
-                      //cout<<"mult: "<<setprecision(3)<<mult<<endl;
-                      meanFsq_tmp=0;
-                      for (q=recq;q<=lq;q++) {
-                        pred_F_sq_tmp(q)=mult*pred_F_sq_copy(s,q);
-                        for (a=avg_F_ages(s,1);a<=avg_F_ages(s,2);a++) meanFsq_tmp+=pred_F_sq_tmp(q,a);
-                      }
-                      meanFsq_tmp=meanFsq_tmp/(avg_F_ages(s,2)-avg_F_ages(s,1)+1);
-                    }
-                    if (test_output==53) cout<<"step 6: mean F:"<<setprecision(3)<<meanFsq_tmp<<endl<<"obs F (pred_F_sq_tmp): "<<endl<<pred_F_sq_tmp<<endl;                
-                    // calc TAC for second half-year
-                    if (meanFsq_tmp>0) yield1=calc_Yield_from_Fscaling(s,recq,1,pred_M(s),pred_M1(s),pred_M2_true(s),pred_F_sq_tmp,
-                          pred_N_obs(s),pred_weca(s),pred_prop_landed(s));
-                    else yield1=0.0; 
-                    if (test_output==53)  cout<<setprecision(0)<<"step 6: TAC("<<TAC_year<<")second half-year before TAC adjustment :"<<yield1<<endl;
-                  } 
-                  else {
-                    for (q=recq;q<=lq;q++) pred_F_sq_tmp(q)=0.0;
-                    yield1=0;
-                  }
-                  
-                  yield1=yield1*growth_model(5,s);   // growth_model(4,s) is used for proportion of the halft year TAC that is used
-                  TAC_true_half(s,y,2)=yield1;
-                 
-                 if (test_output==53) cout<<setprecision(3)<<"step 7: TAC adjustment factor:"<<growth_model(5,s)<<" Final (observed) TAC second half year:"<<setprecision(0)<<yield1<<endl;
-              }
-               else if (HCR(s)==111) {   // Escapement strategy
-                 // Start to prepare F matrix which consists of exploitation pattern for third and fourth quarters
-                  meanFsq_tmp=0.0; // used just for third and fourth quarters
-                  pred_F_sq_tmp=pred_F_sq_copy(s);
-                  for (q=fq;q<recq;q++) pred_F_sq_tmp(q)=0;
-                  for (q=recq;q<=lq;q++) {
-                       for (a=fa;a<=la(s);a++) if (a>=avg_F_ages(s,1) && a<=avg_F_ages(s,2)) meanFsq_tmp+=pred_F_sq_tmp(q,a);
-                  }
-                  if (test_output==53) cout<<"step 6: Q3: pred_F_sq_tmp: "<<setprecision(3)<<endl<<pred_F_sq_tmp<<endl;                
-                
-                  meanFsq_tmp=meanFsq_tmp/(avg_F_ages(s,2)-avg_F_ages(s,1)+1);
-                  Fscaling=find_Fscaling_from_target_SSB(s,recq,0.0,5*meanFsq_tmp,
-                                target_SSB(s),pred_M(s),
-                                pred_M1(s),pred_M2_true(s),pred_F_sq_tmp,pred_N_obs(s),pred_west(s),pred_propmat(s),y);
-  
-                 if (Fscaling>0) yield1=calc_Yield_from_Fscaling(s,recq,Fscaling,pred_M(s),pred_M1(s),pred_M2_true(s),pred_F_sq_tmp,
-                        pred_N_obs(s),pred_weca(s),pred_prop_landed(s));
-                 else {yield1=0.0; Fscaling=0; }
-                 if (test_output==53)  cout<<setprecision(0)<<"step 6: TAC("<<TAC_year<<")second half-year before TAC adjustment :"<<yield1<<endl;
-          
-                 yield1=yield1*growth_model(5,s);   // growth_model(4,s) is used for proportion of the halft year TAC that is used
-                 TAC_true_half(s,y,2)=yield1;
-                 
-                 if (test_output==53) cout<<setprecision(3)<<"step 7: TAC adjustment factor:"<<growth_model(5,s)<<" Final (observed) TAC second half year:"<<setprecision(0)<<yield1<<endl;
-             }
-            
-            // Step 7: Calculate true F (and true TAC) for second half-year from observed TAC and true N
-             if (test_output==53) {
-               cout<<"Step 7: pred_F_true before scaling:"<<endl<<setprecision(3)<<pred_F_sq_tmp<<endl;
-               cout<<"Step 7: target yield:"<<setprecision(0)<<TAC_true_half(s,y,2)<<endl;
-             }
-             Fscaling=find_Fscaling_from_target_yield(s,recq,0,upper_F/meanFsq_tmp,TAC_true_half(s,y,2),
-                                pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq_tmp,
-                                pred_N_true_tmp(s), pred_weca(s),pred_prop_landed(s));
-
-             if (test_output==53) cout<<" step 8: Mean True F, second half year: "<<setprecision(3)<<meanFsq_tmp*Fscaling<<
-                                  "  Fscaling:"<<Fscaling<<"  Cap-F second half-year:"<<upper_F<<endl;
-                                 
-             if (Fscaling>1E-4) {
-                pred_F_sq_tmp(recq)=pred_F_sq_tmp(recq)* Fscaling;
-                pred_F_sq_tmp(recq+1)=pred_F_sq_tmp(recq+1)* Fscaling;
-              }
-              else {
-                pred_F_sq_tmp(recq)=0.0;
-                pred_F_sq_tmp(recq+1)=0.0;
-              }
-              if (test_output==53) cout<<"Step 8: pred_F_sq_tmp after scaling:"<<endl<<setprecision(3)<<pred_F_sq_tmp<<endl;
-              
-              if (Fscaling>0) yield1=calc_Yield_from_Fscaling(s,recq,1,pred_M(s),pred_M1(s),pred_M2_true(s),pred_F_sq_tmp,
-                      pred_N_true_tmp(s),pred_weca(s),pred_prop_landed(s));
-               else {yield1=0.0; Fscaling=0; } 
-               if (test_output==53) cout<<"realised TAC second half year:"<<yield1<<endl;
-               TAC_true_half(s,y,2)=yield1;
-               
-              // update pred_F_sq to include the absolute F for the year
-              pred_F_sq(s,recq)=pred_F_sq_tmp(recq);
-              pred_F_sq(s,recq+1)=pred_F_sq_tmp(recq+1);
-              
-              // calc new mean F 
-              meanFsq_tmp=0.0; 
-              for (q=fq;q<=lq;q++) for (a=avg_F_ages(s,1);a<=avg_F_ages(s,2);a++) meanFsq_tmp+=pred_F_sq(s,q,a);
-              meanFsq(s)=meanFsq_tmp/(avg_F_ages(s,2)-avg_F_ages(s,1)+1);
-
-              Fmax=meanFsq(s);
-              if (test_output==53) cout<<"step 7: true F for year "<<y<<endl<<setprecision(3)<< pred_F_sq<<endl;
-            
-              if (test_output==53) cout<<"TAC for year "<<y+1<<":  "<<setprecision(0)<< TAC_true_half(s,y,1)+TAC_true_half(s,y,2)<<endl<<endl;
-              break;
-               
-     
-      // end Norway pout MSE 111
       
-       case 112: // TAC for 1 November-31 October (implemented as Q4 & Q1-Q3) from an assessment in September including the first half-year
-                 //   and Q3 survey of the last assessment year. 
-                 // TAC for Q4 & Q1-Q3 is set by an adapted Escapement strategy, which target SSB>Bpa the 1. January in the year following the Q4 & Q1-Q3 TAC. 
-                 //  In the calculation of TAC it is assumed that Q4 Catches after the Q4 & Q1-Q3 TAC is set to zero
-                 
-              if (test_output==53) cout<<endl<<"Start HCR 112, y="<<y<<endl;
+     case  20: // ICES Request, MSE Feb 2018: 
+               //  TAC for 1 November-31 October (implemented as Q4 & Q1-Q3) from an assessment in September including new observed Q4, Q1-Q2  catches
+               //     ,best estimate of Q3 catches and Q3 survey of the last assessment year. 
+               //  TAC for Q4 & Q1-Q3 is set by an adapted Escapement strategy, which target a probalbility of SSB <Blim(Q4))less than 5%. 
+               //     Blim(Q4) is the  the SSB in the beginning of quarter 4 after the TAC has been taken
+               //  
+               // This MSE uses a "shifted assessment" such that the assessment year follows the TAC year. Calendar Q4,Q1,Q2,Q3 becomes assessment Q1,Q2,Q3,Q4. 
+               //  This means that the MSE becomes
+               // TAC for the whole year (Q1 to Q4) from an assessment in September  including Q1-Q3 (calendar October-July) observed catches
+               //     ,best estimate of Q4 (July-September) catches and Q4 (August-September) survey of the last assessment year. 
+               //  TAC Q1-Q4 (1 Oct- 30 Sep) is set by an adapted Escapement strategy, which target a probalbility of SSB <Blim(Q1))less than 5%. 
+               //     Blim(Q1) is the  the SSB in the beginning of Q1 (actually 1 October) in the next year
+               
+              //                 
+              if (test_output==53) cout<<endl<<"Start HCR 20, y="<<y<<endl;
               
-              has_changed_exploitation_pattern(s)=1;  // yes, we do change expl pattern
- 
-              if (growth_model(2,s)>0 || growth_model(3,s)>0) { // growth_model(2,s) and growth_model(3,s) is used for cap F by Q4 and Q1-Q3
-                   upper_F=growth_model(2,s)+growth_model(3,s);
-                   //if (test_output==53)  cout<<"Upper F (for the whole year):"<<setprecision(3)<<upper_F<<endl;
-              } else upper_F=max_F_scale;
-             
-              // calc recruits
-              tmp=0;
-              q=1;
-              for (a=faq(q);a<=la(s);a++) tmp+=pred_N_true_tmp(s,q,a)*pred_west(s,q,a)*pred_propmat(s,q,a);  // SSB
-              pred_N_true_tmp(s,recq,fa)=SSB_recruit(s,tmp,rn(s,y+1),hist_rec_noise,0);    // recruits
-   
-                       
-              if (test_output==53) {
-                cout<<endl<<"step 3: pred_N_true_tmp("<<y+1<<") fq:  "<<setprecision(0)<<pred_N_true_tmp(s,fq)<<endl;
-                cout<<"   and recruitment:"<<pred_N_true_tmp(s,recq,fa)<<endl;
-              }
-              
-              if (y== lyModel+1) TAC_true_half(s,y+1,1)=TAC_second(s);  
+             has_changed_exploitation_pattern(s)=1;  // yes, we do change expl pattern    CHECK 
     
+              // HCR@growth.model[2,1]<-0.5  #  Fcap   maximum F in calculation of TAC (in forecast)               
+              // HCR@TAC.min[1]<- 0 # minimum TAC  
+              // HCR@TAC.cap[1]<- 0 # maximum TAC 
+    
+            
+              if (growth_model(2,s)>0 ) {  
+                   F_cap_forecast(s)=growth_model(2,s);
+                   //if (test_output==53)  cout<<"F_cap_forecast:"<<setprecision(3)<<F_cap_forecast<<endl;
+              } else F_cap_forecast(s)=max_F_scale;
              
-             // TAC for the Q1-Q3.
-             //  Q1Q3 TAC=TAC_true_half(s,y,1);  Q4 TAC=TAC_true_half(s,y,2);
               
-             if (test_output==53) cout<<"Initial Q1-Q3 TAC for year "<<y+1<<":  "<<setprecision(0)<< TAC_true_half(s,y+1,1)<<endl;
-             tacMax=TAC_true_half(s,y+1,1);
-              
-              // Adjust the initial TAC Q1-Q3 such that the real F does not exceed the input Cap-F.
-              // change exploitation pattern to include only the first quarters
-              
-              //if (test_output==53) cout<<"step 3: initial exploitation pattern:"<<setprecision(3)<<endl<<pred_F_sq(s)<<endl;
-               if (test_output==53) cout<<"pred_N_true_tmp("<<y+1<<"):  "<<setprecision(0)<<pred_N_true_tmp(s,fq)<<endl;
-              upper_F=growth_model(3,s); // Cap F Q1-Q3
-              
-              meanFsq_tmp=0.0;
-              for (q=fq;q<=lq;q++) {
-                 if (q<=3) {
-                   pred_F_sq_tmp(q)=pred_F_sq(s,q);
-                   for (a=fa;a<=la(s);a++) if (a>=avg_F_ages(s,1) && a<=avg_F_ages(s,2)) meanFsq_tmp+=pred_F_sq_tmp(q,a);
-                 }
-                 else pred_F_sq_tmp(q)=0;
-              }
-              meanFsq_tmp=meanFsq_tmp/(avg_F_ages(s,2)-avg_F_ages(s,1)+1);
-              if (test_output==53) {
-                 cout<<"step 3: Initial Fixed TAC:"<<setprecision(0)<<tacMax<<endl;
-                 cout<<"step 3: Exploitation pattern for Q1-Q3:"<<endl<<setprecision(3)<<pred_F_sq_tmp<<endl
-                     <<"  meanFsq_tmp:"<<meanFsq_tmp<<endl;
-              }
-             //cout<<"check:"<<upper_F*maxFT1(s,2)/meanFsq_tmp<<endl;
-             Fscaling=find_Fscaling_from_target_yield(s,fq,0,upper_F/meanFsq_tmp,tacMax,
-                              pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq_tmp,
-                              pred_N_true_tmp(s), pred_weca(s),pred_prop_landed(s));
-                              
-              
-              if (test_output==53) cout<<" step 3: Mean True F, Q1-Q3: "<<setprecision(3)<<meanFsq_tmp*Fscaling<<
-                                  "  Fscaling:"<<Fscaling<<"  Cap-F Q1-Q3:"<<upper_F<<endl;
-              
-              // Calc adjusted (realised) TAC for Q1-Q3
-              if (Fscaling>0) { 
-                  yield1=calc_Yield_from_Fscaling(s,fq,Fscaling,pred_M(s),pred_M1(s),pred_M2_true(s),pred_F_sq_tmp,
-                         pred_N_true_tmp(s),pred_weca(s),pred_prop_landed(s));
-                  tacMax=yield1;
-              } 
-              if (test_output==53) cout<<" step 3:True fixed TAC (adjusted):  "<<setprecision(0)<<tacMax<<endl;
-              TAC_true_half(s,y+1,1)=tacMax;
-              pred_F_true_tmp(s,1)=pred_F_sq_tmp(1)* Fscaling;  // calc and save real F
-              pred_F_true_tmp(s,2)=pred_F_sq_tmp(2)* Fscaling;
-              pred_F_true_tmp(s,3)=pred_F_sq_tmp(3)* Fscaling;
-              if (test_output==53) cout<<" step 3:True F Q1-Q3:  "<<setprecision(3)<<endl<<pred_F_true_tmp(s,1)<<endl
-                                       <<pred_F_true_tmp(s,2)<<endl<<pred_F_true_tmp(s,3)<<endl;
-              
-              
-              // udate true stock size to 1st July (and 1st October)
-              tmp=0;
-              for (q=fq;q<lq;q++){
-                 for (a=faq(q);a<=la(s);a++){
-                  // Total mortality
-                  if (multi==2) pred_Z_true(s,q,a)=pred_F_true_tmp(s,q,a)+pred_M1(s,q,a)+pred_M2_true(s,q,a);  //used muli species
-                  else  pred_Z_true(s,q,a)=pred_F_true_tmp(s,q,a)+pred_M(s,q,a); 
-                  pred_N_true_tmp(s,q+1,a)= pred_N_true_tmp(s,q,a)*exp(-pred_Z_true(s,q,a));
-                  
-                } //age loop
-               }  // q loop
- 
-               
-               if (test_output==53) cout<<"step 3: Q1-Q3: pred_N_true_tmp: "<<endl<<setprecision(0)<<pred_N_true_tmp(s)<<endl<<endl;                
-             
-               
-              // step 4, simulate the September assessment 
-              
-              // assessment noise and bias on stock numbers, Q3 (this simulates an assessment)
-               q=3;
-              if (assess_uncertanty(s,1)==1 ) {
-                 //cout<<setfixed()<<setprecision(0)<<"True:"<<pred_N_true_tmp(s,q)<<endl;
-                 
-                 if (assess_uncertanty(s,4)==1) pred_N_obs(s,q)=                           // same noise on all ages
-                       pred_N_true_tmp(s,q)*uncertanty(s,assess_uncertanty(s),randn(rng));
-                 else if (assess_uncertanty(s,4)==0) for (a=fa;a<=la(s);a++) pred_N_obs(s,q,a)=      // diffrent noise on all ages
-                  pred_N_true_tmp(s,q,a)*uncertanty(s,assess_uncertanty(s),randn(rng));
-
-                //cout<<setprecision(0)<<"Obs: "<<pred_N_obs(s,q)<<endl<<endl;
-                //for (a=fa;a<=la(s);a++) pred_N_obs(s,q,a)=pred_N_true_tmp(s,q,a)*uncertanty(s,assess_uncertanty(s),randn(rng));
-              }
-              else if (assess_uncertanty(s,1)==2 || assess_uncertanty(s,1)==3 ) {
-                 for (a=faq(q);a<=la(s);a++) pred_N_obs(s,q,a)= pred_N_true_tmp(s,q,a);
-                 cov_uncertanty(s, assess_uncertanty(s), pred_N_obs(s,q),coVariance(s).sub(fa,la(s)));
-              }
-       
-              else if (assess_uncertanty(s,1)==4 ) {
-                for (a=faq(q);a<=la(s);a++) pred_N_obs(s,q,a)= pred_N_true_tmp(s,q,a);
-                //cout<<setfixed()<<setprecision(0)<<"age True:"<<pred_N_obs(s,q)<<endl;
-                age_uncertanty(s, assess_uncertanty(s),pred_N_obs(s,q), assessment_CV_age(s));
-                //cout<<setprecision(0)<<"age Obs: "<<pred_N_obs(s,q)<<endl<<endl;
-              }
-              
-             if (test_output==53) cout<<"Step 4: pred_N_obs Q3:  "<<setprecision(0)<<endl<<pred_N_obs(s,q)<<endl<<endl;
+             Fscaling=find_Fscaling_from_target_SSB_rep(s,rep,1,0.0,max_F_scale/meanFsq(s),target_SSB(s),pred_M(s),
+                    pred_M1(s),pred_M2_true(s),pred_F_sq(s), N_obs_rep(s),F_obs_rep(s),pred_west(s),pred_propmat(s),   pred_N_obs(s,recq,fa),  y);
                       
-             // Step 5 calculate observed F for Q3 and update obs N to 1st October
-             // calc Q3 real catch
-             q=3;
-             if (test_output==53) cout<<"N:   "<<setprecision(0)<<pred_N_true_tmp(s,q)<<endl<<
-                   "Z:   "<<setprecision(3)<<pred_Z_true(s,q)<<endl<<
-                   "F:   "<< pred_F_true(s,q)<<endl<<
-                   "WECA:"<<setprecision(3)<<pred_weca(s,q)<<endl;
-             tacMax=0;     
-             for (a=faq(q);a<=la(s);a++) tacMax+=pred_N_true_tmp(s,q,a)*(1.0-exp(-pred_Z_true(s,q,a)))/pred_Z_true(s,q,a)* pred_F_true_tmp(s,q,a)*pred_weca(s,q,a); 
-             
-             if (test_output==53) cout<<"step 5: Q3 catch(realised):"<<tacMax<<endl;
-             // cout<<"step 5: pred_F_sq_tmp:"<<setprecision(3)<<endl<<pred_F_sq_tmp<<endl;
-              
-              // begin in Q3 and set Q4 exploitation to zero the upper F limit is to 2 (which is a unrealistic high value)
-             Fscaling=find_Fscaling_from_target_yield(s,3,0,2,tacMax,          
-                              pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq_tmp,
-                              pred_N_obs(s), pred_weca(s),pred_prop_landed(s));
-              
-              if (test_output==53) cout<<"step 5: Fscaling:"<<setprecision(3)<<Fscaling<<endl;                
-              pred_F_sq_tmp(q)=pred_F_sq_tmp(q)* Fscaling;
- 
-              if (test_output==53) cout<<" step 5:  obs F, Q3 forecast: "<<pred_F_sq_tmp(q)<<endl;
 
-              // udate observed stock size to 1st October 
-              for (a=faq(q);a<=la(s);a++){
-                  // Total mortality
-                  if (multi==2) pred_Z_obs(s,q,a)=pred_F_sq_tmp(q,a)+pred_M1(s,q,a)+pred_M2_true(s,q,a);  //used muli species
-                  else  pred_Z_obs(s,q,a)=pred_F_sq_tmp(q,a)+pred_M(s,q,a);  
-                  // observed stock numbers
-                   pred_N_obs(s,q+1,a)= pred_N_obs(s,q,a)*exp(-pred_Z_obs(s,q,a));
-               } //age loop
-               if (test_output==53) cout<<"step 5: Obs F Q3 "<<setprecision(3)<<pred_F_sq_tmp(q)<<endl; 
-               if (test_output==53) cout<<"step 5: Q4: pred_N_obs: "<<setprecision(0)<<pred_N_obs(s,q+1)<<endl;                
+             if (Fscaling > F_cap_forecast(s)){
+               if (test_output==53)   cout<< "Fscaling from find_Fscaling_from_target_SSB_rep:"<<Fscaling<< "  F_cap_forecast:"<<F_cap_forecast(s)<<"   meanFsq:"<<meanFsq(s)<<endl;
+               Fscaling=F_cap_forecast(s);
+             } 
+             
+             if (Fscaling>0) Fmax=meanFsq(s)*Fscaling; else Fmax=0.0;
+             
+             break;
                
-              
-              // step 6, calculate TAC Q4 and Q1-Q3 from escapement strategy
-              
-               // Start to prepare F matrix which consists of exploitation pattern Q4 in first year and Q1-Q3 in second year
-                pred_F_sq_tmp=pred_F_sq_copy(s);
-                pred_F_sq_tmp_year2=pred_F_sq_copy(s);
-                
-                for (q=fq;q<=3;q++) pred_F_sq_tmp(q)=0;  // Q4 only
-                pred_F_sq_tmp_year2(4)=0;                // Q1-Q3
-                
-                meanFsq_tmp=1; 
-                upper_F=real_time_uncertanty(s,4); // upper F used to set the TAC from the escapement strategy
-                
-                if (test_output==53) cout<<endl<<"Step 6: upper scaling for escapemnet strategy set to:"<<upper_F;
-                
-                Fscaling=find_Fscaling_from_target_SSB_two_years(s,4,0.0,upper_F,
-                              target_SSB(s),pred_M(s),
-                              pred_M1(s),pred_M2_true(s),pred_F_sq_tmp,pred_F_sq_tmp_year2,pred_N_obs(s),
-                              pred_west(s),pred_weca(s), pred_propmat(s),y,yieldQ4,yieldQ1Q3 );
-                if (test_output==53) cout<<" realized scaling:"<<Fscaling<<endl;
-               tacMax=yieldQ4+yieldQ1Q3;
-               if (test_output==53)  cout<<setprecision(0)<<"step 6: TAC Q4:"<<yieldQ4<<"  TAC Q1-Q3:"
-                                         <<yieldQ1Q3<<"  sum:"<<tacMax<<endl;
-
-              if ( tacMax < growth_model(4,s) || tacMax > growth_model(5,s)) {   // annual TAC outside TAC constraints 
-                 if (tacMax < growth_model(4,s)) tmp=growth_model(4,s);
-                 else if (tacMax > growth_model(5,s)) tmp=growth_model(5,s);
-                 if (test_output==53) cout<<"step 6: target TAC changed due to constraints: "<<tmp<<endl; 
-                
-                  find_Fscaling_from_target_yield_two_years(s, 4, 0, 2, tmp, pred_M(s), pred_M1(s), pred_M2_true(s),pred_F_sq_tmp,pred_F_sq_tmp_year2, pred_N_obs(s), pred_weca(s),pred_west(s),pred_propmat(s),pred_prop_landed(s), yieldQ4, yieldQ1Q3);
-                if (Fscaling>1E-4) {
-                  pred_F_sq_tmp(4)=pred_F_sq_tmp(4)* Fscaling;
-                  pred_F_sq_tmp_year2=pred_F_sq_tmp_year2* Fscaling;
-                }
-                if (test_output==53) cout<<"Step 6: target yield after TAC constraints, Q4:"<<setprecision(0)<<yieldQ4<<" and Q1Q3:"<<yieldQ1Q3<<"  total:"<<yieldQ4+yieldQ1Q3<<endl;
-                TAC_true_half(s,y+1,2)=yield1;
-              }  
-
-          
-            // Step 7: Calculate true F (and true catches) for Q4 such that the real F does not exceed CAP FQ4, and adjust remaining TAC 
-             upper_F=growth_model(2,s);  // Cap F Q4
-             
-             if (test_output==53) {
-               cout<<"Step 7: pred_F (Q4)  before scaling:"<<endl<<setprecision(3)<<pred_F_sq_tmp(4)<<endl;
-               cout<<"Step 7: target yield Q4:"<<setprecision(0)<<yieldQ4<<endl;
-             }
-          
-
-             q=3;
-             // calculate true stock N in start of Q4
-              for (a=faq(q);a<=la(s);a++){
-                  // Total mortality
-                  if (multi==2) pred_Z_obs(s,q,a)=pred_F_true_tmp(s,q,a)+pred_M1(s,q,a)+pred_M2_true(s,q,a);  //used muli species
-                  else  pred_Z_obs(s,q,a)=pred_F_true_tmp(s,q,a)+pred_M(s,q,a);  
-                  // observed stock numbers
-                   pred_N_true_tmp(s,q+1,a)= pred_N_true_tmp(s,q,a)*exp(-pred_Z_obs(s,q,a));
-               } //age loop
-             
-            
-             // calc new Q4 mean F 
-             meanFsq_tmp=0.0; 
-             for (q=4;q<=lq;q++) for (a=avg_F_ages(s,1);a<=avg_F_ages(s,2);a++) meanFsq_tmp+=pred_F_sq_tmp(q,a);
-             meanFsq_tmp=meanFsq_tmp/(avg_F_ages(s,2)-avg_F_ages(s,1)+1);  
-             q=4; 
-             if (test_output==53) cout<<"pred_N_true_tmp(s,q=4):"<<pred_N_true_tmp(s,q)<<endl;
-             upper_F=growth_model(2,s); //Cap F Q4
-             Fscaling=find_Fscaling_from_target_yield(s,q,0,upper_F/meanFsq_tmp,yieldQ4,
-                                pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq_tmp,
-                                pred_N_true_tmp(s), pred_weca(s),pred_prop_landed(s));
-
-             
-                    
-             if (Fscaling>1E-4) pred_F_true_tmp(s,q)=pred_F_sq_tmp(q)* Fscaling;
-             else pred_F_true_tmp(s,q)=0.0;
-
-              if (test_output==53) cout<<"Step 7: pred_F_true_tmp after scaling:"<<endl<<setprecision(3)<<pred_F_true_tmp(s,q)<<endl;
-              
-              if (Fscaling>0) {
-                yield1=calc_Yield_from_Fscaling(s,q,1.0,pred_M(s),pred_M1(s),pred_M2_true(s),pred_F_true_tmp(s),pred_N_true_tmp(s),pred_weca(s),pred_prop_landed(s));
-               }
-              else {yield1=0.0; Fscaling=0; } 
-              
-              if (test_output==53) cout<<"Step 7: realised catch Q4:"<<yield1<<endl;
-               
-              TAC_true_half(s,y,2)=yield1;
-               
-              // update pred_F_sq to include the absolute F for the year
-              for (q=fq;q<=lq;q++) pred_F_sq(s,q)=pred_F_true_tmp(s,q);
-               
-              // calc new mean F 
-              meanFsq_tmp=0.0; 
-              for (q=fq;q<=lq;q++) for (a=avg_F_ages(s,1);a<=avg_F_ages(s,2);a++) meanFsq_tmp+=pred_F_sq(s,q,a);
-              meanFsq(s)=meanFsq_tmp/(avg_F_ages(s,2)-avg_F_ages(s,1)+1);
-
-              Fmax=meanFsq(s);
-              if (test_output==53) {
-                cout<<"True mean F for year "<<y<<":"<<meanFsq(s)<<endl; 
-                cout<<endl<<"step 7: true F for year "<<y<<endl<<setprecision(3)<< pred_F_sq<<endl;
-              } 
-              //  Q1Q3 TAC=TAC_true_half(s,y,1);  Q4 TAC=TAC_true_half(s,y,2);
-              TAC_true_half(s,y+1,2)=yield1;  // Q4            
-              TAC_true_half(s,y+2,1)=yieldQ4+yieldQ1Q3-yield1;   // Q1Q3
-             
-              //cout<<setprecision(0)<<"true TAC for TAC year "<<y+1<<"  Q4:"<<TAC_true_half(s,y+1,2)<<" and year"<<y+2<<" Q1Q3:"<<TAC_true_half(s,y+2,1)<<" sum:"<<TAC_true_half(s,y+1,2)+TAC_true_half(s,y+2,1)<<endl;
-              //cout<<setprecision(0)<<setfixed()<<"true TAC for year "<<y+1<<" Q1Q3:"<<TAC_true_half(s,y+1,1)<<"  Q4:"<<TAC_true_half(s,y+1,2)<<" sum:"<<(TAC_true_half(s,y+1,1)+TAC_true_half(s,y+1,2))<<endl;
-             
-            
-              break;
-               
-     
-      // end Norway pout MSE 112
-
-      case 333: // SPECIAL CASE, Blue whiting, 2005 management plan
-                // F should decrease to Fpa (constantF) in initial phase.
-                //   If F has not reached Fpa, decrease TAC by xx t. variable constant.TAC is used as input var for xx
-                // after initial phase use target.SSB and upper level at F at Fpa
-                Fmin=real_time_F(s);
-                if (BW_init_phase) {
-                  if (test_output==53) cout<<"Init condition"<<endl;
-                  //Fmax=constantF(s);
-
-                  yield1=TAC_obs(s,TAC_year-1)-constantTAC(s); // pargraph 4
-                  Fscaling=find_Fscaling_from_target_yield(s,fq,Fmin/meanFsq(s),max_F_scale/meanFsq(s),yield1,
-                               pred_M(s),pred_M1(s), pred_M2_true(s), pred_F_sq(s),
-                               pred_N_obs(s), pred_weca(s),pred_prop_landed(s));
-                  tmp=find_Fscaling_from_target_SSB(s,1,0.0,max_F_scale/meanFsq(s),target_SSB(s),pred_M(s),
-                      pred_M1(s),pred_M2_true(s),pred_F_sq(s),pred_N_obs(s),pred_west(s),pred_propmat(s),y);
-
-                  if (tmp<Fscaling) Fscaling=tmp;
-
-                  if (Fscaling>0) Fmax=meanFsq(s)*Fscaling; else Fmax=0.0;
-                  if (test_output==53) cout<<"initial condition. TAC("<<setprecision(0)<<TAC_year-1<<"):"<<
-                                        TAC_obs(s,TAC_year-1)<<" TAC("<<TAC_year<<"):"<<yield1<<
-                                        " at F:"<<setprecision(3)<<Fmax<<endl;
-                  if (Fmax<=constantF(s)) {
-                    BW_init_phase=0;
-                    if (test_output==53) cout<<"End of initial condition."<<endl;
-                    //added Sep 2007
-                       // if the F for reaching the yield target is lower than Fpa and
-                       // Fpa does not lead to a SSB below Bpa then use F=Fpa
-                       if (test_output==53) cout<<"Fmax:"<<Fmax<<" constantF:"<<constantF(s)<<"  tmp:"<<tmp<<" tmp*meanFsq:"<<tmp*meanFsq(s)<<endl;
-                       if (tmp > (constantF(s)/meanFsq(s))) {
-                         if (test_output==53) cout<<"F raised from "<< setprecision(3)<<Fmax;
-                         Fmax=tmp*meanFsq(s);
-                         if (Fmax>constantF(s)) Fmax=constantF(s);
-                         if (test_output==53) cout<<" to "<< setprecision(3)<<Fmax<<endl;
-                       }
-                    // end added Sep 2007
-                  }
-                }
-                else {
-                  // Estimate F from a target SSB in the TAC year+1
-                  Fscaling=find_Fscaling_from_target_SSB(s,1,0.0,max_F_scale/meanFsq(s),target_SSB(s),pred_M(s),
-                    pred_M1(s),pred_M2_true(s),pred_F_sq(s),pred_N_obs(s),pred_west(s),pred_propmat(s),y);
-                if (Fscaling>0) Fmax=meanFsq(s)*Fscaling; else Fmax=0.0;
-                if (Fmax>constantF(s)) Fmax=constantF(s);
-                 if (test_output==53) cout<<"BW phase2:"<<endl;
-                }
-               break;
-      case 334:
-      case 335: // SPECIAL CASE, Blue whiting, 2008 management plan
-                // Init phase: Decrease F to Ftarger (constantF) by xx percent each year. xx is given by real_time_uncertanty(s,1)
-                //   init phase is reached when F has become <= Ftarget
-                // After init phase change HCR option to zz, specified by yy (real_time_uncertanty(s,2)
-              
-                Fmin=real_time_F(s);
-                if (HCR_state(s)==1) {
-                  if (test_output==53) cout<<"BW Init condition: TAC_year="<<TAC_year<<"  TAC_F_obs("<<TAC_year-1<<")="<<setprecision(3)<<
-                           TAC_F_obs(s,TAC_year-1)<<endl;
-                  
-                  // reduce F by x%
-                  if (TAC_F_obs(s,TAC_year-1)>constantF(s)) {
-                   Fmax=TAC_F_obs(s,TAC_year-1)*(1.0-real_time_uncertanty(s,1)/100);
-                   if (test_output==53) cout<<"F reduction by "<< setprecision(1)<<real_time_uncertanty(s,1)<<"% giving F="<<setprecision(3)<<Fmax<<endl;
-                   if (Fmax<=constantF(s)) {  // target is reached
-                     if (test_output==53) cout<<"state 2 reached"<<endl;
-                     HCR_state(s)=2;
-                     Fmax=constantF(s);
-                     TAC_constraint(s,1)=TAC_constraint(s,1)/real_time_uncertanty(s,3);
-                     TAC_constraint(s,2)=TAC_constraint(s,2)*real_time_uncertanty(s,3);
-                     if (test_output==53) cout<<" HCR=334&335 state two. TAC constraints changed to:"<<setprecision(3)<< TAC_constraint(s)<<endl;
-                     HCR(s)=int(real_time_uncertanty(s,2));
-                     if (test_output==53) cout<<" HCR changed from 334&335 to:"<<HCR(s)<<endl; 
-                    }
-                 } else Fmax=constantF(s);
-                 }
-
-                break;
-
-
-                //  ---
+  
+  
+  
+       //  ---
  
        default: cout<<"NOT A VALID HCR:"<<HCR(s)<<" for species:"<<s<<endl;
-                exit(9);
+               exit(9);
                 break;
-      }
+      }  // end   switch
+      
+      
+      
+
+      
       
       // F cannot be lower than Fmin
       if (Fmin>Fmax) Fmax=Fmin;
@@ -9936,11 +9095,16 @@ FUNCTION void do_predict(int MCMC_iteration)
                    <<TAC_F_obs(s,TAC_year-1)<<" Change:"<<change<<"  constraint:"<<F_constraint(s)<<endl;
          if (test_output==53) cout<<"F_TAC after F constraints:"<<setprecision(3)<<Fmax<<endl;
       } 
+      
+      double minTAC, maxTAC;
        
       // Yield constraints   
       if (TAC_constraint(s,1)>0.0 || TAC_constraint(s,2)>0.0) { 
         if (test_output==53) cout<<"F_TAC before constraints:"<<setprecision(3)<<Fmax<<endl;
-        change=yield1/TAC_obs(s,TAC_year-1);    
+         change=yield1/TAC_obs(s,TAC_year-1);  
+        if (TAC_constraint(s,1)>0.0) minTAC= TAC_obs(s,TAC_year-1)*TAC_constraint(s,1); else minTAC=0;  
+        if (TAC_constraint(s,2)>0.0) maxTAC= TAC_obs(s,TAC_year-1)*TAC_constraint(s,2); else maxTAC=0;  
+         
         if (test_output==53) cout<<setprecision(0)<<"TAC("<<TAC_year-1<<"):"<<TAC_obs(s,TAC_year-1)<<
           "  TAC("<<TAC_year<<"):"<<yield1<<setprecision(3)<<"  Change:"<<change
            <<"  constraint:"<<TAC_constraint(s)<<endl;
@@ -9948,13 +9112,13 @@ FUNCTION void do_predict(int MCMC_iteration)
         Fscaling=-1;
         if (change<TAC_constraint(s,1)) { // decrease in yield is too much raise F
             Fscaling=find_Fscaling_from_target_yield(s,fq,Fmax/meanFsq(s), max_F_scale/meanFsq(s), 
-              TAC_obs(s,TAC_year-1)*TAC_constraint(s,1), pred_M(s), pred_M1(s), 
+              minTAC, pred_M(s), pred_M1(s), 
               pred_M2_true(s), pred_F_sq(s), pred_N_obs(s), pred_weca(s),pred_prop_landed(s));
               constraints(s,y)=constraints(s,y)+2;
         }
         else if (change>TAC_constraint(s,2)) { // increase in yield is too much, decrease F
               Fscaling=find_Fscaling_from_target_yield(s,fq, Fmin/meanFsq(s),max_F_scale/meanFsq(s),
-                       TAC_obs(s,TAC_year-1)*TAC_constraint(s,2), pred_M(s), pred_M1(s), 
+                       maxTAC, pred_M(s), pred_M1(s), 
                        pred_M2_true(s), pred_F_sq(s), pred_N_obs(s), pred_weca(s),pred_prop_landed(s));
               constraints(s,y)=constraints(s,y)+4;
         }  
@@ -9967,33 +9131,15 @@ FUNCTION void do_predict(int MCMC_iteration)
                <<setprecision(3)<<Fmax<<endl;
 
 
-       
-        //if (HCR(s)==44 && HCR_state(s)==2) if (Fmax>T1(s)) {
-        if (HCR(s)==44 ) {
-         if (Fmax<constantF(s)) {
-            Fmax=constantF(s);
-            if (test_output==53) cout<<"HCR=44, F lower than "<< constantF(s)<<" and raised to that value"<<endl;
-            // re-calc yield
-            yield1=calc_Yield_from_Fscaling(s,fq,Fmax/meanFsq(s),pred_M(s),pred_M1(s),pred_M2_true(s),
-                 pred_F_sq(s),pred_N_obs(s),pred_weca(s),pred_prop_landed(s));
-         }
-         else if (Fmax>T1(s)) {
-           if (test_output==53) cout<<"HCR=44. F after application of TAC constraint is:"<<Fmax<<" and higher than upper F:"<<T1(s)<<". F is decreased to:"<<T1(s)<<endl;
-           Fmax=T1(s);  // interpretation of article 4 in Cod baltic
-           // re-calc yield
-           yield1=calc_Yield_from_Fscaling(s,fq,Fmax/meanFsq(s),pred_M(s),pred_M1(s),pred_M2_true(s),
-                 pred_F_sq(s),pred_N_obs(s),pred_weca(s),pred_prop_landed(s));
 
-        }
-        } // end HCR(s)==44 '
        } // End "normal" Yield constraints 
 
         // Islandic version. Let the final TAC be the average over X% previous years TAC and Y% this year TAC
         if (TAC_constraint(s,1)<0.0 &&  TAC_constraint(s,2)<0.0) { 
           if (test_output==53) cout<<"F_TAC before constraints:"<<setprecision(3)<<Fmax<<endl;
           change=yield1/TAC_obs(s,TAC_year-1);    
-          if (test_output==53) cout<<setprecision(0)<<"Icelandic model: "<<-TAC_constraint(s,1)<<"% of TAC("<<TAC_year-1<<"):"<<TAC_obs(s,TAC_year-1)<<
-            " and "<<-TAC_constraint(s,2)<<"% of TAC("<<TAC_year<<"):"<<yield1;
+          if (test_output==53) cout<<setprecision(0)<<"Icelandic model: "<< -TAC_constraint(s,1)<<"% of TAC("<<TAC_year-1<<"):"<<TAC_obs(s,TAC_year-1)<<
+            " and "<< -TAC_constraint(s,2)<<"% of TAC("<<TAC_year<<"):"<<yield1;
           tmp=(TAC_obs(s,TAC_year-1)*TAC_constraint(s,1)+yield1*TAC_constraint(s,2))/(TAC_constraint(s,2)+TAC_constraint(s,2));
           if (test_output==53) cout<<" Result TAC:"<<tmp<<endl;
           Fscaling=-1;
@@ -10039,19 +9185,7 @@ FUNCTION void do_predict(int MCMC_iteration)
           }
         }
 
-        
-        if (HCR(s)==24 && F_cap(s)>0) { 
-           upper_F=F_cap(s)/meanFsq(s); 
-           if (test_output==53) cout<<"Yield before F_cap: "<<yield1<<endl;
-           if (yield1>0) Fscaling=find_Fscaling_from_target_yield(s,fq,real_time_F(s)/meanFsq(s),upper_F, yield1, pred_M(s), pred_M1(s),
-                    pred_M2_true(s), pred_F_sq(s), pred_N_true(s), pred_weca(s),pred_prop_landed(s));
-           else Fscaling=0.0; 
-           if (test_output==53) cout<<"Fscaling: "<<setprecision(3)<< Fscaling<< "  F:"<< Fscaling*meanFsq(s)<<endl;          
-           if (Fscaling*meanFsq(s)>F_cap(s)) yield1=calc_Yield_from_Fscaling(s,fq,Fscaling*meanFsq(s),pred_M(s),pred_M1(s),pred_M2_true(s),
-                 pred_F_sq(s),pred_N_true(s),pred_weca(s),pred_prop_landed(s));
-           if (test_output==53) cout<<"Yield after F_cap:  "<<setprecision(0)<<yield1<<endl;
-
-        }
+       
         
         TAC_true(s,TAC_year)=yield1;
         TAC_F_true(s,TAC_year)=-1;
@@ -10065,9 +9199,9 @@ FUNCTION void do_predict(int MCMC_iteration)
           }
           
          // adjust to overall species max F (F cap given as input)
-         if (F_cap(s)>0) {
-           if (Fmax>F_cap(s)) {
-             Fmax=F_cap(s);
+         if (F_cap_true(s)>0) {
+           if (Fmax>F_cap_true(s)) {
+             Fmax=F_cap_true(s);
              if (test_output==53) cout<<"Cap F adjustment done"<<endl;
            }
          }
@@ -10213,7 +9347,7 @@ FUNCTION check_print_par
     cout << endl << "SSB_R_beta"<<endl<<SSB_R_beta<<endl;
     if (active(vulnera) && multi>=1) {
         cout <<"vulnera: "<<active(vulnera)<<endl<<vulnera<<endl;
-        if (init_pref_size_ratio.indexmin()>0) cout <<"init Prefered size ratio: "<<endl<<init_pref_size_ratio<<endl;
+        if (init_pref_size_ratio.indexmin()>0) cout <<"init Preferred size ratio: "<<endl<<init_pref_size_ratio<<endl;
         if (var_size_ratio.indexmin()>0) cout <<"Variance of size ratio: "<<endl<<var_size_ratio<<endl;
         cout <<"Other food suitability slope: "<<endl<<stl_other_suit_slope<<endl;
         cout <<"init_season_overlap: "<< endl<<init_season_overlap<<endl;
@@ -10435,8 +9569,8 @@ FUNCTION void print_summary()
         for (a=faq(1);a<=la(s);a++) {
            res <<y<<" "<<q<<" " <<s<<" "<<a<<" ";
            if (multi >=1 && s>=first_VPA) {
-             res <<-1<<" ";
-             res <<-1<<" ";
+             res << -1<<" ";
+             res << -1<<" ";
            }
            else res << "0 0 ";
            res <<" -1";       //M
@@ -10470,8 +9604,8 @@ FUNCTION void print_summary()
         for (a=faq(q);a<=la(s);a++) {
            res <<y<<" "<<q<<" " <<s<<" "<<a<<" ";
            if (multi >=1 && s>=first_VPA) {
-             res <<-1<<" ";
-             res <<-1<<" ";
+             res << -1<<" ";
+             res << -1<<" ";
            }
            else res << "0 0 ";
            res <<" -1";       //M
@@ -10484,6 +9618,7 @@ FUNCTION void print_summary()
            res <<west(yq-lq,s,a)<<" ";
            res <<" -1 ";        // weca
            res <<"-1 -1 ";        // yield CWsum
+           res <<"-1 -1 ";        // prop.landed   prop.in
            if (do_effort(s)==1) res <<propmat(yq,s,a)<<" ";
            else res <<" -1 ";
            res <<N(yq,s,a)*west(yq-lq,s,a)<<" ";
@@ -10702,7 +9837,7 @@ FUNCTION void print_vulnerab()
       for (prey=first_VPA;prey<=nsp;prey++) {
         if (pred_prey_comb(d,pred,prey)>0) {
         i++;
-        res <<pred<<" "<<prey<<" " << setprecision(4)<<setscientific()<<vulnera(i)<<endl;
+        res << d<<"  "<<pred<<" "<<prey<<" " << setprecision(4)<<setscientific()<<vulnera(i)<<endl;
         }
       }
   }
@@ -10936,8 +10071,6 @@ FUNCTION void print_ALKS()
 
 //********************************************************************************************* 
  
-
- 
 FUNCTION void print_ALK()
  int s,y,q,d,a;
  int Ly,Lq,Ld,Ls,La,Ll;    
@@ -11057,7 +10190,7 @@ FUNCTION void print_catch_survey_residuals()
  //       if ((a>=cfa(s)) && (y<=lyModel) && sum(zero_catch_y_season(s,y))>=1 &&  (C_hat_annual(y,s,a)>0))
         if ((a>=cfa(s)) && (y<=lyModel) &&  (C_hat_annual(y,s,a)>0))
           res <<' '<<setscientific()<<exp(log_obs_C_annual(y,s,a)) <<' '<<C_hat_annual(y,s,a)<<' '<< log_obs_C_annual(y,s,a)-log(C_hat_annual(y,s,a))<<
-          ' '<<-1<<endl;
+          ' '<< -1<<endl;
        else res <<" -99.9 -99.9 -99.9 -99.9 "<<endl;;
      }
    }
@@ -11407,9 +10540,9 @@ FUNCTION void print_Config_parms()
    op<<"################################################"<<endl;
    op<<"# Size selection parameters"<<endl;
    op<<"# size model"<<endl<<setprecision(5)<<setfixed()<<size_selection<<endl;
-   op<<"# prefered size"<<endl<<setprecision(5)<<setfixed()<<pref_size_ratio<<endl;
-   op<<"# variance of prefered size"<<endl<<var_size_ratio<<endl;
-   op<<"# adjustment of prefered size"<<endl<<pref_size_ratio_correction<<endl;
+   op<<"# preferred size"<<endl<<setprecision(5)<<setfixed()<<pref_size_ratio<<endl;
+   op<<"# variance of preferred size"<<endl<<var_size_ratio<<endl;
+   op<<"# adjustment of preferred size"<<endl<<pref_size_ratio_correction<<endl;
    op<<"# prey_size_adjustment"<<endl<<prey_size_adjustment<<endl;
    op<<"################################################"<<endl;
    op<<"# Other food size dependency"<<endl<< stl_other_suit_slope<<endl;
@@ -11530,6 +10663,8 @@ FUNCTION void print_Operating_input()
    }
    strcpy(ftext,"m1m2");  strcpy(text,"Multispecies Natural mortality (M1+M2)");
    out_OP(ftext,text, first_VPA,nsp, 4,M1M2,OP_M,no_areas);
+   
+   
  }
 
  strcpy(ftext,"f");  strcpy(text,"F at age");
@@ -11539,14 +10674,18 @@ FUNCTION void print_Operating_input()
  out_OP(ftext,text, first_VPA,nsp, 2,propmat,OP_propmat,1);
 
  if (multi==2) {
-   strcpy(ftext,"m1");  strcpy(text,"Residual natural mortality (M1)");
-   out_OP(ftext,text,first_VPA,nsp, 3,M1,OP_M,no_areas);
+   strcpy(ftext,"n_proportion_m2");  strcpy(text,"Proportion of N, for calculation of M2, within model area at age");
+   out_OP(ftext,text, first_VPA,nsp, 4,N_prop_M2,OP_n_proportion_M2,1);
  }
  
- //if (calc_discard==1) {
-   strcpy(ftext,"prop_landed");  strcpy(text,"Proportion of the catch landed");
-   out_OP(ftext,text, first_VPA,nsp, 4,prop_landed,OP_prop_landed,no_areas);
- //}
+ if (multi==2) {
+   strcpy(ftext,"m1");  strcpy(text,"Residual natural mortality (M1)");
+   out_OP(ftext,text,first_VPA,nsp, 3,M1,OP_M,no_areas);
+ } 
+
+ strcpy(ftext,"prop_landed");  strcpy(text,"Proportion of the catch landed");
+ out_OP(ftext,text, first_VPA,nsp, 4,prop_landed,OP_prop_landed,no_areas);
+
  if (multi==2) {
    out_OP_growth();
     
@@ -12432,10 +11571,10 @@ REPORT_SECTION
  }
  if (all_do_effort==0) {
    report<<endl<<endl<<"F, Year effect:"<<endl;
-   report<<            "---------------"<<endl<<"         ";
-   if (nsp>1) for (s=first_VPA;s<=nsp;s++) report<<"sp."<<setw(2)<<s<<"    ";
+   report<<            "---------------"<<endl<<"       ";
+   if (nsp>1) for (s=first_VPA;s<=nsp;s++) report<<"sp."<<setw(2)<<s<<"  ";
    report<<endl;
-   for (y=fyModel;y<=lyModel;y++) report<<y<<':'<< setw(8) << setprecision(3) << setfixed()<<out2(y)<<endl;
+   for (y=fyModel;y<=lyModel;y++) report<<y<<':'<< setw(6) << setprecision(3) << setfixed()<<out2(y)<<endl;
  }
  // if (use_creep(1)>0){ 
  //   report<<endl<<endl<<"Technical creep:"<<endl;
@@ -12475,7 +11614,7 @@ REPORT_SECTION
  
  report << endl << "F, age effect:";
  report << endl << "--------------"<<endl<<"          ";
- for (a=fa;a<=max_a;a++) report<<setw(7)<<a;
+ for (a=fa;a<=max_a_VPA;a++) report<<setw(7)<<a;
 
  int ly_group;
   // Copy F_a, 
@@ -12519,8 +11658,8 @@ REPORT_SECTION
  calc_F(1);   // calc F without considering closures
  report << endl<< endl<<endl<<"Exploitation pattern (scaled to mean F=1)";
  report << endl <<            "-----------------------------------------"<<endl;
- if (lq>1) report<<"                  "; else  report<<"          ";
- for (a=fa;a<=max_a;a++) report<<setw(7)<<a;
+ if (lq>1) report<<"                   "; else  report<<"           ";
+ for (a=fa;a<=max_a_VPA;a++) report<<setw(7)<<a;
      
  for (s=first_VPA;s<=nsp;s++){
    if (nsp>1)report <<endl<<species_names[s];
@@ -12595,8 +11734,8 @@ REPORT_SECTION
  sp_fl=0;
  for (s=first_VPA;s<=nsp;s++){
    if (nsp>1) report<<endl<<species_names[s]<<"                ";
-   else report<<endl<<"       "<<"                ";
-   if (s==first_VPA) for (a=fa;a<=max(v_last_fleet_age);a++) report<<"    age "<<a;
+   else report<<endl<<"       "             <<"                ";
+   if (s==first_VPA) for (a=fa;a<=max(v_last_fleet_age);a++) report<<"  age "<<a;
    
    for (f=1; f<=n_fleet(s);f++) {
       done=1;
@@ -12605,12 +11744,12 @@ REPORT_SECTION
       report << endl<<" "<<fleet_names[sp_fl];
       for (s2_group=1;s2_group<=n_CPUE_s2_group(s,f);s2_group++) {
          s2_fa=int(CPUE_s2_group(s,f,s2_group));
-         if (done==1) for (a=fa;a<s2_fa;a++) report<<"         ";
+         if (done==1) for (a=fa;a<s2_fa;a++) report<<"       ";
          done=0;
          if (s2_group==n_CPUE_s2_group(s,f)) s2_la=last_fleet_age(s,f);
          else s2_la=int(CPUE_s2_group(s,f,s2_group+1))-1;
          for (a=s2_fa;a<=s2_la;a++) {
-            report<< setw(9) << setprecision(3) <<  setfixed()<<qq(s,f,a);
+            report<< setw(7) << setprecision(3) <<  setfixed()<<qq(s,f,a);
          }
       }
     }
@@ -12644,7 +11783,7 @@ REPORT_SECTION
  for (s=first_VPA;s<=nsp;s++){
    if (nsp>1) report<<endl<<species_names[s]<<"                ";
     else             report<<endl<<"       "<<"                ";
-   if (s==first_VPA) for (a=fa;a<=max(v_last_fleet_age);a++) report<<"    age "<<a;
+   if (s==first_VPA) for (a=fa;a<=max(v_last_fleet_age);a++) report<<"  age "<<a;
    for (f=1; f<=n_fleet(s);f++) {
       done=1;      
       sp_fl++;
@@ -12652,12 +11791,12 @@ REPORT_SECTION
       //q=fleet_season(s,f);
       if (s>=first_VPA) for (s2_group=1;s2_group<=n_CPUE_s2_group(s,f);s2_group++) {
          s2_fa=int(CPUE_s2_group(s,f,s2_group));
-         if (done==1) for (a=fa;a<s2_fa;a++) report<<"         ";
+         if (done==1) for (a=fa;a<s2_fa;a++) report<<"       ";
          done=0;
          if (s2_group==n_CPUE_s2_group(s,f)) s2_la=last_fleet_age(s,f);
          else s2_la=int(CPUE_s2_group(s,f,s2_group+1))-1;
          for (a=s2_fa;a<=s2_la;a++) {
-            report<< setw(9) << setprecision(2) <<  setfixed()<<sqrt(qq_s2(sp_fl,s2_group));
+            report<< setw(7) << setprecision(2) <<  setfixed()<<sqrt(qq_s2(sp_fl,s2_group));
           }
       }
     }
@@ -12688,19 +11827,19 @@ REPORT_SECTION
  }
  
  report<<endl<<endl<<"Average F:"<<endl;
- report<<            "----------"<<endl<<"         ";
+ report<<            "----------"<<endl<<"       ";
  for (s=first_VPA;s<=nsp;s++)for (y=fyModel;y<=lyModel;y++) out2(y,s)=Mean_F(s,y); 
  
- for (s=first_VPA;s<=nsp;s++) report<<"sp."<<setw(2)<<s<<"    ";
+ for (s=first_VPA;s<=nsp;s++) report<<"sp."<<setw(2)<<s<<"  ";
  report<<endl;
- for (y=fyModel;y<=lyModel;y++) report<<y<<':'<< setw(8) << setprecision(3) << setfixed()<<out2(y)<<endl;
+ for (y=fyModel;y<=lyModel;y++) report<<y<<':'<< setw(6) << setprecision(3) << setfixed()<<out2(y)<<endl;
   
  
  if (multi>=1) {
    for ( y=fyModel;y<=lyModel;y++) for (q=fq;q<=lq;q++) calc_M2(y,q);
    report << endl <<"Average M2    ";
    report << setw(2) << setprecision(0) << setfixed();
-   for (a=fa;a<=max_a;a++) report<<"  age "<<a;
+   for (a=fa;a<=max_a_VPA;a++) report<<"  age "<<a;
 
    for ( s=first_VPA;s<=nsp;s++){
      report << endl<<species_names[s]<<"   ";
@@ -12719,7 +11858,7 @@ REPORT_SECTION
    }
  }
  
- report << endl<< endl<<"Recruit-SSB                               alfa      beta       recruit s2     recruit s"<<endl;
+ report << endl<< endl<<"Recruit-SSB                               alfa      beta        var      sd"<<endl;
  for (s=first_VPA;s<=nsp;s++){
    report << species_names[s]<<" ";
    
@@ -12740,13 +11879,13 @@ REPORT_SECTION
    if (use_known_rec_option_by_sp(s)==1) report<<endl;
    else {
      report<<setw(12) << setprecision(3)<< setfixed(); 
-     if (SSB_Rec_model(s)<=2 || SSB_Rec_model(s)==51)  report<<setw(12) << setprecision(3)<< setfixed()<<SSB_R_alfa(s) <<"   " <<setscientific()<<SSB_R_beta(s)/SSB_R_beta_cor(s);
-     else if (SSB_Rec_model(s)==3) report<<setw(12) << setprecision(3)<< setfixed()<<SSB_R_alfa(s)<<"             " ;
+     if (SSB_Rec_model(s)<=2 || SSB_Rec_model(s)==51)         report<<setw(12) << setprecision(3)<< setfixed()<<SSB_R_alfa(s) <<"   " <<setscientific()<<SSB_R_beta(s)/SSB_R_beta_cor(s);
+     else if (SSB_Rec_model(s)==3)                            report<<setw(12) << setprecision(3)<< setfixed()<<SSB_R_alfa(s)<<"             " ;
      else if ((SSB_Rec_model(s)==4) || (SSB_Rec_model(s)==5)) report<<setw(12) << setprecision(3)<< setfixed()<<exp(SSB_R_alfa(s))<<"   "<<setscientific()<<SSB_R_beta(s);
-     else if (SSB_Rec_model(s)==100) report<<setw(12) << setprecision(3)<< setfixed()<<exp(SSB_R_alfa(s))<<"   "<<setscientific()<<SSB_Rec_hockey_breakpoint(s);
-     // else if (SSB_Rec_model(s)==61 )  report<<setw(12) << setprecision(3)<< setfixed()<<alfa_61 <<"   " <<setscientific()<<beta_61/SSB_R_beta_cor(s);
-     // else if (SSB_Rec_model(s)==71 )  report<<setw(12) << setprecision(3)<< setscientific()<<alfa_71 <<"   " <<setscientific()<<beta_71/SSB_R_beta_cor(s);
-      report <<setfixed()<< "   " <<SSB_R_s2(s)<< "          " <<sqrt(SSB_R_s2(s))<<endl;
+     else if (SSB_Rec_model(s)==100)                          report<<setw(12) << setprecision(3)<< setfixed()<<exp(SSB_R_alfa(s))<<"   "<<setscientific()<<SSB_Rec_hockey_breakpoint(s);
+     // else if (SSB_Rec_model(s)==61 )                       report<<setw(12) << setprecision(3)<< setfixed()<<alfa_61 <<"   " <<setscientific()<<beta_61/SSB_R_beta_cor(s);
+     // else if (SSB_Rec_model(s)==71 )                       report<<setw(12) << setprecision(3)<< setscientific()<<alfa_71 <<"   " <<setscientific()<<beta_71/SSB_R_beta_cor(s);
+      report <<setfixed()<< "   " <<SSB_R_s2(s)<< "    " <<sqrt(SSB_R_s2(s))<<endl;
    }
  }
  
@@ -12818,12 +11957,12 @@ REPORT_SECTION
           if (sumStomLike(pred)==0) report<<"             no" ;
           else                      report<<"            yes";
         }
-        report << endl<<"Prefered size ratio:         ";
+        report << endl<<"Preferred size ratio:        ";
         for (pred=1;pred<=npr;pred++) {
         if (size_selection(pred)==0 || size_selection(pred)==4) report<<setw(15)<<setprecision(3)<<setfixed()<<0.0;
         else report<<setw(15)<<setprecision(3)<<setfixed()<<pref_size_ratio[pred];
         } 
-        report << endl<<"Prefered size ratio adjust.: ";
+        report << endl<<"Preferred size ratio adjust.:";
         for (pred=1;pred<=npr;pred++) report<<setw(15)<<setprecision(3)<<setfixed()<<pref_size_ratio_correction(pred);
         report << endl<<"Variance of size ratio:      ";
         for (pred=1;pred<=npr;pred++) report<<setw(15)<<setprecision(3)<<setfixed()<<var_size_ratio(pred);
@@ -12843,8 +11982,16 @@ REPORT_SECTION
         }
 
      }
+    
+       
+      if (stomach_variance==3 ) {
+        for (pred=1;pred<=npr;pred++) report <<"stomach variance lower:"<< Stom_var_l_save(pred) << "  upper:"<< Stom_var_u_save(pred)<<endl;
+      }
+      report<<endl;
+ 
      report<<endl<<endl<<"Stomach variance:    value    internal     ";
      if (stomach_variance==3 ) report<<"max alfa0"<<endl; else report<<endl;
+     
      
      // start to find max alfa0 (equal sumP) 
       if (stomach_variance==3) {  // Dirichlet 
@@ -12865,6 +12012,14 @@ REPORT_SECTION
            report<<"  "<<max_sumP(pred)<<endl;
          } else report<<endl;
      } 
+     
+     
+     report <<endl<<endl<<"consumption multipliers:"<<endl;
+     for (pred=1;pred<=npr;pred++) {
+            report<<species_names(pred)<<setw(15)<<setprecision(2)<<setfixed()<<cons_multiplier(pred)<<endl;
+     }
+
+     
      if (phase_season_overlap>0) {
        report<<endl<<endl<<"Predator prey season overlap"<<endl;
        report<<            "----------------------------"<<endl;

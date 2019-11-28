@@ -4,8 +4,8 @@ Portrait<-T                 # graphical output orientation
 include.terminal.year <- F          # plot terminal year (last assessment year +1) as well?
 include.last.assess.year.recruit <- F          # plot recruits terminal year as well?
  
-first.year<- -1974                #first year on plot, negative value means value defined by data
-last.year<- 2200               #last year on plot
+first.year<- 1974                #first year on plot, negative value means value defined by data
+last.year<- 2200             #last year on plot
 incl.M2.plot<-T
 incl.reference.points<-T
 splitLine<-F
@@ -17,8 +17,8 @@ op.dir<-data.path
 if (OperatingModel==T & redefine.scenario.manually==T)  {
    scenario<-"test"; 
    output.dir<-data.path 
-   #op.dir<-file.path(data.path,"HCR_2_stoch1_test_01_HCR2_0_Rec3__2074")
-   op.dir<-data.path
+   op.dir<-file.path(data.path,"HCR_1_deter_adjust_test_01_HCR1_0_Rec0__2030")
+   #op.dir<-data.path
 } else if (OperatingModel==T & redefine.scenario.manually==FALSE) {
      output.dir<-scenario.dir 
    op.dir<-scenario.dir

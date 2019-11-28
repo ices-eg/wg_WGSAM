@@ -71,7 +71,8 @@ tab_quarterly_data<-function(data,vari='N',outfile,title,decimals=0,tableNo=1,my
       if (vari=='west') tab1<-tapply(a$west,list(a$Year,a$AgeQ),sum)
       if (vari=='weca') tab1<-tapply(a$weca,list(a$Year,a$AgeQ),sum)
       if (vari=='C.obs') tab1<-tapply(a$C.obs,list(a$Year,a$AgeQ),sum)
-
+      if (vari=='F') tab1<-tapply(a$F,list(a$Year,a$AgeQ),sum)
+      
       if (vari=='Lsea') tab1<-tapply(a$Lsea,list(a$Year,a$AgeQ),sum)
       if (vari=='M2') tab1<-tapply(a$M2,list(a$Year,a$AgeQ),sum)
       if (vari=='M1M2') tab1<-tapply(a$M1+a$M2,list(a$Year,a$AgeQ),sum)
@@ -94,7 +95,8 @@ tab_quarterly_data<-function(data,vari='N',outfile,title,decimals=0,tableNo=1,my
         if (vari=='west') tab1<-tapply(a$west,ll,sum)
         if (vari=='weca') tab1<-tapply(a$weca,ll,sum)
         if (vari=='C.obs') tab1<-tapply(a$C.obs,ll,sum)
-
+        if (vari=='F') tab1<-tapply(a$F,ll,sum)
+        
         if (vari=='Lsea') tab1<-tapply(a$Lsea,ll,sum)
          if (vari=='M1M2') tab1<-tapply(a$M1+a$M2,ll,sum)
         if (vari=='M2') tab1<-tapply(a$M2,ll,sum)
@@ -121,6 +123,8 @@ tab_quarterly_sum_data<-function(data,vari='Yield',outfile,title,decimals=0,tabl
     a<-subset(data,Species.n==sp)
     if (dim(a)[1] >0) {
       if (vari=='Yield') tab1<-tapply(a$weca*a$C.obs,list(a$Year,a$Quarter),sum)
+      if (vari=='F') tab1<-tapply(a$F,list(a$Year,a$Quarter),sum)
+      
        colnames(tab1)<-sort(unique(a$Quarter))
       xtab(tab1, caption=paste("Table ",tableNo,'  ',sp.names[sp],title),
          cornername='Year/Quarter',
@@ -131,6 +135,9 @@ tab_quarterly_sum_data<-function(data,vari='Yield',outfile,title,decimals=0,tabl
     }
   }
 }
+
+
+tab_quarterly_data(data=Read.summary.data(),vari='F',   outfile='_tab_F4',decimals=3,title=":  Fishing mortality")
 
 
 tab_quarterly_sum_data(data=Read.summary.data(),vari='Yield',outfile='_tab_Yield4.html',decimals=0,title=":   Seasonal yield")

@@ -1,18 +1,22 @@
 
 use.prediction.M2<-F
-use.OP.prediction.M2<-F
+use.OP.prediction.M2<-T
 
 last.y<-2060
-last.y<-2017
+last.y<-2035
 ######
 
 if (F) {
   #  simple average tables
-  a<-Read.part.M2.data()
+#  a<-Read.part.M2.data()
+  a<-Read.part.M2.OP.prediction.data(dir=op.dir)
+  
   
   # annual part M2
   b<-tapply(a$Part.M2,list(a$Year,a$Predator,a$Prey,a$Prey.age),sum)
   b[is.na(b)]<-0
+  b[,,"Cod",'0']
+  b[,,,'0']
   
   c<-apply(b,c(3,4,2),mean)
   #dimnames(c)[[3]]<-name[2:(npr+1)]
@@ -38,14 +42,14 @@ a<-subset(a, !(Prey.age==0 & Quarter<=2))
  
 ## add prediction M2
 if (use.prediction.M2) {
-  b<-Read.part.M2.prediction.data()
+  b<-Read.part.M2.prediction.data(dir=op.dir)
   a<-rbind(a,b)
 }
 #
  
 ## add prediction M2
 if (use.OP.prediction.M2) {
-  b<-Read.part.M2.OP.prediction.data()
+  b<-Read.part.M2.OP.prediction.data(dir=op.dir)
   b$Area<-NULL      #  to be changed
   a<-rbind(a,b)
 }

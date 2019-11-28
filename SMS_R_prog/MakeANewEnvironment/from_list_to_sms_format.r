@@ -21,12 +21,12 @@
 
 SMS.data.transform<-function( list.data.path=" ",trans.bio=FALSE, trans.catch=FALSE,
     trans.meanL=FALSE,  trans.meanL.from.weight=FALSE, trans.stockDist=FALSE,
-    trans.stomach=FALSE, trans.stomach.number=FALSE, use.stom.meanl.ALK=FALSE,
+    trans.stomach=FALSE, make_incl_stom.in=TRUE,trans.stomach.number=FALSE, use.stom.meanl.ALK=FALSE,
     trans.ALK.stomach=FALSE, trans.ALK.all=FALSE, trans.other=FALSE, trans.Consum=FALSE,
     stom.first=1E-06, stom.mid=1E-06, stom.last=1E-06, stom.exp=1E-06, stom.min.abs=1E-08, delete.tails=TRUE,
     inserted.haul.no.propor=1.0,      
     max.other.food=100,
-    formatted.output=TRUE,selected.years=NULL,year.q=NULL,min.pred.length=0) {
+    formatted.output=TRUE,selected.years=NULL,year.q=NULL,min.pred.length=0,saveGlobal=TRUE,outLabel="") {
 
 if (max.other.food!=100) stop("Sorry, a value different from 100 cannot be used for max.other.food")
 
@@ -48,6 +48,13 @@ SMS_areas<-(1:no_areas)
 
 checksum<-function(file='a'){
   cat("-999 # Checksum",file=file,append=TRUE)
+}
+
+fill_data<-function() {
+  data.frame(   year=rep(years[1],maximum.age.all.species+1),
+                quarter=rep(1,maximum.age.all.species+1),
+                species=rep('OTH',maximum.age.all.species+1),
+                age=seq(0,maximum.age.all.species))
 }
 
 select.ALK<-function(a){   #function for selection of ALK data
@@ -79,8 +86,8 @@ select.ALK.all<-function(a){   #function for selection of ALK data
 #######
 
 select.stom<-function(a){   #function for selection of stomach data
- if (is.null(year.q)) {
-   if (!trans.stomach.number)  { a$used.prey.number<-0; a$calc.prey.number<-0 }
+  if (!trans.stomach.number)  { a$used.prey.number<-0; a$calc.prey.number<-0 }
+  if (is.null(year.q)) {
    b<-subset(a,(year %in% selected.years)  & (pred %in% code.name.pred) 
               & (haul.no>=min.stomach.sampled.in.stratum) & (pred.mean.length>=min.pred.length)
               & ((type %in% c('first','last','exp') & !delete.tails) | type %in% c('obs','mid')),
@@ -150,7 +157,8 @@ select.stom<-function(a){   #function for selection of stomach data
 
 trans.4M.SMS.MEANL.from.Weight<-function(){
 cat("trans.4M.SMS.MEANL.from.Weight\n")
-file<-file.path(list.data.path,'VPA_bi01.in') 
+if (outLabel=="") file<-file.path(list.data.path,'VPA_Bi01.in') else file<-file.path(list.data.path,paste0('VPA_Bi01_',outLabel,'.in')) 
+print(file)
 s<-read.csv(file,header=TRUE)
 s<-subset(s,age<=maximum.age.all.species & year>=years[1] & year<=years[2] & (species %in% code.name),
    select = c(year,quarter,species,age,WSEA))
@@ -188,7 +196,9 @@ if (trans.meanL.from.weight) trans.4M.SMS.MEANL.from.Weight()
 
 trans.4M.SMS.MEANL<-function(){
 cat("trans.4M.SMS.MEANL\n")
-file<-file.path(list.data.path,'mean_l.dat') 
+
+if (outLabel=="") file<-file.path(list.data.path,'mean_l.csv') else file<-file.path(list.data.path,paste0('mean_l_',outLabel,'.csv')) 
+print(file)
 s<-read.csv(file)
 if (is.null(s[1,'SMS_area'])) s$SMS_area<-1
 
@@ -260,10 +270,16 @@ if (trans.stockDist) trans.stock.distribution()
 #################################################################
 trans.4M.SMS.CONSUM<-function(){
 cat("trans.4M.SMS.CONSUM\n")
-file<-file.path(list.data.path,'Consum.dat') 
+if (outLabel=="") file<-file.path(list.data.path,'consum.dat') else file<-file.path(list.data.path,paste0('consum_',outLabel,'.dat')) 
 s<-read.csv(file)
 s<-subset(s,age<=maximum.age.all.species & year>=years[1] & year<=years[2] & (species %in% code.name.pred),
    select = c(SMS_area,year,quarter,species,age,CONSUM))
+
+fill<-fill_data();
+fill$CONSUM <- -1
+fill$SMS_area <- NA
+s<-rbind(s,fill)
+
 
 transf<-function(s,file.name,dig) {
   CC<<-tapply(s$CONSUM,list(s$SMS_area,s$year,s$quarter,s$species,s$age),sum)
@@ -296,14 +312,14 @@ if (trans.Consum) trans.4M.SMS.CONSUM()
 trans.4M.SMS.OTHER<-function(){
 cat("trans.4M.SMS.OTHER\n")
 
-file<-file.path(list.data.path,'VPA_Bi01.IN') 
+if (outLabel=="") file<-file.path(list.data.path,'VPA_Bi01.IN') else file<-file.path(list.data.path,paste0('VPA_Bi01_',outLabel,'.IN')) 
 s<-read.csv(file,header=TRUE)
 s<-subset(s,age<=maximum.age.all.species & year>=years[1] & year<=years[2] & (species %in% code.name),
  select = c(year,quarter,species,age,WSEA))
 
-file<-file.path(list.data.path,'VPA_Bi02.IN') 
+if (outLabel=="") file<-file.path(list.data.path,'VPA_Bi02.IN') else file<-file.path(list.data.path,paste0('VPA_Bi02_',outLabel,'.IN')) 
 s2<-read.csv(file,header=TRUE)
-
+#print(head(s2))
 s2<-subset(s2,age<=maximum.age.all.species & year>=years[1] & year<=years[2] & (species %in% code.name),
          select = c(year,quarter,species,age,WSEA))
 
@@ -327,16 +343,12 @@ transf<-function(s,file.name,dig) {
 }
 if (first.VPA>1)transf(s3,"west.in",6)
 
-file<-file.path(list.data.path,'VPA_Bi02.IN') 
+if (outLabel=="") file<-file.path(list.data.path,'VPA_Bi02.IN') else file<-file.path(list.data.path,paste0('VPA_Bi02_',outLabel,'.IN')) 
 s2<-read.csv(file,header=TRUE)
 s2<-subset(s2,age<=maximum.age.all.species & year>=years[1] & year<=years[2] & (species %in% code.name),
         select = c(year,quarter,species,age,N))
 
-fill<-data.frame(   year=rep(years[1],maximum.age.all.species+1),
-                    quarter=rep(1,maximum.age.all.species+1),
-                    species=rep('OTH',maximum.age.all.species+1),
-                    age=seq(0,maximum.age.all.species),
-                    N=rep(1,maximum.age.all.species+1))
+fill<-fill_data();fill$N <- -1
 s2<-rbind(s2,fill)
  
 transf<-function(s,file.name,dig) {
@@ -358,6 +370,7 @@ transf<-function(s,file.name,dig) {
 if (first.VPA>1)transf(s2,"other_pred_N.in",0)
 } # end function definition
 #################################################################
+
 if (trans.other) trans.4M.SMS.OTHER()
 
 #################################################################
@@ -365,10 +378,22 @@ if (trans.other) trans.4M.SMS.OTHER()
 
 trans.4M.SMS.bio<-function(){
 cat("trans.4M.SMS.bio\n")
-file<-file.path(list.data.path,'VPA_Bi01.IN')
+if (outLabel=="") file<-file.path(list.data.path,'VPA_Bi01.IN') else file<-file.path(list.data.path,paste0('VPA_Bi01_',outLabel,'.IN')) 
 s<-read.csv(file,header=TRUE)
-# print(head(s))
+s$remarks<-NULL
+
 s<-subset(s,age<=maximum.age.all.species & year>=years[1] & year<=years[2] & (species %in% code.name))
+
+fill<-fill_data()
+fill$WSEA <- -1
+fill$PROPMAT <- -1
+fill$M<- -1
+fill$M1<- -1
+fill$PROP_M2<- -1
+fill$SMS_area<- NA
+s<-rbind(s,fill)
+
+print(head(s)) ;#ss<<-s
 attach(s)
 transf<-function(item,file.name,dig) {
   CC<<-tapply(item,list(year,quarter,species,age),sum)
@@ -378,7 +403,7 @@ transf<-function(item,file.name,dig) {
   unlink(out)
 
   for (sp in code.name[(first.VPA+1):(nsp+1)]) {
-  #cat(sp,'\n')
+  cat(sp,'\n')
       out1<<-CC[,,sp,]
       for (y in years[1]:years[2]){
         out2<-out1[as.character(y),,]
@@ -391,11 +416,11 @@ transf<-function(item,file.name,dig) {
 }
 
 if (first.VPA==1) transf(WSEA,"west.in",6)
-#transf(WSEA,"west.in",6)
 transf(M,"natmor.in",4)
 transf(M1,"natmor1.in",4)
 transf(PROPMAT,"propmat.in",4)
-transf(PROP_N,"n_proportion_m2.in",2)
+transf(PROP_M2,"n_proportion_m2.in",2)
+detach(s)
 } # end function definition
 #################################################################
 
@@ -406,7 +431,8 @@ if (trans.bio) trans.4M.SMS.bio()
 #transform data from file with VPA catch  data input
 trans.4M.SMS.catch<-function(){
 cat("trans.4M.SMS.catch\n")
-file<-file.path(list.data.path,'VPA_Ca01.IN')
+
+if (outLabel=="") file<-file.path(list.data.path,'VPA_Ca01.IN') else file<-file.path(list.data.path,paste0('VPA_Ca01_',outLabel,'.IN')) 
 s<-read.csv(file,header=TRUE)
 
 a<-data.frame(species=code.name[2:(nsp+1)],first.age=rep(fa,nsp),last.age=SMS.control@species.info[,'last-age'],plus=SMS.control@species.info[,'+group'])
@@ -417,6 +443,15 @@ c<-data.frame(species=b$species,year=b$year,quarter=b$quarter,
    age=ifelse(b$plus==1,ifelse(b$age>b$last.age,b$last.age,b$age),b$age),
    Catchn=ifelse(b$age>b$last.age, ifelse(b$plus==1,b$CATCHN,0),b$CATCHN),
    WCatch=b$WCATCH,PROP_CAT=b$PROP_CAT)
+
+
+fill<-fill_data()
+fill$WCatch <- -1
+fill$Catchn <- -1
+fill$PROP_CAT<- -1
+c<-rbind(c,fill)
+
+
 
 #c[c$species=='SAN' & c$quarter==1,'quarter']<-2
 #c[c$species=='SAN' & c$quarter==4,'quarter']<-3
@@ -432,9 +467,10 @@ PROP_CAT[PROP_CAT>1]<-1
 transf<-function(item,file.name,dig) {
   out<-file.path(data.path,file.name)
   unlink(out)
+  cat(paste("# Data extracted from file ",file,"\n"),file=out,append=TRUE)
+  cat(paste("# Date ", date(), '\n'),file=out,append=TRUE)
+  
   if (file.name=="canum.in") {
-    cat(paste("#Data extracted from file ",file,"\n"),file=out,append=TRUE)
-    cat(paste("#Date ", date(), '\n'),file=out,append=TRUE)
     cat(paste("#The file includes catch numbers at age",'\n'),file=out,append=TRUE)
     cat(paste("# if catch number=0  is applied for all ages in a year-season Zero fishing is assumed","\n"),file=out,append=TRUE)
     cat(paste("# if catch number<0  is catch numbers are assumened unknown (NA)","\n"),file=out,append=TRUE)
@@ -461,31 +497,40 @@ if (trans.catch) trans.4M.SMS.catch()
 
 trans.4M.SMS.stomach<-function(){
 cat("trans.4M.SMS.stomach\n")
-file<-file.path(list.data.path,'ALK_stom_list.dat') 
+if (outLabel=="") file<-file.path(list.data.path,'ALK_stom_list.dat') else file<-file.path(list.data.path,paste0('ALK_stom_list_',outLabel,'.dat')) 
+print(file)
 lak<-read.table(file,header=TRUE)
 lak<-select.ALK(lak)
 
 lak$ALK<-lak$ALK/100
 
-file<-file.path(list.data.path,'stomcon_list.dat') 
+
+if (outLabel=="") file<-file.path(list.data.path,'stomcon_list.dat') else file<-file.path(list.data.path,paste0('stomcon_list_',outLabel,'.dat')) 
+
 stom<-read.table(file,header=TRUE,na.strings=".")
-if (any(is.na(stom))) stop("program halted: file stomcon_list.dat includes missing data")
+if (any(is.na(stom))) stop(paste("program halted:", file," includes missing data"))
 
 
 if (use.stom.meanl.ALK) stom$prey.mean.length<-stom$prey.mean.length.ALK
 
-if (is.null(var.groups.size)) stom$var.groups<-stom$pred.size else stom$var.groups<-var.groups[match(stom$pred.size,var.groups.size)]
-a<-aggregate(haul.no~SMS_area+pred+var.groups,max,data=stom)
+
+if (is.null(var.groups.size)) stom$var.groups<-stom$pred.size.class else stom$var.groups<-var.groups.size[1,as.character(stom$pred.size.class)]
+#sort(unique(stom$var.groups))
+
+a<-aggregate(haul.no~SMS_area+pred+var.groups,data=stom,FUN=max)
 b<-names(a)
 names(a)<- c("SMS_area","pred",    "var.groups",   "max.N" )
 stom<-merge(stom,a)
 stom$haul.no.scaled<-round(stom$haul.no/stom$max.N*100)
 stom[stom$haul.no.scaled<min.stom.groups,"haul.no.scaled"]<-min.stom.groups
 # hist(stom$haul.no)
+# hist(stom$haul.no.scaled)
 # summary(stom$haul.no)
 
 
 stom<-select.stom(stom)
+
+if (saveGlobal) gemStom1<<-stom
 #print(summary(stom))
 #print(subset(stom,is.na(stomcon)))
 
@@ -516,12 +561,13 @@ names(a)<-list('SMS_area','year','quarter','pred','pred.size.class','sum')
 stom<-merge(stom,a)
 stom$stomcon<-stom$stomcon/stom$sum;
 #cat('\ntest3\n');print(head(stom))
-  
+if (saveGlobal) gemStom2<<-stom  
+
 #check existence of ALK keys for all prey sizes
 a<-unique(data.frame(SMS_area=lak$SMS_area,year=lak$year,quarter=lak$quarter,species=lak$prey,size=lak$prey.size.class,a="a"))
 # cat('\nLAK\n');print(head(a,20)) # remove
 
-b2<-unique(data.frame(MS_area=stom$SMS_area,year=stom$year,quarter=stom$quarter,species=stom$prey,size=stom$prey.size.class))
+b2<-unique(data.frame(SMS_area=stom$SMS_area,year=stom$year,quarter=stom$quarter,species=stom$prey,size=stom$prey.size.class))
 b3<-b2
 b3<-unique(subset(b3,species!='OTH'))
 b3$key<-paste(b3$SMS_area,b3$year,b3$quarter,b3$species,formatC(b3$size,wid=2,flag="0"))
@@ -536,7 +582,8 @@ mis.alk<-subset(check,is.na(a))
 if (dim(mis.alk)[1]>0) {
   cat('ERROR:   Missing ALK prey size class\n')
   print(mis.alk)
-  print(check)
+  #print(check)
+  gem<<-check
   stop('program stop')
 } else cat("Data are OK\n")
 
@@ -586,20 +633,24 @@ tot$last.prey<-c(tot$first.year.quarter.area.pred.predL.prey[2:dim(tot)[1]],TRUE
 pred.size.class.format<-subset(tot, first.year.quarter.area.pred.predL==T,select=c(year, quarter, SMS_area, pred.no,pred.size.class, pred.size))
 # cat('\ntest 20:\n') ;print(pred.size.class.format)
 
+
+write.csv(tot,file=file.path(list.data.path,'tot_stom_data.csv'),row.names=FALSE)
+
 line<-'##############################################################\n'
+if (saveGlobal) tottot<<-tot
 
 out<-file.path(data.path,'stom_struc_at_length.in')
 unlink(out)
 cat(line,file=out,append=TRUE)
-cat(paste("#Data extracted from file ",out,"\n"),file=out,append=TRUE)
-cat(paste("#Date ", date(), '\n'),file=out,append=TRUE)
-cat(paste("#stom.first ",stom.first,"  #  stomcon for inserted (first length class) values\n"),file=out,append=TRUE)
-cat(paste("#stom.mid ",stom.mid," # stomcon for inserted (mid length class) values\n"),file=out,append=TRUE)
-cat(paste("#stom.last ",stom.last,"  # stomcon for inserted (last length class) values\n"),file=out,append=TRUE)
-cat(paste("#stom.exp ",stom.exp,"  # stomcon for inserted (expanded species and length class) values\n"),file=out,append=TRUE)
-cat(paste("#stom.min.abs",stom.min.abs, "   # absolut minimum value for stom con for inserted values\n"),file=out,append=TRUE)
-cat(paste("#delete.tails",delete.tails, "   # artifictal data deleted or not\n"),file=out,append=TRUE)
-cat(paste("#inserted.haul.no.propor ",inserted.haul.no.propor," # proportion of number hauls in case of invented values (first, mid and last values)\n"),file=out,append=TRUE)
+cat(paste("# Data extracted from directory ",list.data.path, "/stomcon_list.dat\n"),file=out,append=TRUE)
+cat(paste("# Date ", date(), '\n'),file=out,append=TRUE)
+cat(paste("# stom.first ",stom.first,"  #  stomcon for inserted (first length class) values\n"),file=out,append=TRUE)
+cat(paste("# stom.mid ",stom.mid," # stomcon for inserted (mid length class) values\n"),file=out,append=TRUE)
+cat(paste("# stom.last ",stom.last,"  # stomcon for inserted (last length class) values\n"),file=out,append=TRUE)
+cat(paste("# stom.exp ",stom.exp,"  # stomcon for inserted (expanded species and length class) values\n"),file=out,append=TRUE)
+cat(paste("# stom.min.abs",stom.min.abs, "   # absolut minimum value for stom con for inserted values\n"),file=out,append=TRUE)
+cat(paste("# delete.tails",delete.tails, "   # artifictal data deleted or not\n"),file=out,append=TRUE)
+cat(paste("# inserted.haul.no.propor ",inserted.haul.no.propor," # proportion of number hauls in case of invented values (first, mid and last values)\n"),file=out,append=TRUE)
 
 cat(line,file=out,append=TRUE)
 cat(paste("# File for stomach contents data by length groups of predators and preys\n"),file=out,append=TRUE)
@@ -696,8 +747,9 @@ b<-merge(b,pred.size.class.format,all.x=TRUE,sort=FALSE)
 
 key<-order(paste(b$year,b$quarter,b$SMS_area,formatC(as.numeric(b$pred.no),wid=2,flag='0'),formatC(as.numeric(b$size.no),wid=2,flag='0')))
 b<-b[key,]
-
-b<-subset(b,select=c('size.no','min.index','max.index','size'))
+b$comment<-paste("#",b$size)
+if (!is.numeric(b$size)) b$size=substr(b$size,1,4)
+b<-subset(b,select=c('size.no','min.index','max.index','size','comment'))
 #cat ('\ntest 8:\n'); print(head(b,15))
 write.table(b,file=out,append=TRUE, quote = FALSE, row.names = FALSE,col.names = FALSE)
 
@@ -716,6 +768,8 @@ key<-order(paste(b$year,b$quarter,b$SMS_area,formatC(as.numeric(b$pred.no),wid =
 b<-b[key,]
 b<-subset(b,select=c('prey','min.index','max.index'))
 write.table(b,file=out,append=TRUE, quote = FALSE, row.names = FALSE,col.names = FALSE)
+checksum(file=out)
+
 
 nfiles<-8
 out<-c(
@@ -792,11 +846,54 @@ execution.effective<-function() {
   write.table(formatC(tot$haul.no.scaled,format="d",width=5),file=out[5],append=TRUE,quote = FALSE,row.names = FALSE,col.names = FALSE)
   write.table(formatC(tot$used.prey.number,format="d",width=5),file=out[6],append=TRUE,quote = FALSE,row.names = FALSE,col.names = FALSE)
   write.table(formatC(tot$type.no,format="d",width=5),file=out[7],append=TRUE,quote = FALSE,row.names = FALSE,col.names = FALSE)
-  write.table(formatC(tot[tot$first.year.quarter.pred.predL,'pred.mean.length'],format="d",width=6),file=out[8],append=TRUE,quote = FALSE,row.names = FALSE,col.names = FALSE)
+  write.table(formatC(tot[tot$first.year.quarter.area.pred.predL,'pred.mean.length'],format="d",width=6),file=out[8],append=TRUE,quote = FALSE,row.names = FALSE,col.names = FALSE)
+                  
 }
 
 if (formatted.output) code.slow.but.formatted.output() else execution.effective()
+for (i in 1:nfiles) checksum(file=out[i])
 
+
+trans.nstom<-function(){
+  cat("trans.nstom\n")
+  a<-subset(tot,first.year.quarter.area.pred.predL,select=c(pred,SMS_area,year,quarter,pred.size,pred.size.class,haul.no))
+  
+  attach(a)
+  qs<-as.character(sort(unique(quarter)))
+  
+  transf<-function(item,file.name,dig) {
+    CC<<-tapply(item,list(SMS_area,pred,quarter,pred.size.class,year),sum)
+    CC[is.na(CC)]<-0
+    out<-file.path(data.path,file.name)
+    unlink(out)
+    cat("# file",file.name,"\n",file=out,append=FALSE)
+    cat("# A value >=1 indicate that the stomach sample is used in SMS. Default number is no. of hauls\n",file=out,append=TRUE)
+    cat(line,file=out,append=TRUE)
+    for (area in as.character(SMS_areas)) {
+      cat("# Area:", area.names[as.numeric(area)],"\n",file=out,append=TRUE)
+      cat(line,file=out,append=TRUE)
+      
+      for (sp in code.name.pred) {
+        cat("# Predator:", sp,"\n",file=out,append=TRUE)
+        cat(line,file=out,append=TRUE)
+        
+        for (q in qs) {
+          cat("# Quarter:", q,'\n',file=out,append=TRUE)
+          cat(line,file=out,append=TRUE)
+          out1<<-CC[area,sp,q,,]
+          cat("#",paste(dimnames(out1)[[2]],' '),"\n",file=out,append=TRUE)
+          write.table(format(round(out1,dig),width=6),file=out,quote=FALSE,row.names=FALSE,col.names=FALSE,append=TRUE)    
+        }
+      }
+    }
+    checksum(file=out)
+  }
+  
+  if (make_incl_stom.in) transf(haul.no,'incl_stom_master.in',0)
+  detach(a)
+}
+
+trans.nstom()
 }
 
 if (trans.stomach) trans.4M.SMS.stomach()
@@ -805,7 +902,9 @@ if (trans.stomach) trans.4M.SMS.stomach()
 
 trans.4M.SMS.ALK<-function(){
 cat("trans.4M.SMS.ALK\n")
-file<-file.path(list.data.path,'ALK_stom_list.dat') 
+
+if (outLabel=="") file<-file.path(list.data.path,'ALK_stom_list.dat') else file<-file.path(list.data.path,paste0('ALK_stom_list_',outLabel,'.dat')) 
+
 lak<-read.table(file,header=TRUE)
 
 lak<-select.ALK(lak)
@@ -932,7 +1031,7 @@ if (formatted.output) {
 
     if (tot$first.year.quarter.area.prey[i]) cat(paste("# species:",tot$prey[i],'\n'),file=out,append=TRUE)
     if (tot$first.year.quarter.area.prey.age[i]) cat(paste("# age:",tot$prey.age[i],"first size:",tot$prey.size.class[i],tot$prey.size[i],'\n'),file=out,append=TRUE)
-    cat(formatC(tot$ALK[i],format="f",dig=5,width=8),file=out,append=TRUE)
+    cat(formatC(tot$ALK[i],format="f",dig=6,width=9),file=out,append=TRUE)
     if (tot$last.age[i]) cat('\n',file=out,append=TRUE)
   } 
 } else {
@@ -973,7 +1072,9 @@ if (formatted.output) {
 
 trans.4M.SMS.ALK.all<-function(){
 cat("trans.4M.SMS.ALK.all\n")
-file<-file.path(list.data.path,'ALK_all_list.dat') 
+
+if (outLabel=="") file<-file.path(list.data.path,'ALK_all_list.dat') else file<-file.path(list.data.path,paste0('ALK_all_list_',outLabel,'.dat')) 
+
 lak<-read.table(file,header=TRUE)
 
 lak<-select.ALK.all(lak)

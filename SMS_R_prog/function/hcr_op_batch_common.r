@@ -22,8 +22,8 @@ make.OP.dat<-function(my.area='North Sea',my.last.year=2000,first.year.output=20
 
       if (do.indicators) OP@indicator<-1 else OP@indicator<-0
 
-      y.end<-2013
-      y.first<-2004
+      y.end<-2016
+      y.first<-2007
       OP@years.wsea['first-year',]<-y.first; OP@years.M['first-year',]<-y.first; OP@years.propmat['first-year',]<-y.first; OP@years.weca['first-year',]<-y.first; OP@years.ration['first-year',]<-y.first;
       OP@years.wsea['last-year',] <-y.end;   OP@years.M['last-year',] <-y.end;   OP@years.propmat['last-year',] <-y.end;   OP@years.weca['last-year',] <-y.end;   OP@years.ration['last-year',] <-y.end;
 

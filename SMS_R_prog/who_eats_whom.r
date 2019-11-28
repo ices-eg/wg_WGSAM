@@ -1,15 +1,60 @@
 #library(RColorBrewer)
 
 first.year<- 1974                #first year on plot, negative value means value defined by data
-last.year<- 2016                 #last year on plot
+last.year<- 2030 #2016                 #last year on plot
 
-dat<-Read.summary.data(read.init.function=F)
+OperatingModel<-T;   # include data from forecast (the OP )
+redefine.scenario.manually<-FALSE
+
+output.dir<-data.path
+op.dir<-data.path
+if (OperatingModel==T & redefine.scenario.manually==T)  {
+  scenario<-"test"; 
+  output.dir<-data.path 
+  op.dir<-file.path(data.path,"HCR_1_deter_noadjust_test_01_HCR1_0_Rec0__2030")
+  #op.dir<-data.path
+} else if (OperatingModel==T & redefine.scenario.manually==FALSE) {
+  output.dir<-scenario.dir 
+  op.dir<-scenario.dir
+} 
+
+if (!OperatingModel) dat<-Read.summary.data(read.init.function=F)
+if (OperatingModel) {
+  dat1<-Read.summary.data(extend=F,read.init.function=F)
+  
+  dat<-Read.summary.data(dir=op.dir,infile="op_summary.out",read.init.function=F)
+
+  dat$N.bar<-dat$N*(1-exp(-dat$Z))/dat$Z
+  dat$C<-NULL
+  dat$N_dist<-NULL
+  dat$Area<-NULL
+  dat1<-subset(dat1,select=c(Species,Year,Quarter,Species.n,Age,M1,M2,M,F,Z,N,N.bar,west,weca,Yield,CWsum,BIO,SSB))
+  dat <-subset(dat, select=c(Species,Year,Quarter,Species.n,Age,M1,M2,M,F,Z,N,N.bar,west,weca,Yield,CWsum,BIO,SSB))
+  
+  dat<-rbind(dat1,dat)
+}
+#tapply(dat$Yield,list(dat$Year,dat$Species),sum)
+
+
+
+
+
 dat<-subset(dat,Year<=last.year )
 if (first.year>0) dat<-subset(dat,Year>=first.year )
 
 dat<-data.frame(dat,deadM2=dat$M2*dat$N.bar*dat$west,deadM=dat$M*dat$N.bar*dat$west)
 dat<-subset(dat,select=c(Species, Year, Quarter, Species.n, Age, M2,deadM2))
+
 M2<-Read.part.M2.data()
+
+if (OperatingModel) {
+  M2b<-Read.part.M2.OP.prediction.data(dir=op.dir)
+  M2b$Area<-NULL
+  M2<-rbind(M2,M2b)
+}
+
+
+
 a<-merge(x=dat,y=M2, by.x = c("Year","Quarter","Species","Age"), by.y = c("Year","Quarter","Prey","Prey.age"))
 a$eatenW<- a$deadM2*a$Part.M2/a$M2
 
@@ -44,7 +89,7 @@ write.table(a,file=file.path(data.path,'who_eats_whom_combined.csv'),sep=',',row
 
 cleanup()
 dev<-"screen"
-dev<-"png"
+#dev<-"png"
 nox<-2
 noy<-3
 

@@ -118,7 +118,7 @@ if (FALSE) {
   var.groups.size<-NULL 
   var.groups<-     NULL
   
-  if (T) {   ## no tails
+  if (TRUE) {   ## no tails
     SMS.data.transform(list.data.path=file.path(root,"data_baltic_WB","data-2014-one-area"),
           trans.bio=T, trans.catch=T,
           trans.meanL=F,  trans.meanL.from.weight=T,  trans.stockDist=F,
@@ -127,7 +127,7 @@ if (FALSE) {
           inserted.haul.no.propor=1.0, 
           formatted.output=T,selected.years=selected.years,year.q=year.q)
   }
-  if (F) {   ## tails
+  if (FALSE) {   ## tails
     SMS.data.transform(list.data.path=file.path(root,"data_baltic","2013-data"),
           trans.bio=F, trans.catch=F,
           trans.meanL=F,  trans.meanL.from.weight=F,  trans.stockDist=F,
@@ -212,7 +212,7 @@ if (FALSE) {
   var.groups<-      c(    1,   1,   1,   2,   2,  2,   3,   3,   4,   4,   4,   4)
   min.stom.groups<-5
   
-  if (T) {   ## no tails
+  if (TRUE) {   ## no tails
     SMS.data.transform(list.data.path=file.path(root,"data_baltic","2013-data"),
           trans.bio=T, trans.catch=T,
           trans.meanL=T,  trans.meanL.from.weight=F,  trans.stockDist=F,
@@ -221,7 +221,7 @@ if (FALSE) {
           inserted.haul.no.propor=1.0, 
           formatted.output=T,selected.years=selected.years,year.q=year.q)
   }
-  if (F) {   ## tails
+  if (FALSE) {   ## tails
     SMS.data.transform(list.data.path=file.path(root,"data_baltic","2013-data"),
           trans.bio=F, trans.catch=F,
           trans.meanL=F,  trans.meanL.from.weight=F,  trans.stockDist=F,

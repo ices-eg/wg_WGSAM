@@ -19,12 +19,13 @@ do.a.full.SMS.run<-function(label="",rundir=data.path,outdir=data.path,do.single
                             do.prediction=FALSE,do.run=TRUE, Screen.show=TRUE,pause=FALSE,ADMB.options="-gbs 1500000000 ",deleteFiles=NA,format.options=T,HPC=F) {
 
 
-
+  # label="run_";rundir=data.path;outdir=data.path
 file<-file.path(outdir,'sms.dat')
 
 if (OS=="windows") {
   dos.root<-gsub(.Platform$file.sep,"\\",root,fixed=TRUE)
   outdir<-paste(gsub(.Platform$file.sep,"\\",outdir,fixed=TRUE),"\\",sep="")
+  #outdir<-gsub(.Platform$file.sep,"\\",outdir,fixed=TRUE)
   do.bat<-"do.bat"
   del<-"del /f "
   cp<-"copy /Y "
@@ -86,9 +87,9 @@ if (do.single) {
 
  if (OS=="windows") {  
      #delete requested files
+     cat(paste(dosDrive,"\n","cd ",quo,outdir,quo,"\n",sep=""),file=sms.do,append=append)
      if (!is.na(deleteFiles[1])) {
-       cat(paste(dosDrive,"\n","cd ",quo,outdir,quo,"\n",sep=""),file=sms.do,append=append)
-       for  (dels in deleteFiles) {
+        for  (dels in deleteFiles) {
         cat(paste("del ", dels,"\n",sep=""),file=sms.do,append=TRUE)
        }
      }
@@ -258,9 +259,9 @@ if (do.run) {
 
     command<-paste(quo,sms.do,quo,sep='')
     command<-sub('/','',command)
-    shell(command, invisible = TRUE)  # windows
-
-    #system(command,show.output.on.console =Screen.show)
-} else cat(paste("batch file,",sms.do,"for SMS run is made\n"))
+    if (OS=="windows") shell(command, invisible = TRUE) 
+    if (OS=="unix") system(command,show.output.on.console =Screen.show) 
+    
+} else cat(paste("batch file: ",sms.do,"for SMS run is made\n"))
 }
 

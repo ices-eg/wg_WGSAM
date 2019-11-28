@@ -287,8 +287,9 @@ SMS2FLStocks<-function(sumfile="summary.out",read.input=TRUE,read.output=TRUE,
         if (nsp>1) new.fls[[sp.no]]<-s. 
  
     } 
-   
-    ifelse(nsp>1, return(new.fls),return(s.))
+    #if (nsp==1) new.fls<-1  # Hack
+  
+    if(nsp>1) return(new.fls) else return(s.)
 
    
 }

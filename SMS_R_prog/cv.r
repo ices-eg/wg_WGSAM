@@ -3,11 +3,60 @@
 #Read.SMS.std()
 
 a<-Read.SMS.std()
+head(a)
+
+# sort parameter uncertanties
+b<-a[order(abs(a$CV.round)),]
+b<-subset(b,select=c(-area,-predator,-prey, -fleet,-parNo,-index,-no))
+head(b,20)
+tail(b,20)
+
+
+#remove output variables
+dim(b)
+b<-b[-grep('M2_sd',b$name),]
+b<-b[-grep('hist_SSB',b$name),]
+b<-b[order(abs(b$CV.round)),]
+b$CV.Pct<-round(b$CV.round)
+rownames(b)<-NULL
+b<-subset(b,select=c( name,value,std, CV.Pct, species, year, quarter, age))
+
+head(b,20)
+tail(b,40)
+
+tail(b,10)
+
+
+bb<-data.frame(CV.abs=abs(b$CV.round),n=1:dim(b)[[1]])
+bb<-subset(bb,CV.abs<50)
+X11()
+plot(x=bb$n,y=bb$CV.abs,ylab='CV %',xlab='')
+
+bb<-subset(bb,CV.abs<100)
+plot(x=bb$n,y=bb$CV.abs,ylab='CV %',xlab='')
+
+
+bstom<-subset(b,name %in% c("vulnera","init_stl_other_suit_slope","init_season_overlap","var_size_ratio_ini[1]","Stom_var[1]","init_pref_size_ratio[1]"))
+
+subset(bstom,select=c(-species,-year,-quarter,-age ))
+
+
+dim(b)
+sort(unique(b$name))
+
+b$name
+subset(a,name=='init_season_overlap')
+
+
+aa<-subset(a,name=='log_exploi_pattern')
+aa$exp=exp(aa$value)
+aa
+
+
 unique(a$name)
 
 
 a$significant<- abs(a$value-1)>2*a$std 
-
 
 
 a<-Read.SMS.std()
@@ -15,12 +64,14 @@ aa<-subset(a,name=='hist_SSB')
 round(tapply(aa$CV.round,list(aa$year,paste(aa$species,sp.names[aa$species],sep='.')),sum,na.rm=T),1)
 aa<-subset(a,name=='avg_F')
 round(tapply(aa$CV.round,list(aa$year,paste(aa$species,sp.names[aa$species],sep='.')),sum,na.rm=T),1)
+
 aa<-droplevels(subset(a,name=='M2_sd0'))
 round(tapply(aa$CV.round,list(aa$year,paste(aa$species,sp.names[aa$species],sep='.')),sum,na.rm=T),1)
 aa<-subset(a,name=='M2_sd1')
 round(tapply(aa$CV.round,list(aa$year,paste(aa$species,sp.names[aa$species],sep='.')),sum,na.rm=T),1)
 aa<-subset(a,name=='M2_sd2')
 round(tapply(aa$CV.round,list(aa$year,paste(aa$species,sp.names[aa$species],sep='.')),sum,na.rm=T),1)
+
 
 
 #############################################################################
@@ -149,7 +200,7 @@ if (dim(N)[[1]]>0 | dim(N.next)[[1]]>0) {
 
 
 
-plot.CV<-function(paper=FALSE,nox=1,noy=1,var.name='hist_SSB',newPlot=T,tit=T,outfile='Uncertanties') {
+plot.CV<-function(paper=FALSE,nox=1,noy=1,var.name='hist_SSB',newPlot=T,tit=T,outfile='Uncertanties',w8=8,w11=10,pointsize=12) {
 
   if (paper) dev<-"png" else dev<-"screen"
   noxy<-nox*noy
@@ -173,7 +224,7 @@ plot.CV<-function(paper=FALSE,nox=1,noy=1,var.name='hist_SSB',newPlot=T,tit=T,ou
       a$std<-a$std/1000
   }
     
-  if (newPlot) newplot(dev,nox,noy,filename=outfile,w8=8,w11=10,Portrait=TRUE);
+  if (newPlot) newplot(dev,nox,noy,filename=outfile,w8=w8,w11=w11,Portrait=TRUE,pointsize=pointsize);
        par(mar=c(3,5,1,2))  #c(bottom, left, top, right)
  
   by(a,list(a$species),function(x) {
@@ -206,12 +257,12 @@ plot.CV<-function(paper=FALSE,nox=1,noy=1,var.name='hist_SSB',newPlot=T,tit=T,ou
 
 
 #
-#plot.CV(paper=FALSE,nox=2,noy=3,var.name='M2_sd0') 
+#plot.CV(paper=FALSE,nox=2,noy=2,var.name='M2_sd0') 
 
 plot.ref.lines<-F
 plot.CV(paper=TRUE,nox=2,noy=4,var.name='M2_sd0',outfile='Uncertanties_M2_age0')
-plot.CV(paper=TRUE,nox=2,noy=4,var.name='M2_sd1',outfile='Uncertanties_M2_age1')
-plot.CV(paper=TRUE,nox=2,noy=4,var.name='M2_sd2',outfile='Uncertanties_M2_age2')
+plot.CV(paper=TRUE,nox=2,noy=1,var.name='M2_sd1',outfile='Uncertanties_M2_age1',w8=8,w11=5,pointsize=8)
+plot.CV(paper=TRUE,nox=2,noy=2,var.name='M2_sd2',outfile='Uncertanties_M2_age2')
 
 plot.CV(paper=T,nox=1,noy=3,var.name='avg_F',newPlot=T,tit=T)
 plot.CV(paper=T,nox=1,noy=3,var.name='hist_SSB',newPlot=F,tit=F)

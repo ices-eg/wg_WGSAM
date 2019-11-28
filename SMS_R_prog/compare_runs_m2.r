@@ -1,16 +1,16 @@
 
-nox<-2; noy<-3;
+nox<-3; noy<-3;
 paper<-T        # graphics on paper=file (TRUE) or on screen (FALSE)
 if (makeAllGraphs) paper<-TRUE
 
 sumQuarerly<-T  # use sum of quarterly M2, or calc M2 from annual numbers dead.
 
 
-run.ID<-'2014_2017'         # file id used for paper output
+run.ID<-'M2'         # file id used for paper output
 cleanup()
 
 first.year.on.plot<-1974
-last.year.on.plot<-2016
+last.year.on.plot<-2018
 doGrid<-T
 
 #incl.sp<-c("Cod")                      # species to be included. Name(s) or "all"
@@ -26,39 +26,116 @@ palette("default")                # good for clolorfull plots
 if (F) {    # sometimes the dir and labels are defined outside this script !
   dirs<-c("baltic-2012-keyRun-updated","baltic-2012-keyRun-4-areas")
   labels<-c("Key run 2012 updated","4 areas 2012")
+
+
+dirs<-c("Baltic-2012-keyRun-results","Baltic-2019-V01_new_stom")
+labels<-c("key-run 2012","2019 new stomachs")
+
+
+dirs<-c("Baltic-2019-V01_new_stom","Baltic-2019-V02_new_stom","Baltic-2019-V03_new_stom")
+labels<-c("V01","V02","V03")
+
+
+dirs<-c("Baltic-2012-keyRun-results","Baltic-2019-V01_new_stom","Baltic-2019-V01_newY10_stom")
+labels<-c("2012 key run","new stom","newY10 stom")
+
+
+dirs<-c("Baltic-2019-V04_new_stom","Baltic-2019-V05_new_stom")
+labels<-c("V04","V05 cons=0.84")
+
+
+dirs<-c("Baltic-2019-V02_new_stom","Baltic-2019-V02b_new_stom")
+labels<-c("V02","V02b")
+
+
+#dirs<-c("Baltic-2012-keyRun-results","Baltic-2019-V02_new_stom","Baltic-2019-V04_new_stom","Baltic-2019-V05_new_stom")
+#labels<-c("key-run 2012","V02 (wrong) size selection","V04 settings as in 2012","V05 cons fac (0.84) ")
+
+
+dirs<-c("Baltic-2012-keyRun-results","Baltic-2019-V04_new_stom","Baltic-2019-V05_new_stom")
+labels<-c("2012 key run","V04 settings as in 2012","V05 cons fac (0.84) ")
+
+
+dirs<-c("Baltic-2012-keyRun-results","Baltic-2019-V01_old_stom","Baltic-2019-V02_old_stom","Baltic-2019-V04_old_stom")
+labels<-c("2012 key run","V01","V02","V04")
+
+
+dirs<-c("Baltic-2012-keyRun-results","Baltic-2019-V02b_new_stom","Baltic-2019-V02b_newY10_stom")
+labels<-c("2012 key run","V02b by year","V02b by 10 Years")
+
+
+dirs<-c("Baltic-2019-V02b_new_stom","Baltic-2019-V02bOverlap_new_stom")
+labels<-c("V02b","V02b with overlap")
+
+ #####
+
+dirs<-c("Baltic-2012-keyRun-results","Baltic-2019-V04_new_stom","Baltic-2019-V05_new_stom")
+labels<-c("2012 key run","V04 settings as in 2012","V05 cons fac (0.72) ")
+
+
+dirs<-c("Baltic-2012-keyRun-results","Baltic-2019-V04_new_stom","Baltic-2019-V04_old_stom")
+labels<-c("2012 key run","V04 new stomachs","V04 old stomachs")
+
+
+
+dirs<-c("Baltic-2012-keyRun-results","Baltic-2019-V02b_new_stom","Baltic-2019-V04_new_stom")
+labels<-c("2012 key run","V02b size slection","V04 within range")
+
+
+dirs<-c("Baltic-2019-V02b_new_stom","Baltic-2019-V02bOverlap_new_stom")
+labels<-c("V02b","V02b with overlap")
+
+
+dirs<-c("Baltic-2019-V02b_new_stom","Baltic-2019-V02bCons_new_stom")
+labels<-c("V02b","V02b cons estimate (0.56")
+
+
+dirs<-c("Baltic-2019-V02b_new_stom","Baltic-2019-key-run")
+labels<-c("V02b","key-run")
+
+
+dirs<-c("Baltic-2019-V02b_new_stom","Baltic-2019-test2")
+labels<-c("key-run","spline")
+
+
+dirs<-c("Baltic-2019-key-run-M1","Baltic-2019-test01","Baltic-2019-test02","Baltic-2019-test03")
+labels<-c("key-runM1","test01","test02","test03")
+
+
+dirs<-c("Baltic-2012-keyRun-results","Baltic-2019-keyRun")
+labels<-c("2012 key run","2019 key run")
+
+dirs<-c("Baltic-2019-no_size_selection0","Baltic-2019-no_size_selection4","Baltic-2019-keyRun")
+labels<-c("Uniform","Constraint uniform","2019 key run")
+
+dirs<-c("Baltic-2012-keyRun-results","Baltic-2019-keyRun")
+labels<-c("2012 keyrun","2019 keyrun")
+
+
 }
 
-dirs<-c("NS_63-10-sep-2014","NS_key-2014-ver15_codage3","NS_key-2014-ver17")
-labels<-c("2011", "2014-key","2015-key")
 
-dirs<-c("NS_key-2011","NS_key-2014-ver13-final-key-run", "NorthSeaKeyRun")
-labels<-c("2011-run", "2014-run","2015-run")
+dirs<-c("Baltic-2019-old_stomachs","Baltic-2019-old-new_stomachs","Baltic-2019-keyRun")
+labels<-c("old stomachs","old & new stomachs","2019 keyrun")
 
 
+dirs<-c("Baltic-2019-stom10","Baltic-2019-keyRun")
+labels<-c("Aggregated","2019 keyrun")
 
 
-dirs<-c("NS_key-2017-ver03/retro2013", "NS_key-2017-ver03/retro2014","NS_key-2017-ver03/retro2015","NS_key-2017-ver03/retro2016")
-labels<-c("2013-retro","2014-retro","2015-retro","2016")
+dirs<-c("Baltic-2019-OtherFoodOverlap","Baltic-2019-keyRun")
+labels<-c("OtherFood change","2019 keyrun")
+
+
+dirs<-c("Baltic-2019-consumptionEstimate","Baltic-2019-keyRun")
+labels<-c("Lower consum","2019 keyrun")
+
+
+dirs<-c("Baltic-2019-stom5","Baltic-2019-stom10","Baltic-2019-keyRun")
+labels<-c("5 years stomach","10 years stomach","2019 keyrun")
 
 
 
-dirs<-c("NS_key-2014-ver17","NS_key-2017-ver03")
-labels<-c("2014-run","2017-run")
-
-
-dirs<-c("NS_key-2017-ver04_Evac_N","NS_key-2017-ver04_Evac_Y")
-labels<-c("No adjustment","Evacuation adj.")
-
-
-
-dirs<-c("NS_key-2017-ver05/retro2013", "NS_key-2017-ver05/retro2014","NS_key-2017-ver05/retro2015","NS_key-2017-ver05")
-labels<-c("2013-retro","2014-retro","2015-retro","2016")
-
-
-if (makeAllGraphs) {
-  dirs<-c("NS_key-2014-ver17","NS_key-2017-ver05")
-  labels<-c("2014-run","2017-run")
-}
 
 Init.function() # get SMS.contol object  including sp.names
 

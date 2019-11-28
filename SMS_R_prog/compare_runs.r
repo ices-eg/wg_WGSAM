@@ -1,7 +1,7 @@
 
 nox<-2; noy<-2;
 paper<-T      # graphics on paper=file (TRUE) or on screen (FALSE)
-run.ID<-'2014_2017'         # file id used for paper output
+run.ID<-'NielsH'         # file id used for paper output
 run.ID<-'ICES_SMS' 
 cleanup()
 
@@ -10,7 +10,7 @@ extent.SSB<-F  # plot SSB for the year after last assessment year
 
 first.year.on.plot<-1970
 last.year.on.plot<-2018
-plot.MCMC<-F                          #plot values from MCMC scenarios. FALSE=plot hindcast values from "summary_table_raw.out"
+plot.MCMC<-F                        # plot values from MCMC scenarios. FALSE=plot hindcast values from "summary_table_raw.out"
 single.species<-T                   # single species mode or multispecies mode
 
 include.assess.forcast.line<-F      # verical line at last assessment year
@@ -30,36 +30,38 @@ palette("default")                # good for clolorfull plots
 
 
 
-if (F) {    # sometimes the dir and labels are defined outside this script !
- dirs<-c("BW-2009-key-run","BW-2010-key-run","BW-2011-key-run","BW-SAM-2012","BW-SAM-2013","BW-SAM-2014")
- labels<-c("2009","2010","2011","2012","2014")
-}
-
-
-dirs<-c("NS_63-10-sep-2014", "NorthSeaKeyRun")
-labels<-c("2011-run", "2015-run")
-
-dirs<-c("NS_key-2011","NS_key-2014-ver13-final-key-run", "NorthSeaKeyRun")
-labels<-c("2011-run", "2014-run","2015-run")
-
-
-
-dirs<-c("NS_key-2017-ver04_Evac_N","NS_key-2017-ver04_Evac_Y")
-labels<-c("No adjustment","Evacuation adj.")
-
-
-
-dirs<-c("NS_key-2017-ver05/retro2013", "NS_key-2017-ver05/retro2014","NS_key-2017-ver05/retro2015","NS_key-2017-ver05")
-labels<-c("2013-retro","2014-retro","2015-retro","2016")
-
-
-dirs<-c( "ICESsingle","NS_key-2017-ver05-single")
-labels<-c("ICES","SMS single sp")
-
 if (makeAllGraphs) {
   dirs<-c("NS_key-2014-ver17","NS_key-2017-ver05")
   labels<-c("2014-run","2017-run")
 }
+
+
+if (FALSE) { 
+
+
+dirs<-c("Baltic-2019-single","Baltic-2019-ICES-results")
+labels<-c("SMS-single","ICES-single")
+
+dirs<-c("Baltic-2019-no_size_selection0","Baltic-2019-no_size_selection4","Baltic-2019-keyRun")
+labels<-c("Uniform","Constraint uniform","2019 key run")
+
+
+dirs<-c("Baltic-2012-keyRun-results","Baltic-2019-keyRun")
+labels<-c("2012 keyrun","2019 keyrun")
+
+
+}
+
+
+dirs<-c("Baltic-2019-old_stomachs","Baltic-2019-old-new_stomachs","Baltic-2019-keyRun")
+labels<-c("old stomachs","old & new stomachs","2019 keyrun")
+
+
+
+
+dirs<-c("Baltic-2019-ICES-results","Baltic-2019-keyRun")
+labels<-c("ICES single species","2019 keyrun")
+
 
  #####################  
 for (dir in dirs) {

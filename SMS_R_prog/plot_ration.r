@@ -5,7 +5,7 @@ Init.function()
 dat<-Read.summary.data(extend=F,read.init.function=F)
 unique(dat$Species)
 
-dat<-subset(dat,Species %in% c("Cod","Whiting","Haddock","Saithe","Mackerel","W.horse mac","N.horse mac","R. radiata","G. gurnards"))
+#dat<-subset(dat,Species %in% c("Cod","Whiting","Haddock","Saithe","Mackerel","W.horse mac","N.horse mac","R. radiata","G. gurnards"))
 head(dat)
 
 dat$dayli<-dat$ration/dat$west/91*100; #dayly ration i % of body mass

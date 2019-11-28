@@ -1,16 +1,7 @@
 del_not_used_comb<-function(speciesN=1,fval=0,a=a,a2=a2) {
   if (my.area=='North Sea'){
-    if (!NS.Key.2014) {
-      if (speciesN==17) {a2<-droplevels(subset(a,!( COD1==fval))) }
-      if (speciesN==18) {a2<-droplevels(subset(a,!( WHG1==fval))) }
-      if (speciesN==19) {a2<-droplevels(subset(a,!( HAD1==fval))) }
-      if (speciesN==20) {a2<-droplevels(subset(a,!( POK1==fval))) }
-      if (speciesN==21) {a2<-droplevels(subset(a,!( HER1==fval))) }
-      if (speciesN==22) {a2<-droplevels(subset(a,!( SAN1==fval))) }
-      if (speciesN==23) {a2<-droplevels(subset(a,!( NOR1==fval))) }
-      if (speciesN==24) {a2<-droplevels(subset(a,!( SPR1==fval))) }
-    }
-    if (NS.Key.2014) {
+
+    if (KeyRunYear==2014) {
       if (speciesN==18) {a2<-droplevels(subset(a,!( COD1==fval))) }
       if (speciesN==19) {a2<-droplevels(subset(a,!( WHG1==fval))) }
       if (speciesN==20) {a2<-droplevels(subset(a,!( HAD1==fval))) }
@@ -20,6 +11,19 @@ del_not_used_comb<-function(speciesN=1,fval=0,a=a,a2=a2) {
       if (speciesN==24) {a2<-droplevels(subset(a,!( SSA1==fval))) }        
       if (speciesN==25) {a2<-droplevels(subset(a,!( NOR1==fval))) }
       if (speciesN==26) {a2<-droplevels(subset(a,!( SPR1==fval))) }
+    }
+    
+    if (KeyRunYear==2017) {
+      if (speciesN==16) {a2<-droplevels(subset(a,!( COD1==fval))) }
+      if (speciesN==17) {a2<-droplevels(subset(a,!( WHG1==fval))) }
+      if (speciesN==18) {a2<-droplevels(subset(a,!( HAD1==fval))) }
+      if (speciesN==19) {a2<-droplevels(subset(a,!( POK1==fval))) }
+      if (speciesN==20) {a2<-droplevels(subset(a,!( MAK1==fval))) }
+      if (speciesN==21) {a2<-droplevels(subset(a,!( HER1==fval))) }
+      if (speciesN==22) {a2<-droplevels(subset(a,!( NSA1==fval))) }
+      if (speciesN==23) {a2<-droplevels(subset(a,!( SSA1==fval))) }        
+      if (speciesN==24) {a2<-droplevels(subset(a,!( NOR1==fval))) }
+      if (speciesN==25) {a2<-droplevels(subset(a,!( SPR1==fval))) }
     }
     
     #cat(" New dimension",dim(a2),'\n')

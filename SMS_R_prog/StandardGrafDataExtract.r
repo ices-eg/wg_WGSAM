@@ -6,7 +6,7 @@
 library(icesSAG)
 # ?icesSAG
 
-stocks <- getListStocks(2017)
+stocks <- getListStocks(2018)
 subset(stocks,SpeciesName=='Scomber scombrus')
 #write.csv(stocks,file=file.path(data.path,'a.csv'))
 

@@ -119,7 +119,7 @@ setClass("FLSMS.control",
         rec.season      =1,                                            
         max.age.all     =0,                                            
         species.info    =matrix(0,ncol=11,nrow=1,dimnames=list(c("sp1"),c("last-age","first-age F>0","last-age-selec","effort",
-                                                "last-age-likelihood","+group","predator","prey","SSB/R","RecAdd1","RecAdd2"))),
+                                                "last-age-likelihood","+group","predator","prey","SSB/R","SpawningQ","RecAdd2"))),
         use.known.rec   =0,
         beta.cor        =as.vector(1.0E6,mode="numeric"),
         SSB.R.year.first=as.vector(0,mode="numeric"),
@@ -224,7 +224,7 @@ FLSMS.control <- function(
               stop("no.species is diffrent from number of species names")
      
         species.info<-matrix(0,ncol=11,nrow=no.species,dimnames=list(species.names,c("last-age","first-age F>0","effort",
-                               "last-age-selec","last-age-likelihood","+group","predator","prey","SSB/R","RecAdd1","RecAdd2")))
+                               "last-age-selec","last-age-likelihood","+group","predator","prey","SSB/R","SpawningQ","RecAdd2")))
         species.info[,1]<-max.age.all
         species.info[,2]<-first.age
         species.info[,3]<-max.age.all
@@ -234,7 +234,7 @@ FLSMS.control <- function(
         species.info[,7]<-c(rep(0,no.predators),rep(0,no.VPA.sp-no.VPA.predators))
         species.info[,8]<-c(rep(0,no.other.predators),rep(1,no.VPA.sp))
         species.info[,9]<-c(rep(0,no.other.predators),rep(3,no.VPA.sp))
-        species.info[,10]<-c(rep(0,no.other.predators),rep(0,no.VPA.sp))
+        species.info[,10]<-c(rep(0,no.other.predators),rep(1,no.VPA.sp))
         species.info[,11]<-c(rep(0,no.other.predators),rep(0,no.VPA.sp))
         catch.s2.group<-vector("list", length=no.VPA.sp);
         for (j in 1:no.VPA.sp) catch.s2.group[[j]]<-as.integer(first.age:(first.age+2)) 
@@ -552,7 +552,7 @@ write.FLSMS.control<-function(control,file="sms.dat",path=NULL,write.multi=TRUE,
                                     "#      51=Ricker with estimated temp effect,\n",
                                     "#      52=Ricker with known temp effect,\n",
                                     "#      >100= hockey stick with known breakpoint (given as input)\n",
-                                    "# 10. Additional data for Stock Recruit relation\n",
+                                    "# 10. Spawning season (not used yet, but set to 1)\n",
                                     "# 11. Additional data for Stock Recruit relation\n",
                                     "##\n",
                                     file=file,append=T,sep="")
@@ -785,7 +785,7 @@ write.FLSMS.control<-function(control,file="sms.dat",path=NULL,write.multi=TRUE,
                              },
         "est.calc.sigma"  ={if (nice) {
                                 cat(sepLine,file=file,append=T)
-                                cat("## Uncertanties for catch, CPUE and SSB-R observations (option calc.est.sigma)\n",
+                                cat("## Uncertainties for catch, CPUE and SSB-R observations (option calc.est.sigma)\n",
                                    "#  values: 0=estimate sigma as a parameter (the right way of doing it)\n",
                                    "#          1=Calculate sigma and truncate if lower limit is reached \n",
                                    "#          2=Calculate sigma and use a penalty function to avoid lower limit \n",
@@ -808,7 +808,7 @@ write.FLSMS.control<-function(control,file="sms.dat",path=NULL,write.multi=TRUE,
                                     "# multispecies parameters\n#\n",
                                     "#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n#\n",
                                     file=file,append=TRUE,sep='')
-                                cat("# Exclude year,season and predator combinations where stomach data are not incl.(option incl.stom.all)\n",
+                                cat("# Exclude year, season and predator combinations where stomach data are not incl.(option incl.stom.all)\n",
                                     "#   0=no, all stomach data are used in likelihood\n",
                                     "#   1=yes there are combinations for which data are not included in the likelihood.\n",
                                     "#      Read from file: incl_stom.in\n",
@@ -865,7 +865,7 @@ write.FLSMS.control<-function(control,file="sms.dat",path=NULL,write.multi=TRUE,
         "simple.ALK"         = {if (nice)  {                               
                                 cat(sepLine,file=file,append=TRUE) 
                                 cat("## Usage of age-length-keys for calc of M2 (option simple.ALK))\n",
-                                    "#  0=Use only one sizegroup per age (file lsea.in or west.in)\n",
+                                    "#  0=Use only one size group per age (file lsea.in or west.in)\n",
                                     "#  1=Use size distribution per age (file ALK_all.in)\n",
                                 slot(control,x),"\n",file=file,append=T,sep="")
                               } 
@@ -1038,7 +1038,7 @@ write.FLSMS.control<-function(control,file="sms.dat",path=NULL,write.multi=TRUE,
                              },                                 
         "stom.type.include"  ={if (nice) {
                                 cat(sepLine,file=file,append=T)
-                                cat("## inclsion of individual stomach contents observations in ML for weight proportions (option stom.type.include)\n",
+                                cat("## inclusion of individual stomach contents observations in ML for weight proportions (option stom.type.include)\n",
                                     "# 1=Observed data\n",
                                     "# 2= + (not observed) data within the observed size range (=fill in)\n",
                                     "# 3= + (not observed) data outside an observed size range. One obs below and one above (=tails)\n",
@@ -1132,7 +1132,7 @@ write.FLSMS.control<-function(control,file="sms.dat",path=NULL,write.multi=TRUE,
   setwd(old.path)
 }
 
-read.FLSMS.control<-function(dir=data.path,file="sms.dat") {       
+read.FLSMS.control<-function(dir=data.path,file="sms.dat",test=FALSE) {       
   #print(file.path(dir,file))
   opt<-scan(file=file.path(dir,file), comment.char = "#",quiet=T) 
    
@@ -1145,13 +1145,13 @@ read.FLSMS.control<-function(dir=data.path,file="sms.dat") {
                                     species.names<-readLines(file.path(dir,"species_names.in"), n=control@no.species)
                                     species.names<-gsub('_',' ',species.names)
                                     species.names<-sub('[[:space:]]+$', '', species.names)
-                               },
+                                },
        "species.names"       = { slot(control,x)<-species.names; },
   
        "species.info"        = {    ncols<-11
                                     tmp<-matrix(opt[n:(n-1+nsp*ncols)],ncol=ncols,nrow=nsp,byrow=TRUE,
                                          dimnames<-list(species.names,c("last-age","first-age F>0","last-age-selec","effort",
-                                                "last-age-likelihood","+group","predator","prey","SSB/R","RecAdd1","RecAdd2")));
+                                                "last-age-likelihood","+group","predator","prey","SSB/R","SpawningQ","RecAdd2")));
                                    slot(control,x)<-tmp;
                                    n<-n+nsp*ncols;
                                    n.prey<-0; n.pred<-0; n.oth.pred<-0
@@ -1209,6 +1209,11 @@ read.FLSMS.control<-function(dir=data.path,file="sms.dat") {
          # otherwise                        
                                  {slot(control,x)<-opt[n];n<-n+1}                                 
       )
+    if (test) {
+      cat(x,'\n')
+      #cat(class(slot(control,x)),'\n')
+      if (class(slot(control,x))!='list') cat(slot(control,x),'\n') else print(slot(control,x))
+    }
   }
   control
 }

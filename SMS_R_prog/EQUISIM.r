@@ -1,14 +1,16 @@
 
-library(devtools)
-#install_github("FLCore", "flr")
-#install_github("msy", "einarhjorleifsson", ref = "master")
+
+#install.packages("FLCore", repo = "http://flr-project.org/R")
+#library(devtools)
+#install_github("ices-tools-prod/msy")
+
 library(msy)
 
-nsamp <- 1000
-
+nsamp <- 100  # number of stochatic runs for each option
 
 Mstk<-SMS2FLStocks(sumfile=file.path(data.path,'summary.out'),
                          bio.interact=F, read.input=TRUE, read.output=TRUE,control=read.FLSMS.control())
+lapply(Mstk,function(x) x@name) # just check
 
 SSB.R.year.first<-SMS.control@SSB.R.year.first
 SSB.R.year.last <-SMS.control@SSB.R.year.last
@@ -25,6 +27,8 @@ noxy<-nox*noy
 i<-noxy
 
 FITs<-list()
+
+
 for (s in (1:length(Mstk))) {
   i<-i+1  
   stk<-Mstk[[s]]
@@ -41,8 +45,9 @@ for (s in (1:length(Mstk))) {
   cat('\n',sp.names[s+first.VPA-1],'\n SSB:\n');print(ssb(stk))
   
   models<- c("Ricker", "Segreg", "Bevholt")
-  if ( Mstk[[s]]@name  %in% c('Haddock','Saithe','Herring')) models<- c("Ricker", "Segreg")
+  if ( Mstk[[s]]@name  %in% c('Herring')) models<- c("Ricker", "Segreg") # does not work with Ricker ?
 
+  
   if (0==length(excl.years<-as.numeric(dimnames(recruit.years)[[2]][0==recruit.years[s,]]))) excl.years<-NULL
   FIT<-eqsr_fit(stk, nsamp = nsamp, models = models,
                     method = "Buckland", 
@@ -56,16 +61,14 @@ for (s in (1:length(Mstk))) {
     i<-0
   }
   eqsr_plot(FIT,Scale=0.001)
-  
-
-  
 }
+
 if (dev=='png') cleanup()
 
 names(FITs[[1]])
 FITs[[1]]$sr.det
 FITs[[1]]$id.sr
-
+lapply(FITs,function(x){ print(x$sr.det) })
 
 out<-file.path(data.path,'op_eqsim.in');unlink(out)
 sr<-function(x) {

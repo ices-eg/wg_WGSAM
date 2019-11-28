@@ -29,7 +29,7 @@ OP.simulate<-function(
           adjustBaltic=F,
           OP.output=14,  # 14 for combinations of F
           change.Other.pred.N=F,
-          adjust.ini.N=T,     # adjust inital population size  (NS cod)
+          adjust.ini.N=F,     # adjust inital population size  (NS cod)
           
           read.condense=T,
           read.indicators=T,
@@ -85,17 +85,22 @@ Fpa<-as.vector(ref[,'Fpa'])
 
 
 if (my.area=='North Sea') {
- if (NS.Key.2014) { 
+ if (KeyRunYear==2014) { 
   #             Cod     Whiting     Haddock      Saithe     Herring     NorthSandeel  southSan       Nor. pout       Sprat      Plaice        Sole 
-  TSBBlim<- c(    1,          1,          1,          1,          1,     Blim[6]*3.1,  Blim[7]*3.2,  Blim[8]*2.4,     Blim[9]*2.3,          1,          1) 
+  TSBBlim<- c(    1,          1,          1,          1,          1,    Blim[6]*3.1,  Blim[7]*3.2,  Blim[8]*2.4,     Blim[9]*2.3,          1,          1) 
   TSBBpa<-  c(    1,          1,          1,          1,          1,    Bpa[6]*3.1,   Bpa[7]*3.2,   Bpa[8]*2.4,      Bpa[9]*2.3,          1,          1) 
  }
- if (!NS.Key.2014) {
-   #             Cod     Whiting     Haddock      Saithe     Herring     Sandeel   Nor. pout       Sprat      Plaice        Sole 
-   TSBBlim<- c(    1,          1,          1,          1,          1,     787000,     263000,      157000,          1,          1) 
-   TSBBpa<-  c(    1,          1,          1,          1,          1,    1098000,     440000,      213000,          1,          1) 
+# if (!NS.Key.2014) {
+#   #             Cod     Whiting     Haddock      Saithe     Herring     Sandeel   Nor. pout       Sprat      Plaice        Sole 
+#   TSBBlim<- c(    1,          1,          1,          1,          1,     787000,     263000,      157000,          1,          1) 
+#   TSBBpa<-  c(    1,          1,          1,          1,          1,    1098000,     440000,      213000,          1,          1) 
+# } 
+if (KeyRunYear==2017) {
+     #             Cod     Whiting     Haddock      Saithe     Herring    Mackerel,  Sandeel   Nor. pout       Sprat      Plaice        Sole 
+     TSBBlim<- c(    1,          1,          1,          1,          1,      1,         787000,     263000,      157000,          1,          1) 
+     TSBBpa<-  c(    1,          1,          1,          1,          1,     1,         1098000,     440000,      213000,          1,          1) 
  } 
-} else {
+} else {  # Baltic
    TSBBlim<- c(1,1,1)
    TSBBpa<-  c(1,1,1)
 }
@@ -200,7 +205,7 @@ if (do.indicators) {
    MSFD@LFI.age[]<-c(3,99,99) # only cod age 3+ is greather than 40 cm
  }
  
- if (my.area=='North Sea' & !NS.Key.2014) {
+ if (my.area=='North Sea' & KeyRunYear==2014) {
     # 1 Fulmar 
     # 2 Guillemot 
     # 3 Her. Gull 
@@ -228,6 +233,38 @@ if (do.indicators) {
     # 25 Plaice 
     # 26 Sole 
 
+   
+# 2017 key run
+  # 1 Fulmar 
+  # 2 Guillemot 
+  # 3 Her. Gull 
+  # 4 Kittiwake 
+  # 5 GBB. Gull 
+  # 6 Gannet 
+  # 7 Puffin 
+  # 8 Razorbill 
+  # 9 R. radiata 
+  # 10 G. gurnards 
+  # 11 W.horse mac 
+  # 12 N.horse mac 
+  # 13 Grey seal 
+  # 14 H. porpoise 
+  # 15 Hake 
+  # 16 Cod 
+  # 17 Whiting 
+  # 18 Haddock 
+  # 19 Saithe 
+  # 20 Mackerel 
+  # 21 Herring 
+  # 22 N. sandeel 
+  # 23 S. sandeel 
+  # 24 Nor. pout 
+  # 25 Sprat 
+  # 26 Plaice 
+  # 27 Sole 
+  
+   # THIS IS NOT UPDATED WITH 2017 key RUN SPECIES 
+   
    MSFD@do.community.biomass.demersal<-1
    MSFD@community.biomass.demersal.ages['first.age' ,c(1:8,11:16,21,24)]<-  99  # exclude    
    MSFD@community.biomass.demersal.ages['last.age'  ,c(1:8,11:16,21,24)]<-  -1  # exclude 
@@ -284,7 +321,7 @@ if (do.indicators) {
  }
 
 
-if (my.area=='North Sea' & NS.Key.2014) {
+if (my.area=='North Sea' & KeyRunYear==2014) {
   # 1 Fulmar 
   # 2 Guillemot 
   # 3 Her. Gull 
@@ -428,7 +465,7 @@ if (do.simulation) {
   OP.files<-c(op.command,"area_names.in","species_names.in","op.dat","op_trigger.dat","op_config.dat","op_msfd.dat","just_one.in",
       "op_consum.in","op_f.in","op_m1.in","op_m.in","op_n.in","op_propmat.in","op_prop_landed.in","op_size.in","op_wcatch.in","op_wsea.in",
       "op_growth_type1.in","op_consum_ab.in","op_other_n.in","op_exploitation.in","op_reference_points.in","covariance_rec.in","op_price.in",
-      "op_ssb_rec_residuals.in","op_length_weight_relations.in",'op_eqsim.in','op_eqsim_stoch.in')
+      "op_ssb_rec_residuals.in","op_length_weight_relations.in",'op_eqsim.in','op_eqsim_stoch.in','op_n_proportion_m2.in')
 
   if (SMS@no.areas>1)  OP.files<-c(OP.files,"op_Stock_distribution.in")
   
@@ -443,7 +480,7 @@ if (do.simulation) {
   
   if (adjust.ini.N) {
    ini.N<-matrix( scan(file="op_n.in",comment.char="#",quiet = T),nrow=n.vpa,byrow=T)
-   ini.N[1,]<-ini.N[1,]*2  # cod
+   #ini.N[1,]<-ini.N[1,]*2  # cod
    write.matrix(ini.N,file="op_n.in")
   }
 
@@ -505,9 +542,12 @@ setwd(data.path)
 
 
 if (!just.batch.file) {
-  if (my.area=='North Sea' & (!NS.Key.2014))  spNames<-c('COD', 'WHG', 'HAD', 'POK', 'HER', 'SAN', 'NOR', 'SPR', 'PLE', 'SOL')
-  if (my.area=='North Sea' & (NS.Key.2014))  spNames<-c('COD', 'WHG', 'HAD', 'POK', 'HER', 'NSA','SSA', 'NOR', 'SPR', 'PLE', 'SOL')
-  if (my.area=='Baltic Sea') spNames<-c('COD', 'HER', 'SPR')
+  if (my.area=='North Sea' & KeyRunYear==2000)  spNames<-c('COD', 'WHG', 'HAD', 'POK', 'HER', 'SAN', 'NOR', 'SPR', 'PLE', 'SOL')
+  if (my.area=='North Sea' & KeyRunYear==2014)  spNames<-c('COD', 'WHG', 'HAD', 'POK', 'HER', 'NSA','SSA', 'NOR', 'SPR', 'PLE', 'SOL')
+  if (my.area=='North Sea' & KeyRunYear==2017)  spNames<-c('COD', 'WHG', 'HAD', 'POK', 'MAC', 'HER', 'NSA','SSA', 'NOR', 'SPR', 'PLE', 'SOL')
+  
+  
+    if (my.area=='Baltic Sea') spNames<-c('COD', 'HER', 'SPR')
   
   n.run<-dim(targetFs)[[1]]
   
@@ -541,8 +581,8 @@ if (!just.batch.file) {
        indi<-merge(indi,Fcomb)
       
       if  (my.area=='North Sea') {
-        if (NS.Key.2014)  indi$unique.id<-paste(indi$run,indi$iter,round(indi$COD,3),round(indi$WHG,3),round(indi$HAD,3),round(indi$POK,3),round(indi$HER,3),round(indi$NSA,3),round(indi$SSA,3),round(indi$NOR,3),round(indi$SPR,3),round(indi$PLE,3),round(indi$SOL,3),sep='')
-        if (!NS.Key.2014) indi$unique.id<-paste(indi$run,indi$iter,round(indi$COD,3),round(indi$WHG,3),round(indi$HAD,3),round(indi$POK,3),round(indi$HER,3),round(indi$SAN,3),                  round(indi$NOR,3),round(indi$SPR,3),round(indi$PLE,3),round(indi$SOL,3),sep='')
+        if (KeyRunYear==2014) indi$unique.id<-paste(indi$run,indi$iter,round(indi$COD,3),round(indi$WHG,3),round(indi$HAD,3),round(indi$POK,3),round(indi$HER,3),round(indi$NSA,3),round(indi$SSA,3),round(indi$NOR,3),round(indi$SPR,3),round(indi$PLE,3),round(indi$SOL,3),sep='')
+        if (KeyRunYear==2017) indi$unique.id<-paste(indi$run,indi$iter,round(indi$COD,3),round(indi$WHG,3),round(indi$HAD,3),round(indi$POK,3),round(indi$MAC,3),round(indi$HER,3),round(indi$NSA,3),round(indi$SSA,3),round(indi$NOR,3),round(indi$SPR,3),round(indi$PLE,3),round(indi$SOL,3),sep='')
         
         } else if  (my.area=='Baltic Sea') {
         indi$unique.id<-paste(indi$run,indi$iter,round(indi$COD,3),round(indi$HER,3),round(indi$SPR,3),sep='')
@@ -550,10 +590,10 @@ if (!just.batch.file) {
 
       # get SSB and yield from the condensed data set
       if  (my.area=='North Sea') {
-        if (NS.Key.2014) b<-aggregate(cbind(value,yield,CWsum,SSB,TSB)~  run+iteration+COD+WHG+HAD+POK+HER+NSA+SSA+NOR+SPR+PLE+SOL,data=condensed,sum)
-        if (!NS.Key.2014) b<-aggregate(cbind(value,yield,CWsum,SSB,TSB)~  run+iteration+COD+WHG+HAD+POK+HER+SAN+NOR+SPR+PLE+SOL,data=condensed,sum)
-        if (NS.Key.2014) b$unique.id<-paste(b$run,b$iteration,round(b$COD,3),round(b$WHG,3),round(b$HAD,3),round(b$POK,3),round(b$HER,3),round(b$NSA,3),round(b$SSA,3),round(b$NOR,3),round(b$SPR,3),round(b$PLE,3),round(b$SOL,3),sep='')
-        if (!NS.Key.2014) b$unique.id<-paste(b$run,b$iteration,round(b$COD,3),round(b$WHG,3),round(b$HAD,3),round(b$POK,3),round(b$HER,3),round(b$SAN,3),round(b$NOR,3),round(b$SPR,3),round(b$PLE,3),round(b$SOL,3),sep='')
+        if (KeyRunYear==2014) b<-aggregate(cbind(value,yield,CWsum,SSB,TSB)~  run+iteration+COD+WHG+HAD+POK+HER+NSA+SSA+NOR+SPR+PLE+SOL,data=condensed,sum)
+        if (KeyRunYear==2017) b<-aggregate(cbind(value,yield,CWsum,SSB,TSB)~  run+iteration+COD+WHG+HAD+POK+MAC+HER+NSA+SSA+NOR+SPR+PLE+SOL,data=condensed,sum)
+        if (KeyRunYear==2014) b$unique.id<-paste(b$run,b$iteration,round(b$COD,3),round(b$WHG,3),round(b$HAD,3),round(b$POK,3),round(b$HER,3),round(b$NSA,3),round(b$SSA,3),round(b$NOR,3),round(b$SPR,3),round(b$PLE,3),round(b$SOL,3),sep='')
+        if (KeyRunYear==2017) b$unique.id<-paste(b$run,b$iteration,round(b$COD,3),round(b$WHG,3),round(b$HAD,3),round(b$POK,3),round(b$MAC,3),round(b$HER,3),round(b$NSA,3),round(b$SSA,3),round(b$NOR,3),round(b$SPR,3),round(b$PLE,3),round(b$SOL,3),sep='')
         b<-subset(b,select=c(unique.id,value,yield,CWsum,SSB,TSB))
         indi<-merge(indi,b,by="unique.id")
         indi$unique.id<-NULL
@@ -621,21 +661,7 @@ if (!just.batch.file) {
   
     if (my.area=='North Sea') {
         if (subset.out) { # make a subset of data set used to make plots
-          if (!NS.Key.2014) {
-           #COD WHG HAD POK HER SAN NOR SPR PLE SOL 
-           bb<-subset.species
-           a<-droplevels(subset(a, COD>=bb[1,1] &  COD<=bb[2,1] & 
-                                   WHG>=bb[1,2] &  WHG<=bb[2,2] & 
-                                   HAD>=bb[1,3] &  HAD<=bb[2,3] & 
-                                   POK>=bb[1,4] &  POK<=bb[2,4] & 
-                                   HER>=bb[1,5] &  HER<=bb[2,5] & 
-                                   SAN>=bb[1,6] &  SAN<=bb[2,6] & 
-                                   NOR>=bb[1,7] &  NOR<=bb[2,7] & 
-                                   SPR>=bb[1,8] &  SPR<=bb[2,8] & 
-                                   PLE>=bb[1,8] &  PLE<=bb[2,9] & 
-                                   SOL>=bb[1,10] & SOL<=bb[2,10] )) 
-         }
-         if (NS.Key.2014) {
+         if (KeyRunYear==2014) {
            #COD WHG HAD POK HER NSA SSA NOR SPR PLE SOL 
            bb<-subset.species
            a<-droplevels(subset(a, COD>=bb[1,1] &  COD<=bb[2,1] & 
@@ -650,6 +676,22 @@ if (!just.batch.file) {
                                   PLE>=bb[1,10] &  PLE<=bb[2,10] & 
                                   SOL>=bb[1,11] & SOL<=bb[2,11] )) 
          }
+          if (KeyRunYear==2017) {
+            #COD WHG HAD POK MAC HER NSA SSA NOR SPR PLE SOL 
+            bb<-subset.species
+            a<-droplevels(subset(a, COD>=bb[1,1] &  COD<=bb[2,1] & 
+                                   WHG>=bb[1,2] &  WHG<=bb[2,2] & 
+                                   HAD>=bb[1,3] &  HAD<=bb[2,3] & 
+                                   POK>=bb[1,4] &  POK<=bb[2,4] & 
+                                   MAC>=bb[1,5] &  MAC<=bb[2,5] & 
+                                   HER>=bb[1,6] &  HER<=bb[2,6] & 
+                                   NSA>=bb[1,7] &  NSA<=bb[2,7] & 
+                                   SSA>=bb[1,8] &  SSA<=bb[2,8] & 
+                                   NOR>=bb[1,9] &  NOR<=bb[2,9] & 
+                                   SPR>=bb[1,10] &  SPR<=bb[2,10] & 
+                                   PLE>=bb[1,11] &  PLE<=bb[2,11] & 
+                                   SOL>=bb[1,12] & SOL<=bb[2,12] )) 
+          }  
          
         }
     
@@ -672,17 +714,31 @@ if (!just.batch.file) {
                              boxplot(belowBpa~varsp ,data=a,show.names = T,ylab='prob(SSB<Bpa) %',xlab='F',subset=Species.n==spno)
                              boxplot(recruit/1E6~varsp ,data=a,show.names = T,ylab='recruits (10^9)',xlab='F',subset=Species.n==spno)
                            })
-          boxs(a, COD, 'Cod',18)
-          boxs(a, WHG, 'Whiting',19)
-          boxs(a, HAD, 'Haddock',20)
-          boxs(a, POK, 'Saithe',21)
-          boxs(a, HER, 'Herring',22)
-          boxs(a, NSA, 'Northern sandeel',23)
-          boxs(a, SSA, 'Southern sandeel',24)
-          boxs(a, NOR, 'Norway pout',25)
-          boxs(a, SPR, 'Sprat',26)
-          cleanup()
-
+          
+          if (KeyRunYear==2014) {
+            boxs(a, COD, 'Cod',18)
+            boxs(a, WHG, 'Whiting',19)
+            boxs(a, HAD, 'Haddock',20)
+            boxs(a, POK, 'Saithe',21)
+            boxs(a, HER, 'Herring',22)
+            boxs(a, NSA, 'Northern sandeel',23)
+            boxs(a, SSA, 'Southern sandeel',24)
+            boxs(a, NOR, 'Norway pout',25)
+            boxs(a, SPR, 'Sprat',26)
+            cleanup()
+          } else  if (KeyRunYear==2014) {
+            boxs(a, COD, 'Cod',16)
+            boxs(a, WHG, 'Whiting',17)
+            boxs(a, HAD, 'Haddock',18)
+            boxs(a, POK, 'Saithe',19)
+            boxs(a, MAC, 'Mackerel',20)
+            boxs(a, HER, 'Herring',21)
+            boxs(a, NSA, 'Northern sandeel',22)
+            boxs(a, SSA, 'Southern sandeel',23)
+            boxs(a, NOR, 'Norway pout',24)
+            boxs(a, SPR, 'Sprat',25)
+            cleanup()
+          }
           trellis.device(device = png,filename =file.path(used.scenario.dir,paste('single_rec','.png',sep='')),
                          width = 1600, height = 1200,units = "px", pointsize = 25)
           
@@ -1012,21 +1068,7 @@ if (!just.batch.file) {
       if (my.area=='North Sea') {
         
         if (subset.out) { # make a subset of data set used to make plots
-          if (!NS.Key.2014) {
-            #COD WHG HAD POK HER SAN NOR SPR PLE SOL 
-            bb<-subset.species
-            indi<-droplevels(subset(indi, COD>=bb[1,1] &  COD<=bb[2,1] & 
-                                   WHG>=bb[1,2] &  WHG<=bb[2,2] & 
-                                   HAD>=bb[1,3] &  HAD<=bb[2,3] & 
-                                   POK>=bb[1,4] &  POK<=bb[2,4] & 
-                                   HER>=bb[1,5] &  HER<=bb[2,5] & 
-                                   SAN>=bb[1,6] &  SAN<=bb[2,6] & 
-                                   NOR>=bb[1,7] &  NOR<=bb[2,7] & 
-                                   SPR>=bb[1,8] &  SPR<=bb[2,8] & 
-                                   PLE>=bb[1,8] &  PLE<=bb[2,9] & 
-                                   SOL>=bb[1,10] & SOL<=bb[2,10] )) 
-          }
-          if (NS.Key.2014) {
+          if (KeyRunYear==2014) {
             #COD WHG HAD POK HER NSA SSA NOR SPR PLE SOL 
             bb<-subset.species
             indi<-droplevels(subset(indi, COD>=bb[1,1] &  COD<=bb[2,1] & 
@@ -1041,19 +1083,34 @@ if (!just.batch.file) {
                                    PLE>=bb[1,10] &  PLE<=bb[2,10] & 
                                    SOL>=bb[1,11] & SOL<=bb[2,11] )) 
           }
-          
+          if (KeyRunYear==2017) {
+            #COD WHG HAD POK MAC HER NSA SSA NOR SPR PLE SOL 
+            bb<-subset.species
+            indi<-droplevels(subset(indi, COD>=bb[1,1] &  COD<=bb[2,1] & 
+                                      WHG>=bb[1,2] &  WHG<=bb[2,2] & 
+                                      HAD>=bb[1,3] &  HAD<=bb[2,3] & 
+                                      POK>=bb[1,4] &  POK<=bb[2,4] & 
+                                      MAC>=bb[1,5] &  MAC<=bb[2,5] & 
+                                      HER>=bb[1,6] &  HER<=bb[2,6] & 
+                                      NSA>=bb[1,7] &  NSA<=bb[2,7] & 
+                                      SSA>=bb[1,8] &  SSA<=bb[2,8] & 
+                                      NOR>=bb[1,9] &  NOR<=bb[2,9] & 
+                                      SPR>=bb[1,10] &  SPR<=bb[2,10] & 
+                                      PLE>=bb[1,11] &  PLE<=bb[2,11] & 
+                                      SOL>=bb[1,12] & SOL<=bb[2,12] )) 
+          }   
         }
         
         
         
         
          source(file.path(prog.path.func,"plot_op_community_indicators_average_northsea.r"))
-          if (NS.Key.2014) {
+          if (KeyRunYear==2014) {
             n.species<-9
             my.sp.names<-sp.names[18:26]
-          } else if (!NS.Key.2014) {
-            n.species<-8
-            my.sp.names<-sp.names[17:24]
+          } else if (KeyRunYear==2017) {
+            n.species<-10
+            my.sp.names<-sp.names[16:27]
           }  
           #a<-droplevels(subset(a,(COD<=0.4 & POK<=0.4) & SPR<0.6))
           out.file='all_'
@@ -1093,24 +1150,26 @@ if (!just.batch.file) {
 # function for fixing POK, PLE and SOL F
 POK.PL.SOL<-function(HCR=HCR1,FBlim.adjust=1,stochastic.recruitment=1,recruit.adjust.CV=0,my.last.year=2061, years.in.average=5) {  
     # find F-values for POK, PLE and Sole
-    if (NS.Key.2014)  OP.simulate(scenario="POK",HCR=HCR,FBlim.adjust=FBlim.adjust,targetFs=expand.grid(COD=seq(0.45,0.45,0.05),WHG=seq(0.30,0.30,0.05),HAD=seq(0.35,0.35,0.05),POK=seq(0.20,0.45,0.01),HER=seq(0.30,0.30,0.05),NSA=seq(0.25,0.25,0.05),SSA=seq(0.25,0.25,0.05),NOR=seq(0.25,0.25,0.05),SPR=seq(0.30,0.30,0.05),PLE=seq(0.50,0.50,0.05),SOL=seq(0.50,0.50,0.05)),ask.me=ask.me,my.area=my.area,my.last.year=my.last.year, years.in.average= years.in.average,stochastic.recruitment=stochastic.recruitment,no.iter.stoch=no.iter.stoch,recruit.adjust.CV=recruit.adjust.CV, do.plot.indicators=F)
-    if (!NS.Key.2014) OP.simulate(scenario="POK",HCR=HCR,FBlim.adjust=FBlim.adjust,targetFs=expand.grid(COD=seq(0.45,0.45,0.05),WHG=seq(0.30,0.30,0.05),HAD=seq(0.35,0.35,0.05),POK=seq(0.20,0.45,0.01),HER=seq(0.30,0.30,0.05),SAN=seq(0.25,0.25,0.05),NOR=seq(0.25,0.25,0.05),SPR=seq(0.30,0.30,0.05),PLE=seq(0.50,0.50,0.05),SOL=seq(0.50,0.50,0.05)),ask.me=ask.me,my.area=my.area,my.last.year=my.last.year, years.in.average= years.in.average,stochastic.recruitment=stochastic.recruitment,no.iter.stoch=no.iter.stoch,recruit.adjust.CV=recruit.adjust.CV, do.plot.indicators=F)
+    if (KeyRunYear==2014) OP.simulate(scenario="POK",HCR=HCR,FBlim.adjust=FBlim.adjust,targetFs=expand.grid(COD=seq(0.45,0.45,0.05),WHG=seq(0.30,0.30,0.05),HAD=seq(0.35,0.35,0.05),POK=seq(0.20,0.45,0.01),HER=seq(0.30,0.30,0.05),NSA=seq(0.25,0.25,0.05),SSA=seq(0.25,0.25,0.05),NOR=seq(0.25,0.25,0.05),SPR=seq(0.30,0.30,0.05),PLE=seq(0.50,0.50,0.05),SOL=seq(0.50,0.50,0.05)),ask.me=ask.me,my.area=my.area,my.last.year=my.last.year, years.in.average= years.in.average,stochastic.recruitment=stochastic.recruitment,no.iter.stoch=no.iter.stoch,recruit.adjust.CV=recruit.adjust.CV, do.plot.indicators=F)
+    if (KeyRunYear==2017) OP.simulate(scenario="POK",HCR=HCR,FBlim.adjust=FBlim.adjust,targetFs=expand.grid(COD=seq(0.45,0.45,0.05),WHG=seq(0.30,0.30,0.05),HAD=seq(0.35,0.35,0.05),POK=seq(0.20,0.45,0.01),MAC=seq(0.20,0.20,0.05),HER=seq(0.30,0.30,0.05),NSA=seq(0.25,0.25,0.05),SSA=seq(0.25,0.25,0.05),NOR=seq(0.25,0.25,0.05),SPR=seq(0.30,0.30,0.05),PLE=seq(0.50,0.50,0.05),SOL=seq(0.50,0.50,0.05)),ask.me=ask.me,my.area=my.area,my.last.year=my.last.year, years.in.average= years.in.average,stochastic.recruitment=stochastic.recruitment,no.iter.stoch=no.iter.stoch,recruit.adjust.CV=recruit.adjust.CV, do.plot.indicators=F)
     
     load(file =file.path(used.scenario.dir, "condensed.RData"))
-    if (NS.Key.2014)  POK<-subset(condensed,Species.n==21)  else POK<-subset(condensed,Species.n==19)
+    if (KeyRunYear==2014)  POK<-subset(condensed,Species.n==21)  else POK<-subset(condensed,Species.n==19)
     POK2<<-POK
-    if (NS.Key.2014) OP.simulate(scenario="PLE",HCR=HCR,FBlim.adjust=FBlim.adjust, targetFs=expand.grid(COD=seq(0.45,0.45,0.05),WHG=seq(0.30,0.30,0.05),HAD=seq(0.35,0.35,0.05),POK=seq(0.30,0.30,0.05),HER=seq(0.30,0.30,0.05),NSA=seq(0.25,0.25,0.05),SSA=seq(0.25,0.25,0.05),NOR=seq(0.25,0.25,0.05),SPR=seq(0.30,0.30,0.05),PLE=seq(0.10,0.60,0.025),SOL=seq(0.50,0.50,0.05)),ask.me=ask.me,my.area=my.area,my.last.year=my.last.year, years.in.average= years.in.average,stochastic.recruitment=stochastic.recruitment,no.iter.stoch=no.iter.stoch,recruit.adjust.CV=recruit.adjust.CV, do.plot.indicators=F)
-    if (!NS.Key.2014) OP.simulate(scenario="PLE",HCR=HCR,FBlim.adjust=FBlim.adjust, targetFs=expand.grid(COD=seq(0.45,0.45,0.05),WHG=seq(0.30,0.30,0.05),HAD=seq(0.35,0.35,0.05),POK=seq(0.30,0.30,0.05),HER=seq(0.30,0.30,0.05),SAN=seq(0.25,0.25,0.05),NOR=seq(0.25,0.25,0.05),SPR=seq(0.30,0.30,0.05),PLE=seq(0.20,0.60,0.025),SOL=seq(0.50,0.50,0.05)),ask.me=ask.me,my.area=my.area,my.last.year=my.last.year, years.in.average= years.in.average,stochastic.recruitment=stochastic.recruitment,no.iter.stoch=no.iter.stoch,recruit.adjust.CV=recruit.adjust.CV, do.plot.indicators=F)
+    if (KeyRunYear==2014) OP.simulate(scenario="PLE",HCR=HCR,FBlim.adjust=FBlim.adjust, targetFs=expand.grid(COD=seq(0.45,0.45,0.05),WHG=seq(0.30,0.30,0.05),HAD=seq(0.35,0.35,0.05),POK=seq(0.30,0.30,0.05),HER=seq(0.30,0.30,0.05),NSA=seq(0.25,0.25,0.05),SSA=seq(0.25,0.25,0.05),NOR=seq(0.25,0.25,0.05),SPR=seq(0.30,0.30,0.05),PLE=seq(0.10,0.60,0.025),SOL=seq(0.50,0.50,0.05)),ask.me=ask.me,my.area=my.area,my.last.year=my.last.year, years.in.average= years.in.average,stochastic.recruitment=stochastic.recruitment,no.iter.stoch=no.iter.stoch,recruit.adjust.CV=recruit.adjust.CV, do.plot.indicators=F)
+    if (KeyRunYear==2017) OP.simulate(scenario="PLE",HCR=HCR,FBlim.adjust=FBlim.adjust, targetFs=expand.grid(COD=seq(0.45,0.45,0.05),WHG=seq(0.30,0.30,0.05),HAD=seq(0.35,0.35,0.05),POK=seq(0.30,0.30,0.05),MAC=seq(0.20,0.20,0.05),HER=seq(0.30,0.30,0.05),NSA=seq(0.25,0.25,0.05),SSA=seq(0.25,0.25,0.05),NOR=seq(0.25,0.25,0.05),SPR=seq(0.30,0.30,0.05),PLE=seq(0.10,0.60,0.025),SOL=seq(0.50,0.50,0.05)),ask.me=ask.me,my.area=my.area,my.last.year=my.last.year, years.in.average= years.in.average,stochastic.recruitment=stochastic.recruitment,no.iter.stoch=no.iter.stoch,recruit.adjust.CV=recruit.adjust.CV, do.plot.indicators=F)
     
     load(file =file.path(used.scenario.dir, "condensed.RData"))
-    if (NS.Key.2014) PLE<-subset(condensed,Species.n==27) else PLE<-subset(condensed,Species.n==25)
+    if (KeyRunYear==2014) PLE<-subset(condensed,Species.n==27) else PLE<-subset(condensed,Species.n==25)
     
      
-    if (NS.Key.2014) OP.simulate(scenario="SOL",HCR=HCR,FBlim.adjust=FBlim.adjust, targetFs=expand.grid(COD=seq(0.45,0.45,0.05),WHG=seq(0.30,0.30,0.05),HAD=seq(0.35,0.35,0.05),POK=seq(0.30,0.30,0.05),HER=seq(0.30,0.30,0.05),NSA=seq(0.25,0.25,0.05),SSA=seq(0.25,0.25,0.05),NOR=seq(0.25,0.25,0.05),SPR=seq(0.30,0.30,0.05),PLE=seq(0.50,0.50,0.025),SOL=seq(0.10,0.60,0.025)),ask.me=ask.me,my.area=my.area,my.last.year=my.last.year, years.in.average= years.in.average,stochastic.recruitment=stochastic.recruitment,no.iter.stoch=no.iter.stoch,recruit.adjust.CV=recruit.adjust.CV, do.plot.indicators=F)
-    if (!NS.Key.2014) OP.simulate(scenario="SOL",HCR=HCR,FBlim.adjust=FBlim.adjust, targetFs=expand.grid(COD=seq(0.45,0.45,0.05),WHG=seq(0.30,0.30,0.05),HAD=seq(0.35,0.35,0.05),POK=seq(0.30,0.30,0.05),HER=seq(0.30,0.30,0.05),SAN=seq(0.25,0.25,0.05),NOR=seq(0.25,0.25,0.05),SPR=seq(0.30,0.30,0.05),PLE=seq(0.50,0.50,0.025),SOL=seq(0.20,0.60,0.025)),ask.me=ask.me,my.area=my.area,my.last.year=my.last.year, years.in.average= years.in.average,stochastic.recruitment=stochastic.recruitment,no.iter.stoch=no.iter.stoch,recruit.adjust.CV=recruit.adjust.CV, do.plot.indicators=F)
+    if (KeyRunYear==2014) OP.simulate(scenario="SOL",HCR=HCR,FBlim.adjust=FBlim.adjust, targetFs=expand.grid(COD=seq(0.45,0.45,0.05),WHG=seq(0.30,0.30,0.05),HAD=seq(0.35,0.35,0.05),POK=seq(0.30,0.30,0.05),HER=seq(0.30,0.30,0.05),NSA=seq(0.25,0.25,0.05),SSA=seq(0.25,0.25,0.05),NOR=seq(0.25,0.25,0.05),SPR=seq(0.30,0.30,0.05),PLE=seq(0.50,0.50,0.025),SOL=seq(0.10,0.60,0.025)),ask.me=ask.me,my.area=my.area,my.last.year=my.last.year, years.in.average= years.in.average,stochastic.recruitment=stochastic.recruitment,no.iter.stoch=no.iter.stoch,recruit.adjust.CV=recruit.adjust.CV, do.plot.indicators=F)
+    if (KeyRunYear==2017) OP.simulate(scenario="SOL",HCR=HCR,FBlim.adjust=FBlim.adjust, targetFs=expand.grid(COD=seq(0.45,0.45,0.05),WHG=seq(0.30,0.30,0.05),HAD=seq(0.35,0.35,0.05),POK=seq(0.30,0.30,0.05),MAC=seq(0.20,0.20,0.05),HER=seq(0.30,0.30,0.05),NSA=seq(0.25,0.25,0.05),SSA=seq(0.25,0.25,0.05),NOR=seq(0.25,0.25,0.05),SPR=seq(0.30,0.30,0.05),PLE=seq(0.50,0.50,0.025),SOL=seq(0.10,0.60,0.025)),ask.me=ask.me,my.area=my.area,my.last.year=my.last.year, years.in.average= years.in.average,stochastic.recruitment=stochastic.recruitment,no.iter.stoch=no.iter.stoch,recruit.adjust.CV=recruit.adjust.CV, do.plot.indicators=F)
+    
     
     load(file =file.path(used.scenario.dir, "condensed.RData"))
-    if (NS.Key.2014) SOL<-subset(condensed,Species.n==28) else SOL<-subset(condensed,Species.n==26)
+    if (KeyRunYear==2014) SOL<-subset(condensed,Species.n==28) 
+    if (KeyRunYear==2017) SOL<-subset(condensed,Species.n==27) 
     
     allSp<-rbind(POK,PLE,SOL)
    
@@ -1121,8 +1180,10 @@ POK.PL.SOL<-function(HCR=HCR1,FBlim.adjust=1,stochastic.recruitment=1,recruit.ad
     png(filename =file.path(used.scenario.dir,paste('POK_PLE_SOL','.png',sep='')), width = 700, height = 1100,units = "px", pointsize = 18, bg="white")
     par(mfcol=c(6,3))
     par(mar=c(2,4,3,2)) # c(bottom, left, top, right)
-    POK.PLE.SOL<-c(20,25,26)
-    if (NS.Key.2014) POK.PLE.SOL<-c(POK.PLE.SOL[1]+1,POK.PLE.SOL[2:3]+2)
+
+    if (KeyRunYear==2014) POK.PLE.SOL<-c(21,27,28)
+    if (KeyRunYear==2017) POK.PLE.SOL<-c(19,26,27)
+    
     a<-subset(allSp,Species.n %in% POK.PLE.SOL)
     boxs <- defmacro(a, varsp, spname,spno,
       expr={

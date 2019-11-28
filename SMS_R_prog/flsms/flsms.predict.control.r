@@ -137,8 +137,7 @@ FLSMS.predict.control <- function(
  #if (species.names[1] != c("sp1") & length(species.names)!=no.species) 
  #           stop("no.species is diffrent from number of species names")
  sp.names<-species.names[(no.other.predators+1):no.species]
- if (no.other.predators==0) oth.sp.names<-NULL
- else oth.sp.names<-species.names[1:no.other.predators]
+ if (no.other.predators==0) oth.sp.names<-NULL else oth.sp.names<-species.names[1:no.other.predators]
 
 
  res <- new("FLSMS.predict.control",
@@ -170,7 +169,7 @@ FLSMS.predict.control <- function(
     obs.noise               =matrix(rep(c(-10,10),1),ncol=no.VPA.sp,nrow=2,dimnames=list(c("lower","upper"),sp.names)),
     real.time               =matrix(rep(c(-1,0,0,0),1),ncol=no.VPA.sp,nrow=4,dimnames=list(c("dist","bias",'std',"same"),sp.names)),
     survey                  =matrix(rep(c(-1,0,0,0),1),ncol=no.VPA.sp,nrow=4,dimnames=list(c("dist","bias",'std',"same"),sp.names)),
-    assessment              =matrix(rep(c(-1,0,0,0),1),,ncol=no.VPA.sp,nrow=4,dimnames=list(c("dist","bias",'std',"same"),sp.names)),
+    assessment              =matrix(rep(c(-1,0,0,0),1),ncol=no.VPA.sp,nrow=4,dimnames=list(c("dist","bias",'std',"same"),sp.names)),
     implementation          =matrix(rep(c(-1,0,0,0),1),ncol=no.VPA.sp,nrow=4,dimnames=list(c("dist","bias",'std',"same"),sp.names)),
     intermediate.TAC        =matrix(-1,ncol=no.VPA.sp,nrow=2,dimnames=list(c("first","second"),sp.names)),
     intermediate.F          =matrix(1,ncol=no.VPA.sp,nrow=2,dimnames=list(c("first","second"),sp.names)),
@@ -185,7 +184,7 @@ FLSMS.predict.control <- function(
     no.ini.pop              =as.numeric(1),
     read.F                  =matrix(0,ncol=2,nrow=1,dimnames=list(c(""),c("first","second"))),
     use.read.F              =as.numeric(0),
-    other.predator          =matrix(rep(c(1,-1,-1),1),ncol=no.other.predators,nrow=3,dimnames=list(c("factor","first","second"),oth.sp.names))
+    other.predator          =matrix(rep(c(1,-1,-1),no.other.predators),ncol=no.other.predators,nrow=3,dimnames=list(c("factor","first","second"),oth.sp.names))
   )
 
     # Verify that this object is valid
@@ -442,48 +441,8 @@ setMethod("show", signature(object="FLSMS.predict.control"),
                                     "#\n",
                                     "#          15=  F from target SSB (target.SSB) in the beginning of the TAC year+1\n",
                                     "#\n",
-                                    "#          real time-monitoring\n",
-                                    "#          20=  F from trigger T1&T2 and N1 in the beginning of the TAC year\n",
-                                    "#          21=TAC from trigger T1&T2 and N1 in the beginning of the TAC year\n",
-                                    "#          22=  F from target SSB (target.SSB) in the beginning of the TAC year+1, derived from real time N1\n",
-                                    "#          23=TAC from target SSB (target.SSB) in the beginning of the TAC year+1, derived from real time N1\n",
-                                    "#          24=TAC from target SSB (target.SSB) in the beginning of the TAC year+1, derived from real time N1, however F<=constant F\n",
-                                    "#          30=  F from trigger T1&T2 and TSB in the beginning of the TAC year\n",
-                                    "#          31=TAC from trigger T1&T2 and TSB in the beginning of the TAC year\n",
-                                    "#\n",                                                           
-                                    "#          Baltic cod\n",
-                                    "#          44= Reduce F by 10% per year until target F (at 0.3 Eastern Baltic, or 0.6 Western Baltic) is reached\n",
-                                    "#              & apply a +-15% TAC constrain if F is below 0.6 (East) or 1.0 (West)\n",
-                                    "#              & target F must be given as constant.F\n",
-                                    "#              & F reduction rate (e.g. 0.1)  must be given as FT1a\n",
-                                    "#              & upper limit F for TAC constraint must be given as T1\n",
-                                    "#\n",  
-                                    "#          North Sea and Kattegat Cod\n",
-                                    "#          47= Reduce F by 25% per year if SSB < T1  (blim)\n",
-                                    "#              & reduce by 15% per year if SSB < T2  (bpa), however minimum F=0.4 (constantF)\n",
-                                    "#              & reduce by 10 per year if SSB > T2 (bpa), however minimum F=0.4 (constantF)\n",
-                                    "#              & apply a +-20% TAC constraint (TAC.constraints) in all cases\n",
+                                    "#          20=  Norway Pout 2018, Escapement strategies\n",
                                     "#\n",
-                                    "#          Norway pout\n",
-                                    "#          98= TAC in quarter 1 from T1 and T2 and survey indices (0-group) in the previous year (using survey.dist error)\n",
-                                    "#               & closure if the fishery in second quarter\n",
-                                    "#               & TAC for quarter 3 and 4 from first quarter 1-group index and assessment results (using real.T.dist error)\n",
-                                    "#               & and 25% of normal recruitment, with target at SSB at Bpa? the following year\n",
-                                    "#          99=  Closure if the fishery in first and second quarter\n",
-                                    "#               & TAC for quarter 3 and 4 from first quarter 1-group index and assessment results (using real.T.dist error)\n",
-                                    "#               & and 25% of normal recruitment, with target at SSB at Bpa? the following year\n",
-                                    "#\n",
-                                    "#          Blue whiting\n",
-                                    "#           334:  2008 management plan\n",
-                                    "#                 Decrease F to Ftarget (constantF) in initial phase.\n",
-                                    "#                 &  by decreasing F by xx percent per year.\n",
-                                    "#                 &  real.T.dist is used as input var for xx\n",
-                                    "#                 after initial phase (when observed F in the TAC year is below Ftarget switch to HCR rule yy\n",
-                                    "#                 &  real.T.bias is used as input var for yy\n",
-                                    "#                 Init condition: Calc F.second from the F derived from TAC.first and the specified % reduction\n",
-                                    "#\n",
-                                    "#           335:  2008 management plan. As 334 but different init condition;\n",
-                                    "#                 Init condition: Use TAC.second for F. Use value from external forecast to estimate in accordance with the HCR\n",
                                     "#\n",file=file,append=T,sep="")
                                     wr.matrix.nice(slot(HCR,x),VPA.species)
                                 } else wr.matrix(slot(HCR,x),x)
@@ -542,7 +501,7 @@ setMethod("show", signature(object="FLSMS.predict.control"),
                              },
                "real.time.F"  ={if (nice) {
                                 cat(sepLine,file=file,append=T)
-                                cat("# option real.time.F. 	Mean F to obtain real time estimate, if relevant  \n",file=file,append=T,sep="")
+                                cat("# option real.time.F. 	Mean F to obtain real time estimate, or minimum F irrespective of TAC if relevant  \n",file=file,append=T,sep="")
                                     wr.matrix.nice(slot(HCR,x),VPA.species)
                                 } else wr.matrix(slot(HCR,x),x)
                              },
@@ -629,13 +588,20 @@ setMethod("show", signature(object="FLSMS.predict.control"),
               "assessment"  ={if (nice) {
                                 cat(sepLine,file=file,append=T)
                                 cat("# options asess.error.dist and assess.bias and assess.std\n",
-                                    "#          assessment observation uncertainties (on stock numbers) - model, mean and std deviation\n",
-                                    "#             	distribution model (-1=not used, 0=normal, 1=log normal,\n",  
-                                    "#                2=log normal using covariance matrix from file covariance_N.in, does not work!!!\n",
-                                    "#                4=log normal using CV by age from file assessment_CV_age.in, does not work!!!)\n",
-                                    "#             	mean (mean is mean bias factor, mean=1 produces no bias)\n",
-                                    "#             	std dev for log normal dist, or CV for normal dist\n",
-                                    "#              same noise. Use same noise for all ages (same noise=1) or independent noise per age(same noise=0)\n",file=file,append=T,sep="")
+                                    "#      ssessment observation uncertainties (on stock numbers) - model, mean and std deviation\n",
+                                    "#      1.distribution model:\n",
+                                    "#            1=not used, 1=log normal distributed N,\n",  
+                                    "#            2=log normal N using covariance matrix from file covariance_n.in \n",
+                                    "#            3=log normal N using decomposed matrix from file decomposition_n.in \n",
+                                    "#            4=log normal N & F using covariance matrix from file covariance_nf.in \n",
+                                    "#            5=log normal N & F using decomposed matrix from file decomposition_nf.in \n",
+                                    "#            6=log normal using std by age from file assessment_CV_age.in, does not work!!!)\n",
+                                    "#      2. mean (mean is mean bias factor, mean=1 produces no bias)\n",
+                                    "#      3. std dev for log normal dist (distribution model=1)  \n",
+                                    "#      4. various input dependent on type of assessment noise \n",
+                                    "#            distribution model=1. Use same noise for all ages (same noise=1) or noise per age(same noise=0)\n",
+                                    "#            distribution model=2-5. Number of forecasts simulated (1=deterministic, >1 stochastic)\n"
+                                    ,file=file,append=T,sep="")
                                     wr.matrix.nice(slot(HCR,x),VPA.species)
                                 } else wr.matrix(slot(HCR,x),x)
                              },
@@ -764,7 +730,7 @@ setMethod("show", signature(object="FLSMS.predict.control"),
 
 
   if (F) {
-      SMS<-read.FLSMS.control(file=file.path(data.path,'SMS.dat'))
+      SMS<-read.FLSMS.control(dir=data.path,file='SMS.dat')
       HCR<-read.FLSMS.predict.control(control=SMS,file='HCR_options.dat')
       write.FLSMS.predict.control(HCR=HCR,SMS=SMS,file='a.dat',nice=T)
   } 

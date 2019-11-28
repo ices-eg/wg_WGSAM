@@ -24,13 +24,13 @@ do.a.full.SMS.run(label="run_",                   # label for output
                   do.hessian=T,                   # Make the Hessian matrix and estimate uncertainties
                   SSB.R.seperate=F,               # Estimate S/R parameters in a seperate step  
                   do.MCMC=F,                      # Prepare for MCMC analysis
-                  mcmc=1,mcsave=1,                # Options for MCMC analysis
+                  mcmc=0,mcsave=0,                # Options for MCMC analysis
                   do.prediction=F,                # Make a prediction
                   pause=F,                        # Make a confirm between each stage
                   Screen.show=F,                  # show the output on screen (TRUE), or save it in files "*.lg" (FALSE)
-                  do.run=T,                       # Make the run immediately, or just make the batch file for the run
+                  do.run=F,                       # Make the run immediately, or just make the batch file for the run
                   deleteFiles=deleteFiles,        # clean up in files before the run is made
-                  HPC=F)                          # run it as batch program on the UNIX High Performance Computer 
+                  HPC=F)                          # run it as batch program on the UNIX High  Performance Computer 
               
 
 

@@ -1,19 +1,22 @@
 #a<-Read.other.predator.prediction()
 a<-Read.other.predator()
 
-scenario<-"D2d_HCR_2_0_Rec0_____CVadj_limF_110_Oth10";
+scenario<-"HCR_1_deter_noadjust_test_01_HCR1_0_Rec0__2030";
+usedOther<-"op_other_sp_var.out"
+usedOther<-"op_other_sp.out"
 scenario<-NA
 
 
 if ( ! is.na(scenario)) {
- #b<- Read.OP.other(dir=file.path(data.path,scenario),infile="op_other_sp.out")
- b<- Read.op.other.sp.var(dir=file.path(data.path,scenario),infile="op_other_sp_var.out")
- 
+ b<- Read.op.other.sp.var(dir=file.path(data.path,scenario),infile=usedOther)
+ a$size<-NULL
  a<-rbind(a,b)
 }
 
-hm<-subset(a,Species.n==13)
-nonFish<-c(1:8,13,14)
+#hm<-subset(a,Species.n==13)
+#nonFish<-c(1:8,13,14)   # North Sea
+nonFish<- -99
+
 a$BIO<-a$N*a$west/1000
 a[a$Species.n %in% nonFish,'BIO']<- a[a$Species.n %in% nonFish,'N']
 
@@ -45,8 +48,8 @@ cleanup()
 #dev<-"print"
 dev<-"screen"
 if (makeAllGraphs) dev<-'png'
-nox<-4
-noy<-4
+nox<-2
+noy<-2
 
 i<-0
 

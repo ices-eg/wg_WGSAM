@@ -48,7 +48,7 @@ DATA_SECTION
 
  init_int test_output       // Produce test output (0=no 1..9.. increasing output)
 
- !! if (test_output>0) cout<<"SMS Operating model, January 2016, using ADMB version 11.2"<<endl;
+ !! if (test_output>0) cout<<"SMS Operating model, December 2018, using ADMB version 12.0 "<<endl;
  !! if (do_optim==0 && test_output>0) cout<<"No ";
  !! if (test_output>0) cout<<"Optimization will be done"<<endl;
 
@@ -133,7 +133,7 @@ DATA_SECTION
  int first_VPA              // species number for the first species where the stock numbers are estimated
  int first_VPA_prey         // species number for the first species where the stock numbers are estimated and which is a prey
  int nprey;
- int lastPrey;
+ 
 
  // Reorganise a bit
 
@@ -153,7 +153,7 @@ DATA_SECTION
 
  !!  if (multi<1) is_prey=0;
  !!  nprey=sum(is_prey);
- !!  lastPrey=first_VPA+nprey-1;
+
 
 
  ivector la_pred(1,npr)              // last age by predator species
@@ -248,8 +248,8 @@ DATA_SECTION
  init_matrix max_pred_prey_size_ratio(1,npr,first_VPA,nsp)             // max predator prey size ratio
  !! if (test_output==2 && multi==2) cout<<"max_pred_prey_size_ratio:"<<endl<<max_pred_prey_size_ratio<<endl;
 
- 
- init_3darray size_range_a_b(1,4,1,npr,first_VPA,lastPrey)
+ // from sms.tpl  init_3darray size_range_a_b(1,4,1,Mnpr,first_VPA,Mindex)
+ init_3darray size_range_a_b(1,4,1,npr,first_VPA,nsp)
  !! if (test_output==2 && multi==2) for (i=1;i<=4;i++) cout<<"size_range_a_b:"<<endl<<"("<<i<<")"<<endl<<size_range_a_b(i)<<endl;
 
  init_imatrix pred_area_present(1,npr,1,no_areas)
@@ -498,7 +498,7 @@ DATA_SECTION
 
 
  !! ad_comm::change_datafile_name("op_n.in");
- init_matrix N_init(first_VPA,nsp,fa,last_age)      // potential dll
+ init_matrix N_init(first_VPA,nsp,fa,last_age)      
  !! if (test_output==3) cout<<"N_init:"<<endl<<N_init<<endl;
  
  !! if (nOthPred==0 || multi==0 ) {
@@ -571,7 +571,11 @@ DATA_SECTION
  init_4darray consum_input(fq,lq,1,no_areas,1,npr,fa,last_age)
  !! if (test_output==3 && multi==2 && consum_op==0) cout<<"consum_input:"<<endl<<consum_input<<endl;
 
- 
+  
+  !! if (multi==2) ad_comm::change_datafile_name("op_n_proportion_m2.in");
+ init_3darray n_proportion_m2(fq,lq,first_VPA,nsp,fa,max_a)
+ !! if (test_output==3 && multi==2) cout<<"n_proportion_m2:"<<endl<<n_proportion_m2<<endl;
+
   //*********************************************************************************************
  !! if (multi==2 && consum_op==1) ad_comm::change_datafile_name("op_consum_ab.in");
  !! else ad_comm::change_datafile_name("just_one.in");
@@ -847,6 +851,7 @@ PARAMETER_SECTION
 
   5darray    N(fy,ly_plus_1,fq,lq,1,no_areas,1,nsp,fa,max_a)
   5darray Nbar(fy,ly,fq,lq,1,no_areas,1,nsp,fa,max_a)
+  5darray NbarStom(fy,ly,fq,lq,1,no_areas,1,nsp,fa,max_a)
   5darray    F(fy,ly,fq,lq,1,no_areas,first_VPA,nsp,fa,max_a)
   5darray    M(fy,ly,fq,lq,1,no_areas,first_VPA,nsp,fa,max_a)
   5darray   M2(fy,ly,fq,lq,1,no_areas,first_VPA,nsp,fa,max_a)
@@ -1029,7 +1034,7 @@ PROCEDURE_SECTION
        if (q==recq) SSB_recruit(y);
        distribute_stock(y,q);
        for (d=1;d<=no_areas;d++) {
-         //cout<<"############"<<endl<<"y:"<<y<<" q:"<<q<<" d:"<<d<<endl;
+          //cout<<"############"<<endl<<"y:"<<y<<" q:"<<q<<" d:"<<d<<endl;
          if (multi==0) {                        // Single species mode
            M(y,q,d)=M_fixed(q);
            calc_F(y,q,d);
@@ -1049,7 +1054,7 @@ PROCEDURE_SECTION
              if (do_growth_all==1 && y>fy &M2iter>1) calc_growth(y);
              calc_M2(y,q,d);
              tmp=sum(square(M2(y,q,d)-old_M2));
-             // cout<<"iteration:"<<setprecision(8)<<M2iter<<" tmp: "<<setprecision(8)<<tmp<<endl;
+             cout<<"iteration:"<<setprecision(8)<<M2iter<<" tmp: "<<setprecision(8)<<tmp<<"  max_M2_sum2:"<<max_M2_sum2<<"   M2iter:"<<M2iter<<endl;
            }
            calc_Z(y,q,d);                       // update Z with the latest estimate of M2
            get_N_bar_at_age(y,q,d);             // Calc N within the period
@@ -1485,7 +1490,13 @@ FUNCTION void get_N_bar_at_age(int y, int q, int d);
  for (s=first_VPA;s<=nsp;s++){
    for (a=faq(q);a<=la(s);a++) {
      if (Z(y,q,d,s,a)>0) Nbar(y,q,d,s,a)=  N(y,q,d,s,a)*(1-exp(-Z(y,q,d,s,a)))/Z(y,q,d,s,a);
-     else  Nbar(y,q,d,s,a)=N(y,q,d,s,a);
+     else  Nbar(y,q,d,s,a)=N(y,q,d,s,a); 
+     
+     //Calc N to be used to estimate M2
+     if ( multi>0) {
+      if (use_Nbar==0) NbarStom(y,q,d,s,a)= N(y,q,d,s,a)* n_proportion_m2(q,s,a);
+      else  NbarStom(y,q,d,s,a)= Nbar(y,q,d,s,a)* n_proportion_m2(q,s,a);
+     }
  }}
  //cout<<"Nbar: y:"<<y<<" q:"<<q<<" area:"<<d<<endl<<Nbar(y,q,d)<<endl;
 
@@ -1503,6 +1514,7 @@ FUNCTION void calc_M2_simple(int y,int q, int d,dvector other_food, dvar_matrix 
  //cout<<"prey_w:"<<endl<<prey_w<<endl;
  //cout<<"consum:"<<endl<<consum<<endl;
  //cout<<"Nbar:"<<endl<<Nbar<<endl;
+ 
  for (pred=1;pred<=npr;pred++) if (pred_area_present(pred,d)==1){
   for (pred_a=faq(q);pred_a<=la(pred);pred_a++) {
     if (Nbar(pred,pred_a)>0) {
@@ -1533,9 +1545,8 @@ FUNCTION void calc_M2_simple(int y,int q, int d,dvector other_food, dvar_matrix 
 
 
 FUNCTION void calc_M2(int y, int q, int d);
- if (use_Nbar==0) calc_M2_simple(y,q,d,other_food(d),size_sea(y,q,d),prey_w(q,d),consum(y,q,d),N(y,q,d),M2(y,q,d));    // use N
- else             calc_M2_simple(y,q,d,other_food(d),size_sea(y,q,d),prey_w(q,d),consum(y,q,d),Nbar(y,q,d),M2(y,q,d)); // use Nbar
-
+  calc_M2_simple(y,q,d,other_food(d),size_sea(y,q,d),prey_w(q,d),consum(y,q,d),NbarStom(y,q,d),M2(y,q,d));    
+   
 
   
 FUNCTION void distribute_stock(int y, int q);
@@ -1555,17 +1566,21 @@ FUNCTION void distribute_stock(int y, int q);
         } 
       }
     }
-    for (q=fq;q<=lq;q++) for (s=1;s<=nOthPred;s++) N(y,q,1,s)=N_other(y,q,1,s); 
+    for (q=fq;q<=lq;q++) for (s=1;s<=nOthPred;s++) {
+     N(y,q,1,s)=N_other(y,q,1,s); 
+     Nbar(y,q,1,s)=N(y,q,1,s);
+     NbarStom(y,q,1,s)=N(y,q,1,s);
+    }
    }
  }
- else for (int d=1;d<=no_areas;d++) N(y,q,d)=elem_prod(N_global(y,q),N_dist(q,d));     // MANGLER OTHER PREP  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ else for (int d=1;d<=no_areas;d++) N(y,q,d)=elem_prod(N_global(y,q),N_dist(q,d));     // MANGLER OTHER PREd  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 FUNCTION dvariable suit(int y, int q, int d, int pred,int prey,dvariable pred_size,dvariable prey_size)
  dvariable tmp,size_sel,vul,ratio, log_ratio;
 
  //cout<<"suit  y:"<<y<<" q:"<<q<<" d:"<<d<<" pred:"<<pred<<" prey:"<<prey<<" ";
  vul=season_overlap(d,pred,q,prey)*vulnerability(d,pred,prey);
-
+  
  ratio=pred_size/prey_size;
 
  if (size_selection(pred)==0) {         // (uniform) no size selection
@@ -1710,7 +1725,6 @@ FUNCTION void write_M2_simple(int y,int q, int d,dvector other_food, dvar_matrix
  dvar_matrix avail_food(1,npr,fa,max_a);
  
  avail_food=0.0;
- 
  ofstream pmo("op_part_m2.out",ios::app);
 
  for (pred=1;pred<=npr;pred++) if (pred_area_present(pred,d)==1){
@@ -1763,12 +1777,10 @@ FUNCTION void write_part_M2();
  ofstream pmo("op_part_m2.out",ios::out);
  pmo <<"Year Quarter Area Predator.no Predator.age Prey.no Prey.age Part.M2"<<endl;
  pmo.close();
-
  for (y=fy_out;y<=ly;y++) {
    for (q=fq;q<=lq;q++) {
      for (d=1;d<=no_areas;d++) {
-      if (use_Nbar==0) write_M2_simple(y,q,d,other_food(d),size_sea(y,q,d),prey_w(q,d),consum(y,q,d),N(y,q,d),M2(y,q,d));    // use N
-        else            write_M2_simple(y,q,d,other_food(d),size_sea(y,q,d),prey_w(q,d),consum(y,q,d),Nbar(y,q,d),M2(y,q,d)); // use Nbar
+        write_M2_simple(y,q,d,other_food(d),size_sea(y,q,d),prey_w(q,d),consum(y,q,d),NbarStom(y,q,d),M2(y,q,d)); 
  }}}
    
  
@@ -1780,7 +1792,7 @@ FUNCTION void print_summary_qd()
  int d;
 
  ofstream res("op_summary.out",ios::out);
- res <<"Year Quarter Area Species.n Age M1 M2 M F Z N N_dist C west weca Yield CWsum propmat BIO SSB consum"<<endl;
+ res <<"Year Quarter Area Species.n Age M1 M2 M F Z N Nbar NbarStom N_dist C west weca Yield CWsum propmat BIO SSB consum"<<endl;
   for (s=first_VPA;s<=nsp;s++)
     for (y=fy_out;y<=ly;y++)
       for (q=fq;q<=lq;q++)
@@ -1797,6 +1809,8 @@ FUNCTION void print_summary_qd()
              res <<F(y,q,d,s,a)<<" ";
              res <<Z(y,q,d,s,a)<<" ";
              res <<N(y,q,d,s,a)<<" ";
+             res <<Nbar(y,q,d,s,a)<<" ";
+             res <<NbarStom(y,q,d,s,a)<<" ";
              if (no_areas==1) res<<" 1 ";
              else res <<N_dist(q,d,s,a)<<" ";
              res <<C(y,q,d,s,a)<<" ";

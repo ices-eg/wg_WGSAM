@@ -12,7 +12,7 @@ WGSAM, covers both model development and integration into practical management a
 ### This repository includes several directories
 * NortSeaKeyRun_2014: The SMS North Sea key run made at  the 2014 WGSAM, including data for the period 1974-2013. The version here has been corrected in 2015 for an input error.  
 * NortSeaKeyRun_2017: The SMS North Sea key run made at the 2017 WGSAM, including data for the period 1974-2016. 
-* input_output: Detailed presentation of input and output file for the 2017 key run
+* input_output: Detailed presentation of input and output file for the 2017 North Sea key run
 * SMS_ADMB: AD Model Builder source code for the SMS North Sea program
 * SMS_R_prog: R scripts for preparing, running and presenting results from a SMS run
  

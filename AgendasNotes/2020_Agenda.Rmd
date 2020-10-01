@@ -1,0 +1,110 @@
+---
+title: "WGSAM 2020"
+author: "Sarah Gaichas, Alexander Kempf, Valerio Bartolino"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document: default
+  word_document: default
+link-citations: yes
+csl: plos.csl
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# WGSAM Terms of Reference (ToRs), 2019-2021
+
+ToR a, Regional updates: **Review further progress and deliver key updates on multispecies modelling and ecosystem data analysis contributing to modeling throughout the ICES region**
+
+ToR b, Key-runs:  **Update of key-runs (standardized model runs updated with recent data) of multispecies and eco-system models for different ICES regions**
+
+ToR c, Skill assessment: **Establish and apply methods to assess the skill of multispecies models intended for operational advice**
+
+ToR d, Multi-model advice: **Evaluate methods for generating advice by comparing and/or combining multiple models**
+
+ToR e, MSE: **Management Strategy Evaluation (MSE) methods and applications for mutispecies and ecosystem advice, including evaluating management procedures and estimating biological reference points**
+
+# WGSAM 2020 Agenda
+
+WGSAM will be held online and by correspondense in 2020 due to the Covid-19 pandemic. Meeting plenary sessions will be for 2 hours each day, 3-5 pm Central Europe, 2-4 pm Western Europe, 9-11 am US East Coast. 
+
+For some participants these times are well outside normal work hours (6-8 am on the US West Coast and 2-4 am in New Zealand). Sarah is happy to meet separately later in the day with interested members from those time zones to get your input on issues discussed earlier in the day; please contact Sarah at <Sarah.Gaichas@noaa.gov> if this is of interest and we can set something up.
+
+## Monday 12 October
+
+First hour
+
+* Introductions
+
+* ToR a **Regional Updates**
+
+    - Alan Baudron: West of Scotland EwE with temperature driver 
+    - Andrea Belgrano: Kattegat EwE update 
+    - Valerio Bartolino: Ringed seal/salmonid Gadget
+    - Sarah Gaichas: US updates (prerecorded with brief overview in plenary) 
+
+    - maybe Miriam on her ecospace paper
+    - others? 
+
+Second hour
+
+* ToR b **Key-runs** 
+
+    - Morten Vinther/Anna Rindorf: North Sea SMS keyrun initial presentation  
+
+## Tuesday 13 October
+
+Two hours
+
+* ToR b **Key-runs** continued: 
+
+    - Morten Vinther/Anna Rindorf: answer questions for North Sea SMS review
+    - Primary reviewers (additional volunteers welcome): Valerio, Sarah, Sigrid
+
+## Wednesday 14 October
+
+First hour (more as needed)
+
+* ToR b **Key-runs** continued: Outline and agree on main points for North Sea SMS review
+
+    - Morten Vinther/Anna Rindorf: answer questions for North Sea SMS review
+    - Primary reviewers (additional volunteers welcome): Valerio, Sarah, Sigrid
+
+Second hour (or remaining time after review)
+
+* ToRs c **Skill assessment**, d **Multi-model advice**, e **MSE** presentations 
+
+    - Daniel Howell: ToR d--Feco (or Thursday if better)
+
+
+## Thursday 15 October
+
+First hour
+
+* ToR c **Skill assessment** 
+
+    - Alex: Review skill assessment paper
+    - Sarah: Multispecies simulated dataset for skill assessment
+    - Valerio: introduce group skill assessment effort and plans for the interim work 
+
+Second hour
+
+* ToRs c **Skill assessment**, d **Multi-model advice**, e **MSE** presentations continued
+
+    - Daniel Howell: ToR d--Feco (or Wednesday if better)
+
+
+## Friday 16 October
+
+Two hours or less
+
+* ToR b completion: any issues left for the keyrun
+
+* Plans for next year
+    - Interim meetings and work: 2021 is final year of these ToRs!
+    - Timing of 2021 meeting
+    - Location of 2021 meeting 
+
+
+

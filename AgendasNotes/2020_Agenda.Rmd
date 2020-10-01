@@ -3,8 +3,8 @@ title: "WGSAM 2020"
 author: "Sarah Gaichas, Alexander Kempf, Valerio Bartolino"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
-  html_document: default
   word_document: default
+  html_document: default
 link-citations: yes
 csl: plos.csl
 ---
@@ -76,6 +76,7 @@ Second hour (or remaining time after review)
 * ToRs c **Skill assessment**, d **Multi-model advice**, e **MSE** presentations 
 
     - Daniel Howell: ToR d--Feco (or Thursday if better)
+    - others?
 
 
 ## Thursday 15 October
@@ -84,15 +85,16 @@ First hour
 
 * ToR c **Skill assessment** 
 
-    - Alex: Review skill assessment paper
-    - Sarah: Multispecies simulated dataset for skill assessment
-    - Valerio: introduce group skill assessment effort and plans for the interim work 
+    - Alex Kempf: Review skill assessment paper
+    - Sarah Gaichas: Multispecies simulated dataset for skill assessment
+    - Valerio Bartolino: introduce group skill assessment effort and plans for the interim work 
 
 Second hour
 
 * ToRs c **Skill assessment**, d **Multi-model advice**, e **MSE** presentations continued
 
     - Daniel Howell: ToR d--Feco (or Wednesday if better)
+    - others?
 
 
 ## Friday 16 October

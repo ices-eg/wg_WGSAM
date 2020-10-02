@@ -3,8 +3,8 @@ title: "WGSAM 2020"
 author: "Sarah Gaichas, Alexander Kempf, Valerio Bartolino"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
-  word_document: default
   html_document: default
+  word_document: default
 link-citations: yes
 csl: plos.csl
 ---
@@ -37,7 +37,7 @@ First hour
 
 * Introductions
 
-* ToR a **Regional Updates**
+* ToR a **Regional Updates** *Please, maximum 10 minutes for ToR a presentations.*
 
     - Alan Baudron: West of Scotland EwE with temperature driver 
     - Andrea Belgrano: Kattegat EwE update 

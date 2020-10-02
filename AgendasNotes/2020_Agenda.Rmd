@@ -3,8 +3,8 @@ title: "WGSAM 2020"
 author: "Sarah Gaichas, Alexander Kempf, Valerio Bartolino"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
-  html_document: default
   word_document: default
+  html_document: default
 link-citations: yes
 csl: plos.csl
 ---

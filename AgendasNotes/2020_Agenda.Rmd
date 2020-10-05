@@ -42,6 +42,7 @@ First hour
     - Alan Baudron: West of Scotland EwE with temperature driver 
     - Andrea Belgrano: Kattegat EwE update 
     - Valerio Bartolino: Ringed seal/salmonid Gadget
+    - Mike Spence: Avoiding the curse of circularity – fitting mechanistic multispecies model independent of stock assessments
     - Sarah Gaichas: US updates (prerecorded with brief overview in plenary) 
 
     - maybe Miriam on her ecospace paper
@@ -93,7 +94,9 @@ Second hour
 
 * ToRs c **Skill assessment**, d **Multi-model advice**, e **MSE** presentations continued
 
+    - Mike Spence: ToR c--Get fit quick – calibrating expensive computer models  in a day
     - Daniel Howell: ToR d--Feco (or Wednesday if better)
+    - Mike Spence: ToR d and e--Calculating multispecies MSY using a multi-model ensemble
     - others?
 
 

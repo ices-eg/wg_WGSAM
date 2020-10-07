@@ -43,6 +43,7 @@ First hour
     - Andrea Belgrano: Kattegat EwE update 
     - Valerio Bartolino: Ringed seal/salmonid Gadget
     - Mike Spence: Avoiding the curse of circularity – fitting mechanistic multispecies model independent of stock assessments
+    - Sigrid Lehuta: Eastern English channel/North sea Osmose model - inclusion of bio-energetic and evolution in an ecosystem model
     - Sarah Gaichas: US updates (prerecorded with brief overview in plenary) 
 
     - maybe Miriam on her ecospace paper

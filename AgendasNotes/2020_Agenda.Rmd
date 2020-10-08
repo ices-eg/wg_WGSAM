@@ -1,6 +1,6 @@
 ---
 title: "WGSAM 2020"
-author: "Sarah Gaichas, Alexander Kempf, Valerio Bartolino"
+author: "Chairs: Sarah Gaichas, Alexander Kempf, Valerio Bartolino"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   word_document: default
@@ -13,7 +13,7 @@ csl: plos.csl
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# WGSAM Terms of Reference (ToRs), 2019-2021
+## WGSAM Terms of Reference (ToRs), 2019-2021
 
 ToR a, Regional updates: **Review further progress and deliver key updates on multispecies modelling and ecosystem data analysis contributing to modeling throughout the ICES region**
 
@@ -27,7 +27,18 @@ ToR e, MSE: **Management Strategy Evaluation (MSE) methods and applications for 
 
 # WGSAM 2020 Agenda
 
-WGSAM will be held online and by correspondense in 2020 due to the Covid-19 pandemic. Meeting plenary sessions will be for 2 hours each day, 3-5 pm Central Europe, 2-4 pm Western Europe, 9-11 am US East Coast. 
+WGSAM will be held online and by correspondense in 2020 due to the Covid-19 pandemic. Meeting plenary sessions will be for 2 hours each day, 3-5 pm Central Europe, 2-4 pm Western Europe, 9-11 am US East Coast.
+
+If necessary, meetings may extend outside these times to finish work and discussions. We will update the group with any changes.
+
+## Connection information
+
+webex link: https://thuenen.webex.com/thuenen/j.php?MTID=m37a4cbade6ac936c16a78dfae54a8533  
+password: umMAjWry328
+
+Join by phone  
+Meeting number: 163 534 8594  
+Global call-in numbers: https://thuenen.webex.com/thuenen/globalcallin.php?MTID=m5322948dfe4de47e83cb5ce2d52fa03e
 
 For some participants these times are well outside normal work hours (6-8 am on the US West Coast and 2-4 am in New Zealand). Sarah is happy to meet separately later in the day with interested members from those time zones to get your input on issues discussed earlier in the day; please contact Sarah at <Sarah.Gaichas@noaa.gov> if this is of interest and we can set something up.
 
@@ -44,9 +55,8 @@ First hour
     - Valerio Bartolino: Ringed seal/salmonid Gadget
     - Mike Spence: Avoiding the curse of circularity – fitting mechanistic multispecies model independent of stock assessments
     - Sigrid Lehuta: Eastern English channel/North sea Osmose model - inclusion of bio-energetic and evolution in an ecosystem model
+    - Miriam Püts: Ecospace paper
     - Sarah Gaichas: US updates (prerecorded with brief overview in plenary) 
-
-    - maybe Miriam on her ecospace paper
     - others? 
 
 Second hour

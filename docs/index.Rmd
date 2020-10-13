@@ -9,5 +9,8 @@ output: html_document
 <a href="https://ices-eg.github.io/wg_WGSAM/ReviewCriteria.html" target="_blank"> Model and Key Run Review Criteria - 20 November 2019 </a>
 
 
+WGSAM 2020
+
 <a href="https://ices-eg.github.io/wg_WGSAM/2020_Agenda.html" target="_blank"> Draft 2020 Meeting Agenda - updated 13 October 2020 </a>
 
+<a href="https://ices-eg.github.io/wg_WGSAM/NorthSeaKeyRun_HerringM2.html" target="_blank"> SMS keyrun M2 plots - 13 October 2020 </a>

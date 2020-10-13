@@ -88,13 +88,17 @@ Second hour (or remaining time after review)
 * ToRs c **Skill assessment**, d **Multi-model advice**, e **MSE** presentations 
 
     - Daniel Howell: ToR d--Feco (or Thursday if better)
-    - others?
+    - Possibly others scheduled for Thursday
 
 
 ## Thursday 15 October
 
 First hour
 
+* ToR d **Multi-model advice**
+
+    - Robert Thorpe: WKIRISH multispecies advice  
+  
 * ToR c **Skill assessment** 
 
     - Alex Kempf: Review skill assessment paper
@@ -108,7 +112,7 @@ Second hour
     - Mike Spence: ToR c--Get fit quick – calibrating expensive computer models  in a day
     - Daniel Howell: ToR d--Feco (or Wednesday if better)
     - Mike Spence: ToR d and e--Calculating multispecies MSY using a multi-model ensemble
-    - others?
+    - Sean Lucey: ToR e--Rpath MSE capabilities and example
 
 
 ## Friday 16 October

@@ -9,5 +9,5 @@ output: html_document
 <a href="https://ices-eg.github.io/wg_WGSAM/ReviewCriteria.html" target="_blank"> Model and Key Run Review Criteria - 20 November 2019 </a>
 
 
-<a href="https://ices-eg.github.io/wg_WGSAM/2020_Agenda.html" target="_blank"> Draft 2020 Meeting Agenda - 1 October 2020 </a>
+<a href="https://ices-eg.github.io/wg_WGSAM/2020_Agenda.html" target="_blank"> Draft 2020 Meeting Agenda - updated 13 October 2020 </a>
 

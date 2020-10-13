@@ -362,3 +362,25 @@ plist5$Whiting
 ```
 
 ### {-}
+
+Find biggest M2 differences for age 2 herring between key-runs:
+
+```{r herrM2diff}
+
+M2_diffHerring <- M2_compHerring %>%
+  arrange(Year, Predator, Prey, Prey.age, KeyRun) %>% 
+  group_by(Year, Predator, Prey, Prey.age) %>% 
+  mutate(diffM2_2020 = c(diff(Part.M2), NA),
+         diffeatenW_2020 = c(diff(eatenW), NA)) %>%
+  filter(!is.na(diffM2_2020))
+
+age2diff <- M2_diffHerring %>%
+  filter(Prey.age==2) %>%
+  arrange(diffM2_2020)
+
+library(DT)
+datatable(age2diff, rownames = FALSE, options = list(pageLength = 25))
+
+
+```
+

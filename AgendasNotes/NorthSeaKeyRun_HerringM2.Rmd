@@ -1,5 +1,5 @@
 ---
-title: "Herring M2 Comparson"
+title: "North Sea Herring M2 Comparson"
 author: "Sarah Gaichas"
 date: "10/13/2020"
 output: 

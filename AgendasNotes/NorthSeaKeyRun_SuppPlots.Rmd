@@ -304,7 +304,7 @@ ggplot(datQ17 %>% filter(Quarter == 1)) +
 
 ### Modeled predators contributing to predation by prey {.tabset}
 
-#### 2020 SMS KeyRun
+#### 2020 SMS proportion
 
 ```{r, warning=FALSE, message=FALSE, fig.width=9, fig.height=8}
 # ------------------------
@@ -341,10 +341,23 @@ ggplot(datY) +
     xlim(1973,2020)+
     theme(legend.position="bottom")
 #dev.off()
+```
+
+#### 2020 SMS weight
+
+```{r, warning=FALSE, message=FALSE, fig.width=9, fig.height=8}
+ggplot(datY) +
+    geom_bar(aes(Year,eatenW,fill=Predator), stat="identity") +
+    scale_fill_manual(values=colPalette) +
+    facet_wrap(~Prey)+
+    xlim(1973,2020)+
+    #ylim(0,2e+06)+
+    theme(legend.position="bottom")
+
 
 ```
 
-#### 2017 SMS KeyRun
+#### 2017 SMS proportion
 
 ```{r, warning=FALSE, message=FALSE, fig.width=9, fig.height=8}
 # ------------------------
@@ -381,6 +394,19 @@ ggplot(datY) +
     xlim(1973,2020)+
     theme(legend.position="bottom")
 #dev.off()
+```
+
+#### 2017 SMS weight
+
+```{r, warning=FALSE, message=FALSE, fig.width=9, fig.height=8}
+ggplot(datY) +
+    geom_bar(aes(Year,eatenW,fill=Predator), stat="identity") +
+    scale_fill_manual(values=colPalette) +
+    facet_wrap(~Prey)+
+    xlim(1973,2020)+
+    #ylim(0,2e+06)+
+    theme(legend.position="bottom")
+
 
 ```
 

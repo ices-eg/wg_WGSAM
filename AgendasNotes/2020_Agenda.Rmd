@@ -57,7 +57,6 @@ First hour
     - Sigrid Lehuta: Eastern English channel/North sea Osmose model - inclusion of bio-energetic and evolution in an ecosystem model
     - Miriam Püts: Ecospace paper
     - Sarah Gaichas: [US updates](https://noaa-edab.github.io/presentations/20201012_WGSAM_USupdate_Gaichas.html)  
-    - others? 
 
 Second hour
 
@@ -78,7 +77,7 @@ Two hours
 
 ## Wednesday 14 October
 
-First hour (more as needed)
+Two hours
 
 * ToR b **Key-runs** continued: Outline and agree on main points for North Sea SMS review
 
@@ -86,13 +85,6 @@ First hour (more as needed)
     - Primary reviewers (additional volunteers welcome): Valerio, Sarah, Sigrid
         - [additional M2 plots for review](https://ices-eg.github.io/wg_WGSAM/NorthSeaKeyRun_HerringM2.html)
         - [additional comparisons with 2017 keyrun](https://ices-eg.github.io/wg_WGSAM/NorthSeaKeyRun_SuppPlots.html)
-
-Second hour (or remaining time after review)
-
-* ToRs c **Skill assessment**, d **Multi-model advice**, e **MSE** presentations 
-
-    - Daniel Howell: ToR d--Feco (or Thursday if better)
-    - Possibly others scheduled for Thursday
 
 
 ## Thursday 15 October
@@ -116,8 +108,8 @@ Second hour
 
 * ToRs c **Skill assessment**, d **Multi-model advice**, e **MSE** presentations continued
 
-    - Mike Spence: ToR c--Get fit quick – calibrating expensive computer models  in a day
     - Daniel Howell: ToR d--Feco (or Wednesday if better)
+    - Mike Spence: ToR c--Get fit quick – calibrating expensive computer models  in a day
     - Sean Lucey: ToR e--Rpath MSE capabilities and example
 
 
@@ -128,9 +120,11 @@ Second hour
 Two hours
 
 * ToR b **Key-runs** completion: any issues left for the keyrun
+    - Clarify responsibilities and deadlines for finishing report
 
 * ToR d **Multi-model advice**, e **MSE** presentations continued     
     - Mike Spence: ToR d and e--Calculating multispecies MSY using a multi-model ensemble
+    
 
 * Plans for next year
     - Interim meetings and work: 2021 is final year of these ToRs!

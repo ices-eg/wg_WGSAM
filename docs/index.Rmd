@@ -11,7 +11,7 @@ output: html_document
 
 WGSAM 2020
 
-<a href="https://ices-eg.github.io/wg_WGSAM/2020_Agenda.html" target="_blank"> Draft 2020 Meeting Agenda - updated 13 October 2020 </a>
+<a href="https://ices-eg.github.io/wg_WGSAM/2020_Agenda.html" target="_blank"> Final 2020 Meeting Agenda - updated 15 October 2020 </a>
 
 ToR b
 

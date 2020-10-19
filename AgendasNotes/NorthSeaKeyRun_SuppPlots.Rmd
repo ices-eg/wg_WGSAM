@@ -1,6 +1,6 @@
 ---
 title: "North Sea SMS Keyrun Supplemental Plots"
-author: "Valerio Bartolino, Sarah Gaichas"
+author: "Valerio Bartolino, Xochitl Cormon, Sarah Gaichas"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
    html_document:
@@ -35,8 +35,8 @@ dat <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/Key
 #dat[1:3,]
 
 dat <- left_join(dat,spp) %>%
-    mutate(Yield = as.numeric(as.character(Yield)),
-           Yield.hat = as.numeric(as.character(Yield.hat)),
+    mutate(Yield = as.numeric(as.character(SOP)),
+           Yield.hat = as.numeric(as.character(SOP.hat)),
            Year = as.numeric(as.character(Year))) %>%
     gather("Source","Yield",8:9)
 
@@ -304,7 +304,7 @@ ggplot(datQ17 %>% filter(Quarter == 1)) +
 
 ### Modeled predators contributing to predation by prey {.tabset}
 
-#### 2020 SMS proportion
+#### 2020 SMS proportion by weight
 
 ```{r, warning=FALSE, message=FALSE, fig.width=9, fig.height=8}
 # ------------------------
@@ -357,7 +357,7 @@ ggplot(datY) +
 
 ```
 
-#### 2017 SMS proportion
+#### 2017 SMS proportion by weight
 
 ```{r, warning=FALSE, message=FALSE, fig.width=9, fig.height=8}
 # ------------------------
@@ -410,5 +410,50 @@ ggplot(datY) +
 
 ```
 
+
+### {-}
+
+### Modeled M2 by predator on prey {.tabset}
+
+```{r, fig.width=9, fig.height=8, message=FALSE, results="asis"}
+# plot part M2 per predator
+dat20 <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/KeyRunComparisons/NorthSeaSMS2020/who_eats_whom_level1.csv", sep=",", header=T)
+#dat20 <- read.csv("C://Users//xocor//Documents//Work//Projects//WGSAM//who_eats_whom_level1.csv", sep=",", header=T, dec=".",stringsAsFactors=FALSE)
+#head(dat20)
+
+dat17 <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/Input_Output/Output/WhoEatsWhom/who_eats_whom_level1.csv", sep=",", header=T)
+dat17 <- dat17 %>% mutate(run="r17")
+dat20 <- dat20 %>% mutate(run="r20")
+dat2 <- bind_rows(dat17,dat20)
+
+# aggregate birds
+dat3 <- dat2 %>%
+    mutate(Predator = as.character(Predator),
+           Predator = ifelse(Predator %in% c("Fulmar","Gannet","GBB. Gull","Guillemot","Her. Gull","Kittiwake","Puffin","Razorbill"), "Birds", Predator)) %>%
+    group_by(Year,Quarter,Predator, Predator.age,Prey, Prey.age, run) %>%
+    summarise(M2 = sum(Part.M2, na.rm=T)) %>%
+	ungroup()
+	
+# length(unique(dat3$Predator)) #http://medialab.github.io/iwanthue/
+col <- c("#000047","#858a00","#ff2b47","#00d3c9", "#0188d2", "#7426d6","#e37b00","#ffa0ee","#930025","#00bd3b","yellow","black","#005144")
+names(col) <- as.factor(unique(dat3$Predator))
+
+dat3 <- subset(dat3, Year <=2017)
+
+#pdf("C://Users//xocor//Documents//Work//Projects//WGSAM//M2.pdf", pointsize=10)
+for (s in c("Herring", "Whiting", "Sprat")){
+  for(x in c(1:max(dat3[dat3$Prey==s,"Prey.age"]))){
+    g <- ggplot(dat3 %>% subset(Prey==s&Prey.age==x)) +
+      geom_bar(aes(Year,M2,fill=Predator), stat="identity", position="fill") +
+      facet_grid(Quarter~run)+ scale_fill_manual(values=col) + ggtitle(paste(s, "Age", x, sep=" "))
+    #windows()
+    cat("  \n####",  s, " Age ",x,"  \n")
+    print(g) 
+    cat("  \n")
+  }}
+#dev.off()
+
+
+```
 
 ### {-}

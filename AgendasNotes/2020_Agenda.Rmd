@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ToR a, Regional updates: **Review further progress and deliver key updates on multispecies modelling and ecosystem data analysis contributing to modeling throughout the ICES region**
 
-ToR b, Key-runs:  **Update of key-runs (standardized model runs updated with recent data) of multispecies and eco-system models for different ICES regions**
+ToR b, Key-runs:  **Update of key-runs (standardized model runs updated with recent data) of multispecies and ecosystem models for different ICES regions**
 
 ToR c, Skill assessment: **Establish and apply methods to assess the skill of multispecies models intended for operational advice**
 
@@ -27,7 +27,7 @@ ToR e, MSE: **Management Strategy Evaluation (MSE) methods and applications for 
 
 # WGSAM 2020 Agenda
 
-WGSAM will be held online and by correspondense in 2020 due to the Covid-19 pandemic. Meeting plenary sessions will be for 2 hours each day, 3-5 pm Central Europe, 2-4 pm Western Europe, 9-11 am US East Coast.
+WGSAM will be held online and by correspondence in 2020 due to the Covid-19 pandemic. Meeting plenary sessions will be for 2 hours each day, 3-5 pm Central Europe, 2-4 pm Western Europe, 9-11 am US East Coast.
 
 If necessary, meetings may extend outside these times to finish work and discussions. We will update the group with any changes.
 

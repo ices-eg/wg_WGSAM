@@ -1,6 +1,6 @@
 ---
 title: "North Sea Herring M2 Comparson"
-author: "Sarah Gaichas"
+author: "Sarah Gaichas, Sigrid Lehuta"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
    html_document:
@@ -22,6 +22,7 @@ Output figures comparing M2 by predator (should match Morten's outputs)
 ```{r readdat, message=FALSE}
 M2_2017 <- read_csv(here("KeyRunComparisons" , "NorthSeaSMS2017", "who_eats_whom_level1.csv"))
 M2_2020 <- read_csv(here("KeyRunComparisons" , "NorthSeaSMS2020", "who_eats_whom_level1.csv"))
+M2_2020_old <- read_csv(here("KeyRunComparisons" , "NorthSeaSMS2020", "who_eats_whom_level1_old.csv"))
 ```
 
 ### 2017 Keyrun M2 (fixed y axis) {.tabset}
@@ -258,7 +259,9 @@ plist4$Whiting
 
 M2_2017 <- add_column(M2_2017, KeyRun = "SMS2017") 
 M2_2020 <- add_column(M2_2020, KeyRun = "SMS2020")
+M2_2020_old <- add_column(M2_2020_old, KeyRun = "SMS2020_old")
 M2_comp <- bind_rows(M2_2017, M2_2020)
+M2_comp <- bind_rows(M2_comp, M2_2020_old)
 
 M2_compHerring <- M2_comp %>%
   filter(Prey=="Herring") %>%
@@ -268,6 +271,7 @@ M2_compHerring <- M2_comp %>%
 plist5 = lapply(split(M2_compHerring, M2_compHerring$Predator), function(d) {
   ggplot(d, aes(Year, Part.M2, group=KeyRun)) + 
     geom_point(aes(colour=KeyRun)) +
+    geom_line()+
     facet_wrap(Prey~Prey.age, scales = "free_y", ncol = 2) +
     xlab("Year") +
     ylab("M2") +

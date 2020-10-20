@@ -1,6 +1,6 @@
 ---
 title: "North Sea Herring M2 Comparson"
-author: "Sarah Gaichas, Sigrid Lehuta"
+author: "Sarah Gaichas, Sigrid Lehuta, Xochitl Cormon"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
    html_document:
@@ -23,6 +23,33 @@ Output figures comparing M2 by predator (should match Morten's outputs)
 M2_2017 <- read_csv(here("KeyRunComparisons" , "NorthSeaSMS2017", "who_eats_whom_level1.csv"))
 M2_2020 <- read_csv(here("KeyRunComparisons" , "NorthSeaSMS2020", "who_eats_whom_level1.csv"))
 M2_2020_old <- read_csv(here("KeyRunComparisons" , "NorthSeaSMS2020", "who_eats_whom_level1_old.csv"))
+
+M2_2017 <- add_column(M2_2017, KeyRun = "SMS2017") 
+M2_2020 <- add_column(M2_2020, KeyRun = "SMS2020")
+M2_2020_old <- add_column(M2_2020_old, KeyRun = "SMS2020_old")
+M2_comp <- bind_rows(M2_2017, M2_2020)
+M2_comp <- bind_rows(M2_comp, M2_2020_old)
+
+# aggregate birds
+M2_comp <- M2_comp %>%
+    mutate(Predator = as.character(Predator),
+           Predator = ifelse(Predator %in% c("Fulmar","Gannet","GBB. Gull","Guillemot","Her. Gull","Kittiwake","Puffin","Razorbill"), "Birds", Predator)) %>%
+    group_by(Year,Quarter,Predator, Predator.age,Prey, Prey.age, KeyRun) %>%
+    mutate(M2 = sum(Part.M2, na.rm=T)) %>%
+	ungroup()
+	
+# length(unique(dat3$Predator)) #http://medialab.github.io/iwanthue/
+col <- c("#000047","#858a00","#ff2b47","#00d3c9", "#0188d2", "#7426d6","#e37b00","#ffa0ee","#930025","#00bd3b","yellow","black","#005144")
+names(col) <- c("A. radiata", "Birds", "Cod", "G. gurnards", "Grey seal", "H. porpoise", "Haddock", "Hake", "Mackerel",  "Saithe", "Whiting", "N.horse mac", "W.horse mac") 
+
+preycol <- c("#da62e7", "#549700", "#00609a", "#8dd971", "#535622")
+names(preycol) <- as.factor(c("N. sandeel", "Nor. pout",  "S. sandeel", "Herring", "Sprat"))
+
+col <- c(col, preycol)
+
+M2_2017 <- M2_comp %>% filter(KeyRun %in% "SMS2017")
+M2_2020 <- M2_comp %>% filter(KeyRun %in% "SMS2020")
+
 ```
 
 ### 2017 Keyrun M2 (fixed y axis) {.tabset}
@@ -34,6 +61,7 @@ plist = lapply(split(M2_2017, M2_2017$Prey), function(d) {
     facet_wrap(Prey~Prey.age) +
     xlab("Year") +
     ylab("M2") +
+    scale_fill_manual(values=col) +
     theme_tufte() +
     theme(legend.position="bottom")
 })
@@ -91,6 +119,7 @@ plist2 = lapply(split(M2_2020, M2_2020$Prey), function(d) {
     facet_wrap(Prey~Prey.age) +
     xlab("Year") +
     ylab("M2") +
+    scale_fill_manual(values=col) +
     theme_tufte() +
     theme(legend.position="bottom")
 })
@@ -146,6 +175,7 @@ plist3 = lapply(split(M2_2017, M2_2017$Prey), function(d) {
     facet_wrap(Prey~Prey.age, scales = "free_y") +
     xlab("Year") +
     ylab("M2") +
+    scale_fill_manual(values=col) +
     theme_tufte() +
     theme(legend.position="bottom")
 })
@@ -203,6 +233,7 @@ plist4 = lapply(split(M2_2020, M2_2020$Prey), function(d) {
     facet_wrap(Prey~Prey.age, scales = "free_y") +
     xlab("Year") +
     ylab("M2") +
+    scale_fill_manual(values=col) +
     theme_tufte() +
     theme(legend.position="bottom")
 })
@@ -257,11 +288,16 @@ plist4$Whiting
 
 ```{r compareM, message=FALSE, warning=FALSE}
 
+# want all the birds separated out now
+M2_2017 <- read_csv(here("KeyRunComparisons" , "NorthSeaSMS2017", "who_eats_whom_level1.csv"))
+M2_2020 <- read_csv(here("KeyRunComparisons" , "NorthSeaSMS2020", "who_eats_whom_level1.csv"))
+M2_2020_old <- read_csv(here("KeyRunComparisons" , "NorthSeaSMS2020", "who_eats_whom_level1_old.csv"))
+
 M2_2017 <- add_column(M2_2017, KeyRun = "SMS2017") 
-M2_2020 <- add_column(M2_2020, KeyRun = "SMS2020")
-M2_2020_old <- add_column(M2_2020_old, KeyRun = "SMS2020_old")
-M2_comp <- bind_rows(M2_2017, M2_2020)
-M2_comp <- bind_rows(M2_comp, M2_2020_old)
+ M2_2020 <- add_column(M2_2020, KeyRun = "SMS2020")
+ M2_2020_old <- add_column(M2_2020_old, KeyRun = "SMS2020_old")
+ M2_comp <- bind_rows(M2_2017, M2_2020)
+ M2_comp <- bind_rows(M2_comp, M2_2020_old)
 
 M2_compHerring <- M2_comp %>%
   filter(Prey=="Herring") %>%
@@ -367,7 +403,79 @@ plist5$Whiting
 
 ### {-}
 
-Find biggest M2 differences for age 2 herring between key-runs:
+## Compare Whiting M2 between 2017 and 2020 
+
+### Now tabs are whiting predators {.tabset}
+
+```{r}
+M2_compWhiting <- M2_comp %>%
+  filter(Prey=="Whiting") %>%
+  group_by(Year, Predator, Prey, Prey.age, KeyRun) %>%
+  summarise_at(vars(eatenW, Part.M2), funs(sum))
+
+plist6 = lapply(split(M2_compWhiting, M2_compWhiting$Predator), function(d) {
+  ggplot(d, aes(Year, Part.M2, group=KeyRun)) + 
+    geom_point(aes(colour=KeyRun)) +
+    geom_line()+
+    facet_wrap(Prey~Prey.age, scales = "free_y", ncol = 2) +
+    xlab("Year") +
+    ylab("M2") +
+    theme_tufte() +
+    theme(legend.position="bottom")
+})
+
+```
+
+```{r whitingloop, fig.width=9, fig.height=8, message=FALSE, results="asis"}
+
+preds <- unique(M2_compWhiting$Predator)
+
+for(i in 1:length(preds)) {
+  cat("  \n####",  preds[i],"  \n")
+  print(plist6[preds[i]]) 
+  cat("  \n")
+}
+```
+
+### {-}
+
+## Compare Sprat M2 between 2017 and 2020 
+
+### Now tabs are sprat predators {.tabset}
+
+```{r}
+M2_compSprat <- M2_comp %>%
+  filter(Prey=="Sprat") %>%
+  group_by(Year, Predator, Prey, Prey.age, KeyRun) %>%
+  summarise_at(vars(eatenW, Part.M2), funs(sum))
+
+plist7 = lapply(split(M2_compSprat, M2_compSprat$Predator), function(d) {
+  ggplot(d, aes(Year, Part.M2, group=KeyRun)) + 
+    geom_point(aes(colour=KeyRun)) +
+    geom_line()+
+    facet_wrap(Prey~Prey.age, scales = "free_y", ncol = 2) +
+    xlab("Year") +
+    ylab("M2") +
+    theme_tufte() +
+    theme(legend.position="bottom")
+})
+
+```
+
+```{r Spratloop, fig.width=9, message=FALSE, results="asis"}
+
+preds <- unique(M2_compSprat$Predator)
+
+for(i in 1:length(preds)) {
+  cat("  \n####",  preds[i],"  \n")
+  print(plist7[preds[i]]) 
+  cat("  \n")
+}
+```
+
+### {-}
+
+### Find biggest M2 differences for age 2 herring between key-runs:
 
 ```{r herrM2diff}
 

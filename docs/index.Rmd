@@ -15,9 +15,9 @@ WGSAM 2020
 
 ToR b
 
-<a href="https://ices-eg.github.io/wg_WGSAM/NorthSeaKeyRun_HerringM2.html" target="_blank"> SMS keyrun M2 plots - 19 October 2020 </a>
+<a href="https://ices-eg.github.io/wg_WGSAM/NorthSeaKeyRun_HerringM2.html" target="_blank"> SMS keyrun M2 plots - 20 October 2020 </a>
 
-<a href="https://ices-eg.github.io/wg_WGSAM/NorthSeaKeyRun_SuppPlots.html" target="_blank"> SMS keyrun comparison plots - 19 October 2020 </a>
+<a href="https://ices-eg.github.io/wg_WGSAM/NorthSeaKeyRun_SuppPlots.html" target="_blank"> SMS keyrun comparison plots - 20 October 2020 </a>
 
 ToR c
 

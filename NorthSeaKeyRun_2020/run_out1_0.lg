@@ -1,0 +1,232 @@
+SMS version October 2020 using ADMB version 12.2
+October 29, 2020 12:47:13
+no. of species: 27  no. of predators: 20  no. of other predators:15
+first VPA species no.:16  first VPA species as prey:16
+cons_multiplier:
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+PRELIMINARY_CALCS_SECTION begins
+
+observed min predator prey size ratio: 
+                  Cod        Whiting    Haddock    Saithe     Mackerel   Herring    N. sandeel S. sandeel Nor. pout  Sprat      Plaice     Sole       
+Fulmar           280.1      357.1      364.2          .          .      111.3      402.3      402.3      277.0      311.3          .          .
+Guillemot            .       66.5      142.7          .          .      156.2      383.1      383.1          .      283.4          .          .
+Her. Gull        280.1      357.1      364.2          .          .       28.6      435.5      435.5      277.0      311.3          .          .
+Kittiwake        280.1      357.1      364.2          .          .       49.4      402.3      402.3          .      547.0          .          .
+GBB. Gull        280.1      357.1      364.2          .          .       28.6      402.3      402.3      277.0      311.3          .          .
+Gannet            12.6          .          .          .          .       17.6      402.3      402.3          .      156.2          .          .
+Puffin               .          .          .          .          .      547.0      402.3      402.3          .      547.0          .          .
+Razorbill            .       79.3          .          .          .      547.0      950.6      950.6      252.5      461.3          .          .
+A. radiata       120.8       59.3          .          .          .          .       57.4       72.6       59.9          .          .          .
+G. gurnards       16.4        5.6       15.6          .          .        8.3       12.8       16.3       11.0       66.1          .          .
+W.horse mac          .          .          .          .          .          .       60.2          .       69.0          .          .          .
+N.horse mac          .       49.4          .          .          .       15.3       79.7          .          .       53.0          .          .
+Grey seal          3.6       20.6       12.9          .          .       36.7      184.5          .      118.1          .          .          .
+H. porpoise        5.6       20.6          .          .          .       36.7      184.5      184.5     1890.4          .          .          .
+Hake                 .      283.2          .          .          .        7.8          .          .        4.9          .          .          .
+Cod                6.8        5.4        7.5          .          .        3.3        7.6        4.4        7.5       11.2          .          .
+Whiting            8.2        2.4        2.3          .          .        2.2        4.5        3.0        2.1        3.7          .          .
+Haddock              .          .          .          .          .          .        5.6          .        9.4          .          .          .
+Saithe               .       16.2       13.3          .          .        5.9       34.8          .       10.3          .          .          .
+Mackerel             .          .          .          .          .       29.2       48.4        5.2       35.9       30.0          .          .
+
+observed max predator prey size ratio: 
+                  Cod        Whiting    Haddock    Saithe     Mackerel   Herring    N. sandeel S. sandeel Nor. pout  Sprat      Plaice     Sole       
+Fulmar            1305        984        472          .          .        453       8621       8621       1416       4673          .          .
+Guillemot            .        541        466          .          .       1645       5263       5263          .       4673          .          .
+Her. Gull         2033       2747        929          .          .        119       2825       2825       2262       4673          .          .
+Kittiwake         1305       1748        821          .          .        453       8621       8621          .       4673          .          .
+GBB. Gull         2033       2747        929          .          .        119       5263       5263       2262       4673          .          .
+Gannet              39          .          .          .          .        118       8621       8621          .        758          .          .
+Puffin               .          .          .          .          .       1645       8621       8621          .       4673          .          .
+Razorbill            .        512          .          .          .       1645       8621       8621        728       4673          .          .
+A. radiata        1882        176          .          .          .          .       2467        741       1660          .          .          .
+G. gurnards        482        290         82          .          .         25        780        939        353        477          .          .
+W.horse mac          .          .          .          .          .          .        344          .        278          .          .          .
+N.horse mac          .        203          .          .          .         61        210          .          .        105          .          .
+Grey seal          943       1222        387          .          .        312       6024          .        962          .          .          .
+H. porpoise       6849       9434          .          .          .       2179       6024       6024       7812          .          .          .
+Hake                 .        283          .          .          .         78          .          .       1489          .          .          .
+Cod                911       1149       1457          .          .       1372       5051       3190       4293       5202          .          .
+Whiting            125        188        111          .          .        116        489        613        389        431          .          .
+Haddock              .          .          .          .          .          .       1445          .        597          .          .          .
+Saithe               .        829        561          .          .        463       2215          .       1565          .          .          .
+Mackerel             .          .          .          .          .        231       1132        589        655        483          .          .
+
+                  Cod        Whiting    Haddock    Saithe     Mackerel   Herring    N. sandeel S. sandeel Nor. pout  Sprat      Plaice     Sole       
+Fulmar     
+Guillemot  
+Her. Gull  
+Kittiwake  
+GBB. Gull  
+Gannet     
+Puffin     
+Razorbill  
+A. radiata 
+G. gurnards
+W.horse mac
+N.horse mac
+Grey seal  
+H. porpoise
+Hake       
+Cod        
+Whiting    
+Haddock    
+Saithe     
+Mackerel    ALK exist for all prey length classes
+
+Adjusted min predator prey size ratio (according to option max.prey.pred.size.fac), to be used for calculation of M2: 
+                  Cod        Whiting    Haddock    Saithe     Mackerel   Herring    N. sandeel S. sandeel Nor. pout  Sprat      Plaice     Sole       
+Fulmar           280.1      357.1      364.2          .          .      111.3      402.3      402.3      277.0      311.3          .          .      111.3
+Guillemot            .       66.5      142.7          .          .      156.2      383.1      383.1          .      283.4          .          .       66.5
+Her. Gull        280.1      357.1      364.2          .          .       28.6      435.5      435.5      277.0      311.3          .          .       28.6
+Kittiwake        280.1      357.1      364.2          .          .       49.4      402.3      402.3          .      547.0          .          .       49.4
+GBB. Gull        280.1      357.1      364.2          .          .       28.6      402.3      402.3      277.0      311.3          .          .       28.6
+Gannet            12.6          .          .          .          .       17.6      402.3      402.3          .      156.2          .          .       12.6
+Puffin               .          .          .          .          .      547.0      402.3      402.3          .      547.0          .          .      402.3
+Razorbill            .       79.3          .          .          .      547.0      950.6      950.6      252.5      461.3          .          .       79.3
+A. radiata       120.8       59.3          .          .          .          .       57.4       72.6       59.9          .          .          .       57.4
+G. gurnards       16.4        5.6       15.6          .          .        8.3       12.8       16.3       11.0       66.1          .          .        5.6
+W.horse mac          .          .          .          .          .          .       60.2          .       69.0          .          .          .       60.2
+N.horse mac          .       49.4          .          .          .       15.3       79.7          .          .       53.0          .          .       15.3
+Grey seal          3.6       20.6       12.9          .          .       36.7      184.5          .      118.1          .          .          .        3.6
+H. porpoise        5.6       20.6          .          .          .       36.7      184.5      184.5     1890.4          .          .          .        5.6
+Hake                 .      283.2          .          .          .        7.8          .          .        4.9          .          .          .        4.9
+Cod                6.8        5.4        7.5          .          .        3.3        7.6        4.4        7.5       11.2          .          .        3.3
+Whiting            8.2        2.4        2.3          .          .        2.2        4.5        3.0        2.1        3.7          .          .        2.1
+Haddock              .          .          .          .          .          .        5.6          .        9.4          .          .          .        5.6
+Saithe               .       16.2       13.3          .          .        5.9       34.8          .       10.3          .          .          .        5.9
+Mackerel             .          .          .          .          .       29.2       48.4        5.2       35.9       30.0          .          .        5.2
+
+Area:1 pred:17, Whiting     year:1991 Q:4 pred length class:13 pred length group:100 not included, as exclusion specified in input file incl_stom.in
+
+Min observed stomach contents observations to be used:  9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-09 9.000e-09 9.000e-09 9.000e-09 9.000e-05 9.000e-05
+
+Species, number of stomachs observations totally, and used
+Fulmar                             363    342
+Guillemot                          428    424
+Her. Gull                          419    406
+Kittiwake                          334    334
+GBB. Gull                          519    510
+Gannet                             306    306
+Puffin                             276    276
+Razorbill                          300    288
+A. radiata                         138    125
+G. gurnards                        359    330
+W.horse mac                         21    19
+N.horse mac                         38    38
+Grey seal                          356    270
+H. porpoise                        111    109
+Hake                                50    50
+Cod                               2309    2309
+Whiting                           1422    1422
+Haddock                            251    251
+Saithe                             412    396
+Mackerel                           204    194
+
+Number of predator-prey interaction observation used
+                  Cod        Whiting    Haddock    Saithe     Mackerel   Herring    N. sandeel S. sandeel Nor. pout  Sprat      Plaice     Sole       
+Fulmar              32         30          8          0          0         40         50         50         44         64          0          0
+Guillemot            0         78         14          0          0         56         84         84          0         84          0          0
+Her. Gull           30         54         44          0          0         72         20         20         64         78          0          0
+Kittiwake           24         24         22          0          0         40         78         78          0         44          0          0
+GBB. Gull           54         52         44          0          0         72         60         60         66         78          0          0
+Gannet              46          0          0          0          0         96         50         50          0         40          0          0
+Puffin               0          0          0          0          0         28         94         94          0         36          0          0
+Razorbill            0         40          0          0          0         28         56         56         28         62          0          0
+A. radiata           6          4          0          0          0          0         57         12         24          0          0          0
+G. gurnards         19         49          7          0          0          2         85         69         49         12          0          0
+W.horse mac          0          0          0          0          0          0          7          0          6          0          0          0
+N.horse mac          0          7          0          0          0          7          2          0          0          3          0          0
+Grey seal           75         52         52          0          0         24         34          0         25          0          0          0
+H. porpoise         33         30          0          0          0         12         14         13          4          0          0          0
+Hake                 0          1          0          0          0          7          0          0         27          0          0          0
+Cod                179        368        319          0          0        318        361        153        338        127          0          0
+Whiting             19        138         97          0          0        134        258        205        259        215          0          0
+Haddock              0          0          0          0          0          0        123          0         76          0          0          0
+Saithe               0         33         62          0          0         47         34          0        169          0          0          0
+Mackerel             0          0          0          0          0         20         38         36         31         35          0          0
+
+PRELIMINARY_CALCS_SECTION done
+Set current phase to 2
+variable out of bounds in boundpin: variable = 1; min = 0.142857; max = 0.515306
+variable out of bounds in boundpin: variable = 1; min = 0.2; max = 0.474178
+variable out of bounds in boundpin: variable = 1; min = 0.142857; max = 0.362007
+variable out of bounds in boundpin: variable = 1; min = 0.0625; max = 0.507538
+
+Initial statistics: 144 variables; iteration 0; function evaluation 0; phase 2
+Function value   5.9728707e+03; maximum gradient component mag   5.4004e+04
+
+Intermediate statistics: 144 variables; iteration 10; function evaluation 17; phase 2
+Function value  -9.6744856e+02; maximum gradient component mag   1.6287e+04
+144 variables; iteration 20; function evaluation 28; phase 2
+Function value  -1.3944858e+03; maximum gradient component mag   1.7694e+04
+144 variables; iteration 30; function evaluation 38; phase 2
+Function value  -1.6201998e+03; maximum gradient component mag   1.5455e+04
+144 variables; iteration 40; function evaluation 49; phase 2
+Function value  -1.7949966e+03; maximum gradient component mag   1.5424e+04
+144 variables; iteration 50; function evaluation 59; phase 2
+Function value  -1.9840472e+03; maximum gradient component mag   1.4485e+04
+144 variables; iteration 60; function evaluation 70; phase 2
+Function value  -2.0841755e+03; maximum gradient component mag  -1.3884e+04
+144 variables; iteration 70; function evaluation 81; phase 2
+Function value  -2.1327946e+03; maximum gradient component mag  -1.3926e+04
+144 variables; iteration 80; function evaluation 92; phase 2
+Function value  -2.2409309e+03; maximum gradient component mag   1.0113e+04
+144 variables; iteration 90; function evaluation 102; phase 2
+Function value  -2.2616033e+03; maximum gradient component mag   1.0084e+04
+144 variables; iteration 100; function evaluation 113; phase 2
+Function value  -2.3184506e+03; maximum gradient component mag   8.6627e+03
+144 variables; iteration 110; function evaluation 124; phase 2
+Function value  -2.3552443e+03; maximum gradient component mag   7.0026e+03
+144 variables; iteration 120; function evaluation 135; phase 2
+Function value  -2.4324686e+03; maximum gradient component mag   7.7952e+03
+144 variables; iteration 130; function evaluation 149; phase 2
+Function value  -2.4895122e+03; maximum gradient component mag  -7.6695e+03
+144 variables; iteration 140; function evaluation 160; phase 2
+Function value  -2.5963274e+03; maximum gradient component mag  -5.5226e+03
+144 variables; iteration 150; function evaluation 173; phase 2
+Function value  -2.6600254e+03; maximum gradient component mag  -1.1693e+03
+144 variables; iteration 160; function evaluation 184; phase 2
+Function value  -2.7057395e+03; maximum gradient component mag  -8.7865e+02
+144 variables; iteration 170; function evaluation 194; phase 2
+Function value  -2.7265983e+03; maximum gradient component mag   2.1149e+02
+144 variables; iteration 180; function evaluation 204; phase 2
+Function value  -2.7295244e+03; maximum gradient component mag  -1.5999e+02
+144 variables; iteration 190; function evaluation 214; phase 2
+Function value  -2.7307447e+03; maximum gradient component mag   1.3760e+02
+144 variables; iteration 200; function evaluation 224; phase 2
+Function value  -2.7319922e+03; maximum gradient component mag  -3.7975e+01
+144 variables; iteration 210; function evaluation 234; phase 2
+Function value  -2.7321827e+03; maximum gradient component mag   2.2644e+01
+144 variables; iteration 220; function evaluation 244; phase 2
+Function value  -2.7322573e+03; maximum gradient component mag  -1.6961e+01
+144 variables; iteration 230; function evaluation 254; phase 2
+Function value  -2.7322673e+03; maximum gradient component mag  -3.7646e+00
+144 variables; iteration 240; function evaluation 264; phase 2
+Function value  -2.7322686e+03; maximum gradient component mag   1.8682e+00
+144 variables; iteration 250; function evaluation 274; phase 2
+Function value  -2.7322688e+03; maximum gradient component mag  -7.5088e-01
+144 variables; iteration 260; function evaluation 284; phase 2
+Function value  -2.7322688e+03; maximum gradient component mag  -3.5034e-01
+144 variables; iteration 270; function evaluation 294; phase 2
+Function value  -2.7322688e+03; maximum gradient component mag  -9.7101e-02
+144 variables; iteration 280; function evaluation 304; phase 2
+Function value  -2.7322688e+03; maximum gradient component mag  -4.5085e-02
+144 variables; iteration 290; function evaluation 314; phase 2
+Function value  -2.7322688e+03; maximum gradient component mag   6.2422e-03
+144 variables; iteration 300; function evaluation 324; phase 2
+Function value  -2.7322688e+03; maximum gradient component mag   9.0519e-03
+144 variables; iteration 310; function evaluation 334; phase 2
+Function value  -2.7322688e+03; maximum gradient component mag   9.4628e-04
+  ic > imax  in fminim is answer attained ?
+Function minimizer not making progress ... is minimum attained?
+Minimprove criterion =   0.0000e+00
+
+ - final statistics:
+144 variables; iteration 313; function evaluation 369
+Function value  -2.7323e+03; maximum gradient component mag   5.3130e-04
+Exit code = 1;  converg criter   1.0000e-04
+report file: sms.rep
+
+
+Successfull completion, HURRAH - HURRAH 

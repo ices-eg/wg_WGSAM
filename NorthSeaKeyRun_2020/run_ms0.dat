@@ -1,0 +1,346 @@
+# sms.dat option file
+# the character "#" is used as comment character, such that all text and numbers
+# after # are skipped by the SMS program
+#
+########################################
+# Produce test output (option test.output)
+#  0 no test output
+#  1 output file sms.dat and  file fleet.info.dat as read in
+#  2 output all single species input files as read in
+#  3 output all multi species input files as read in
+#  4 output option overview
+#
+# 11 output between phases output
+# 12 output iteration (obj function) output
+# 13 output stomach parameters
+# 19 Both 11, 12 and 13
+#
+# Forecast options
+# 51 output hcr_option.dat file as read in
+# 52 output prediction output summary
+# 53 output prediction output detailed
+0
+########################################
+# Produce output for SMS-OP program. 0=no, 1=yes
+0
+########################################
+# Single/Multispecies mode (option VPA.mode)
+# 0=single species mode
+# 1=multi species mode, but Z=F+M (used for initial food suitability parm. est.)
+# 2=multi species mode, Z=F+M1+M2
+0
+########################################
+# Number of areas for multispecies run (default=1)
+1
+#
+#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+#
+# single species parameters
+#
+#&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+#
+## first year of input data (option first.year)
+1974
+########################################
+## first year used in the model (option first.year.model)
+1974
+########################################
+## last year of input data (option last.year)
+2019
+########################################
+## last year used in the model (option last.year.model)
+2019
+########################################
+##  number of seasons (option last.season). Use 1 for annual data
+4
+########################################
+## last season last year (option last.season.last.year). Use 1 for annual data
+4
+########################################
+## number of species (option no.species)
+27
+########################################
+# Species names, for information only. See file species_names.in 
+#  Fulmar Guillemot Her. Gull Kittiwake GBB. Gull Gannet Puffin Razorbill A. radiata G. gurnards W.horse mac N.horse mac Grey seal H. porpoise Hake Cod Whiting Haddock Saithe Mackerel Herring N. sandeel S. sandeel Nor. pout Sprat Plaice Sole 
+########################################
+## first age all species (option first.age)
+0
+########################################
+## recruitment season (option rec.season). Use 1 for annual data
+3
+########################################
+## maximum age for any species(max.age.all)
+10
+########################################
+## various information by species
+# 1. last age 
+# 2. first age where catch data are used (else F=0 assumed)
+# 3. last age with age dependent fishing selection
+# 4. Esimate F year effect from effort data. 0=no, 1=yes
+# 5. Last age included in the catch at age likelihood (normally last age)
+# 6. plus group, 0=no plus group, 1=plus group
+# 7. predator species, 0=no, 1=VPA predator, 2=Other predator
+# 8. prey species, 0=no, 1=yes
+# 9. Stock Recruit relation
+#      1=Ricker, 2=Beverton & Holt, 3=Geom mean,
+#      4= Hockey stick, 5=hockey stick with smoother,
+#      51=Ricker with estimated temp effect,
+#      52=Ricker with known temp effect,
+#      >100= hockey stick with known breakpoint (given as input)
+# 10. Spawning season (not used yet, but set to 1)
+# 11. Additional data for Stock Recruit relation
+##
+1 0 0 0 0 0 2 0 0 0 0  # 1 Fulmar 
+1 0 0 0 0 0 2 0 0 0 0  # 2 Guillemot 
+1 0 0 0 0 0 2 0 0 0 0  # 3 Her. Gull 
+1 0 0 0 0 0 2 0 0 0 0  # 4 Kittiwake 
+1 0 0 0 0 0 2 0 0 0 0  # 5 GBB. Gull 
+1 0 0 0 0 0 2 0 0 0 0  # 6 Gannet 
+1 0 0 0 0 0 2 0 0 0 0  # 7 Puffin 
+1 0 0 0 0 0 2 0 0 0 0  # 8 Razorbill 
+3 0 0 0 0 0 2 0 0 0 0  # 9 A. radiata 
+4 0 0 0 0 0 2 0 0 0 0  # 10 G. gurnards 
+3 0 0 0 0 0 2 0 0 0 0  # 11 W.horse mac 
+6 0 0 0 0 0 2 0 0 0 0  # 12 N.horse mac 
+1 0 0 0 0 0 2 0 0 0 0  # 13 Grey seal 
+1 0 0 0 0 0 2 0 0 0 0  # 14 H. porpoise 
+9 0 0 0 0 0 2 0 0 0 0  # 15 Hake 
+10 1 9 0 10 1 1 1 107000 0 0  # 16 Cod 
+8 0 6 0 8 1 1 1 119970 0 0  # 17 Whiting 
+10 0 7 0 10 1 1 1 94000 0 0  # 18 Haddock 
+10 3 8 0 10 1 1 0 1 0 0  # 19 Saithe 
+10 1 7 0 10 1 1 0 3 0 0  # 20 Mackerel 
+8 0 5 0 8 1 0 1 1 0 0  # 21 Herring 
+4 0 3 0 4 1 0 1 1 0 0  # 22 N. sandeel 
+4 0 3 0 4 1 0 1 1 0 0  # 23 S. sandeel 
+3 0 2 0 3 0 0 1 50000 0 0  # 24 Nor. pout 
+3 1 2 0 3 1 0 1 94000 0 0  # 25 Sprat 
+10 1 7 0 10 1 0 0 1 0 0  # 26 Plaice 
+10 1 7 0 10 1 0 0 1 0 0  # 27 Sole 
+########################################
+## use input recruitment estimate (option use.known.rec)
+#   0=estimate all recruitments
+#   1=yes use input recruitment from file known_recruitment.in
+0
+########################################
+## adjustment factor to bring the beta parameter close to one (option beta.cor)
+#          Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+         1e+06       1e+06       1e+05       1e+05       1e+06       1e+05       1e+05       1e+06       1e+06       1e+06       1e+06       1e+05 
+########################################
+## year range for data included to fit the R-SSB relation (option SSB.R.year.range)
+# first (option SSB.R.year.first) and last (option SSB.R.year.last) year to consider.
+# the value -1 indicates the use of the first (and last) available year in time series
+# first year by species
+#          Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          1988        1982        1988          -1        1980          -1          -1          -1        1977        1981          -1          -1 
+# last year by species
+#          Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+            -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1 
+########################################
+## Objective function weighting by species (option objective.function.weight)
+# first=catch observations,
+# second=CPUE observations,
+# third=SSB/R relations
+# fourth=stomach observations, weight proportions 
+# fifth=stomach observations, number at length 
+##
+0 0 0 0.1 1  # 1 Fulmar 
+0 0 0 0.1 1  # 2 Guillemot 
+0 0 0 0.1 1  # 3 Her. Gull 
+0 0 0 0.1 1  # 4 Kittiwake 
+0 0 0 0.1 1  # 5 GBB. Gull 
+0 0 0 0.1 1  # 6 Gannet 
+0 0 0 0.1 1  # 7 Puffin 
+0 0 0 0.1 1  # 8 Razorbill 
+0 0 0 1 1  # 9 A. radiata 
+0 0 0 1 1  # 10 G. gurnards 
+0 0 0 1 1  # 11 W.horse mac 
+0 0 0 1 1  # 12 N.horse mac 
+0 0 0 1 1  # 13 Grey seal 
+0 0 0 1 1  # 14 H. porpoise 
+0 0 0 1 1  # 15 Hake 
+1 1 0.1 1 0  # 16 Cod 
+1 1 0.1 1 0  # 17 Whiting 
+1 1 0.1 1 0  # 18 Haddock 
+1 1 1 1 0  # 19 Saithe 
+1 1 1 1 0  # 20 Mackerel 
+1 1 0.1 0 0  # 21 Herring 
+1 1 0.1 0 0  # 22 N. sandeel 
+1 1 0.1 0 0  # 23 S. sandeel 
+1 1 0.1 0 0  # 24 Nor. pout 
+1 1 0.1 0 0  # 25 Sprat 
+1 1 0.1 0 0  # 26 Plaice 
+1 1 0.1 0 0  # 27 Sole 
+########################################
+## parameter estimation phases for single species parameters
+# phase.rec (stock numbers, first age) (default=1)
+1
+# phase.rec.older (stock numbers, first year and all ages) (default=1)
+1
+# phase.F.y (year effect in F model) (default=1)
+1
+# phase.F.y.spline (year effect in F model, implemented as spline function)
+-1
+# phase.F.q (season effect in F model) (default=1)
+1
+# phase.F.a (age effect in F model) (default=1)
+1
+# phase.catchability (survey catchability) (default=1)
+1
+# phase.SSB.R.alfa (alfa parameter in SSB-recruitment relation) (default=1)
+1
+# phase.SSB.R.beta (beta parameter in SSB-recruitment relation) (default=1)
+1
+########################################
+## minimum CV of catch observation used in ML-estimation (option min.catch.CV)
+0.1
+########################################
+## minimum CV of catch SSB-recruitment relation used in ML-estimation (option min.SR.CV)
+0.2
+########################################
+## Use proportion landed information in calculation of yield (option calc.discard)
+#    0=all catches are included in yield
+#    1=yield is calculated from proportion landed (file proportion_landed.in)
+#          Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+             0           0           0           0           0           0           0           0           0           0           0           0 
+########################################
+## use seasonal or annual catches in the objective function (option combined.catches)
+# do not change this options from default=0, without looking in the manual
+#    0=annual catches with annual time steps or seasonal catches with seasonal time steps
+#    1=annual catches with seasonal time steps, read seasonal relative F from file F_q_ini.in (default=0)
+#          Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+             1           1           1           1           1           0           0           0           0           0           1           1 
+########################################
+## use seasonal or common combined variances for catch observation
+# seasonal=0, common=1 (use 1 for annual data)
+#          Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+             1           1           1           1           1           0           0           0           0           0           1           1 
+########################################
+## 
+# catch observations: number of separate catch variance groups by species 
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+           4           5           5           3           3           3           3           2           3           2           3           3
+#  first age group in each catch variance group 
+1 2 7 9 	#  Cod 
+0 1 2 5 7 	#  Whiting 
+0 1 2 6 8 	#  Haddock 
+3 5 8 	#  Saithe 
+1 2 3 	#  Mackerel 
+0 1 8 	#  Herring 
+0 1 4 	#  N. sandeel 
+0 1 	#  S. sandeel 
+0 1 3 	#  Nor. pout 
+1 3 	#  Sprat 
+1 2 3 	#  Plaice 
+1 2 3 	#  Sole 
+########################################
+## 
+# catch observations: number of separate catch seasonal component groups by species 
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+           4           4           3           2           3           2           3           3           3           3           2           1
+#  first ages in each seasonal component group by species 
+1 2 3 5 	#  Cod 
+0 1 2 3 	#  Whiting 
+0 1 2 	#  Haddock 
+3 4 	#  Saithe 
+1 2 4 	#  Mackerel 
+0 1 	#  Herring 
+0 1 2 	#  N. sandeel 
+0 1 2 	#  S. sandeel 
+0 1 3 	#  Nor. pout 
+1 2 3 	#  Sprat 
+1 2 	#  Plaice 
+1 	#  Sole 
+########################################
+## first and last age in calculation of average F by species (option avg.F.ages)
+2 4  # Cod 
+2 6  # Whiting 
+2 4  # Haddock 
+4 7  # Saithe 
+4 8  # Mackerel 
+2 6  # Herring 
+1 2  # N. sandeel 
+1 2  # S. sandeel 
+1 2  # Nor. pout 
+1 2  # Sprat 
+2 6  # Plaice 
+2 6  # Sole 
+########################################
+## minimum 'observed' catch, (option min.catch). You cannot log zero catch at age!
+#
+# 0 ignore observation in likelihood
+#
+# negative value gives percentage (e.g. -10 ~ 10%) of average catch in age-group for input catch=0
+# negative value less than -100 substitute all catches by the option/100 /100 *average catch in the age group for catches less than (average catch*-option/10000
+#
+# if option>0 then will zero catches be replaced by catch=option
+#
+# else if option<0 and option >-100 and catch=0 then catches will be replaced by catch=average(catch at age)*(-option)/100
+# else if option<-100  and catch < average(catch at age)*(-option)/10000 then catches will be replaced by catch=average(catch at age)*(-option)/10000
+#          Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+             0           0           0           0           0           0           0           0           0           0           0           0 
+########################################
+## 
+# catch observations: number of year groups with the same age and seasonal selection 
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+           3           3           3           2           3           3           2           2           2           1           3           2
+#  first year in each group (please note #1 will always be changed to first model year) 
+1974 1993 2007 	#  Cod 
+1974 1991 2007 	#  Whiting 
+1974 1985 2000 	#  Haddock 
+1974 1992 	#  Saithe 
+1974 1980 2004 	#  Mackerel 
+1974 1983 1998 	#  Herring 
+1974 2005 	#  N. sandeel 
+1974 2005 	#  S. sandeel 
+1974 2003 	#  Nor. pout 
+1974 	#  Sprat 
+1974 1990 2003 	#  Plaice 
+1974 1990 	#  Sole 
+########################################
+## 
+# number of nodes for year effect Fishing mortality spline
+# 1=no spline (use one Fy for each year), >1 number of nodes 
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+           1           1           1           1           1           1           1           1           1           1           1           1
+#  first year in each group 
+1975 	#  Cod 
+1975 	#  Whiting 
+1975 	#  Haddock 
+1975 	#  Saithe 
+1975 	#  Mackerel 
+1975 	#  Herring 
+1975 	#  N. sandeel 
+1975 	#  S. sandeel 
+1975 	#  Nor. pout 
+1975 	#  Sprat 
+1975 	#  Plaice 
+1975 	#  Sole 
+########################################
+## year season combinations with zero catch (F=0) (option zero.catch.year.season)
+# 0=no, all year-seasons have catchs,
+# 1=yes there are year-season combinations with no catch.
+#   Read from file zero_catch_seasons_ages.in
+# default=0
+1
+########################################
+## season age combinations with zero catch (F=0) (option zero.catch.season.ages)
+# 0=no, all seasons have catchs,
+# 1=yes there are seasons with no catch. Read from file zero_catch_season_ages.in
+# default=0
+1
+########################################
+## Factor for fixing last season effect in F-model (default=1) (fix.F.factor))
+#          Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+             1           1           1           1           1           1           1           1           1           1           1           1 
+########################################
+## Uncertainties for catch, CPUE and SSB-R observations (option calc.est.sigma)
+#  values: 0=estimate sigma as a parameter (the right way of doing it)
+#          1=Calculate sigma and truncate if lower limit is reached 
+#          2=Calculate sigma and use a penalty function to avoid lower limit 
+#  catch-observation, CPUE-obs, Stock/recruit
+           0            0            0 
+########################################
+# Read HCR_option file (option=read.HCR) default=0 
+#  0=no  1=yes
+0

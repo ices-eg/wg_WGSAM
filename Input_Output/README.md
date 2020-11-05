@@ -16,11 +16,6 @@
     + plots of relative stomach contents
 
 ##### Output
-* Diagnostics
-* Diagnostic overview file
-    + Residual plots (catch and survey)
-		+ Stomachs
-	   	+ Plots of observed and predicted stomach contents
 * StockSummary
 	  + Stock summaries as plots and tables
     + ASCII files with all input and output variables by year, quarter, species and age
@@ -33,3 +28,9 @@
     + WhoEatsWhom
     + Plots of biomass eaten by various combinations of predator and preys.
     + CSV files with the same information (on three aggregation levels).
+
+##### Diagnostics
+* Residuals
+     + Residual plots (catch and survey)
+     + Retrospective analyses
+

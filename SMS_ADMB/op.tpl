@@ -13,7 +13,7 @@
 
 GLOBALS_SECTION
  #include <admodel.h>
- #include <time.h>
+ #include <time.h>                                                                      
 
  // test output
  #define TRACE(obj) cout<<"line "<<__LINE__<<", "<<#obj" =\n "<<obj<<endl<<endl;
@@ -28,6 +28,7 @@ GLOBALS_SECTION
  // いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい
 
 DATA_SECTION
+  !! cout<<"OP version October 2020 using ADMB version 12.2"<<endl;
 
  int i;
  int do_optim;
@@ -48,7 +49,6 @@ DATA_SECTION
 
  init_int test_output       // Produce test output (0=no 1..9.. increasing output)
 
- !! if (test_output>0) cout<<"SMS Operating model, December 2018, using ADMB version 12.0 "<<endl;
  !! if (do_optim==0 && test_output>0) cout<<"No ";
  !! if (test_output>0) cout<<"Optimization will be done"<<endl;
 
@@ -584,6 +584,10 @@ DATA_SECTION
 
  //*********************************************************************************************
 
+ !! ad_comm::change_datafile_name("op_price.in");
+ init_3darray price(1,no_areas,first_VPA,nsp,fa,max_a)
+ !! if (test_output==3) cout<<endl<<"price:"<<endl<<price<<endl;
+
  !! if (multi==2) ad_comm::change_datafile_name("op_size.in");
  init_4darray        size_sea_input(fq,lq,1,no_areas,1,nsp,fa,last_age)
  !! if (test_output==3 && multi==2) cout<<"size_sea_input:"<<endl<<size_sea_input<<endl;
@@ -742,15 +746,11 @@ DATA_SECTION
  !! if (test_output==4) cout<<"YieldWeight:"<<YieldWeight<<endl;
  
  init_int use_price;
- !! if (test_output==4) cout<<"use_price:"<<use_price<<endl;
+ !! if (test_output==3) cout<<"use_price:"<<use_price<<endl;
   
  !! if (test_output==4) cout<<"op_trigger.dat completed"<<endl;
  
- !! ad_comm::change_datafile_name("op_price.in");
   
- init_3darray price(1,no_areas,first_VPA,nsp,fa,max_a)
- !! if (test_output==4) cout<<"price:"<<endl<<price<<endl;
- 
  LOCAL_CALCS
   for (s=first_VPA;s<=nsp;s++) {
     if (HCR(s)==1 || HCR(s)==2 || HCR(s)==3 || HCR(s)==11 || HCR(s)==22 || HCR(s)==33) {phase_SSB50(s)=-1; phase_S1(s)=-1;}
@@ -924,7 +924,7 @@ PRELIMINARY_CALCS_SECTION
      ifs.close();
    }
 
-  random_number_generator rng(seed);
+  random_number_generator rng(seed) ;
   //random_number_generator rng((unsigned)time(0));
   //cout<<"Random seed: "<<(unsigned)time(0)<<endl;
   //cout<<"Random seed: "<<(unsigned) clock()<<endl;
@@ -1054,7 +1054,7 @@ PROCEDURE_SECTION
              if (do_growth_all==1 && y>fy &M2iter>1) calc_growth(y);
              calc_M2(y,q,d);
              tmp=sum(square(M2(y,q,d)-old_M2));
-             cout<<"iteration:"<<setprecision(8)<<M2iter<<" tmp: "<<setprecision(8)<<tmp<<"  max_M2_sum2:"<<max_M2_sum2<<"   M2iter:"<<M2iter<<endl;
+             //cout<<"iteration:"<<setprecision(8)<<M2iter<<" tmp: "<<setprecision(8)<<tmp<<"  max_M2_sum2:"<<max_M2_sum2<<"   M2iter:"<<M2iter<<endl;
            }
            calc_Z(y,q,d);                       // update Z with the latest estimate of M2
            get_N_bar_at_age(y,q,d);             // Calc N within the period
@@ -1640,7 +1640,7 @@ FUNCTION dvariable calc_recruit(int s, dvariable ssb, dvariable noise, double ad
                       break;
     }
 
-FUNCTION double SSB_recruit(int y);
+FUNCTION void SSB_recruit(int y);
  int recy,ss,i;
  dmatrix noiseFac(1,1,first_VPA,nsp);
  dmatrix covNoise(1,1,first_VPA,nsp);

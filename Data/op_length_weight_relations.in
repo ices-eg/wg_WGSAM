@@ -1,0 +1,56 @@
+# length weight relation W=a * Power(L,b),
+ # L in mm, W in kg
+# Fulmar     
+ 0.01 1
+# Guillemot  
+ 0.01 1
+# Her. Gull  
+ 0.01 1
+# Kittiwake  
+ 0.01 1
+# GBB. Gull  
+ 0.01 1
+# Gannet     
+ 0.01 1
+# Puffin     
+ 0.01 1
+# Razorbill  
+ 0.01 1
+# A. radiata 
+ 4.09e-08 2.896
+# G. gurnards
+ 6.2e-09 3.1
+# W.horse mac
+ 1.05e-08 2.9622
+# N.horse mac
+ 1.05e-08 2.9622
+# Grey seal  
+ 0.01 1
+# H. porpoise
+ 0.01 1
+# Hake       
+ 6.59e-09 3.017
+# Cod        
+ 2.0475e-08 2.8571
+# Whiting    
+ 1.0509e-08 2.9456
+# Haddock    
+ 1.8212e-08 2.8268
+# Saithe     
+ 2.8322e-08 2.7374
+# Mackerel   
+ 3.81e-09 3.21
+# Herring    
+ 6.03e-09 3.0904
+# N. sandeel 
+ 2.66875e-09 3.06
+# S. sandeel 
+ 2.66875e-09 3.06
+# Nor. pout  
+ 7.5e-09 3.0244
+# Sprat      
+ 8.729e-10 3.4746
+# Plaice     
+ 1.51e-08 2.8876
+# Sole       
+ 8e-09 3.04999

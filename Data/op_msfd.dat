@@ -1,0 +1,118 @@
+# options for calculation of MSFD and other indicatores
+# the character "#" is used as comment character, such that all text and numbers after # are skipped
+#
+########################################
+## Calculate Biomass of demersal fish (option do.community.biomass.demersal)
+#  0=no, 1=yes
+0
+# First and last ages to be used for calc of demersal fish biomass. Negative value excludes the species
+#      Fulmar   Guillemot   Her. Gull   Kittiwake   GBB. Gull      Gannet      Puffin   Razorbill  A. radiata G. gurnards W.horse mac N.horse mac   Grey seal H. porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0 
+          1           1           1           1           1           1           1           1           3           4           3           6           1           1           9          10           8          10          10          10           8           4           4           3           3          10          10 
+########################################
+## Calculate Biomass of small fish (option do.community.biomass.small)
+#  0=no, 1=yes
+0
+# First and last ages to be used for calc of small fish biomass. Negative value excludes the species
+#      Fulmar   Guillemot   Her. Gull   Kittiwake   GBB. Gull      Gannet      Puffin   Razorbill  A. radiata G. gurnards W.horse mac N.horse mac   Grey seal H. porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0 
+          1           1           1           1           1           1           1           1           3           4           3           6           1           1           9          10           8          10          10          10           8           4           4           3           3          10          10 
+########################################
+## Calculate Biomass of pelagic fish (option do.community.biomass.pelagic)
+#  0=no, 1=yes
+0
+# First and last ages to be used for calc of pelagic fish biomass. Negative value excludes the species
+#      Fulmar   Guillemot   Her. Gull   Kittiwake   GBB. Gull      Gannet      Puffin   Razorbill  A. radiata G. gurnards W.horse mac N.horse mac   Grey seal H. porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0 
+          1           1           1           1           1           1           1           1           3           4           3           6           1           1           9          10           8          10          10          10           8           4           4           3           3          10          10 
+########################################
+## Calculate Biomass of forage fish (option do.community.biomass.forage)
+#  0=no, 1=yes
+0
+# First and last ages to be used for calc of forage fish biomass. Negative value excludes the species
+#      Fulmar   Guillemot   Her. Gull   Kittiwake   GBB. Gull      Gannet      Puffin   Razorbill  A. radiata G. gurnards W.horse mac N.horse mac   Grey seal H. porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0 
+          1           1           1           1           1           1           1           1           3           4           3           6           1           1           9          10           8          10          10          10           8           4           4           3           3          10          10 
+########################################
+## Calculate average M2 by species (option do.M2.bar)
+#  0=no, 1=yes
+0
+# First and last ages to be used for calc of mean M2, Negative value excludes the species
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0           0 
+         10           8          10          10          10           8           4           4           3           3          10          10 
+########################################
+## Calculate mean weight at age in the sea (option do.mean.weight.at.age)
+#  0=no, 1=yes
+0
+# Include species 0=no, 1=yes
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1           1 
+########################################
+## Calculate mean weight in the sea for the whole comunity (option do.community.mean.weight)
+#  0=no, 1=yes
+0
+# Include species 0=no, 1=yes
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1           1 
+########################################
+## Calculate mean weight in the catch (option do.mean.weight.C)
+#  0=no, 1=yes
+0
+# Include species 0=no, 1=yes
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1           1 
+########################################
+## Calculate mean weight in the catch for the whole comunity (option do.community.mean.weight.C)
+#  0=no, 1=yes
+0
+# Include species 0=no, 1=yes
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1           1 
+########################################
+## Calculate catch biomass/ stock biomass ratio (option do.community.F)
+#  0=no, 1=yes
+0
+# Include species 0=no, 1=yes
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1           1 
+########################################
+## Calculate dead (M) biomass/ stock biomass ratio (option do.community.M)
+#  0=no, 1=yes
+0
+# Include species 0=no, 1=yes
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1           1 
+########################################
+## Calculate life expectancy (option do.life.expectancy)
+#  0=no, 1=yes
+0
+# First age used. Negative means not used
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1           1 
+########################################
+## Calculate community life expectancy (option do.community.life.expectancy)
+#  0=no, 1=yes
+0
+# First age used. Negative means not used
+# Weighting factor, positve=input value, -1=recruitment  
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0           0 
+         10           8          10          10          10           8           4           4           3           3          10          10 
+########################################
+## Calculate Size spectrum slope and intercept (option do.size.spectra)
+#  0=no, 1=yes
+0
+# Include species 0=no, 1=yes
+#      Fulmar   Guillemot   Her. Gull   Kittiwake   GBB. Gull      Gannet      Puffin   Razorbill  A. radiata G. gurnards W.horse mac N.horse mac   Grey seal H. porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1 
+########################################
+## Calculate Large Fish Indicator (option do.LFI)
+#  0=no, 1=yes
+0
+# LFI, include species in LFI (0=no, 1=yes)
+#      Fulmar   Guillemot   Her. Gull   Kittiwake   GBB. Gull      Gannet      Puffin   Razorbill  A. radiata G. gurnards W.horse mac N.horse mac   Grey seal H. porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1 
+# LFI, first age considerd as a Large Fish
+#      Fulmar   Guillemot   Her. Gull   Kittiwake   GBB. Gull      Gannet      Puffin   Razorbill  A. radiata G. gurnards W.horse mac N.horse mac   Grey seal H. porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel     Herring  N. sandeel  S. sandeel   Nor. pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1 

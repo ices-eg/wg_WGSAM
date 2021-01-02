@@ -1,0 +1,4 @@
+
+C:\MV\GitHub\SMSApp>cd  C:/MV/GitHub/SMSApp/Data  
+
+C:\MV\GitHub\SMSApp\Data>op.exe -maxfn 0 -nohess    1>ud.dat 

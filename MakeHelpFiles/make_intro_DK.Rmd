@@ -1,0 +1,71 @@
+---
+title: 'SMS prognoser'
+output:
+  html_document:
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+Med denne App kan der laves prognoser for fiskebestandene i Nordsøen ud fra resultaterne fra ICES Stochastic Multispecies Model (SMS). Det fremtidige fiskeritryk og fiskerimønster kan ændres for en række bestande i Nordsøen og modellen beregner derefter det fremtidige fiskeriudbytte og bestandenes størrelse. I beregningerne tages der hensyn til at fisk spiser fisk, så en ændring i fiskeritrykket for en art giver både ændringer i bestandsstørrelse og fiskeriudbytte for arten selv, men også andre arter der kan være byttedyr eller rovdyr for arten.
+
+
+
+
+```{r pressure, echo=FALSE, comment=""}
+#library(kableExtra)
+library(htmltools)
+
+xtab<-function(x,caption='Table X.', file=stdout(), width='"100%"', units=NULL,cornername='', dec=rep(1,ncol(x))){
+  nc<-ncol(x)
+ 
+  
+  lin<-paste('<table width=',width,'>', sep='')
+  lin<-c(lin,sub('$','</td></tr>',sub('\\. |\\.$','.</b> ',
+                                      sub('^', paste('<tr><td colspan=',nc+1,'><b>',sep=''), caption))))
+  hr<-paste('<tr><td colspan=',nc+1,'><hr noshade></td></tr>', sep='')
+  lin<-c(lin,hr)
+  cnames<-colnames(x)
+  cnames<-paste(sub('$','</b></td>',sub('^','<td align=right><b>',cnames)), collapse='\t')
+  lin<-c(lin,paste('<tr>',paste('<td align=left><b>',cornername,'</b></td>',sep=''),cnames,'</tr>'))
+  
+  if (length(units)>0) {
+    unames<-units
+    unames<-paste(sub('$','</b></td>',sub('^','<td align=right><b>',unames)), collapse='\t')
+    lin<-c(lin,paste('<tr>',paste('<td align=left><b>',' ','</b></td>',sep=''),unames,'</tr>'))
+    lin<-c(lin,hr)
+  }
+  
+  rnames<-sub('$','</b></td>',sub('^','<tr> <td align=left><b>',rownames(x)))
+  x<-sapply(1:ncol(x),function(i) {
+    if (is.numeric(x[,i])) r<- sub('NA','  ',formatC(round(x[,i],dec[i]),digits=dec[i], format='f')) else r<-x[,i] 
+  })
+  
+  x<-sapply(1:ncol(x),function(i) sub('NA','  ',x[,i]))
+  
+  for(i in 1:nrow(x)){
+    thisline<-paste(rnames[i],paste(sub('$','</td>',sub('^','<td align=right>',x[i,])), collapse='\t'),'</tr>', sep='')
+    lin<-c(lin,thisline)
+  }
+  lin<-c(lin,hr)
+  lin<-c(lin,'</table><br>\n')
+ # writeLines(lin,con=file)
+ # lin <- iconv(lin,  "UTF-8","latin1")
+   return(HTML(paste(lin, collapse = "\n")))
+ }
+
+
+a<-read.csv('arter.csv',encoding='UTF-8',stringsAsFactors = FALSE)
+xtab(a,caption='Modellen har 27 bestande:', file='a.html', width='"70%"', units=NULL,cornername='', dec=rep(1,ncol(x)))
+
+```
+<br>
+
+Gruppen af ”Andet rovdyr” (”Other predators”) indeholder en lang række havfugle, fiskebestande og havpattedyr der spiser fisk. I modellen antages det at man kender antallet af disse rovdyr i prognosen og dette vil holdes konstant i modellen hvis brugeren da ikke ændre det. Gruppen af ”Dynamiske” bestande indeholder vigtige bestande, hvor bestandstørrelsen udvikles dynamisk ud fra rekruttering, fiskeritryk og den naturlige dødelighed. Nogle af bestandene er både rovdyr og byttedyr, nogle er kun rovdyr eller byttedyr, og nogle er hverken rov- eller byttedyr. 
+
+SMS Modelen anvendes af ICES WGSAM (REF) til at bestemme de historiske naturlige dødeligheder, der anvendes i ICES bestandsvurderingerne og rådgivning for en række bestande i Nordsøen. Modellen er en såkaldt flerartsmodel der ud de historiske fangster, fangstrater fra videnskabelige togter og observeret maveindhold fra en kvart million fisk, samt andre data, beregner de historiske Fiskeridødeligheder (F) og bestandsstørrelser. Modellen indregner at fisk spiser fisk, hvilket resulterer i den såkaldte predationsdødelighed (M2). 
+
+SMS anvendes oftest til at bestemme hvad der er sket historisk, altså til at bestemme de historiske bestandsstørrelser og fiskeridødeligheder. Den historiske SMS giver stort set de samme resultater som i ICES bestandsvurderingen, men der er forskelle, der blandt andet skyldes at SMS er forskellig fra de modeller der oftest benyttes. 
+
+I denne App anvendes SMS som prognosemodel og der regnes frem i tiden. Dette gøres ud fra de model parametre for fx fødepreference og fiskerimønstre, der er bestemt i den historiske SMS samt antagelser om fremtidig fiskeritryk og rekruttering. Prognosen antager, at alt andet end det der ændres i modellen, fx fiskeritrykket, holdes konstant, hvilket er en meget grov antagelse specielt hvis der laves prognoser over mange år. Dette, sammen med en den usikkerhed der altid vil være i en så kompleks model som SMS, betyder at resultatet fra prognoserne skal ses mere som model resultater end som realistiske forudsigelser for hvad der vil ske over en længere årrække.

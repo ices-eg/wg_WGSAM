@@ -130,7 +130,7 @@ binding.renderValue = function (el, data) {
     .attr("x", 0 - ((boxHeight - margin.top - margin.bottom) / 2))
     .attr("dy", "1em")
     .style("text-anchor", "middle")
-    .text("Effort multiplier");
+    .text("Relativ F");
 
   function brushendY(event) {
     if (!event.sourceEvent) return;

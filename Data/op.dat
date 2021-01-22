@@ -22,7 +22,7 @@
 # 22 M, F and N by output by year and age,  AMOEBA, (file op_anno_M.out)
 # 25 20 + 21 + 22
 # 26 25 + output by Year, quarter, areas and age (file op_summary.out) and partial M2 (file op_part_m2.out)
-20
+26
 ########################################
 # Produce output MSFD indicator output, defined from file op_msfd.dat (option indicator)
 # 0=no, 1=yes 
@@ -35,10 +35,10 @@
 2020
 ########################################
 ## last year (option last.year)
-2060
+2055
 ########################################
 # first and last year for calculation of mean weight in the sea (file op_wsea.in) 
-#      Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse-mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+#      Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017 
        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019 
 ########################################
@@ -73,12 +73,12 @@
        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019 
 ########################################
 # first and last year for calculation of food ration (file op_consum.in)
-#      Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse-mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
+#      Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017 
        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019 
 ########################################
 # Species names, for information only. See file species_names.in 
-#  Fulmar Guillemot Her.Gull Kittiwake GBB.Gull Gannet Puffin Razorbill A.radiata G.gurnards W.horse.mac N.horse-mac Grey.seal H.porpoise Hake Cod Whiting Haddock Saithe Mackerel Herring N.sandeel S.sandeel Nor.pout Sprat Plaice Sole 
+#  Fulmar Guillemot Her.Gull Kittiwake GBB.Gull Gannet Puffin Razorbill A.radiata G.gurnards W.horse.mac N.horse.mac Grey.seal H.porpoise Hake Cod Whiting Haddock Saithe Mackerel Herring N.sandeel S.sandeel Nor.pout Sprat Plaice Sole 
 ########################################
 # Growth model:
 #   1  : Type  0=no growth;  1=density dependent, 10=Saithe special (Xochitl Cormon)
@@ -104,45 +104,45 @@
 # truncation of standardised normal distribution used to produce noise on recruitment
 # lower and upper   (values -15.0 and 15.0 give no truncation, -2 and 2 give approximately 95% of the distribution)
 #         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
-         -2          -2          -2          -2          -2          -2          -2          -2          -2          -2          -2          -2 
-          2           2           2           2           2           2           2           2           2           2           2           2 
+         -2          -2          -1          -2          -4          -2          -2          -2        -1.5          -1          -2          -4 
+          2           2         1.5           2           2           2           2           2           2           2           2           3 
 ########################################
 # factor to adjust expected recruits (option adjust.recruits)
 #         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
-          1           1           1           1           1           1           1           1           1           1           1           1 
+          1           1           1         0.9           1           1           1           1           1           1           1           1 
 ########################################
 # adjust recruitment with half of the variance (factor exp(-(CV^2)/2) option adjust.recruit.CV
 # 0=no adjustment
 # 1=stochastic recruitment, do adjustment such that average recruitment becomes equal to the median (downward adjustment)
 # 2=determenistic recruitment, do ajustment such that recruitment becomes equal to the mean of the log-normal distribution (upward adjustment)
 #         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
-          2           2           2           2           2           2           2           2           2           2           2           2 
+          0           0           2           0           0           0           2           2           2           2           0           0 
 ########################################
 # Update N by:
 #     1=F at age or 2=Catch at age (option F.or.C)
 #    11=as 1 but re-use input F, 22=as 2 but re-use catch
 #    31= as 1 but get target F values from file op_mulTargetf.in
 #         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
-         31          31          31          31          31          31          31          31          31          31          31          31 
+         10          10          10          10          10          10          10          10          10          10          10          10 
 ########################################
 ## Maximum M2 iterations (option M2.iterations)
-4
+31
 ########################################
 ## convergence criteria (option max.M2.sum2)
 #  use max.M2.sum2=0.0 and M2.iterations=7 (or another high number) to make Hessian
-1e-06
+31
 ########################################
 # first and last year for calculation of mean stock numbers of other predators (file op_other_n.in) 
-#      Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse-mac   Grey.seal  H.porpoise        Hake 
-       2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019 
-       2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019 
+#      Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake 
+         31          31          31          31          31          31          31          31          31          31           4       1e-06        2019        2019        2019 
+       2019        2019        2019        2019        2019        2019        2018        2019        2019        2019        2019        2015        2019        2019        2019 
 ########################################
 #### %%%%%%%%%%%%% various for other predators %%%%%%%%%%%%%%%%%%% ###
 # annual change factor for population number
 # first year (relative to first prediction year) year of change  (-1 is no change)
 # last year (relative to first prediction year) of change (-1 is no change)
 # other predator stock numbers  
-#      Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse-mac   Grey.seal  H.porpoise        Hake 
-          1           1           1           1           1           1           1           1           1           1           1           1           1           1           1 
-         -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1 
+#      Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake 
+       2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019           1           1           1 
+          1           1           1           1           1           1           1           1           1           1           1           1          -1          -1          -1 
          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1 

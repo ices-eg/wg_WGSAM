@@ -6,12 +6,15 @@ output:
 ---
 
 
+Her kan du læse lidt om baggrunden for denne App. Hvis du ønsker at lave prognoser, skal du trykke på enten **"Simple predictions"** eller **"Detailed predictions"** i toppen af skærmen.... 
+
+### Baggrund
 Med denne App kan der laves prognoser for fiskebestandene i Nordsøen ud fra resultaterne fra ICES Stochastic Multispecies Model (SMS). Det fremtidige fiskeritryk og fiskerimønster kan ændres for en række bestande i Nordsøen og modellen beregner derefter det fremtidige fiskeriudbytte og bestandenes størrelse. I beregningerne tages der hensyn til at fisk spiser fisk, så en ændring i fiskeritrykket for en art giver både ændringer i bestandsstørrelse og fiskeriudbytte for arten selv, men også andre arter der kan være byttedyr eller rovdyr for arten.
 
 
 
 
-<table width="70%">
+<!--html_preserve--><table width="70%">
 <tr><td colspan=4><b>Modellen har 27 bestande:</td></tr>
 <tr><td colspan=4><hr noshade></td></tr>
 <tr> <td align=left><b></b></td> <td align=right><b>Bestand</b></td>	<td align=right><b>Engelsk</b></td>	<td align=right><b>Type</b></td> </tr>
@@ -44,12 +47,12 @@ Med denne App kan der laves prognoser for fiskebestandene i Nordsøen ud fra res
 <tr> <td align=left><b>27</b></td><td align=right>Tunge</td>	<td align=right>Sole</td>	<td align=right>Dynamisk</td></tr>
 <tr><td colspan=4><hr noshade></td></tr>
 </table><br>
-
+<!--/html_preserve-->
 <br>
 
-Gruppen af ”Andet rovdyr” (”Other predators”) indeholder en lang række havfugle, fiskebestande og havpattedyr der spiser fisk. I modellen antages det at man kender antallet af disse rovdyr i prognosen og dette vil holdes konstant i modellen hvis brugeren da ikke ændre det. Gruppen af ”Dynamiske” bestande indeholder vigtige bestande, hvor bestandstørrelsen udvikles dynamisk ud fra rekruttering, fiskeritryk og den naturlige dødelighed. Nogle af bestandene er både rovdyr og byttedyr, nogle er kun rovdyr eller byttedyr, og nogle er hverken rov- eller byttedyr. 
+Gruppen af ”Andet rovdyr” (”Other predators”) indeholder en lang række havfugle, fiskebestande og havpattedyr der spiser fisk. I modellen antages det at man kender antallet af disse rovdyr i prognosen og dette vil holdes konstant i modellen, hvis man da ikke ændre det. Gruppen af ”Dynamiske” bestande indeholder vigtige bestande, hvor bestandstørrelsen udvikles dynamisk ud fra rekruttering, fiskeritryk og den naturlige dødelighed. Nogle af bestandene er både rovdyr og byttedyr, nogle er kun rovdyr eller byttedyr, og nogle er hverken rov- eller byttedyr. 
 
-SMS Modelen anvendes af ICES WGSAM (REF) til at bestemme de historiske naturlige dødeligheder, der anvendes i ICES bestandsvurderingerne og rådgivning for en række bestande i Nordsøen. Modellen er en såkaldt flerartsmodel der ud de historiske fangster, fangstrater fra videnskabelige togter og observeret maveindhold fra en kvart million fisk, samt andre data, beregner de historiske Fiskeridødeligheder (F) og bestandsstørrelser. Modellen indregner at fisk spiser fisk, hvilket resulterer i den såkaldte predationsdødelighed (M2). 
+SMS Modellen anvendes af ICES WGSAM (REF) til at bestemme de historiske naturlige dødeligheder, der anvendes i ICES bestandsvurderingerne og rådgivning for en række bestande i Nordsøen. Modellen er en såkaldt flerartsmodel der ud de historiske fangster, fangstrater fra videnskabelige togter og observeret maveindhold fra en kvart million fisk, samt andre data, beregner de historiske Fiskeridødeligheder (F) og bestandsstørrelser. Modellen indregner at fisk spiser fisk, hvilket resulterer i den såkaldte predationsdødelighed (M2). 
 
 SMS anvendes oftest til at bestemme hvad der er sket historisk, altså til at bestemme de historiske bestandsstørrelser og fiskeridødeligheder. Den historiske SMS giver stort set de samme resultater som i ICES bestandsvurderingen, men der er forskelle, der blandt andet skyldes at SMS er forskellig fra de modeller der oftest benyttes. 
 

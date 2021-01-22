@@ -61,7 +61,7 @@
 27
 ########################################
 # Species names, for information only. See file species_names.in 
-#  Fulmar Guillemot Her.Gull Kittiwake GBB.Gull Gannet Puffin Razorbill A.radiata G.gurnards W.horse.mac N.horse-mac Grey.seal H.porpoise Hake Cod Whiting Haddock Saithe Mackerel Herring N.sandeel S.sandeel Nor.pout Sprat Plaice Sole 
+#  Fulmar Guillemot Her.Gull Kittiwake GBB.Gull Gannet Puffin Razorbill A.radiata G.gurnards W.horse.mac N.horse.mac Grey.seal H.porpoise Hake Cod Whiting Haddock Saithe Mackerel Herring N.sandeel S.sandeel Nor.pout Sprat Plaice Sole 
 ########################################
 ## first age all species (option first.age)
 0
@@ -101,21 +101,21 @@
 3 0 0 0 0 0 2 0 0 0 0  # 9 A.radiata 
 4 0 0 0 0 0 2 0 0 0 0  # 10 G.gurnards 
 3 0 0 0 0 0 2 0 0 0 0  # 11 W.horse.mac 
-6 0 0 0 0 0 2 0 0 0 0  # 12 N.horse-mac 
+6 0 0 0 0 0 2 0 0 0 0  # 12 N.horse.mac 
 1 0 0 0 0 0 2 0 0 0 0  # 13 Grey.seal 
 1 0 0 0 0 0 2 0 0 0 0  # 14 H.porpoise 
 9 0 0 0 0 0 2 0 0 0 0  # 15 Hake 
-10 1 9 0 10 1 1 1 107000 0 0  # 16 Cod 
+10 1 9 0 10 1 1 1 86000 0 0  # 16 Cod 
 8 0 6 0 8 1 1 1 119970 0 0  # 17 Whiting 
-10 0 7 0 10 1 1 1 94000 0 0  # 18 Haddock 
+10 0 7 0 10 1 1 1 1 0 0  # 18 Haddock 
 10 3 8 0 10 1 1 0 1 0 0  # 19 Saithe 
 10 1 7 0 10 1 1 0 2e+06 0 0  # 20 Mackerel 
 8 0 5 0 8 1 0 1 1 0 0  # 21 Herring 
 4 0 3 0 4 1 0 1 1 0 0  # 22 N.sandeel 
 4 0 3 0 4 1 0 1 1 0 0  # 23 S.sandeel 
-3 0 2 0 3 0 0 1 50000 0 0  # 24 Nor.pout 
+3 0 2 0 3 0 0 1 80000 0 0  # 24 Nor.pout 
 3 1 2 0 3 1 0 1 94000 0 0  # 25 Sprat 
-10 1 7 0 10 1 0 0 1 0 0  # 26 Plaice 
+10 1 7 0 10 1 0 0 2e+05 0 0  # 26 Plaice 
 10 1 7 0 10 1 0 0 1 0 0  # 27 Sole 
 ########################################
 ## use input recruitment estimate (option use.known.rec)
@@ -132,7 +132,7 @@
 # the value -1 indicates the use of the first (and last) available year in time series
 # first year by species
 #          Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
-          1988        1982        1988          -1        1980          -1          -1          -1        1977        1981          -1          -1 
+          1982        1982        1988          -1          -1          -1          -1          -1        1983        1981          -1          -1 
 # last year by species
 #          Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
             -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1 
@@ -155,11 +155,11 @@
 0 0 0 1 1  # 9 A.radiata 
 0 0 0 1 1  # 10 G.gurnards 
 0 0 0 1 1  # 11 W.horse.mac 
-0 0 0 1 1  # 12 N.horse-mac 
+0 0 0 1 1  # 12 N.horse.mac 
 0 0 0 1 1  # 13 Grey.seal 
 0 0 0 1 1  # 14 H.porpoise 
 0 0 0 1 1  # 15 Hake 
-1 1 0.1 1 0  # 16 Cod 
+1 1 0.9 1 0  # 16 Cod 
 1 1 0.1 1 0  # 17 Whiting 
 1 1 0.1 1 0  # 18 Haddock 
 1 1 1 1 0  # 19 Saithe 
@@ -464,49 +464,49 @@
 #   6=log-Beta size distributed, within observed size range
 #
 # by predator
-#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse-mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
-             0           0           0           0           0           0           0           0           0           0           0           0           0           4           0           0           0           0           0           0 
+#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
+             0           0           0           0           0           0           0           0           0           0           0           0           0           4           0           1           1           0           1           0 
 ########################################
 ## sum stomach contents over prey size for use in likelihood for prey weight proportions (option sum.stom.like)
 #   0=no, use observations as they are; 1=yes, sum observed and predicted stomach contents before used in likelihood for prey weight proportions
 #
 # by predator
-#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse-mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
+#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
              1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1 
 ########################################
 ## # Use estimated scaling factor to link number of observation to variance for stomach observation likelihood (option stom_obs_var)
 #    0=no, do not estiamte factor (assumed=1);  1=yes, estimate the factor;  2=equal weight (1) for all samples
 #
 # by predator
-#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse-mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
+#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
              1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1 
 ########################################
 ## # Upper limit for Dirichlet sumP. A low value (e.g. 10) limits the risk of overfitting. A high value (e.g. 100) allows a full fit. (option stom_max_sumP)
 # by predator
-#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse-mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
+#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
            100         100         100         100         100         100         100         100         100         100         100         100         100         100         100         100         100         100         100         100 
 ########################################
 ## Scaling factor (to bring parameters close to one) for relation between no of stomachs sampling and variance
 #  value=0: use default values i.e. 1.00 for no size selection and otherwise 0.1 (option var.scale.stom)
-#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse-mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
+#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
              1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1           1 
 ########################################
 ## other food suitability size dependency  (option size.other.food.suit)
 #  0=no size dependency
 #  1=yes, other food suitability is different for different size classes
-#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse-mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
+#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
              0           0           0           0           0           0           0           0           1           0           0           0           0           0           0           0           1           0           1           1 
 ########################################
 ## Minimum observed relative stomach contents weight for inclusion in ML estimation (option min.stom.cont)
-#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse-mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
+#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
          9e-05       9e-05       9e-05       9e-05       9e-05       9e-05       9e-05       9e-05       9e-05       9e-05       9e-05       9e-05       9e-05       9e-05       9e-09       9e-09       9e-09       9e-09       9e-05       9e-05 
 ########################################
 ## Upper limit for no of samples used for calculation of stomach observation variance (option max.stom.sampl)
-#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse-mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
+#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
           1000        1000        1000        1000        1000        1000        1000        1000        1000        1000        1000        1000        1000        1000        1000        1000        1000        1000        1000        1000 
 ########################################
 ## Max prey size/ pred size factor for inclusion in M2 calc (option max.prey.pred.size.fac)
-#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse-mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
+#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
              5           5           5           5           5           5           5           5         0.5         0.5         0.5         0.5          50          50         0.9         0.5         0.9         0.5         0.5         0.5 
 ########################################
 ## inclusion of individual stomach contents observations in ML for weight proportions (option stom.type.include)
@@ -514,7 +514,7 @@
 # 2= + (not observed) data within the observed size range (=fill in)
 # 3= + (not observed) data outside an observed size range. One obs below and one above (=tails)
 # 4= + (not observed) data for the full size range of a prey species irrespective of predator size (=expansion)
-#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse-mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
+#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
              2           2           2           2           2           2           2           2           2           2           2           2           2           2           2           2           2           2           2           2 
 ########################################
 ## use overlap input values by year and season (use.overlap)
@@ -531,13 +531,13 @@
 # other food suitability slope (default=-1) (option phase.other.suit.slope)
 2
 # prefered size ratio (default=2) (option phase.pref.size.ratio)
--1
+2
 # predator size ratio adjustment factor (default=-1) (option phase.pref.size.ratio.correction))
 -1
 # prey species size adjustment factor (default=-1) (option phase.prey.size.adjustment)
 -1
 # variance of prefered size ratio (default=2) (option phase.var.size.ratio)
--1
+2
 # season overlap (default=-1) (option phase.season.overlap)
 2
 # Stomach variance parameter (default=2) (option phase.Stom.var)

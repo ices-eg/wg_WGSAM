@@ -4,11 +4,11 @@
  0.01 1
 # Guillemot  
  0.01 1
-# Her. Gull  
+# Her.Gull   
  0.01 1
 # Kittiwake  
  0.01 1
-# GBB. Gull  
+# GBB.Gull   
  0.01 1
 # Gannet     
  0.01 1
@@ -16,17 +16,17 @@
  0.01 1
 # Razorbill  
  0.01 1
-# A. radiata 
+# A.radiata  
  4.09e-08 2.896
-# G. gurnards
+# G.gurnards 
  6.2e-09 3.1
-# W.horse mac
+# W.horse.mac
  1.05e-08 2.9622
-# N.horse mac
+# N.horse.mac
  1.05e-08 2.9622
-# Grey seal  
+# Grey.seal  
  0.01 1
-# H. porpoise
+# H.porpoise 
  0.01 1
 # Hake       
  6.59e-09 3.017
@@ -42,11 +42,11 @@
  3.81e-09 3.21
 # Herring    
  6.03e-09 3.0904
-# N. sandeel 
+# N.sandeel  
  2.66875e-09 3.06
-# S. sandeel 
+# S.sandeel  
  2.66875e-09 3.06
-# Nor. pout  
+# Nor.pout   
  7.5e-09 3.0244
 # Sprat      
  8.729e-10 3.4746

@@ -1,28 +1,28 @@
-old,new,new_no,group
-Fulmar,Sea birds,1,Other predators
-Guillemot,Sea birds,1,Other predators
-Her.Gull,Sea birds,1,Other predators
-Kittiwake,Sea birds,1,Other predators
-GBB.Gull,Sea birds,1,Other predators
-Gannet,Sea birds,1,Other predators
-Puffin,Sea birds,1,Other predators
-Razorbill,Sea birds,1,Other predators
-A.radiata,A.radiata,2,Other predators
-G.gurnards,Grey gurnards,3,Other predators
-W.horse.mac,Horse mackerel,4,Other predators
-N.horse-mac,Horse mackerel,4,Other predators
-Grey.seal,Grey.seal,5,Other predators
-H.porpoise,Habour porpoise,6,Other predators
-Hake,Hake,7,Other predators
-Cod,Cod,8,VPA.pred
-Whiting,Whiting,9,VPA.pred
-Haddock,Haddock,10,VPA.pred
-Saithe,Saithe,11,VPA.pred
-Mackerel,Mackerel,12,VPA.pred
-Herring,Herring,13,VPA.prey
-N.sandeel,Sandeel,14,VPA.prey
-S.sandeel,Sandeel,14,VPA.prey
-Nor.pout,Norway pout,15,VPA.prey
-Sprat,Sprat,16,VPA.prey
-Plaice,Plaice,17,flat
-Sole,Sole,18,flat
+"old","new","new_no","group"
+"Fulmar","Sea birds",1,"Other predators"
+"Guillemot","Sea birds",1,"Other predators"
+"Her.Gull","Sea birds",1,"Other predators"
+"Kittiwake","Sea birds",1,"Other predators"
+"GBB.Gull","Sea birds",1,"Other predators"
+"Gannet","Sea birds",1,"Other predators"
+"Puffin","Sea birds",1,"Other predators"
+"Razorbill","Sea birds",1,"Other predators"
+"A.radiata","A.radiata",2,"Other predators"
+"G.gurnards","Grey gurnard",3,"Other predators"
+"W.horse.mac","Horse mackerel",4,"Other predators"
+"N.horse.mac","Horse mackerel",4,"Other predators"
+"Grey.seal","Grey.seal",5,"Other predators"
+"H.porpoise","Habour porpoise",6,"Other predators"
+"Hake","Hake",7,"Other predators"
+"Cod","Cod",8,"VPA.pred"
+"Whiting","Whiting",9,"VPA.pred"
+"Haddock","Haddock",10,"VPA.pred"
+"Saithe","Saithe",11,"VPA.pred"
+"Mackerel","Mackerel",12,"VPA.pred"
+"Herring","Herring",13,"VPA.prey"
+"N.sandeel","N.sandeel",14,"VPA.prey"
+"S.sandeel","S.sandeel",15,"VPA.prey"
+"Nor.pout","Norway pout",16,"VPA.prey"
+"Sprat","Sprat",17,"VPA.prey"
+"Plaice","Plaice",18,"flat"
+"Sole","Sole",19,"flat"

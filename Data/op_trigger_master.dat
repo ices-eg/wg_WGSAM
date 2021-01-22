@@ -5,7 +5,7 @@
 ## first year of input data (option first.year)
 2020
 ## last year (option last.year)
-2060
+2059
 ########################################
 ## First run number (option first.run.no). Default=1
 1
@@ -35,15 +35,15 @@
 ########################################
 # T1 and T2 trigger by species
 #         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
-          0           0           0           0           0           0       2e+05    1.75e+05          -1     9.4e+04           0           0 
-    1.5e+05   1.667e+05    1.32e+05   1.491e+05    2.58e+06       9e+05     2.8e+05    2.45e+05          -1    1.25e+05   2.902e+05   4.284e+04 
+      5e+04     2.5e+04     2.5e+04           0           0           0       5e+05       3e+05     2.5e+05    1.75e+05           0           0 
+    1.5e+05   1.667e+05    1.32e+05   1.491e+05    2.58e+06     1.4e+06       1e+06       5e+05       4e+05     3.5e+05   5.646e+05   4.284e+04 
 ########################################
 # Values for Ftarget
 # 1) lower limit, 2) higher limit, 3) initialization, 4) estimation phase
 #         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
           0           0           0           0           0           0           0           0           0           0           0           0 
           3           3           3           3           3           3           3           3           3           3           3           3 
-     0.5752      0.2358      0.2337      0.3625       0.195      0.2158      0.1556      0.2275      0.4543        0.36      0.2744      0.2993 
+       0.35         0.2         0.3         0.4        0.27        0.26        0.25         0.4         0.6         0.9         0.3         0.2 
           1           1           1           1           1           1           1           1           1           1           1           1 
 ########################################
 # Values for Fslope

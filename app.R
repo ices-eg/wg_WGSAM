@@ -20,7 +20,7 @@ source("dragables.R")
 
 test<-FALSE
 
-## Globals
+## Global
 data_dir <- "Data"
 help_dir <-"helpfiles"
 OS<- .Platform$OS.type  #operating system
@@ -71,8 +71,11 @@ makeColor<-function(pp,sortC=FALSE) {
   cols<-c('grey',g.other(g['Other predators']),g.vpa.pred(g['VPA.pred']),g.vpa.prey(g['VPA.prey']),g.flat(g['flat']))
   if (sortC) cols<-c('grey',sort(tail(cols,-1)))
   
-  #col <- c("grey","#000047","#858a00","#ff2b47","#00d3c9", "#0188d2", "#7426d6","#e37b00","#ffa0ee","#930025","#00bd3b","yellow","black","#005144")
-  #preycol <- c("#da62e7", "#549700", "#00609a", "#8dd971", "#535622")
+  col <- c("grey","#000047","#858a00","#ff2b47","#00d3c9", "#0188d2", "#7426d6","#e37b00","#ffa0ee","#930025","#00bd3b","yellow","black","#005144")
+  preycol <- c("#da62e7", "#549700", "#00609a", "#8dd971", "#535622")
+  MyPalette=c('grey','red','green','plum','blue','cyan','yellow','coral','skyblue','purple','magenta',
+              'limegreen','pink','darkorange3','aquamarine','beige','darkslategray','brown1','blueviolet','chocolate1' )
+  
   DTU.col<-c("#990000",  # red
     "#2F3EEA",  #blue
     "#1FD082",  # bright green 
@@ -86,10 +89,11 @@ makeColor<-function(pp,sortC=FALSE) {
     "#79238E")  # purple
     
     
-  #cols<-c(col,preycol)
-  #   barplot(1:(1+length(predPreyFormat)), col=cols)
   
-  return(cols)
+ # cols<-c(col,preycol)
+   #  barplot((1:(1+length(predPreyFormat))+10), col=MyPalette)
+  
+  return(MyPalette)
 }    
   
 my.colors<-makeColor(pp) 
@@ -101,7 +105,6 @@ predPreyFormat<-c('Humans',predPreyFormat)
 source("flop.control.r")
 OP<-read.FLOP.control(file="op_master.dat",path=data_dir,n.VPA=n.VPA,n.other.pred=n.pred.other,n.pred=n.pred)
 OP.trigger<-read.FLOPtrigger.control(file="op_trigger_master.dat",path=data_dir,n.VPA=n.VPA,n.other.pred=n.pred.other)
-
 
 # Units (multiplier) in output
 plotUnits<- c(Yield=0.001,          Fbar=1,   SSB=0.001,          TSB=0.001,           Recruits=0.001,        DeadM=0.001)
@@ -125,7 +128,7 @@ histEaten <- read_csv(file=file.path(data_dir,'who_eats_whom_historical.csv'),co
 
 refPoints<-matrix(scan(file.path(data_dir,"op_reference_points.in"),quiet = TRUE, comment.char = "#"),ncol=4,byrow=TRUE)
 rownames(refPoints)<-VPA.spNames
-colnames(refPoints)<-c('Flim','FMSY','Blim','MSY Btrigger')
+colnames(refPoints)<-c('Flim','Fpa','Blim','Bpa')
 refPoints[,3:4] <- refPoints[,3:4]* plotUnits['SSB']
 
 explPat<-scan(file.path(data_dir,"op_exploitation.in"),quiet = TRUE, comment.char = "#")
@@ -149,12 +152,23 @@ base_F<-stqF<-status_quo$mean.F
 base_Yield<-stqYield<-status_quo$Yield
 base_Rec<-stqRec<-status_quo$Rec
 
+# write status quo F
+cat("1\n",base_F,"\n",file=file.path(data_dir,"op_multargetf.in")) # write F values
 
-# change option values (could have been done in the master file!)
-OP.trigger@Ftarget['init',]<-stqF
-OP.trigger@Ftarget['lower',]<-0
-OP.trigger@Ftarget['higher',]<-3
+# read various setting for options files
+hcr_ini<-read.csv(file.path(data_dir,'HCR_ini.csv'),header=TRUE)
 
+### change option values (could have been done in the master files!)
+OP@rec.noise['lower',]<-hcr_ini$noise.low
+OP@rec.noise['upper',]<-hcr_ini$noise.high
+OP@recruit.adjust.CV[1,]<-hcr_ini$rec.adjust.CV.single
+OP@recruit.adjust[1,]<-hcr_ini$rec.adjust.single
+#
+OP.trigger@Ftarget['init',]<-base_F
+OP.trigger@trigger['T1',]<-hcr_ini$T1
+OP.trigger@trigger['T2',]<-hcr_ini$T2
+OP.trigger@HCR[1,]<-1
+  
 
 # write option files to be used
 write.FLOP.control(OP,file=file.path(data_dir,"op.dat"),nice=TRUE)
@@ -182,7 +196,7 @@ max_rec<-max_rec*plotUnits['Recruits']
 
 # values for baselines option lists
 bsF<-list(Names=list('No change',paste0('F(',stq_year,')'),'Most recent results'),Values=list(0,1,2))
-bsSSB<-list(Names=list('No change',paste0('SSB(',stq_year,')'),'Most recent results','MSY Btrigger'),Values=list(0,1,2,3))
+bsSSB<-list(Names=list('No change',paste0('SSB(',stq_year,')'),'Most recent results'),Values=list(0,1,2))
 bsYield<-list(Names=list('No change',paste0('Yield(',stq_year,')'),'Most recent results'),Values=list(0,1,2))
 bsRec<-list(Names=list('No change',paste0('Recruitment(',stq_year,')'),'Most recent results','Maximum recrutiment'),Values=list(0,1,2,3))
 
@@ -465,7 +479,8 @@ makeResTable<-function(x){
                            paste0('Rec. base',plotLabels['Recruits']),paste0('Rec(',termYear,') ',  plotLabels['Recruits']))
   return(a)
 }
-
+OP.trigger@HCR
+OP.trigger@Ftarget
 
 if (test) { # simple predictions
   res<-  list(out=do_OP(),Fmulti=rep(F_mult,n.fleet),baseLine=do_baseLine(),source='test')
@@ -499,7 +514,7 @@ plot_summary<-function(res,ptype=c('Yield','Fbar','SSB','Recruits','Dead','M2'),
     if (splitLine) abline(v=SMS.control@last.year.model,lty=2, col='red')
     if (incl.reference.points) {
       if ( refPoints[species,'Blim']>0) abline(h=refPoints[species,'Blim'],lty=2,lwd=2,col='red')
-      if (refPoints[species,'MSY Btrigger']>0) abline(h=refPoints[species,'MSY Btrigger'],lty=3,lwd=2,col='green')
+      if (refPoints[species,'Bpa']>0) abline(h=refPoints[species,'Bpa'],lty=3,lwd=2,col='green')
     }
   }
   
@@ -514,7 +529,7 @@ plot_summary<-function(res,ptype=c('Yield','Fbar','SSB','Recruits','Dead','M2'),
     if (splitLine) abline(v=SMS.control@last.year.model,lty=2, col='red')
     if (incl.reference.points) {
       if (refPoints[species,'Flim']>0) abline(h=refPoints[species,'Flim'],lty=2,lwd=2,col='red')
-      if (refPoints[species,'FMSY']>0) abline(h=refPoints[species,'FMSY'],lty=3,lwd=2,col='green')
+      if (refPoints[species,'Fpa']>0) abline(h=refPoints[species,'Fpa'],lty=3,lwd=2,col='green')
     }
   } 
 
@@ -611,7 +626,7 @@ for (i in (1:n.fleet)) {
 
 ui <- navbarPage(title = "SMS",
         tabPanel(title='ReadMe',
-                 radioButtons(inputId = 'language',label='Select language',choices=c('English','Danish')),
+                 radioButtons(inputId = 'language',label='Select language',choices=c('Danish','English')),
                   conditionalPanel("input.language=='English'",includeMarkdown(file.path(help_dir, "SMS-intro.md"))),
                  conditionalPanel("input.language=='Danish'",includeMarkdown(file.path(help_dir, "SMS-intro_DK.md")))
                  
@@ -626,7 +641,8 @@ ui <- navbarPage(title = "SMS",
                           conditionalPanel("input.effcontrolAll==0",sliders),
                     ),     
                     column(4,
-                         plotOutput(outputId = "F_plot1"),
+                         plotOutput(outputId = "F_plot1") %>%
+                           helper(colour = "green", type = "markdown",content = "Option"),
                          plotOutput(outputId = "Yield_plot1")
                     ),
                     column(4,
@@ -671,8 +687,10 @@ ui <- navbarPage(title = "SMS",
                         conditionalPanel("input.Option=='Recruitment'",
                              wellPanel(
                                 radioButtons(inputId = 'recDetSto',label='Recruitment variability ',choices=list('Determenistic','Stochastic')),
-                             ) %>% helper(colour = "green", type = "markdown",content = "Recruitment")
+                             ) %>% helper(colour = "green", type = "markdown",content = "Recruitment"),
+                             conditionalPanel("input.recDetSto=='Stochastic'",textOutput("stoch_explain"))
                         ),
+                        
                         
                         conditionalPanel("input.Option=='F model'",
                           wellPanel(
@@ -810,7 +828,9 @@ ui <- navbarPage(title = "SMS",
    output$SSB_plot4   <- renderPlot({ plot_one(res$rv,type='SSB')      })
    output$rec_plot4   <- renderPlot({ plot_one(res$rv,type='Recruits') })
    
-  
+   output$stoch_explain <- renderText({paste('Constant Fishing mortalities will not work for stochastic recruitment. You have to defined Harvest Control Rules in the "F-model" option above,',
+                                             'starting with the default values')})
+   
    output$summary_plot <-renderPlot({   if (res$rv$out$options$readResDetails) plot_summary(res$rv,ptype=c('Yield','Fbar','SSB','Recruits','Dead','M2'),
                                     years=c(input$firstY,input$lastY),species=input$sumSpecies,splitLine=FALSE,incl.reference.points= (input$inclRef=='yes'))},
                                     width = 1350, height=750,units = "px", pointsize = 25, bg = "white")
@@ -933,14 +953,18 @@ ui <- navbarPage(title = "SMS",
     })
    
    observeEvent(input$doRunDetailed, {doUpdateDetails()})
-   
+  
+   updateFoption_single<-function(sp){
+     #sp<-input$HCR.sp
+     updateNumericInput(session,inputId="target.F",value=Foption_tab[sp,'target.F'])
+     updateNumericInput(session,inputId="T1",value=Foption_tab[sp,'T1'])
+     updateNumericInput(session,inputId="T2",value=Foption_tab[sp,'T2'])
+     updatePickerInput(session,inputId ="HCR",selected=Foption_tab[sp,'HCR'])
+   }
+     
    
   observeEvent(input$HCR.sp,{
-   sp<-input$HCR.sp
-   updateNumericInput(session,inputId="target.F",value=Foption_tab[sp,'target.F'])
-   updateNumericInput(session,inputId="T1",value=Foption_tab[sp,'T1'])
-   updateNumericInput(session,inputId="T2",value=Foption_tab[sp,'T2'])
-   updatePickerInput(session,inputId ="HCR",selected=Foption_tab[sp,'HCR'])
+    updateFoption_single(input$HCR.sp)
   })
   
 
@@ -989,23 +1013,35 @@ ui <- navbarPage(title = "SMS",
        OP@last.year<<-termYear
        OP.trigger@last.year<<-termYear
        updateSliderInput(session,inputId="lastY",max=input$finalYear)
+       updateSliderInput(session,inputId="lastYwho",max=input$finalYear)
     }
-   
+
    if (input$recDetSto != recruitMode) {
      doWriteOptions<<-TRUE
      doRunModel<<-TRUE
      
      if (input$recDetSto=='Determenistic') {
        OP@stochastic.recruitment[1,]<<- rep(0,n.VPA)
-       OP@recruit.adjust.CV[1,]<<- rep(2,n.VPA)
+       OP@recruit.adjust[1,]<<-hcr_ini$rec.adjust.single
+       OP@recruit.adjust.CV[1,]<<- hcr_ini$rec.adjust.CV.single
+       OP.trigger@HCR[1,]<<- 1
+       
      } else if (input$recDetSto=='Stochastic') {
        OP@stochastic.recruitment[1,]<<- rep(1,n.VPA)
        OP@recruit.adjust.CV[1,]<<- rep(0,n.VPA)
+       OP@recruit.adjust[1,]<<-hcr_ini$rec.adjust
+       
+       OP.trigger@HCR[1,]<<-hcr_ini$HCR
+       OP.trigger@Ftarget['init',]<<-hcr_ini$Ftarget
+       
+       Foption_tab<<-get_op_Fmodel()
+       updateFoption_single(input$HCR.sp)
      }
      recruitMode<<-input$recDetSto 
     # doUpdateDetails()
    }
-   
+  
+ 
    
    if (input$Option>0)   updateRadioButtons(session=session,inputId = 'tabOpt',selected='Results')
 

@@ -22,7 +22,7 @@
 # 22 M, F and N by output by year and age,  AMOEBA, (file op_anno_M.out)
 # 25 20 + 21 + 22
 # 26 25 + output by Year, quarter, areas and age (file op_summary.out) and partial M2 (file op_part_m2.out)
-26
+25
 ########################################
 # Produce output MSFD indicator output, defined from file op_msfd.dat (option indicator)
 # 0=no, 1=yes 
@@ -35,7 +35,7 @@
 2020
 ########################################
 ## last year (option last.year)
-2055
+2059
 ########################################
 # first and last year for calculation of mean weight in the sea (file op_wsea.in) 
 #      Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
@@ -99,7 +99,7 @@
 # 20=No,  S-R parameters from EquiSim results, file op_eqsim.in
 # 21=Yes, S-R parameters from EquiSim results, file op_eqsim_stoch.in
 #         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
-          0           0           0           0           0           0           0           0           0           0           0           0 
+          1           1           1           1           1           1           1           1           1           1           1           1 
 ########################################
 # truncation of standardised normal distribution used to produce noise on recruitment
 # lower and upper   (values -15.0 and 15.0 give no truncation, -2 and 2 give approximately 95% of the distribution)
@@ -109,14 +109,14 @@
 ########################################
 # factor to adjust expected recruits (option adjust.recruits)
 #         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
-          1           1           1         0.9           1           1           1           1           1           1           1           1 
+          1           1         1.8         0.9           1           1           1           1         1.5           1           1           1 
 ########################################
 # adjust recruitment with half of the variance (factor exp(-(CV^2)/2) option adjust.recruit.CV
 # 0=no adjustment
 # 1=stochastic recruitment, do adjustment such that average recruitment becomes equal to the median (downward adjustment)
 # 2=determenistic recruitment, do ajustment such that recruitment becomes equal to the mean of the log-normal distribution (upward adjustment)
 #         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
-          0           0           2           0           0           0           2           2           2           2           0           0 
+          0           0           0           0           0           0           0           0           0           0           0           0 
 ########################################
 # Update N by:
 #     1=F at age or 2=Catch at age (option F.or.C)

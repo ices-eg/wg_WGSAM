@@ -40,3 +40,6 @@ vignettes/*.pdf
 
 # output file from the forecast
 Data/*.out
+Data/op.rep
+Data/op.log
+Data/ud.dat

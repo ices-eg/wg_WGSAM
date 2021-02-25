@@ -883,12 +883,18 @@ ui <- navbarPage(title = "SMS",
   })
   
 
+  observeEvent(input$updateOptionTableOther,{
+    updateActionButton(session, inputId="doRunDetailed", label = 'Push to update prediction',icon = icon("refresh"))
+  })
+  
+  observeEvent(input$updateOptionTable,{
+    updateActionButton(session, inputId="doRunDetailed", label = 'Push to update prediction',icon = icon("refresh"))
+  })
+  
+
+  
   observe({
-   
-  # cat(input$simple_predict,'\n')
-  # cat(input$detailed_predict,'\n')  
-    
-   # simple predictions  
+    # simple predictions  
    vals<-sapply(paste0("F.", fleetNames), function(item) input[[item]])
    if (any(vals!=oldFvals)) {
       res$rv$Fmulti<-vals
@@ -934,7 +940,7 @@ ui <- navbarPage(title = "SMS",
      }
      recruitMode<<-input$recDetSto 
     
-   }
+   } #end observe
   
  
    

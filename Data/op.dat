@@ -35,7 +35,7 @@
 2020
 ########################################
 ## last year (option last.year)
-2062
+2059
 ########################################
 # first and last year for calculation of mean weight in the sea (file op_wsea.in) 
 #      Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
@@ -147,6 +147,6 @@
 # last year  of change (-1 is no change)
 # other predator stock numbers  
 #      Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake 
-          1           1           1           1           1           1           1           1           1           1           1           1           1           1           1 
-         -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1 
-         -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1 
+          1           1           1           1           1           1           1           1           1           1           1           1        0.95           1           1 
+         -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1        2020          -1          -1 
+         -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1        2046          -1          -1 

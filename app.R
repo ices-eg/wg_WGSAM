@@ -333,7 +333,7 @@ do_OP<-function(readResSimple=TRUE,readResDetails=FALSE,readResStom=FALSE,writeO
                 a=a,b=b,detail_sum=d1,detail_M2=d2,detail_eaten=s,pred=pred,prey=prey,predPrey=predPrey))
 }
 
-source('make_plots.R')
+source('make_plots.R',local=TRUE)
 
 
 get_terminal_year<-function(OP){
@@ -384,7 +384,6 @@ get_op_Fmodel<-function(){
 Foption_tab<-get_op_Fmodel()
 
 
-
 put_op_Fmodel<-function(a,OP.trigger) {
   OP.trigger@HCR[1,] <- hcrval[a$HCR]
   OP.trigger@Ftarget['init',]<-a$target.F
@@ -392,7 +391,6 @@ put_op_Fmodel<-function(a,OP.trigger) {
   OP.trigger@trigger[2,]<-a$T2/plotUnits['SSB']
   return(OP.trigger)
 }
-
 
 doRunModel<-TRUE  # flag for re-running the prediction model
 doWriteOptions<-TRUE  # flag for writing option files for the prediction model
@@ -915,6 +913,7 @@ ui <- navbarPage(title = "SMS",
    if (input$recDetSto != recruitMode) {
      doWriteOptions<<-TRUE
      doRunModel<<-TRUE
+     updateActionButton(session, inputId="doRunDetailed", label = 'Push to update prediction',icon = icon("refresh"))
      
      if (input$recDetSto=='Determenistic') {
        OP@stochastic.recruitment[1,]<<- rep(0,n.VPA)
@@ -934,7 +933,7 @@ ui <- navbarPage(title = "SMS",
        updateFoption_single(input$HCR.sp)
      }
      recruitMode<<-input$recDetSto 
-    # doUpdateDetails()
+    
    }
   
  

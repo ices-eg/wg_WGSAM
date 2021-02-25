@@ -22,7 +22,7 @@
 # 22 M, F and N by output by year and age,  AMOEBA, (file op_anno_M.out)
 # 25 20 + 21 + 22
 # 26 25 + output by Year, quarter, areas and age (file op_summary.out) and partial M2 (file op_part_m2.out)
-20
+25
 ########################################
 # Produce output MSFD indicator output, defined from file op_msfd.dat (option indicator)
 # 0=no, 1=yes 
@@ -35,7 +35,7 @@
 2020
 ########################################
 ## last year (option last.year)
-2059
+2062
 ########################################
 # first and last year for calculation of mean weight in the sea (file op_wsea.in) 
 #      Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 

@@ -6,9 +6,9 @@ output:
 ---
 
 
-Her kan du læse lidt om baggrunden for denne App. Hvis du ønsker at prøve den, skal du trykke på enten "Simple predictions" eller "Detailed predictions" i toppen af skærmen.... 
+Her kan du læse lidt om baggrunden for denne App. Hvis du ønsker at lave prognoser, skal du trykke på enten **"Simple predictions"** eller **"Detailed predictions"** i toppen af skærmen.... 
 
-## Baggrund
+### Baggrund
 Med denne App kan der laves prognoser for fiskebestandene i Nordsøen ud fra resultaterne fra ICES Stochastic Multispecies Model (SMS). Det fremtidige fiskeritryk og fiskerimønster kan ændres for en række bestande i Nordsøen og modellen beregner derefter det fremtidige fiskeriudbytte og bestandenes størrelse. I beregningerne tages der hensyn til at fisk spiser fisk, så en ændring i fiskeritrykket for en art giver både ændringer i bestandsstørrelse og fiskeriudbytte for arten selv, men også andre arter der kan være byttedyr eller rovdyr for arten.
 
 
@@ -50,10 +50,10 @@ Med denne App kan der laves prognoser for fiskebestandene i Nordsøen ud fra res
 <!--/html_preserve-->
 <br>
 
-Gruppen af ”Andet rovdyr” (”Other predators”) indeholder en lang række havfugle, fiskebestande og havpattedyr der spiser fisk. I modellen antages det at man kender antallet af disse rovdyr i prognosen og dette vil holdes konstant i modellen, hvis man da ikke ændre det. Gruppen af ”Dynamiske” bestande indeholder vigtige bestande, hvor bestandstørrelsen udvikles dynamisk ud fra rekruttering, fiskeritryk og den naturlige dødelighed. Nogle af bestandene er både rovdyr og byttedyr, nogle er kun rovdyr eller byttedyr, og nogle er hverken rov- eller byttedyr. 
+Der er er to hovedtyper af bestande vist i tabellen: "Andet rovdyr" og "Dynamiske bestande" , Gruppen af **Andet rovdyr** (”Other predators”) indeholder en lang række havfugle, fiskebestande og havpattedyr, der alle spiser fisk. I modellen antages det at man kender antallet af disse rovdyr i prognosen og dette vil holdes konstant i modellen, hvis man da ikke ændre det. Gruppen af **Dynamiske bestande** indeholder vigtige bestande, hvor bestandstørrelsen udvikles dynamisk ud fra rekruttering, fiskeritryk og den naturlige dødelighed. Nogle af bestandene er både rovdyr og byttedyr, nogle er kun rovdyr eller byttedyr, og nogle er hverken rov- eller byttedyr i modellen. 
 
-SMS Modellen anvendes af ICES WGSAM (REF) til at bestemme de historiske naturlige dødeligheder, der anvendes i ICES bestandsvurderingerne og rådgivning for en række bestande i Nordsøen. Modellen er en såkaldt flerartsmodel der ud de historiske fangster, fangstrater fra videnskabelige togter og observeret maveindhold fra en kvart million fisk, samt andre data, beregner de historiske Fiskeridødeligheder (F) og bestandsstørrelser. Modellen indregner at fisk spiser fisk, hvilket resulterer i den såkaldte predationsdødelighed (M2). 
+SMS Modellen anvendes af ICES arbejdsgruppen WGSAM (ICES, 2021) til at bestemme de historiske naturlige dødeligheder, der anvendes i ICES bestandsvurderingerne og TAC-rådgivning for en række bestande i Nordsøen. Modellen er en såkaldt flerartsmodel, der ud de historiske fangster, fangstrater fra videnskabelige togter og observeret maveindhold fra en kvart million fisk, samt andre data, beregner de historiske Fiskeridødeligheder (F) og bestandsstørrelser. Modellen indregner at fisk spiser fisk, hvilket resulterer i den såkaldte predationsdødelighed (M2). 
 
 SMS anvendes oftest til at bestemme hvad der er sket historisk, altså til at bestemme de historiske bestandsstørrelser og fiskeridødeligheder. Den historiske SMS giver stort set de samme resultater som i ICES bestandsvurderingen, men der er forskelle, der blandt andet skyldes at SMS er forskellig fra de modeller der oftest benyttes. 
 
-I denne App anvendes SMS som prognosemodel og der regnes frem i tiden. Dette gøres ud fra de model parametre for fx fødepreference og fiskerimønstre, der er bestemt i den historiske SMS samt antagelser om fremtidig fiskeritryk og rekruttering. Prognosen antager, at alt andet end det der ændres i modellen, fx fiskeritrykket, holdes konstant, hvilket er en meget grov antagelse specielt hvis der laves prognoser over mange år. Dette, sammen med en den usikkerhed der altid vil være i en så kompleks model som SMS, betyder at resultatet fra prognoserne skal ses mere som model resultater end som realistiske forudsigelser for hvad der vil ske over en længere årrække.
+I denne App anvendes SMS som prognosemodel og der regnes frem i tiden. Dette gøres ud fra de model parametre for fx fødevalg og fiskerimønstre, der er bestemt i den historiske SMS samt antagelser om fremtidig fiskeritryk og rekruttering. Prognosen antager, at alt andet end det der ændres i modellen, fx fiskeritrykket, holdes konstant, hvilket er en meget grov antagelse specielt hvis der laves prognoser over mange år. Dette, sammen med en den usikkerhed der altid vil være i en så kompleks model som SMS, betyder at resultatet fra prognoserne skal ses mere som model resultater end som realistiske forudsigelser for hvad der vil ske over en længere årrække.

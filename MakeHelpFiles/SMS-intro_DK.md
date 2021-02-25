@@ -6,7 +6,7 @@ output:
 ---
 
 
-Her kan du læse lidt om baggrunden for denne App. Hvis du ønsker at lave prognoser, skal du trykke på enten **Simple predictions** eller **Detailed predictions** i toppen af skærmen. Beregningerne for de simple prognoser er lige så komplekse som de detaljerede prognoser, men de simple prognoser giver et kun oversigtsfigurer over den fremtidige udvikling og prognosebregningerne kan derfor gennemføres hurtigere. De detaljerede prognoser giver langt flere detaljer og tager derfor lidt længere tid at lave.
+Her kan du læse lidt om baggrunden for denne App. Hvis du ønsker at lave prognoser, skal du trykke på enten **Simple predictions** eller **Detailed predictions** i toppen af skærmen. Beregningerne for de simple prognoser er lige så komplekse som de detaljerede prognoser, men de simple prognoser giver et kun oversigtsfigurere over den fremtidige udvikling og prognosebregningerne kan derfor gennemføres hurtigere. De detaljerede prognoser giver langt flere detaljer og tager derfor lidt længere tid at lave.
 
 ### Baggrund
 Med denne App kan der laves prognoser for fiskebestandene i Nordsøen ud fra resultaterne fra ICES Stochastic Multispecies Model (SMS). Det fremtidige fiskeritryk og fiskerimønster kan ændres for en række bestande i Nordsøen og modellen beregner derefter det fremtidige fiskeriudbytte og bestandenes størrelse. I beregningerne tages der hensyn til at fisk spiser fisk, så en ændring i fiskeritrykket for en art giver både ændringer i bestandsstørrelse og fiskeriudbytte for arten selv, men også andre arter der kan være byttedyr eller rovdyr for arten.

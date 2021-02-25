@@ -1,0 +1,13 @@
+---
+title: 'Results shown on radar plots'
+output:
+  html_document:
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+The so-called radar plots are used to present the results.
+
+![](radar.png)

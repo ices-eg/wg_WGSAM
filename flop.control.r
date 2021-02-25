@@ -2,6 +2,7 @@
 ### class ######################################################################
 
 
+
 validFLOPtrigger.control <- function(object){
     if (object@first.year<0 | object@last.year<0 | object@first.year > object@last.year) return(paste("value of first.year:",object@first.year, "or last.year",object@last.year, "is wrong"))
     if (object@last.year<object@first.year) return("last.year must be >= first.year")
@@ -80,6 +81,7 @@ setClass("FLOP.control",
         rec.noise            ="matrix",
         recruit.adjust       ="matrix",
         recruit.adjust.CV    ="matrix",
+        recruit.min          ="matrix",
         F.or.C               ="matrix",
         M2.iterations        ="numeric",
         max.M2.sum2          ="numeric",
@@ -108,6 +110,7 @@ setClass("FLOP.control",
         rec.noise           =matrix(rep(c(-10,10),1),ncol=1,nrow=2,dimnames=list(c("lower","upper"),c("sp1"))),
         recruit.adjust      =matrix(1,ncol=1,nrow=1,dimnames=list(" ",c("sp1"))),
         recruit.adjust.CV   =matrix(0,ncol=1,nrow=1,dimnames=list(" ",c("sp1"))),
+        recruit.min         =matrix(0,ncol=1,nrow=1,dimnames=list(" ",c("sp1"))),
         F.or.C              =matrix(11,ncol=1,nrow=1,dimnames=list(" ",c("sp1"))),
         M2.iterations       =5,
         max.M2.sum2         =0.0,
@@ -223,6 +226,7 @@ FLOP.control <- function(
             rec.noise           =matrix(rep(c(-2 ,2),no.VPA.sp),ncol=no.VPA.sp,nrow=2,dimnames=list(c("lower","upper"),VPA.species.names)),
             recruit.adjust      =matrix(1,ncol=no.VPA.sp,nrow=1,dimnames=list(" ",c(VPA.species.names))),
             recruit.adjust.CV   =matrix(0,ncol=no.VPA.sp,nrow=1,dimnames=list(" ",c(VPA.species.names))),
+            recruit.min      =matrix(1,ncol=no.VPA.sp,nrow=1,dimnames=list(" ",c(VPA.species.names))),
             F.or.C              =matrix(11,ncol=no.VPA.sp,nrow=1,dimnames=list(" ",c(VPA.species.names))),
             M2.iterations       =as.integer(3),
             max.M2.sum2         =0.0,
@@ -606,6 +610,7 @@ write.FLOP.control<-function(control,file="op.dat",path=NULL,nice=TRUE,writeSpNa
                                     wr.matrix.nice(slot(control,x),VPA.species)
                                 } else wr.matrix(slot(control,x),x)
                              },
+  
       "recruit.adjust.CV"  ={if (nice) {
                                 cat(sepLine,file=file,append=T)
                                 cat("# adjust recruitment with half of the variance (factor exp(-(CV^2)/2) option adjust.recruit.CV\n",
@@ -615,6 +620,13 @@ write.FLOP.control<-function(control,file="op.dat",path=NULL,nice=TRUE,writeSpNa
                                     wr.matrix.nice(slot(control,x),VPA.species)
                                 } else wr.matrix(slot(control,x),x)
                              },
+       "recruit.min"        ={if (nice) {
+                                cat(sepLine,file=file,append=T)
+                                cat("# minimum recruitment in percentage of recruitment from S/R relation. (0 means that the S/R values are always used))\n",file=file,append=T,sep="")
+                                wr.matrix.nice(slot(control,x),VPA.species)
+                              } else wr.matrix(slot(control,x),x)
+                              },
+  
       "F.or.C"              ={if (nice) {
                                 cat(sepLine,file=file,append=T)
                                 cat("# Update N by:\n",
@@ -650,8 +662,8 @@ write.FLOP.control<-function(control,file="op.dat",path=NULL,nice=TRUE,writeSpNa
                                 cat(sepLine,file=file,append=T)
                                 cat("#### %%%%%%%%%%%%% various for other predators %%%%%%%%%%%%%%%%%%% ###\n",
                                     "# annual change factor for population number\n",
-                                    "# first year (relative to first prediction year) year of change  (-1 is no change)\n",
-                                    "# last year (relative to first prediction year) of change (-1 is no change)\n",
+                                    "# first year year of change  (-1 is no change)\n",
+                                    "# last year  of change (-1 is no change)\n",
                                     "# other predator stock numbers  \n",file=file,append=T,sep="")
                                     wr.matrix.nice(slot(control,x),sp.names[1:(first.VPA-1)])
                                 } else wr.matrix(slot(control,x),x)
@@ -714,7 +726,6 @@ read.FLOPtrigger.control<-function(file="op_trigger.dat",path=data.path,n.VPA,n.
 
 read.FLOP.control<-function(file="op.dat",path=data.path,n.VPA,n.other.pred,n.pred) {
 
-  cat(file,'\n')
   nsp<-n.VPA+n.other.pred
   species.names<-readLines(file.path(path,"species_names.in"), n=nsp)
   species.names<-gsub('_',' ',species.names)
@@ -755,6 +766,7 @@ read.FLOP.control<-function(file="op.dat",path=data.path,n.VPA,n.other.pred,n.pr
                                    dimnames=list(c("lower","upper"),VPA.sp.names),byrow=TRUE); n<-n+2*n.VPA},
      "recruit.adjust"          = {slot(control,x)<-matrix(opt[n:(n-1+n.VPA)],ncol=n.VPA,nrow=1,dimnames=list(" ",VPA.sp.names)); n<-n+n.VPA},
      "recruit.adjust.CV"       = {slot(control,x)<-matrix(opt[n:(n-1+n.VPA)],ncol=n.VPA,nrow=1,dimnames=list(" ",VPA.sp.names)); n<-n+n.VPA},
+     "recruit.min"             = {slot(control,x)<-matrix(opt[n:(n-1+n.VPA)],ncol=n.VPA,nrow=1,dimnames=list(" ",VPA.sp.names)); n<-n+n.VPA},
      "F.or.C"                  ={slot(control,x)<-matrix(opt[n:(n-1+n.VPA)],ncol=n.VPA,nrow=1,dimnames=list(" ",VPA.sp.names)); n<-n+n.VPA},
      "years.other"             = {slot(control,x)<-matrix(opt[n:(n-1+2*n.other.pred)],ncol=n.other.pred,nrow=2,
                                    dimnames=list(c("first","last"),species.names[1:n.other.pred]),byrow=TRUE); n<-n+2*n.other.pred},

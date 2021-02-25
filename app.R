@@ -8,7 +8,7 @@ library(ggplot2)
 suppressMessages(library(wordcloud))
 #library(radarchart)
 library(RColorBrewer)
-
+library("cowplot")
 library("shinyWidgets")
 
 #devtools::install_github("ricardo-bion/ggradar", dependencies = TRUE)
@@ -62,47 +62,16 @@ predPreyFormat<-pp$new
 
 recruitMode<-c('Determenistic','Stochastic')[1]
 
-makeColor<-function(pp,sortC=FALSE) {
-  g<-xtabs(~group,data=pp)
-  g.other <- colorRampPalette(c("hotpink", "green"))
-  g.vpa.pred <- colorRampPalette(c("red", "yellow1"))
-  g.vpa.prey <- colorRampPalette(c("magenta", "cyan"))
-  g.flat <- colorRampPalette(c("olivedrab1","olivedrab4"))
-  cols<-c('grey',g.other(g['Other predators']),g.vpa.pred(g['VPA.pred']),g.vpa.prey(g['VPA.prey']),g.flat(g['flat']))
-  if (sortC) cols<-c('grey',sort(tail(cols,-1)))
-  
-  col <- c("grey","#000047","#858a00","#ff2b47","#00d3c9", "#0188d2", "#7426d6","#e37b00","#ffa0ee","#930025","#00bd3b","yellow","black","#005144")
-  preycol <- c("#da62e7", "#549700", "#00609a", "#8dd971", "#535622")
-  MyPalette=c('grey','red','green','plum','blue','cyan','yellow','coral','skyblue','purple','magenta',
-              'limegreen','pink','darkorange3','aquamarine','beige','darkslategray','brown1','blueviolet','chocolate1' )
-  
-  DTU.col<-c("#990000",  # red
-    "#2F3EEA",  #blue
-    "#1FD082",  # bright green 
-    "#030F4F",  # navyblue
-    "#F6D04D",  # yellow
-    "#FC7634",  # Orange
-    "#F7BBB1",  # pink
-    "#DADADA",  # Grey
-    "#E83F48",  # red
-    "#008835",  # green
-    "#79238E")  # purple
-    
-    
-  
- # cols<-c(col,preycol)
-   #  barplot((1:(1+length(predPreyFormat))+10), col=MyPalette)
-  
-  return(MyPalette)
-}    
-  
-my.colors<-makeColor(pp) 
+my.colors<-c('grey','red','green','plum','blue','cyan','yellow','coral','skyblue','purple','magenta',
+                         'limegreen','pink','darkorange3','aquamarine','beige','darkslategray','brown1','blueviolet','chocolate1' )
+
 
   
 predPreyFormat<-c('Humans',predPreyFormat)
 
 # options for predictions, reset from master version
 source("flop.control.r")
+
 OP<-read.FLOP.control(file="op_master.dat",path=data_dir,n.VPA=n.VPA,n.other.pred=n.pred.other,n.pred=n.pred)
 OP.trigger<-read.FLOPtrigger.control(file="op_trigger_master.dat",path=data_dir,n.VPA=n.VPA,n.other.pred=n.pred.other)
 
@@ -153,7 +122,7 @@ base_Yield<-stqYield<-status_quo$Yield
 base_Rec<-stqRec<-status_quo$Rec
 
 # write status quo F
-cat("1\n",base_F,"\n",file=file.path(data_dir,"op_multargetf.in")) # write F values
+#cat("1\n",base_F,"\n",file=file.path(data_dir,"op_multargetf.in")) # write F values
 
 # read various setting for options files
 hcr_ini<-read.csv(file.path(data_dir,'HCR_ini.csv'),header=TRUE)
@@ -326,8 +295,6 @@ do_OP<-function(readResSimple=TRUE,readResDetails=FALSE,readResStom=FALSE,writeO
     M2$Prey.age<-M2$Age
     M2$tot.M2.prey<-M2$M2
     
-    #b<-subset(M2,select=c( Year, Quarter, Predator,Predator.age, Prey, Prey.age,Prey.no, eatenW, Part.M2,tot.M2.prey))
-    #bb<-droplevels(aggregate(list(eatenW=b$eatenW),list(Year=b$Year, Quarter=b$Quarter, Predator=b$Predator,Prey=b$Prey),sum))
     bbb<-droplevels(aggregate(list(eatenW=M2$eatenW),list(Year=M2$Year, Predator=M2$Predator,Prey=M2$Prey,Prey.no=M2$Prey.no),sum))
     bbb$eatenW<-bbb$eatenW*plotUnits['DeadM']
 
@@ -366,26 +333,8 @@ do_OP<-function(readResSimple=TRUE,readResDetails=FALSE,readResStom=FALSE,writeO
                 a=a,b=b,detail_sum=d1,detail_M2=d2,detail_eaten=s,pred=pred,prey=prey,predPrey=predPrey))
 }
 
+source('make_plots.R')
 
-# Radar plot function
-plot_one<-function(x,type='Yield',plot.legend = TRUE) {
-  a1 <- filter(x$out$b,variable==type)
-  a1[,2:(n.fleet+1)]<- a1[,2:(n.fleet+1)]/x$baseLine[,type]
-  
-  a2<- a1
-  a2[,2:(n.fleet+1)]<- 1
-  a<-bind_rows(a1,a2)
-  tit<-ifelse(type=='Fbar'," F",paste0(' ',type))
-  a[1,'variable']<-tit
-  a[2,'variable']<-'Baseline'
-  gmax<-max( a[,2:(n.fleet+1)])
-  
-  DTU.col<-c("#990000",  # red
-             "#F6D04D")  # yellow
-             
-  ggradar(a,grid.max=gmax,grid.min=0,plot.title='',plot.legend=plot.legend,legend.position='top',
-          group.colours =DTU.col,legend.text.size = 18)
-}
 
 get_terminal_year<-function(OP){
   return(OP@last.year)
@@ -443,7 +392,7 @@ put_op_Fmodel<-function(a,OP.trigger) {
   OP.trigger@trigger[2,]<-a$T2/plotUnits['SSB']
   return(OP.trigger)
 }
-#put_op_Fmodel(Foption_tab,OP.trigger)
+
 
 doRunModel<-TRUE  # flag for re-running the prediction model
 doWriteOptions<-TRUE  # flag for writing option files for the prediction model
@@ -479,12 +428,11 @@ makeResTable<-function(x){
                            paste0('Rec. base',plotLabels['Recruits']),paste0('Rec(',termYear,') ',  plotLabels['Recruits']))
   return(a)
 }
-OP.trigger@HCR
-OP.trigger@Ftarget
 
 if (test) { # simple predictions
   res<-  list(out=do_OP(),Fmulti=rep(F_mult,n.fleet),baseLine=do_baseLine(),source='test')
   res
+  plot_radar_all(res)
   plot_one(res,type='Fbar',plot.legend = TRUE)
   plot_one(res,type='Yield')
   plot_one(res,type='Recruits')
@@ -493,114 +441,6 @@ if (test) { # simple predictions
   makeResTable(res)
 }
 
-
-plot_summary<-function(res,ptype=c('Yield','Fbar','SSB','Recruits','Dead','M2'),years=c(0,5000),species='Cod',splitLine=FALSE,incl.reference.points=FALSE,nox=2,noy=3) {
-  a<-subset(res$out$detail_sum,Year>=years[1] & Year<=years[2] & Species %in% species)
-  a2<-subset(histCondensed,Year>=years[1] & Year<=years[2] & Species %in% species)
-  a<-bind_rows(a,a2)%>% arrange(Year)
-  
-  b<-subset(res$out$detail_M2,Year>=years[1] & Year<=years[2] & Species %in% species)
-  b2<-subset(histAnnoM,Year>=years[1] & Year<=years[2] & Species %in% species)
-  b<-bind_rows(b,b2) %>% arrange(Year,Age)
-  
-  #X11(width=11, height=8, pointsize=12)
-  par(mfcol=c(nox,noy))
-  par(mar=c(3,4,3,2))
-  
-   
-
-  if ("SSB" %in% ptype) {
-    plot(a$Year,a$SSB,type='b',lwd=3,xlab='',ylab=plotLabels['SSB'],main=paste(species,'SSB',sep=', '),ylim=c(0,max(a$SSB)))
-    if (splitLine) abline(v=SMS.control@last.year.model,lty=2, col='red')
-    if (incl.reference.points) {
-      if ( refPoints[species,'Blim']>0) abline(h=refPoints[species,'Blim'],lty=2,lwd=2,col='red')
-      if (refPoints[species,'Bpa']>0) abline(h=refPoints[species,'Bpa'],lty=3,lwd=2,col='green')
-    }
-  }
-  
-  if ("Recruits" %in% ptype) {
-    y<-tapply(a$Recruits,list(a$Year),sum)
-    barplot(y,space=1,ylab=plotLabels['Recruits'],xlab='',main=paste('Recruitment',sep=', '),ylim=c(0,max(y)))
-    if (splitLine) abline(v=stq_year,lty=2, col='red')
-  }  
- 
-  if ("Fbar" %in% ptype) {
-    plot(a$Year,a$Fbar,type='b',lwd=3,xlab='',ylab=plotLabels['Fbar'],main="Fishing mortality (F)",ylim=c(0,max(a$Fbar)))
-    if (splitLine) abline(v=SMS.control@last.year.model,lty=2, col='red')
-    if (incl.reference.points) {
-      if (refPoints[species,'Flim']>0) abline(h=refPoints[species,'Flim'],lty=2,lwd=2,col='red')
-      if (refPoints[species,'Fpa']>0) abline(h=refPoints[species,'Fpa'],lty=3,lwd=2,col='green')
-    }
-  } 
-
-    if ("Yield" %in% ptype) {
-    y<-tapply(a$Yield,list(a$Year),sum)
-    barplot(y,space=1,ylab=plotLabels['Yield'],xlab='',main='Catch',ylim=c(0,max(y)))
-    if (splitLine) abline(v=stq_year,lty=2, col='red')
-  }  
-  
-  if ("Dead" %in% ptype) {
-    Yield<-tapply(a$Yield,list(a$Year),sum)
-    deadM1<-tapply(a$DeadM1,list(a$Year),sum)
-    deadM2<-tapply(a$DeadM2,list(a$Year),sum)
-    barplot(rbind(Yield,deadM1,deadM2),space=1,main='Biomass removed\ndue to F, M1 and M2',ylab=plotLabels['DeadM'],
-            col=c('red','green','plum'))
-
-    if (splitLine) abline(v=stq_year,lty=2, col='red')
-  }  
-  
-  if ("M2" %in% ptype) if (any(b$M2>0)) {
-    M2<-tapply(b$M2,list(b$Year,b$Age),sum)
-     y<-as.numeric(dimnames(M2)[[1]])
-      plot(y,M2[,1],main=paste("M2 at age"),xlab="",ylab=plotLabels['M2'],
-           type='l',lwd=1.5,ylim=c(0,max(M2,na.rm=T)))
-      for (a in (2:(dim(M2)[2]))) if(max(M2[,a],na.rm=T)>0.001) lines(y,M2[,a],lty=a,col=a,lwd=2)
-      if (splitLine) abline(v=SMS.control@last.year.model,lty=2, col='red')
-    }
-}
-
-
-
-plot_who_eats<-function(x,pred,prey,predPrey='by prey',years=c(0,5000),exclHumans=TRUE){
-  
-  x<-bind_rows(histEaten,x)
-  
-  x<-filter(x,Year>=years[1] & Year<=years[2])
-  if (exclHumans)  x<-filter(x,Predator !='Humans')
-  
-    if (prey != 'all preys') {
-    tit<-paste(prey, "eaten by"); 
-    x<-filter(x,Prey==prey) 
-  } else tit<-'All preys eaten by'
-  
-  if (pred !='all predators') {
-     x<-filter(x,Predator==pred); 
-     tit<-paste(tit,pred)
-   } else tit<-paste(tit,'all predators')
-  
-  scale_fill_pp <- function(...){
-    ggplot2:::manual_scale(
-      'fill', 
-      values = setNames(my.colors, predPreyFormat), 
-      ...
-    )
-  }
-  
-  if (predPrey=='by prey') {
-    x <-aggregate(eatenW~Year+Prey,data=x,sum)
-    p<-ggplot(x, aes(x = Year, y = eatenW, fill = Prey))  
-
-  } else   if (predPrey=='by predator') {
-    x <-aggregate(eatenW~Year+Predator,data=x,sum)
-    p<-ggplot(x, aes(x = Year, y = eatenW, fill = Predator)) 
-  }
-  p +  geom_bar(stat = "identity") + 
-       scale_fill_pp() +
-       labs(x="", y = paste("Biomass eaten",plotLabels['DeadM'])) +
-       ggtitle(tit) +
-       theme_minimal() +
-       theme(plot.title = element_text(size = 18, face = "bold")) 
- }  
 
 
 if (test) { # detailed predictions
@@ -627,7 +467,7 @@ for (i in (1:n.fleet)) {
 ui <- navbarPage(title = "SMS",
         tabPanel(title='ReadMe',
                  radioButtons(inputId = 'language',label='Select language',choices=c('Danish','English')),
-                  conditionalPanel("input.language=='English'",includeMarkdown(file.path(help_dir, "SMS-intro.md"))),
+                 conditionalPanel("input.language=='English'",includeMarkdown(file.path(help_dir, "SMS-intro.md"))),
                  conditionalPanel("input.language=='Danish'",includeMarkdown(file.path(help_dir, "SMS-intro_DK.md")))
                  
         ),
@@ -635,14 +475,18 @@ ui <- navbarPage(title = "SMS",
                tabsetPanel(id='simple_predict',        
                    tabPanel(title = "Predictions",
                     column(3,
-                          checkboxInput("effcontrolAll", "Same factor for all fleets?", value = TRUE),
+                          checkboxInput("effcontrolAll", "Same factor for all fleets?", value = TRUE) %>%
+                            helper(colour = "green", type = "markdown",content = "SameFactor"),
                           conditionalPanel("input.effcontrolAll==1", sliderInput("F.all", "F factor",
                                                        min = 0.5, max = 2.0, value = 1, step = 0.05)),
                           conditionalPanel("input.effcontrolAll==0",sliders),
+                        
+                          br(),
+                          downloadButton(outputId = "radarPlots1", label = "Download the plot")
                     ),     
                     column(4,
                          plotOutput(outputId = "F_plot1") %>%
-                           helper(colour = "green", type = "markdown",content = "Option"),
+                           helper(colour = "green", type = "markdown",content = "radar",size = "l"),
                          plotOutput(outputId = "Yield_plot1")
                     ),
                     column(4,
@@ -653,10 +497,13 @@ ui <- navbarPage(title = "SMS",
                    tabPanel(title='Change Baseline',
                     column(3,
                       br(),
-                      radioButtons(inputId = 'bas_F_s',label='Baseline for F',choiceNames=bsF$Names,choiceValues = bsF$Values),
+                      radioButtons(inputId = 'bas_F_s',label='Baseline for F',choiceNames=bsF$Names,choiceValues = bsF$Values) %>%
+                        helper(colour = "green", type = "markdown",content = "BaseLineF"),
                       radioButtons(inputId = 'bas_Rec_s',label='Baseline for recruitment',choiceNames=bsRec$Names,choiceValues = bsRec$Values),
                       radioButtons(inputId = 'bas_Yield_s',label='Baseline for yield',choiceNames=bsYield$Names,choiceValues = bsYield$Values),
-                      radioButtons(inputId = 'bas_SSB_s',label='Baseline for SSB',choiceNames=bsSSB$Names,choiceValues = bsSSB$Values)),
+                      radioButtons(inputId = 'bas_SSB_s',label='Baseline for SSB',choiceNames=bsSSB$Names,choiceValues = bsSSB$Values),
+                      br(),
+                      downloadButton(outputId = "radarPlots2", label = "Download the plot")),
                     column(4,
                            plotOutput(outputId = "F_plot3"),
                            plotOutput(outputId = "Yield_plot3")
@@ -725,11 +572,14 @@ ui <- navbarPage(title = "SMS",
                     
                   ) ,
                   tabPanel(title='Results',
+                           
                            column(4,   
                              br(),br(),
  
                            actionButton(inputId="doRunDetailed",label="Push to update prediction",icon("refresh")),
-                            ),
+                           br(),br(),br(),
+                           downloadButton(outputId = "radarPlots3", label = "Download the plot")),
+                
                            column(4,
                                   plotOutput(outputId = "F_plot2"),
                                   plotOutput(outputId = "Yield_plot2")
@@ -745,7 +595,9 @@ ui <- navbarPage(title = "SMS",
                           radioButtons(inputId = 'bas_F_d',label='Baseline for F',choiceNames=bsF$Names,choiceValues = bsF$Values),
                           radioButtons(inputId = 'bas_Rec_d',label='Baseline for recruitment',choiceNames=bsRec$Names,choiceValues = bsRec$Values),
                           radioButtons(inputId = 'bas_Yield_d',label='Baseline for yield',choiceNames=bsYield$Names,choiceValues = bsYield$Values),
-                          radioButtons(inputId = 'bas_SSB_d',label='Baseline for SSB',choiceNames=bsSSB$Names,choiceValues = bsSSB$Values)
+                          radioButtons(inputId = 'bas_SSB_d',label='Baseline for SSB',choiceNames=bsSSB$Names,choiceValues = bsSSB$Values),
+                          br(),
+                          downloadButton(outputId = "radarPlots4", label = "Download the plot")
                       ),
                       column(4,
                              plotOutput(outputId = "F_plot4"),
@@ -769,7 +621,7 @@ ui <- navbarPage(title = "SMS",
                          sliderInput(inputId="firstY",label="First year output",value=stq_year+1,min=fy_year_hist,max=termYear,step=1),
                          sliderInput(inputId="lastY",label="Last year output",value=termYear,min=fy_year_hist+5,max=termYear,step=1),
                          radioButtons(inputId = 'inclRef',label='Include reference points',choices=c('yes','no')),
-                         br(),
+                         br(), downloadButton(outputId = "downSumPlots", label = "Download the plot")
                        #  wellPanel( 
                       #     sliderInput(inputId = 'pixx',label='Width plot', value=1200,min=100,max=2000,step=100),
                       #     sliderInput(inputId = 'pixy',label='Height plot', value=750,min=100,max=2000,step=100)
@@ -808,6 +660,7 @@ ui <- navbarPage(title = "SMS",
    # in this example, we do not use the withMathJax parameter to render formulae
    observe_helpers(withMathJax = FALSE)
    
+
    output$F_plot1     <- renderPlot({ plot_one(res$rv,type='Fbar')     })
    output$Yield_plot1 <- renderPlot({ plot_one(res$rv,type='Yield')    })
    output$SSB_plot1   <- renderPlot({ plot_one(res$rv,type='SSB')      })
@@ -831,22 +684,69 @@ ui <- navbarPage(title = "SMS",
    output$stoch_explain <- renderText({paste('Constant Fishing mortalities will not work for stochastic recruitment. You have to defined Harvest Control Rules in the "F-model" option above,',
                                              'starting with the default values')})
    
-   output$summary_plot <-renderPlot({   if (res$rv$out$options$readResDetails) plot_summary(res$rv,ptype=c('Yield','Fbar','SSB','Recruits','Dead','M2'),
-                                    years=c(input$firstY,input$lastY),species=input$sumSpecies,splitLine=FALSE,incl.reference.points= (input$inclRef=='yes'))},
-                                    width = 1350, height=750,units = "px", pointsize = 25, bg = "white")
+   #output$summary_plot <-renderPlot({   if (res$rv$out$options$readResDetails) plot_summary(res$rv,ptype=c('Yield','Fbar','SSB','Recruits','Dead','M2'),
+  #                                  years=c(input$firstY,input$lastY),species=input$sumSpecies,splitLine=FALSE,incl.reference.points= (input$inclRef=='yes'))},
+  #                                  width = 1350, height=750,units = "px", pointsize = 25, bg = "white")
+   output$summary_plot <-renderPlot({   if (res$rv$out$options$readResDetails) {sumPlot<<- plot_summary_new(res=res$rv,ptype=c('Yield','Fbar','SSB','Recruits','Dead','M2'),
+                                                                                            years=c(input$firstY,input$lastY),species=input$sumSpecies,splitLine=FALSE,
+                                                                                            incl.reference.points= (input$inclRef=='yes'));sumPlot}},
+                                                             width = 1350, height=700,units = "px", pointsize = 25, bg = "white")
    
    output$whoEats_plot <- renderPlot({whoPlot<<-plot_who_eats(res$rv$out$detail_eaten,pred=input$whoPred,prey=input$whoPrey,predPrey=input$"whoPredPrey",
                                                      years=c(input$firstYwho,input$lastYwho),exclHumans=(input$whoHuman=='Excl. catch'));whoPlot})
    
+   output$downSumPlots <- downloadHandler(
+     filename =  function() {paste0("Summary_",input$sumSpecies,'.png')},
+     content = function(file) {
+         ggsave(file,plot=sumPlot,width = 25,height = 15,units='cm')
+     }
+   )
+   
    output$downWhoEats <- downloadHandler(
      filename =  function() {paste0("Who_",input$whoPred,'_',input$whoPrey,'.png')},
      content = function(file) {
-      # png(file);  print(whoPlot);dev.off()
-       ggsave(file,plot=whoPlot,width = 17,height = 10,units='cm')
+       ggsave(file,plot=whoPlot,width = 26,height = 15,units='cm')
      }
     )
    
- 
+   ######### there must be a smarter way to do the same thing 
+   output$radarPlots1 <- downloadHandler(
+     filename = "radar_myPlot.png",
+     content = function(file) {
+       png(filename=file,width = 700,height = 700,units='px')
+       print(plot_radar_all(res$rv)) 
+       dev.off()
+     }
+   )
+   
+   output$radarPlots2 <- downloadHandler(
+     filename = "radar_myPlot.png",
+     content = function(file) {
+       png(filename=file,width = 700,height = 700,units='px')
+       print(plot_radar_all(res$rv)) 
+       dev.off()
+     }
+   )
+   
+   output$radarPlots3 <- downloadHandler(
+     filename = "radar_myPlot.png",
+     content = function(file) {
+       png(filename=file,width = 700,height = 700,units='px')
+       print(plot_radar_all(res$rv)) 
+       dev.off()
+     }
+   )
+   
+   output$radarPlots4 <- downloadHandler(
+     filename = "radar_myPlot.png",
+     content = function(file) {
+       png(filename=file,width = 700,height = 700,units='px')
+       print(plot_radar_all(res$rv)) 
+       dev.off()
+     }
+   )
+   ###########
+   
    output$tableOut1 <- renderDT(
      DT::datatable(makeResTable(res$rv),rownames=FALSE, filter ="none",options=list(pageLength = n.VPA))  %>% 
        formatPercentage(columns=c(4,7,10),digits=1))  
@@ -903,7 +803,7 @@ ui <- navbarPage(title = "SMS",
   
 
   otherDf <- eventReactive(input$updateOptionTableOther || input$Option=='Other predators',{
-    cat(input$updateOptionTableOther,input$Option,input$OtherFactor,input$OtherFirst,input$OtherSecond,'\n')
+    #cat(input$updateOptionTableOther,input$Option,input$OtherFactor,input$OtherFirst,input$OtherSecond,'\n')
      if (input$Option=='Other predators') {
        b<-other_predators
        b[b$Predator== input$OtherSp,'Total.change']<- input$OtherFactor**(input$OtherSecond-input$OtherFirst+1)
@@ -920,9 +820,7 @@ ui <- navbarPage(title = "SMS",
    })
    
    
-  df2 <- eventReactive( input$tabOpt=='Options', {
-       return(Foption_tab)
-   })
+  df2 <- eventReactive( input$tabOpt=='Options', {return(Foption_tab)})
 
    # make a new prediction with detailed output
    doUpdateDetails<-function(){
@@ -963,9 +861,7 @@ ui <- navbarPage(title = "SMS",
    }
      
    
-  observeEvent(input$HCR.sp,{
-    updateFoption_single(input$HCR.sp)
-  })
+  observeEvent(input$HCR.sp,{updateFoption_single(input$HCR.sp)})
   
 
   output$HCRtable1<- renderTable(df(),digits=3)

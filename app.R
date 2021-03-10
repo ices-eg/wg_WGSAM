@@ -177,9 +177,8 @@ Fvalues<-stqF*F_mult
 oldwd<-getwd()
 
 # command file for executing the OP program to make a prediction
-if (OS== "windows") cat("cd ",file.path(oldwd,data_dir),"\n","op.exe -maxfn 0 -nohess   >ud.dat\n",  file=file.path(oldwd,data_dir,"run_op.bat"))
-if (OS=="unix") {}
-
+cmd <- paste0('cd "', file.path(oldwd,data_dir), '" &&  "./op" -maxfn 0 -nohess > ud.dat')
+## cat("cd ",file.path(oldwd,data_dir),"\n '.\op' -maxfn 0 -nohess > ud.dat\n",  file=file.path(oldwd,data_dir,"run_op.bat"))
 
 do_baseLine<-function(){
   baseLine=cbind(SSB=base_SSB,Fbar=base_F,Yield=base_Yield,Recruits=base_Rec)
@@ -239,7 +238,11 @@ do_OP<-function(readResSimple=TRUE,readResDetails=FALSE,readResStom=FALSE,writeO
    }  
    
    # run the script
-   system2(command=file.path(oldwd,data_dir,"run_OP.bat"), wait = TRUE,stdout = file.path(oldwd,data_dir,"Run_OP_out.dat")) 
+   ##system2(command=file.path(oldwd,data_dir,"run_OP.bat"), wait = TRUE,stdout = file.path(oldwd,data_dir,"Run_OP_out.dat"))
+   if(OS == "windows") shell(cmd)
+   if(OS == "unix") system(cmd)
+     
+   
    doRunModel<<-FALSE
   
   #read the results

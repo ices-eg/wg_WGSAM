@@ -307,12 +307,12 @@ do_OP<-function(readResSimple=TRUE,readResDetails=FALSE,readResStom=FALSE,writeO
     s<-aggregate(s$eatenW,list(s$new,s$Year,s$new_no,s$Prey,s$Prey.no),sum)
     names(s)<-c("Predator","Year","Predator.no","Prey","Prey.no","eatenW")
     
-    human<-data.frame(Predator='Humans',Year=d1$Year,Predator.no=0,Prey=d1$Species,Prey.no=d1$Species.n,eatenW=d1$Yield)
+    human<-data.frame(Predator='Humans',Year=d1$Year,Predator.no=0,Prey=d1$Species,Prey.no=d1$Species.n,eatenW=d1$Yield, stringsAsFactors = FALSE)
     s<-bind_rows(s,human)
  
     # make unique format/factors  for predator and preys
-    prey<-unique(data.frame(no=s$Prey.no,Species=s$Prey))
-    pred<-unique(data.frame(no=s$Predator.no,Species=s$Predator))
+    prey<-unique(data.frame(no=s$Prey.no,Species=s$Prey, stringsAsFactors = FALSE))
+    pred<-unique(data.frame(no=s$Predator.no,Species=s$Predator, stringsAsFactors = FALSE))
 
 
     prey<-prey[order(prey$no,decreasing = FALSE),]

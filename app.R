@@ -67,7 +67,7 @@ my.colors<-c('grey','red','green','plum','blue','cyan','yellow','coral','skyblue
 
 
   
-predPreyFormat<-c('Humans',predPreyFormat)
+predPreyFormat<-c('Humans',levels(predPreyFormat))
 
 # options for predictions, reset from master version
 source("flop.control.r")
@@ -648,9 +648,7 @@ ui <- navbarPage(title = "SMS",
                       column(9,br(),plotOutput(outputId = "whoEats_plot")),
                       downloadButton(outputId = "downWhoEats", label = "Download the plot")
                 )
-                 
             ))
-
 )
 
  server <- function(input, output, session) {

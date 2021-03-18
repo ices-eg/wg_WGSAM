@@ -6,7 +6,6 @@ library(readr)
 suppressMessages(library(dplyr))
 library(ggplot2)
 suppressMessages(library(wordcloud))
-#library(radarchart)
 library(RColorBrewer)
 library("cowplot")
 library("shinyWidgets")
@@ -55,19 +54,16 @@ spOtherNames<-c('Other.food',spNames)
 other.spNames<-spNames[1:n.pred.other]
   
 # group predator names for eaten biomass
-pred_format<-read.csv(file.path(data_dir,'pred_format.csv'),header=TRUE)
+pred_format<-read.csv(file.path(data_dir,'pred_format.csv'),header=TRUE, stringsAsFactors = FALSE)
 pp<-unique(subset(pred_format,select=c(new,new_no,group)))
 pp<-pp[order(pp$new_no),]
 predPreyFormat<-pp$new
 
 recruitMode<-c('Determenistic','Stochastic')[1]
 
-my.colors<-c('grey','red','green','plum','blue','cyan','yellow','coral','skyblue','purple','magenta',
+my.colors<-c('grey15','grey85','red','green','plum','blue','cyan','yellow','coral','skyblue','purple','magenta',
                          'limegreen','pink','darkorange3','aquamarine','beige','darkslategray','brown1','blueviolet','chocolate1' )
 
-
-  
-predPreyFormat<-c('Humans',levels(predPreyFormat))
 
 # options for predictions, reset from master version
 source("flop.control.r")
@@ -87,12 +83,13 @@ status_quo<-read_csv(file=file.path(data_dir,'status_quo.csv'),col_types = cols(
 
 # read hindcast SMS values  
 histAnnoM<-read_csv(file=file.path(data_dir,'hist_anno_M.csv'),col_types = cols()) %>%mutate(Species=spNames[Species.n])
+
 histCondensed<-read_csv(file=file.path(data_dir,'hist_condensed.csv'),col_types = cols())%>%mutate(Species=spNames[Species.n]) %>%
   mutate(Recruits=Recruits*plotUnits['Recruits'],SSB=SSB*plotUnits['SSB'],TSB=TSB*plotUnits['TSB'],Yield=Yield*plotUnits['Yield'],
          Fbar=Fbar*plotUnits['Fbar'],DeadM1=DeadM1*plotUnits['DeadM'],DeadM2=DeadM2*plotUnits['DeadM'])
 
 histEaten <- read_csv(file=file.path(data_dir,'who_eats_whom_historical.csv'),col_types = cols()) %>%
-              mutate(Predator=factor(Predator,levels=predPreyFormat),Prey=factor(Prey,levels=predPreyFormat),eatenW=eatenW*plotUnits['DeadM'])
+              mutate(Predator=parse_factor(Predator,levels=predPreyFormat),Prey=parse_factor(Prey,levels=predPreyFormat),eatenW=eatenW*plotUnits['DeadM'])
 
 
 refPoints<-matrix(scan(file.path(data_dir,"op_reference_points.in"),quiet = TRUE, comment.char = "#"),ncol=4,byrow=TRUE)
@@ -125,7 +122,7 @@ base_Rec<-stqRec<-status_quo$Rec
 #cat("1\n",base_F,"\n",file=file.path(data_dir,"op_multargetf.in")) # write F values
 
 # read various setting for options files
-hcr_ini<-read.csv(file.path(data_dir,'HCR_ini.csv'),header=TRUE)
+hcr_ini<-read.csv(file.path(data_dir,'HCR_ini.csv'),header=TRUE,stringsAsFactors = FALSE)
 
 ### change option values (could have been done in the master files!)
 OP@rec.noise['lower',]<-hcr_ini$noise.low
@@ -325,7 +322,7 @@ do_OP<-function(readResSimple=TRUE,readResDetails=FALSE,readResStom=FALSE,writeO
     pred<-pred$Species
     
      
-    s<- mutate(as_tibble(s),Predator=factor(Predator,levels=predPreyFormat),Prey=factor(Prey,levels=predPreyFormat))
+    s<- mutate(as_tibble(s),Predator=parse_factor(Predator,levels=predPreyFormat),Prey=parse_factor(Prey,levels=predPreyFormat))
     
     predPrey<-lapply(pred,function(x) {a<-filter(s,Predator==x) %>% distinct(Prey);as.character(unlist(a))})
     names(predPrey)<-pred
@@ -638,6 +635,7 @@ ui <- navbarPage(title = "SMS",
                             selectInput(inputId="whoPrey", "Select a prey:",'all preys')
                           ),
                           radioButtons(inputId="whoHuman",label='Include humans as "predator"',choices = c('Excl. catch','Incl. catch')),
+                         # radioButtons(inputId="whoResidual",label='Include "Residual mortality" (M1) as "predator"',choices = c('Excl. M1','Incl. ')),
                          # radioButtons(inputId="whoOtherFood",label='Include "other foods"',choices = c('Excl. other','Incl. other')),
                           radioButtons(inputId="whoPredPrey",label='select value for stacking',choices = c('by prey','by predator')),
                           wellPanel(

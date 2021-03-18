@@ -11,8 +11,6 @@ plot_summary_new<-function(res,ptype=c('Yield','Fbar','SSB','Recruits','Dead','M
   b2<-subset(histAnnoM,Year>=years[1] & Year<=years[2] & Species %in% species)
   b<-bind_rows(b,b2) %>% arrange(Year,Age)
   
-  #A<<-a;  B<<-b
-  
    if ("SSB" %in% ptype) {
     pSSB<-ggplot(a,aes(x=Year,y=SSB))+
     geom_line(lwd=1.5)+
@@ -65,10 +63,12 @@ plot_summary_new<-function(res,ptype=c('Yield','Fbar','SSB','Recruits','Dead','M
   if ("Dead" %in% ptype) {
     y<-select(a,Year,Yield,DeadM1,DeadM2)
     y<-as.data.frame(y)
+    if (any(y$DeadM2>0)) titl<-'Biomass removed\ndue to F, M1 and M2' else titl<-'Biomass removed\ndue to F and M1'
     y<-reshape(y,direction='long',varying = list(2:4))
+    
     pD<-ggplot(y, aes(x = Year, y = Yield, fill = as.factor(time)) )+
        geom_bar(stat = "identity")+ 
-       labs(x='',y=plotLabels['DeadM'],title='Biomass removed\ndue to F, M1 and M2')+
+       labs(x='',y=plotLabels['DeadM'],title=titl)+
        theme(plot.title = element_text(size = 16, face = "bold"),legend.position="none")
     if (splitLine) pD<- pD+geom_vline(xintercept=stq_year,col='blue',lty=3,lwd=1)
   }
@@ -87,8 +87,7 @@ plot_summary_new<-function(res,ptype=c('Yield','Fbar','SSB','Recruits','Dead','M
     
     if (splitLine) pM<- pM+geom_vline(xintercept=stq_year,col='blue',lty=3,lwd=1)
   }
-  out<-plot_grid(pSSB, pF,pD,pRec,pM,pY, 
-            ncol = 3, nrow = 2)
+  if (any(b$M2>0)) out<-plot_grid(pSSB,pD,pF,pRec,pY,pM,ncol=3, nrow=2) else out<-plot_grid(pSSB,pD,pF,pRec,pY,ncol=3, nrow=2)
   return(out)
 }
 

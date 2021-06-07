@@ -1,0 +1,259 @@
+# minimum CV of CPUE observations
+0.1
+# number of fleets by species
+# COD
+5
+# WHG
+5
+# HAD
+5
+# POK
+7
+# HER
+3
+# SAN
+6
+# NOP
+4
+# SPR
+3
+# Ple 
+6
+# SOL
+3
+########################################################################
+# 1-2, First year last year, 
+# 3-4. Alpha and beta - the start and end of the fishing period for the fleet given as fractions of the season (or year if annual data are used)
+# 5-6   first and last age, 
+# 7.   last age with age dependent catchability, 
+# 8.   last age for stock size dependent catchability (power model), -1 indicated no ages uses power model 
+# 9.   season for survey,
+# 10.  number of variance groups for estimated cathability
+# by species and fleet
+########################################################################
+# COD   ##########################
+# Fleet01: ENGGFS (granton) 
+1977 1991 0 1 1 6   1 -1 3 3
+# Fleet02: IBTS Q3 
+#1991 2010 0 1 0 5  1 -1 3 3
+# Fleet03: IBTS_Q1_IV 
+1983 2011 0 0 1 5   3 -1 1 3
+# Fleet04: DGFS0 Q3
+1981 1996 0 1 0 0   0 -1 3 1
+# Fleet05: ENGFS RCT3 Q3
+1975 1991 0 1 0 0   0 -1 3 1
+# Fleet06: ENGFS RCT3 Q3
+1992 2000 0 1 0 0   0 -1 3 1
+# WHG   ##########################
+# Fleet: ENGGFS_IV
+1977 1991 0 1 0 6   1 -1 3 2
+# Fleet: IBTS_Q1_IV
+1983 2011 0 0 1 5   3 -1 1 2 
+# Fleet: SCOGFS_IV
+1982 1994 0 1 0 6   2 -1 3 2 
+# Fleet: IBTS SCO Q2
+1991 1997 0 1 1 6   1 -1 2 2
+# Fleet: IBTS_Q3_IV
+1991 2010 0 1 0 5   2 -1 3 2 
+# HAD   ##########################
+# Fleet: ENGGFS (granton)
+1977 1991 0 1 0 5   1 -1 3 2
+# Fleet: ENGGFS (GOV)
+1992 2010 0 1 0 6   1 -1 3 2
+# Fleet: IBTS_Q1
+1983 2011 0 0 1 5   2 -1 1 1 
+#SCOGFS_IV
+1982 1997 0 1 0 6   2 -1 3 3 
+#SCOGFS_IV
+1998 2010 0 1 0 6   2 -1 3 3 
+# POK   ##########################
+# Fleet: ENGGFS_IV
+1977 2000 0 1 2 3   3 -1 3 2
+# Fleet: GEROTB
+1995 2010 0 1 6 9   6 -1 2 2    #quarter?
+# Fleet: NORTR 
+1993 2010 0 1 6 9   6 -1 2 2    #quarter?
+# Fleet: FRATRB_IV 
+1990 2010 0 1 6 9   6 -1 2 2     #quarter?
+# Fleet: NORACU
+1995 2010 0 1 3 6   4 -1 3 2 
+# Fleet IBTS Q3
+1991 2010 0 1 3 5   4  -1 3 2
+# Fleet NORASS
+2006 2010 0 1 3 4   4  -1 3 2
+# HER   ##########################
+# Fleet: ACO89
+1989 2010 0 1 2 7   5 -1 3 2
+# Fleet: IBTSA
+1983 2011 0 0 2 5   3 -1 1 1
+# Fleet: MIK
+1992 2011 0 0 0 0   0 -1 3 1
+# SAN   ##########################
+# Fleet: N_1
+1976 1998 0 1 1 1 1 -1 2 1
+# Fleet: N_1
+1999 2009 0 1 1 1 1 -1 2 1
+# Fleet: N_2
+1976 2004 0 1 0 0 0 -1 3 1
+# Fleet: S_1
+1982 1998 0 1 1 4 3 -1 2 2 
+# Fleet: S_1
+1999 2009 0 1 1 4 3 -1 2 2 
+#  Dregde surve, area 1
+2004    2010    0.75  1.0  0   1   1  -1   4   2 
+### SNO
+# Dregde survey, area 4
+#1999    2010    0.75  1.0  0   2   1  -1   4   2 
+# NOP   ##########################
+# Fleet: EGFS
+1982 1991 0 1 0 3   3 -1 3 3
+#Fleet:EGFS 
+1992 2010 0 1 0 2   2 -1 3 3
+# Fleet: IBTS
+1974 2011 0 0 1 3   3 -1 1 2 
+# Fleet: SGFS
+1998 2010 0 1 1 3   3 -1 3 2 
+# SPR   ##########################
+#
+### IBTS Q1
+1977    2011    0  0  1   3   2  -1   1   1 
+#  Acoustic Q3
+2005    2010    0  1  1   3   2  -1   3   1 
+#
+### IBTS Q3
+1991    2010    0  1  1   3   2  -1   3   1
+### recruitment output, single species
+# 1963    1983    0  0  0   0   0  -1   3   1 
+########################################################################
+# PLE   ##########################
+# Fleet BTS
+1985 2010 0 1 1 9 4 -1 2 4
+# Fleet BTS-Tridens
+1996 2010 0 1 1 9 4 -1 2 4
+# Fleet SNS 
+1970 1981 0 1 1 3 3 -1 3 2 
+# Fleet SNS 
+1982 1999 0 1 1 3 3 -1 3 2 
+# Fleet SNS 
+2000 2010 0 1 1 3 3 -1 3 2 
+# Fleet DFS 
+1981 2010 0 1 0 1 1 -1 3 2 
+# SOL ###########################
+# Fleet NL Beam Trawl
+2001 2010 0 1 2 9 4 -1 2 4
+# BTS-ISIS           
+ 1985 2010 0 1 1 9 4 -1 2 4  
+# SNS 
+1970 2010 0 1 1 4 3 -1 3 3
+########################################################################
+# First age group in groups for estimates of variance of catcahability at age
+# COD   ##########################
+# Fleet: ENGGFS (granton) 
+1  2 3
+# Fleet: IBTS Q3  
+#0  1 2
+# Fleet: IBTS_Q1_IV 
+1 2 3
+# Fleet: DGFS0 Q3
+0
+# Fleet: ENGFS RCT3 Q3
+0
+# Fleet: ENGFS RCT3 Q3
+0
+# WHG   ##########################
+# Fleet: ENGGFS_IV
+0 1
+# Fleet: IBTS_Q1_IV
+1 2  
+# Fleet: SCOGFS_IV
+0 1  
+# Fleet: IBTS SCO Q2
+1 2
+# Fleet: IBTS_Q3_IV
+0 1  
+# HAD   ##########################
+# Fleet: ENGGFS (granton)
+0 1 
+# Fleet: ENGGFS (GOV)
+0 1 
+# Fleet: IBTS_Q1
+1 
+# SCOGFS_IV 1982 1997 
+0 1 3 
+# SCOGFS_IV 1998 2010 
+0 1 3
+# POK   ##########################
+# Fleet: ENGGFS_IV
+2 3
+# Fleet: GER OTB
+6 7
+#Fleet NORTR
+6 7
+# Fleet: FRATRB_IV
+6 7
+# Fleet: NORACU
+3 4  
+# Fleet IBTS Q3
+3 4
+#Fleet NORASS
+3 4
+# HER   ##########################
+# Fleet: ACO89
+2 4
+# Fleet: IBTSA
+2 
+# Fleet: MIK
+0
+# SAN   ##########################
+# Fleet: N_1
+1 
+# Fleet: N_1
+1 
+# Fleet: N_2
+0
+# Fleet: S_1
+1 2 
+# Fleet: S_1
+1 3 
+# Dregde surve 2004-2009 area 1
+0 1 
+# Dregde surve 1999-2009 area 4
+#0 1 
+# NOP   ##########################
+# Fleet: EGFS
+0 1 2
+# Fleet: EGFS
+0 1 2
+# Fleet: IBTS
+1 2
+# Fleet: SGFS
+1 2
+# SPR   ##########################
+#### IBTS Q1
+ 1  
+#  Acoustic Q3
+1 
+#### IBTS Q3
+ 1
+# recruitment output
+#0  
+# PLE ############################
+# Fleet BTS
+1 2 4 6
+# Fleet BTS-Tridens
+1 2  4 6
+# Fleet SNS
+1 2
+# Fleet SNS
+1 2
+# Fleet SNS
+1 2
+# Fleet DFS 
+0 1
+# SOL ###########################
+# Fleet NL Beam Trawl
+2 3 4 6
+# Fleet: BTS   
+1 2 4 6
+# Fleet SNS
+1 2 3

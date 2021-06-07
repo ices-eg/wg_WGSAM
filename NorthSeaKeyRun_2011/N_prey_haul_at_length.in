@@ -1,0 +1,5931 @@
+##############################################################
+##############################################################
+# year: 1981 
+##############################################################
+#  1981  quarter: 1 
+##############################################################
+# predator: FUL  no: 1 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 70 
+    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10
+##############################################################
+# predator: GLT  no: 2 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10
+##############################################################
+# predator: HEG  no: 3 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 70 
+    10    10
+# prey: HAD  no: 17  first size: 100 
+    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10
+##############################################################
+# predator: KTW  no: 4 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 70 
+    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10
+# prey: HAD  no: 17  first size: 100 
+    10
+# prey: HER  no: 19  first size: 100 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10
+##############################################################
+# predator: GBG  no: 5 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 70 
+    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10
+# prey: HAD  no: 17  first size: 70 
+    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10
+##############################################################
+# predator: GNT  no: 6 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10    10
+##############################################################
+# predator: PUF  no: 7 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: HER  no: 19  first size: 70 
+    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10
+##############################################################
+# predator: RAZ  no: 8 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10
+# prey: HER  no: 19  first size: 70 
+    10    10
+# prey: SAN  no: 20  first size: 70 
+    10
+# prey: NOP  no: 21  first size: 70 
+    10    10
+##############################################################
+# predator: COD  no: 15 
+# predator size: 150  class: 10 
+# prey: OTH  no: 0  first size: 9999 
+    42
+# prey: SAN  no: 20  first size: 70 
+     1
+# predator size: 200  class: 11 
+# prey: OTH  no: 0  first size: 9999 
+    67
+# prey: HAD  no: 17  first size: 70 
+     1
+# prey: SAN  no: 20  first size: 70 
+     1     1
+# prey: NOP  no: 21  first size: 70 
+     1
+# predator size: 250  class: 12 
+# prey: OTH  no: 0  first size: 9999 
+    72
+# prey: WHG  no: 16  first size: 70 
+     1
+# prey: HAD  no: 17  first size: 70 
+     3
+# prey: HER  no: 19  first size: 100 
+     1
+# prey: SAN  no: 20  first size: 70 
+     3
+# prey: NOP  no: 21  first size: 50 
+     1     4
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    89
+# prey: COD  no: 15  first size: 100 
+     1
+# prey: WHG  no: 16  first size: 70 
+     1     5     3
+# prey: HAD  no: 17  first size: 70 
+     3     5
+# prey: HER  no: 19  first size: 100 
+     4
+# prey: SAN  no: 20  first size: 70 
+     9     9     3     1
+# prey: NOP  no: 21  first size: 70 
+     5     4
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    60
+# prey: COD  no: 15  first size: 100 
+     1     1
+# prey: WHG  no: 16  first size: 100 
+     4     1     3
+# prey: HAD  no: 17  first size: 100 
+     6     2
+# prey: HER  no: 19  first size: 70 
+     1     5     1     1     1
+# prey: SAN  no: 20  first size: 70 
+     7     7     3     1
+# prey: NOP  no: 21  first size: 70 
+     4     4     1
+# predator size: 500  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    83
+# prey: COD  no: 15  first size: 100 
+     2     2     2     2     1
+# prey: WHG  no: 16  first size: 70 
+     2    11    11    11     3     3
+# prey: HAD  no: 17  first size: 100 
+     8     6     7     1
+# prey: HER  no: 19  first size: 100 
+     5    11     5     2
+# prey: SAN  no: 20  first size: 70 
+     6    13     7     4
+# prey: NOP  no: 21  first size: 70 
+     6    13     3
+# predator size: 700  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    83
+# prey: COD  no: 15  first size: 100 
+     1     6     6     8     7
+# prey: WHG  no: 16  first size: 70 
+     2    11    19    27    13     4
+# prey: HAD  no: 17  first size: 70 
+     1    11     9    19    10
+# prey: HER  no: 19  first size: 100 
+     5    10     4     4
+# prey: SAN  no: 20  first size: 70 
+     2     5     3
+# prey: NOP  no: 21  first size: 70 
+     7    11     6
+# predator size: 1000  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    31
+# prey: COD  no: 15  first size: 150 
+     1     2     1     3
+# prey: WHG  no: 16  first size: 100 
+     3     7    10     5     1
+# prey: HAD  no: 17  first size: 70 
+     1     3     3
+# prey: HER  no: 19  first size: 100 
+     2     4     1     1
+# prey: SAN  no: 20  first size: 100 
+     1
+# prey: NOP  no: 21  first size: 100 
+     1     1
+##############################################################
+# predator: WHG  no: 16 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+   152
+# prey: SAN  no: 20  first size: 70 
+     1
+# predator size: 150  class: 10 
+# prey: OTH  no: 0  first size: 9999 
+   182
+# prey: HAD  no: 17  first size: 70 
+     1
+# prey: SAN  no: 20  first size: 70 
+     1     1
+# prey: NOP  no: 21  first size: 50 
+     2     6
+# predator size: 200  class: 11 
+# prey: OTH  no: 0  first size: 9999 
+   171
+# prey: COD  no: 15  first size: 70 
+     1     1
+# prey: SAN  no: 20  first size: 70 
+    11     7     1
+# prey: NOP  no: 21  first size: 70 
+     6     2
+# predator size: 250  class: 12 
+# prey: OTH  no: 0  first size: 9999 
+   161
+# prey: WHG  no: 16  first size: 70 
+     1     1
+# prey: HAD  no: 17  first size: 70 
+     1     1
+# prey: HER  no: 19  first size: 100 
+     5
+# prey: SAN  no: 20  first size: 70 
+    10    10     2
+# prey: NOP  no: 21  first size: 50 
+     2    14    15     4
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+   122
+# prey: WHG  no: 16  first size: 70 
+     1     6     3
+# prey: HAD  no: 17  first size: 70 
+     1     7     3
+# prey: HER  no: 19  first size: 70 
+     2     9     1
+# prey: SAN  no: 20  first size: 70 
+     4     6     3     1
+# prey: NOP  no: 21  first size: 70 
+    14    27     8
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    25
+# prey: WHG  no: 16  first size: 100 
+     2     1
+# prey: HAD  no: 17  first size: 100 
+     2     1     1
+# prey: HER  no: 19  first size: 100 
+     1
+# prey: SAN  no: 20  first size: 100 
+     2     1     2
+# prey: NOP  no: 21  first size: 70 
+     7     9     5
+##############################################################
+# predator: HAD  no: 17 
+# predator size: 150  class: 10 
+# prey: OTH  no: 0  first size: 9999 
+    52
+# prey: SAN  no: 20  first size: 70 
+     1
+# predator size: 200  class: 11 
+# prey: OTH  no: 0  first size: 9999 
+    64
+# prey: SAN  no: 20  first size: 70 
+     1     1     1
+# predator size: 250  class: 12 
+# prey: OTH  no: 0  first size: 9999 
+    56
+# prey: SAN  no: 20  first size: 70 
+     2
+# prey: NOP  no: 21  first size: 50 
+     2     4
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    75
+# prey: SAN  no: 20  first size: 70 
+     5     3     1     1
+# prey: NOP  no: 21  first size: 70 
+     5
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    33
+# prey: SAN  no: 20  first size: 70 
+     1     1     1
+# prey: NOP  no: 21  first size: 70 
+     4     3
+# predator size: 500  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    18
+# prey: SAN  no: 20  first size: 150 
+     1
+# prey: NOP  no: 21  first size: 70 
+     2     1
+##############################################################
+# predator: POK  no: 18 
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+     5
+# prey: HAD  no: 17  first size: 100 
+     1     1
+# prey: SAN  no: 20  first size: 70 
+     2     2     2
+# prey: NOP  no: 21  first size: 70 
+     2     1     2
+# predator size: 500  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    41
+# prey: HAD  no: 17  first size: 100 
+     6     4
+# prey: NOP  no: 21  first size: 70 
+    19    20    10
+# predator size: 700  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    38
+# prey: WHG  no: 16  first size: 100 
+     1     1     1
+# prey: HAD  no: 17  first size: 100 
+     7     3     1
+# prey: HER  no: 19  first size: 70 
+     1
+# prey: SAN  no: 20  first size: 100 
+     1
+# prey: NOP  no: 21  first size: 50 
+     2    12    22    11
+# predator size: 1000  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 250 
+     1
+# prey: HAD  no: 17  first size: 100 
+     1
+# prey: SAN  no: 20  first size: 100 
+     1
+# prey: NOP  no: 21  first size: 100 
+     3     3     1
+##############################################################
+#  1981  quarter: 2 
+##############################################################
+# predator: FUL  no: 1 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 70 
+    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10
+# prey: HAD  no: 17  first size: 100 
+    10
+# prey: HER  no: 19  first size: 100 
+    10    10
+# prey: SAN  no: 20  first size: 50 
+    10    10    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10
+##############################################################
+# predator: GLT  no: 2 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10
+##############################################################
+# predator: HEG  no: 3 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 70 
+    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10
+# prey: HAD  no: 17  first size: 100 
+    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10
+##############################################################
+# predator: KTW  no: 4 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 50 
+    10    10    10    10
+##############################################################
+# predator: GBG  no: 5 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 70 
+    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10
+# prey: HAD  no: 17  first size: 100 
+    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: SAN  no: 20  first size: 50 
+    10    10    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10
+##############################################################
+# predator: GNT  no: 6 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 200 
+    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 50 
+    10    10    10    10
+##############################################################
+# predator: PUF  no: 7 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 50 
+    10    10    10    10
+##############################################################
+# predator: RAZ  no: 8 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 50 
+    10    10    10
+##############################################################
+# predator: W_M  no: 11 
+# predator size: 200  class: 11 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 100 
+     1     1
+# predator size: 250  class: 12 
+# prey: OTH  no: 0  first size: 9999 
+    19
+# prey: SAN  no: 20  first size: 70 
+     6     6     2
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 70 
+     1
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    11
+##############################################################
+# predator: N_M  no: 12 
+# predator size: 200  class: 11 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 100 
+     1     1
+# predator size: 250  class: 12 
+# prey: OTH  no: 0  first size: 9999 
+    21
+# prey: SAN  no: 20  first size: 70 
+     6     6     2
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    51
+# prey: HER  no: 19  first size: 100 
+     1
+# prey: SAN  no: 20  first size: 70 
+    13    19     6
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    39
+# prey: HER  no: 19  first size: 100 
+     2
+# prey: SAN  no: 20  first size: 70 
+     9    10     4
+##############################################################
+# predator: COD  no: 15 
+# predator size: 150  class: 10 
+# prey: OTH  no: 0  first size: 9999 
+    22
+# predator size: 200  class: 11 
+# prey: OTH  no: 0  first size: 9999 
+    37
+# prey: SAN  no: 20  first size: 70 
+     2     3
+# prey: NOP  no: 21  first size: 70 
+     1
+# predator size: 250  class: 12 
+# prey: OTH  no: 0  first size: 9999 
+    49
+# prey: COD  no: 15  first size: 150 
+     1
+# prey: HAD  no: 17  first size: 100 
+     1
+# prey: SAN  no: 20  first size: 70 
+     8     4     1
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    72
+# prey: WHG  no: 16  first size: 70 
+     1     1
+# prey: HAD  no: 17  first size: 100 
+     3     1
+# prey: HER  no: 19  first size: 100 
+     1     1
+# prey: SAN  no: 20  first size: 70 
+    14    12     5
+# prey: NOP  no: 21  first size: 100 
+     7
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    55
+# prey: COD  no: 15  first size: 100 
+     1
+# prey: WHG  no: 16  first size: 100 
+     1     3     1
+# prey: HAD  no: 17  first size: 100 
+     1     2
+# prey: HER  no: 19  first size: 150 
+     2
+# prey: SAN  no: 20  first size: 70 
+    11    11     7     1
+# prey: NOP  no: 21  first size: 100 
+     4     1
+# predator size: 500  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    59
+# prey: COD  no: 15  first size: 150 
+     1     1
+# prey: WHG  no: 16  first size: 100 
+     1     4     4
+# prey: HAD  no: 17  first size: 100 
+     2     6     3
+# prey: HER  no: 19  first size: 150 
+     2     1
+# prey: SAN  no: 20  first size: 70 
+    11    13     6     3
+# prey: NOP  no: 21  first size: 100 
+     8     4
+# predator size: 700  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    40
+# prey: COD  no: 15  first size: 150 
+     1     4     1     1     1
+# prey: WHG  no: 16  first size: 70 
+     1     1     1     5     4
+# prey: HAD  no: 17  first size: 100 
+     1     1     4     2
+# prey: HER  no: 19  first size: 150 
+     1     1     1
+# prey: SAN  no: 20  first size: 70 
+     8     4     2     2
+# prey: NOP  no: 21  first size: 100 
+     8     6
+# predator size: 1000  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    12
+# prey: WHG  no: 16  first size: 200 
+     2     1
+# prey: HAD  no: 17  first size: 150 
+     1
+# prey: HER  no: 19  first size: 200 
+     1
+# prey: SAN  no: 20  first size: 70 
+     2     3
+# prey: NOP  no: 21  first size: 100 
+     1
+##############################################################
+# predator: WHG  no: 16 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    44
+# predator size: 150  class: 10 
+# prey: OTH  no: 0  first size: 9999 
+    78
+# prey: SAN  no: 20  first size: 70 
+     9     2
+# predator size: 200  class: 11 
+# prey: OTH  no: 0  first size: 9999 
+    84
+# prey: WHG  no: 16  first size: 100 
+     1
+# prey: SAN  no: 20  first size: 70 
+    16    10     2
+# prey: NOP  no: 21  first size: 70 
+     2
+# predator size: 250  class: 12 
+# prey: OTH  no: 0  first size: 9999 
+    82
+# prey: WHG  no: 16  first size: 100 
+     1
+# prey: HAD  no: 17  first size: 100 
+     1     1
+# prey: SAN  no: 20  first size: 70 
+    22    24     8
+# prey: NOP  no: 21  first size: 70 
+     5    10     3
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    82
+# prey: WHG  no: 16  first size: 100 
+     6
+# prey: HAD  no: 17  first size: 100 
+     4     2
+# prey: SAN  no: 20  first size: 70 
+    16    19     6
+# prey: NOP  no: 21  first size: 70 
+     5    20     4
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    19
+# prey: SAN  no: 20  first size: 70 
+     2     2     1
+# prey: NOP  no: 21  first size: 100 
+     1     1
+##############################################################
+# predator: HAD  no: 17 
+# predator size: 150  class: 10 
+# prey: OTH  no: 0  first size: 9999 
+    50
+# predator size: 200  class: 11 
+# prey: OTH  no: 0  first size: 9999 
+    58
+# prey: SAN  no: 20  first size: 70 
+     2     2
+# predator size: 250  class: 12 
+# prey: OTH  no: 0  first size: 9999 
+    65
+# prey: SAN  no: 20  first size: 70 
+     4     3
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    65
+# prey: SAN  no: 20  first size: 70 
+     4     3     3
+# prey: NOP  no: 21  first size: 70 
+     1
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    40
+# prey: SAN  no: 20  first size: 70 
+     7     4     2
+# prey: NOP  no: 21  first size: 100 
+     3
+# predator size: 500  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+     7
+# prey: SAN  no: 20  first size: 100 
+     3
+# prey: NOP  no: 21  first size: 100 
+     1
+##############################################################
+# predator: POK  no: 18 
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+     3
+# predator size: 500  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+     7
+# prey: HAD  no: 17  first size: 100 
+     1
+# prey: SAN  no: 20  first size: 100 
+     1
+# prey: NOP  no: 21  first size: 100 
+     1     1
+# predator size: 700  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+     7
+# prey: SAN  no: 20  first size: 70 
+     1
+# prey: NOP  no: 21  first size: 100 
+     6     6
+##############################################################
+#  1981  quarter: 3 
+##############################################################
+# predator: FUL  no: 1 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 50 
+    10    10    10    10
+##############################################################
+# predator: GLT  no: 2 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10
+##############################################################
+# predator: HEG  no: 3 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 50 
+    10    10    10
+# prey: WHG  no: 16  first size: 50 
+    10    10    10
+# prey: HAD  no: 17  first size: 70 
+    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10
+# prey: NOP  no: 21  first size: 50 
+    10    10    10
+##############################################################
+# predator: KTW  no: 4 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 50 
+    10    10    10    10
+##############################################################
+# predator: GBG  no: 5 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 50 
+    10    10    10
+# prey: WHG  no: 16  first size: 50 
+    10    10    10
+# prey: HAD  no: 17  first size: 70 
+    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: SAN  no: 20  first size: 50 
+    10    10    10    10
+# prey: NOP  no: 21  first size: 50 
+    10    10    10
+##############################################################
+# predator: GNT  no: 6 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 200 
+    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 50 
+    10    10    10    10
+##############################################################
+# predator: PUF  no: 7 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 50 
+    10    10    10    10
+##############################################################
+# predator: RAZ  no: 8 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 50 
+    10    10    10
+##############################################################
+# predator: W_M  no: 11 
+# predator size: 200  class: 11 
+# prey: OTH  no: 0  first size: 9999 
+    12
+# predator size: 250  class: 12 
+# prey: OTH  no: 0  first size: 9999 
+    74
+# prey: HER  no: 19  first size: 70 
+     2
+# prey: SAN  no: 20  first size: 50 
+     5     3     3     1     1
+# prey: NOP  no: 21  first size: 50 
+     3     1
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    42
+# prey: HER  no: 19  first size: 70 
+     1
+# prey: SAN  no: 20  first size: 50 
+    10     6
+# prey: NOP  no: 21  first size: 50 
+     7     4
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    15
+# prey: NOP  no: 21  first size: 50 
+     2     2
+##############################################################
+# predator: N_M  no: 12 
+# predator size: 200  class: 11 
+# prey: OTH  no: 0  first size: 9999 
+    12
+# predator size: 250  class: 12 
+# prey: OTH  no: 0  first size: 9999 
+    85
+# prey: HER  no: 19  first size: 70 
+     2
+# prey: SAN  no: 20  first size: 50 
+     5     3     3     1     1
+# prey: NOP  no: 21  first size: 50 
+     3     1
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+   133
+# prey: COD  no: 15  first size: 100 
+     1
+# prey: HER  no: 19  first size: 70 
+     5     8
+# prey: SAN  no: 20  first size: 50 
+    12     7     1     1     1
+# prey: NOP  no: 21  first size: 50 
+     9     5
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    62
+# prey: HER  no: 19  first size: 70 
+     3     4     1
+# prey: SAN  no: 20  first size: 50 
+     1     1     1
+# prey: NOP  no: 21  first size: 50 
+     3     5
+##############################################################
+# predator: COD  no: 15 
+# predator size: 200  class: 11 
+# prey: OTH  no: 0  first size: 9999 
+    19
+# prey: WHG  no: 16  first size: 70 
+     1
+# prey: SAN  no: 20  first size: 50 
+     2     1     1
+# predator size: 250  class: 12 
+# prey: OTH  no: 0  first size: 9999 
+    34
+# prey: WHG  no: 16  first size: 70 
+     3
+# prey: HAD  no: 17  first size: 50 
+     1     1     1
+# prey: SAN  no: 20  first size: 50 
+     1     4     1
+# prey: NOP  no: 21  first size: 50 
+     1     2
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    47
+# prey: COD  no: 15  first size: 50 
+     2     2     1
+# prey: WHG  no: 16  first size: 50 
+     1     2     4
+# prey: HAD  no: 17  first size: 70 
+     6     6
+# prey: HER  no: 19  first size: 70 
+     1     2     1     1
+# prey: SAN  no: 20  first size: 50 
+     2     6     3     2
+# prey: NOP  no: 21  first size: 50 
+     2     3
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    49
+# prey: WHG  no: 16  first size: 70 
+     1     1     2
+# prey: HAD  no: 17  first size: 70 
+     5     9     1
+# prey: HER  no: 19  first size: 70 
+     1     1     1     1     1
+# prey: SAN  no: 20  first size: 50 
+     1     4     5     1
+# prey: NOP  no: 21  first size: 50 
+     2     6     4     3
+# predator size: 500  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    46
+# prey: COD  no: 15  first size: 150 
+     1     1
+# prey: WHG  no: 16  first size: 70 
+     1     2     1     3     1
+# prey: HAD  no: 17  first size: 70 
+     7    10     4     2     1
+# prey: HER  no: 19  first size: 70 
+     1     3     1     1     1     1
+# prey: SAN  no: 20  first size: 50 
+     3     8     3     1
+# prey: NOP  no: 21  first size: 50 
+     5    11     8     9
+# predator size: 700  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    35
+# prey: COD  no: 15  first size: 70 
+     1     1     1     3     1     1
+# prey: WHG  no: 16  first size: 200 
+     2     2     1
+# prey: HAD  no: 17  first size: 50 
+     1     4     3     3     5     5     1
+# prey: HER  no: 19  first size: 150 
+     1     1     4     1
+# prey: SAN  no: 20  first size: 50 
+     2     5     1
+# prey: NOP  no: 21  first size: 50 
+     4    10     7     6
+# predator size: 1000  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 250 
+     1
+# prey: HAD  no: 17  first size: 50 
+     1     1     1     1     1     1     5     1
+# prey: NOP  no: 21  first size: 50 
+     1     2     1     1
+##############################################################
+# predator: WHG  no: 16 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    26
+# predator size: 150  class: 10 
+# prey: OTH  no: 0  first size: 9999 
+    46
+# prey: COD  no: 15  first size: 50 
+     1     1
+# prey: HAD  no: 17  first size: 70 
+     1
+# prey: SAN  no: 20  first size: 50 
+     1     2
+# prey: NOP  no: 21  first size: 50 
+     1
+# predator size: 200  class: 11 
+# prey: OTH  no: 0  first size: 9999 
+    76
+# prey: WHG  no: 16  first size: 50 
+     1     2
+# prey: HAD  no: 17  first size: 50 
+     1
+# prey: HER  no: 19  first size: 70 
+     1
+# prey: SAN  no: 20  first size: 50 
+    10     9
+# prey: NOP  no: 21  first size: 50 
+     4     3
+# predator size: 250  class: 12 
+# prey: OTH  no: 0  first size: 9999 
+   101
+# prey: WHG  no: 16  first size: 50 
+     2     9     2
+# prey: HAD  no: 17  first size: 50 
+     7     9     4
+# prey: HER  no: 19  first size: 70 
+     1     3
+# prey: SAN  no: 20  first size: 50 
+    12    11     4     3
+# prey: NOP  no: 21  first size: 50 
+    13     7
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    87
+# prey: WHG  no: 16  first size: 50 
+     6     7     3
+# prey: HAD  no: 17  first size: 50 
+    11    15     6
+# prey: HER  no: 19  first size: 70 
+     1     5
+# prey: SAN  no: 20  first size: 50 
+    10    16     2     2
+# prey: NOP  no: 21  first size: 50 
+    13     7     1
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    17
+# prey: WHG  no: 16  first size: 70 
+     2     3
+# prey: HAD  no: 17  first size: 50 
+     3     3     4
+# prey: SAN  no: 20  first size: 70 
+     3     2     1
+# prey: NOP  no: 21  first size: 50 
+     2     5     1
+##############################################################
+# predator: HAD  no: 17 
+# predator size: 150  class: 10 
+# prey: OTH  no: 0  first size: 9999 
+    61
+# prey: SAN  no: 20  first size: 50 
+     2     1
+# predator size: 200  class: 11 
+# prey: OTH  no: 0  first size: 9999 
+    69
+# prey: SAN  no: 20  first size: 50 
+     4     3     1
+# predator size: 250  class: 12 
+# prey: OTH  no: 0  first size: 9999 
+    84
+# prey: SAN  no: 20  first size: 50 
+     8     7     1
+# prey: NOP  no: 21  first size: 50 
+     3     4
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    82
+# prey: SAN  no: 20  first size: 50 
+    14     6     1
+# prey: NOP  no: 21  first size: 50 
+     4     4     2
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    43
+# prey: SAN  no: 20  first size: 50 
+     6     6     1
+# prey: NOP  no: 21  first size: 50 
+     6     4     3     1
+# predator size: 500  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    15
+# prey: SAN  no: 20  first size: 50 
+     4     3
+# prey: NOP  no: 21  first size: 70 
+     3     1
+##############################################################
+# predator: POK  no: 18 
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+     9
+# prey: HAD  no: 17  first size: 50 
+     2     4
+# prey: SAN  no: 20  first size: 50 
+     4     4
+# prey: NOP  no: 21  first size: 50 
+     2
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    18
+# prey: WHG  no: 16  first size: 100 
+     1
+# prey: HAD  no: 17  first size: 70 
+     3
+# prey: SAN  no: 20  first size: 50 
+     2     1
+# prey: NOP  no: 21  first size: 50 
+     7     4     1
+# predator size: 500  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    22
+# prey: WHG  no: 16  first size: 150 
+     1
+# prey: HAD  no: 17  first size: 50 
+     1     4     1
+# prey: SAN  no: 20  first size: 50 
+     2     1
+# prey: NOP  no: 21  first size: 50 
+     5     7     3     2
+# predator size: 700  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    23
+# prey: HAD  no: 17  first size: 50 
+     4     5     4     1
+# prey: HER  no: 19  first size: 100 
+     1
+# prey: NOP  no: 21  first size: 50 
+     2     6    11     7
+##############################################################
+#  1981  quarter: 4 
+##############################################################
+# predator: FUL  no: 1 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 50 
+    10    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10
+##############################################################
+# predator: GLT  no: 2 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10
+##############################################################
+# predator: HEG  no: 3 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 50 
+    10    10    10
+# prey: HAD  no: 17  first size: 70 
+    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10
+##############################################################
+# predator: KTW  no: 4 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 70 
+    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10
+# prey: HAD  no: 17  first size: 70 
+    10    10
+# prey: HER  no: 19  first size: 100 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10
+##############################################################
+# predator: GBG  no: 5 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 50 
+    10    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10
+# prey: HAD  no: 17  first size: 70 
+    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10
+##############################################################
+# predator: GNT  no: 6 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10    10
+##############################################################
+# predator: PUF  no: 7 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: HER  no: 19  first size: 70 
+    10    10
+# prey: SAN  no: 20  first size: 50 
+    10    10    10    10
+##############################################################
+# predator: RAZ  no: 8 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 70 
+    10    10    10    10
+# prey: HER  no: 19  first size: 50 
+    10    10    10
+# prey: SAN  no: 20  first size: 50 
+    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10
+##############################################################
+# predator: W_M  no: 11 
+# predator size: 250  class: 12 
+# prey: OTH  no: 0  first size: 9999 
+    14
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    16
+# prey: NOP  no: 21  first size: 70 
+     3     2
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    13
+# prey: NOP  no: 21  first size: 70 
+     4     1     1
+##############################################################
+# predator: N_M  no: 12 
+# predator size: 250  class: 12 
+# prey: OTH  no: 0  first size: 9999 
+    13
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    22
+# prey: HER  no: 19  first size: 70 
+     1     2
+# prey: SAN  no: 20  first size: 100 
+     1
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+     8
+# prey: HER  no: 19  first size: 70 
+     1     1
+##############################################################
+# predator: COD  no: 15 
+# predator size: 150  class: 10 
+# prey: OTH  no: 0  first size: 9999 
+    32
+# prey: SAN  no: 20  first size: 50 
+     1
+# predator size: 200  class: 11 
+# prey: OTH  no: 0  first size: 9999 
+    32
+# prey: SAN  no: 20  first size: 70 
+     1     1
+# predator size: 250  class: 12 
+# prey: OTH  no: 0  first size: 9999 
+    38
+# prey: COD  no: 15  first size: 100 
+     1
+# prey: HAD  no: 17  first size: 70 
+     2     1
+# prey: SAN  no: 20  first size: 50 
+     1     3     2
+# prey: NOP  no: 21  first size: 70 
+     4     1
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    55
+# prey: WHG  no: 16  first size: 50 
+     1     1
+# prey: HAD  no: 17  first size: 70 
+     7     4
+# prey: SAN  no: 20  first size: 50 
+     6     8     3     1
+# prey: NOP  no: 21  first size: 50 
+     1     4     3     1
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    56
+# prey: WHG  no: 16  first size: 70 
+     1     1     1     1
+# prey: HAD  no: 17  first size: 70 
+     5    13     1
+# prey: HER  no: 19  first size: 100 
+     4     1
+# prey: SAN  no: 20  first size: 50 
+     3     4     5     1     1
+# prey: NOP  no: 21  first size: 50 
+     1     9     2
+# predator size: 500  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    50
+# prey: COD  no: 15  first size: 70 
+     2     1     1
+# prey: WHG  no: 16  first size: 70 
+     2     4     3     1
+# prey: HAD  no: 17  first size: 70 
+     6     5     5
+# prey: HER  no: 19  first size: 100 
+     1     1     1     1
+# prey: SAN  no: 20  first size: 50 
+     4     2     3     2
+# prey: NOP  no: 21  first size: 70 
+    14     8     2
+# predator size: 700  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    43
+# prey: COD  no: 15  first size: 100 
+     2     5     3     2     2
+# prey: WHG  no: 16  first size: 70 
+     1     3     5     9     7     1
+# prey: HAD  no: 17  first size: 70 
+     5    10     8     4     2     2
+# prey: HER  no: 19  first size: 150 
+     1     3     1     1
+# prey: SAN  no: 20  first size: 50 
+     1     2     3     1     1
+# prey: NOP  no: 21  first size: 50 
+     2    13     8     4
+# predator size: 1000  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+     8
+# prey: WHG  no: 16  first size: 250 
+     3
+# prey: HAD  no: 17  first size: 100 
+     1     2     2     1     1
+# prey: SAN  no: 20  first size: 70 
+     1     1     1     1
+# prey: NOP  no: 21  first size: 70 
+     2
+##############################################################
+# predator: WHG  no: 16 
+# predator size: 100  class: 9 
+# prey: OTH  no: 0  first size: 9999 
+    60
+# prey: WHG  no: 16  first size: 50 
+     1
+# prey: SAN  no: 20  first size: 50 
+     1     1
+# prey: NOP  no: 21  first size: 50 
+     2
+# predator size: 150  class: 10 
+# prey: OTH  no: 0  first size: 9999 
+    70
+# prey: SAN  no: 20  first size: 50 
+     2     3     1
+# prey: NOP  no: 21  first size: 50 
+     3     2
+# predator size: 200  class: 11 
+# prey: OTH  no: 0  first size: 9999 
+    70
+# prey: COD  no: 15  first size: 70 
+     1
+# prey: WHG  no: 16  first size: 70 
+     4     3
+# prey: HAD  no: 17  first size: 70 
+     1     1
+# prey: HER  no: 19  first size: 70 
+     1
+# prey: SAN  no: 20  first size: 50 
+     3     4     4
+# prey: NOP  no: 21  first size: 50 
+     3     7     1
+# predator size: 250  class: 12 
+# prey: OTH  no: 0  first size: 9999 
+    81
+# prey: COD  no: 15  first size: 70 
+     1     1
+# prey: WHG  no: 16  first size: 70 
+     1     1
+# prey: HAD  no: 17  first size: 70 
+     4     3     1
+# prey: HER  no: 19  first size: 70 
+     1
+# prey: SAN  no: 20  first size: 50 
+     4     4     4     2
+# prey: NOP  no: 21  first size: 50 
+     2    16     3
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    72
+# prey: COD  no: 15  first size: 70 
+     2     2
+# prey: WHG  no: 16  first size: 70 
+     3     3     2
+# prey: HAD  no: 17  first size: 70 
+     6     4
+# prey: HER  no: 19  first size: 70 
+     1     2
+# prey: SAN  no: 20  first size: 50 
+     1     4     6     4
+# prey: NOP  no: 21  first size: 50 
+     1    13     5
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    20
+# prey: WHG  no: 16  first size: 100 
+     2
+# prey: HAD  no: 17  first size: 70 
+     2     3     1
+# prey: NOP  no: 21  first size: 70 
+     3     1
+##############################################################
+# predator: HAD  no: 17 
+# predator size: 150  class: 10 
+# prey: OTH  no: 0  first size: 9999 
+    91
+# prey: SAN  no: 20  first size: 50 
+     1
+# predator size: 200  class: 11 
+# prey: OTH  no: 0  first size: 9999 
+    79
+# prey: NOP  no: 21  first size: 70 
+     3
+# predator size: 250  class: 12 
+# prey: OTH  no: 0  first size: 9999 
+    73
+# prey: SAN  no: 20  first size: 70 
+     5
+# prey: NOP  no: 21  first size: 50 
+     1     1     2
+# predator size: 300  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    83
+# prey: SAN  no: 20  first size: 50 
+     3     5     3
+# prey: NOP  no: 21  first size: 70 
+     2     2
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    57
+# prey: SAN  no: 20  first size: 50 
+     5     2     1
+# prey: NOP  no: 21  first size: 50 
+     1     2     1
+# predator size: 500  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    16
+# prey: SAN  no: 20  first size: 50 
+     1
+# prey: NOP  no: 21  first size: 50 
+     1     2     1
+##############################################################
+# predator: POK  no: 18 
+# predator size: 400  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+     5
+# prey: HAD  no: 17  first size: 100 
+     1
+# prey: NOP  no: 21  first size: 70 
+     3     2
+# predator size: 500  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    13
+# prey: HAD  no: 17  first size: 70 
+     1     4
+# prey: HER  no: 19  first size: 100 
+     2
+# prey: NOP  no: 21  first size: 50 
+     1     9     7     2
+# predator size: 700  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    21
+# prey: HAD  no: 17  first size: 100 
+     3
+# prey: HER  no: 19  first size: 70 
+     1     1
+# prey: NOP  no: 21  first size: 50 
+     2     9    11     8
+##############################################################
+# year: 1985 
+##############################################################
+#  1985  quarter: 1 
+##############################################################
+# predator: FUL  no: 1 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 70 
+    10    10    10    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10
+# prey: HER  no: 19  first size: 80 
+    10    10    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: GLT  no: 2 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10    10    10
+##############################################################
+# predator: HEG  no: 3 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: KTW  no: 4 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 80 
+    10    10    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10
+# prey: HER  no: 19  first size: 100 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 80 
+    10    10    10
+##############################################################
+# predator: GBG  no: 5 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 70 
+    10    10    10    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10
+# prey: HAD  no: 17  first size: 80 
+    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: GNT  no: 6 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10    10
+##############################################################
+# predator: PUF  no: 7 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10    10    10
+##############################################################
+# predator: RAZ  no: 8 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: COD  no: 15 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    24
+# prey: SAN  no: 20  first size: 70 
+     1
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    57
+# prey: WHG  no: 16  first size: 70 
+     2
+# prey: HAD  no: 17  first size: 100 
+     1
+# prey: HER  no: 19  first size: 80 
+     1
+# prey: SAN  no: 20  first size: 70 
+     1     3
+# prey: NOP  no: 21  first size: 60 
+     1     2     3     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    66
+# prey: WHG  no: 16  first size: 100 
+     1
+# prey: HAD  no: 17  first size: 80 
+     2     3
+# prey: HER  no: 19  first size: 70 
+     1     2     2
+# prey: SAN  no: 20  first size: 70 
+     1     2     2
+# prey: NOP  no: 21  first size: 60 
+     2     6     5     5     1     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    79
+# prey: WHG  no: 16  first size: 80 
+     1     3
+# prey: HAD  no: 17  first size: 80 
+     1     3     1     1
+# prey: HER  no: 19  first size: 70 
+     1     7     8     1     2
+# prey: SAN  no: 20  first size: 70 
+     2     6     8     1     3
+# prey: NOP  no: 21  first size: 60 
+     1     1     8    14     1     2
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    62
+# prey: COD  no: 15  first size: 150 
+     1
+# prey: WHG  no: 16  first size: 100 
+     1     1     2
+# prey: HAD  no: 17  first size: 80 
+     1     9     1     5
+# prey: HER  no: 19  first size: 70 
+     2     9     7     1     1     1
+# prey: SAN  no: 20  first size: 70 
+     2     5    10     1     5     1
+# prey: NOP  no: 21  first size: 70 
+     2    12    12     1     1
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    66
+# prey: WHG  no: 16  first size: 80 
+     2     2     1     2
+# prey: HAD  no: 17  first size: 80 
+     2     9     1     1
+# prey: HER  no: 19  first size: 70 
+     4     7     6     1     1     2
+# prey: SAN  no: 20  first size: 70 
+     5     6    10     1     2
+# prey: NOP  no: 21  first size: 60 
+     1     3    13    16     1     6
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    42
+# prey: WHG  no: 16  first size: 80 
+     1     1     1     6     7     3
+# prey: HAD  no: 17  first size: 80 
+     1     2     1     1     3     2
+# prey: HER  no: 19  first size: 70 
+     3     4     4     1     8     6     1
+# prey: SAN  no: 20  first size: 70 
+     2     3     5     1     3     1
+# prey: NOP  no: 21  first size: 60 
+     2     2    14    20     1     2
+# predator size: 600  class: 22 
+# prey: OTH  no: 0  first size: 9999 
+    35
+# prey: COD  no: 15  first size: 100 
+     1     1     1     1     1     1
+# prey: WHG  no: 16  first size: 100 
+     1     1     2     5     1     1
+# prey: HAD  no: 17  first size: 100 
+     3     1     3     2     2
+# prey: HER  no: 19  first size: 70 
+     1     2     3     1     4     5     2
+# prey: SAN  no: 20  first size: 80 
+     1     3     1     4     1
+# prey: NOP  no: 21  first size: 80 
+    10     9     1     7
+# predator size: 700  class: 23 
+# prey: OTH  no: 0  first size: 9999 
+    45
+# prey: COD  no: 15  first size: 150 
+     1     1     1
+# prey: WHG  no: 16  first size: 100 
+     2     1     3     4     1
+# prey: HAD  no: 17  first size: 100 
+     2     1     8     7     3
+# prey: HER  no: 19  first size: 70 
+     1     1     5     1     4     8     5
+# prey: SAN  no: 20  first size: 80 
+     1     1     1     2
+# prey: NOP  no: 21  first size: 80 
+     5    14     1     8
+# predator size: 800  class: 24 
+# prey: OTH  no: 0  first size: 9999 
+    30
+# prey: COD  no: 15  first size: 200 
+     1     1
+# prey: WHG  no: 16  first size: 80 
+     1     1     1     9     2     3
+# prey: HAD  no: 17  first size: 100 
+     2     1     3     8     2     1
+# prey: HER  no: 19  first size: 100 
+     5     1     7     8     3     1
+# prey: SAN  no: 20  first size: 80 
+     1     2
+# prey: NOP  no: 21  first size: 70 
+     1     2     8     1     3
+# predator size: 1000  class: 25 
+# prey: OTH  no: 0  first size: 9999 
+    14
+# prey: COD  no: 15  first size: 200 
+     1     1
+# prey: WHG  no: 16  first size: 100 
+     3     1     1     2     2     1
+# prey: HER  no: 19  first size: 100 
+     3     1     3     3
+# prey: NOP  no: 21  first size: 80 
+     1     1
+##############################################################
+# predator: WHG  no: 16 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    85
+# prey: SAN  no: 20  first size: 70 
+     1
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    90
+# prey: SAN  no: 20  first size: 70 
+     4     1     3
+# prey: NOP  no: 21  first size: 70 
+     4
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    96
+# prey: WHG  no: 16  first size: 100 
+     1
+# prey: HER  no: 19  first size: 70 
+     4
+# prey: SAN  no: 20  first size: 70 
+     8     1     9     1     2
+# prey: NOP  no: 21  first size: 50 
+     1     1    13     1     8     1     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    83
+# prey: WHG  no: 16  first size: 70 
+     1     1     3
+# prey: HAD  no: 17  first size: 100 
+     3     1     1
+# prey: HER  no: 19  first size: 70 
+     6     1    13     1     1
+# prey: SAN  no: 20  first size: 70 
+     4     1    11     1     1
+# prey: NOP  no: 21  first size: 50 
+     2     1    20     1    22     1     2
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    62
+# prey: WHG  no: 16  first size: 100 
+     2
+# prey: HAD  no: 17  first size: 100 
+     4
+# prey: HER  no: 19  first size: 70 
+     6     1     9     1     2
+# prey: SAN  no: 20  first size: 70 
+     3     1     7     1     1     1
+# prey: NOP  no: 21  first size: 50 
+     1     1    18     1    18
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    30
+# prey: WHG  no: 16  first size: 100 
+     1     1     2
+# prey: HAD  no: 17  first size: 100 
+     2
+# prey: HER  no: 19  first size: 70 
+     2     1     5     1     2
+# prey: SAN  no: 20  first size: 100 
+     2     1     2
+# prey: NOP  no: 21  first size: 50 
+     1     1    10     1    16     1     2
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    15
+# prey: COD  no: 15  first size: 100 
+     1
+# prey: WHG  no: 16  first size: 200 
+     1
+# prey: HAD  no: 17  first size: 100 
+     1
+# prey: HER  no: 19  first size: 100 
+     1     1     1
+# prey: NOP  no: 21  first size: 70 
+     6     1     8
+##############################################################
+#  1985  quarter: 2 
+##############################################################
+# predator: FUL  no: 1 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 80 
+    10    10    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10
+# prey: HER  no: 19  first size: 100 
+    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: GLT  no: 2 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10    10
+# prey: HER  no: 19  first size: 80 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 80 
+    10    10    10    10
+##############################################################
+# predator: HEG  no: 3 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 80 
+    10    10    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: KTW  no: 4 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: GBG  no: 5 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 80 
+    10    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: GNT  no: 6 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 200 
+    10    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: PUF  no: 7 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: RAZ  no: 8 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10
+##############################################################
+#  1985  quarter: 3 
+##############################################################
+# predator: FUL  no: 1 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: GLT  no: 2 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 80 
+    10    10    10    10
+##############################################################
+# predator: HEG  no: 3 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 60 
+    10    10    10    10    10
+# prey: WHG  no: 16  first size: 60 
+    10    10    10    10    10
+# prey: HAD  no: 17  first size: 70 
+    10    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10    10    10
+# prey: NOP  no: 21  first size: 60 
+    10    10    10    10    10
+##############################################################
+# predator: KTW  no: 4 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: GBG  no: 5 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 60 
+    10    10    10    10    10
+# prey: WHG  no: 16  first size: 60 
+    10    10    10    10    10
+# prey: HAD  no: 17  first size: 70 
+    10    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+# prey: NOP  no: 21  first size: 60 
+    10    10    10    10    10
+##############################################################
+# predator: GNT  no: 6 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 200 
+    10    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: PUF  no: 7 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: RAZ  no: 8 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10
+##############################################################
+# predator: COD  no: 15 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+     5
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    21
+# prey: HAD  no: 17  first size: 50 
+     1     1
+# prey: SAN  no: 20  first size: 80 
+     3
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    40
+# prey: COD  no: 15  first size: 60 
+     1     1
+# prey: WHG  no: 16  first size: 50 
+     1     1     1     1     1
+# prey: HAD  no: 17  first size: 50 
+     1     2     1     1
+# prey: HER  no: 19  first size: 70 
+     1     1     1
+# prey: SAN  no: 20  first size: 60 
+     2     3     2     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    57
+# prey: COD  no: 15  first size: 80 
+     2
+# prey: WHG  no: 16  first size: 70 
+     3     1     1
+# prey: HAD  no: 17  first size: 50 
+     3     7     9     3
+# prey: HER  no: 19  first size: 80 
+     2     1     1     2
+# prey: SAN  no: 20  first size: 60 
+     4    10    10     4     1     1
+# prey: NOP  no: 21  first size: 60 
+     2     2     1     4
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    48
+# prey: WHG  no: 16  first size: 60 
+     2     1     1     1
+# prey: HAD  no: 17  first size: 50 
+     3     8     4     5     3
+# prey: HER  no: 19  first size: 80 
+     1     1     1     2
+# prey: SAN  no: 20  first size: 50 
+     1     2     7     6     3
+# prey: NOP  no: 21  first size: 50 
+     3     2     5     2     6     1     1
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    55
+# prey: COD  no: 15  first size: 60 
+     1     2
+# prey: WHG  no: 16  first size: 50 
+     1     2     2     2     2     1     2     3     1
+# prey: HAD  no: 17  first size: 60 
+     3     6     5     6     1     2
+# prey: HER  no: 19  first size: 100 
+     5     1     4     1
+# prey: SAN  no: 20  first size: 50 
+     2     4     5     7     5     1     1     1
+# prey: NOP  no: 21  first size: 50 
+     1     5     1     1    10     1     5
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    31
+# prey: WHG  no: 16  first size: 60 
+     1     1     1     1     1     2     1     2
+# prey: HAD  no: 17  first size: 80 
+     1     5     1     2
+# prey: HER  no: 19  first size: 80 
+     1     2     1     2     1     2
+# prey: SAN  no: 20  first size: 50 
+     1     2     3     4     3     1     1
+# prey: NOP  no: 21  first size: 50 
+     1     1     1     1     2     1     2
+# predator size: 600  class: 22 
+# prey: OTH  no: 0  first size: 9999 
+    24
+# prey: WHG  no: 16  first size: 200 
+     1     1
+# prey: HAD  no: 17  first size: 70 
+     1     1     1     1     1     1     2
+# prey: HER  no: 19  first size: 150 
+     1     1
+# prey: SAN  no: 20  first size: 60 
+     1     1     2     1
+# prey: NOP  no: 21  first size: 50 
+     1     1     1     2     6     1     2
+# predator size: 700  class: 23 
+# prey: OTH  no: 0  first size: 9999 
+    21
+# prey: COD  no: 15  first size: 100 
+     1     1     1     1     1     1
+# prey: WHG  no: 16  first size: 150 
+     1     1     1     1
+# prey: HAD  no: 17  first size: 50 
+     1     1     1     1     1     1     1     2     1     1
+# prey: HER  no: 19  first size: 100 
+     2     1     1     2
+# prey: SAN  no: 20  first size: 100 
+     2
+# prey: NOP  no: 21  first size: 60 
+     1     1     2     2
+# predator size: 800  class: 24 
+# prey: OTH  no: 0  first size: 9999 
+    22
+# prey: COD  no: 15  first size: 250 
+     1     1
+# prey: WHG  no: 16  first size: 60 
+     1     1     1     1     1     1     1     1
+# prey: HAD  no: 17  first size: 80 
+     1     1     1     1     1     2
+# prey: HER  no: 19  first size: 150 
+     2     1     1
+# prey: SAN  no: 20  first size: 80 
+     1     1
+# prey: NOP  no: 21  first size: 70 
+     1     1     2     1     1
+# predator size: 1000  class: 25 
+# prey: OTH  no: 0  first size: 9999 
+     5
+# prey: WHG  no: 16  first size: 200 
+     2
+# prey: HAD  no: 17  first size: 60 
+     1
+# prey: HER  no: 19  first size: 150 
+     1     1
+# prey: NOP  no: 21  first size: 100 
+     1
+##############################################################
+# predator: WHG  no: 16 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    21
+# prey: WHG  no: 16  first size: 50 
+     3     1     1
+# prey: HAD  no: 17  first size: 70 
+     1
+# prey: SAN  no: 20  first size: 50 
+     4     1     1
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    50
+# prey: WHG  no: 16  first size: 50 
+     4     1     2
+# prey: HAD  no: 17  first size: 50 
+     2
+# prey: HER  no: 19  first size: 50 
+     1
+# prey: SAN  no: 20  first size: 50 
+     9     1     6     1     2
+# prey: NOP  no: 21  first size: 50 
+     1
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    85
+# prey: COD  no: 15  first size: 50 
+     1     1     1
+# prey: WHG  no: 16  first size: 50 
+     6     1     8
+# prey: HAD  no: 17  first size: 50 
+     2     1     3
+# prey: HER  no: 19  first size: 50 
+     1     1     3     1     2
+# prey: SAN  no: 20  first size: 50 
+    15     1    18     1     6     1     2
+# prey: NOP  no: 21  first size: 50 
+     2
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    94
+# prey: COD  no: 15  first size: 70 
+     2
+# prey: WHG  no: 16  first size: 50 
+    15     1    12
+# prey: HAD  no: 17  first size: 50 
+    15     1    11     1     1
+# prey: HER  no: 19  first size: 50 
+     3     1     8     1    13     1     2
+# prey: SAN  no: 20  first size: 50 
+    16     1    16     1    10     1     4
+# prey: NOP  no: 21  first size: 50 
+     7     1     2
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    77
+# prey: COD  no: 15  first size: 70 
+     1
+# prey: WHG  no: 16  first size: 50 
+    14     1    18     1     1
+# prey: HAD  no: 17  first size: 50 
+    13     1    10     1     2
+# prey: HER  no: 19  first size: 50 
+     1     1     5     1    12     1     1     1
+# prey: SAN  no: 20  first size: 50 
+    13     1     8     1     5     1     6
+# prey: NOP  no: 21  first size: 50 
+     4     1     1     1     7     1     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    35
+# prey: WHG  no: 16  first size: 50 
+     8     1     5
+# prey: HAD  no: 17  first size: 50 
+     4     1     2     1     1
+# prey: HER  no: 19  first size: 70 
+     1     1     3     1     5
+# prey: SAN  no: 20  first size: 50 
+     2     1     1     1     4     1     3
+# prey: NOP  no: 21  first size: 50 
+     2     1     1     1     8
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+     9
+# prey: HAD  no: 17  first size: 70 
+     1
+# prey: HER  no: 19  first size: 100 
+     3     1     3     1
+# prey: NOP  no: 21  first size: 70 
+     1     1     3
+##############################################################
+#  1985  quarter: 4 
+##############################################################
+# predator: FUL  no: 1 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 60 
+    10    10    10    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10    10    10
+# prey: HER  no: 19  first size: 80 
+    10    10    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10    10    10
+##############################################################
+# predator: GLT  no: 2 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10    10    10
+##############################################################
+# predator: HEG  no: 3 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 60 
+    10    10    10    10    10
+# prey: HAD  no: 17  first size: 80 
+    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10    10    10
+##############################################################
+# predator: KTW  no: 4 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 70 
+    10    10    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10    10    10
+# prey: HAD  no: 17  first size: 80 
+    10    10    10
+# prey: HER  no: 19  first size: 100 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 80 
+    10    10    10
+##############################################################
+# predator: GBG  no: 5 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 60 
+    10    10    10    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10    10    10
+# prey: HAD  no: 17  first size: 80 
+    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10    10    10
+##############################################################
+# predator: GNT  no: 6 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10    10
+##############################################################
+# predator: PUF  no: 7 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: RAZ  no: 8 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10    10    10
+# prey: HER  no: 19  first size: 60 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# year: 1986 
+##############################################################
+#  1986  quarter: 1 
+##############################################################
+# predator: COD  no: 15 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    61
+# prey: SAN  no: 20  first size: 70 
+     4     7     2
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    44
+# prey: WHG  no: 16  first size: 80 
+     1
+# prey: HER  no: 19  first size: 70 
+     1     2     1
+# prey: SAN  no: 20  first size: 70 
+     5     4     2
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    39
+# prey: WHG  no: 16  first size: 80 
+     1
+# prey: HAD  no: 17  first size: 100 
+     1
+# prey: HER  no: 19  first size: 70 
+     1     2     2
+# prey: SAN  no: 20  first size: 70 
+     2     2     2     1     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    25
+# prey: HAD  no: 17  first size: 80 
+     1     1
+# prey: HER  no: 19  first size: 80 
+     1     3     1     1
+# prey: SAN  no: 20  first size: 70 
+     1     5     4
+# prey: NOP  no: 21  first size: 80 
+     1     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    31
+# prey: WHG  no: 16  first size: 150 
+     1
+# prey: HAD  no: 17  first size: 80 
+     2     6     1     1
+# prey: SAN  no: 20  first size: 70 
+     2     3     1     1     1
+# prey: NOP  no: 21  first size: 80 
+     4     4     1     2
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    48
+# prey: WHG  no: 16  first size: 100 
+     5     1     4     2
+# prey: HAD  no: 17  first size: 80 
+     4    13     1     2
+# prey: HER  no: 19  first size: 70 
+     1     2     5     1     1     3     1
+# prey: SAN  no: 20  first size: 70 
+     2     4     2
+# prey: NOP  no: 21  first size: 80 
+    12    18     1     1
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    49
+# prey: COD  no: 15  first size: 100 
+     2     1     1     2
+# prey: WHG  no: 16  first size: 70 
+     1     2     5     1     5     1     1
+# prey: HAD  no: 17  first size: 100 
+    10     1     2     1     1
+# prey: HER  no: 19  first size: 80 
+     4     9     1     1     3     1
+# prey: SAN  no: 20  first size: 70 
+     1     2     5     1     2
+# prey: NOP  no: 21  first size: 70 
+     2    11    16     1     4
+# predator size: 600  class: 22 
+# prey: OTH  no: 0  first size: 9999 
+    37
+# prey: COD  no: 15  first size: 150 
+     1     2     1
+# prey: WHG  no: 16  first size: 80 
+     1     1     1     5     4     1
+# prey: HAD  no: 17  first size: 100 
+     8     1     5
+# prey: HER  no: 19  first size: 80 
+     2     5     1     3     3
+# prey: SAN  no: 20  first size: 100 
+     3
+# prey: NOP  no: 21  first size: 60 
+     1     1     7    13     1     6
+# predator size: 700  class: 23 
+# prey: OTH  no: 0  first size: 9999 
+    36
+# prey: COD  no: 15  first size: 100 
+     1     1     2     2     1
+# prey: WHG  no: 16  first size: 100 
+     4     1     2     6     3     1
+# prey: HAD  no: 17  first size: 80 
+     3     6     1     1     2     1     1
+# prey: HER  no: 19  first size: 80 
+     4     7     1     4     7     1
+# prey: SAN  no: 20  first size: 80 
+     1     1     1     2
+# prey: NOP  no: 21  first size: 80 
+    10    12     1     3
+# predator size: 800  class: 24 
+# prey: OTH  no: 0  first size: 9999 
+    31
+# prey: COD  no: 15  first size: 100 
+     1     1     1     1     1     1     2
+# prey: WHG  no: 16  first size: 80 
+     1     4     1     6     4     2
+# prey: HAD  no: 17  first size: 80 
+     2     9     1     4     4     3
+# prey: HER  no: 19  first size: 80 
+     3     6     1     3     9     1
+# prey: SAN  no: 20  first size: 80 
+     1     4     1     1
+# prey: NOP  no: 21  first size: 80 
+     3     9     1     1
+# predator size: 1000  class: 25 
+# prey: OTH  no: 0  first size: 9999 
+    18
+# prey: COD  no: 15  first size: 300 
+     1
+# prey: WHG  no: 16  first size: 100 
+     2     1     3     3     3
+# prey: HAD  no: 17  first size: 100 
+     2     1     1
+# prey: HER  no: 19  first size: 100 
+     3     1     4     2     1
+# prey: SAN  no: 20  first size: 70 
+     1     1     1     1     1
+# prey: NOP  no: 21  first size: 80 
+     1     1
+##############################################################
+# predator: WHG  no: 16 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    67
+# prey: SAN  no: 20  first size: 70 
+     3     1     2
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    69
+# prey: WHG  no: 16  first size: 70 
+     2     1     1
+# prey: HER  no: 19  first size: 70 
+     2
+# prey: SAN  no: 20  first size: 70 
+     8     5     6
+# prey: NOP  no: 21  first size: 80 
+     1
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    72
+# prey: COD  no: 15  first size: 70 
+     1
+# prey: WHG  no: 16  first size: 100 
+     3
+# prey: HER  no: 19  first size: 70 
+     3     3     3
+# prey: SAN  no: 20  first size: 70 
+     8     6     7
+# prey: NOP  no: 21  first size: 50 
+     1     1     5     1     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    59
+# prey: COD  no: 15  first size: 100 
+     1
+# prey: WHG  no: 16  first size: 80 
+     1     8
+# prey: HAD  no: 17  first size: 100 
+     1
+# prey: HER  no: 19  first size: 70 
+     3     5     9
+# prey: SAN  no: 20  first size: 70 
+     7     4    13     1     1
+# prey: NOP  no: 21  first size: 50 
+     2     1    11     1     8
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    38
+# prey: COD  no: 15  first size: 80 
+     1
+# prey: WHG  no: 16  first size: 80 
+     1     3
+# prey: HAD  no: 17  first size: 100 
+     1
+# prey: HER  no: 19  first size: 70 
+     3     1     5     1     1
+# prey: SAN  no: 20  first size: 70 
+     2     1     5     1     3
+# prey: NOP  no: 21  first size: 50 
+     1     1     6     1     9     1     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    17
+# prey: WHG  no: 16  first size: 100 
+     3     1     1
+# prey: HAD  no: 17  first size: 100 
+     1
+# prey: HER  no: 19  first size: 70 
+     1     1     2     1     1
+# prey: SAN  no: 20  first size: 100 
+     2
+# prey: NOP  no: 21  first size: 70 
+     1     1     4     1     1
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+     9
+# prey: HER  no: 19  first size: 70 
+     1
+# prey: SAN  no: 20  first size: 100 
+     1
+# prey: NOP  no: 21  first size: 70 
+     1     1     1
+##############################################################
+#  1986  quarter: 3 
+##############################################################
+# predator: COD  no: 15 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    32
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    75
+# prey: WHG  no: 16  first size: 60 
+     1     1     1
+# prey: HAD  no: 17  first size: 50 
+     1     1     1     2
+# prey: HER  no: 19  first size: 70 
+     1     3     3
+# prey: SAN  no: 20  first size: 50 
+     4     5     6     8     5
+# prey: NOP  no: 21  first size: 50 
+     1     2     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    80
+# prey: WHG  no: 16  first size: 50 
+     1     1     1     2
+# prey: HAD  no: 17  first size: 50 
+     1     2     2     1     2
+# prey: HER  no: 19  first size: 80 
+     6     5
+# prey: SAN  no: 20  first size: 50 
+     5     8    12    18     9     1     2
+# prey: NOP  no: 21  first size: 50 
+     2     2     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    67
+# prey: WHG  no: 16  first size: 60 
+     1     1     1     2
+# prey: HAD  no: 17  first size: 70 
+     1     3
+# prey: HER  no: 19  first size: 70 
+     1     4     8
+# prey: SAN  no: 20  first size: 50 
+     4     8     8     8    11     1     4
+# prey: NOP  no: 21  first size: 50 
+     1     1     1     1     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    53
+# prey: WHG  no: 16  first size: 80 
+     3
+# prey: HAD  no: 17  first size: 70 
+     2     2     3
+# prey: HER  no: 19  first size: 80 
+     3     2
+# prey: SAN  no: 20  first size: 50 
+     1     5     2     5     8     1     3
+# prey: NOP  no: 21  first size: 60 
+     1     2     1     1     1     1
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    48
+# prey: COD  no: 15  first size: 70 
+     1
+# prey: WHG  no: 16  first size: 100 
+     1     1     2
+# prey: HAD  no: 17  first size: 50 
+     1     1     1     4     3     1     1     1
+# prey: HER  no: 19  first size: 100 
+     5     1     2     1
+# prey: SAN  no: 20  first size: 50 
+     1     3     4     6     6     1     2
+# prey: NOP  no: 21  first size: 60 
+     1     1     2     9     1     6
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    45
+# prey: WHG  no: 16  first size: 70 
+     1     1     2     1     1
+# prey: HAD  no: 17  first size: 60 
+     2     3     7     7     1     2     2
+# prey: HER  no: 19  first size: 80 
+     1     1     1     2     1     2
+# prey: SAN  no: 20  first size: 60 
+     2     4     4     2     1     1
+# prey: NOP  no: 21  first size: 50 
+     1     1     1     1    15     1    10
+# predator size: 600  class: 22 
+# prey: OTH  no: 0  first size: 9999 
+    35
+# prey: WHG  no: 16  first size: 80 
+     1     1     1     2
+# prey: HAD  no: 17  first size: 70 
+     1     5     6     1     3
+# prey: HER  no: 19  first size: 70 
+     2     1     1     1     1     4
+# prey: SAN  no: 20  first size: 60 
+     1     1     1     3
+# prey: NOP  no: 21  first size: 50 
+     1     1     3     1     6     1     4     1
+# predator size: 700  class: 23 
+# prey: OTH  no: 0  first size: 9999 
+    19
+# prey: COD  no: 15  first size: 60 
+     1
+# prey: WHG  no: 16  first size: 80 
+     1     2     1     1     1     1
+# prey: HAD  no: 17  first size: 60 
+     1     1     2     2     1     2
+# prey: HER  no: 19  first size: 70 
+     2     1     1     1     1     3
+# prey: SAN  no: 20  first size: 80 
+     1     1
+# prey: NOP  no: 21  first size: 60 
+     2     1     2     6     1     5
+# predator size: 800  class: 24 
+# prey: OTH  no: 0  first size: 9999 
+    21
+# prey: COD  no: 15  first size: 250 
+     1
+# prey: WHG  no: 16  first size: 100 
+     1     1     2     1     2
+# prey: HAD  no: 17  first size: 150 
+     1     2
+# prey: HER  no: 19  first size: 150 
+     2     4     3     1
+# prey: SAN  no: 20  first size: 80 
+     1     2     1     1
+# prey: NOP  no: 21  first size: 60 
+     1     1     1     4     1     1     1
+# predator size: 1000  class: 25 
+# prey: OTH  no: 0  first size: 9999 
+     8
+# prey: WHG  no: 16  first size: 100 
+     2     1     1     1     1     1
+# prey: HAD  no: 17  first size: 200 
+     1     1     1
+# prey: HER  no: 19  first size: 150 
+     1     3     3
+# prey: NOP  no: 21  first size: 100 
+     1     1     1
+##############################################################
+# predator: WHG  no: 16 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    58
+# prey: COD  no: 15  first size: 50 
+     1
+# prey: WHG  no: 16  first size: 50 
+     1
+# prey: SAN  no: 20  first size: 50 
+     6     3     3
+# prey: NOP  no: 21  first size: 50 
+     4     2
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    62
+# prey: WHG  no: 16  first size: 50 
+     2     1     2     2
+# prey: HER  no: 19  first size: 60 
+     1     2     2
+# prey: SAN  no: 20  first size: 50 
+    10     4     6     4     3
+# prey: NOP  no: 21  first size: 50 
+     2
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    81
+# prey: WHG  no: 16  first size: 50 
+     3     2     3     1
+# prey: HAD  no: 17  first size: 50 
+     6     1     2     2
+# prey: HER  no: 19  first size: 50 
+     4     2     6     4     4
+# prey: SAN  no: 20  first size: 50 
+    19    10    15     7    16     1     1
+# prey: NOP  no: 21  first size: 50 
+     5     6     6
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    85
+# prey: COD  no: 15  first size: 70 
+     1
+# prey: WHG  no: 16  first size: 50 
+     7     4     6     2     1
+# prey: HAD  no: 17  first size: 50 
+     9     3     9     3     1
+# prey: HER  no: 19  first size: 50 
+     1     3    10     6    13
+# prey: SAN  no: 20  first size: 50 
+    20    10    20     5    16     1     5
+# prey: NOP  no: 21  first size: 50 
+    14    11    15     1     3
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    71
+# prey: COD  no: 15  first size: 70 
+     1
+# prey: WHG  no: 16  first size: 50 
+     7     4     3     2     1
+# prey: HAD  no: 17  first size: 50 
+     6     4     6     5     1
+# prey: HER  no: 19  first size: 50 
+     3     1    12     1    14     1     4
+# prey: SAN  no: 20  first size: 50 
+    11     9    18     6    10     1     3     1
+# prey: NOP  no: 21  first size: 50 
+    11     7    12     4    10     1     1     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    35
+# prey: WHG  no: 16  first size: 50 
+     1     2     3     1     3
+# prey: HAD  no: 17  first size: 50 
+     3     3     3     1     1
+# prey: HER  no: 19  first size: 50 
+     3     1     5     1    10     1     2
+# prey: SAN  no: 20  first size: 50 
+     2     1     4     1     4     1     1
+# prey: NOP  no: 21  first size: 50 
+     2     3     8     2    12     1     1
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+     7
+# prey: WHG  no: 16  first size: 60 
+     1     1     1
+# prey: HAD  no: 17  first size: 50 
+     2     1     2
+# prey: HER  no: 19  first size: 70 
+     1     1     2     1     1
+# prey: NOP  no: 21  first size: 50 
+     1     1     2     2     5     1     2
+##############################################################
+# predator: POK  no: 18 
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    48
+# prey: HAD  no: 17  first size: 50 
+    13     1    11     1     5
+# prey: SAN  no: 20  first size: 50 
+     2     1     5     1     3
+# prey: NOP  no: 21  first size: 50 
+    11     1     5     1     4
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    40
+# prey: WHG  no: 16  first size: 50 
+     2     1     1
+# prey: HAD  no: 17  first size: 50 
+     4     1     4     1     1
+# prey: SAN  no: 20  first size: 50 
+     2     1     5     1     4
+# prey: NOP  no: 21  first size: 50 
+    13     1     9     1     7     1     2
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    36
+# prey: WHG  no: 16  first size: 50 
+     1     1     1
+# prey: HAD  no: 17  first size: 50 
+     4     1     5     1     2
+# prey: SAN  no: 20  first size: 50 
+     2
+# prey: NOP  no: 21  first size: 50 
+     7     1    10     1    19     1     8
+# predator size: 700  class: 23 
+# prey: OTH  no: 0  first size: 9999 
+    20
+# prey: HAD  no: 17  first size: 50 
+     2     1     3     1     2
+# prey: HER  no: 19  first size: 200 
+     1     2     1
+# prey: NOP  no: 21  first size: 50 
+     3     1     6     1     9     1     4
+##############################################################
+# year: 1987 
+##############################################################
+#  1987  quarter: 1 
+##############################################################
+# predator: FUL  no: 1 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 70 
+    10    10    10    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10
+# prey: HER  no: 19  first size: 80 
+    10    10    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: GLT  no: 2 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10    10    10
+##############################################################
+# predator: HEG  no: 3 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: KTW  no: 4 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 80 
+    10    10    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10
+# prey: HER  no: 19  first size: 100 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 80 
+    10    10    10
+##############################################################
+# predator: GBG  no: 5 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 70 
+    10    10    10    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10
+# prey: HAD  no: 17  first size: 80 
+    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: GNT  no: 6 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10    10
+##############################################################
+# predator: PUF  no: 7 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10    10    10
+##############################################################
+# predator: RAZ  no: 8 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: COD  no: 15 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    43
+# prey: SAN  no: 20  first size: 80 
+     2
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    57
+# prey: WHG  no: 16  first size: 80 
+     1     2
+# prey: HAD  no: 17  first size: 80 
+     1
+# prey: HER  no: 19  first size: 70 
+     2     1     1
+# prey: SAN  no: 20  first size: 70 
+     2     2     3
+# prey: NOP  no: 21  first size: 100 
+     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    68
+# prey: COD  no: 15  first size: 100 
+     1
+# prey: WHG  no: 16  first size: 80 
+     2     4     1     1
+# prey: HAD  no: 17  first size: 100 
+     4
+# prey: HER  no: 19  first size: 70 
+     2     3     5
+# prey: SAN  no: 20  first size: 70 
+     4     5    11
+# prey: NOP  no: 21  first size: 60 
+     1     1     2     8
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    70
+# prey: COD  no: 15  first size: 100 
+     1
+# prey: WHG  no: 16  first size: 70 
+     2     1     6
+# prey: HAD  no: 17  first size: 80 
+     2    14
+# prey: HER  no: 19  first size: 70 
+     2     8     6
+# prey: SAN  no: 20  first size: 70 
+     2     8    10     1     2
+# prey: NOP  no: 21  first size: 60 
+     1     1     4     5     1     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    55
+# prey: WHG  no: 16  first size: 80 
+     4    13     1     1
+# prey: HAD  no: 17  first size: 80 
+     3     7     1     1
+# prey: HER  no: 19  first size: 70 
+     1     4    10     1     2
+# prey: SAN  no: 20  first size: 70 
+     1     8     9     1     4
+# prey: NOP  no: 21  first size: 80 
+     3     9     1     2
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    52
+# prey: COD  no: 15  first size: 100 
+     3
+# prey: WHG  no: 16  first size: 60 
+     1     2     3    13     1     6
+# prey: HAD  no: 17  first size: 100 
+     5     1     2     1
+# prey: HER  no: 19  first size: 70 
+     5     6    10     1     1     1
+# prey: SAN  no: 20  first size: 70 
+     1     4     7     1     2
+# prey: NOP  no: 21  first size: 100 
+    10
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    24
+# prey: COD  no: 15  first size: 150 
+     1
+# prey: WHG  no: 16  first size: 100 
+     1     1     3     1     1
+# prey: HAD  no: 17  first size: 80 
+     1     4
+# prey: HER  no: 19  first size: 70 
+     2     1     4     1     2
+# prey: SAN  no: 20  first size: 100 
+     3     1     1
+# prey: NOP  no: 21  first size: 100 
+     2     1     2
+# predator size: 600  class: 22 
+# prey: OTH  no: 0  first size: 9999 
+    17
+# prey: COD  no: 15  first size: 150 
+     1
+# prey: WHG  no: 16  first size: 100 
+     2     1     4     4     1
+# prey: HAD  no: 17  first size: 80 
+     1     1     1     2
+# prey: HER  no: 19  first size: 100 
+     2     1     4
+# prey: SAN  no: 20  first size: 80 
+     1     1     1     1     1
+# prey: NOP  no: 21  first size: 100 
+     4
+# predator size: 700  class: 23 
+# prey: OTH  no: 0  first size: 9999 
+    24
+# prey: COD  no: 15  first size: 250 
+     1
+# prey: WHG  no: 16  first size: 100 
+     4     1     2     2     1
+# prey: HAD  no: 17  first size: 100 
+     1     1     1     3     1
+# prey: HER  no: 19  first size: 70 
+     1     1     5     1     3     1     1
+# prey: NOP  no: 21  first size: 80 
+     2     2
+# predator size: 800  class: 24 
+# prey: OTH  no: 0  first size: 9999 
+    32
+# prey: COD  no: 15  first size: 200 
+     1     4     1
+# prey: WHG  no: 16  first size: 80 
+     1     2     1     3
+# prey: HAD  no: 17  first size: 100 
+     3     1     3     1     1
+# prey: HER  no: 19  first size: 80 
+     1     8     1     7     2
+# prey: NOP  no: 21  first size: 200 
+     1
+# predator size: 1000  class: 25 
+# prey: OTH  no: 0  first size: 9999 
+    11
+# prey: COD  no: 15  first size: 200 
+     1     1     1
+# prey: WHG  no: 16  first size: 150 
+     3     1     2
+# prey: HAD  no: 17  first size: 200 
+     1
+# prey: HER  no: 19  first size: 80 
+     1     5     1     1     1
+##############################################################
+# predator: WHG  no: 16 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    91
+# prey: WHG  no: 16  first size: 60 
+     1
+# prey: SAN  no: 20  first size: 70 
+     4     2     1
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+   100
+# prey: WHG  no: 16  first size: 60 
+     1     2
+# prey: HER  no: 19  first size: 70 
+     2     1     1
+# prey: SAN  no: 20  first size: 70 
+    11    11     9
+# prey: NOP  no: 21  first size: 80 
+     1     2
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    83
+# prey: WHG  no: 16  first size: 80 
+     2     3
+# prey: HAD  no: 17  first size: 80 
+     3
+# prey: HER  no: 19  first size: 70 
+     3     2     3
+# prey: SAN  no: 20  first size: 70 
+     7    11     9     1     1
+# prey: NOP  no: 21  first size: 70 
+     5     9     8
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    63
+# prey: WHG  no: 16  first size: 60 
+     1     2     2     4
+# prey: HAD  no: 17  first size: 80 
+     5     3
+# prey: HER  no: 19  first size: 70 
+     2     3     5
+# prey: SAN  no: 20  first size: 70 
+     6    11     8     1     2
+# prey: NOP  no: 21  first size: 70 
+     4    10    12
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    42
+# prey: WHG  no: 16  first size: 80 
+     2     4     1     1
+# prey: HAD  no: 17  first size: 100 
+     5
+# prey: HER  no: 19  first size: 70 
+     3     2     8     1     1
+# prey: SAN  no: 20  first size: 70 
+     3     3     3     1     2
+# prey: NOP  no: 21  first size: 60 
+     1     2     8     8     1     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    19
+# prey: HAD  no: 17  first size: 100 
+     2
+# prey: HER  no: 19  first size: 100 
+     1     1     1
+# prey: SAN  no: 20  first size: 80 
+     1     2     1     1
+# prey: NOP  no: 21  first size: 100 
+     3
+##############################################################
+#  1987  quarter: 2 
+##############################################################
+# predator: FUL  no: 1 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 80 
+    10    10    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10
+# prey: HER  no: 19  first size: 100 
+    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: GLT  no: 2 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10    10
+# prey: HER  no: 19  first size: 80 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 80 
+    10    10    10    10
+##############################################################
+# predator: HEG  no: 3 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 80 
+    10    10    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: KTW  no: 4 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: GBG  no: 5 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 80 
+    10    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: GNT  no: 6 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 200 
+    10    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: PUF  no: 7 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: RAZ  no: 8 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10
+##############################################################
+#  1987  quarter: 3 
+##############################################################
+# predator: FUL  no: 1 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: GLT  no: 2 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 80 
+    10    10    10    10
+##############################################################
+# predator: HEG  no: 3 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 60 
+    10    10    10    10    10
+# prey: WHG  no: 16  first size: 60 
+    10    10    10    10    10
+# prey: HAD  no: 17  first size: 70 
+    10    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10    10    10
+# prey: NOP  no: 21  first size: 60 
+    10    10    10    10    10
+##############################################################
+# predator: KTW  no: 4 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: GBG  no: 5 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 60 
+    10    10    10    10    10
+# prey: WHG  no: 16  first size: 60 
+    10    10    10    10    10
+# prey: HAD  no: 17  first size: 70 
+    10    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+# prey: NOP  no: 21  first size: 60 
+    10    10    10    10    10
+##############################################################
+# predator: GNT  no: 6 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 200 
+    10    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: PUF  no: 7 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: RAZ  no: 8 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10
+##############################################################
+# predator: N_H  no: 14 
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    11
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    31
+# prey: HER  no: 19  first size: 50 
+     1     1     1     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    30
+# prey: HER  no: 19  first size: 50 
+     1     1     3     1     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+     5
+# prey: HER  no: 19  first size: 50 
+     1     1     1
+##############################################################
+# predator: COD  no: 15 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    29
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    67
+# prey: WHG  no: 16  first size: 50 
+     1     1     1
+# prey: HAD  no: 17  first size: 80 
+     1
+# prey: HER  no: 19  first size: 70 
+     1     1     4
+# prey: SAN  no: 20  first size: 50 
+     3     5     2     3     3
+# prey: NOP  no: 21  first size: 70 
+     1     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    74
+# prey: WHG  no: 16  first size: 60 
+     4     2     1     2
+# prey: HAD  no: 17  first size: 70 
+     1     2
+# prey: HER  no: 19  first size: 70 
+     2     2     3
+# prey: SAN  no: 20  first size: 50 
+     2     3     4     2     8     1     2
+# prey: NOP  no: 21  first size: 70 
+     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    80
+# prey: WHG  no: 16  first size: 70 
+     6     5     1     1     1
+# prey: HAD  no: 17  first size: 70 
+     4     2     5
+# prey: HER  no: 19  first size: 60 
+     2     3     7    10     1     3     1
+# prey: SAN  no: 20  first size: 50 
+     4     2     4     1     8     1     4     1
+# prey: NOP  no: 21  first size: 50 
+     2     2     1     2     5     1     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    77
+# prey: WHG  no: 16  first size: 60 
+     4     4     4     4     1     1
+# prey: HAD  no: 17  first size: 50 
+     1     2     2     6     7     1     1
+# prey: HER  no: 19  first size: 70 
+     1     6    15     1     4
+# prey: SAN  no: 20  first size: 60 
+     6     1     1    13     1     5     1
+# prey: NOP  no: 21  first size: 50 
+     1     2     1     3    13     1     2
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    86
+# prey: COD  no: 15  first size: 100 
+     1
+# prey: WHG  no: 16  first size: 60 
+     3     4     6     6     1     3     1
+# prey: HAD  no: 17  first size: 50 
+     1     1     2     2     6     1     2
+# prey: HER  no: 19  first size: 70 
+     1     3    11     1    13     4
+# prey: SAN  no: 20  first size: 50 
+     1     4     3     2    11     1     6     2
+# prey: NOP  no: 21  first size: 60 
+     3     2     3    12     1     8
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    48
+# prey: WHG  no: 16  first size: 50 
+     1     1     1     1     1     1     4     1
+# prey: HAD  no: 17  first size: 80 
+     1     3     1     1     1
+# prey: HER  no: 19  first size: 70 
+     1     1     6     1     4     2     1
+# prey: SAN  no: 20  first size: 70 
+     1     2     3     1     1
+# prey: NOP  no: 21  first size: 80 
+     1     5     1     2
+# predator size: 600  class: 22 
+# prey: OTH  no: 0  first size: 9999 
+    35
+# prey: WHG  no: 16  first size: 50 
+     1     1     1     1     1     1     3     3
+# prey: HAD  no: 17  first size: 70 
+     1     1     1     1     3     2
+# prey: HER  no: 19  first size: 80 
+     1     3     1     4     2
+# prey: SAN  no: 20  first size: 100 
+     2     1     2
+# prey: NOP  no: 21  first size: 100 
+     6     1     2
+# predator size: 700  class: 23 
+# prey: OTH  no: 0  first size: 9999 
+    21
+# prey: COD  no: 15  first size: 250 
+     2     1
+# prey: WHG  no: 16  first size: 80 
+     1     2     1     2     2     1     1
+# prey: HAD  no: 17  first size: 150 
+     4     4     1     1
+# prey: HER  no: 19  first size: 80 
+     1     1     1     2     3
+# prey: SAN  no: 20  first size: 100 
+     2
+# prey: NOP  no: 21  first size: 100 
+     5     1     4
+# predator size: 800  class: 24 
+# prey: OTH  no: 0  first size: 9999 
+    27
+# prey: COD  no: 15  first size: 250 
+     1
+# prey: WHG  no: 16  first size: 100 
+     1     1     3     3     3     2
+# prey: HAD  no: 17  first size: 80 
+     1     1     1     2     1
+# prey: HER  no: 19  first size: 100 
+     1     1     1     6     1
+# prey: SAN  no: 20  first size: 80 
+     2     4     1     2
+# prey: NOP  no: 21  first size: 70 
+     1     1     4     1     2
+# predator size: 1000  class: 25 
+# prey: OTH  no: 0  first size: 9999 
+     9
+# prey: COD  no: 15  first size: 300 
+     1     1
+# prey: WHG  no: 16  first size: 80 
+     1
+# prey: HAD  no: 17  first size: 300 
+     1
+# prey: HER  no: 19  first size: 150 
+     2     2
+# prey: SAN  no: 20  first size: 100 
+     2     1     2
+##############################################################
+# predator: WHG  no: 16 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    30
+# prey: SAN  no: 20  first size: 50 
+     1
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    68
+# prey: WHG  no: 16  first size: 50 
+     3     4     3
+# prey: HER  no: 19  first size: 70 
+     1     1
+# prey: SAN  no: 20  first size: 50 
+     4     1     1     1     7     1     1
+# prey: NOP  no: 21  first size: 50 
+     1     1
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    88
+# prey: WHG  no: 16  first size: 50 
+     3     3     4     3
+# prey: HAD  no: 17  first size: 50 
+     2     2
+# prey: HER  no: 19  first size: 60 
+     1     1     1
+# prey: SAN  no: 20  first size: 50 
+     5     1     4     2    11     1     3
+# prey: NOP  no: 21  first size: 50 
+     5     1     1     1     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    91
+# prey: WHG  no: 16  first size: 50 
+     7     3     4     3
+# prey: HAD  no: 17  first size: 50 
+     1     1     1
+# prey: HER  no: 19  first size: 70 
+     4     4     4     1     1
+# prey: SAN  no: 20  first size: 70 
+     6     1    20     1     6
+# prey: NOP  no: 21  first size: 50 
+     2     2     5     2     9     1     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    66
+# prey: WHG  no: 16  first size: 50 
+     2     2     1     1     2
+# prey: HAD  no: 17  first size: 50 
+     2     1     1
+# prey: HER  no: 19  first size: 70 
+     6     2    10     1     1
+# prey: SAN  no: 20  first size: 50 
+     3     1     2     3     7     1     6
+# prey: NOP  no: 21  first size: 50 
+     3     1     3     4     9     1     4
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    24
+# prey: COD  no: 15  first size: 70 
+     1
+# prey: WHG  no: 16  first size: 50 
+     1     1     1     1     2
+# prey: HAD  no: 17  first size: 70 
+     2     1     1     1     1
+# prey: HER  no: 19  first size: 70 
+     1     1     6     1     2
+# prey: SAN  no: 20  first size: 50 
+     1     1     1     1     4
+# prey: NOP  no: 21  first size: 50 
+     1     1     1     2     7     1     2
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    11
+# prey: COD  no: 15  first size: 80 
+     2
+# prey: HAD  no: 17  first size: 80 
+     1
+# prey: HER  no: 19  first size: 100 
+     1
+# prey: NOP  no: 21  first size: 50 
+     1     1     1     1     3
+##############################################################
+# predator: POK  no: 18 
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+     6
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    17
+# prey: WHG  no: 16  first size: 60 
+     1     1
+# prey: HAD  no: 17  first size: 50 
+     1     1     3
+# prey: HER  no: 19  first size: 150 
+     1
+# prey: SAN  no: 20  first size: 70 
+     1
+# prey: NOP  no: 21  first size: 60 
+     1     1     1    10     1     3
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    26
+# prey: WHG  no: 16  first size: 70 
+     1
+# prey: HAD  no: 17  first size: 50 
+     1     1     2     1     1
+# prey: HER  no: 19  first size: 200 
+     1
+# prey: NOP  no: 21  first size: 70 
+     1     1    23     1    15     1
+# predator size: 700  class: 23 
+# prey: OTH  no: 0  first size: 9999 
+    13
+# prey: HAD  no: 17  first size: 150 
+     1
+# prey: HER  no: 19  first size: 100 
+     1     1     1     2     2     1
+# prey: NOP  no: 21  first size: 100 
+     8     1     5
+##############################################################
+#  1987  quarter: 4 
+##############################################################
+# predator: FUL  no: 1 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 60 
+    10    10    10    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10    10    10
+# prey: HER  no: 19  first size: 80 
+    10    10    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10    10    10
+##############################################################
+# predator: GLT  no: 2 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10    10    10
+##############################################################
+# predator: HEG  no: 3 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 60 
+    10    10    10    10    10
+# prey: HAD  no: 17  first size: 80 
+    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10    10    10
+##############################################################
+# predator: KTW  no: 4 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 70 
+    10    10    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10    10    10
+# prey: HAD  no: 17  first size: 80 
+    10    10    10
+# prey: HER  no: 19  first size: 100 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 80 
+    10    10    10
+##############################################################
+# predator: GBG  no: 5 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 60 
+    10    10    10    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10    10    10
+# prey: HAD  no: 17  first size: 80 
+    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10    10    10
+##############################################################
+# predator: GNT  no: 6 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10    10
+##############################################################
+# predator: PUF  no: 7 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: RAZ  no: 8 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10    10    10
+# prey: HER  no: 19  first size: 60 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# year: 1991 
+##############################################################
+#  1991  quarter: 1 
+##############################################################
+# predator: FUL  no: 1 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 70 
+    10    10    10    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10
+# prey: HER  no: 19  first size: 80 
+    10    10    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: GLT  no: 2 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10    10    10
+##############################################################
+# predator: HEG  no: 3 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: KTW  no: 4 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 80 
+    10    10    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10
+# prey: HER  no: 19  first size: 100 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 80 
+    10    10    10
+##############################################################
+# predator: GBG  no: 5 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 70 
+    10    10    10    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10
+# prey: HAD  no: 17  first size: 80 
+    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: GNT  no: 6 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10    10
+##############################################################
+# predator: PUF  no: 7 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10    10    10
+##############################################################
+# predator: RAZ  no: 8 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: RAJ  no: 9 
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+     7
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    21
+# prey: SAN  no: 20  first size: 70 
+     2     3     1
+# prey: NOP  no: 21  first size: 70 
+     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    11
+# prey: SAN  no: 20  first size: 70 
+     2     5     2
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    18
+# prey: SAN  no: 20  first size: 70 
+     3     4     4
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    15
+# prey: SAN  no: 20  first size: 70 
+     2     8     7     3     1
+# prey: NOP  no: 21  first size: 150 
+     1
+##############################################################
+# predator: GUR  no: 10 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    58
+# prey: SAN  no: 20  first size: 100 
+     1
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    63
+# prey: SAN  no: 20  first size: 70 
+     3     1
+# prey: NOP  no: 21  first size: 100 
+     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    50
+# prey: COD  no: 15  first size: 120 
+     1
+# prey: WHG  no: 16  first size: 100 
+     1
+# prey: SAN  no: 20  first size: 70 
+     1     3     2     1
+# prey: NOP  no: 21  first size: 80 
+     1     2     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    33
+# prey: WHG  no: 16  first size: 100 
+     1     1
+# prey: SAN  no: 20  first size: 70 
+     3     3     3     1
+# prey: NOP  no: 21  first size: 80 
+     3     8     3
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    16
+# prey: WHG  no: 16  first size: 100 
+     2     3
+# prey: SAN  no: 20  first size: 70 
+     1     2     1     1     1
+# prey: NOP  no: 21  first size: 60 
+     1     1     2     4     3     1
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+     6
+# prey: WHG  no: 16  first size: 100 
+     1     3
+# prey: NOP  no: 21  first size: 80 
+     1     1     2     1
+##############################################################
+# predator: W_M  no: 11 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    13
+##############################################################
+# predator: N_M  no: 12 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    13
+##############################################################
+# predator: COD  no: 15 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    26
+# prey: SAN  no: 20  first size: 80 
+     1     1     1     1
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    29
+# prey: SAN  no: 20  first size: 100 
+     1     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    24
+# prey: SAN  no: 20  first size: 80 
+     2
+# prey: NOP  no: 21  first size: 100 
+     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    46
+# prey: WHG  no: 16  first size: 120 
+     1
+# prey: SAN  no: 20  first size: 70 
+     1     3     1     1     1
+# prey: NOP  no: 21  first size: 100 
+     4     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    65
+# prey: WHG  no: 16  first size: 100 
+     2     2     1
+# prey: HER  no: 19  first size: 80 
+     1     1     1     2     1
+# prey: SAN  no: 20  first size: 70 
+     2     3     5     2
+# prey: NOP  no: 21  first size: 100 
+     2     5
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    76
+# prey: WHG  no: 16  first size: 80 
+     2     6     9     4     4
+# prey: HAD  no: 17  first size: 120 
+     2     1
+# prey: HER  no: 19  first size: 120 
+     1     5     2
+# prey: SAN  no: 20  first size: 70 
+     1     2     4     6     2
+# prey: NOP  no: 21  first size: 80 
+     1     5     2
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    97
+# prey: COD  no: 15  first size: 150 
+     2
+# prey: WHG  no: 16  first size: 60 
+     1     1     2     1    13    13    11     6
+# prey: HAD  no: 17  first size: 100 
+     1     1     2
+# prey: HER  no: 19  first size: 100 
+     1     3     2    10     2
+# prey: SAN  no: 20  first size: 80 
+     2     1     3     1     1
+# prey: NOP  no: 21  first size: 80 
+     4    15    11     5
+# predator size: 600  class: 22 
+# prey: OTH  no: 0  first size: 9999 
+    64
+# prey: COD  no: 15  first size: 150 
+     1     1     1     1     1
+# prey: WHG  no: 16  first size: 60 
+     1     1     1     1     6     8    10     6     3
+# prey: HAD  no: 17  first size: 120 
+     3     2     2
+# prey: HER  no: 19  first size: 100 
+     3     4     5    15     4
+# prey: SAN  no: 20  first size: 120 
+     1     2
+# prey: NOP  no: 21  first size: 80 
+     2     9    12     3
+# predator size: 700  class: 23 
+# prey: OTH  no: 0  first size: 9999 
+    51
+# prey: COD  no: 15  first size: 120 
+     1     1     1
+# prey: WHG  no: 16  first size: 100 
+     2     6     5     8     6     1
+# prey: HAD  no: 17  first size: 120 
+     1     3     1
+# prey: HER  no: 19  first size: 80 
+     4     1     3     7     6     2
+# prey: SAN  no: 20  first size: 100 
+     2     1     1
+# prey: NOP  no: 21  first size: 80 
+     1     3     5
+# predator size: 800  class: 24 
+# prey: OTH  no: 0  first size: 9999 
+    84
+# prey: COD  no: 15  first size: 250 
+     1
+# prey: WHG  no: 16  first size: 100 
+     1     6    11    21    13     5
+# prey: HAD  no: 17  first size: 150 
+     2     1     1     1     1     1
+# prey: HER  no: 19  first size: 70 
+     1     1     3     9     8    16     6
+# prey: SAN  no: 20  first size: 70 
+     1     3     3     1     2
+# prey: NOP  no: 21  first size: 80 
+     3     8     8     3
+# predator size: 1000  class: 25 
+# prey: OTH  no: 0  first size: 9999 
+    37
+# prey: COD  no: 15  first size: 150 
+     1
+# prey: WHG  no: 16  first size: 100 
+     2     5     9     7     3     2
+# prey: HAD  no: 17  first size: 200 
+     1     1
+# prey: HER  no: 19  first size: 100 
+     1     2     5     4
+# prey: SAN  no: 20  first size: 100 
+     1
+##############################################################
+# predator: WHG  no: 16 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    43
+# predator size: 120  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+   104
+# prey: SAN  no: 20  first size: 70 
+     2     3     1
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+   128
+# prey: HER  no: 19  first size: 80 
+     1
+# prey: SAN  no: 20  first size: 70 
+    11    16     3     1
+# prey: NOP  no: 21  first size: 60 
+     1     2     2     5     2
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+   120
+# prey: WHG  no: 16  first size: 70 
+     1     1     1     2
+# prey: HER  no: 19  first size: 100 
+     1     1
+# prey: SAN  no: 20  first size: 70 
+    11     9    10     1     2
+# prey: NOP  no: 21  first size: 70 
+     9     8    11     5
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+   110
+# prey: WHG  no: 16  first size: 100 
+     5     5
+# prey: HAD  no: 17  first size: 120 
+     1     1
+# prey: HER  no: 19  first size: 80 
+     2     3
+# prey: SAN  no: 20  first size: 70 
+     9     6     9     3     3
+# prey: NOP  no: 21  first size: 50 
+     3     1     6    16    19    10     2
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    86
+# prey: WHG  no: 16  first size: 80 
+     1     4     7     1
+# prey: HAD  no: 17  first size: 80 
+     1     2     1     1
+# prey: HER  no: 19  first size: 80 
+     1     2     2
+# prey: SAN  no: 20  first size: 70 
+     2     2     2     2     1
+# prey: NOP  no: 21  first size: 50 
+     2     1     4     9    20    12    13
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    33
+# prey: WHG  no: 16  first size: 100 
+     1     1     2
+# prey: HAD  no: 17  first size: 80 
+     1     1     1     1
+# prey: HER  no: 19  first size: 100 
+     2     1
+# prey: SAN  no: 20  first size: 120 
+     1     1
+# prey: NOP  no: 21  first size: 70 
+     4     1     5     7     2
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    16
+# prey: WHG  no: 16  first size: 100 
+     1
+# prey: HAD  no: 17  first size: 120 
+     1
+# prey: HER  no: 19  first size: 120 
+     1     1
+# prey: SAN  no: 20  first size: 150 
+     1
+# prey: NOP  no: 21  first size: 60 
+     1     1     1     4     2     2
+##############################################################
+# predator: HAD  no: 17 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    80
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    69
+# prey: SAN  no: 20  first size: 70 
+     4     1     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    60
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    58
+# prey: SAN  no: 20  first size: 70 
+     2     3     3
+# prey: NOP  no: 21  first size: 80 
+     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    44
+# prey: SAN  no: 20  first size: 80 
+     1
+# prey: NOP  no: 21  first size: 120 
+     1
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    31
+# prey: NOP  no: 21  first size: 80 
+     2     1
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    12
+# prey: NOP  no: 21  first size: 100 
+     1
+##############################################################
+# predator: POK  no: 18 
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    13
+# prey: SAN  no: 20  first size: 70 
+     1
+# prey: NOP  no: 21  first size: 70 
+     2     1     3     1     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    21
+# prey: NOP  no: 21  first size: 80 
+     5     6     2     2
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    41
+# prey: HER  no: 19  first size: 120 
+     1
+# prey: SAN  no: 20  first size: 120 
+     1
+# prey: NOP  no: 21  first size: 70 
+     1     6     9     7     3
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    16
+# prey: HER  no: 19  first size: 200 
+     1
+# prey: SAN  no: 20  first size: 70 
+     1
+# prey: NOP  no: 21  first size: 100 
+     1     2     3
+# predator size: 600  class: 22 
+# prey: OTH  no: 0  first size: 9999 
+     8
+# prey: HER  no: 19  first size: 120 
+     1     1     1
+# prey: NOP  no: 21  first size: 100 
+     3     2     6     1
+# predator size: 700  class: 23 
+# prey: OTH  no: 0  first size: 9999 
+     6
+# prey: HER  no: 19  first size: 200 
+     2
+# prey: NOP  no: 21  first size: 120 
+     1     1     1     1
+# predator size: 800  class: 24 
+# prey: OTH  no: 0  first size: 9999 
+     3
+# prey: HER  no: 19  first size: 250 
+     1
+# prey: NOP  no: 21  first size: 80 
+     1     1     1     1
+##############################################################
+#  1991  quarter: 2 
+##############################################################
+# predator: FUL  no: 1 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 80 
+    10    10    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10
+# prey: HER  no: 19  first size: 100 
+    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: GLT  no: 2 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10    10
+# prey: HER  no: 19  first size: 80 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 80 
+    10    10    10    10
+##############################################################
+# predator: HEG  no: 3 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 80 
+    10    10    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: KTW  no: 4 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: GBG  no: 5 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 80 
+    10    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10    10    10
+# prey: HAD  no: 17  first size: 100 
+    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: GNT  no: 6 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 200 
+    10    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: PUF  no: 7 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: RAZ  no: 8 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10
+##############################################################
+# predator: RAJ  no: 9 
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    18
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    23
+# prey: SAN  no: 20  first size: 120 
+     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    30
+# prey: SAN  no: 20  first size: 80 
+     1     2
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    34
+# prey: SAN  no: 20  first size: 70 
+     1     2     1     2     2
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    51
+# prey: WHG  no: 16  first size: 150 
+     1
+# prey: SAN  no: 20  first size: 80 
+     1     5     8     6
+# prey: NOP  no: 21  first size: 80 
+     1     1     1     1
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    12
+# prey: WHG  no: 16  first size: 150 
+     1
+##############################################################
+# predator: GUR  no: 10 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+   179
+# prey: SAN  no: 20  first size: 70 
+     2     5
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+   188
+# prey: SAN  no: 20  first size: 70 
+     6    10     6     2
+# prey: NOP  no: 21  first size: 60 
+     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+   119
+# prey: SAN  no: 20  first size: 70 
+     6    11     7     3     4
+# prey: NOP  no: 21  first size: 60 
+     3
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    66
+# prey: WHG  no: 16  first size: 100 
+     1     2
+# prey: HAD  no: 17  first size: 120 
+     1
+# prey: SAN  no: 20  first size: 70 
+     4    11     9     7     3
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    34
+# prey: WHG  no: 16  first size: 100 
+     1     4
+# prey: SAN  no: 20  first size: 70 
+     4     3     5     5     3
+# prey: NOP  no: 21  first size: 120 
+     2
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+     4
+# prey: WHG  no: 16  first size: 100 
+     1     1
+# prey: SAN  no: 20  first size: 70 
+     1
+# prey: NOP  no: 21  first size: 100 
+     1     1     1
+##############################################################
+# predator: W_M  no: 11 
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    23
+# prey: SAN  no: 20  first size: 80 
+     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    54
+# prey: SAN  no: 20  first size: 70 
+     1     2
+# prey: NOP  no: 21  first size: 60 
+     1     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    27
+# prey: SAN  no: 20  first size: 70 
+     5     3     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    18
+# prey: SAN  no: 20  first size: 70 
+     3     2     1     2
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+     7
+# prey: SAN  no: 20  first size: 70 
+     1     1     1
+##############################################################
+# predator: N_M  no: 12 
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    28
+# prey: SAN  no: 20  first size: 80 
+     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    55
+# prey: SAN  no: 20  first size: 70 
+     3     6     2
+# prey: NOP  no: 21  first size: 60 
+     1     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    75
+# prey: HER  no: 19  first size: 80 
+     1     1
+# prey: SAN  no: 20  first size: 70 
+    11     9     7     1     1     1
+# prey: NOP  no: 21  first size: 60 
+     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    64
+# prey: HER  no: 19  first size: 80 
+     1     2     2
+# prey: SAN  no: 20  first size: 70 
+     9     6     5     4     5     1
+# prey: NOP  no: 21  first size: 80 
+     1
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    36
+# prey: SAN  no: 20  first size: 80 
+     1     1     4     5
+# prey: NOP  no: 21  first size: 70 
+     1
+##############################################################
+# predator: N_H  no: 14 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+     9
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    22
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    30
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    32
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    12
+##############################################################
+# predator: COD  no: 15 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    63
+# prey: SAN  no: 20  first size: 80 
+     1     1     1
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+   129
+# prey: SAN  no: 20  first size: 70 
+     1     3     3     3     2
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    96
+# prey: SAN  no: 20  first size: 70 
+     1     4     1     4     3
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    93
+# prey: COD  no: 15  first size: 100 
+     1
+# prey: SAN  no: 20  first size: 70 
+     3     3     1     4     4
+# prey: NOP  no: 21  first size: 100 
+     4    10     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+   104
+# prey: WHG  no: 16  first size: 120 
+     2
+# prey: HAD  no: 17  first size: 120 
+     1
+# prey: HER  no: 19  first size: 200 
+     1
+# prey: SAN  no: 20  first size: 70 
+     6     7     1     2     4     3
+# prey: NOP  no: 21  first size: 60 
+     1     1     1     7    14     4
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+   147
+# prey: COD  no: 15  first size: 150 
+     1     1
+# prey: WHG  no: 16  first size: 70 
+     1     1     1     2     4     1
+# prey: HAD  no: 17  first size: 100 
+     1     1     4
+# prey: HER  no: 19  first size: 150 
+     3
+# prey: SAN  no: 20  first size: 70 
+     5    11     5    11    12
+# prey: NOP  no: 21  first size: 70 
+     1     1     8    25     5     1
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+   115
+# prey: COD  no: 15  first size: 120 
+     2     1     3
+# prey: WHG  no: 16  first size: 120 
+     3     6     3     2
+# prey: HAD  no: 17  first size: 100 
+     1     2     8     2
+# prey: HER  no: 19  first size: 120 
+     2    10    16
+# prey: SAN  no: 20  first size: 70 
+     2     6     5    11     8     2
+# prey: NOP  no: 21  first size: 60 
+     1     1     1     5    32     6     1
+# predator size: 600  class: 22 
+# prey: OTH  no: 0  first size: 9999 
+    77
+# prey: WHG  no: 16  first size: 120 
+     2     3     4     4     1
+# prey: HAD  no: 17  first size: 150 
+     3     1     1
+# prey: HER  no: 19  first size: 100 
+     1     1     4    15     5
+# prey: SAN  no: 20  first size: 70 
+     2     4     1     2     7     3
+# prey: NOP  no: 21  first size: 80 
+     2     3    12     3
+# predator size: 700  class: 23 
+# prey: OTH  no: 0  first size: 9999 
+    48
+# prey: COD  no: 15  first size: 100 
+     1     1     2     1     1     1     1     1
+# prey: WHG  no: 16  first size: 100 
+     1     1     7     5     2     2
+# prey: HAD  no: 17  first size: 150 
+     1     3
+# prey: HER  no: 19  first size: 100 
+     1     3     3     8     3
+# prey: SAN  no: 20  first size: 70 
+     1     2     2     5     5     4
+# prey: NOP  no: 21  first size: 80 
+     1     2     5     3
+# predator size: 800  class: 24 
+# prey: OTH  no: 0  first size: 9999 
+    58
+# prey: COD  no: 15  first size: 200 
+     1     1     1     1     1
+# prey: WHG  no: 16  first size: 120 
+     3     2     3     6     2
+# prey: HAD  no: 17  first size: 120 
+     1     1     8     1     1     1
+# prey: HER  no: 19  first size: 150 
+     3     8     5
+# prey: SAN  no: 20  first size: 70 
+     1     2     1     4     5     2
+# prey: NOP  no: 21  first size: 120 
+     4     4
+# predator size: 1000  class: 25 
+# prey: OTH  no: 0  first size: 9999 
+    21
+# prey: WHG  no: 16  first size: 150 
+     1     3     5
+# prey: HAD  no: 17  first size: 150 
+     1     4
+# prey: HER  no: 19  first size: 150 
+     5     4     2
+# prey: SAN  no: 20  first size: 120 
+     2     3
+# prey: NOP  no: 21  first size: 100 
+     1     4
+##############################################################
+# predator: WHG  no: 16 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    25
+# predator size: 120  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    64
+# prey: SAN  no: 20  first size: 70 
+     1
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+   208
+# prey: SAN  no: 20  first size: 70 
+    11    12     5
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+   259
+# prey: SAN  no: 20  first size: 70 
+    24    23    15    14     5
+# prey: NOP  no: 21  first size: 70 
+     2     1     3     2     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+   242
+# prey: WHG  no: 16  first size: 120 
+     2     1
+# prey: HER  no: 19  first size: 80 
+     3     1     2     1
+# prey: SAN  no: 20  first size: 70 
+    45    29    25    34    13     1
+# prey: NOP  no: 21  first size: 60 
+     2     4     8    14    13     5
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+   175
+# prey: WHG  no: 16  first size: 100 
+     2     5     4
+# prey: HER  no: 19  first size: 120 
+     5
+# prey: SAN  no: 20  first size: 70 
+    22    22    23    25    18
+# prey: NOP  no: 21  first size: 70 
+     2    11    14    15     7
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    57
+# prey: WHG  no: 16  first size: 100 
+     1     3
+# prey: HER  no: 19  first size: 120 
+     1
+# prey: SAN  no: 20  first size: 70 
+    10     6     4     2     2     1
+# prey: NOP  no: 21  first size: 60 
+     1     1     1    10    16     3
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    20
+# prey: WHG  no: 16  first size: 100 
+     1
+# prey: HER  no: 19  first size: 100 
+     1     1
+# prey: SAN  no: 20  first size: 70 
+     1     1     1     1     1
+# prey: NOP  no: 21  first size: 80 
+     2     6     2     1
+##############################################################
+# predator: HAD  no: 17 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    89
+# prey: SAN  no: 20  first size: 70 
+     1     1
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    92
+# prey: SAN  no: 20  first size: 70 
+     3     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    96
+# prey: SAN  no: 20  first size: 80 
+     2     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    89
+# prey: SAN  no: 20  first size: 70 
+     2     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    83
+# prey: SAN  no: 20  first size: 70 
+     2     3     1     1     1
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    70
+# prey: SAN  no: 20  first size: 70 
+     6     3     1     2
+# prey: NOP  no: 21  first size: 120 
+     1
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    22
+# prey: SAN  no: 20  first size: 150 
+     1
+##############################################################
+# predator: POK  no: 18 
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+     5
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    26
+# prey: SAN  no: 20  first size: 70 
+     1
+# prey: NOP  no: 21  first size: 100 
+     4     2
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    34
+# prey: SAN  no: 20  first size: 70 
+     2     1     1     1     1
+# prey: NOP  no: 21  first size: 80 
+     1     7    10     3
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    35
+# prey: HAD  no: 17  first size: 150 
+     1
+# prey: SAN  no: 20  first size: 70 
+     4     4
+# prey: NOP  no: 21  first size: 100 
+    11    16    11
+# predator size: 600  class: 22 
+# prey: OTH  no: 0  first size: 9999 
+    25
+# prey: HER  no: 19  first size: 200 
+     4     4
+# prey: SAN  no: 20  first size: 70 
+     2     2     2     1     1
+# prey: NOP  no: 21  first size: 80 
+     1     3     9     5
+# predator size: 700  class: 23 
+# prey: OTH  no: 0  first size: 9999 
+    18
+# prey: WHG  no: 16  first size: 250 
+     1
+# prey: HER  no: 19  first size: 200 
+     5     4
+# prey: NOP  no: 21  first size: 80 
+     1     5     9     5
+# predator size: 800  class: 24 
+# prey: OTH  no: 0  first size: 9999 
+    21
+# prey: WHG  no: 16  first size: 200 
+     3     4     1
+# prey: HAD  no: 17  first size: 200 
+     1     1
+# prey: HER  no: 19  first size: 150 
+     1    10     7     2
+# prey: SAN  no: 20  first size: 70 
+     2     1
+# prey: NOP  no: 21  first size: 80 
+     2     7    11     3
+# predator size: 1000  class: 25 
+# prey: OTH  no: 0  first size: 9999 
+     6
+# prey: HER  no: 19  first size: 200 
+     4     3
+# prey: NOP  no: 21  first size: 100 
+     2     2
+##############################################################
+#  1991  quarter: 3 
+##############################################################
+# predator: FUL  no: 1 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: GLT  no: 2 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 80 
+    10    10    10    10
+##############################################################
+# predator: HEG  no: 3 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 60 
+    10    10    10    10    10
+# prey: WHG  no: 16  first size: 60 
+    10    10    10    10    10
+# prey: HAD  no: 17  first size: 70 
+    10    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10    10    10
+# prey: NOP  no: 21  first size: 60 
+    10    10    10    10    10
+##############################################################
+# predator: KTW  no: 4 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: GBG  no: 5 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 60 
+    10    10    10    10    10
+# prey: WHG  no: 16  first size: 60 
+    10    10    10    10    10
+# prey: HAD  no: 17  first size: 70 
+    10    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+# prey: NOP  no: 21  first size: 60 
+    10    10    10    10    10
+##############################################################
+# predator: GNT  no: 6 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 200 
+    10    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: PUF  no: 7 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: RAZ  no: 8 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10
+##############################################################
+# predator: RAJ  no: 9 
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    29
+# prey: SAN  no: 20  first size: 60 
+     1     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    38
+# prey: COD  no: 15  first size: 50 
+     1
+# prey: SAN  no: 20  first size: 60 
+     1     4     8     3     2
+# prey: NOP  no: 21  first size: 80 
+     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    44
+# prey: SAN  no: 20  first size: 50 
+     2     4     4     9     6     5
+# prey: NOP  no: 21  first size: 60 
+     1     1     2     1     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    46
+# prey: COD  no: 15  first size: 70 
+     1     1     1     1
+# prey: WHG  no: 16  first size: 120 
+     1
+# prey: SAN  no: 20  first size: 50 
+     2     5     8    16     9     3
+# prey: NOP  no: 21  first size: 60 
+     1     1     2     1     2
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    53
+# prey: COD  no: 15  first size: 50 
+     1     1     1     1
+# prey: SAN  no: 20  first size: 50 
+     1     4    10    19    13     4
+# prey: NOP  no: 21  first size: 50 
+     1     1     1     2     2     2     1
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    11
+# prey: COD  no: 15  first size: 150 
+     1
+# prey: WHG  no: 16  first size: 120 
+     1
+# prey: SAN  no: 20  first size: 120 
+     1
+# prey: NOP  no: 21  first size: 80 
+     1
+##############################################################
+# predator: GUR  no: 10 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+   130
+# prey: WHG  no: 16  first size: 60 
+     1     1
+# prey: SAN  no: 20  first size: 50 
+     6    12     5     6     2
+# prey: NOP  no: 21  first size: 50 
+     1     1
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+   139
+# prey: COD  no: 15  first size: 60 
+     4     1
+# prey: WHG  no: 16  first size: 50 
+     2     3     1     2
+# prey: SAN  no: 20  first size: 50 
+    12    25    11    16     7     1
+# prey: NOP  no: 21  first size: 50 
+     5     2     4     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+   104
+# prey: COD  no: 15  first size: 50 
+     3     4     2     4
+# prey: WHG  no: 16  first size: 50 
+     1     3     3     5     1     1
+# prey: HAD  no: 17  first size: 50 
+     1     1     1     1     1
+# prey: SAN  no: 20  first size: 50 
+     5    14    17    20    15     3
+# prey: NOP  no: 21  first size: 50 
+     2     4     2     2     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    62
+# prey: COD  no: 15  first size: 50 
+     2     3     2     1
+# prey: WHG  no: 16  first size: 50 
+     1     1     1     4     1
+# prey: HAD  no: 17  first size: 80 
+     1
+# prey: SAN  no: 20  first size: 50 
+     4     9    11    15    14     3
+# prey: NOP  no: 21  first size: 50 
+     3     2     1     4     1     2     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    30
+# prey: COD  no: 15  first size: 50 
+     2     1     1     5
+# prey: WHG  no: 16  first size: 50 
+     1     1     1     2     2     1     1
+# prey: HAD  no: 17  first size: 80 
+     1     1
+# prey: SAN  no: 20  first size: 50 
+     3     5     7    10     8     2     1
+# prey: NOP  no: 21  first size: 50 
+     1     2     1     1     1     1
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+     3
+# prey: SAN  no: 20  first size: 80 
+     1     1     1
+##############################################################
+# predator: W_M  no: 11 
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    17
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    61
+# prey: SAN  no: 20  first size: 50 
+     2     4     3     3
+# prey: NOP  no: 21  first size: 50 
+     2
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    76
+# prey: HER  no: 19  first size: 70 
+     1     1
+# prey: SAN  no: 20  first size: 50 
+     8    14    10     8     2
+# prey: NOP  no: 21  first size: 50 
+     6     5     1     3
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    48
+# prey: SAN  no: 20  first size: 50 
+     6    12     9     4     1     2
+# prey: NOP  no: 21  first size: 50 
+     5     5     5     4     1     1
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    16
+# prey: HER  no: 19  first size: 120 
+     1
+# prey: SAN  no: 20  first size: 60 
+     3     3     3     1     1     1
+# prey: NOP  no: 21  first size: 70 
+     3     1
+##############################################################
+# predator: N_M  no: 12 
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    20
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    70
+# prey: SAN  no: 20  first size: 50 
+     2     4     3     3
+# prey: NOP  no: 21  first size: 50 
+     2
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+   118
+# prey: HER  no: 19  first size: 70 
+     1     1
+# prey: SAN  no: 20  first size: 50 
+     8    14    10     8     2
+# prey: NOP  no: 21  first size: 50 
+     6     5     1     3
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    78
+# prey: HER  no: 19  first size: 100 
+     1
+# prey: SAN  no: 20  first size: 50 
+     6    12     9     4     1     2     1
+# prey: NOP  no: 21  first size: 50 
+     5     5     5     4     1     1
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    30
+# prey: HER  no: 19  first size: 120 
+     1
+# prey: SAN  no: 20  first size: 60 
+     3     3     3     1     1     1
+# prey: NOP  no: 21  first size: 70 
+     3     1
+##############################################################
+# predator: W_H  no: 13 
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    18
+# prey: SAN  no: 20  first size: 50 
+     1     2     1     1
+# prey: NOP  no: 21  first size: 60 
+     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    28
+# prey: SAN  no: 20  first size: 50 
+     3     4
+# prey: NOP  no: 21  first size: 60 
+     3
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    17
+# prey: SAN  no: 20  first size: 80 
+     2     3
+# prey: NOP  no: 21  first size: 50 
+     1
+##############################################################
+# predator: N_H  no: 14 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    13
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    22
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    38
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    45
+# prey: HER  no: 19  first size: 50 
+     1     1     1     1     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+     8
+# prey: HER  no: 19  first size: 100 
+     1
+##############################################################
+# predator: COD  no: 15 
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    38
+# prey: COD  no: 15  first size: 60 
+     2     1     2
+# prey: SAN  no: 20  first size: 50 
+     2     3     4     4     1     1
+# prey: NOP  no: 21  first size: 60 
+     1     3     2     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    86
+# prey: COD  no: 15  first size: 60 
+     4     3     4     1
+# prey: WHG  no: 16  first size: 60 
+     1     1     2     5
+# prey: HAD  no: 17  first size: 80 
+     3
+# prey: SAN  no: 20  first size: 50 
+     6    12     9     6     4     1     1     1
+# prey: NOP  no: 21  first size: 50 
+     1     6     6     6     4
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    79
+# prey: COD  no: 15  first size: 50 
+     1     1     3     2     3
+# prey: WHG  no: 16  first size: 100 
+     1     1     1
+# prey: HAD  no: 17  first size: 80 
+     1     3     2
+# prey: HER  no: 19  first size: 120 
+     1
+# prey: SAN  no: 20  first size: 50 
+     6     9    12     6     2     1     1
+# prey: NOP  no: 21  first size: 60 
+     3     5     8     2     1     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    52
+# prey: COD  no: 15  first size: 60 
+     1     2     4     1
+# prey: WHG  no: 16  first size: 70 
+     1     1     2     2     1
+# prey: HAD  no: 17  first size: 80 
+     1     2     2
+# prey: SAN  no: 20  first size: 60 
+     4     4     3     1     1     1
+# prey: NOP  no: 21  first size: 60 
+     2     5     8     2     1     1
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    68
+# prey: COD  no: 15  first size: 60 
+     3     1     3     3     3
+# prey: WHG  no: 16  first size: 70 
+     2     2     3     4
+# prey: HAD  no: 17  first size: 70 
+     1     3     6     3
+# prey: HER  no: 19  first size: 150 
+     4     1
+# prey: SAN  no: 20  first size: 50 
+     1     3     5     6     3     1     1     1
+# prey: NOP  no: 21  first size: 60 
+     7     6    11     7    10     3
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    52
+# prey: COD  no: 15  first size: 50 
+     1     1     1     3     1     1     1     1
+# prey: WHG  no: 16  first size: 80 
+     1     2     2
+# prey: HAD  no: 17  first size: 80 
+     2     4     4     2
+# prey: HER  no: 19  first size: 150 
+     2     2     3
+# prey: SAN  no: 20  first size: 60 
+     4     5     5     2     1     1     1
+# prey: NOP  no: 21  first size: 50 
+     2     2     5     8     2     8     9
+# predator size: 600  class: 22 
+# prey: OTH  no: 0  first size: 9999 
+    46
+# prey: COD  no: 15  first size: 70 
+     1     1     2
+# prey: WHG  no: 16  first size: 80 
+     1     3     1     3     2     1     1
+# prey: HAD  no: 17  first size: 70 
+     2     4     6     1     1     1
+# prey: HER  no: 19  first size: 200 
+     3     3
+# prey: SAN  no: 20  first size: 70 
+     2     2     2     1     1     1
+# prey: NOP  no: 21  first size: 50 
+     1     4     4     7     1     2     2
+# predator size: 700  class: 23 
+# prey: OTH  no: 0  first size: 9999 
+    23
+# prey: COD  no: 15  first size: 120 
+     1
+# prey: WHG  no: 16  first size: 120 
+     3     1     1     1
+# prey: HER  no: 19  first size: 120 
+     2     1     2     6
+# prey: SAN  no: 20  first size: 60 
+     1     1     1     1     1     2
+# prey: NOP  no: 21  first size: 60 
+     3     2     3     1     2     4
+# predator size: 800  class: 24 
+# prey: OTH  no: 0  first size: 9999 
+    19
+# prey: COD  no: 15  first size: 80 
+     1
+# prey: WHG  no: 16  first size: 120 
+     1     1     2
+# prey: HAD  no: 17  first size: 100 
+     1     1
+# prey: HER  no: 19  first size: 100 
+     1     1     1     6     3
+# prey: SAN  no: 20  first size: 80 
+     1     1
+# prey: NOP  no: 21  first size: 70 
+     1     2     1     2     2
+# predator size: 1000  class: 25 
+# prey: OTH  no: 0  first size: 9999 
+     7
+# prey: COD  no: 15  first size: 400 
+     1
+# prey: HAD  no: 17  first size: 250 
+     1
+# prey: HER  no: 19  first size: 250 
+     2
+# prey: NOP  no: 21  first size: 120 
+     1
+##############################################################
+# predator: WHG  no: 16 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    89
+# prey: WHG  no: 16  first size: 50 
+     1     1
+# prey: SAN  no: 20  first size: 50 
+     7     1     1
+# prey: NOP  no: 21  first size: 50 
+     4     2     1
+# predator size: 120  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+    76
+# prey: SAN  no: 20  first size: 50 
+     8     4     3     2
+# prey: NOP  no: 21  first size: 50 
+    13     8     5
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+   104
+# prey: HAD  no: 17  first size: 70 
+     1
+# prey: HER  no: 19  first size: 80 
+     1
+# prey: SAN  no: 20  first size: 50 
+     7    10     6     6     2
+# prey: NOP  no: 21  first size: 50 
+     3     1     1
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+   158
+# prey: COD  no: 15  first size: 60 
+     1
+# prey: WHG  no: 16  first size: 50 
+     2     3     4     2     1
+# prey: HAD  no: 17  first size: 50 
+     1     2     2     1
+# prey: HER  no: 19  first size: 100 
+     2
+# prey: SAN  no: 20  first size: 50 
+    25    21    25    16    10     1
+# prey: NOP  no: 21  first size: 50 
+    15    13    13    10
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+   161
+# prey: COD  no: 15  first size: 50 
+     1     2     1     1
+# prey: WHG  no: 16  first size: 50 
+     3     1     2     9     2
+# prey: HAD  no: 17  first size: 50 
+     5     4     7     6     4
+# prey: HER  no: 19  first size: 80 
+     2     7     4     1
+# prey: SAN  no: 20  first size: 50 
+    20    30    30    29    20     3     3     1
+# prey: NOP  no: 21  first size: 50 
+    22    24    44    31     7     3     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+   114
+# prey: COD  no: 15  first size: 70 
+     1     1
+# prey: WHG  no: 16  first size: 50 
+     3     4     2     9     5     1     1
+# prey: HAD  no: 17  first size: 50 
+     3     3     3     8     5     1
+# prey: HER  no: 19  first size: 80 
+     3     3     3     5
+# prey: SAN  no: 20  first size: 50 
+    16    18    24    18    17     5     3
+# prey: NOP  no: 21  first size: 50 
+    13    18    25    31    10     9     9
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    33
+# prey: WHG  no: 16  first size: 80 
+     2     1     1
+# prey: HAD  no: 17  first size: 60 
+     1     1     3     2     1
+# prey: HER  no: 19  first size: 70 
+     1     1     1     1     3
+# prey: SAN  no: 20  first size: 50 
+     2     6    10     5     4     1     3
+# prey: NOP  no: 21  first size: 50 
+     3     4     2    12     8     8     2
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+     6
+# prey: WHG  no: 16  first size: 80 
+     1     1     1     1     1
+# prey: HAD  no: 17  first size: 80 
+     1
+# prey: HER  no: 19  first size: 120 
+     2
+# prey: SAN  no: 20  first size: 70 
+     1     1
+# prey: NOP  no: 21  first size: 70 
+     1     3     1     3     1
+##############################################################
+# predator: HAD  no: 17 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    73
+# prey: SAN  no: 20  first size: 50 
+     2     1     3
+# prey: NOP  no: 21  first size: 60 
+     1
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+   104
+# prey: SAN  no: 20  first size: 50 
+     5     8     8     3     3
+# prey: NOP  no: 21  first size: 60 
+     1     3     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+   108
+# prey: SAN  no: 20  first size: 50 
+     6     8    10     7     2
+# prey: NOP  no: 21  first size: 70 
+     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+   111
+# prey: SAN  no: 20  first size: 50 
+     6     9    13     8     2
+# prey: NOP  no: 21  first size: 80 
+     2     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    85
+# prey: SAN  no: 20  first size: 50 
+     5    11    14    16     5     1
+# prey: NOP  no: 21  first size: 60 
+     3     3     3
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    78
+# prey: SAN  no: 20  first size: 50 
+     3     6     9    11     1     1
+# prey: NOP  no: 21  first size: 60 
+     1     1     1
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    23
+# prey: SAN  no: 20  first size: 50 
+     1     4     8     6     2     1
+# prey: NOP  no: 21  first size: 50 
+     1
+##############################################################
+# predator: POK  no: 18 
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    21
+# prey: WHG  no: 16  first size: 50 
+     1     1     1     3     2
+# prey: HAD  no: 17  first size: 60 
+     1     1     4     5     2
+# prey: SAN  no: 20  first size: 60 
+     1     2     3
+# prey: NOP  no: 21  first size: 50 
+     1    10    10    12     2     1     2
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    13
+# prey: WHG  no: 16  first size: 70 
+     1     2     1     1
+# prey: HAD  no: 17  first size: 80 
+     2     3
+# prey: HER  no: 19  first size: 250 
+     1
+# prey: SAN  no: 20  first size: 80 
+     1
+# prey: NOP  no: 21  first size: 50 
+     4     4     5     5     3     4     4
+# predator size: 600  class: 22 
+# prey: OTH  no: 0  first size: 9999 
+     5
+# prey: WHG  no: 16  first size: 50 
+     1     1     1     1
+# prey: HAD  no: 17  first size: 100 
+     2     1
+# prey: NOP  no: 21  first size: 60 
+     1     1     1     1     4     2
+# predator size: 700  class: 23 
+# prey: OTH  no: 0  first size: 9999 
+     4
+# prey: WHG  no: 16  first size: 100 
+     1
+# prey: HAD  no: 17  first size: 80 
+     1     1
+# prey: HER  no: 19  first size: 200 
+     1     2
+# prey: NOP  no: 21  first size: 70 
+     2     1     1     2     3
+# predator size: 800  class: 24 
+# prey: OTH  no: 0  first size: 9999 
+     4
+# prey: WHG  no: 16  first size: 100 
+     1
+# prey: HAD  no: 17  first size: 70 
+     1     1     2     1
+# prey: HER  no: 19  first size: 150 
+     1     4     6     1
+# prey: NOP  no: 21  first size: 60 
+     2     1     2     3     4     2
+##############################################################
+#  1991  quarter: 4 
+##############################################################
+# predator: FUL  no: 1 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 60 
+    10    10    10    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10    10    10
+# prey: HER  no: 19  first size: 80 
+    10    10    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10    10    10
+##############################################################
+# predator: GLT  no: 2 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 100 
+    10    10    10    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10    10    10
+# prey: SAN  no: 20  first size: 70 
+    10    10    10    10    10
+##############################################################
+# predator: HEG  no: 3 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 60 
+    10    10    10    10    10
+# prey: HAD  no: 17  first size: 80 
+    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10    10    10
+##############################################################
+# predator: KTW  no: 4 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 70 
+    10    10    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10    10    10
+# prey: HAD  no: 17  first size: 80 
+    10    10    10
+# prey: HER  no: 19  first size: 100 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 80 
+    10    10    10
+##############################################################
+# predator: GBG  no: 5 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: COD  no: 15  first size: 60 
+    10    10    10    10    10
+# prey: WHG  no: 16  first size: 70 
+    10    10    10    10
+# prey: HAD  no: 17  first size: 80 
+    10    10    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10
+# prey: NOP  no: 21  first size: 70 
+    10    10    10    10
+##############################################################
+# predator: GNT  no: 6 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: HER  no: 19  first size: 150 
+    10    10    10    10
+##############################################################
+# predator: PUF  no: 7 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: HER  no: 19  first size: 70 
+    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10    10    10    10    10
+##############################################################
+# predator: RAZ  no: 8 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: WHG  no: 16  first size: 80 
+    10    10    10    10    10
+# prey: HER  no: 19  first size: 60 
+    10    10    10    10
+# prey: SAN  no: 20  first size: 60 
+    10    10
+# prey: NOP  no: 21  first size: 80 
+    10    10    10
+##############################################################
+# predator: RAJ  no: 9 
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+     9
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    22
+# prey: SAN  no: 20  first size: 100 
+     1
+# prey: NOP  no: 21  first size: 80 
+     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    23
+# prey: SAN  no: 20  first size: 70 
+     1     2     1
+# prey: NOP  no: 21  first size: 80 
+     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    23
+# prey: SAN  no: 20  first size: 80 
+     3     3     1     1
+# prey: NOP  no: 21  first size: 80 
+     3     2     1
+##############################################################
+# predator: GUR  no: 10 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    46
+# prey: SAN  no: 20  first size: 60 
+     1     1     1
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    49
+# prey: WHG  no: 16  first size: 60 
+     1     1     1
+# prey: HAD  no: 17  first size: 80 
+     1
+# prey: SAN  no: 20  first size: 70 
+     1     3     1     2
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    41
+# prey: COD  no: 15  first size: 60 
+     1     1     1     1
+# prey: WHG  no: 16  first size: 50 
+     1     1     1     1     1     1     1
+# prey: SAN  no: 20  first size: 80 
+     1     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    20
+# prey: COD  no: 15  first size: 80 
+     1     1
+# prey: WHG  no: 16  first size: 100 
+     2     1
+# prey: HAD  no: 17  first size: 80 
+     1
+# prey: SAN  no: 20  first size: 80 
+     5     1     1
+# prey: NOP  no: 21  first size: 70 
+     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    12
+# prey: WHG  no: 16  first size: 120 
+     1
+# prey: SAN  no: 20  first size: 60 
+     3     1     1     1     1     1     1
+# prey: NOP  no: 21  first size: 70 
+     1
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+     3
+# prey: WHG  no: 16  first size: 80 
+     1
+##############################################################
+# predator: W_M  no: 11 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+     4
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+     7
+# prey: SAN  no: 20  first size: 50 
+     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    18
+# prey: NOP  no: 21  first size: 80 
+     1
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    13
+# prey: NOP  no: 21  first size: 50 
+     2     1     1     3     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    12
+# prey: NOP  no: 21  first size: 80 
+     3     1
+##############################################################
+# predator: N_M  no: 12 
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+     6
+# prey: SAN  no: 20  first size: 50 
+     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    15
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    15
+# prey: HER  no: 19  first size: 80 
+     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    13
+# prey: HER  no: 19  first size: 70 
+     1
+# prey: SAN  no: 20  first size: 80 
+     1     1
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+     5
+# prey: HER  no: 19  first size: 100 
+     1
+# prey: SAN  no: 20  first size: 200 
+     1
+##############################################################
+# predator: W_H  no: 13 
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+     6
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: NOP  no: 21  first size: 70 
+     2
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+     5
+# prey: NOP  no: 21  first size: 60 
+     1     1     1
+##############################################################
+# predator: N_H  no: 14 
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    20
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    21
+# prey: HER  no: 19  first size: 60 
+     1     1     1
+##############################################################
+# predator: COD  no: 15 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    59
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    38
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    38
+# prey: COD  no: 15  first size: 80 
+     1     1
+# prey: WHG  no: 16  first size: 100 
+     1
+# prey: HAD  no: 17  first size: 80 
+     2     1
+# prey: SAN  no: 20  first size: 100 
+     1
+# prey: NOP  no: 21  first size: 60 
+     1     1     3
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    78
+# prey: COD  no: 15  first size: 50 
+     2     1     1     1     1     2
+# prey: WHG  no: 16  first size: 150 
+     1
+# prey: HAD  no: 17  first size: 70 
+     1     5     1     2
+# prey: SAN  no: 20  first size: 50 
+     1     2     1     2
+# prey: NOP  no: 21  first size: 70 
+     1    19    11     1
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    71
+# prey: COD  no: 15  first size: 60 
+     1     1     1
+# prey: WHG  no: 16  first size: 100 
+     1
+# prey: HAD  no: 17  first size: 80 
+     2     1     2     1
+# prey: SAN  no: 20  first size: 50 
+     1     1     1     2     1     2
+# prey: NOP  no: 21  first size: 50 
+     1     1     1     6     5     2
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    64
+# prey: COD  no: 15  first size: 60 
+     1     1     1     1     1
+# prey: WHG  no: 16  first size: 120 
+     1     3     1
+# prey: HAD  no: 17  first size: 80 
+     1     4     5     2
+# prey: HER  no: 19  first size: 200 
+     1
+# prey: SAN  no: 20  first size: 70 
+     2     2     2     1     4
+# prey: NOP  no: 21  first size: 70 
+     2     8    11     5     1
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    54
+# prey: COD  no: 15  first size: 100 
+     2
+# prey: WHG  no: 16  first size: 100 
+     1     1     2     3     1
+# prey: HAD  no: 17  first size: 80 
+     2     3     5     1
+# prey: HER  no: 19  first size: 150 
+     1     1
+# prey: SAN  no: 20  first size: 70 
+     1     1     1     1
+# prey: NOP  no: 21  first size: 80 
+     9    10     2     5
+# predator size: 600  class: 22 
+# prey: OTH  no: 0  first size: 9999 
+    41
+# prey: COD  no: 15  first size: 120 
+     1
+# prey: WHG  no: 16  first size: 120 
+     2     3     2
+# prey: HAD  no: 17  first size: 70 
+     1     1     5     7     2
+# prey: HER  no: 19  first size: 150 
+     1     4     1
+# prey: SAN  no: 20  first size: 50 
+     2     1     1     1     1     1     2
+# prey: NOP  no: 21  first size: 80 
+     4     9     2     6
+# predator size: 700  class: 23 
+# prey: OTH  no: 0  first size: 9999 
+    31
+# prey: WHG  no: 16  first size: 120 
+     1     2     5     3
+# prey: HAD  no: 17  first size: 80 
+     1     2     8     3     1     1
+# prey: HER  no: 19  first size: 200 
+     2
+# prey: NOP  no: 21  first size: 80 
+     7     7     6     8
+# predator size: 800  class: 24 
+# prey: OTH  no: 0  first size: 9999 
+    16
+# prey: COD  no: 15  first size: 120 
+     1
+# prey: WHG  no: 16  first size: 150 
+     1     1     2
+# prey: HAD  no: 17  first size: 100 
+     1     1     2     1
+# prey: HER  no: 19  first size: 200 
+     1
+# prey: SAN  no: 20  first size: 80 
+     1
+# prey: NOP  no: 21  first size: 80 
+     3     6     2     4
+# predator size: 1000  class: 25 
+# prey: OTH  no: 0  first size: 9999 
+     7
+# prey: WHG  no: 16  first size: 150 
+     1     1
+# prey: HAD  no: 17  first size: 80 
+     1     1     1     1
+# prey: HER  no: 19  first size: 120 
+     1     1     1
+# prey: NOP  no: 21  first size: 80 
+     1     2
+##############################################################
+# predator: WHG  no: 16 
+# predator size: 100  class: 13 
+# prey: OTH  no: 0  first size: 9999 
+    98
+# prey: NOP  no: 21  first size: 80 
+     1
+# predator size: 120  class: 14 
+# prey: OTH  no: 0  first size: 9999 
+   111
+# prey: SAN  no: 20  first size: 50 
+     1
+# prey: NOP  no: 21  first size: 50 
+     1     4     1     1
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+   153
+# prey: HAD  no: 17  first size: 80 
+     1
+# prey: SAN  no: 20  first size: 60 
+     2     2     2     2     1
+# prey: NOP  no: 21  first size: 50 
+     6    13    12    27     7
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+   146
+# prey: COD  no: 15  first size: 100 
+     1
+# prey: WHG  no: 16  first size: 100 
+     2
+# prey: HAD  no: 17  first size: 80 
+     1     1
+# prey: HER  no: 19  first size: 80 
+     1
+# prey: SAN  no: 20  first size: 50 
+     2     1     8    10     7     2     1
+# prey: NOP  no: 21  first size: 50 
+     1    12    13    39     8     1
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+   159
+# prey: COD  no: 15  first size: 80 
+     1
+# prey: WHG  no: 16  first size: 50 
+     1     1     1     2     5
+# prey: HAD  no: 17  first size: 80 
+     1     1     1
+# prey: HER  no: 19  first size: 80 
+     1     1     1     1
+# prey: SAN  no: 20  first size: 50 
+     1     4     7    11     5     6     4     1
+# prey: NOP  no: 21  first size: 50 
+     8    19    21    56    30     7
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+   134
+# prey: WHG  no: 16  first size: 50 
+     1     1     1     4     4     6
+# prey: HAD  no: 17  first size: 70 
+     1     1     6     3
+# prey: HER  no: 19  first size: 60 
+     1     1     1     1     1
+# prey: SAN  no: 20  first size: 50 
+     1     4     9     7     9     6     1
+# prey: NOP  no: 21  first size: 50 
+     8    19    22    55    34     6     5
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    73
+# prey: WHG  no: 16  first size: 80 
+     1     1     1
+# prey: HAD  no: 17  first size: 70 
+     1     4     5     3     1
+# prey: HER  no: 19  first size: 80 
+     1     1     1
+# prey: SAN  no: 20  first size: 70 
+     1     1     1     1     2     1
+# prey: NOP  no: 21  first size: 50 
+     3     5     7    39    14     7     1
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    20
+# prey: WHG  no: 16  first size: 100 
+     1
+# prey: HAD  no: 17  first size: 100 
+     2     2
+# prey: SAN  no: 20  first size: 80 
+     1
+# prey: NOP  no: 21  first size: 80 
+     8     6     1     3
+##############################################################
+# predator: HAD  no: 17 
+# predator size: 150  class: 15 
+# prey: OTH  no: 0  first size: 9999 
+    68
+# prey: SAN  no: 20  first size: 60 
+     1
+# prey: NOP  no: 21  first size: 70 
+     1
+# predator size: 200  class: 16 
+# prey: OTH  no: 0  first size: 9999 
+    66
+# predator size: 250  class: 17 
+# prey: OTH  no: 0  first size: 9999 
+    72
+# prey: SAN  no: 20  first size: 60 
+     1     1     1     2
+# prey: NOP  no: 21  first size: 50 
+     1     1     1     6     4
+# predator size: 300  class: 18 
+# prey: OTH  no: 0  first size: 9999 
+    72
+# prey: SAN  no: 20  first size: 50 
+     1     1     4     1     1     1
+# prey: NOP  no: 21  first size: 50 
+     1     1     1     2     3
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+    62
+# prey: SAN  no: 20  first size: 70 
+     2     4     1
+# prey: NOP  no: 21  first size: 70 
+     1     6     7     1
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    45
+# prey: SAN  no: 20  first size: 70 
+     1     1
+# prey: NOP  no: 21  first size: 50 
+     1     1     1     8     6
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    23
+# prey: SAN  no: 20  first size: 100 
+     1
+# prey: NOP  no: 21  first size: 70 
+     1     5     2     2
+##############################################################
+# predator: POK  no: 18 
+# predator size: 350  class: 19 
+# prey: OTH  no: 0  first size: 9999 
+     9
+# prey: NOP  no: 21  first size: 60 
+     1     3     7     4
+# predator size: 400  class: 20 
+# prey: OTH  no: 0  first size: 9999 
+    32
+# prey: WHG  no: 16  first size: 80 
+     1     3     1
+# prey: HAD  no: 17  first size: 80 
+     4     4     9
+# prey: SAN  no: 20  first size: 60 
+     1     1
+# prey: NOP  no: 21  first size: 50 
+     4     3    21    38    25     8     2
+# predator size: 500  class: 21 
+# prey: OTH  no: 0  first size: 9999 
+    21
+# prey: WHG  no: 16  first size: 100 
+     3
+# prey: HAD  no: 17  first size: 100 
+     3     4
+# prey: SAN  no: 20  first size: 80 
+     1
+# prey: NOP  no: 21  first size: 70 
+     6    19    15     5     6
+# predator size: 600  class: 22 
+# prey: OTH  no: 0  first size: 9999 
+    10
+# prey: HAD  no: 17  first size: 100 
+     2     2     1
+# prey: HER  no: 19  first size: 150 
+     1     3     2
+# prey: NOP  no: 21  first size: 80 
+     8     8     6     8
+# predator size: 700  class: 23 
+# prey: OTH  no: 0  first size: 9999 
+     3
+# prey: WHG  no: 16  first size: 70 
+     1     1     1     1
+# prey: HAD  no: 17  first size: 120 
+     1
+# prey: HER  no: 19  first size: 200 
+     2     2
+# prey: NOP  no: 21  first size: 80 
+     2     1     1     1
+# predator size: 1000  class: 25 
+# prey: OTH  no: 0  first size: 9999 
+     3
+# prey: HAD  no: 17  first size: 100 
+     1     1
+# prey: HER  no: 19  first size: 200 
+     3     1
+# prey: NOP  no: 21  first size: 80 
+     2     3     2

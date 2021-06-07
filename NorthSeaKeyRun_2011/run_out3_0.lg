@@ -1,0 +1,1862 @@
+SMS version 20 October 2011 using ADMB version 10.0
+no. of species: 26  no. of predators: 20  no. of other predators:16
+SSB_Rec_model: 100 100 3 100 100 100 1 3 3 3
+first VPA species no.:17  first VPA species as prey:17
+PRELIMINARY_CALCS_SECTION begins
+Prey:Sprat       excluded from stomach observation for predator:Cod         size:500 Y:1981 Q:3 due to prey species sum <0.0001
+Prey:Sprat       excluded from stomach observation for predator:Cod         size:700 Y:1981 Q:3 due to prey species sum <0.0001
+Prey:Sprat       excluded from stomach observation for predator:Cod         size:500 Y:1991 Q:1 due to prey species sum <0.0001
+Prey:Sandeel     excluded from stomach observation for predator:W. mackerel size:250 Y:1991 Q:2 due to prey species sum <0.0001
+Prey:Nor. pout   excluded from stomach observation for predator:W. mackerel size:250 Y:1991 Q:2 due to prey species sum <0.0001
+Prey:Sprat       excluded from stomach observation for predator:W. mackerel size:250 Y:1991 Q:2 due to prey species sum <0.0001
+Prey:Nor. pout   excluded from stomach observation for predator:N. mackerel size:250 Y:1991 Q:2 due to prey species sum <0.0001
+Prey:Sprat       excluded from stomach observation for predator:N. mackerel size:250 Y:1991 Q:2 due to prey species sum <0.0001
+Prey:Sandeel     excluded from stomach observation for predator:Saithe      size:350 Y:1991 Q:2 due to prey species sum <0.0001
+Prey:Sprat       excluded from stomach observation for predator:N. mackerel size:300 Y:1991 Q:3 due to prey species sum <0.0001
+
+observed min predator prey size ratio: 
+                  Cod        Whiting    Haddock    Saithe     Herring    Sandeel    Nor. pout  Sprat      Plaice     Sole       
+Fulmar           280.1      357.3      364.1          .      114.2      206.1      277.0      311.3          .          .
+Guillemot            .       66.8      145.5          .      156.2      197.6          .      288.4          .          .
+Her. Gull        280.1      357.3      364.1          .       28.5      224.6      277.0      311.3          .          .
+Kittiwake        280.1      357.3      364.1          .       49.9      206.1          .      546.8          .          .
+GBB. Gull        280.1      357.3      364.1          .       28.5      206.1      277.0      311.3          .          .
+Gannet            12.6          .          .          .       17.6      206.1          .      156.2          .          .
+Puffin               .          .          .          .      546.8      206.1          .      546.8          .          .
+Razorbill            .       79.3          .          .      546.8      503.1      250.9      470.3          .          .
+R. radiata        50.7       49.6          .          .          .       33.7       32.3          .          .          .
+G. gurnards        9.2        5.6       19.9          .          .        6.9        7.0       30.6          .          .
+W. mackerel          .          .          .          .       43.6        3.3       19.7       20.0          .          .
+N. mackerel          .          .          .          .       21.9        3.3       25.8       20.0          .          .
+W.horse mac          .          .          .          .          .       45.9       55.1          .          .          .
+N.horse mac          .       36.7          .          .       13.3       54.3          .       15.5          .          .
+Grey seal          2.8       15.6        9.8          .       27.3      134.5       88.5          .          .          .
+H. porpoise        4.3       15.6          .          .       27.3      134.5          .          .          .          .
+Cod                3.6        2.7        4.3          .        1.7        1.6        2.1        8.0          .          .
+Whiting            4.8        1.7        2.3          .        1.4        0.6        0.8        1.9          .          .
+Haddock              .          .          .          .          .        2.7        8.1          .          .          .
+Saithe               .       13.2       13.1          .        3.7       16.6        4.3          .          .          .
+
+observed max predator prey size ratio: 
+                  Cod        Whiting    Haddock    Saithe     Herring    Sandeel    Nor. pout  Sprat      Plaice     Sole       
+Fulmar            1307       1022        478          .        457       5024       1416       4658          .          .
+Guillemot            .        545        466          .       1646       3011          .       4658          .          .
+Her. Gull         2030       2752        934          .        121       1581       2257       4658          .          .
+Kittiwake         1307       1022        821          .        457       5024          .       4658          .          .
+GBB. Gull         2030       2752        934          .        121       3011       2257       4658          .          .
+Gannet              39          .          .          .        121       5024          .        757          .          .
+Puffin               .          .          .          .       1646       5024          .       4658          .          .
+Razorbill            .        515          .          .       1646       5024        733       4658          .          .
+R. radiata        1056        164          .          .          .       2449       1200          .          .          .
+G. gurnards        307        421         96          .          .        804        348        271          .          .
+W. mackerel          .          .          .          .        111        833        553        281          .          .
+N. mackerel          .          .          .          .        231        833        553        302          .          .
+W.horse mac          .          .          .          .          .        351        238          .          .          .
+N.horse mac          .        186          .          .         64        192          .         65          .          .
+Grey seal          718       1781        931          .        464       7322       2122          .          .          .
+H. porpoise       5205       7113          .          .       1624       4389       5875          .          .          .
+Cod                759       1321       1665          .        891       4111       3528       6880          .          .
+Whiting             55        187        125          .        105        549        273        433          .          .
+Haddock              .          .          .          .          .       1517        608          .          .          .
+Saithe               .       1066        936          .        594       1694       1228          .          .          .
+
+ ALK exist for all prey length classes
+
+Adjusted min predator prey size ratio (according to option max.prey.pred.size.fac), to be used for calculation of M2: 
+                  Cod        Whiting    Haddock    Saithe     Herring    Sandeel    Nor. pout  Sprat      Plaice     Sole       
+Fulmar           280.1      357.3      364.1          .      114.2      206.1      277.0      311.3          .          .      114.2
+Guillemot            .       66.8      145.5          .      156.2      197.6          .      288.4          .          .       66.8
+Her. Gull        280.1      357.3      364.1          .       28.5      224.6      277.0      311.3          .          .       28.5
+Kittiwake        280.1      357.3      364.1          .       49.9      206.1          .      546.8          .          .       49.9
+GBB. Gull        280.1      357.3      364.1          .       28.5      206.1      277.0      311.3          .          .       28.5
+Gannet            12.6          .          .          .       17.6      206.1          .      156.2          .          .       12.6
+Puffin               .          .          .          .      546.8      206.1          .      546.8          .          .      206.1
+Razorbill            .       79.3          .          .      546.8      503.1      250.9      470.3          .          .       79.3
+R. radiata        50.7       49.6          .          .          .       33.7       32.3          .          .          .       32.3
+G. gurnards        9.2        5.6       19.9          .          .        6.9        7.0       30.6          .          .        5.6
+W. mackerel          .          .          .          .       43.6        3.3       19.7       20.0          .          .        3.3
+N. mackerel          .          .          .          .       21.9        3.3       25.8       20.0          .          .        3.3
+W.horse mac          .          .          .          .          .       45.9       55.1          .          .          .       45.9
+N.horse mac          .       36.7          .          .       13.3       54.3          .       15.5          .          .       13.3
+Grey seal          2.8       15.6        9.8          .       27.3      134.5       88.5          .          .          .        2.8
+H. porpoise        4.3       15.6          .          .       27.3      134.5          .          .          .          .        4.3
+Cod                3.6        2.7        4.3          .        2.0        2.0        2.1        8.0          .          .        2.0
+Whiting            4.8        1.7        2.3          .        1.7        1.7        1.7        1.9          .          .        1.7
+Haddock              .          .          .          .          .        2.7        8.1          .          .          .        2.7
+Saithe               .       13.2       13.1          .        3.7       16.6        4.3          .          .          .        3.7
+
+
+Min observed stomach contents observations to be used:  1.000e-004 1.000e-004 1.000e-004 1.000e-004 1.000e-004 1.000e-004 1.000e-004 1.000e-004 1.000e-004 1.000e-004 1.000e-004 1.000e-004 1.000e-004 1.000e-004 1.000e-005 1.000e-005 1.000e-004 1.000e-004 1.000e-004 1.000e-004
+
+Species, number of stomachs observations totally, and used
+Fulmar                             271    252
+Guillemot                          297    292
+Her. Gull                          345    329
+Kittiwake                          224    220
+GBB. Gull                          406    389
+Gannet                             215    215
+Puffin                             175    170
+Razorbill                          218    208
+R. radiata                         128    116
+G. gurnards                        247    226
+W. mackerel                        128    118
+N. mackerel                        176    163
+W.horse mac                         21    19
+N.horse mac                         42    42
+Grey seal                          366    313
+H. porpoise                        101    100
+Cod                               2538    2337
+Whiting                           1473    1361
+Haddock                            251    243
+Saithe                             444    405
+
+Number of predator-prey interaction observation used
+                  Cod        Whiting    Haddock    Saithe     Herring    Sandeel    Nor. pout  Sprat      Plaice     Sole       
+Fulmar              27         23          6          0         32         45         37         62          0          0
+Guillemot            0         63         11          0         47         72          0         79          0          0
+Her. Gull           26         47         34          0         60         16         53         73          0          0
+Kittiwake           21         17         17          0         32         67          0         46          0          0
+GBB. Gull           47         43         34          0         60         55         57         73          0          0
+Gannet              38          0          0          0         80         45          0         32          0          0
+Puffin               0          0          0          0         28         85          0         37          0          0
+Razorbill            0         32          0          0         28         50         22         61          0          0
+R. radiata           6          4          0          0          0         60         24          0          0          0
+G. gurnards         18         41          7          0          0         85         40         11          0          0
+W. mackerel          0          0          0          0          5         42         28         12          0          0
+N. mackerel          0          0          0          0         22         61         19         30          0          0
+W.horse mac          0          0          0          0          0          7          6          0          0          0
+N.horse mac          0          7          0          0          9          2          0          5          0          0
+Grey seal           80         60         60          0         31         38         36          0          0          0
+H. porpoise         34         33          0          0         12         14          4          0          0          0
+Cod                163        371        308          0        341        472        382        148          0          0
+Whiting             26        150        102          0        149        305        278        238          0          0
+Haddock              0          0          0          0          0        119         72          0          0          0
+Saithe               0         34         62          0         48         40        170          0          0          0
+
+PRELIMINARY_CALCS_SECTION done
+Set current phase to 2
+
+Initial statistics: 1419 variables; iteration 0; function evaluation 0; phase 2
+Function value -6.5217377e+003; maximum gradient component mag  1.9060e+002
+
+Intermediate statistics: 1419 variables; iteration 10; function evaluation 10; phase 2
+Function value -6.5234049e+003; maximum gradient component mag  1.1324e+003
+1419 variables; iteration 20; function evaluation 21; phase 2
+Function value -6.5250629e+003; maximum gradient component mag -2.5150e+003
+1419 variables; iteration 30; function evaluation 31; phase 2
+Function value -6.5273199e+003; maximum gradient component mag -2.2556e+003
+1419 variables; iteration 40; function evaluation 41; phase 2
+Function value -6.5298320e+003; maximum gradient component mag -2.3436e+003
+1419 variables; iteration 50; function evaluation 52; phase 2
+Function value -6.5320374e+003; maximum gradient component mag -2.3578e+003
+1419 variables; iteration 60; function evaluation 62; phase 2
+Function value -6.5341457e+003; maximum gradient component mag -2.3598e+003
+1419 variables; iteration 70; function evaluation 72; phase 2
+Function value -6.5368380e+003; maximum gradient component mag -2.3630e+003
+1419 variables; iteration 80; function evaluation 82; phase 2
+Function value -6.5397267e+003; maximum gradient component mag -2.4118e+003
+1419 variables; iteration 90; function evaluation 92; phase 2
+Function value -6.5433404e+003; maximum gradient component mag -2.4909e+003
+1419 variables; iteration 100; function evaluation 102; phase 2
+Function value -6.5474762e+003; maximum gradient component mag -2.6058e+003
+1419 variables; iteration 110; function evaluation 112; phase 2
+Function value -6.5514768e+003; maximum gradient component mag -2.7303e+003
+1419 variables; iteration 120; function evaluation 122; phase 2
+Function value -6.5554535e+003; maximum gradient component mag -2.8585e+003
+1419 variables; iteration 130; function evaluation 132; phase 2
+Function value -6.5602292e+003; maximum gradient component mag -3.0430e+003
+1419 variables; iteration 140; function evaluation 142; phase 2
+Function value -6.5635514e+003; maximum gradient component mag -3.1934e+003
+1419 variables; iteration 150; function evaluation 152; phase 2
+Function value -6.5663838e+003; maximum gradient component mag -3.3466e+003
+1419 variables; iteration 160; function evaluation 163; phase 2
+Function value -6.5686844e+003; maximum gradient component mag -3.5014e+003
+1419 variables; iteration 170; function evaluation 173; phase 2
+Function value -6.5699152e+003; maximum gradient component mag -3.5969e+003
+1419 variables; iteration 180; function evaluation 183; phase 2
+Function value -6.5706705e+003; maximum gradient component mag -3.6615e+003
+1419 variables; iteration 190; function evaluation 193; phase 2
+Function value -6.5713125e+003; maximum gradient component mag -3.7368e+003
+1419 variables; iteration 200; function evaluation 203; phase 2
+Function value -6.5720608e+003; maximum gradient component mag -3.8277e+003
+1419 variables; iteration 210; function evaluation 213; phase 2
+Function value -6.5730408e+003; maximum gradient component mag -3.9725e+003
+1419 variables; iteration 220; function evaluation 225; phase 2
+Function value -6.5737594e+003; maximum gradient component mag -4.1115e+003
+1419 variables; iteration 230; function evaluation 235; phase 2
+Function value -6.5746439e+003; maximum gradient component mag -4.2824e+003
+1419 variables; iteration 240; function evaluation 245; phase 2
+Function value -6.5753948e+003; maximum gradient component mag -4.4319e+003
+1419 variables; iteration 250; function evaluation 255; phase 2
+Function value -6.5758537e+003; maximum gradient component mag -4.4787e+003
+1419 variables; iteration 260; function evaluation 265; phase 2
+Function value -6.5764157e+003; maximum gradient component mag -4.4495e+003
+1419 variables; iteration 270; function evaluation 275; phase 2
+Function value -6.5768958e+003; maximum gradient component mag -4.3206e+003
+1419 variables; iteration 280; function evaluation 285; phase 2
+Function value -6.5773258e+003; maximum gradient component mag -4.0882e+003
+1419 variables; iteration 290; function evaluation 295; phase 2
+Function value -6.5775975e+003; maximum gradient component mag -3.8962e+003
+1419 variables; iteration 300; function evaluation 305; phase 2
+Function value -6.5778085e+003; maximum gradient component mag -3.7522e+003
+1419 variables; iteration 310; function evaluation 315; phase 2
+Function value -6.5781223e+003; maximum gradient component mag -3.5933e+003
+1419 variables; iteration 320; function evaluation 325; phase 2
+Function value -6.5784231e+003; maximum gradient component mag -3.4900e+003
+1419 variables; iteration 330; function evaluation 335; phase 2
+Function value -6.5787171e+003; maximum gradient component mag -3.3916e+003
+1419 variables; iteration 340; function evaluation 345; phase 2
+Function value -6.5788680e+003; maximum gradient component mag -3.3284e+003
+1419 variables; iteration 350; function evaluation 355; phase 2
+Function value -6.5789949e+003; maximum gradient component mag -3.2461e+003
+1419 variables; iteration 360; function evaluation 365; phase 2
+Function value -6.5791336e+003; maximum gradient component mag -3.1174e+003
+1419 variables; iteration 370; function evaluation 375; phase 2
+Function value -6.5792710e+003; maximum gradient component mag -2.9633e+003
+1419 variables; iteration 380; function evaluation 385; phase 2
+Function value -6.5794541e+003; maximum gradient component mag -2.7247e+003
+1419 variables; iteration 390; function evaluation 395; phase 2
+Function value -6.5797561e+003; maximum gradient component mag -2.2911e+003
+1419 variables; iteration 400; function evaluation 405; phase 2
+Function value -6.5801790e+003; maximum gradient component mag -2.3603e+003
+1419 variables; iteration 410; function evaluation 415; phase 2
+Function value -6.5807959e+003; maximum gradient component mag -2.3521e+003
+1419 variables; iteration 420; function evaluation 425; phase 2
+Function value -6.5816423e+003; maximum gradient component mag -2.0368e+003
+1419 variables; iteration 430; function evaluation 435; phase 2
+Function value -6.5824597e+003; maximum gradient component mag -1.8020e+003
+1419 variables; iteration 440; function evaluation 445; phase 2
+Function value -6.5831382e+003; maximum gradient component mag  2.3729e+003
+1419 variables; iteration 450; function evaluation 455; phase 2
+Function value -6.5836741e+003; maximum gradient component mag  3.2890e+003
+1419 variables; iteration 460; function evaluation 465; phase 2
+Function value -6.5840002e+003; maximum gradient component mag  3.9225e+003
+1419 variables; iteration 470; function evaluation 475; phase 2
+Function value -6.5842116e+003; maximum gradient component mag  4.3473e+003
+1419 variables; iteration 480; function evaluation 485; phase 2
+Function value -6.5843595e+003; maximum gradient component mag  4.6262e+003
+1419 variables; iteration 490; function evaluation 495; phase 2
+Function value -6.5845172e+003; maximum gradient component mag  4.8422e+003
+1419 variables; iteration 500; function evaluation 505; phase 2
+Function value -6.5846289e+003; maximum gradient component mag  4.8505e+003
+1419 variables; iteration 510; function evaluation 515; phase 2
+Function value -6.5847200e+003; maximum gradient component mag  4.7144e+003
+1419 variables; iteration 520; function evaluation 525; phase 2
+Function value -6.5847992e+003; maximum gradient component mag  4.5205e+003
+1419 variables; iteration 530; function evaluation 535; phase 2
+Function value -6.5848680e+003; maximum gradient component mag  4.3376e+003
+1419 variables; iteration 540; function evaluation 545; phase 2
+Function value -6.5849515e+003; maximum gradient component mag  4.1207e+003
+1419 variables; iteration 550; function evaluation 555; phase 2
+Function value -6.5850397e+003; maximum gradient component mag  3.9113e+003
+1419 variables; iteration 560; function evaluation 565; phase 2
+Function value -6.5851051e+003; maximum gradient component mag  3.7361e+003
+1419 variables; iteration 570; function evaluation 575; phase 2
+Function value -6.5851593e+003; maximum gradient component mag  3.5490e+003
+1419 variables; iteration 580; function evaluation 585; phase 2
+Function value -6.5851985e+003; maximum gradient component mag  3.3572e+003
+1419 variables; iteration 590; function evaluation 595; phase 2
+Function value -6.5852370e+003; maximum gradient component mag  3.1516e+003
+1419 variables; iteration 600; function evaluation 605; phase 2
+Function value -6.5852928e+003; maximum gradient component mag  2.8046e+003
+1419 variables; iteration 610; function evaluation 615; phase 2
+Function value -6.5853560e+003; maximum gradient component mag  2.3362e+003
+1419 variables; iteration 620; function evaluation 625; phase 2
+Function value -6.5854158e+003; maximum gradient component mag  1.7967e+003
+1419 variables; iteration 630; function evaluation 635; phase 2
+Function value -6.5854859e+003; maximum gradient component mag  1.1379e+003
+1419 variables; iteration 640; function evaluation 645; phase 2
+Function value -6.5855775e+003; maximum gradient component mag -8.4292e+002
+1419 variables; iteration 650; function evaluation 655; phase 2
+Function value -6.5856769e+003; maximum gradient component mag -8.3125e+002
+1419 variables; iteration 660; function evaluation 665; phase 2
+Function value -6.5857559e+003; maximum gradient component mag -1.3319e+003
+1419 variables; iteration 670; function evaluation 675; phase 2
+Function value -6.5858148e+003; maximum gradient component mag -1.8095e+003
+1419 variables; iteration 680; function evaluation 685; phase 2
+Function value -6.5858888e+003; maximum gradient component mag -2.3998e+003
+1419 variables; iteration 690; function evaluation 695; phase 2
+Function value -6.5859630e+003; maximum gradient component mag -2.9477e+003
+1419 variables; iteration 700; function evaluation 705; phase 2
+Function value -6.5860152e+003; maximum gradient component mag -3.2883e+003
+1419 variables; iteration 710; function evaluation 715; phase 2
+Function value -6.5860780e+003; maximum gradient component mag -3.5721e+003
+1419 variables; iteration 720; function evaluation 725; phase 2
+Function value -6.5861652e+003; maximum gradient component mag -3.8647e+003
+1419 variables; iteration 730; function evaluation 735; phase 2
+Function value -6.5862355e+003; maximum gradient component mag -4.0182e+003
+1419 variables; iteration 740; function evaluation 745; phase 2
+Function value -6.5862916e+003; maximum gradient component mag -4.0503e+003
+1419 variables; iteration 750; function evaluation 755; phase 2
+Function value -6.5863400e+003; maximum gradient component mag -3.9688e+003
+1419 variables; iteration 760; function evaluation 765; phase 2
+Function value -6.5864244e+003; maximum gradient component mag -3.6663e+003
+1419 variables; iteration 770; function evaluation 775; phase 2
+Function value -6.5865491e+003; maximum gradient component mag -3.0610e+003
+1419 variables; iteration 780; function evaluation 785; phase 2
+Function value -6.5866484e+003; maximum gradient component mag -2.4671e+003
+1419 variables; iteration 790; function evaluation 795; phase 2
+Function value -6.5867233e+003; maximum gradient component mag -1.9404e+003
+1419 variables; iteration 800; function evaluation 805; phase 2
+Function value -6.5867678e+003; maximum gradient component mag -1.5884e+003
+1419 variables; iteration 810; function evaluation 815; phase 2
+Function value -6.5868044e+003; maximum gradient component mag -1.2414e+003
+1419 variables; iteration 820; function evaluation 825; phase 2
+Function value -6.5868427e+003; maximum gradient component mag -8.4031e+002
+1419 variables; iteration 830; function evaluation 835; phase 2
+Function value -6.5868956e+003; maximum gradient component mag -7.1907e+002
+1419 variables; iteration 840; function evaluation 845; phase 2
+Function value -6.5869331e+003; maximum gradient component mag  7.2512e+002
+1419 variables; iteration 850; function evaluation 855; phase 2
+Function value -6.5869734e+003; maximum gradient component mag  7.5512e+002
+1419 variables; iteration 860; function evaluation 865; phase 2
+Function value -6.5870062e+003; maximum gradient component mag  1.0604e+003
+1419 variables; iteration 870; function evaluation 875; phase 2
+Function value -6.5870387e+003; maximum gradient component mag  1.3074e+003
+1419 variables; iteration 880; function evaluation 885; phase 2
+Function value -6.5870802e+003; maximum gradient component mag  1.5702e+003
+1419 variables; iteration 890; function evaluation 895; phase 2
+Function value -6.5871108e+003; maximum gradient component mag  1.6649e+003
+1419 variables; iteration 900; function evaluation 905; phase 2
+Function value -6.5871384e+003; maximum gradient component mag  1.6125e+003
+1419 variables; iteration 910; function evaluation 915; phase 2
+Function value -6.5871601e+003; maximum gradient component mag  1.4470e+003
+1419 variables; iteration 920; function evaluation 925; phase 2
+Function value -6.5871910e+003; maximum gradient component mag  1.1013e+003
+1419 variables; iteration 930; function evaluation 935; phase 2
+Function value -6.5872268e+003; maximum gradient component mag -6.4568e+002
+1419 variables; iteration 940; function evaluation 945; phase 2
+Function value -6.5872555e+003; maximum gradient component mag -6.4043e+002
+1419 variables; iteration 950; function evaluation 955; phase 2
+Function value -6.5872690e+003; maximum gradient component mag -6.4342e+002
+1419 variables; iteration 960; function evaluation 965; phase 2
+Function value -6.5872794e+003; maximum gradient component mag -6.4471e+002
+1419 variables; iteration 970; function evaluation 975; phase 2
+Function value -6.5872993e+003; maximum gradient component mag -6.1476e+002
+1419 variables; iteration 980; function evaluation 985; phase 2
+Function value -6.5873125e+003; maximum gradient component mag -6.2697e+002
+1419 variables; iteration 990; function evaluation 995; phase 2
+Function value -6.5873321e+003; maximum gradient component mag -7.0110e+002
+1419 variables; iteration 1000; function evaluation 1005; phase 2
+Function value -6.5873494e+003; maximum gradient component mag -7.0298e+002
+1419 variables; iteration 1010; function evaluation 1015; phase 2
+Function value -6.5873656e+003; maximum gradient component mag -6.3023e+002
+1419 variables; iteration 1020; function evaluation 1025; phase 2
+Function value -6.5873762e+003; maximum gradient component mag -5.5804e+002
+1419 variables; iteration 1030; function evaluation 1035; phase 2
+Function value -6.5873882e+003; maximum gradient component mag -5.5696e+002
+1419 variables; iteration 1040; function evaluation 1045; phase 2
+Function value -6.5873990e+003; maximum gradient component mag -5.5795e+002
+1419 variables; iteration 1050; function evaluation 1055; phase 2
+Function value -6.5874129e+003; maximum gradient component mag -5.5389e+002
+1419 variables; iteration 1060; function evaluation 1065; phase 2
+Function value -6.5874269e+003; maximum gradient component mag -5.6093e+002
+1419 variables; iteration 1070; function evaluation 1075; phase 2
+Function value -6.5874412e+003; maximum gradient component mag -5.4937e+002
+1419 variables; iteration 1080; function evaluation 1085; phase 2
+Function value -6.5874607e+003; maximum gradient component mag  6.7251e+002
+1419 variables; iteration 1090; function evaluation 1095; phase 2
+Function value -6.5874871e+003; maximum gradient component mag  8.1497e+002
+1419 variables; iteration 1100; function evaluation 1105; phase 2
+Function value -6.5874993e+003; maximum gradient component mag  7.9377e+002
+1419 variables; iteration 1110; function evaluation 1115; phase 2
+Function value -6.5875146e+003; maximum gradient component mag -6.4754e+002
+1419 variables; iteration 1120; function evaluation 1125; phase 2
+Function value -6.5875449e+003; maximum gradient component mag -4.7605e+002
+1419 variables; iteration 1130; function evaluation 1135; phase 2
+Function value -6.5875660e+003; maximum gradient component mag -4.6717e+002
+1419 variables; iteration 1140; function evaluation 1145; phase 2
+Function value -6.5875818e+003; maximum gradient component mag -4.4334e+002
+1419 variables; iteration 1150; function evaluation 1155; phase 2
+Function value -6.5875987e+003; maximum gradient component mag -4.6554e+002
+1419 variables; iteration 1160; function evaluation 1165; phase 2
+Function value -6.5876186e+003; maximum gradient component mag -4.5123e+002
+1419 variables; iteration 1170; function evaluation 1175; phase 2
+Function value -6.5876366e+003; maximum gradient component mag -4.1243e+002
+1419 variables; iteration 1180; function evaluation 1185; phase 2
+Function value -6.5876538e+003; maximum gradient component mag -3.9463e+002
+1419 variables; iteration 1190; function evaluation 1195; phase 2
+Function value -6.5876678e+003; maximum gradient component mag -3.8711e+002
+1419 variables; iteration 1200; function evaluation 1205; phase 2
+Function value -6.5876822e+003; maximum gradient component mag -3.7333e+002
+1419 variables; iteration 1210; function evaluation 1215; phase 2
+Function value -6.5877052e+003; maximum gradient component mag -3.4088e+002
+1419 variables; iteration 1220; function evaluation 1225; phase 2
+Function value -6.5877227e+003; maximum gradient component mag -3.1547e+002
+1419 variables; iteration 1230; function evaluation 1235; phase 2
+Function value -6.5877359e+003; maximum gradient component mag -3.1148e+002
+1419 variables; iteration 1240; function evaluation 1245; phase 2
+Function value -6.5877453e+003; maximum gradient component mag -3.1366e+002
+1419 variables; iteration 1250; function evaluation 1255; phase 2
+Function value -6.5877602e+003; maximum gradient component mag -3.1453e+002
+1419 variables; iteration 1260; function evaluation 1265; phase 2
+Function value -6.5877711e+003; maximum gradient component mag -3.1070e+002
+1419 variables; iteration 1270; function evaluation 1275; phase 2
+Function value -6.5877812e+003; maximum gradient component mag -2.9470e+002
+1419 variables; iteration 1280; function evaluation 1285; phase 2
+Function value -6.5877931e+003; maximum gradient component mag -2.6594e+002
+1419 variables; iteration 1290; function evaluation 1295; phase 2
+Function value -6.5878052e+003; maximum gradient component mag -2.3485e+002
+1419 variables; iteration 1300; function evaluation 1306; phase 2
+Function value -6.5878196e+003; maximum gradient component mag -2.1780e+002
+1419 variables; iteration 1310; function evaluation 1316; phase 2
+Function value -6.5878324e+003; maximum gradient component mag -2.2293e+002
+1419 variables; iteration 1320; function evaluation 1328; phase 2
+Function value -6.5878425e+003; maximum gradient component mag -2.3204e+002
+1419 variables; iteration 1330; function evaluation 1340; phase 2
+Function value -6.5878543e+003; maximum gradient component mag -2.2361e+002
+1419 variables; iteration 1340; function evaluation 1351; phase 2
+Function value -6.5878685e+003; maximum gradient component mag -1.8150e+002
+1419 variables; iteration 1350; function evaluation 1362; phase 2
+Function value -6.5878846e+003; maximum gradient component mag -1.6885e+002
+1419 variables; iteration 1360; function evaluation 1372; phase 2
+Function value -6.5879090e+003; maximum gradient component mag  1.9131e+002
+1419 variables; iteration 1370; function evaluation 1383; phase 2
+Function value -6.5879334e+003; maximum gradient component mag -1.3979e+002
+1419 variables; iteration 1380; function evaluation 1393; phase 2
+Function value -6.5879545e+003; maximum gradient component mag -1.3401e+002
+1419 variables; iteration 1390; function evaluation 1405; phase 2
+Function value -6.5879716e+003; maximum gradient component mag -1.4574e+002
+1419 variables; iteration 1400; function evaluation 1415; phase 2
+Function value -6.5879876e+003; maximum gradient component mag -1.4495e+002
+1419 variables; iteration 1410; function evaluation 1427; phase 2
+Function value -6.5880136e+003; maximum gradient component mag -1.4792e+002
+1419 variables; iteration 1420; function evaluation 1438; phase 2
+Function value -6.5880498e+003; maximum gradient component mag -1.2940e+002
+1419 variables; iteration 1430; function evaluation 1450; phase 2
+Function value -6.5880835e+003; maximum gradient component mag  4.1398e+001
+1419 variables; iteration 1440; function evaluation 1462; phase 2
+Function value -6.5880851e+003; maximum gradient component mag -5.2849e+000
+1419 variables; iteration 1450; function evaluation 1473; phase 2
+Function value -6.5880852e+003; maximum gradient component mag -1.5526e-001
+  ic > imax  in fminim is answer attained ?
+Function minimizer not making progress ... is minimum attained?
+Minimprove criterion =  0.0000e+000
+
+ - final statistics:
+1419 variables; iteration 1456; function evaluation 1508
+Function value -6.5881e+003; maximum gradient component mag -6.3764e-003
+Exit code = 1;  converg criter  1.0000e-004
+report file: sms.rep
+
+Estimating row 1 out of 1419 for hessian
+Estimating row 2 out of 1419 for hessian
+Estimating row 3 out of 1419 for hessian
+Estimating row 4 out of 1419 for hessian
+Estimating row 5 out of 1419 for hessian
+Estimating row 6 out of 1419 for hessian
+Estimating row 7 out of 1419 for hessian
+Estimating row 8 out of 1419 for hessian
+Estimating row 9 out of 1419 for hessian
+Estimating row 10 out of 1419 for hessian
+Estimating row 11 out of 1419 for hessian
+Estimating row 12 out of 1419 for hessian
+Estimating row 13 out of 1419 for hessian
+Estimating row 14 out of 1419 for hessian
+Estimating row 15 out of 1419 for hessian
+Estimating row 16 out of 1419 for hessian
+Estimating row 17 out of 1419 for hessian
+Estimating row 18 out of 1419 for hessian
+Estimating row 19 out of 1419 for hessian
+Estimating row 20 out of 1419 for hessian
+Estimating row 21 out of 1419 for hessian
+Estimating row 22 out of 1419 for hessian
+Estimating row 23 out of 1419 for hessian
+Estimating row 24 out of 1419 for hessian
+Estimating row 25 out of 1419 for hessian
+Estimating row 26 out of 1419 for hessian
+Estimating row 27 out of 1419 for hessian
+Estimating row 28 out of 1419 for hessian
+Estimating row 29 out of 1419 for hessian
+Estimating row 30 out of 1419 for hessian
+Estimating row 31 out of 1419 for hessian
+Estimating row 32 out of 1419 for hessian
+Estimating row 33 out of 1419 for hessian
+Estimating row 34 out of 1419 for hessian
+Estimating row 35 out of 1419 for hessian
+Estimating row 36 out of 1419 for hessian
+Estimating row 37 out of 1419 for hessian
+Estimating row 38 out of 1419 for hessian
+Estimating row 39 out of 1419 for hessian
+Estimating row 40 out of 1419 for hessian
+Estimating row 41 out of 1419 for hessian
+Estimating row 42 out of 1419 for hessian
+Estimating row 43 out of 1419 for hessian
+Estimating row 44 out of 1419 for hessian
+Estimating row 45 out of 1419 for hessian
+Estimating row 46 out of 1419 for hessian
+Estimating row 47 out of 1419 for hessian
+Estimating row 48 out of 1419 for hessian
+Estimating row 49 out of 1419 for hessian
+Estimating row 50 out of 1419 for hessian
+Estimating row 51 out of 1419 for hessian
+Estimating row 52 out of 1419 for hessian
+Estimating row 53 out of 1419 for hessian
+Estimating row 54 out of 1419 for hessian
+Estimating row 55 out of 1419 for hessian
+Estimating row 56 out of 1419 for hessian
+Estimating row 57 out of 1419 for hessian
+Estimating row 58 out of 1419 for hessian
+Estimating row 59 out of 1419 for hessian
+Estimating row 60 out of 1419 for hessian
+Estimating row 61 out of 1419 for hessian
+Estimating row 62 out of 1419 for hessian
+Estimating row 63 out of 1419 for hessian
+Estimating row 64 out of 1419 for hessian
+Estimating row 65 out of 1419 for hessian
+Estimating row 66 out of 1419 for hessian
+Estimating row 67 out of 1419 for hessian
+Estimating row 68 out of 1419 for hessian
+Estimating row 69 out of 1419 for hessian
+Estimating row 70 out of 1419 for hessian
+Estimating row 71 out of 1419 for hessian
+Estimating row 72 out of 1419 for hessian
+Estimating row 73 out of 1419 for hessian
+Estimating row 74 out of 1419 for hessian
+Estimating row 75 out of 1419 for hessian
+Estimating row 76 out of 1419 for hessian
+Estimating row 77 out of 1419 for hessian
+Estimating row 78 out of 1419 for hessian
+Estimating row 79 out of 1419 for hessian
+Estimating row 80 out of 1419 for hessian
+Estimating row 81 out of 1419 for hessian
+Estimating row 82 out of 1419 for hessian
+Estimating row 83 out of 1419 for hessian
+Estimating row 84 out of 1419 for hessian
+Estimating row 85 out of 1419 for hessian
+Estimating row 86 out of 1419 for hessian
+Estimating row 87 out of 1419 for hessian
+Estimating row 88 out of 1419 for hessian
+Estimating row 89 out of 1419 for hessian
+Estimating row 90 out of 1419 for hessian
+Estimating row 91 out of 1419 for hessian
+Estimating row 92 out of 1419 for hessian
+Estimating row 93 out of 1419 for hessian
+Estimating row 94 out of 1419 for hessian
+Estimating row 95 out of 1419 for hessian
+Estimating row 96 out of 1419 for hessian
+Estimating row 97 out of 1419 for hessian
+Estimating row 98 out of 1419 for hessian
+Estimating row 99 out of 1419 for hessian
+Estimating row 100 out of 1419 for hessian
+Estimating row 101 out of 1419 for hessian
+Estimating row 102 out of 1419 for hessian
+Estimating row 103 out of 1419 for hessian
+Estimating row 104 out of 1419 for hessian
+Estimating row 105 out of 1419 for hessian
+Estimating row 106 out of 1419 for hessian
+Estimating row 107 out of 1419 for hessian
+Estimating row 108 out of 1419 for hessian
+Estimating row 109 out of 1419 for hessian
+Estimating row 110 out of 1419 for hessian
+Estimating row 111 out of 1419 for hessian
+Estimating row 112 out of 1419 for hessian
+Estimating row 113 out of 1419 for hessian
+Estimating row 114 out of 1419 for hessian
+Estimating row 115 out of 1419 for hessian
+Estimating row 116 out of 1419 for hessian
+Estimating row 117 out of 1419 for hessian
+Estimating row 118 out of 1419 for hessian
+Estimating row 119 out of 1419 for hessian
+Estimating row 120 out of 1419 for hessian
+Estimating row 121 out of 1419 for hessian
+Estimating row 122 out of 1419 for hessian
+Estimating row 123 out of 1419 for hessian
+Estimating row 124 out of 1419 for hessian
+Estimating row 125 out of 1419 for hessian
+Estimating row 126 out of 1419 for hessian
+Estimating row 127 out of 1419 for hessian
+Estimating row 128 out of 1419 for hessian
+Estimating row 129 out of 1419 for hessian
+Estimating row 130 out of 1419 for hessian
+Estimating row 131 out of 1419 for hessian
+Estimating row 132 out of 1419 for hessian
+Estimating row 133 out of 1419 for hessian
+Estimating row 134 out of 1419 for hessian
+Estimating row 135 out of 1419 for hessian
+Estimating row 136 out of 1419 for hessian
+Estimating row 137 out of 1419 for hessian
+Estimating row 138 out of 1419 for hessian
+Estimating row 139 out of 1419 for hessian
+Estimating row 140 out of 1419 for hessian
+Estimating row 141 out of 1419 for hessian
+Estimating row 142 out of 1419 for hessian
+Estimating row 143 out of 1419 for hessian
+Estimating row 144 out of 1419 for hessian
+Estimating row 145 out of 1419 for hessian
+Estimating row 146 out of 1419 for hessian
+Estimating row 147 out of 1419 for hessian
+Estimating row 148 out of 1419 for hessian
+Estimating row 149 out of 1419 for hessian
+Estimating row 150 out of 1419 for hessian
+Estimating row 151 out of 1419 for hessian
+Estimating row 152 out of 1419 for hessian
+Estimating row 153 out of 1419 for hessian
+Estimating row 154 out of 1419 for hessian
+Estimating row 155 out of 1419 for hessian
+Estimating row 156 out of 1419 for hessian
+Estimating row 157 out of 1419 for hessian
+Estimating row 158 out of 1419 for hessian
+Estimating row 159 out of 1419 for hessian
+Estimating row 160 out of 1419 for hessian
+Estimating row 161 out of 1419 for hessian
+Estimating row 162 out of 1419 for hessian
+Estimating row 163 out of 1419 for hessian
+Estimating row 164 out of 1419 for hessian
+Estimating row 165 out of 1419 for hessian
+Estimating row 166 out of 1419 for hessian
+Estimating row 167 out of 1419 for hessian
+Estimating row 168 out of 1419 for hessian
+Estimating row 169 out of 1419 for hessian
+Estimating row 170 out of 1419 for hessian
+Estimating row 171 out of 1419 for hessian
+Estimating row 172 out of 1419 for hessian
+Estimating row 173 out of 1419 for hessian
+Estimating row 174 out of 1419 for hessian
+Estimating row 175 out of 1419 for hessian
+Estimating row 176 out of 1419 for hessian
+Estimating row 177 out of 1419 for hessian
+Estimating row 178 out of 1419 for hessian
+Estimating row 179 out of 1419 for hessian
+Estimating row 180 out of 1419 for hessian
+Estimating row 181 out of 1419 for hessian
+Estimating row 182 out of 1419 for hessian
+Estimating row 183 out of 1419 for hessian
+Estimating row 184 out of 1419 for hessian
+Estimating row 185 out of 1419 for hessian
+Estimating row 186 out of 1419 for hessian
+Estimating row 187 out of 1419 for hessian
+Estimating row 188 out of 1419 for hessian
+Estimating row 189 out of 1419 for hessian
+Estimating row 190 out of 1419 for hessian
+Estimating row 191 out of 1419 for hessian
+Estimating row 192 out of 1419 for hessian
+Estimating row 193 out of 1419 for hessian
+Estimating row 194 out of 1419 for hessian
+Estimating row 195 out of 1419 for hessian
+Estimating row 196 out of 1419 for hessian
+Estimating row 197 out of 1419 for hessian
+Estimating row 198 out of 1419 for hessian
+Estimating row 199 out of 1419 for hessian
+Estimating row 200 out of 1419 for hessian
+Estimating row 201 out of 1419 for hessian
+Estimating row 202 out of 1419 for hessian
+Estimating row 203 out of 1419 for hessian
+Estimating row 204 out of 1419 for hessian
+Estimating row 205 out of 1419 for hessian
+Estimating row 206 out of 1419 for hessian
+Estimating row 207 out of 1419 for hessian
+Estimating row 208 out of 1419 for hessian
+Estimating row 209 out of 1419 for hessian
+Estimating row 210 out of 1419 for hessian
+Estimating row 211 out of 1419 for hessian
+Estimating row 212 out of 1419 for hessian
+Estimating row 213 out of 1419 for hessian
+Estimating row 214 out of 1419 for hessian
+Estimating row 215 out of 1419 for hessian
+Estimating row 216 out of 1419 for hessian
+Estimating row 217 out of 1419 for hessian
+Estimating row 218 out of 1419 for hessian
+Estimating row 219 out of 1419 for hessian
+Estimating row 220 out of 1419 for hessian
+Estimating row 221 out of 1419 for hessian
+Estimating row 222 out of 1419 for hessian
+Estimating row 223 out of 1419 for hessian
+Estimating row 224 out of 1419 for hessian
+Estimating row 225 out of 1419 for hessian
+Estimating row 226 out of 1419 for hessian
+Estimating row 227 out of 1419 for hessian
+Estimating row 228 out of 1419 for hessian
+Estimating row 229 out of 1419 for hessian
+Estimating row 230 out of 1419 for hessian
+Estimating row 231 out of 1419 for hessian
+Estimating row 232 out of 1419 for hessian
+Estimating row 233 out of 1419 for hessian
+Estimating row 234 out of 1419 for hessian
+Estimating row 235 out of 1419 for hessian
+Estimating row 236 out of 1419 for hessian
+Estimating row 237 out of 1419 for hessian
+Estimating row 238 out of 1419 for hessian
+Estimating row 239 out of 1419 for hessian
+Estimating row 240 out of 1419 for hessian
+Estimating row 241 out of 1419 for hessian
+Estimating row 242 out of 1419 for hessian
+Estimating row 243 out of 1419 for hessian
+Estimating row 244 out of 1419 for hessian
+Estimating row 245 out of 1419 for hessian
+Estimating row 246 out of 1419 for hessian
+Estimating row 247 out of 1419 for hessian
+Estimating row 248 out of 1419 for hessian
+Estimating row 249 out of 1419 for hessian
+Estimating row 250 out of 1419 for hessian
+Estimating row 251 out of 1419 for hessian
+Estimating row 252 out of 1419 for hessian
+Estimating row 253 out of 1419 for hessian
+Estimating row 254 out of 1419 for hessian
+Estimating row 255 out of 1419 for hessian
+Estimating row 256 out of 1419 for hessian
+Estimating row 257 out of 1419 for hessian
+Estimating row 258 out of 1419 for hessian
+Estimating row 259 out of 1419 for hessian
+Estimating row 260 out of 1419 for hessian
+Estimating row 261 out of 1419 for hessian
+Estimating row 262 out of 1419 for hessian
+Estimating row 263 out of 1419 for hessian
+Estimating row 264 out of 1419 for hessian
+Estimating row 265 out of 1419 for hessian
+Estimating row 266 out of 1419 for hessian
+Estimating row 267 out of 1419 for hessian
+Estimating row 268 out of 1419 for hessian
+Estimating row 269 out of 1419 for hessian
+Estimating row 270 out of 1419 for hessian
+Estimating row 271 out of 1419 for hessian
+Estimating row 272 out of 1419 for hessian
+Estimating row 273 out of 1419 for hessian
+Estimating row 274 out of 1419 for hessian
+Estimating row 275 out of 1419 for hessian
+Estimating row 276 out of 1419 for hessian
+Estimating row 277 out of 1419 for hessian
+Estimating row 278 out of 1419 for hessian
+Estimating row 279 out of 1419 for hessian
+Estimating row 280 out of 1419 for hessian
+Estimating row 281 out of 1419 for hessian
+Estimating row 282 out of 1419 for hessian
+Estimating row 283 out of 1419 for hessian
+Estimating row 284 out of 1419 for hessian
+Estimating row 285 out of 1419 for hessian
+Estimating row 286 out of 1419 for hessian
+Estimating row 287 out of 1419 for hessian
+Estimating row 288 out of 1419 for hessian
+Estimating row 289 out of 1419 for hessian
+Estimating row 290 out of 1419 for hessian
+Estimating row 291 out of 1419 for hessian
+Estimating row 292 out of 1419 for hessian
+Estimating row 293 out of 1419 for hessian
+Estimating row 294 out of 1419 for hessian
+Estimating row 295 out of 1419 for hessian
+Estimating row 296 out of 1419 for hessian
+Estimating row 297 out of 1419 for hessian
+Estimating row 298 out of 1419 for hessian
+Estimating row 299 out of 1419 for hessian
+Estimating row 300 out of 1419 for hessian
+Estimating row 301 out of 1419 for hessian
+Estimating row 302 out of 1419 for hessian
+Estimating row 303 out of 1419 for hessian
+Estimating row 304 out of 1419 for hessian
+Estimating row 305 out of 1419 for hessian
+Estimating row 306 out of 1419 for hessian
+Estimating row 307 out of 1419 for hessian
+Estimating row 308 out of 1419 for hessian
+Estimating row 309 out of 1419 for hessian
+Estimating row 310 out of 1419 for hessian
+Estimating row 311 out of 1419 for hessian
+Estimating row 312 out of 1419 for hessian
+Estimating row 313 out of 1419 for hessian
+Estimating row 314 out of 1419 for hessian
+Estimating row 315 out of 1419 for hessian
+Estimating row 316 out of 1419 for hessian
+Estimating row 317 out of 1419 for hessian
+Estimating row 318 out of 1419 for hessian
+Estimating row 319 out of 1419 for hessian
+Estimating row 320 out of 1419 for hessian
+Estimating row 321 out of 1419 for hessian
+Estimating row 322 out of 1419 for hessian
+Estimating row 323 out of 1419 for hessian
+Estimating row 324 out of 1419 for hessian
+Estimating row 325 out of 1419 for hessian
+Estimating row 326 out of 1419 for hessian
+Estimating row 327 out of 1419 for hessian
+Estimating row 328 out of 1419 for hessian
+Estimating row 329 out of 1419 for hessian
+Estimating row 330 out of 1419 for hessian
+Estimating row 331 out of 1419 for hessian
+Estimating row 332 out of 1419 for hessian
+Estimating row 333 out of 1419 for hessian
+Estimating row 334 out of 1419 for hessian
+Estimating row 335 out of 1419 for hessian
+Estimating row 336 out of 1419 for hessian
+Estimating row 337 out of 1419 for hessian
+Estimating row 338 out of 1419 for hessian
+Estimating row 339 out of 1419 for hessian
+Estimating row 340 out of 1419 for hessian
+Estimating row 341 out of 1419 for hessian
+Estimating row 342 out of 1419 for hessian
+Estimating row 343 out of 1419 for hessian
+Estimating row 344 out of 1419 for hessian
+Estimating row 345 out of 1419 for hessian
+Estimating row 346 out of 1419 for hessian
+Estimating row 347 out of 1419 for hessian
+Estimating row 348 out of 1419 for hessian
+Estimating row 349 out of 1419 for hessian
+Estimating row 350 out of 1419 for hessian
+Estimating row 351 out of 1419 for hessian
+Estimating row 352 out of 1419 for hessian
+Estimating row 353 out of 1419 for hessian
+Estimating row 354 out of 1419 for hessian
+Estimating row 355 out of 1419 for hessian
+Estimating row 356 out of 1419 for hessian
+Estimating row 357 out of 1419 for hessian
+Estimating row 358 out of 1419 for hessian
+Estimating row 359 out of 1419 for hessian
+Estimating row 360 out of 1419 for hessian
+Estimating row 361 out of 1419 for hessian
+Estimating row 362 out of 1419 for hessian
+Estimating row 363 out of 1419 for hessian
+Estimating row 364 out of 1419 for hessian
+Estimating row 365 out of 1419 for hessian
+Estimating row 366 out of 1419 for hessian
+Estimating row 367 out of 1419 for hessian
+Estimating row 368 out of 1419 for hessian
+Estimating row 369 out of 1419 for hessian
+Estimating row 370 out of 1419 for hessian
+Estimating row 371 out of 1419 for hessian
+Estimating row 372 out of 1419 for hessian
+Estimating row 373 out of 1419 for hessian
+Estimating row 374 out of 1419 for hessian
+Estimating row 375 out of 1419 for hessian
+Estimating row 376 out of 1419 for hessian
+Estimating row 377 out of 1419 for hessian
+Estimating row 378 out of 1419 for hessian
+Estimating row 379 out of 1419 for hessian
+Estimating row 380 out of 1419 for hessian
+Estimating row 381 out of 1419 for hessian
+Estimating row 382 out of 1419 for hessian
+Estimating row 383 out of 1419 for hessian
+Estimating row 384 out of 1419 for hessian
+Estimating row 385 out of 1419 for hessian
+Estimating row 386 out of 1419 for hessian
+Estimating row 387 out of 1419 for hessian
+Estimating row 388 out of 1419 for hessian
+Estimating row 389 out of 1419 for hessian
+Estimating row 390 out of 1419 for hessian
+Estimating row 391 out of 1419 for hessian
+Estimating row 392 out of 1419 for hessian
+Estimating row 393 out of 1419 for hessian
+Estimating row 394 out of 1419 for hessian
+Estimating row 395 out of 1419 for hessian
+Estimating row 396 out of 1419 for hessian
+Estimating row 397 out of 1419 for hessian
+Estimating row 398 out of 1419 for hessian
+Estimating row 399 out of 1419 for hessian
+Estimating row 400 out of 1419 for hessian
+Estimating row 401 out of 1419 for hessian
+Estimating row 402 out of 1419 for hessian
+Estimating row 403 out of 1419 for hessian
+Estimating row 404 out of 1419 for hessian
+Estimating row 405 out of 1419 for hessian
+Estimating row 406 out of 1419 for hessian
+Estimating row 407 out of 1419 for hessian
+Estimating row 408 out of 1419 for hessian
+Estimating row 409 out of 1419 for hessian
+Estimating row 410 out of 1419 for hessian
+Estimating row 411 out of 1419 for hessian
+Estimating row 412 out of 1419 for hessian
+Estimating row 413 out of 1419 for hessian
+Estimating row 414 out of 1419 for hessian
+Estimating row 415 out of 1419 for hessian
+Estimating row 416 out of 1419 for hessian
+Estimating row 417 out of 1419 for hessian
+Estimating row 418 out of 1419 for hessian
+Estimating row 419 out of 1419 for hessian
+Estimating row 420 out of 1419 for hessian
+Estimating row 421 out of 1419 for hessian
+Estimating row 422 out of 1419 for hessian
+Estimating row 423 out of 1419 for hessian
+Estimating row 424 out of 1419 for hessian
+Estimating row 425 out of 1419 for hessian
+Estimating row 426 out of 1419 for hessian
+Estimating row 427 out of 1419 for hessian
+Estimating row 428 out of 1419 for hessian
+Estimating row 429 out of 1419 for hessian
+Estimating row 430 out of 1419 for hessian
+Estimating row 431 out of 1419 for hessian
+Estimating row 432 out of 1419 for hessian
+Estimating row 433 out of 1419 for hessian
+Estimating row 434 out of 1419 for hessian
+Estimating row 435 out of 1419 for hessian
+Estimating row 436 out of 1419 for hessian
+Estimating row 437 out of 1419 for hessian
+Estimating row 438 out of 1419 for hessian
+Estimating row 439 out of 1419 for hessian
+Estimating row 440 out of 1419 for hessian
+Estimating row 441 out of 1419 for hessian
+Estimating row 442 out of 1419 for hessian
+Estimating row 443 out of 1419 for hessian
+Estimating row 444 out of 1419 for hessian
+Estimating row 445 out of 1419 for hessian
+Estimating row 446 out of 1419 for hessian
+Estimating row 447 out of 1419 for hessian
+Estimating row 448 out of 1419 for hessian
+Estimating row 449 out of 1419 for hessian
+Estimating row 450 out of 1419 for hessian
+Estimating row 451 out of 1419 for hessian
+Estimating row 452 out of 1419 for hessian
+Estimating row 453 out of 1419 for hessian
+Estimating row 454 out of 1419 for hessian
+Estimating row 455 out of 1419 for hessian
+Estimating row 456 out of 1419 for hessian
+Estimating row 457 out of 1419 for hessian
+Estimating row 458 out of 1419 for hessian
+Estimating row 459 out of 1419 for hessian
+Estimating row 460 out of 1419 for hessian
+Estimating row 461 out of 1419 for hessian
+Estimating row 462 out of 1419 for hessian
+Estimating row 463 out of 1419 for hessian
+Estimating row 464 out of 1419 for hessian
+Estimating row 465 out of 1419 for hessian
+Estimating row 466 out of 1419 for hessian
+Estimating row 467 out of 1419 for hessian
+Estimating row 468 out of 1419 for hessian
+Estimating row 469 out of 1419 for hessian
+Estimating row 470 out of 1419 for hessian
+Estimating row 471 out of 1419 for hessian
+Estimating row 472 out of 1419 for hessian
+Estimating row 473 out of 1419 for hessian
+Estimating row 474 out of 1419 for hessian
+Estimating row 475 out of 1419 for hessian
+Estimating row 476 out of 1419 for hessian
+Estimating row 477 out of 1419 for hessian
+Estimating row 478 out of 1419 for hessian
+Estimating row 479 out of 1419 for hessian
+Estimating row 480 out of 1419 for hessian
+Estimating row 481 out of 1419 for hessian
+Estimating row 482 out of 1419 for hessian
+Estimating row 483 out of 1419 for hessian
+Estimating row 484 out of 1419 for hessian
+Estimating row 485 out of 1419 for hessian
+Estimating row 486 out of 1419 for hessian
+Estimating row 487 out of 1419 for hessian
+Estimating row 488 out of 1419 for hessian
+Estimating row 489 out of 1419 for hessian
+Estimating row 490 out of 1419 for hessian
+Estimating row 491 out of 1419 for hessian
+Estimating row 492 out of 1419 for hessian
+Estimating row 493 out of 1419 for hessian
+Estimating row 494 out of 1419 for hessian
+Estimating row 495 out of 1419 for hessian
+Estimating row 496 out of 1419 for hessian
+Estimating row 497 out of 1419 for hessian
+Estimating row 498 out of 1419 for hessian
+Estimating row 499 out of 1419 for hessian
+Estimating row 500 out of 1419 for hessian
+Estimating row 501 out of 1419 for hessian
+Estimating row 502 out of 1419 for hessian
+Estimating row 503 out of 1419 for hessian
+Estimating row 504 out of 1419 for hessian
+Estimating row 505 out of 1419 for hessian
+Estimating row 506 out of 1419 for hessian
+Estimating row 507 out of 1419 for hessian
+Estimating row 508 out of 1419 for hessian
+Estimating row 509 out of 1419 for hessian
+Estimating row 510 out of 1419 for hessian
+Estimating row 511 out of 1419 for hessian
+Estimating row 512 out of 1419 for hessian
+Estimating row 513 out of 1419 for hessian
+Estimating row 514 out of 1419 for hessian
+Estimating row 515 out of 1419 for hessian
+Estimating row 516 out of 1419 for hessian
+Estimating row 517 out of 1419 for hessian
+Estimating row 518 out of 1419 for hessian
+Estimating row 519 out of 1419 for hessian
+Estimating row 520 out of 1419 for hessian
+Estimating row 521 out of 1419 for hessian
+Estimating row 522 out of 1419 for hessian
+Estimating row 523 out of 1419 for hessian
+Estimating row 524 out of 1419 for hessian
+Estimating row 525 out of 1419 for hessian
+Estimating row 526 out of 1419 for hessian
+Estimating row 527 out of 1419 for hessian
+Estimating row 528 out of 1419 for hessian
+Estimating row 529 out of 1419 for hessian
+Estimating row 530 out of 1419 for hessian
+Estimating row 531 out of 1419 for hessian
+Estimating row 532 out of 1419 for hessian
+Estimating row 533 out of 1419 for hessian
+Estimating row 534 out of 1419 for hessian
+Estimating row 535 out of 1419 for hessian
+Estimating row 536 out of 1419 for hessian
+Estimating row 537 out of 1419 for hessian
+Estimating row 538 out of 1419 for hessian
+Estimating row 539 out of 1419 for hessian
+Estimating row 540 out of 1419 for hessian
+Estimating row 541 out of 1419 for hessian
+Estimating row 542 out of 1419 for hessian
+Estimating row 543 out of 1419 for hessian
+Estimating row 544 out of 1419 for hessian
+Estimating row 545 out of 1419 for hessian
+Estimating row 546 out of 1419 for hessian
+Estimating row 547 out of 1419 for hessian
+Estimating row 548 out of 1419 for hessian
+Estimating row 549 out of 1419 for hessian
+Estimating row 550 out of 1419 for hessian
+Estimating row 551 out of 1419 for hessian
+Estimating row 552 out of 1419 for hessian
+Estimating row 553 out of 1419 for hessian
+Estimating row 554 out of 1419 for hessian
+Estimating row 555 out of 1419 for hessian
+Estimating row 556 out of 1419 for hessian
+Estimating row 557 out of 1419 for hessian
+Estimating row 558 out of 1419 for hessian
+Estimating row 559 out of 1419 for hessian
+Estimating row 560 out of 1419 for hessian
+Estimating row 561 out of 1419 for hessian
+Estimating row 562 out of 1419 for hessian
+Estimating row 563 out of 1419 for hessian
+Estimating row 564 out of 1419 for hessian
+Estimating row 565 out of 1419 for hessian
+Estimating row 566 out of 1419 for hessian
+Estimating row 567 out of 1419 for hessian
+Estimating row 568 out of 1419 for hessian
+Estimating row 569 out of 1419 for hessian
+Estimating row 570 out of 1419 for hessian
+Estimating row 571 out of 1419 for hessian
+Estimating row 572 out of 1419 for hessian
+Estimating row 573 out of 1419 for hessian
+Estimating row 574 out of 1419 for hessian
+Estimating row 575 out of 1419 for hessian
+Estimating row 576 out of 1419 for hessian
+Estimating row 577 out of 1419 for hessian
+Estimating row 578 out of 1419 for hessian
+Estimating row 579 out of 1419 for hessian
+Estimating row 580 out of 1419 for hessian
+Estimating row 581 out of 1419 for hessian
+Estimating row 582 out of 1419 for hessian
+Estimating row 583 out of 1419 for hessian
+Estimating row 584 out of 1419 for hessian
+Estimating row 585 out of 1419 for hessian
+Estimating row 586 out of 1419 for hessian
+Estimating row 587 out of 1419 for hessian
+Estimating row 588 out of 1419 for hessian
+Estimating row 589 out of 1419 for hessian
+Estimating row 590 out of 1419 for hessian
+Estimating row 591 out of 1419 for hessian
+Estimating row 592 out of 1419 for hessian
+Estimating row 593 out of 1419 for hessian
+Estimating row 594 out of 1419 for hessian
+Estimating row 595 out of 1419 for hessian
+Estimating row 596 out of 1419 for hessian
+Estimating row 597 out of 1419 for hessian
+Estimating row 598 out of 1419 for hessian
+Estimating row 599 out of 1419 for hessian
+Estimating row 600 out of 1419 for hessian
+Estimating row 601 out of 1419 for hessian
+Estimating row 602 out of 1419 for hessian
+Estimating row 603 out of 1419 for hessian
+Estimating row 604 out of 1419 for hessian
+Estimating row 605 out of 1419 for hessian
+Estimating row 606 out of 1419 for hessian
+Estimating row 607 out of 1419 for hessian
+Estimating row 608 out of 1419 for hessian
+Estimating row 609 out of 1419 for hessian
+Estimating row 610 out of 1419 for hessian
+Estimating row 611 out of 1419 for hessian
+Estimating row 612 out of 1419 for hessian
+Estimating row 613 out of 1419 for hessian
+Estimating row 614 out of 1419 for hessian
+Estimating row 615 out of 1419 for hessian
+Estimating row 616 out of 1419 for hessian
+Estimating row 617 out of 1419 for hessian
+Estimating row 618 out of 1419 for hessian
+Estimating row 619 out of 1419 for hessian
+Estimating row 620 out of 1419 for hessian
+Estimating row 621 out of 1419 for hessian
+Estimating row 622 out of 1419 for hessian
+Estimating row 623 out of 1419 for hessian
+Estimating row 624 out of 1419 for hessian
+Estimating row 625 out of 1419 for hessian
+Estimating row 626 out of 1419 for hessian
+Estimating row 627 out of 1419 for hessian
+Estimating row 628 out of 1419 for hessian
+Estimating row 629 out of 1419 for hessian
+Estimating row 630 out of 1419 for hessian
+Estimating row 631 out of 1419 for hessian
+Estimating row 632 out of 1419 for hessian
+Estimating row 633 out of 1419 for hessian
+Estimating row 634 out of 1419 for hessian
+Estimating row 635 out of 1419 for hessian
+Estimating row 636 out of 1419 for hessian
+Estimating row 637 out of 1419 for hessian
+Estimating row 638 out of 1419 for hessian
+Estimating row 639 out of 1419 for hessian
+Estimating row 640 out of 1419 for hessian
+Estimating row 641 out of 1419 for hessian
+Estimating row 642 out of 1419 for hessian
+Estimating row 643 out of 1419 for hessian
+Estimating row 644 out of 1419 for hessian
+Estimating row 645 out of 1419 for hessian
+Estimating row 646 out of 1419 for hessian
+Estimating row 647 out of 1419 for hessian
+Estimating row 648 out of 1419 for hessian
+Estimating row 649 out of 1419 for hessian
+Estimating row 650 out of 1419 for hessian
+Estimating row 651 out of 1419 for hessian
+Estimating row 652 out of 1419 for hessian
+Estimating row 653 out of 1419 for hessian
+Estimating row 654 out of 1419 for hessian
+Estimating row 655 out of 1419 for hessian
+Estimating row 656 out of 1419 for hessian
+Estimating row 657 out of 1419 for hessian
+Estimating row 658 out of 1419 for hessian
+Estimating row 659 out of 1419 for hessian
+Estimating row 660 out of 1419 for hessian
+Estimating row 661 out of 1419 for hessian
+Estimating row 662 out of 1419 for hessian
+Estimating row 663 out of 1419 for hessian
+Estimating row 664 out of 1419 for hessian
+Estimating row 665 out of 1419 for hessian
+Estimating row 666 out of 1419 for hessian
+Estimating row 667 out of 1419 for hessian
+Estimating row 668 out of 1419 for hessian
+Estimating row 669 out of 1419 for hessian
+Estimating row 670 out of 1419 for hessian
+Estimating row 671 out of 1419 for hessian
+Estimating row 672 out of 1419 for hessian
+Estimating row 673 out of 1419 for hessian
+Estimating row 674 out of 1419 for hessian
+Estimating row 675 out of 1419 for hessian
+Estimating row 676 out of 1419 for hessian
+Estimating row 677 out of 1419 for hessian
+Estimating row 678 out of 1419 for hessian
+Estimating row 679 out of 1419 for hessian
+Estimating row 680 out of 1419 for hessian
+Estimating row 681 out of 1419 for hessian
+Estimating row 682 out of 1419 for hessian
+Estimating row 683 out of 1419 for hessian
+Estimating row 684 out of 1419 for hessian
+Estimating row 685 out of 1419 for hessian
+Estimating row 686 out of 1419 for hessian
+Estimating row 687 out of 1419 for hessian
+Estimating row 688 out of 1419 for hessian
+Estimating row 689 out of 1419 for hessian
+Estimating row 690 out of 1419 for hessian
+Estimating row 691 out of 1419 for hessian
+Estimating row 692 out of 1419 for hessian
+Estimating row 693 out of 1419 for hessian
+Estimating row 694 out of 1419 for hessian
+Estimating row 695 out of 1419 for hessian
+Estimating row 696 out of 1419 for hessian
+Estimating row 697 out of 1419 for hessian
+Estimating row 698 out of 1419 for hessian
+Estimating row 699 out of 1419 for hessian
+Estimating row 700 out of 1419 for hessian
+Estimating row 701 out of 1419 for hessian
+Estimating row 702 out of 1419 for hessian
+Estimating row 703 out of 1419 for hessian
+Estimating row 704 out of 1419 for hessian
+Estimating row 705 out of 1419 for hessian
+Estimating row 706 out of 1419 for hessian
+Estimating row 707 out of 1419 for hessian
+Estimating row 708 out of 1419 for hessian
+Estimating row 709 out of 1419 for hessian
+Estimating row 710 out of 1419 for hessian
+Estimating row 711 out of 1419 for hessian
+Estimating row 712 out of 1419 for hessian
+Estimating row 713 out of 1419 for hessian
+Estimating row 714 out of 1419 for hessian
+Estimating row 715 out of 1419 for hessian
+Estimating row 716 out of 1419 for hessian
+Estimating row 717 out of 1419 for hessian
+Estimating row 718 out of 1419 for hessian
+Estimating row 719 out of 1419 for hessian
+Estimating row 720 out of 1419 for hessian
+Estimating row 721 out of 1419 for hessian
+Estimating row 722 out of 1419 for hessian
+Estimating row 723 out of 1419 for hessian
+Estimating row 724 out of 1419 for hessian
+Estimating row 725 out of 1419 for hessian
+Estimating row 726 out of 1419 for hessian
+Estimating row 727 out of 1419 for hessian
+Estimating row 728 out of 1419 for hessian
+Estimating row 729 out of 1419 for hessian
+Estimating row 730 out of 1419 for hessian
+Estimating row 731 out of 1419 for hessian
+Estimating row 732 out of 1419 for hessian
+Estimating row 733 out of 1419 for hessian
+Estimating row 734 out of 1419 for hessian
+Estimating row 735 out of 1419 for hessian
+Estimating row 736 out of 1419 for hessian
+Estimating row 737 out of 1419 for hessian
+Estimating row 738 out of 1419 for hessian
+Estimating row 739 out of 1419 for hessian
+Estimating row 740 out of 1419 for hessian
+Estimating row 741 out of 1419 for hessian
+Estimating row 742 out of 1419 for hessian
+Estimating row 743 out of 1419 for hessian
+Estimating row 744 out of 1419 for hessian
+Estimating row 745 out of 1419 for hessian
+Estimating row 746 out of 1419 for hessian
+Estimating row 747 out of 1419 for hessian
+Estimating row 748 out of 1419 for hessian
+Estimating row 749 out of 1419 for hessian
+Estimating row 750 out of 1419 for hessian
+Estimating row 751 out of 1419 for hessian
+Estimating row 752 out of 1419 for hessian
+Estimating row 753 out of 1419 for hessian
+Estimating row 754 out of 1419 for hessian
+Estimating row 755 out of 1419 for hessian
+Estimating row 756 out of 1419 for hessian
+Estimating row 757 out of 1419 for hessian
+Estimating row 758 out of 1419 for hessian
+Estimating row 759 out of 1419 for hessian
+Estimating row 760 out of 1419 for hessian
+Estimating row 761 out of 1419 for hessian
+Estimating row 762 out of 1419 for hessian
+Estimating row 763 out of 1419 for hessian
+Estimating row 764 out of 1419 for hessian
+Estimating row 765 out of 1419 for hessian
+Estimating row 766 out of 1419 for hessian
+Estimating row 767 out of 1419 for hessian
+Estimating row 768 out of 1419 for hessian
+Estimating row 769 out of 1419 for hessian
+Estimating row 770 out of 1419 for hessian
+Estimating row 771 out of 1419 for hessian
+Estimating row 772 out of 1419 for hessian
+Estimating row 773 out of 1419 for hessian
+Estimating row 774 out of 1419 for hessian
+Estimating row 775 out of 1419 for hessian
+Estimating row 776 out of 1419 for hessian
+Estimating row 777 out of 1419 for hessian
+Estimating row 778 out of 1419 for hessian
+Estimating row 779 out of 1419 for hessian
+Estimating row 780 out of 1419 for hessian
+Estimating row 781 out of 1419 for hessian
+Estimating row 782 out of 1419 for hessian
+Estimating row 783 out of 1419 for hessian
+Estimating row 784 out of 1419 for hessian
+Estimating row 785 out of 1419 for hessian
+Estimating row 786 out of 1419 for hessian
+Estimating row 787 out of 1419 for hessian
+Estimating row 788 out of 1419 for hessian
+Estimating row 789 out of 1419 for hessian
+Estimating row 790 out of 1419 for hessian
+Estimating row 791 out of 1419 for hessian
+Estimating row 792 out of 1419 for hessian
+Estimating row 793 out of 1419 for hessian
+Estimating row 794 out of 1419 for hessian
+Estimating row 795 out of 1419 for hessian
+Estimating row 796 out of 1419 for hessian
+Estimating row 797 out of 1419 for hessian
+Estimating row 798 out of 1419 for hessian
+Estimating row 799 out of 1419 for hessian
+Estimating row 800 out of 1419 for hessian
+Estimating row 801 out of 1419 for hessian
+Estimating row 802 out of 1419 for hessian
+Estimating row 803 out of 1419 for hessian
+Estimating row 804 out of 1419 for hessian
+Estimating row 805 out of 1419 for hessian
+Estimating row 806 out of 1419 for hessian
+Estimating row 807 out of 1419 for hessian
+Estimating row 808 out of 1419 for hessian
+Estimating row 809 out of 1419 for hessian
+Estimating row 810 out of 1419 for hessian
+Estimating row 811 out of 1419 for hessian
+Estimating row 812 out of 1419 for hessian
+Estimating row 813 out of 1419 for hessian
+Estimating row 814 out of 1419 for hessian
+Estimating row 815 out of 1419 for hessian
+Estimating row 816 out of 1419 for hessian
+Estimating row 817 out of 1419 for hessian
+Estimating row 818 out of 1419 for hessian
+Estimating row 819 out of 1419 for hessian
+Estimating row 820 out of 1419 for hessian
+Estimating row 821 out of 1419 for hessian
+Estimating row 822 out of 1419 for hessian
+Estimating row 823 out of 1419 for hessian
+Estimating row 824 out of 1419 for hessian
+Estimating row 825 out of 1419 for hessian
+Estimating row 826 out of 1419 for hessian
+Estimating row 827 out of 1419 for hessian
+Estimating row 828 out of 1419 for hessian
+Estimating row 829 out of 1419 for hessian
+Estimating row 830 out of 1419 for hessian
+Estimating row 831 out of 1419 for hessian
+Estimating row 832 out of 1419 for hessian
+Estimating row 833 out of 1419 for hessian
+Estimating row 834 out of 1419 for hessian
+Estimating row 835 out of 1419 for hessian
+Estimating row 836 out of 1419 for hessian
+Estimating row 837 out of 1419 for hessian
+Estimating row 838 out of 1419 for hessian
+Estimating row 839 out of 1419 for hessian
+Estimating row 840 out of 1419 for hessian
+Estimating row 841 out of 1419 for hessian
+Estimating row 842 out of 1419 for hessian
+Estimating row 843 out of 1419 for hessian
+Estimating row 844 out of 1419 for hessian
+Estimating row 845 out of 1419 for hessian
+Estimating row 846 out of 1419 for hessian
+Estimating row 847 out of 1419 for hessian
+Estimating row 848 out of 1419 for hessian
+Estimating row 849 out of 1419 for hessian
+Estimating row 850 out of 1419 for hessian
+Estimating row 851 out of 1419 for hessian
+Estimating row 852 out of 1419 for hessian
+Estimating row 853 out of 1419 for hessian
+Estimating row 854 out of 1419 for hessian
+Estimating row 855 out of 1419 for hessian
+Estimating row 856 out of 1419 for hessian
+Estimating row 857 out of 1419 for hessian
+Estimating row 858 out of 1419 for hessian
+Estimating row 859 out of 1419 for hessian
+Estimating row 860 out of 1419 for hessian
+Estimating row 861 out of 1419 for hessian
+Estimating row 862 out of 1419 for hessian
+Estimating row 863 out of 1419 for hessian
+Estimating row 864 out of 1419 for hessian
+Estimating row 865 out of 1419 for hessian
+Estimating row 866 out of 1419 for hessian
+Estimating row 867 out of 1419 for hessian
+Estimating row 868 out of 1419 for hessian
+Estimating row 869 out of 1419 for hessian
+Estimating row 870 out of 1419 for hessian
+Estimating row 871 out of 1419 for hessian
+Estimating row 872 out of 1419 for hessian
+Estimating row 873 out of 1419 for hessian
+Estimating row 874 out of 1419 for hessian
+Estimating row 875 out of 1419 for hessian
+Estimating row 876 out of 1419 for hessian
+Estimating row 877 out of 1419 for hessian
+Estimating row 878 out of 1419 for hessian
+Estimating row 879 out of 1419 for hessian
+Estimating row 880 out of 1419 for hessian
+Estimating row 881 out of 1419 for hessian
+Estimating row 882 out of 1419 for hessian
+Estimating row 883 out of 1419 for hessian
+Estimating row 884 out of 1419 for hessian
+Estimating row 885 out of 1419 for hessian
+Estimating row 886 out of 1419 for hessian
+Estimating row 887 out of 1419 for hessian
+Estimating row 888 out of 1419 for hessian
+Estimating row 889 out of 1419 for hessian
+Estimating row 890 out of 1419 for hessian
+Estimating row 891 out of 1419 for hessian
+Estimating row 892 out of 1419 for hessian
+Estimating row 893 out of 1419 for hessian
+Estimating row 894 out of 1419 for hessian
+Estimating row 895 out of 1419 for hessian
+Estimating row 896 out of 1419 for hessian
+Estimating row 897 out of 1419 for hessian
+Estimating row 898 out of 1419 for hessian
+Estimating row 899 out of 1419 for hessian
+Estimating row 900 out of 1419 for hessian
+Estimating row 901 out of 1419 for hessian
+Estimating row 902 out of 1419 for hessian
+Estimating row 903 out of 1419 for hessian
+Estimating row 904 out of 1419 for hessian
+Estimating row 905 out of 1419 for hessian
+Estimating row 906 out of 1419 for hessian
+Estimating row 907 out of 1419 for hessian
+Estimating row 908 out of 1419 for hessian
+Estimating row 909 out of 1419 for hessian
+Estimating row 910 out of 1419 for hessian
+Estimating row 911 out of 1419 for hessian
+Estimating row 912 out of 1419 for hessian
+Estimating row 913 out of 1419 for hessian
+Estimating row 914 out of 1419 for hessian
+Estimating row 915 out of 1419 for hessian
+Estimating row 916 out of 1419 for hessian
+Estimating row 917 out of 1419 for hessian
+Estimating row 918 out of 1419 for hessian
+Estimating row 919 out of 1419 for hessian
+Estimating row 920 out of 1419 for hessian
+Estimating row 921 out of 1419 for hessian
+Estimating row 922 out of 1419 for hessian
+Estimating row 923 out of 1419 for hessian
+Estimating row 924 out of 1419 for hessian
+Estimating row 925 out of 1419 for hessian
+Estimating row 926 out of 1419 for hessian
+Estimating row 927 out of 1419 for hessian
+Estimating row 928 out of 1419 for hessian
+Estimating row 929 out of 1419 for hessian
+Estimating row 930 out of 1419 for hessian
+Estimating row 931 out of 1419 for hessian
+Estimating row 932 out of 1419 for hessian
+Estimating row 933 out of 1419 for hessian
+Estimating row 934 out of 1419 for hessian
+Estimating row 935 out of 1419 for hessian
+Estimating row 936 out of 1419 for hessian
+Estimating row 937 out of 1419 for hessian
+Estimating row 938 out of 1419 for hessian
+Estimating row 939 out of 1419 for hessian
+Estimating row 940 out of 1419 for hessian
+Estimating row 941 out of 1419 for hessian
+Estimating row 942 out of 1419 for hessian
+Estimating row 943 out of 1419 for hessian
+Estimating row 944 out of 1419 for hessian
+Estimating row 945 out of 1419 for hessian
+Estimating row 946 out of 1419 for hessian
+Estimating row 947 out of 1419 for hessian
+Estimating row 948 out of 1419 for hessian
+Estimating row 949 out of 1419 for hessian
+Estimating row 950 out of 1419 for hessian
+Estimating row 951 out of 1419 for hessian
+Estimating row 952 out of 1419 for hessian
+Estimating row 953 out of 1419 for hessian
+Estimating row 954 out of 1419 for hessian
+Estimating row 955 out of 1419 for hessian
+Estimating row 956 out of 1419 for hessian
+Estimating row 957 out of 1419 for hessian
+Estimating row 958 out of 1419 for hessian
+Estimating row 959 out of 1419 for hessian
+Estimating row 960 out of 1419 for hessian
+Estimating row 961 out of 1419 for hessian
+Estimating row 962 out of 1419 for hessian
+Estimating row 963 out of 1419 for hessian
+Estimating row 964 out of 1419 for hessian
+Estimating row 965 out of 1419 for hessian
+Estimating row 966 out of 1419 for hessian
+Estimating row 967 out of 1419 for hessian
+Estimating row 968 out of 1419 for hessian
+Estimating row 969 out of 1419 for hessian
+Estimating row 970 out of 1419 for hessian
+Estimating row 971 out of 1419 for hessian
+Estimating row 972 out of 1419 for hessian
+Estimating row 973 out of 1419 for hessian
+Estimating row 974 out of 1419 for hessian
+Estimating row 975 out of 1419 for hessian
+Estimating row 976 out of 1419 for hessian
+Estimating row 977 out of 1419 for hessian
+Estimating row 978 out of 1419 for hessian
+Estimating row 979 out of 1419 for hessian
+Estimating row 980 out of 1419 for hessian
+Estimating row 981 out of 1419 for hessian
+Estimating row 982 out of 1419 for hessian
+Estimating row 983 out of 1419 for hessian
+Estimating row 984 out of 1419 for hessian
+Estimating row 985 out of 1419 for hessian
+Estimating row 986 out of 1419 for hessian
+Estimating row 987 out of 1419 for hessian
+Estimating row 988 out of 1419 for hessian
+Estimating row 989 out of 1419 for hessian
+Estimating row 990 out of 1419 for hessian
+Estimating row 991 out of 1419 for hessian
+Estimating row 992 out of 1419 for hessian
+Estimating row 993 out of 1419 for hessian
+Estimating row 994 out of 1419 for hessian
+Estimating row 995 out of 1419 for hessian
+Estimating row 996 out of 1419 for hessian
+Estimating row 997 out of 1419 for hessian
+Estimating row 998 out of 1419 for hessian
+Estimating row 999 out of 1419 for hessian
+Estimating row 1000 out of 1419 for hessian
+Estimating row 1001 out of 1419 for hessian
+Estimating row 1002 out of 1419 for hessian
+Estimating row 1003 out of 1419 for hessian
+Estimating row 1004 out of 1419 for hessian
+Estimating row 1005 out of 1419 for hessian
+Estimating row 1006 out of 1419 for hessian
+Estimating row 1007 out of 1419 for hessian
+Estimating row 1008 out of 1419 for hessian
+Estimating row 1009 out of 1419 for hessian
+Estimating row 1010 out of 1419 for hessian
+Estimating row 1011 out of 1419 for hessian
+Estimating row 1012 out of 1419 for hessian
+Estimating row 1013 out of 1419 for hessian
+Estimating row 1014 out of 1419 for hessian
+Estimating row 1015 out of 1419 for hessian
+Estimating row 1016 out of 1419 for hessian
+Estimating row 1017 out of 1419 for hessian
+Estimating row 1018 out of 1419 for hessian
+Estimating row 1019 out of 1419 for hessian
+Estimating row 1020 out of 1419 for hessian
+Estimating row 1021 out of 1419 for hessian
+Estimating row 1022 out of 1419 for hessian
+Estimating row 1023 out of 1419 for hessian
+Estimating row 1024 out of 1419 for hessian
+Estimating row 1025 out of 1419 for hessian
+Estimating row 1026 out of 1419 for hessian
+Estimating row 1027 out of 1419 for hessian
+Estimating row 1028 out of 1419 for hessian
+Estimating row 1029 out of 1419 for hessian
+Estimating row 1030 out of 1419 for hessian
+Estimating row 1031 out of 1419 for hessian
+Estimating row 1032 out of 1419 for hessian
+Estimating row 1033 out of 1419 for hessian
+Estimating row 1034 out of 1419 for hessian
+Estimating row 1035 out of 1419 for hessian
+Estimating row 1036 out of 1419 for hessian
+Estimating row 1037 out of 1419 for hessian
+Estimating row 1038 out of 1419 for hessian
+Estimating row 1039 out of 1419 for hessian
+Estimating row 1040 out of 1419 for hessian
+Estimating row 1041 out of 1419 for hessian
+Estimating row 1042 out of 1419 for hessian
+Estimating row 1043 out of 1419 for hessian
+Estimating row 1044 out of 1419 for hessian
+Estimating row 1045 out of 1419 for hessian
+Estimating row 1046 out of 1419 for hessian
+Estimating row 1047 out of 1419 for hessian
+Estimating row 1048 out of 1419 for hessian
+Estimating row 1049 out of 1419 for hessian
+Estimating row 1050 out of 1419 for hessian
+Estimating row 1051 out of 1419 for hessian
+Estimating row 1052 out of 1419 for hessian
+Estimating row 1053 out of 1419 for hessian
+Estimating row 1054 out of 1419 for hessian
+Estimating row 1055 out of 1419 for hessian
+Estimating row 1056 out of 1419 for hessian
+Estimating row 1057 out of 1419 for hessian
+Estimating row 1058 out of 1419 for hessian
+Estimating row 1059 out of 1419 for hessian
+Estimating row 1060 out of 1419 for hessian
+Estimating row 1061 out of 1419 for hessian
+Estimating row 1062 out of 1419 for hessian
+Estimating row 1063 out of 1419 for hessian
+Estimating row 1064 out of 1419 for hessian
+Estimating row 1065 out of 1419 for hessian
+Estimating row 1066 out of 1419 for hessian
+Estimating row 1067 out of 1419 for hessian
+Estimating row 1068 out of 1419 for hessian
+Estimating row 1069 out of 1419 for hessian
+Estimating row 1070 out of 1419 for hessian
+Estimating row 1071 out of 1419 for hessian
+Estimating row 1072 out of 1419 for hessian
+Estimating row 1073 out of 1419 for hessian
+Estimating row 1074 out of 1419 for hessian
+Estimating row 1075 out of 1419 for hessian
+Estimating row 1076 out of 1419 for hessian
+Estimating row 1077 out of 1419 for hessian
+Estimating row 1078 out of 1419 for hessian
+Estimating row 1079 out of 1419 for hessian
+Estimating row 1080 out of 1419 for hessian
+Estimating row 1081 out of 1419 for hessian
+Estimating row 1082 out of 1419 for hessian
+Estimating row 1083 out of 1419 for hessian
+Estimating row 1084 out of 1419 for hessian
+Estimating row 1085 out of 1419 for hessian
+Estimating row 1086 out of 1419 for hessian
+Estimating row 1087 out of 1419 for hessian
+Estimating row 1088 out of 1419 for hessian
+Estimating row 1089 out of 1419 for hessian
+Estimating row 1090 out of 1419 for hessian
+Estimating row 1091 out of 1419 for hessian
+Estimating row 1092 out of 1419 for hessian
+Estimating row 1093 out of 1419 for hessian
+Estimating row 1094 out of 1419 for hessian
+Estimating row 1095 out of 1419 for hessian
+Estimating row 1096 out of 1419 for hessian
+Estimating row 1097 out of 1419 for hessian
+Estimating row 1098 out of 1419 for hessian
+Estimating row 1099 out of 1419 for hessian
+Estimating row 1100 out of 1419 for hessian
+Estimating row 1101 out of 1419 for hessian
+Estimating row 1102 out of 1419 for hessian
+Estimating row 1103 out of 1419 for hessian
+Estimating row 1104 out of 1419 for hessian
+Estimating row 1105 out of 1419 for hessian
+Estimating row 1106 out of 1419 for hessian
+Estimating row 1107 out of 1419 for hessian
+Estimating row 1108 out of 1419 for hessian
+Estimating row 1109 out of 1419 for hessian
+Estimating row 1110 out of 1419 for hessian
+Estimating row 1111 out of 1419 for hessian
+Estimating row 1112 out of 1419 for hessian
+Estimating row 1113 out of 1419 for hessian
+Estimating row 1114 out of 1419 for hessian
+Estimating row 1115 out of 1419 for hessian
+Estimating row 1116 out of 1419 for hessian
+Estimating row 1117 out of 1419 for hessian
+Estimating row 1118 out of 1419 for hessian
+Estimating row 1119 out of 1419 for hessian
+Estimating row 1120 out of 1419 for hessian
+Estimating row 1121 out of 1419 for hessian
+Estimating row 1122 out of 1419 for hessian
+Estimating row 1123 out of 1419 for hessian
+Estimating row 1124 out of 1419 for hessian
+Estimating row 1125 out of 1419 for hessian
+Estimating row 1126 out of 1419 for hessian
+Estimating row 1127 out of 1419 for hessian
+Estimating row 1128 out of 1419 for hessian
+Estimating row 1129 out of 1419 for hessian
+Estimating row 1130 out of 1419 for hessian
+Estimating row 1131 out of 1419 for hessian
+Estimating row 1132 out of 1419 for hessian
+Estimating row 1133 out of 1419 for hessian
+Estimating row 1134 out of 1419 for hessian
+Estimating row 1135 out of 1419 for hessian
+Estimating row 1136 out of 1419 for hessian
+Estimating row 1137 out of 1419 for hessian
+Estimating row 1138 out of 1419 for hessian
+Estimating row 1139 out of 1419 for hessian
+Estimating row 1140 out of 1419 for hessian
+Estimating row 1141 out of 1419 for hessian
+Estimating row 1142 out of 1419 for hessian
+Estimating row 1143 out of 1419 for hessian
+Estimating row 1144 out of 1419 for hessian
+Estimating row 1145 out of 1419 for hessian
+Estimating row 1146 out of 1419 for hessian
+Estimating row 1147 out of 1419 for hessian
+Estimating row 1148 out of 1419 for hessian
+Estimating row 1149 out of 1419 for hessian
+Estimating row 1150 out of 1419 for hessian
+Estimating row 1151 out of 1419 for hessian
+Estimating row 1152 out of 1419 for hessian
+Estimating row 1153 out of 1419 for hessian
+Estimating row 1154 out of 1419 for hessian
+Estimating row 1155 out of 1419 for hessian
+Estimating row 1156 out of 1419 for hessian
+Estimating row 1157 out of 1419 for hessian
+Estimating row 1158 out of 1419 for hessian
+Estimating row 1159 out of 1419 for hessian
+Estimating row 1160 out of 1419 for hessian
+Estimating row 1161 out of 1419 for hessian
+Estimating row 1162 out of 1419 for hessian
+Estimating row 1163 out of 1419 for hessian
+Estimating row 1164 out of 1419 for hessian
+Estimating row 1165 out of 1419 for hessian
+Estimating row 1166 out of 1419 for hessian
+Estimating row 1167 out of 1419 for hessian
+Estimating row 1168 out of 1419 for hessian
+Estimating row 1169 out of 1419 for hessian
+Estimating row 1170 out of 1419 for hessian
+Estimating row 1171 out of 1419 for hessian
+Estimating row 1172 out of 1419 for hessian
+Estimating row 1173 out of 1419 for hessian
+Estimating row 1174 out of 1419 for hessian
+Estimating row 1175 out of 1419 for hessian
+Estimating row 1176 out of 1419 for hessian
+Estimating row 1177 out of 1419 for hessian
+Estimating row 1178 out of 1419 for hessian
+Estimating row 1179 out of 1419 for hessian
+Estimating row 1180 out of 1419 for hessian
+Estimating row 1181 out of 1419 for hessian
+Estimating row 1182 out of 1419 for hessian
+Estimating row 1183 out of 1419 for hessian
+Estimating row 1184 out of 1419 for hessian
+Estimating row 1185 out of 1419 for hessian
+Estimating row 1186 out of 1419 for hessian
+Estimating row 1187 out of 1419 for hessian
+Estimating row 1188 out of 1419 for hessian
+Estimating row 1189 out of 1419 for hessian
+Estimating row 1190 out of 1419 for hessian
+Estimating row 1191 out of 1419 for hessian
+Estimating row 1192 out of 1419 for hessian
+Estimating row 1193 out of 1419 for hessian
+Estimating row 1194 out of 1419 for hessian
+Estimating row 1195 out of 1419 for hessian
+Estimating row 1196 out of 1419 for hessian
+Estimating row 1197 out of 1419 for hessian
+Estimating row 1198 out of 1419 for hessian
+Estimating row 1199 out of 1419 for hessian
+Estimating row 1200 out of 1419 for hessian
+Estimating row 1201 out of 1419 for hessian
+Estimating row 1202 out of 1419 for hessian
+Estimating row 1203 out of 1419 for hessian
+Estimating row 1204 out of 1419 for hessian
+Estimating row 1205 out of 1419 for hessian
+Estimating row 1206 out of 1419 for hessian
+Estimating row 1207 out of 1419 for hessian
+Estimating row 1208 out of 1419 for hessian
+Estimating row 1209 out of 1419 for hessian
+Estimating row 1210 out of 1419 for hessian
+Estimating row 1211 out of 1419 for hessian
+Estimating row 1212 out of 1419 for hessian
+Estimating row 1213 out of 1419 for hessian
+Estimating row 1214 out of 1419 for hessian
+Estimating row 1215 out of 1419 for hessian
+Estimating row 1216 out of 1419 for hessian
+Estimating row 1217 out of 1419 for hessian
+Estimating row 1218 out of 1419 for hessian
+Estimating row 1219 out of 1419 for hessian
+Estimating row 1220 out of 1419 for hessian
+Estimating row 1221 out of 1419 for hessian
+Estimating row 1222 out of 1419 for hessian
+Estimating row 1223 out of 1419 for hessian
+Estimating row 1224 out of 1419 for hessian
+Estimating row 1225 out of 1419 for hessian
+Estimating row 1226 out of 1419 for hessian
+Estimating row 1227 out of 1419 for hessian
+Estimating row 1228 out of 1419 for hessian
+Estimating row 1229 out of 1419 for hessian
+Estimating row 1230 out of 1419 for hessian
+Estimating row 1231 out of 1419 for hessian
+Estimating row 1232 out of 1419 for hessian
+Estimating row 1233 out of 1419 for hessian
+Estimating row 1234 out of 1419 for hessian
+Estimating row 1235 out of 1419 for hessian
+Estimating row 1236 out of 1419 for hessian
+Estimating row 1237 out of 1419 for hessian
+Estimating row 1238 out of 1419 for hessian
+Estimating row 1239 out of 1419 for hessian
+Estimating row 1240 out of 1419 for hessian
+Estimating row 1241 out of 1419 for hessian
+Estimating row 1242 out of 1419 for hessian
+Estimating row 1243 out of 1419 for hessian
+Estimating row 1244 out of 1419 for hessian
+Estimating row 1245 out of 1419 for hessian
+Estimating row 1246 out of 1419 for hessian
+Estimating row 1247 out of 1419 for hessian
+Estimating row 1248 out of 1419 for hessian
+Estimating row 1249 out of 1419 for hessian
+Estimating row 1250 out of 1419 for hessian
+Estimating row 1251 out of 1419 for hessian
+Estimating row 1252 out of 1419 for hessian
+Estimating row 1253 out of 1419 for hessian
+Estimating row 1254 out of 1419 for hessian
+Estimating row 1255 out of 1419 for hessian
+Estimating row 1256 out of 1419 for hessian
+Estimating row 1257 out of 1419 for hessian
+Estimating row 1258 out of 1419 for hessian
+Estimating row 1259 out of 1419 for hessian
+Estimating row 1260 out of 1419 for hessian
+Estimating row 1261 out of 1419 for hessian
+Estimating row 1262 out of 1419 for hessian
+Estimating row 1263 out of 1419 for hessian
+Estimating row 1264 out of 1419 for hessian
+Estimating row 1265 out of 1419 for hessian
+Estimating row 1266 out of 1419 for hessian
+Estimating row 1267 out of 1419 for hessian
+Estimating row 1268 out of 1419 for hessian
+Estimating row 1269 out of 1419 for hessian
+Estimating row 1270 out of 1419 for hessian
+Estimating row 1271 out of 1419 for hessian
+Estimating row 1272 out of 1419 for hessian
+Estimating row 1273 out of 1419 for hessian
+Estimating row 1274 out of 1419 for hessian
+Estimating row 1275 out of 1419 for hessian
+Estimating row 1276 out of 1419 for hessian
+Estimating row 1277 out of 1419 for hessian
+Estimating row 1278 out of 1419 for hessian
+Estimating row 1279 out of 1419 for hessian
+Estimating row 1280 out of 1419 for hessian
+Estimating row 1281 out of 1419 for hessian
+Estimating row 1282 out of 1419 for hessian
+Estimating row 1283 out of 1419 for hessian
+Estimating row 1284 out of 1419 for hessian
+Estimating row 1285 out of 1419 for hessian
+Estimating row 1286 out of 1419 for hessian
+Estimating row 1287 out of 1419 for hessian
+Estimating row 1288 out of 1419 for hessian
+Estimating row 1289 out of 1419 for hessian
+Estimating row 1290 out of 1419 for hessian
+Estimating row 1291 out of 1419 for hessian
+Estimating row 1292 out of 1419 for hessian
+Estimating row 1293 out of 1419 for hessian
+Estimating row 1294 out of 1419 for hessian
+Estimating row 1295 out of 1419 for hessian
+Estimating row 1296 out of 1419 for hessian
+Estimating row 1297 out of 1419 for hessian
+Estimating row 1298 out of 1419 for hessian
+Estimating row 1299 out of 1419 for hessian
+Estimating row 1300 out of 1419 for hessian
+Estimating row 1301 out of 1419 for hessian
+Estimating row 1302 out of 1419 for hessian
+Estimating row 1303 out of 1419 for hessian
+Estimating row 1304 out of 1419 for hessian
+Estimating row 1305 out of 1419 for hessian
+Estimating row 1306 out of 1419 for hessian
+Estimating row 1307 out of 1419 for hessian
+Estimating row 1308 out of 1419 for hessian
+Estimating row 1309 out of 1419 for hessian
+Estimating row 1310 out of 1419 for hessian
+Estimating row 1311 out of 1419 for hessian
+Estimating row 1312 out of 1419 for hessian
+Estimating row 1313 out of 1419 for hessian
+Estimating row 1314 out of 1419 for hessian
+Estimating row 1315 out of 1419 for hessian
+Estimating row 1316 out of 1419 for hessian
+Estimating row 1317 out of 1419 for hessian
+Estimating row 1318 out of 1419 for hessian
+Estimating row 1319 out of 1419 for hessian
+Estimating row 1320 out of 1419 for hessian
+Estimating row 1321 out of 1419 for hessian
+Estimating row 1322 out of 1419 for hessian
+Estimating row 1323 out of 1419 for hessian
+Estimating row 1324 out of 1419 for hessian
+Estimating row 1325 out of 1419 for hessian
+Estimating row 1326 out of 1419 for hessian
+Estimating row 1327 out of 1419 for hessian
+Estimating row 1328 out of 1419 for hessian
+Estimating row 1329 out of 1419 for hessian
+Estimating row 1330 out of 1419 for hessian
+Estimating row 1331 out of 1419 for hessian
+Estimating row 1332 out of 1419 for hessian
+Estimating row 1333 out of 1419 for hessian
+Estimating row 1334 out of 1419 for hessian
+Estimating row 1335 out of 1419 for hessian
+Estimating row 1336 out of 1419 for hessian
+Estimating row 1337 out of 1419 for hessian
+Estimating row 1338 out of 1419 for hessian
+Estimating row 1339 out of 1419 for hessian
+Estimating row 1340 out of 1419 for hessian
+Estimating row 1341 out of 1419 for hessian
+Estimating row 1342 out of 1419 for hessian
+Estimating row 1343 out of 1419 for hessian
+Estimating row 1344 out of 1419 for hessian
+Estimating row 1345 out of 1419 for hessian
+Estimating row 1346 out of 1419 for hessian
+Estimating row 1347 out of 1419 for hessian
+Estimating row 1348 out of 1419 for hessian
+Estimating row 1349 out of 1419 for hessian
+Estimating row 1350 out of 1419 for hessian
+Estimating row 1351 out of 1419 for hessian
+Estimating row 1352 out of 1419 for hessian
+Estimating row 1353 out of 1419 for hessian
+Estimating row 1354 out of 1419 for hessian
+Estimating row 1355 out of 1419 for hessian
+Estimating row 1356 out of 1419 for hessian
+Estimating row 1357 out of 1419 for hessian
+Estimating row 1358 out of 1419 for hessian
+Estimating row 1359 out of 1419 for hessian
+Estimating row 1360 out of 1419 for hessian
+Estimating row 1361 out of 1419 for hessian
+Estimating row 1362 out of 1419 for hessian
+Estimating row 1363 out of 1419 for hessian
+Estimating row 1364 out of 1419 for hessian
+Estimating row 1365 out of 1419 for hessian
+Estimating row 1366 out of 1419 for hessian
+Estimating row 1367 out of 1419 for hessian
+Estimating row 1368 out of 1419 for hessian
+Estimating row 1369 out of 1419 for hessian
+Estimating row 1370 out of 1419 for hessian
+Estimating row 1371 out of 1419 for hessian
+Estimating row 1372 out of 1419 for hessian
+Estimating row 1373 out of 1419 for hessian
+Estimating row 1374 out of 1419 for hessian
+Estimating row 1375 out of 1419 for hessian
+Estimating row 1376 out of 1419 for hessian
+Estimating row 1377 out of 1419 for hessian
+Estimating row 1378 out of 1419 for hessian
+Estimating row 1379 out of 1419 for hessian
+Estimating row 1380 out of 1419 for hessian
+Estimating row 1381 out of 1419 for hessian
+Estimating row 1382 out of 1419 for hessian
+Estimating row 1383 out of 1419 for hessian
+Estimating row 1384 out of 1419 for hessian
+Estimating row 1385 out of 1419 for hessian
+Estimating row 1386 out of 1419 for hessian
+Estimating row 1387 out of 1419 for hessian
+Estimating row 1388 out of 1419 for hessian
+Estimating row 1389 out of 1419 for hessian
+Estimating row 1390 out of 1419 for hessian
+Estimating row 1391 out of 1419 for hessian
+Estimating row 1392 out of 1419 for hessian
+Estimating row 1393 out of 1419 for hessian
+Estimating row 1394 out of 1419 for hessian
+Estimating row 1395 out of 1419 for hessian
+Estimating row 1396 out of 1419 for hessian
+Estimating row 1397 out of 1419 for hessian
+Estimating row 1398 out of 1419 for hessian
+Estimating row 1399 out of 1419 for hessian
+Estimating row 1400 out of 1419 for hessian
+Estimating row 1401 out of 1419 for hessian
+Estimating row 1402 out of 1419 for hessian
+Estimating row 1403 out of 1419 for hessian
+Estimating row 1404 out of 1419 for hessian
+Estimating row 1405 out of 1419 for hessian
+Estimating row 1406 out of 1419 for hessian
+Estimating row 1407 out of 1419 for hessian
+Estimating row 1408 out of 1419 for hessian
+Estimating row 1409 out of 1419 for hessian
+Estimating row 1410 out of 1419 for hessian
+Estimating row 1411 out of 1419 for hessian
+Estimating row 1412 out of 1419 for hessian
+Estimating row 1413 out of 1419 for hessian
+Estimating row 1414 out of 1419 for hessian
+Estimating row 1415 out of 1419 for hessian
+Estimating row 1416 out of 1419 for hessian
+Estimating row 1417 out of 1419 for hessian
+Estimating row 1418 out of 1419 for hessian
+Estimating row 1419 out of 1419 for hessian
+
+Successfull completion, HURRAH - HURRAH 

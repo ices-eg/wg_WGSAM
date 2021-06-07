@@ -1,0 +1,58 @@
+# length weight relation W=a * Power(L,b)
+# L in mm, W in kg
+# Source Coull, K.K et al. Length/weight relationships for 88 species
+# of fish Encountered in the North East Atlantic
+# Scottish Fisheries Research Report, 43, 1989
+#
+# FUL
+0.01 1
+# GLT
+0.01 1
+# HEG
+0.01 1
+# KTW
+0.01 1
+# GBG
+0.01 1
+# GNT
+0.01 1
+# PUF
+0.01 1
+# RAZ
+0.01 1
+# RAJ
+4.09E-08 2.896
+# GUR
+6.2E-9 3.1
+# Western Mackerel
+3.8E-09     3.210
+# North Sea Mackerel
+3.8E-09     3.210
+# Western Horse Mackerel (Bay of Bicay, Fish base)
+7.2E-09     3.033
+# North Sea Horse Mackerel(Bay of Bicay, Fish base)
+7.2E-09     3.033
+# GSE
+0.01 1
+# HBP
+0.01 1
+# Cod
+2.0475E-08  2.8571
+# Whiting
+1.0509E-08  2.9456
+# Haddock
+1.8212E-08  2.8268
+# Saithe
+2.8322E-08 2.7374
+# Herring
+6.03E-09    3.0904
+# Sandeel
+1.243E-09   3.32
+# Norway Pout  FEJL FEJL
+9.2E-09 3.0265
+# Sprat
+6.03E-09    3.0904
+# Plaice
+1.1E-08     3.009
+# Sole 
+9.0E-09     3.000

@@ -19,6 +19,11 @@ ToR b
 
 <a href="https://ices-eg.github.io/wg_WGSAM/NorthSeaKeyRun_SuppPlots.html" target="_blank"> SMS keyrun comparison plots - 20 October 2020 </a>
 
+Final SMS North Sea Keyrun inputs, outputs, diagnostics
+
+<a href="https://ices-eg.github.io/wg_WGSAM/NS_2020_key_run.html" target="_blank"> North Sea SMS 2020 from Input_Output - 3 November 2020 </a>
+
+
 ToR c
 
 <a href="https://sgaichas.github.io/poseidon-dev/atlantisom_landingpage.html" target="_blank"> Generating simulated datasets from Atlantis - 15 October 2020 </a>

@@ -1,0 +1,65 @@
+---
+title: "WGSAM Skill Assessment Project Page"
+author: "Sarah Gaichas, Valerio Bartolino, and WGSAM"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    code_fold: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(here)
+library(tidyverse)  
+library(atlantisom)
+library(ggthemes)
+library(FSA)
+
+```
+
+## Project Introduction
+
+This project focuses on ICES WGSAM ToR c, Skill assessment: **Establish and apply methods to assess the skill of multispecies models intended for operational advice**
+
+Project meeting notes are posted [here](https://docs.google.com/document/d/17jB5Q5aXL7976P9945G75rLKHf6Ka3vT4FgCsY3Bar0/edit#).
+
+Participants:
+
+## Simulating input data from an ecosystem model
+
+We use existing [Atlantis](https://github.com/Atlantis-Ecosystem-Model/Atlantis_example_and_instructions) ecosystem model output to generate input datasets for a variety of multispecies models, so that the performance of these models can be evaluated against known (simulated) ecosystem dynamics. Atlantis models simulate a wide range of physical and ecological processes, include a full food web, and can be run using different climate forcing, fishing, and other scenarios.  
+
+We extract simulated data using the R package [atlantisom](https://github.com/r4atlantis/atlantisom). The purpose of atlantisom is to use existing Atlantis model output to generate input datasets for a variety of models, so that the performance of these models can be evaluated against known (simulated) ecosystem dynamics. Atlantis models can be run using different climate forcing, fishing, and other scenarios. Users of atlantisom will be able to specify fishery independent and fishery dependent sampling in space and time, as well as species-specific catchability, selectivty, and other observation processes for any Atlantis scenario. Internally consistent multispecies and ecosystem datasets with known observation error characteristics will be the atlantisom outputs, for use in individual model performance testing, comparing performance of alternative models, and performance testing of model ensembles against "true" Atlantis outputs.
+
+## Species in the ms-keyrun dataset
+
+Our initial species selection includes 11 single species groups from the Norwegian Barents Sea (NOBA) Atlantis model [@]. 
+
+```{r spp-table}
+
+fgs <- load_fgs(here("simulated-data/atlantisoutput/NOBA_March_2020"), "nordic_groups_v04.csv")
+
+lname <- data.frame(Latin = c("*Hippoglossoides platessoides*",
+                              "*Reinhardtius hippoglossoides*",
+                              "*Scomber scombrus*",
+                              "*Melongrammus aeglefinus*",
+                              "*Pollachius virens*",
+                              "*Sebastes mentella*",
+                              "*Micromesistius poutassou*",
+                              "*Clupea harengus*",
+                              "*Gadus morhua*",
+                              "*Boreogadus saida*",
+                              "*Mallotus villosus*"),
+                    Code = c("LRD", "GRH", "MAC", "HAD", "SAI", "RED", 
+                             "BWH", "SSH", "NCO", "PCO", "CAP")
+)
+
+sppsubset <- merge(fgs, lname, all.y = TRUE)
+spptable <- sppsubset %>% 
+  arrange(Index) %>%
+  select(Name, Long.Name, Latin)
+
+knitr::kable(spptable, col.names = c("Model name", "Full name", "Latin name"))
+
+```
+

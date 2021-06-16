@@ -36,3 +36,6 @@ vignettes/*.pdf
 
 # Mac stuff
 .DS_Store
+
+# local large Atlantis files--not for github
+SkillAssessment/atlantisoutput/

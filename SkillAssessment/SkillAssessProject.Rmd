@@ -5,6 +5,9 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   html_document:
     code_fold: hide
+link-citations: yes
+csl: plos.csl
+bibliography: modreview.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -33,11 +36,11 @@ We extract simulated data using the R package [atlantisom](https://github.com/r4
 
 ## Species in the ms-keyrun dataset
 
-Our initial species selection includes 11 single species groups from the Norwegian Barents Sea (NOBA) Atlantis model [@]. 
+Our initial species selection includes 11 single species groups from the Norwegian Barents Sea (NOBA) Atlantis model [@hansen_set-up_2016; @hansen_sensitivity_2019]. These groups are fully age structured. All but two of them are fished. 
 
 ```{r spp-table}
 
-fgs <- load_fgs(here("simulated-data/atlantisoutput/NOBA_March_2020"), "nordic_groups_v04.csv")
+fgs <- load_fgs(here("SkillAssessment/atlantisoutput/NOBA_sacc_38"), "nordic_groups_v04.csv")
 
 lname <- data.frame(Latin = c("*Hippoglossoides platessoides*",
                               "*Reinhardtius hippoglossoides*",
@@ -63,3 +66,76 @@ knitr::kable(spptable, col.names = c("Model name", "Full name", "Latin name"))
 
 ```
 
+Below we generate initial survey outputs that reflect initial group decisions. This first dataset will be near-perfect (no additional observation error or bias) and all modelers will know this. Dataset will include survey biomass and catch indices, survey and fishery length and age compositions, and diet information, and possibly other input parameters (VBGF parameters, etc). 
+
+## Generating the initial dataset (June 2021)
+
+### Configuration files specified once
+
+`NOBA2config.R` specifies location and names of files needed for atlantisom to initialize:
+
+```{r, code = readLines(here("SkillAssessment/config/NOBA2Config.R")), eval=F}
+```
+
+`omdimensions.R` standardizes timesteps, etc. (this is part of atlantisom and should not need to be changed by the user):
+
+```{r, code = readLines(here("SkillAssessment/config/omdimensions.R")), eval=F}
+```
+
+### Change these survey and fishery config files
+
+`mssurvey_spring.R` and `mssurvey_fall.R` configure the fishery independent surveys (in this census test, surveys sample all model polygons in all years and have efficiency of 1 for all species, with no size selectivity):
+
+```{r, code = readLines(here("SkillAssessment/config/mssurvey_spring.R")), eval=F}
+```
+
+```{r, code = readLines(here("SkillAssessment/config/mssurvey_fall.R")), eval=F}
+```
+
+`msfishery.R` configures the fishery dependent data:
+
+```{r, code = readLines(here("SkillAssessment/config/msfishery.R")), eval=F}
+```
+
+### Run atlantisom and save outputs
+
+True datasets are generated as follows, using `atlantisom` wrapper functions `om_init` to assemble initial true atlantis data, `om_species` to subset true data for desired species, `om_index` to generate survey biomass and total catch biomass indices, `om_comps` to generate age and length compositions and average weight at age from surveys and fisheries, and `om_diet` to generate diet from surveys. Outputs are saved to the `atlantisoutput` folder (not kept on github due to size):
+
+```{r, eval=FALSE}
+
+NOBAom <- om_init(here("SkillAssessment/config/NOBA2Config.R"))
+
+NOBAom_ms <- om_species(sppsubset$Name, NOBAom)
+
+#need to change internal call to source in atlantisom om_index om_comps and om_diet functions
+#expecting a config folder in same directory as rmd
+#this is a workaround
+
+#dir.create(file.path(here("docs/config")))
+
+#file.copy(here("SkillAssessment/config/omdimensions.R"), here("docs/config/omdimensions.R"))
+
+NOBAom_ms_ind <- om_index(usersurvey = c(here("SkillAssessment/config/mssurvey_spring.R"), 
+                                         here("SkillAssessment/config/mssurvey_fall.R")), 
+                           userfishery = here("SkillAssessment/config/msfishery.R"),
+                           omlist_ss = NOBAom_ms, 
+                           n_reps = 1, 
+                           save = TRUE)
+
+NOBAom_ms_comp <- om_comps(usersurvey = c(here("SkillAssessment/config/mssurvey_spring.R"), 
+                                         here("SkillAssessment/config/mssurvey_fall.R")), 
+                           userfishery = here("SkillAssessment/config/msfishery.R"),
+                           omlist_ss = NOBAom_ms, 
+                           n_reps = 1, 
+                           save = TRUE)
+
+NOBAom_ms_diet <- om_diet(config = here("SkillAssessment/config", "NOBA2config.R"),
+                          dietfile = "NOBADetDiet.gz",
+                          usersurvey = c(here("SkillAssessment/config/mssurvey_spring.R"), 
+                                         here("SkillAssessment/config/mssurvey_fall.R")), 
+                          omlist_ss = NOBAom_ms, 
+                          n_reps = 1, 
+                          save = TRUE)
+
+#unlink(here("docs/config"), recursive = TRUE)
+```

@@ -40,8 +40,8 @@ Does its behavior approximate that observed in the system being modeled?
 
 The model life cycle further specifies review priorities. 
 
-```{r lifecycle, fig.cap="Model Life Cycle, NRC 2007, redraw this poor quality figure", out.width='50%', fig.align='center'}
-knitr::include_graphics("p20012bfeg107001.jpg")
+```{r lifecycle, fig.cap="Model Life Cycle, NRC 2007, redrawn", out.width='50%', fig.align='center'}
+knitr::include_graphics("NRCmodelLifeCycle.png")
 ```
 
 WGSAM receives most requests for model review after the problem identification and conceptual model stage. However, it is important to provide documentation of these processes to reviewers so that the completed model can be evaluated. 

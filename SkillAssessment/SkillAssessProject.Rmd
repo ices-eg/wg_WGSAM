@@ -99,7 +99,7 @@ Below we generate initial survey outputs that reflect initial group decisions. T
 
 ### Run atlantisom and save outputs
 
-True datasets are generated as follows, using `atlantisom` wrapper functions `om_init` to assemble initial true atlantis data, `om_species` to subset true data for desired species, `om_index` to generate survey biomass and total catch biomass indices, `om_comps` to generate age and length compositions and average weight at age from surveys and fisheries, and `om_diet` to generate diet from surveys. Outputs are saved to the `atlantisoutput` folder (not kept on github due to size):
+Datasets are generated as follows, using `atlantisom` wrapper functions `om_init` to assemble initial true atlantis data, `om_species` to subset true data for desired species, `om_index` to generate survey biomass and total catch biomass indices, `om_comps` to generate age and length compositions and average weight at age from surveys and fisheries, and `om_diet` to generate diet from surveys. Outputs are saved to the `atlantisoutput` folder (not kept on github due to size):
 
 ```{r, eval=FALSE}
 
@@ -133,15 +133,15 @@ NOBAom_ms_comp <- om_comps(usersurvey = c(here("SkillAssessment/config/mssurvey_
 #unlink(here("docs/config"), recursive = TRUE)
 ```
 
-The diet file requires pre-processing outside R using the following steps. Even running a "bash" chunk here is still running R `system2()`; I don't think this is worth it. Cant even count the columns without the fans kicking up.
+The diet file requires pre-processing outside R using the following steps. Even running a "bash" chunk here is still running R `system2()`; my computer can't handle this with a 1.2 Gb (zipped) input file.
 
-The awk code, for the record, is this, executed in terminal from the directory with the .gz file in it:
+This awk code is executed in terminal from the directory with the .gz file in it:
 
 ```
 zcat < nordic_runresults_01DetailedDietCheck.txt.gz | awk 'NR > 1{s=0; for (i=6;i<=NF;i++) s+=$i; if (s!=0)print}' | gzip > DetDiet.gz
 ```
 
-On linux it would just say zcat filename; macOS needs zcat < filename to work.
+This has been run on macOS, I do not know if this works on windows. On linux it would just say zcat filename; macOS needs zcat < filename to work.
 The awk statement is saying after the header row (NR>1), sum up the values from column 6 to the last column and keep the row if they are >0.
 The last pipe sends the new file to a zip file.
 
@@ -156,6 +156,9 @@ cat DetDietHead.gz DetDiet.gz > NOBADetDiet.gz
 Then we can run `om_diet` using `NOBADetDiet.gz` as input:
 ```{r, eval=FALSE}
 
+# add this to config; reading from om_diet isnt working
+file_diet <- "NOBADetDiet.gz"
+
 NOBAom_ms_diet <- om_diet(config = here("SkillAssessment/config", "NOBA2config.R"),
                           dietfile = "NOBADetDiet.gz",
                           usersurvey = c(here("SkillAssessment/config/mssurvey_spring.R"), 
@@ -166,3 +169,8 @@ NOBAom_ms_diet <- om_diet(config = here("SkillAssessment/config", "NOBA2config.R
 
 ```
 
+### Create input files for each multispecies model
+
+Code here takes the saved atlantisom .rds output files and generates model input files. 
+
+## References

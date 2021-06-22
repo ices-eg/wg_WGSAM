@@ -129,6 +129,33 @@ NOBAom_ms_comp <- om_comps(usersurvey = c(here("SkillAssessment/config/mssurvey_
                            n_reps = 1, 
                            save = TRUE)
 
+
+#unlink(here("docs/config"), recursive = TRUE)
+```
+
+The diet file requires pre-processing outside R using the following steps. Even running a "bash" chunk here is still running R `system2()`; I don't think this is worth it. Cant even count the columns without the fans kicking up.
+
+The awk code, for the record, is this, executed in terminal from the directory with the .gz file in it:
+
+```
+zcat < nordic_runresults_01DetailedDietCheck.txt.gz | awk 'NR > 1{s=0; for (i=6;i<=NF;i++) s+=$i; if (s!=0)print}' | gzip > DetDiet.gz
+```
+
+On linux it would just say zcat filename; macOS needs zcat < filename to work.
+The awk statement is saying after the header row (NR>1), sum up the values from column 6 to the last column and keep the row if they are >0.
+The last pipe sends the new file to a zip file.
+
+Then get the header back into the file: cat works on two gzipped files, so check it with first line, make the zip version with second, and concatenate them with third.
+
+```
+zcat < nordic_runresults_01DetailedDietCheck.txt.gz | head -n1 > DetDietHead.txt
+zcat < nordic_runresults_01DetailedDietCheck.txt.gz | head -n1 | gzip > DetDietHead.gz
+cat DetDietHead.gz DetDiet.gz > NOBADetDiet.gz
+```
+
+Then we can run `om_diet` using `NOBADetDiet.gz` as input:
+```{r, eval=FALSE}
+
 NOBAom_ms_diet <- om_diet(config = here("SkillAssessment/config", "NOBA2config.R"),
                           dietfile = "NOBADetDiet.gz",
                           usersurvey = c(here("SkillAssessment/config/mssurvey_spring.R"), 
@@ -137,5 +164,5 @@ NOBAom_ms_diet <- om_diet(config = here("SkillAssessment/config", "NOBA2config.R
                           n_reps = 1, 
                           save = TRUE)
 
-#unlink(here("docs/config"), recursive = TRUE)
 ```
+

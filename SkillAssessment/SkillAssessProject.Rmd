@@ -742,7 +742,7 @@ Output temperature data from surveys using "Temp" variable in .nc file and the `
 
 We can get surface and bottom temp from Atlantis using the layers from each polygon, with layer 0 being the bottom and the maximum layer in the polygon being the surface (according to the [Atlantis wiki/Atlantis output files/Atlantis NetCDF structure](https://confluence.csiro.au/display/Atlantis/Atlantis+NetCDF+Structure). 
 
-The below needs to be formalized into an `atlantisom` function:
+The below needs to be formalized into an `atlantisom` function, and reformatted to have both surveys in one file to match other data inputs:
 
 ```{r surveytemp, eval=FALSE}
 
@@ -834,6 +834,109 @@ springcensus_btempindex <- left_join(springcensus_bottomtemp, boxarea) %>%
 
 ```
 
+*STILL NEEDS RESOLUTION--the per capita consumption from Atlantis seems low relative to actual data*
+
+Stomach weights are needed as input to hydra. At present each species has a stomach weight for each size bin that is repeated for each year. We have total consumed weight for each predator age class at each timestep in the detailed diet atlantis output, so would need to map age classes to length bins, sum consumed weight by length bin and divide by total numbers in that length bin to get stomach weight.
+
+What we have saved so far is a diet comp in proportion that has had bias and observation error added to proportions. However, we need the stomach weight portion of the equation, which has the survey timing/area/efficiency/selectivity applied to true consumed weight. The hydra input is mean daily stomach weight in grams. From the Atlantis manual, "DetailedDietCheck.txt returns the total consumed biomass since the last output given for each cell (box and layer) of each age group of each functional group." So daily per capita consumed biomass is this output, summed over prey for total consumption, divided by the numbers from the same survey design, divided by the output step `omlist_ss$runpar$outputstep`.
+
+For now, we map existing Georges Bank species intake-at-size (average daily stomach weight) to the NOBA species as follows:
+
+ *  Aherring = [Norwegian_ssh](https://www.hi.no/en/hi/temasider/species/herring) 
+ *  Acod = [North_atl_cod](https://www.hi.no/en/hi/temasider/species/cod--northeast-arctic) 
+ *  haddock = [Haddock](https://www.hi.no/en/hi/temasider/species/haddock) 
+ *  Amackerel = [Mackerel](https://www.hi.no/en/hi/temasider/species/mackerel). 
+
+We will substitute intake-at-size from these similar taxa/size GB species for NOBA:  
+
+ *  silverhake ~ [Blue_whiting](https://www.hi.no/en/hi/temasider/species/blue-whiting)  
+ *  yellowtailfl ~ [Long_rough_dab](https://www.sciencedirect.com/science/article/abs/pii/S1385110196907972) a.k.a. American plaice 
+
+We will modify or subsitute intake-at-size for the rest of the NOBA species based on size:
+
+ *  NOBA [Redfish](https://www.hi.no/en/hi/temasider/species/redfish/beaked-redfish-in-the-barents-and-norwegian-seas) have a maximum size of 47 cm, use haddock intake  
+ *  NOBA [Saithe](https://www.hi.no/en/hi/temasider/species/northeast-arctic-saithe) have a maximum size of 130 cm; use Acod intake
+ *  NOBA [Polar_cod](https://www.hi.no/en/hi/temasider/species/polar-cod) have a maximum size of 25 cm; use herring intake  
+ *  NOBA [Capelin](https://www.hi.no/en/hi/temasider/species/capelin-in-the-barents-sea) are smaller than any GB modeled species, max size 21 cm; use herring intake  
+ *  NOBA [Green_halibut](https://www.hi.no/en/hi/temasider/species/greenland-halibut) are large, max size 120 cm; use spinydog intake 
+
+Code to make intake csv for input; hardcoded based on these decisions.
+
+```{r intake, eval=FALSE}
+
+# this is intake by species in current hydra_sim
+
+# ,sizeclass1,sizeclass2,sizeclass3,sizeclass4,sizeclass5
+# spinydog,0.090189781,1.952671779,9.334322368,28.80493233,77.55885308
+# winterskate,0.093423453,0.939220418,3.915192982,11.46903371,44.88111925
+# Aherring,0.01,0.03,0.8,1.5,3
+# Acod,0.035,0.103736364,1.952671779,18.42060702,84.48736889
+# haddock,0.031,0.096183673,0.939220418,3.915192982,12.07313904
+# yellowtailfl,0.016072464,0.086965517,0.237958824,0.442743017,1.583142857
+# winterfl,0.016072464,0.086965517,0.237958824,0.442743017,1.583142857
+# Amackerel,0.01,0.08,1.3,2,3
+# silverhake,0.039893347,0.179748344,0.512104803,4.879748476,20.262
+# goosefish,0.090189781,1.952671779,9.334322368,28.80493233,77.55885308
+
+stomwt <- matrix(0, singletons$Nspecies, singletons$Nsizebins, 
+                dimnames = list(c(sort.default(sppsubset$Name)),  c(paste0("sizeclass",seq(1:singletons$Nsizebins)))))
+
+stomwt["Blue_whiting",] <- c(0.039893347,0.179748344,0.512104803,4.879748476,20.26) #silverhake
+stomwt["Capelin",] <- c(0.01,0.03,0.8,1.5,3) #Aherring
+stomwt["Green_halibut",] <- c(0.090189781,1.952671779,9.334322368,28.80493233,77.55885308) #spinydog
+stomwt["Haddock",] <- c(0.031,0.096183673,0.939220418,3.915192982,12.07313904) #haddock
+stomwt["Long_rough_dab",] <- c(0.016072464,0.086965517,0.237958824,0.442743017,1.583142857) #yellowtailfl
+stomwt["Mackerel",] <- c(0.01,0.08,1.3,2,3) #Amackerel
+stomwt["North_atl_cod",] <- c(0.035,0.103736364,1.952671779,18.42060702,84.48736889) #Acod
+stomwt["Norwegian_ssh",] <- c(0.01,0.03,0.8,1.5,3) #Aherring
+stomwt["Polar_cod",] <- c(0.01,0.03,0.8,1.5,3) #Aherring
+stomwt["Redfish",] <- c(0.031,0.096183673,0.939220418,3.915192982,12.07313904) #haddock
+stomwt["Saithe",] <- c(0.090189781,1.952671779,9.334322368,28.80493233,77.55885308) #spinydog
+
+write.csv(stomwt, paste0(o.name,"intake_stomachContent_NOBA.csv"))
+
+```
+
+Remaining unused parameters (recruitment, maturity, etc) need to be dimensioned correctly for the number of species and years:
+
+```{r dummy, eval=FALSE}
+
+#recruitment dummy params
+recpars <- matrix(0, 27, singletons$Nspecies,
+                  dimnames = )
+
+eggRicker_alpha,
+eggRicker_shape,
+eggRicker_beta,
+DS_alpha,
+DS_shape,
+DS_beta,
+gamma_alpha,
+gamma_shape,
+gamma_beta,
+ricker_alpha,
+ricker_shape,
+ricker_beta,
+BH_alpha,4.21E-03,1.45E-03,5.19E-01,5.82E-04,4.71E-04,2.49E-03,5.00E-03,7.83E-03,4.31E-02,-4.55E-02
+BH_shape,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00
+BH_beta,2.02E-05,2.86E-06,2.36E-05,7.99E-07,4.53E-08,2.29E-07,5.93E-06,3.23E-06,4.27E-05,-5.62E-04
+shepherd_alpha,1.40E-03,5.00E-04,1.31E-02,5.30E-04,4.00E-03,1.18E-02,5.51E-03,3.00E-03,8.07E-02,5.00E-03
+shepherd_shape,1.00E+00,2.00E+00,2.00E+00,4.82E+00,1.00E+00,2.00E+00,2.00E+00,1.00E+00,4.20E+00,2.00E+00
+shepherd_beta,4.20E+04,1.20E+05,7.62E+05,1.81E+05,4.73E+03,6.35E+03,6.44E+03,9.47E+04,1.78E+04,4.66E+03
+hockey_alpha,0.00021284,0.000377877,0.008711847,0.000395317,0.000371069,0.009062314,0.003586669,0.0011256,0.087411163,0.000683997
+hockey_shape,208793.96,177173.21,454970.0741,105593.0718,99119.78432,2859.1603,3793.414414,201578.3674,7261.901505,10229.90734
+hockey_beta,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00
+segmented_alpha,0.000562178,0.000598192,0.01284494,0.000701992,0.004255928,0.01412381,0.00533721,0.001126437,0.1850896,0.001527907
+segmented_shape,82606.64,113369.3,308575.2,43944.31,8783.362,1834.535,2549.22,201428.6,4421.855,5530.866
+segmented_beta,-0.000585872,-0.000685247,-0.01284494,-0.000785909,-0.004255928,-0.01412381,-0.00533721,-0.001126437,-0.202982,-0.001782289
+sigma,0.915751058,1.219426095,0.696921803,0.740472822,1.451964187,0.545068803,0.520816666,0.847431413,0.440908154,0.419880936
+type,8.00E+00,8.00E+00,8.00E+00,8.00E+00,8.00E+00,8.00E+00,8.00E+00,8.00E+00,8.00E+00,8.00E+00
+stochastic,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00
+
+
+```
+
+
 Write metadata on the surveys:
 
 ```{r write-meta, eval=FALSE}
@@ -861,10 +964,23 @@ meta <- c("Simulated data from Norweigan-Barents Atlantis Model by Hansen et al.
 cat(as.character(meta), file=paste0(here("SkillAssessment/msinput/hydra/"),"README.txt"))
 ```
 
-*STILL NEEDS RESOLUTION--the per capita consumption from Atlantis seems low relative to actual data*
+Use `hydradata` package to create the .dat and .pin files. We are working from the forked `hydradata` repository at https://github.com/thefaylab/hydradata for this project. All of the input .csv files created here have been copied to the `data-raw` foldr on thefaylab/hydradata repo. The `create_RData_NOBA.R` file was updated to read these inputs, sourced, and `create_RData()` was run to make a new hydraDataList.rda file in the package.
 
-Stomach weights are needed as input to hydra. At present each species has a stomach weight for each size bin that is repeated for each year. We have total consumed weight for each predator age class at each timestep in the detailed diet atlantis output, so would need to map age classes to length bins, sum consumed weight by length bin and divide by total numbers in that length bin to get stomach weight.
+```{r, writedatfile}
 
-What we have saved so far is a diet comp in proportion that has had bias and observation error added to proportions. However, we need the stomach weight portion of the equation, which has the survey timing/area/efficiency/selectivity applied to true consumed weight. The hydra input is mean daily stomach weight in grams. From the Atlantis manual, "DetailedDietCheck.txt returns the total consumed biomass since the last output given for each cell (box and layer) of each age group of each functional group." So daily per capita consumed biomass is this output, summed over prey for total consumption, divided by the numbers from the same survey design, divided by the output step `omlist_ss$runpar$outputstep`.
+library(hydradata)
+inputs <- setup_default_inputs()
+inputs$outDir <- here("SkillAssessment/msinput/hydra")
+inputs$outputFilename <- "hydra_sim_NOBA"
+
+
+
+hydraDataList <- create_datpin_files(inputs,hydraDataList)
+
+```
+
+
+
+
 
 ## References

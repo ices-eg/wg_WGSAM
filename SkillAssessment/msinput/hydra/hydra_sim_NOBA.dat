@@ -1,0 +1,65 @@
+# This file was created using create_DataFile.R and used all inputs from csv files found in folder:
+      #createDataFiles_testing/dataInputsHydra
+# init_int debug
+  3
+# init_int Nyrs
+  144
+# init_int Nspecies
+  11
+# init_int Nsizebins
+  5
+# init_int Nareas
+  1
+# init_int Nfleets
+  11
+# init_int Nsurveys (e.g. NEFSC spring, NEFSC fall, NEAMAP, etc)
+  2
+# init_number wtconv
+  1
+#
+# List of Species in Model
+# Blue_whiting
+# Capelin
+# Green_halibut
+# Haddock
+# Long_rough_dab
+# Mackerel
+# North_atl_cod
+# Norwegian_ssh
+# Polar_cod
+# Redfish
+# Saithe
+#
+# init_matrix binwidth(1,Nspecies,1,Nsizebins)
+ 	10	10	10	10	10
+ 	5	5	5	5	5
+ 	40	40	40	40	40
+ 	26	26	26	26	26
+ 	15	15	15	15	15
+ 	14	14	14	14	14
+ 	29	29	29	29	29
+ 	11	11	11	11	11
+ 	8	8	8	8	8
+ 	10	10	10	10	10
+ 	40	40	40	40	40
+# init_vector lenwt_a(1,Nspecies)
+  0.0082 0.00033 0.0019 0.012 0.0044 0.0038 0.009 0.0232 0.00033 0.0085 0.0103
+# init_vector lenwt_b(1,Nspecies)
+  2.9 3.98 3.01 2.95 3.204 3.21 3 2.81 3.98 3.21 2.963
+# init_int Nrecruitment_cov
+  1
+#  init_int Nmaturity_cov 
+  1
+#  init_int Ngrowth_cov
+  1
+#  init_matrix recruitment_cov(1,Nrecruitment_cov,1,Nyrs)
+  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+#  init_matrix maturity_cov(1,Nmaturity_cov,1,Nyrs)
+  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+#  init_matrix growth_cov(1,Ngrowth_cov,1,Nyrs)
+  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+# Survey index data 
+# Number of observations, init_int Nsurvey_obs
+  3024
+# init_matrix obs_survey_biomass(1,Nsurvey_obs,1,5)
+# survey year spp value cv

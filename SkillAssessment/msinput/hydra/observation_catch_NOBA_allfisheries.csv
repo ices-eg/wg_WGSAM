@@ -1,5 +1,4 @@
 fishery,area,year,species,catch,cv
-census,1,0,Blue_whiting,0,0.01
 census,1,1,Blue_whiting,677.4868744048503,0.01
 census,1,2,Blue_whiting,0,0.01
 census,1,3,Blue_whiting,0,0.01
@@ -144,7 +143,6 @@ census,1,141,Blue_whiting,1115688.560966556,0.01
 census,1,142,Blue_whiting,1123582.7604345207,0.01
 census,1,143,Blue_whiting,1120144.4816244945,0.01
 census,1,143.99726027397261,Blue_whiting,1122972.69600808,0.01
-census,1,0,Capelin,0,0.01
 census,1,1,Capelin,3368.6071377419617,0.01
 census,1,2,Capelin,0,0.01
 census,1,3,Capelin,0,0.01
@@ -289,7 +287,6 @@ census,1,141,Capelin,243821.8281390935,0.01
 census,1,142,Capelin,178639.18386311008,0.01
 census,1,143,Capelin,222097.51620076533,0.01
 census,1,143.99726027397261,Capelin,245952.28682627264,0.01
-census,1,0,Green_halibut,0,0.01
 census,1,1,Green_halibut,34.22506080572342,0.01
 census,1,2,Green_halibut,0,0.01
 census,1,3,Green_halibut,0,0.01
@@ -434,7 +431,6 @@ census,1,141,Green_halibut,14801.159084173163,0.01
 census,1,142,Green_halibut,15222.53181336516,0.01
 census,1,143,Green_halibut,14858.791820486735,0.01
 census,1,143.99726027397261,Green_halibut,14839.01457032017,0.01
-census,1,0,Haddock,0,0.01
 census,1,1,Haddock,67.57759135288343,0.01
 census,1,2,Haddock,0,0.01
 census,1,3,Haddock,0,0.01
@@ -579,7 +575,6 @@ census,1,141,Haddock,17061.883228007548,0.01
 census,1,142,Haddock,17639.928379521243,0.01
 census,1,143,Haddock,18007.326435008126,0.01
 census,1,143.99726027397261,Haddock,18730.424673778078,0.01
-census,1,0,Long_rough_dab,0,0.01
 census,1,1,Long_rough_dab,0,0.01
 census,1,2,Long_rough_dab,0,0.01
 census,1,3,Long_rough_dab,0,0.01
@@ -724,7 +719,6 @@ census,1,141,Long_rough_dab,0,0.01
 census,1,142,Long_rough_dab,0,0.01
 census,1,143,Long_rough_dab,0,0.01
 census,1,143.99726027397261,Long_rough_dab,0,0.01
-census,1,0,Mackerel,0,0.01
 census,1,1,Mackerel,0,0.01
 census,1,2,Mackerel,0,0.01
 census,1,3,Mackerel,0,0.01
@@ -869,7 +863,6 @@ census,1,141,Mackerel,203525.87760700434,0.01
 census,1,142,Mackerel,207460.6772432368,0.01
 census,1,143,Mackerel,209856.60989260094,0.01
 census,1,143.99726027397261,Mackerel,205306.50357856852,0.01
-census,1,0,North_atl_cod,0,0.01
 census,1,1,North_atl_cod,181061.32699077373,0.01
 census,1,2,North_atl_cod,154236.13721371093,0.01
 census,1,3,North_atl_cod,137499.73722891562,0.01
@@ -1014,7 +1007,6 @@ census,1,141,North_atl_cod,666191.5758205535,0.01
 census,1,142,North_atl_cod,686008.3991670066,0.01
 census,1,143,North_atl_cod,683429.7143700311,0.01
 census,1,143.99726027397261,North_atl_cod,693645.3948014935,0.01
-census,1,0,Norwegian_ssh,0,0.01
 census,1,1,Norwegian_ssh,219.4657330565198,0.01
 census,1,2,Norwegian_ssh,0,0.01
 census,1,3,Norwegian_ssh,0,0.01
@@ -1159,7 +1151,6 @@ census,1,141,Norwegian_ssh,439286.04241927684,0.01
 census,1,142,Norwegian_ssh,445245.94015521643,0.01
 census,1,143,Norwegian_ssh,442815.46522776113,0.01
 census,1,143.99726027397261,Norwegian_ssh,387449.1185731464,0.01
-census,1,0,Polar_cod,0,0.01
 census,1,1,Polar_cod,0,0.01
 census,1,2,Polar_cod,0,0.01
 census,1,3,Polar_cod,0,0.01
@@ -1304,7 +1295,6 @@ census,1,141,Polar_cod,0,0.01
 census,1,142,Polar_cod,0,0.01
 census,1,143,Polar_cod,0,0.01
 census,1,143.99726027397261,Polar_cod,0,0.01
-census,1,0,Redfish,0,0.01
 census,1,1,Redfish,187.394572800697,0.01
 census,1,2,Redfish,0,0.01
 census,1,3,Redfish,0,0.01
@@ -1449,7 +1439,6 @@ census,1,141,Redfish,250969.65862027626,0.01
 census,1,142,Redfish,248317.38852519184,0.01
 census,1,143,Redfish,253347.39879527644,0.01
 census,1,143.99726027397261,Redfish,244387.40993662324,0.01
-census,1,0,Saithe,0,0.01
 census,1,1,Saithe,167.91337863929868,0.01
 census,1,2,Saithe,0,0.01
 census,1,3,Saithe,0,0.01

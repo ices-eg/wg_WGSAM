@@ -583,6 +583,7 @@ allcatch <- tibble()
 
 for(f in names(catchbio_ss)){
   catchbio <- catchbio_ss[[f]][[1]] %>%
+    dplyr::filter(time>0) %>%
     dplyr::mutate(year = time/365) %>%
     dplyr::select(species, year, atoutput) %>%
     dplyr::rename(catch = atoutput) %>%
@@ -953,13 +954,33 @@ fecunditytheta <- as.data.frame(matrix(0, singletons$Nspecies, singletons$Nsizeb
 
 write.csv(fecunditytheta, paste0(o.name,"fecundity_Theta_NOBA.csv"))
 
+#these might need to be real; atlantis has a maturity ogive but I need pars
 maturity <- matrix(1, 2, singletons$Nspecies,
                    dimnames = list(c("nu", "omega"), c(sort.default(sppsubset$Name))))
 
 write.csv(maturity, paste0(o.name,"maturity_species_NOBA.csv"))
 
 #fishsel dimensions species rows fleets columns, one matrix each c and d, not using?
+fleets <- unique(NOBAom_ms$truecatchage_ss$fleet)
 
+fishseldummy <- matrix(1, singletons$Nspecies, singletons$Nfleets,
+                   dimnames = list(c(sort.default(sppsubset$Name)), fleets))
+
+write.csv(fishseldummy, paste0(o.name,"fishing_selectivityc_NOBA.csv"))
+write.csv(fishseldummy, paste0(o.name,"fishing_selectivityd_NOBA.csv"))
+
+#discards dummy arrays, set to 0 discards and 0 survival for now
+discards <- matrix(0, singletons$Nspecies*singletons$Nfleets, singletons$Nsizebins)
+
+write.csv(discards, paste0(o.name,"fishing_discards_NOBA.csv"))
+write.csv(discards, paste0(o.name,"fishing_discardsSurvival_NOBA.csv"))
+
+#q indicator dummy use fishsel
+write.csv(fishseldummy, paste0(o.name,"fishing_q_indicator_NOBA.csv"))
+
+#can we get away with not changing the sim parameters at the end of the dat file?
+
+#what starting values for pin file?
 
 ```
 

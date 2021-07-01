@@ -294,7 +294,7 @@ sexratio <- matrix(0.5, 1, singletons$Nspecies,
                    dimnames = list("ratio", c(sort.default(sppsubset$Name))))
 
 
-# placeholders for unused covariates dimenstioned to the number of simulated years
+# placeholders for unused covariates dimensioned to the number of simulated years
 dummycovar <- data.frame(dummy1 = rep(1, NOBAom_ms$runpar$nyears))
 
 # placeholder for effort data dimensioned by year and nfleets
@@ -902,36 +902,63 @@ Remaining unused parameters (recruitment, maturity, etc) need to be dimensioned 
 ```{r dummy, eval=FALSE}
 
 #recruitment dummy params
-recpars <- matrix(0, 27, singletons$Nspecies,
-                  dimnames = )
+recpars <- matrix(1, 27, singletons$Nspecies,
+                  dimnames = list(c("eggRicker_alpha",
+                                    "eggRicker_shape",
+                                    "eggRicker_beta",
+                                    "DS_alpha",
+                                    "DS_shape",
+                                    "DS_beta",
+                                    "gamma_alpha",
+                                    "gamma_shape",
+                                    "gamma_beta",
+                                    "ricker_alpha",
+                                    "ricker_shape",
+                                    "ricker_beta",
+                                    "BH_alpha",
+                                    "BH_shape",
+                                    "BH_beta",
+                                    "shepherd_alpha",
+                                    "shepherd_shape",
+                                    "shepherd_beta",
+                                    "hockey_alpha",
+                                    "hockey_shape",
+                                    "hockey_beta",
+                                    "segmented_alpha",
+                                    "segmented_shape",
+                                    "segmented_beta",
+                                    "sigma",
+                                    "type",
+                                    "stochastic"
+                  ), c(sort.default(sppsubset$Name))
+                  ))
+                  
+write.csv(recpars, paste0(o.name,"recruitment_species_NOBA.csv"))
 
-eggRicker_alpha,
-eggRicker_shape,
-eggRicker_beta,
-DS_alpha,
-DS_shape,
-DS_beta,
-gamma_alpha,
-gamma_shape,
-gamma_beta,
-ricker_alpha,
-ricker_shape,
-ricker_beta,
-BH_alpha,4.21E-03,1.45E-03,5.19E-01,5.82E-04,4.71E-04,2.49E-03,5.00E-03,7.83E-03,4.31E-02,-4.55E-02
-BH_shape,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00
-BH_beta,2.02E-05,2.86E-06,2.36E-05,7.99E-07,4.53E-08,2.29E-07,5.93E-06,3.23E-06,4.27E-05,-5.62E-04
-shepherd_alpha,1.40E-03,5.00E-04,1.31E-02,5.30E-04,4.00E-03,1.18E-02,5.51E-03,3.00E-03,8.07E-02,5.00E-03
-shepherd_shape,1.00E+00,2.00E+00,2.00E+00,4.82E+00,1.00E+00,2.00E+00,2.00E+00,1.00E+00,4.20E+00,2.00E+00
-shepherd_beta,4.20E+04,1.20E+05,7.62E+05,1.81E+05,4.73E+03,6.35E+03,6.44E+03,9.47E+04,1.78E+04,4.66E+03
-hockey_alpha,0.00021284,0.000377877,0.008711847,0.000395317,0.000371069,0.009062314,0.003586669,0.0011256,0.087411163,0.000683997
-hockey_shape,208793.96,177173.21,454970.0741,105593.0718,99119.78432,2859.1603,3793.414414,201578.3674,7261.901505,10229.90734
-hockey_beta,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00
-segmented_alpha,0.000562178,0.000598192,0.01284494,0.000701992,0.004255928,0.01412381,0.00533721,0.001126437,0.1850896,0.001527907
-segmented_shape,82606.64,113369.3,308575.2,43944.31,8783.362,1834.535,2549.22,201428.6,4421.855,5530.866
-segmented_beta,-0.000585872,-0.000685247,-0.01284494,-0.000785909,-0.004255928,-0.01412381,-0.00533721,-0.001126437,-0.202982,-0.001782289
-sigma,0.915751058,1.219426095,0.696921803,0.740472822,1.451964187,0.545068803,0.520816666,0.847431413,0.440908154,0.419880936
-type,8.00E+00,8.00E+00,8.00E+00,8.00E+00,8.00E+00,8.00E+00,8.00E+00,8.00E+00,8.00E+00,8.00E+00
-stochastic,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00,1.00E+00
+Rcoveff <- data.frame(name = c(sort.default(sppsubset$Name)), speciesEffect1 = 0)
+
+write_csv(Rcoveff, paste0(o.name,"recruitment_covariateEffects_NOBA.csv"))
+
+#the other covariate effects are also set to 0 so just use the same thing
+write_csv(Rcoveff, paste0(o.name,"maturity_covariateEffects_NOBA.csv"))
+write_csv(Rcoveff, paste0(o.name,"growth_covariateEffects_NOBA.csv"))
+
+fecundity <- matrix(1, 2, singletons$Nspecies,
+                   dimnames = list(c("d", "h"), c(sort.default(sppsubset$Name))))
+
+write.csv(fecundity, paste0(o.name,"fecundity_species_NOBA.csv"))
+
+fecunditytheta <- as.data.frame(matrix(0, singletons$Nspecies, singletons$Nsizebins, 
+                dimnames = list(c(sort.default(sppsubset$Name)),  c(paste0("sizeclass",seq(1:singletons$Nsizebins)))))) 
+
+write.csv(fecunditytheta, paste0(o.name,"fecundity_Theta_NOBA.csv"))
+
+maturity <- matrix(1, 2, singletons$Nspecies,
+                   dimnames = list(c("nu", "omega"), c(sort.default(sppsubset$Name))))
+
+write.csv(maturity, paste0(o.name,"maturity_species_NOBA.csv"))
+
+#fishsel dimensions species rows fleets columns, one matrix each c and d, not using?
 
 
 ```
@@ -966,7 +993,7 @@ cat(as.character(meta), file=paste0(here("SkillAssessment/msinput/hydra/"),"READ
 
 Use `hydradata` package to create the .dat and .pin files. We are working from the forked `hydradata` repository at https://github.com/thefaylab/hydradata for this project. All of the input .csv files created here have been copied to the `data-raw` foldr on thefaylab/hydradata repo. The `create_RData_NOBA.R` file was updated to read these inputs, sourced, and `create_RData()` was run to make a new hydraDataList.rda file in the package.
 
-```{r, writedatfile}
+```{r, writedatfile, eval=FALSE}
 
 library(hydradata)
 inputs <- setup_default_inputs()

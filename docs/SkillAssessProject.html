@@ -421,7 +421,7 @@ pre code {
 
 <h1 class="title toc-ignore">WGSAM Skill Assessment Project Page</h1>
 <h4 class="author">Sarah Gaichas, Valerio Bartolino, and WGSAM</h4>
-<h4 class="date">22 June, 2021</h4>
+<h4 class="date">01 July, 2021</h4>
 
 </div>
 
@@ -816,6 +816,771 @@ NOBAom_ms_diet &lt;- om_diet(config = here(&quot;SkillAssessment/config&quot;, &
 <div id="create-input-files-for-each-multispecies-model" class="section level3">
 <h3>Create input files for each multispecies model</h3>
 <p>Code here takes the saved atlantisom .rds output files and generates model input files.</p>
+<div id="length-structured-multispecies-model-hydra" class="section level4">
+<h4>Length-structured multispecies model (Hydra)</h4>
+<p>For the length-based model <a href="https://github.com/thefaylab/hydra_sim">hydra</a>, we can write .csv files to be used as input in the <a href="https://github.com/thefaylab/hydradata">hydradata</a> package, which writes .dat and .pin files.</p>
+<p>Hydra needs survey biomass time series, catch time series, survey length composition, fishery length composition, and diet composition data. Hydra also needs temperature data for the consumption equation, input parameters for growth (von Bertalannfy or exponential function parameters), and size bin definitions.</p>
+<p>Hydra inputs will need to be in the same species order for each dataset, so first we make a species file and some of the other input data that can come straight from Atlantis.</p>
+<pre class="r"><code>source(here(&quot;SkillAssessment/config/NOBA2Config.R&quot;))
+
+#all_diets &lt;- atlantisom::read_savedsurvs(d.name, &#39;survDiet&#39;)
+
+# divide time.days by runpar$toutinc to match time in biomass
+# aggregate over ages using true biomass at age (survey diet is in proportion by age)
+
+NOBAom_ms &lt;- readRDS(file.path(d.name, paste0(scenario.name, &quot;omlist_ss.rds&quot;)))
+
+stepperyr &lt;- if(NOBAom_ms$runpar$outputstepunit==&quot;days&quot;) 365/NOBAom_ms$runpar$toutinc
+
+#read in survey biomass data
+survObsBiom &lt;- read_savedsurvs(d.name, &#39;survB&#39;) #reads in all surveys
+
+
+# foodweb and species file identify predators and prey; take from true atlantis diet comp
+diettrue &lt;- atlantisom::load_diet_comp(d.name, 
+                           &quot;nordic_runresults_01DietCheck.txt&quot;, fgs = fgs)
+ms_diet &lt;- diettrue %&gt;%
+  filter(species %in% sppsubset$Name) %&gt;%
+  filter(atoutput&gt;0) %&gt;%
+  mutate(species = as.character(species),
+         prey = as.character(prey))
+
+predPrey &lt;- ms_diet %&gt;%
+  filter(prey %in% unique(species)) %&gt;%
+  select(species, agecl, time.days, prey, atoutput) %&gt;%
+  group_by(species, prey) %&gt;%
+  summarise(avgpreyprop = mean(atoutput))
+
+foodweb &lt;- left_join(sppsubset, predPrey, by=c(&quot;Name&quot; = &quot;species&quot;)) %&gt;%
+  select(species=Name, prey, avgpreyprop) %&gt;%
+  mutate(avgpreyprop = ceiling(avgpreyprop)) %&gt;%
+  spread(species, avgpreyprop) %&gt;%
+  filter(!is.na(prey)) %&gt;%
+  replace(is.na(.), 0)
+  
+predOrPrey &lt;- ifelse(colSums(foodweb[-1])&gt;0, 1, 0)
+
+# warning--the fall survey gets 11 species but the spring only gets 10 due to migration so 
+# this isn&#39;t bugproof; ensure your survey gets all the species to match guildmember hardcoding
+specieslist &lt;- data.frame(species = unique(unique(survObsBiom[[1]][[1]]$species)),
+                          guild = rep(&quot;na&quot;),
+                          guildmember = c(1:11),
+                          predOrPrey = predOrPrey
+)
+
+# take lenwt parameters from true atlantis pars
+lenwtpar &lt;-  left_join(sppsubset, NOBAom_ms$biol$wl, by=c(&quot;Code&quot; = &quot;group&quot;)) %&gt;%
+  select(Name, a, b) %&gt;%
+  arrange(Name)
+
+# fixed parameters:
+# intake same for all teleosts
+intakespp  &lt;- rbind(species = sort.default(sppsubset$Name),
+                    alpha = rep(0.004),
+                    beta = rep(0.11))
+colnames(intakespp) &lt;- intakespp[1,]
+intakespp &lt;- as.data.frame(intakespp[-1,])
+
+# predator size preference ratio same for all species
+sizepref &lt;- rbind(species = sort.default(sppsubset$Name),
+                  mu = rep(0.5),
+                  sigma = rep(2))
+colnames(sizepref) &lt;- sizepref[1,]
+sizepref &lt;- as.data.frame(sizepref[-1,])
+
+# dimensions for singletons file
+singletons &lt;- data.frame(
+  debug=3,
+  Nyrs=NOBAom_ms$runpar$nyears, #may want to take from survey time series instead
+  Nspecies=length(sppsubset$Name),
+  Nsizebins=5,
+  Nareas=1,
+  Nfleets=length(unique(NOBAom_ms$truecatchage_ss$fleet)),
+  Nsurveys=2,
+  wtconv=1,
+  yr1Nphase=0,
+  recphase=0,
+  avg_rec_phase=0,
+  avg_F_phase=0,
+  dev_rec_phase=0,
+  dev_F_phase=0,
+  fqphase=0,
+  sqphase=0,
+  ssig_phase=0,
+  csig_phase=0,
+  phimax=1,
+  scaleInitialN=1,
+  otherFood=0000,
+  LFI_size=60,
+  bandwidth_metric=5,
+  assessmentPeriod=3,
+  flagMSE=0,
+  flagLinearRamp=1,
+  baseline_threshold=0.2
+)
+
+# M1 same for all species, depends on n length bins
+# to get annual M1 of 0.1, this matrix needs to be M1 per timestep
+# right now input works for 5 timesteps per year, but should be 
+# done in the code with input annual M1 in case timestep changes
+M1mat &lt;- matrix(0.02, singletons$Nspecies, singletons$Nsizebins, 
+                dimnames = list(c(sort.default(sppsubset$Name)),  c(paste0(&quot;sizeclass&quot;,seq(1:singletons$Nsizebins))))) 
+M1 &lt;- as.data.frame(M1mat)
+
+# sexratio fixed 50:50 for all species
+sexratio &lt;- matrix(0.5, 1, singletons$Nspecies,
+                   dimnames = list(&quot;ratio&quot;, c(sort.default(sppsubset$Name))))
+
+
+# placeholders for unused covariates dimensioned to the number of simulated years
+dummycovar &lt;- data.frame(dummy1 = rep(1, NOBAom_ms$runpar$nyears))
+
+# placeholder for effort data dimensioned by year and nfleets
+allfleets &lt;- atlantisom::load_fisheries(d.name, fisheries.file)
+fleets &lt;- unique(NOBAom_ms$truecatchage_ss$fleet)
+
+dummyeffort &lt;- data.frame(1:singletons$Nyrs,
+                          matrix(1, singletons$Nyrs, singletons$Nfleets))
+names(dummyeffort) &lt;- c(&quot;year&quot;, fleets)
+
+# will need to fit von B and maturity curve functions to back out hydra input pars
+# maturity from maturity ogive input in biol file
+# growth functions from length at age in model...
+
+# write the csvs
+# output folder 
+o.name &lt;- here(&quot;SkillAssessment/msinput/hydra/&quot;)
+
+write_csv(foodweb, paste0(o.name,&quot;foodweb_NOBA.csv&quot;))
+write_csv(specieslist, paste0(o.name,&quot;speciesList_NOBA.csv&quot;))
+write_csv(lenwtpar, paste0(o.name,&quot;lengthweight_species_NOBA.csv&quot;))
+write.csv(intakespp, paste0(o.name,&quot;intake_species_NOBA.csv&quot;))
+write.csv(sizepref, paste0(o.name,&quot;mortality_M2sizePreference_NOBA.csv&quot;))
+write.table(t(singletons), paste0(o.name,&quot;singletons_NOBA.csv&quot;), sep=&quot;,&quot;,  col.names=FALSE)
+write.csv(M1, paste0(o.name,&quot;mortality_M1_NOBA.csv&quot;))
+write_csv(dummycovar, paste0(o.name,&quot;recruitment_covariates_NOBA.csv&quot;))
+write_csv(dummycovar, paste0(o.name,&quot;maturity_covariates_NOBA.csv&quot;))
+write_csv(dummycovar, paste0(o.name,&quot;growth_covariates_NOBA.csv&quot;))
+write_csv(dummyeffort, paste0(o.name,&quot;observation_effort_NOBA.csv&quot;))
+write.csv(sexratio, paste0(o.name,&quot;sexratio_NOBA.csv&quot;))</code></pre>
+<p>Decisions on size bins for hydra: keep 5 bins per species for now, build in flexibility to allocate size data to any number of bins with any definitions.</p>
+<p>First we’ll get the growth parameters for each species using the length data generated from Atlantis. We estimate parameters for both von Bertalannfy and exponential growth functions.</p>
+<p>For these surveys, von Bertalannfy parameters cannot be estimated for Mackerel in any era (and Mackerel only show up in the fall survey).</p>
+<pre class="r"><code># VBGF packages all take age and length pairs, reformat from length comp at agecl
+# break into 3 chunks of time, &quot;era&quot; 48 years each more like our survey
+# subsample (NEW: BEFORE AND) after reformatting with uncount because we wouldn&#39;t have this many ages
+# first subsample is by length keeps lengths with &gt;5 frequency but reduces n to 10% of original
+# after reformatting second subsample is random (10% again to get to 1% of original)
+# no difference in estimated parameters without second subsample, so do it for speed
+
+#multiple surveys named in list object, use as filename
+for(s in names(len_comp_data)){
+  
+  annages &lt;- annage_comp_data[[s]][[1]] %&gt;%
+    group_by(species, time, agecl) %&gt;%
+    rename(trueage = agecl) %&gt;%
+    summarise(truenatage = sum(atoutput))
+    
+  # Figure out the groups that have multiple ages classes in each stage (or
+  # cohort)
+  multiple_ages &lt;- sp_age[sp_age$NumAgeClassSize&gt;1,]
+  
+  # finds the average age of each agecl each timestep based on truenatage
+  svlen_avgage &lt;- annages %&gt;%
+    dplyr::semi_join(len_comp_data[[s]][[1]], by = c(&quot;species&quot;, &quot;time&quot;)) %&gt;%
+    dplyr::inner_join(multiple_ages, by = c(&quot;species&quot; = &quot;Name&quot;)) %&gt;%
+    dplyr::mutate(agecl = as.integer(ceiling(trueage/NumAgeClassSize))) %&gt;%
+    dplyr::group_by(species, time, agecl) %&gt;%
+    dplyr::mutate(avgage = weighted.mean(trueage, truenatage))
+
+
+  #arrange into long format: year, Species, agecl, length 
+  svlenage &lt;- len_comp_data[[s]][[1]] %&gt;%
+    dplyr::left_join(svlen_avgage) %&gt;%
+    dplyr::mutate(year = ceiling(time/stepperyr)) %&gt;%
+    dplyr::select(species, agecl, avgage, year, upper.bins, atoutput) %&gt;%
+    dplyr::mutate(avgage = coalesce(avgage,agecl)) %&gt;%
+    dplyr::rename(length = upper.bins) %&gt;%
+    dplyr::mutate(era = as.numeric(cut_number(year,3)),
+                  nsamp = round(atoutput*0.1)) %&gt;% # initial pass includes lengths w/&gt;5 individuals
+    #tidyr::uncount(atoutput) %&gt;% # breaks R, need to subsample first 
+    tidyr::uncount(nsamp) %&gt;% # atoutput column has original n lengths
+    dplyr::group_by(species, avgage, year) %&gt;%
+    dplyr::sample_frac(0.1) # second subsample random within avgage to get 1% of original
+  
+  saveRDS(svlenage, file.path(d.name, paste0(scenario.name, &quot;_&quot;,
+                                                       s, &quot;agelensamp.rds&quot;)))
+# }
+# 
+#   # read saved sample from above
+#   survs &lt;- list.files(path=d.name, pattern = &quot;agelensamp.rds&quot;, full.names = TRUE)
+# 
+#   survname &lt;-  str_match(survs, paste0(scenario.name,&quot;_\\s*(.*?)\\s&quot;,&quot;*agelensamp.rds&quot;))[,2]
+# 
+#   agelensamp_data &lt;- lapply(survs, readRDS)
+# 
+#   names(agelensamp_data) &lt;- survname
+# 
+# 
+# for(s in names(agelensamp_data)){
+
+  # try different start points to see if we can get more species fit
+  # this one goes to 11!
+  # need because group_map doesn&#39;t keep group names
+  gk &lt;- svlenage %&gt;%
+    group_by(species, era) %&gt;%
+    group_keys()
+  
+  svvbgf3.2 &lt;- svlenage %&gt;%   
+    dplyr::group_by(species, era) %&gt;%
+    group_map(~try(nls(length~vb1(avgage, Linf, K, t0), data = .,
+                       start = vbStarts(length~avgage,data = .,methLinf=&quot;longFish&quot;))))
+  
+  #this gets exponential growth pars, probably won&#39;t use this growth mod though
+  svexp3 &lt;- svlenage %&gt;%
+    dplyr::group_by(species, era) %&gt;%
+    group_modify(~ broom::tidy(lm(log(length) ~ log(avgage), data = .x))) %&gt;%
+    select(species, era, term, estimate) %&gt;%
+    pivot_wider(names_from = &quot;term&quot;, values_from = &quot;estimate&quot;) %&gt;%
+    mutate(psi = exp(`(Intercept)`)) %&gt;%
+    rename(kappa = `log(avgage)`) %&gt;%
+    select(species, era, kappa, psi)
+    
+  vbout.2 &lt;- data.frame() 
+  for(i in 1:length(svvbgf3.2)) {
+    if(is.list(svvbgf3.2[[i]])) {
+      spe &lt;- cbind(as.data.frame(gk)[i,], as.data.frame(t(coef(svvbgf3.2[[i]]))))
+      vbout.2 &lt;- rbind(vbout.2, spe)
+    }
+  }
+  
+  growthpars &lt;- left_join(svexp3, vbout.2) %&gt;%
+    mutate(growthType = case_when(
+      is.na(Linf) ~ 2,
+      TRUE ~ 4)) # vonB default, exponential if no vonB
+  
+  # sadly doesn&#39;t work so just make a csv for each era and use the one with most spp
+  # maxera &lt;- growthpars %&gt;% 
+  #   filter(!is.na(Linf)) %&gt;% 
+  #   group_by(era) %&gt;% 
+  #   tally() %&gt;%
+  #   filter(n==1) %&gt;%
+  #   select(era)
+  
+  growthspp &lt;- growthpars %&gt;%
+    select(species, psi, kappa, Linf, K, growthType) %&gt;%
+    pivot_longer(psi:growthType, names_to = &quot;par&quot;) %&gt;%
+    pivot_wider(names_from = species, 
+                values_from = value) 
+  
+  growthspp.era &lt;- split(growthspp, list(growthspp$era)) 
+  
+  for(era in names(growthspp.era)) {
+    gpar &lt;- growthspp.era[[era]] %&gt;%
+      ungroup()%&gt;%
+      select(-era) %&gt;%
+      remove_rownames() %&gt;% 
+      column_to_rownames(var=&quot;par&quot;) %&gt;%
+      write.csv(paste0(o.name,&quot;growth_species_NOBA_era&quot;,era,&quot;_&quot;,s,&quot;.csv&quot;))
+    
+  }
+  
+}</code></pre>
+<p>With growth parameters estimated, we determine the size bin definitions. The simplest approach is to have equal sized bins (max observed length/desired number of bins):</p>
+<pre class="r"><code># pull observed min and max size from data to optimize start and end bins
+minmaxlen &lt;- list()
+# read in saved vonB pars--see if seasons are different and will need a replacement if K wasn&#39;t estimated
+#era &lt;- 1
+vonBK &lt;- list()
+minmaxvonBK &lt;- list()
+for(s in names(len_comp_data)){
+  minmaxlendf &lt;- len_comp_data[[s]][[1]] %&gt;%
+    dplyr::group_by(species) %&gt;%
+    dplyr::summarise(minlen = min(lower.bins, na.rm = TRUE),
+                     maxlen = max(upper.bins, na.rm = TRUE),
+                     range = maxlen-minlen) 
+  
+  for(era in 1:3){
+  vonBKer &lt;- read.csv(paste0(o.name,&quot;growth_species_NOBA_era&quot;,era,&quot;_&quot;,s,&quot;.csv&quot;)) %&gt;%
+    rename(par = X) %&gt;%
+    pivot_longer(!par, names_to = &quot;species&quot;) %&gt;%
+    pivot_wider(names_from = par,
+                names_prefix = era,
+                values_from = value) %&gt;%
+    select(species, paste0(era,&quot;K&quot;))
+  
+  ifelse(era==1,
+         vonBKdf &lt;- vonBKer,
+         vonBKdf &lt;- left_join(vonBKdf, vonBKer))
+  }
+
+  minmaxvonBKdf &lt;- left_join(minmaxlendf,vonBKdf)
+  
+  minmaxlen[[s]] &lt;- minmaxlendf
+  vonBK[[s]] &lt;- vonBKdf
+  minmaxvonBK[[s]] &lt;- minmaxvonBKdf
+
+}
+
+equalbinwidths &lt;- function(Lmax, Nsizebins){
+  bindef &lt;- max(1,ceiling(Lmax/Nsizebins))
+  binwidths &lt;- rep(bindef, Nsizebins)
+  return(binwidths)
+}
+
+# for fixed bins across surveys find min and max observed lengths 
+
+maxLrange &lt;- bind_rows(minmaxvonBK) %&gt;%
+  group_by(species) %&gt;%
+  summarise(minminL = min(minlen),
+            maxmaxL = max(maxlen))
+  
+Nsizebins  &lt;-  singletons$Nsizebins
+
+newbins &lt;- maxLrange %&gt;%
+  group_by(species) %&gt;%
+  group_modify(~broom::tidy(equalbinwidths(.$maxmaxL, Nsizebins))) %&gt;%
+  mutate(lb = paste0(&quot;sizebin&quot;,seq(1:Nsizebins))) %&gt;%
+  pivot_wider(names_from = lb, values_from = x)
+
+sizebins &lt;- as.data.frame(newbins) %&gt;%
+#  {if (utils::packageVersion(&quot;dplyr&quot;) &gt; &quot;0.9.9&quot;) {
+#    relocate(species, .after = last_col())
+#  } else {
+    select(-species, everything()) %&gt;%
+#  }} 
+  rename(&#39;commentField-notused&#39; = species)
+
+write_csv(sizebins, paste0(o.name,&quot;length_sizebins_NOBA.csv&quot;))</code></pre>
+<p>Survey biomass and catch datasets in long input format (all surveys together, all fleets together eventually). Fishery catch is not currently separated into fleets; lets do that in phase II:</p>
+<pre class="r"><code>#read in survey biomass data
+survObsBiom &lt;- atlantisom::read_savedsurvs(d.name, &#39;survB&#39;) #reads in all surveys
+
+# get cvs from config files
+svcon &lt;- list.files(path=here(&quot;/SkillAssessment/config/&quot;), pattern = &quot;*survey*&quot;, full.names = TRUE)
+fishcon &lt;- list.files(path=here(&quot;/SkillAssessment/config/&quot;), pattern = &quot;*fishery*&quot;, full.names = TRUE)
+
+omlist_ss &lt;- NOBAom_ms
+source(here(&quot;/SkillAssessment/config/omdimensions.R&quot;))
+
+svcvlook &lt;- tibble()
+for(c in 1:length(svcon)){
+  source(svcon[c])
+  surv_cv_n &lt;- surv_cv %&gt;% 
+    mutate(survey=survey.name)
+  svcvlook &lt;- bind_rows(svcvlook, surv_cv_n)
+}
+
+fcvlook &lt;- tibble()
+for(c in 1:length(fishcon)){
+  source(fishcon[c])
+  fish_cv_n &lt;- fish_cv %&gt;%
+    mutate(fishery=fishery.name)
+  fcvlook &lt;- bind_rows(fcvlook, fish_cv_n)
+}
+
+allsvbio &lt;- tibble()
+
+#multiple surveys named in list object, use as filename
+for(s in names(survObsBiom)){
+  #arrange into wide format: year, Species1, Species2 ... and write csv
+  svbio &lt;- survObsBiom[[s]][[1]] %&gt;%
+    dplyr::mutate(year = ceiling(time/stepperyr)) %&gt;%
+    dplyr::select(species, year, atoutput) %&gt;%
+    dplyr::rename(biomass = atoutput) %&gt;%
+    dplyr::mutate(survey = s) %&gt;%
+    dplyr::left_join(svcvlook) %&gt;%
+    dplyr::select(survey, year, species, everything()) %&gt;%
+    dplyr::arrange(survey, species, year)
+  
+  allsvbio &lt;- bind_rows(allsvbio, svbio)
+}
+write_csv(allsvbio, paste0(o.name,&quot;observation_biomass_NOBA_allsurvs.csv&quot;))
+
+catchbio_ss &lt;- read_savedfisheries(d.name, &#39;Catch&#39;)
+
+allcatch &lt;- tibble()
+
+for(f in names(catchbio_ss)){
+  catchbio &lt;- catchbio_ss[[f]][[1]] %&gt;%
+    dplyr::mutate(year = time/365) %&gt;%
+    dplyr::select(species, year, atoutput) %&gt;%
+    dplyr::rename(catch = atoutput) %&gt;%
+    dplyr::mutate(fishery = f) %&gt;%
+    dplyr::mutate(area = 1) %&gt;%
+    dplyr::left_join(fcvlook) %&gt;%
+    dplyr::select(fishery, area, year, species, everything()) %&gt;%
+    dplyr::arrange(fishery, species, year)
+      
+  allcatch &lt;- bind_rows(allcatch, catchbio)  
+}
+
+write_csv(allcatch, paste0(o.name,&quot;observation_catch_NOBA_allfisheries.csv&quot;))</code></pre>
+<p>Now write length composition input files in long format to have surveys together in one file. Also add fishery length comps:</p>
+<pre class="r"><code>modbins &lt;- sizebins %&gt;%
+  rename(species = `commentField-notused`) %&gt;%
+  pivot_longer(!species, names_to = &quot;sizebin&quot;, values_to = &quot;binwidth&quot;) %&gt;%
+  group_by(species) %&gt;%
+  arrange(sizebin) %&gt;%
+  mutate(modbin.min = pcumsum(binwidth),
+         modbin.max = cumsum(binwidth)) %&gt;%
+  arrange(species, sizebin)
+
+allsvlenbin &lt;- tibble()
+
+#multiple surveys named in list object, add to file
+for(s in names(len_comp_data)){
+  #arrange into long format: year, Species, agecl, length 
+  svlenbin &lt;- len_comp_data[[s]][[1]] %&gt;%
+    dplyr::mutate(year = ceiling(time/stepperyr)) %&gt;%
+    dplyr::select(species, agecl, year, upper.bins, atoutput) %&gt;%
+    dplyr::left_join(modbins) %&gt;%
+    dplyr::filter(modbin.min &lt; upper.bins &amp; upper.bins &lt;= modbin.max) %&gt;%
+    dplyr::group_by(species, year, sizebin) %&gt;%
+    dplyr::summarise(sumlen = sum(atoutput)) %&gt;%
+    tidyr::spread(sizebin, sumlen) %&gt;%
+    ungroup() %&gt;%
+    dplyr::mutate(inpN = rowSums(.[,-(1:2)], na.rm = TRUE)) %&gt;%
+    dplyr::mutate(type = 0) %&gt;%
+    dplyr::mutate(survey = s) %&gt;%
+    dplyr::mutate_at(vars(contains(&quot;sizebin&quot;)), ~./inpN) %&gt;%
+    dplyr::select(survey, year, species, type, inpN, everything())
+  
+  allsvlenbin &lt;- bind_rows(allsvlenbin, svlenbin)
+}
+write_csv(allsvlenbin, paste0(o.name,&quot;observation_lengths_NOBA_allsurvs.csv&quot;))
+
+#requires read_savedfisheries function, added to atlantisom 30 June
+catchlen_ss &lt;- atlantisom::read_savedfisheries(d.name, &quot;catchLen&quot;)
+
+allfishlenbin &lt;- tibble()
+for(f in names(catchlen_ss)){
+  #arrange into long format: year, Species, agecl, length 
+  fishlenbin &lt;- catchlen_ss[[f]][[1]] %&gt;%
+    dplyr::mutate(year = ceiling(time/stepperyr)) %&gt;%
+    dplyr::select(species, agecl, year, upper.bins, atoutput) %&gt;%
+    dplyr::left_join(modbins) %&gt;%
+    dplyr::filter(modbin.min &lt; upper.bins &amp; upper.bins &lt;= modbin.max) %&gt;%
+    dplyr::group_by(species, year, sizebin) %&gt;%
+    dplyr::summarise(sumlen = sum(atoutput)) %&gt;%
+    tidyr::spread(sizebin, sumlen) %&gt;%
+    ungroup() %&gt;%
+    dplyr::mutate(inpN = rowSums(.[,-(1:2)], na.rm = TRUE)) %&gt;%
+    dplyr::mutate(type = 0) %&gt;%
+    dplyr::mutate(fishery = f,
+                  area = 1) %&gt;%
+    dplyr::mutate_at(vars(contains(&quot;sizebin&quot;)), ~./inpN) %&gt;%
+    dplyr::select(fishery, area, year, species, type, inpN, everything()) %&gt;%
+    dplyr::arrange(fishery, area, species, year)
+  
+  allfishlenbin &lt;- bind_rows(allfishlenbin, fishlenbin)
+}
+write_csv(allfishlenbin, paste0(o.name,&quot;observation_lengths_NOBA_allfisheries.csv&quot;))</code></pre>
+<p>Write diet composition data in long format:</p>
+<pre class="r"><code># same file as for MSSPM, diet proportion by agecl
+all_diets &lt;- atlantisom::read_savedsurvs(d.name, &#39;survDiet&#39;)
+
+# get size bins for predators
+sizebins &lt;- read_csv(paste0(o.name,&quot;length_sizebins_NOBA.csv&quot;))
+
+modbins &lt;- sizebins %&gt;%
+  rename(species = `commentField-notused`) %&gt;%
+  pivot_longer(!species, names_to = &quot;sizebin&quot;, values_to = &quot;binwidth&quot;) %&gt;%
+  group_by(species) %&gt;%
+  arrange(sizebin) %&gt;%
+  mutate(modbin.min = pcumsum(binwidth),
+         modbin.max = cumsum(binwidth)) %&gt;%
+  arrange(species, sizebin)
+
+# get Dirichlet alphamults from config files
+svcon &lt;- list.files(path=here(&quot;/SkillAssessment/config/&quot;), pattern = &quot;*survey*&quot;, full.names = TRUE)
+
+svalphamultlook &lt;- tibble()
+for(c in 1:length(svcon)){
+  source(svcon[c])
+  svalp &lt;- tibble(
+    surv_alphamult_n = alphamult, 
+    survey = survey.name
+  )
+  svalphamultlook &lt;- bind_rows(svalphamultlook, svalp)
+}
+
+# diet is by predator agecl, need diet by predator sizebin
+# map predator agecl to lengthbin using length_comp_data from same survey
+
+allsvdietprop &lt;- tibble()
+
+#multiple surveys named in list object
+for(s in names(all_diets)){
+  #arrange into lookup for agecl to lengthbin in numbers of fish 
+  svagelenbin &lt;- len_comp_data[[s]][[1]] %&gt;%
+    dplyr::mutate(year = ceiling(time/stepperyr)) %&gt;%
+    dplyr::select(species, agecl, year, upper.bins, atoutput) %&gt;%
+    dplyr::left_join(modbins) %&gt;%
+    dplyr::filter(modbin.min &lt; upper.bins &amp; upper.bins &lt;= modbin.max) %&gt;%
+    dplyr::group_by(species, year, agecl, sizebin) %&gt;%
+    dplyr::summarise(sumlen = sum(atoutput)) %&gt;%
+    dplyr::group_by(species, year, sizebin) %&gt;%
+    dplyr::mutate(propage = sumlen/sum(sumlen)) #proportion of each agecl contributing to lengthbin
+
+  svdietprop &lt;- all_diets[[s]][[1]] %&gt;%
+    dplyr::mutate(year = ceiling(time.days/365)) %&gt;%
+    # join with agecl to length lookup
+    dplyr::select(species, agecl, year, prey, dietSamp) %&gt;%
+    dplyr::left_join(svagelenbin) %&gt;%
+    dplyr::mutate(dietpropage = dietSamp*propage) %&gt;% #reweight diets for lengthbins
+    dplyr::group_by(species, year, sizebin, prey) %&gt;%
+    dplyr::summarise(dietsize = sum(dietpropage)) %&gt;%
+    dplyr::filter(prey %in% unique(modbins$species)) %&gt;% #drops predators that don&#39;t eat our modeled species
+    tidyr::spread(prey, dietsize) %&gt;%
+    ungroup() %&gt;%
+    dplyr::filter(!is.na(sizebin)) %&gt;% 
+    dplyr::mutate(allotherprey = 1-rowSums(.[,-(1:3)], na.rm = TRUE)) %&gt;%
+    dplyr::mutate(survey = s) %&gt;%
+    dplyr::left_join(svalphamultlook) %&gt;% #what is effective sample size for Dirichlet?
+    dplyr::rename(inpN = surv_alphamult_n) %&gt;% #use this input for now
+    dplyr::select(survey, year, species, sizebin, inpN, everything())
+  
+  allsvdietprop &lt;- bind_rows(allsvdietprop, svdietprop)
+}
+write_csv(allsvdietprop, paste0(o.name,&quot;observation_diets_NOBA_allsurvs.csv&quot;))</code></pre>
+<p>Output temperature data from surveys using “Temp” variable in .nc file and the <code>atlantisom::load_nc_physics</code> function. A survey (timestep, polygons, possibly observation error) can then be applied to this output.</p>
+<p>We can get surface and bottom temp from Atlantis using the layers from each polygon, with layer 0 being the bottom and the maximum layer in the polygon being the surface (according to the <a href="https://confluence.csiro.au/display/Atlantis/Atlantis+NetCDF+Structure">Atlantis wiki/Atlantis output files/Atlantis NetCDF structure</a>.</p>
+<p>The below needs to be formalized into an <code>atlantisom</code> function, and reformatted to have both surveys in one file to match other data inputs:</p>
+<pre class="r"><code># taken from existing load_nc to explore
+# file.nc &lt;- file.path(d.name, &quot;outputnordic_runresults_01.nc&quot;)
+# 
+#   # Load ATLANTIS output!
+#   at_out &lt;- RNetCDF::open.nc(con = file.nc)
+# 
+#   # Get info from netcdf file! (Filestructure and all variable names)
+#   var_names_ncdf &lt;- sapply(seq_len(RNetCDF::file.inq.nc(at_out)$nvars - 1),
+#     function(x) RNetCDF::var.inq.nc(at_out, x)$name)
+#   n_timesteps &lt;- RNetCDF::dim.inq.nc(at_out, 0)$length
+#   n_boxes     &lt;- RNetCDF::dim.inq.nc(at_out, 1)$length
+#   n_layers    &lt;- RNetCDF::dim.inq.nc(at_out, 2)$length
+# 
+# RNetCDF::close.nc(at_out)
+
+#&#39;@physic_variables A character value spefifying which variables
+#&#39;   should be loaded. Only one variable can be loaded at a time.
+#&#39;   Currently, only the following variables are allowed:
+#&#39;   &quot;salt&quot;, &quot;NO3&quot;, &quot;NH3&quot;, &quot;Temp&quot;, &quot;Oxygen&quot;, &quot;Si&quot;, &quot;Det_Si&quot;, &quot;DON&quot;,
+#&#39;    &quot;Chl_a&quot;, &quot;Denitrifiction&quot;, &quot;Nitrification&quot;.
+
+truetemp &lt;- atlantisom::load_nc_physics(dir = d.name,
+                  file_nc = &quot;nordic_runresults_01.nc&quot;,
+                  physic_variables = &quot;Temp&quot;,
+                  aggregate_layers = FALSE,
+                  bboxes = atlantisom::get_boundary(NOBAom_ms$boxpars))
+  #if(verbose) message(&quot;Temperature read in.&quot;)
+
+# this averages all depth layers, don&#39;t want this
+# truetempagg &lt;- atlantisom::load_nc_physics(dir = d.name,
+#                   file_nc = &quot;outputnordic_runresults_01.nc&quot;,
+#                   physic_variables = &quot;Temp&quot;,
+#                   aggregate_layers = TRUE,
+#                   bboxes = atlantisom::get_boundary(NOBAom_ms$boxpars))
+
+truebottomtemp &lt;- truetemp %&gt;%
+  filter(layer == 0) # according to Atlantis wiki, layer 0 is bottom
+
+truesurfacetemp &lt;- truetemp %&gt;%
+  filter(layer&lt;7) %&gt;%  #layer 7 is always identical temp to layer 0, may be the added sediment layer?
+  group_by(polygon, time) %&gt;%
+  filter(layer==max(layer)) %&gt;%
+  ungroup
+
+surveyenv &lt;- function(trueenv, 
+                      survboxes,
+                      survtimes) {
+  surveydat &lt;- trueenv %&gt;%
+    dplyr::filter(polygon %in% survboxes) %&gt;%
+    dplyr::filter(time %in% survtimes)
+  
+  return(surveydat)
+}
+
+omlist_ss &lt;- NOBAom_ms
+source(here(&quot;SkillAssessment/config/omdimensions.R&quot;))
+
+#need to weight by polygon area to get mean annual temp time series for each survey
+boxarea &lt;- map_dfr(NOBAom_ms$boxpars$boxes, &quot;area&quot;) %&gt;%
+  pivot_longer(everything(), names_to = &quot;polygon&quot;, values_to = &quot;area&quot;) %&gt;%
+  mutate(polygon = as.integer(polygon)) %&gt;%
+  mutate(proparea = area/sum(area))
+
+
+source(here(&quot;SkillAssessment/config/mssurvey_fall.R&quot;))
+
+fallcensus_bottomtemp &lt;- surveyenv(truebottomtemp, survboxes = survboxes, survtimes = survtime)
+
+fallcensus_btempindex &lt;- left_join(fallcensus_bottomtemp, boxarea) %&gt;%
+  dplyr::group_by(time) %&gt;%
+  dplyr::summarise(meantemp = weighted.mean(atoutput, proparea)) %&gt;%
+  dplyr::mutate(year = ceiling(time/stepperyr)) %&gt;%
+  dplyr::select(year, meantemp) %&gt;%
+  write_csv(paste0(o.name,&quot;observation_temperature_NOBA_&quot;,survey.name,&quot;.csv&quot;))
+
+source(here(&quot;SkillAssessment/config/mssurvey_spring.R&quot;))
+
+springcensus_bottomtemp &lt;- surveyenv(truebottomtemp, survboxes = survboxes, survtimes = survtime)
+
+springcensus_btempindex &lt;- left_join(springcensus_bottomtemp, boxarea) %&gt;%
+  dplyr::group_by(time) %&gt;%
+  dplyr::summarise(meantemp = weighted.mean(atoutput, proparea)) %&gt;%
+  dplyr::mutate(year = ceiling(time/stepperyr)) %&gt;%
+  dplyr::select(year, meantemp) %&gt;%
+  write_csv(paste0(o.name,&quot;observation_temperature_NOBA_&quot;,survey.name,&quot;.csv&quot;))</code></pre>
+<p><em>STILL NEEDS RESOLUTION–the per capita consumption from Atlantis seems low relative to actual data</em></p>
+<p>Stomach weights are needed as input to hydra. At present each species has a stomach weight for each size bin that is repeated for each year. We have total consumed weight for each predator age class at each timestep in the detailed diet atlantis output, so would need to map age classes to length bins, sum consumed weight by length bin and divide by total numbers in that length bin to get stomach weight.</p>
+<p>What we have saved so far is a diet comp in proportion that has had bias and observation error added to proportions. However, we need the stomach weight portion of the equation, which has the survey timing/area/efficiency/selectivity applied to true consumed weight. The hydra input is mean daily stomach weight in grams. From the Atlantis manual, “DetailedDietCheck.txt returns the total consumed biomass since the last output given for each cell (box and layer) of each age group of each functional group.” So daily per capita consumed biomass is this output, summed over prey for total consumption, divided by the numbers from the same survey design, divided by the output step <code>omlist_ss$runpar$outputstep</code>.</p>
+<p>For now, we map existing Georges Bank species intake-at-size (average daily stomach weight) to the NOBA species as follows:</p>
+<ul>
+<li>Aherring = <a href="https://www.hi.no/en/hi/temasider/species/herring">Norwegian_ssh</a></li>
+<li>Acod = <a href="https://www.hi.no/en/hi/temasider/species/cod--northeast-arctic">North_atl_cod</a></li>
+<li>haddock = <a href="https://www.hi.no/en/hi/temasider/species/haddock">Haddock</a></li>
+<li>Amackerel = <a href="https://www.hi.no/en/hi/temasider/species/mackerel">Mackerel</a>.</li>
+</ul>
+<p>We will substitute intake-at-size from these similar taxa/size GB species for NOBA:</p>
+<ul>
+<li>silverhake ~ <a href="https://www.hi.no/en/hi/temasider/species/blue-whiting">Blue_whiting</a><br />
+</li>
+<li>yellowtailfl ~ <a href="https://www.sciencedirect.com/science/article/abs/pii/S1385110196907972">Long_rough_dab</a> a.k.a. American plaice</li>
+</ul>
+<p>We will modify or subsitute intake-at-size for the rest of the NOBA species based on size:</p>
+<ul>
+<li>NOBA <a href="https://www.hi.no/en/hi/temasider/species/redfish/beaked-redfish-in-the-barents-and-norwegian-seas">Redfish</a> have a maximum size of 47 cm, use haddock intake<br />
+</li>
+<li>NOBA <a href="https://www.hi.no/en/hi/temasider/species/northeast-arctic-saithe">Saithe</a> have a maximum size of 130 cm; use Acod intake</li>
+<li>NOBA <a href="https://www.hi.no/en/hi/temasider/species/polar-cod">Polar_cod</a> have a maximum size of 25 cm; use herring intake<br />
+</li>
+<li>NOBA <a href="https://www.hi.no/en/hi/temasider/species/capelin-in-the-barents-sea">Capelin</a> are smaller than any GB modeled species, max size 21 cm; use herring intake<br />
+</li>
+<li>NOBA <a href="https://www.hi.no/en/hi/temasider/species/greenland-halibut">Green_halibut</a> are large, max size 120 cm; use spinydog intake</li>
+</ul>
+<p>Code to make intake csv for input; hardcoded based on these decisions.</p>
+<pre class="r"><code># this is intake by species in current hydra_sim
+
+# ,sizeclass1,sizeclass2,sizeclass3,sizeclass4,sizeclass5
+# spinydog,0.090189781,1.952671779,9.334322368,28.80493233,77.55885308
+# winterskate,0.093423453,0.939220418,3.915192982,11.46903371,44.88111925
+# Aherring,0.01,0.03,0.8,1.5,3
+# Acod,0.035,0.103736364,1.952671779,18.42060702,84.48736889
+# haddock,0.031,0.096183673,0.939220418,3.915192982,12.07313904
+# yellowtailfl,0.016072464,0.086965517,0.237958824,0.442743017,1.583142857
+# winterfl,0.016072464,0.086965517,0.237958824,0.442743017,1.583142857
+# Amackerel,0.01,0.08,1.3,2,3
+# silverhake,0.039893347,0.179748344,0.512104803,4.879748476,20.262
+# goosefish,0.090189781,1.952671779,9.334322368,28.80493233,77.55885308
+
+stomwt &lt;- matrix(0, singletons$Nspecies, singletons$Nsizebins, 
+                dimnames = list(c(sort.default(sppsubset$Name)),  c(paste0(&quot;sizeclass&quot;,seq(1:singletons$Nsizebins)))))
+
+stomwt[&quot;Blue_whiting&quot;,] &lt;- c(0.039893347,0.179748344,0.512104803,4.879748476,20.26) #silverhake
+stomwt[&quot;Capelin&quot;,] &lt;- c(0.01,0.03,0.8,1.5,3) #Aherring
+stomwt[&quot;Green_halibut&quot;,] &lt;- c(0.090189781,1.952671779,9.334322368,28.80493233,77.55885308) #spinydog
+stomwt[&quot;Haddock&quot;,] &lt;- c(0.031,0.096183673,0.939220418,3.915192982,12.07313904) #haddock
+stomwt[&quot;Long_rough_dab&quot;,] &lt;- c(0.016072464,0.086965517,0.237958824,0.442743017,1.583142857) #yellowtailfl
+stomwt[&quot;Mackerel&quot;,] &lt;- c(0.01,0.08,1.3,2,3) #Amackerel
+stomwt[&quot;North_atl_cod&quot;,] &lt;- c(0.035,0.103736364,1.952671779,18.42060702,84.48736889) #Acod
+stomwt[&quot;Norwegian_ssh&quot;,] &lt;- c(0.01,0.03,0.8,1.5,3) #Aherring
+stomwt[&quot;Polar_cod&quot;,] &lt;- c(0.01,0.03,0.8,1.5,3) #Aherring
+stomwt[&quot;Redfish&quot;,] &lt;- c(0.031,0.096183673,0.939220418,3.915192982,12.07313904) #haddock
+stomwt[&quot;Saithe&quot;,] &lt;- c(0.090189781,1.952671779,9.334322368,28.80493233,77.55885308) #spinydog
+
+write.csv(stomwt, paste0(o.name,&quot;intake_stomachContent_NOBA.csv&quot;))</code></pre>
+<p>Remaining unused parameters (recruitment, maturity, etc) need to be dimensioned correctly for the number of species and years:</p>
+<pre class="r"><code>#recruitment dummy params
+recpars &lt;- matrix(1, 27, singletons$Nspecies,
+                  dimnames = list(c(&quot;eggRicker_alpha&quot;,
+                                    &quot;eggRicker_shape&quot;,
+                                    &quot;eggRicker_beta&quot;,
+                                    &quot;DS_alpha&quot;,
+                                    &quot;DS_shape&quot;,
+                                    &quot;DS_beta&quot;,
+                                    &quot;gamma_alpha&quot;,
+                                    &quot;gamma_shape&quot;,
+                                    &quot;gamma_beta&quot;,
+                                    &quot;ricker_alpha&quot;,
+                                    &quot;ricker_shape&quot;,
+                                    &quot;ricker_beta&quot;,
+                                    &quot;BH_alpha&quot;,
+                                    &quot;BH_shape&quot;,
+                                    &quot;BH_beta&quot;,
+                                    &quot;shepherd_alpha&quot;,
+                                    &quot;shepherd_shape&quot;,
+                                    &quot;shepherd_beta&quot;,
+                                    &quot;hockey_alpha&quot;,
+                                    &quot;hockey_shape&quot;,
+                                    &quot;hockey_beta&quot;,
+                                    &quot;segmented_alpha&quot;,
+                                    &quot;segmented_shape&quot;,
+                                    &quot;segmented_beta&quot;,
+                                    &quot;sigma&quot;,
+                                    &quot;type&quot;,
+                                    &quot;stochastic&quot;
+                  ), c(sort.default(sppsubset$Name))
+                  ))
+                  
+write.csv(recpars, paste0(o.name,&quot;recruitment_species_NOBA.csv&quot;))
+
+Rcoveff &lt;- data.frame(name = c(sort.default(sppsubset$Name)), speciesEffect1 = 0)
+
+write_csv(Rcoveff, paste0(o.name,&quot;recruitment_covariateEffects_NOBA.csv&quot;))
+
+#the other covariate effects are also set to 0 so just use the same thing
+write_csv(Rcoveff, paste0(o.name,&quot;maturity_covariateEffects_NOBA.csv&quot;))
+write_csv(Rcoveff, paste0(o.name,&quot;growth_covariateEffects_NOBA.csv&quot;))
+
+fecundity &lt;- matrix(1, 2, singletons$Nspecies,
+                   dimnames = list(c(&quot;d&quot;, &quot;h&quot;), c(sort.default(sppsubset$Name))))
+
+write.csv(fecundity, paste0(o.name,&quot;fecundity_species_NOBA.csv&quot;))
+
+fecunditytheta &lt;- as.data.frame(matrix(0, singletons$Nspecies, singletons$Nsizebins, 
+                dimnames = list(c(sort.default(sppsubset$Name)),  c(paste0(&quot;sizeclass&quot;,seq(1:singletons$Nsizebins)))))) 
+
+write.csv(fecunditytheta, paste0(o.name,&quot;fecundity_Theta_NOBA.csv&quot;))
+
+maturity &lt;- matrix(1, 2, singletons$Nspecies,
+                   dimnames = list(c(&quot;nu&quot;, &quot;omega&quot;), c(sort.default(sppsubset$Name))))
+
+write.csv(maturity, paste0(o.name,&quot;maturity_species_NOBA.csv&quot;))
+
+#fishsel dimensions species rows fleets columns, one matrix each c and d, not using?</code></pre>
+<p>Write metadata on the surveys:</p>
+<pre class="r"><code>#write readme for metadata
+meta &lt;- c(&quot;Simulated data from Norweigan-Barents Atlantis Model by Hansen et al. \n\n&quot;,
+          paste(&quot;Atlantis outputs stored in&quot;, d.name, &#39;\n\n&#39;),
+          paste(&quot;Biomass output for surveys&quot;, names(survObsBiom), &#39;\n\n&#39;),
+          paste(&quot;Fishery catch output for fisheries&quot;, names(catchbio_ss), &#39;\n\n&#39;),
+          &quot;Biomass and catch output units are annual tons.\n\n&quot;,
+          &quot;Survey specifications:\n&quot;,
+          &quot;----------------------\n&quot;,
+          read_file(here(&quot;/SkillAssessment/config/mssurvey_fall.R&quot;)),
+          &quot;\n&quot;,
+          &quot;----------------------\n&quot;,
+          read_file(here(&quot;/SkillAssessment/config/mssurvey_spring.R&quot;)),
+          &quot;\n&quot;,
+          &quot;\n\n&quot;,
+          &quot;Fishery specifications:\n&quot;,
+          &quot;----------------------\n&quot;,
+          read_file(here(&quot;/SkillAssessment/config/msfishery.R&quot;)),
+          &quot;\n&quot;
+          )
+
+cat(as.character(meta), file=paste0(here(&quot;SkillAssessment/msinput/hydra/&quot;),&quot;README.txt&quot;))</code></pre>
+<p>Use <code>hydradata</code> package to create the .dat and .pin files. We are working from the forked <code>hydradata</code> repository at <a href="https://github.com/thefaylab/hydradata" class="uri">https://github.com/thefaylab/hydradata</a> for this project. All of the input .csv files created here have been copied to the <code>data-raw</code> foldr on thefaylab/hydradata repo. The <code>create_RData_NOBA.R</code> file was updated to read these inputs, sourced, and <code>create_RData()</code> was run to make a new hydraDataList.rda file in the package.</p>
+<pre class="r"><code>library(hydradata)
+inputs &lt;- setup_default_inputs()
+inputs$outDir &lt;- here(&quot;SkillAssessment/msinput/hydra&quot;)
+inputs$outputFilename &lt;- &quot;hydra_sim_NOBA&quot;
+
+
+
+hydraDataList &lt;- create_datpin_files(inputs,hydraDataList)</code></pre>
+</div>
 </div>
 </div>
 <div id="references" class="section level2 unnumbered">

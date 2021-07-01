@@ -63,6 +63,7 @@
   3024
 # init_matrix obs_survey_biomass(1,Nsurvey_obs,1,5)
 # survey year spp value cv
+  1 1 1 1489057.4011602 0.1
   1 2 1 1948780.87322416 0.1
   1 3 1 2514718.22126054 0.1
   1 4 1 3257094.6133531 0.1
@@ -3086,7 +3087,6 @@
   2 142 11 12521330.3359237 0.1
   2 143 11 10909645.8933915 0.1
   2 144 11 12349331.688631 0.1
-  NA NA NA NA NA
 # end survey index observations 
 #  
 # Survey size comp data 
@@ -3094,6 +3094,7 @@
   3024
 # init_matrix obs_survey_size(1,Nsurvey_size_obs,1,ncol) 
 # Survey  Year  Species Type (0=whole, 1=retained, 2=discard) InpN, proportion by length bin 
+  1 1 1 0 99997 NA 0.00303009090272708 0.80194405832175 0.194745842375271 0.000280008400252008
   1 2 1 0 99993 NA 0.0106907483523847 0.816947186303041 0.172122048543398 0.000240016801176082
   1 3 1 0 99995 NA 0.00836041802090104 0.722526126306315 0.268563428171409 0.000550027501375069
   1 4 1 0 99987 NA 0.00641083340834308 0.666046586056187 0.326772480422455 0.000770100113014692
@@ -6117,12 +6118,11 @@
   2 142 11 0 99992 0.123359868789503 0.427784222737819 0.324045923673894 0.122909832786623 0.00190015201216097
   2 143 11 0 99975 0.121880470117529 0.427826956739185 0.326591647911978 0.121850462615654 0.00185046261565391
   2 144 11 0 99978 0.123697213386945 0.42841425113525 0.324271339694733 0.121776790893997 0.0018404048890756
-  NA NA NA NA NA NA NA NA NA NA
 # end survey length observations 
 #  
 # Fishery catch data 
 # Number of observations, init_int Ncatch_obs
-  1595
+  1584
 # init_matrix obs_catch_biomass(1,Ncatch_obs,1,6) 
 # Fleet	Area	Year	Species	Catch(biomass t)	CV 
   1 1 1 1 677.48687440485 0.01
@@ -6269,7 +6269,6 @@
   1 1 142 1 1123582.76043452 0.01
   1 1 143 1 1120144.48162449 0.01
   1 1 143.997260273973 1 1122972.69600808 0.01
-  1 1 0 2 0 0.01
   1 1 1 2 3368.60713774196 0.01
   1 1 2 2 0 0.01
   1 1 3 2 0 0.01
@@ -6414,7 +6413,6 @@
   1 1 142 2 178639.18386311 0.01
   1 1 143 2 222097.516200765 0.01
   1 1 143.997260273973 2 245952.286826273 0.01
-  1 1 0 3 0 0.01
   1 1 1 3 34.2250608057234 0.01
   1 1 2 3 0 0.01
   1 1 3 3 0 0.01
@@ -6559,7 +6557,6 @@
   1 1 142 3 15222.5318133652 0.01
   1 1 143 3 14858.7918204867 0.01
   1 1 143.997260273973 3 14839.0145703202 0.01
-  1 1 0 4 0 0.01
   1 1 1 4 67.5775913528834 0.01
   1 1 2 4 0 0.01
   1 1 3 4 0 0.01
@@ -6704,7 +6701,6 @@
   1 1 142 4 17639.9283795212 0.01
   1 1 143 4 18007.3264350081 0.01
   1 1 143.997260273973 4 18730.4246737781 0.01
-  1 1 0 5 0 0.01
   1 1 1 5 0 0.01
   1 1 2 5 0 0.01
   1 1 3 5 0 0.01
@@ -6849,7 +6845,6 @@
   1 1 142 5 0 0.01
   1 1 143 5 0 0.01
   1 1 143.997260273973 5 0 0.01
-  1 1 0 6 0 0.01
   1 1 1 6 0 0.01
   1 1 2 6 0 0.01
   1 1 3 6 0 0.01
@@ -6994,7 +6989,6 @@
   1 1 142 6 207460.677243237 0.01
   1 1 143 6 209856.609892601 0.01
   1 1 143.997260273973 6 205306.503578569 0.01
-  1 1 0 7 0 0.01
   1 1 1 7 181061.326990774 0.01
   1 1 2 7 154236.137213711 0.01
   1 1 3 7 137499.737228916 0.01
@@ -7139,7 +7133,6 @@
   1 1 142 7 686008.399167007 0.01
   1 1 143 7 683429.714370031 0.01
   1 1 143.997260273973 7 693645.394801494 0.01
-  1 1 0 8 0 0.01
   1 1 1 8 219.46573305652 0.01
   1 1 2 8 0 0.01
   1 1 3 8 0 0.01
@@ -7284,7 +7277,6 @@
   1 1 142 8 445245.940155216 0.01
   1 1 143 8 442815.465227761 0.01
   1 1 143.997260273973 8 387449.118573146 0.01
-  1 1 0 9 0 0.01
   1 1 1 9 0 0.01
   1 1 2 9 0 0.01
   1 1 3 9 0 0.01
@@ -7429,7 +7421,6 @@
   1 1 142 9 0 0.01
   1 1 143 9 0 0.01
   1 1 143.997260273973 9 0 0.01
-  1 1 0 10 0 0.01
   1 1 1 10 187.394572800697 0.01
   1 1 2 10 0 0.01
   1 1 3 10 0 0.01
@@ -7574,7 +7565,6 @@
   1 1 142 10 248317.388525192 0.01
   1 1 143 10 253347.398795276 0.01
   1 1 143.997260273973 10 244387.409936623 0.01
-  1 1 0 11 0 0.01
   1 1 1 11 167.913378639299 0.01
   1 1 2 11 0 0.01
   1 1 3 11 0 0.01
@@ -7719,7 +7709,6 @@
   1 1 142 11 644201.472769848 0.01
   1 1 143 11 657077.78650325 0.01
   1 1 143.997260273973 11 657426.931766559 0.01
-  NA NA NA NA NA NA
 # end catch observations 
 #  
 # Fishery size comp data 
@@ -7727,6 +7716,7 @@
   259
 # init_matrix obs_catch_size(1,Ncatch_size_obs,1,ncol) 
 # Fleet Area  Year  Species Type (0=whole, 1=retained, 2=discard) InpN, proportion by size bin 
+  1 1 55 1 0 802 NA 0.0236907730673317 0.460099750623441 0.514962593516209 0.00124688279301746
   1 1 56 1 0 801 NA 0.0262172284644195 0.466916354556804 0.50561797752809 0.00124843945068664
   1 1 57 1 0 801 NA 0.0249687890137328 0.489388264669164 0.485642946317104 NA
   1 1 58 1 0 818 NA 0.0317848410757946 0.504889975550122 0.462102689486553 0.00122249388753056
@@ -7985,7 +7975,6 @@
   1 1 78 9 0 806 NA 0.420595533498759 0.514888337468983 0.0645161290322581 NA
   1 1 79 9 0 800 NA 0.415 0.52625 0.05875 NA
   1 1 80 9 0 649 NA 0.442218798151002 0.517719568567026 0.0400616332819723 NA
-  NA NA NA NA NA NA NA NA NA NA NA
 # end fishery length observations 
 #  
 # Survey diet proportion observations 
@@ -7993,6 +7982,7 @@
   8499
 # init_matrix obs_dietprop(1,Ndietprop_obs,1,ncol) 
 # Survey  Year  Predator  Predator_size InpN  wt_prey_1 wt_prey_2 wt_prey_3 wt_prey_4 wt_prey_5 wt_prey_6 wt_prey_7 wt_prey_8 wt_prey_9 wt_prey_10 wt_prey_11 other 
+  1 1 1 2 1e+07 NA 0.00929153176003026 NA NA NA NA NA 5.49636590015048e-07 NA 0.048517167595613 NA 0.942190751007767
   1 1 1 3 1e+07 NA 0.0114177184514117 NA NA NA NA NA 2.98519219422789e-05 NA 0.0606754879962601 NA 0.927876941630386
   1 1 1 4 1e+07 NA 0.0118061699227539 NA NA NA NA NA 9.09341739543553e-05 NA 0.0638869457654754 NA 0.924215950137816
   1 1 1 5 1e+07 NA 0.0118363234240237 NA NA NA NA NA 0.00024941900426272 NA 0.0651619875968296 NA 0.922752269974884
@@ -16491,7 +16481,6 @@
   2 144 8 3 1e+07 NA 0.00230216238685773 NA 0.000397803406578576 NA NA 0.00428998179372514 0.0187144722745221 NA NA NA 0.974295580138316
   2 144 8 4 1e+07 NA 0.00217017411429794 NA 0.000572249100715711 NA NA 0.00681656027724558 0.018426717373883 NA NA NA 0.972014299133858
   2 144 8 5 1e+07 NA 0.00208902640616964 NA 0.000545042763137401 NA NA 0.00713063257259155 0.0182580121507363 NA NA NA 0.971977286107365
-  NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
 # end survey diet proportion observations 
 #  
 #  init_3darray obs_effort(1,Nareas,1,Nfleets,1,Nyrs)  
@@ -18292,13 +18281,367 @@
 #  //fishery selectivity pars from dat file, for now not area specific
 #  init_matrix fishsel_c(1,Nspecies,1,Nfleets)  //fishery selectivity c par
   #benthic trawl and pelagic trawl and longline
-   -12.903  -12.060  -12.060    0.000    0.000
-   -10.000  -10.000  -10.000    0.000    0.000
-    -4.000   -4.000 -200.000    0.000    0.000
-   -12.903  -12.060  -12.060    0.000    0.000
-   -11.677  -10.000  -10.000    0.000    0.000
-   -15.442 -200.000 -200.000    0.000    0.000
-   -13.894 -200.000 -200.000    0.000    0.000
-    -5.000   -5.000 -200.000    0.000    0.000
-    -8.000   -8.000   -8.000    0.000    0.000
-   -12.000  -12.000  -12.000    0.000    0.000
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+#  init_matrix fishsel_d(1,Nspecies,1,Nfleets)  //fishery selectivity d par
+  #benthic trawl and pelagic trawl and longline
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+# Following content added after ICES publication by Gaichas et al. 2014
+# Made by Andy Beet from Dec 2016 onward
+# Equilibrium Biomass. B0(1,Nspecies). Tthese values are obtained by running hydra_sim without any error and zero fishing effort
+  334929 559616.53 3367352.5 324330.75 443626.98 215014.95 111073.85 781926.53 58469.09 43888.76
+#number of Guilds numGuilds.
+  1
+#Guild Membership guildMembership. 
+  1 2 3 4 5 6 7 8 9 10 11
+#Fleet Membership fleetMembers(1,Nfleets) 
+ 
+# AssessmentPeriod. Time period (yrs) to assess guild biomass level
+  3
+# init_int flagLinearRamp. // 0 = step function, 1 = linear function
+  1
+#init_vector minExploitation(1,Nfleets) minimum Exploitation rates imposed by each fleet
+ 
+#init_vector maxExploitation(1,Nfleets) maximum Exploitation rates imposed by each fleet
+ 
+# init_vector minMaxExploitation(1,2) - [MinExploitation, MaxExploitation
+  0.05 0.05
+# init_vector minMaxThreshold(1,2) - [MinThreshold, MaxThreshold
+  0.1 0.4
+# Nthresholds. number of thresholds used for change in exploitation/fishing - Step function
+  5
+# threshold_percent(1,Nthresholds) threshold %ages (of biomass) when action is taken - Step function
+# note that must appear in ascending order
+  0.1 0.2 0.3 0.4 1e+06
+# exploitation_levels(1,Nthresholds). these must pair with the threshold_percent values - Step function
+  0.05 0.05 0.05 0.05 0.05
+# threshold_species(1,Nspecies). Species level detection threshold
+  0.1 0.1 0 0 0 0 0 0 0 0
+# int AssessmentOn. Assessment On or Off
+  0
+# int speciesDetection. include species (in addition to guild) in assessment on or off
+  0
+# int LFI_size. (cm). Threshold to determin a large fish. used in LFI metric
+  60
+# init_number scaleInitialN.  used to scale initial yr1N abundances found in .pin file
+  1
+# other food term
+  0
+#init_matrix effortScaled(1,Nareas,1,Nspecies)
+  1 1 1 1 1 1 1 1 1 1
+# init_4darray discard_Coef(1,Nareas,1,Nspecies,1,Nfleets,1,Nsizebins)
+# proportion of each species that is discarded for each fleet(Bottom, Pelagic, Fixed)
+# Blue_whiting fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# Capelin fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# Green_halibut fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# Haddock fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# Long_rough_dab fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# Mackerel fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# North_atl_cod fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# Norwegian_ssh fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# Polar_cod fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# Redfish fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# Saithe fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# init_4darray discardSurvival_Coef(1,Nareas,1,1,Nspecies,1,Nfleets,1,Nsizebins)
+# proportion of discards that survive being thrown back
+# Blue_whiting fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# Capelin fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# Green_halibut fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# Haddock fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# Long_rough_dab fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# Mackerel fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# North_atl_cod fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# Norwegian_ssh fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# Polar_cod fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# Redfish fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# Saithe fleet x sizeclass
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+  0 0 0 0 0
+# predOrPrey(1,Nspecies). binary vector indicating predators. inverse = prey
+  1 0 1 1 1 0 1 1 0 1 1
+# bandwidth_metric. (in yrs) for variance estimate of catch - moving window
+  5
+# init_number baseline_threshold // value of threshold that we stop landing catch. Typically 0.2
+  0.2
+# init_3darray indicator_fishery_q(1,Nareas,1,Nspecies,1,Nfleets)
+# which species represent targeted catch. These are used to estmate exploitation rate in assessment
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+  1 1 1 1 1 1 1 1 1 1 1
+# AR_parameters(1,3) Survey, recruitment, Catch 
+  0 0 0
+# init_int flagMSE determins level of output (0 or 1)
+  0
+#  init_matrix catchProportion(1,Nareas,1,Nspecies). Proportion of the year in which resides in the management area
+ 
+# init_matrix areaMortality(1,Nareas,1,Nspecies). Total mortality outside of areae management area
+ 
+# eof
+54321

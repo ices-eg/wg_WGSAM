@@ -978,9 +978,71 @@ write.csv(discards, paste0(o.name,"fishing_discardsSurvival_NOBA.csv"))
 #q indicator dummy use fishsel
 write.csv(fishseldummy, paste0(o.name,"fishing_q_indicator_NOBA.csv"))
 
-#can we get away with not changing the sim parameters at the end of the dat file?
+#can we get away with not changing the sim parameters at the end of the dat file? so far yes
 
 #what starting values for pin file?
+
+
+```
+
+Create a pin file: 
+
+Initial N at true age can be pulled directly from Atlantis, but we need N at length, which only comes from survey sampling. Here we will use the first survey observation. However this includes NA values and I don't know how well this works with the initial values in the .pin file. 
+
+The average recruitment value we will draw from atlantis (vector), and we'll set the recdevs to 0 to start, but dimension the input as a matrix with year rows and species columns.
+
+```{r pin, eval=FALSE}
+
+#this is true N at age at time 0, but perhaps less relevant given atlantis spinup
+startN <- NOBAom_ms$truenumsage_ss %>%
+  filter(time==0) %>%
+  group_by(species, agecl) %>%
+  summarise(trueN = sum(atoutput)) %>%
+  pivot_wider(names_from = agecl, values_from = trueN)
+
+#alternatively, use the first set of survey lengths
+surveylen <- read_savedsurvs(d.name, "survLen")
+
+#find earliest survey observation across all by time
+#keeps survey name in column_label if we need it
+#this hardcodes using the first replicate if there are replicate survey samples
+startNlen <- pmap(surveylen, bind_rows, .id="column_label")[[1]] %>%
+  dplyr::group_by(species) %>% #not all species at all times
+  dplyr::filter(time == min(time)) %>% #earliest data for each species
+  dplyr::select(species, agecl, upper.bins, atoutput) %>%
+  dplyr::left_join(modbins) %>%
+  dplyr::filter(modbin.min < upper.bins & upper.bins <= modbin.max) %>%
+  dplyr::group_by(species, sizebin) %>%
+  dplyr::summarise(sumlen = sum(atoutput)) %>%
+  tidyr::spread(sizebin, sumlen) %>%
+  ungroup()
+
+write.csv(startNlen, paste0(o.name,"observation_Y1N_NOBA.csv"))
+
+#start with true recruitment, find single input for the year, average over years
+
+# rectiming is a dataframe with species code, time_spawn (day of year),
+  # recruit_time (number of days), and recruit period (number of days).
+  # we use these to calculate recstart (day of year) and recend (day of year)
+  rectiming <- merge(NOBAom_ms$biol$time_spawn, NOBAom_ms$biol$recruit_time, by = 1)
+  rectiming <- merge(rectiming, NOBAom_ms$biol$recruit_period, by = 1)
+  names(rectiming) <- c("Code", "time_spawn", "recruit_time", "recruit_period")
+  rectiming <- rectiming %>%
+    dplyr::mutate(recstart = time_spawn + recruit_time) %>%
+    dplyr::mutate(recend = recstart + recruit_period)
+  
+avgrec <- NOBAom_ms$YOY_ss %>% #wide dataset with code as column headings and *duplicate entries*
+  #colMeans()/5 #approximation with 5 output timesteps per year
+  pivot_longer(-Time, names_to = "Code", values_to = "rec") %>%
+  mutate(Code = gsub("\\.0", "", Code)) %>%
+  left_join(rectiming) %>%
+  mutate(timerecstart = Time+recstart,
+         timerecend = Time+recend)
+   
+
+write.csv(avgrec, paste0(o.name,"AvgRecPinData_NOBA.csv"))
+write.csv(recdev, paste0(o.name,"RecDevsPinData_NOBA.csv"))
+
 
 ```
 

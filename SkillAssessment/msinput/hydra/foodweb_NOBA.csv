@@ -1,0 +1,12 @@
+prey,Blue_whiting,Capelin,Green_halibut,Haddock,Long_rough_dab,Mackerel,North_atl_cod,Norwegian_ssh,Polar_cod,Redfish,Saithe
+Blue_whiting,0,0,1,0,0,0,1,0,0,1,0
+Capelin,1,0,0,1,1,0,1,1,0,0,1
+Green_halibut,0,0,0,0,0,0,1,0,0,0,0
+Haddock,0,0,0,1,1,0,1,0,0,1,1
+Long_rough_dab,0,0,0,1,0,0,1,0,0,0,0
+Mackerel,0,0,1,0,0,0,0,0,0,0,0
+North_atl_cod,0,0,1,1,1,0,1,0,0,1,1
+Norwegian_ssh,1,0,1,1,1,0,1,0,0,0,1
+Polar_cod,1,0,0,0,1,0,1,0,0,0,0
+Redfish,1,0,1,0,0,0,1,0,0,0,0
+Saithe,0,0,0,0,0,0,0,0,0,1,0

@@ -224,9 +224,11 @@ predOrPrey <- ifelse(colSums(foodweb[-1])>0, 1, 0)
 
 # warning--the fall survey gets 11 species but the spring only gets 10 due to migration so 
 # this isn't bugproof; ensure your survey gets all the species to match guildmember hardcoding
-specieslist <- data.frame(species = unique(unique(survObsBiom[[1]][[1]]$species)),
-                          guild = rep("na"),
-                          guildmember = c(1:11),
+spname <- unique(unique(survObsBiom[[1]][[1]]$species))
+
+specieslist <- data.frame(species = spname,
+                          guild = seq(1:length(spname)),
+                          guildmember = seq(1:length(spname)),
                           predOrPrey = predOrPrey
 )
 
@@ -342,6 +344,11 @@ For these surveys, von Bertalannfy parameters cannot be estimated for Mackerel i
 # first subsample is by length keeps lengths with >5 frequency but reduces n to 10% of original
 # after reformatting second subsample is random (10% again to get to 1% of original)
 # no difference in estimated parameters without second subsample, so do it for speed
+
+len_comp_data <- read_savedsurvs(d.name, 'survLen')
+
+annage_comp_data <- read_savedsurvs(d.name, 'survAnnAge')
+
 
 #multiple surveys named in list object, use as filename
 for(s in names(len_comp_data)){
@@ -634,6 +641,10 @@ for(s in names(len_comp_data)){
   
   allsvlenbin <- bind_rows(allsvlenbin, svlenbin)
 }
+# use -999 for missing value
+allsvlenbin <- allsvlenbin %>%
+  replace(is.na(.),-999)
+
 write_csv(allsvlenbin, paste0(o.name,"observation_lengths_NOBA_allsurvs.csv"))
 
 #requires read_savedfisheries function, added to atlantisom 30 June
@@ -661,6 +672,11 @@ for(f in names(catchlen_ss)){
   
   allfishlenbin <- bind_rows(allfishlenbin, fishlenbin)
 }
+# use -999 for missing value
+allfishlenbin <- allfishlenbin %>%
+  replace(is.na(.),-999)
+
+
 write_csv(allfishlenbin, paste0(o.name,"observation_lengths_NOBA_allfisheries.csv"))
 
 ```
@@ -735,6 +751,11 @@ for(s in names(all_diets)){
   
   allsvdietprop <- bind_rows(allsvdietprop, svdietprop)
 }
+
+# use -999 for missing value
+allsvdietprop <- allsvdietprop %>%
+  replace(is.na(.),-999)
+
 write_csv(allsvdietprop, paste0(o.name,"observation_diets_NOBA_allsurvs.csv"))
 
 ```
@@ -978,9 +999,22 @@ write.csv(discards, paste0(o.name,"fishing_discardsSurvival_NOBA.csv"))
 #q indicator dummy use fishsel
 write.csv(fishseldummy, paste0(o.name,"fishing_q_indicator_NOBA.csv"))
 
-#can we get away with not changing the sim parameters at the end of the dat file? so far yes
+#can we get away with not changing the sim parameters at the end of the dat file? no
 
-#what starting values for pin file?
+# get true B0 from NOBA
+B0 <- NOBAom_ms$truetotbio_ss %>%
+  filter(time==0) %>%
+  select(species, B0=atoutput)
+
+write_csv(B0, paste0(o.name,"B0_NOBA.csv"))
+
+# properly dimension assessment thresholds and effort scaling
+
+#species column names with rowname additionalThreshold and 0s
+write.csv( , paste0(o.name,"assessmentThresholdsSpecies_NOBA.csv"))
+
+#species column names no rowname all 1s
+write_csv( , paste0(o.name,"observation_effortScaling_NOBA.csv"))
 
 
 ```
@@ -1036,8 +1070,14 @@ avgrec <- NOBAom_ms$YOY_ss %>% #wide dataset with code as column headings and *d
   pivot_longer(-Time, names_to = "Code", values_to = "rec") %>%
   mutate(Code = gsub("\\.0", "", Code)) %>%
   left_join(rectiming) %>%
-  mutate(timerecstart = Time+recstart,
+  if(Time%%365==0){
+    mutate(timerecstart = Time+recstart,
          timerecend = Time+recend)
+  }else{
+    mutate(timerecstart = recstart,
+         timerecend = recend)
+  }
+  
    
 
 write.csv(avgrec, paste0(o.name,"AvgRecPinData_NOBA.csv"))

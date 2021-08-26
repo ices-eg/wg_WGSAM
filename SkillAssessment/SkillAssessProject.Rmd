@@ -105,6 +105,9 @@ Datasets are generated as follows, using `atlantisom` wrapper functions `om_init
 
 NOBAom <- om_init(here("SkillAssessment/config/NOBA2Config.R"))
 
+# generate results with climate change signal
+#NOBAom <- om_init(here("SkillAssessment/config/NOBAsacc30Config.R"))
+
 NOBAom_ms <- om_species(sppsubset$Name, NOBAom)
 
 #need to change internal call to source in atlantisom om_index om_comps and om_diet functions
@@ -158,6 +161,8 @@ Then we can run `om_diet` using `NOBADetDiet.gz` as input:
 
 # add this to config; reading from om_diet isnt working
 file_diet <- "NOBADetDiet.gz"
+
+#sub in file with climate signal "NOBAsacc30config.R"
 
 NOBAom_ms_diet <- om_diet(config = here("SkillAssessment/config", "NOBA2config.R"),
                           dietfile = "NOBADetDiet.gz",
@@ -606,6 +611,44 @@ for(f in names(catchbio_ss)){
 write_csv(allcatch, paste0(o.name,"observation_catch_NOBA_allfisheries.csv"))
 ```
 
+```{r, eval=FALSE}
+
+#optional Atlantis check: print true B and catch time series
+NOBArun <- "sacc_30"
+
+biotrue <- ggplot(NOBAom_ms$truetotbio_ss, aes(x=time, y=atoutput)) +
+  geom_line() +
+  labs(title = paste0("True bio NOBA ", NOBArun)) +
+  facet_wrap(~species, scales = "free_y")
+
+catchtrue <- ggplot(NOBAom_ms$truecatchbio_ss, aes(x=time, y=atoutput)) +
+  geom_line() +
+  labs(title = paste0("True catch NOBA ", NOBArun)) +
+  facet_wrap(~species, scales = "free_y")
+
+# what is F
+file.mort <- file.path(d.name, paste0(scenario.name, "Mort.txt"))
+
+mortish <- read.table(file.mort, header = TRUE)
+
+relF_ss <- mortish %>%
+  select(Time, c(paste0(NOBAom_ms$code_ss, ".F"))) %>%
+  pivot_longer(-Time, names_to = "spcode", values_to = "relF")
+
+relM_ss <- mortish %>%
+  select(Time, c(paste0(NOBAom_ms$code_ss, ".M"))) %>%
+  pivot_longer(-Time, names_to = "spcode", values_to = "relM")
+
+plotF <- ggplot(data=relF_ss, aes(x=Time/365, y=relF)) +
+  geom_line() +
+  theme_tufte() +
+  labs(subtitle = paste(scenario.name, NOBArun))
+
+plotF + facet_wrap(~spcode, scales = "free_y")
+
+```
+
+
 Now write length composition input files in long format to have surveys together in one file. Also add fishery length comps:
 
 ```{r lengthfiles, eval=FALSE}
@@ -855,6 +898,21 @@ springcensus_btempindex <- left_join(springcensus_bottomtemp, boxarea) %>%
   write_csv(paste0(o.name,"observation_temperature_NOBA_",survey.name,".csv"))
 
 ```
+
+```{r, eval=FALSE}
+#optional temperature plots
+fallsacc30 <- ggplot(fallcensus_btempindex, aes(x=year, y=meantemp)) + 
+  geom_line() + 
+  labs(title = "Fall mean bottom temperature NOBA sacc_30")
+
+springsacc30 <- ggplot(springcensus_btempindex, aes(x=year, y=meantemp)) + 
+  geom_line() + 
+  labs(title="Spring mean bottom temperature NOBA sacc_30")
+
+fallsacc30 + springsacc30
+
+```
+
 
 *STILL NEEDS RESOLUTION--the per capita consumption from Atlantis seems low relative to actual data*
 

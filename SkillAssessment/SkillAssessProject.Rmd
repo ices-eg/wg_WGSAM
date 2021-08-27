@@ -611,6 +611,8 @@ for(f in names(catchbio_ss)){
 write_csv(allcatch, paste0(o.name,"observation_catch_NOBA_allfisheries.csv"))
 ```
 
+(Below some diagnostic B, catch, and F plots to see if Atlantis is doing what we meant. No peeking.)
+
 ```{r, eval=FALSE}
 
 #optional Atlantis check: print true B and catch time series
@@ -618,13 +620,19 @@ NOBArun <- "sacc_30"
 
 biotrue <- ggplot(NOBAom_ms$truetotbio_ss, aes(x=time, y=atoutput)) +
   geom_line() +
+  theme_tufte() +
   labs(title = paste0("True bio NOBA ", NOBArun)) +
   facet_wrap(~species, scales = "free_y")
 
+biotrue
+
 catchtrue <- ggplot(NOBAom_ms$truecatchbio_ss, aes(x=time, y=atoutput)) +
   geom_line() +
+  theme_tufte() +
   labs(title = paste0("True catch NOBA ", NOBArun)) +
   facet_wrap(~species, scales = "free_y")
+
+catchtrue
 
 # what is F
 file.mort <- file.path(d.name, paste0(scenario.name, "Mort.txt"))
@@ -642,9 +650,10 @@ relM_ss <- mortish %>%
 plotF <- ggplot(data=relF_ss, aes(x=Time/365, y=relF)) +
   geom_line() +
   theme_tufte() +
-  labs(subtitle = paste(scenario.name, NOBArun))
+  labs(subtitle = paste(scenario.name, NOBArun)) + 
+  facet_wrap(~spcode, scales = "free_y")
 
-plotF + facet_wrap(~spcode, scales = "free_y")
+plotF 
 
 ```
 
@@ -898,6 +907,8 @@ springcensus_btempindex <- left_join(springcensus_bottomtemp, boxarea) %>%
   write_csv(paste0(o.name,"observation_temperature_NOBA_",survey.name,".csv"))
 
 ```
+
+Code to plot survey temps to check against Atlantis inputs:
 
 ```{r, eval=FALSE}
 #optional temperature plots

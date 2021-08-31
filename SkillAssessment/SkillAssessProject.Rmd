@@ -197,6 +197,7 @@ fit_ntimes <- fit_nyears*stepperyr
 fittimes <- atlantis_full[mod_burnin:(mod_burnin+fit_ntimes-1)]
 #fit_timesteps <- seq(fittimes[stepperyr], max(fittimes), by=stepperyr) #last timestep
 fit_years <- unique(floor(fittimes/stepperyr)) #from Christine's new sardine_config.R
+fittimes.days <- fittimes*73
 
   
 ```
@@ -378,7 +379,7 @@ len_comp_data <- read_savedsurvs(d.name, 'survLen')
 
 annage_comp_data <- read_savedsurvs(d.name, 'survAnnAge')
 
-
+vb1 <- vbFuns()
 #multiple surveys named in list object, use as filename
 for(s in names(len_comp_data)){
   
@@ -389,6 +390,9 @@ for(s in names(len_comp_data)){
     
   # Figure out the groups that have multiple ages classes in each stage (or
   # cohort)
+  # line from omdiensions.R
+  sp_age <- NOBAom_ms$funct.group_ss[, c("Name", "NumCohorts", "NumAgeClassSize")]
+
   multiple_ages <- sp_age[sp_age$NumAgeClassSize>1,]
   
   # finds the average age of each agecl each timestep based on truenatage
@@ -568,16 +572,18 @@ write_csv(sizebins, paste0(o.name,"length_sizebins_NOBA.csv"))
 
 Survey biomass and catch datasets in long input format (all surveys together, all fleets together eventually). Fishery catch is not currently separated into fleets; lets do that in phase II:  
 
+These datasets are filtered to the model fit start and end years defined above.
+
 ```{r svcatchalt, eval=FALSE}
 #read in survey biomass data
 survObsBiom <- atlantisom::read_savedsurvs(d.name, 'survB') #reads in all surveys
 
 # get cvs from config files
-svcon <- list.files(path=here("/SkillAssessment/config/"), pattern = "*survey*", full.names = TRUE)
-fishcon <- list.files(path=here("/SkillAssessment/config/"), pattern = "*fishery*", full.names = TRUE)
+svcon <- list.files(path=here("SkillAssessment/config/"), pattern = "*survey*", full.names = TRUE)
+fishcon <- list.files(path=here("SkillAssessment/config/"), pattern = "*fishery*", full.names = TRUE)
 
 omlist_ss <- NOBAom_ms
-source(here("/SkillAssessment/config/omdimensions.R"))
+source(here("SkillAssessment/config/omdimensions.R"))
 
 svcvlook <- tibble()
 for(c in 1:length(svcon)){
@@ -601,6 +607,7 @@ allsvbio <- tibble()
 for(s in names(survObsBiom)){
   #arrange into wide format: year, Species1, Species2 ... and write csv
   svbio <- survObsBiom[[s]][[1]] %>%
+    dplyr::filter(time %in% fittimes) %>%
     dplyr::mutate(year = ceiling(time/stepperyr)) %>%
     dplyr::select(species, year, atoutput) %>%
     dplyr::rename(biomass = atoutput) %>%
@@ -620,6 +627,7 @@ allcatch <- tibble()
 for(f in names(catchbio_ss)){
   catchbio <- catchbio_ss[[f]][[1]] %>%
     dplyr::filter(time>0) %>%
+    dplyr::filter(time %in% fittimes) %>%
     dplyr::mutate(year = time/365) %>%
     dplyr::select(species, year, atoutput) %>%
     dplyr::rename(catch = atoutput) %>%
@@ -701,6 +709,7 @@ allsvlenbin <- tibble()
 for(s in names(len_comp_data)){
   #arrange into long format: year, Species, agecl, length 
   svlenbin <- len_comp_data[[s]][[1]] %>%
+    dplyr::filter(time %in% fittimes) %>%
     dplyr::mutate(year = ceiling(time/stepperyr)) %>%
     dplyr::select(species, agecl, year, upper.bins, atoutput) %>%
     dplyr::left_join(modbins) %>%
@@ -726,12 +735,14 @@ write_csv(allsvlenbin, paste0(o.name,"observation_lengths_NOBA_allsurvs.csv"))
 #requires read_savedfisheries function, added to atlantisom 30 June
 catchlen_ss <- atlantisom::read_savedfisheries(d.name, "catchLen")
 
-# FISHERY IS SAMPLED 5x PER YEAR--NEED TO ACCOUNT FOR THIS
+# FISHERY IS SAMPLED 5x PER YEAR--NEED TO ACCOUNT FOR THIS?
+# This code sums lengths for all all fishery timesteps into year
 
 allfishlenbin <- tibble()
 for(f in names(catchlen_ss)){
   #arrange into long format: year, Species, agecl, length 
   fishlenbin <- catchlen_ss[[f]][[1]] %>%
+    dplyr::filter(time %in% fittimes) %>%
     dplyr::mutate(year = ceiling(time/stepperyr)) %>%
     dplyr::select(species, agecl, year, upper.bins, atoutput) %>%
     dplyr::left_join(modbins) %>%
@@ -779,7 +790,7 @@ modbins <- sizebins %>%
   arrange(species, sizebin)
 
 # get Dirichlet alphamults from config files
-svcon <- list.files(path=here("/SkillAssessment/config/"), pattern = "*survey*", full.names = TRUE)
+svcon <- list.files(path=here("SkillAssessment/config/"), pattern = "*survey*", full.names = TRUE)
 
 svalphamultlook <- tibble()
 for(c in 1:length(svcon)){
@@ -800,6 +811,7 @@ allsvdietprop <- tibble()
 for(s in names(all_diets)){
   #arrange into lookup for agecl to lengthbin in numbers of fish 
   svagelenbin <- len_comp_data[[s]][[1]] %>%
+    dplyr::filter(time %in% fittimes) %>%
     dplyr::mutate(year = ceiling(time/stepperyr)) %>%
     dplyr::select(species, agecl, year, upper.bins, atoutput) %>%
     dplyr::left_join(modbins) %>%
@@ -808,8 +820,9 @@ for(s in names(all_diets)){
     dplyr::summarise(sumlen = sum(atoutput)) %>%
     dplyr::group_by(species, year, sizebin) %>%
     dplyr::mutate(propage = sumlen/sum(sumlen)) #proportion of each agecl contributing to lengthbin
-
+  
   svdietprop <- all_diets[[s]][[1]] %>%
+    dplyr::filter(time.days %in% fittimes.days) %>%
     dplyr::mutate(year = ceiling(time.days/365)) %>%
     # join with agecl to length lookup
     dplyr::select(species, agecl, year, prey, dietSamp) %>%
@@ -917,6 +930,7 @@ fallcensus_bottomtemp <- surveyenv(truebottomtemp, survboxes = survboxes, survti
 fallcensus_btempindex <- left_join(fallcensus_bottomtemp, boxarea) %>%
   dplyr::group_by(time) %>%
   dplyr::summarise(meantemp = weighted.mean(atoutput, proparea)) %>%
+  dplyr::filter(time %in% fittimes) %>%
   dplyr::mutate(year = ceiling(time/stepperyr)) %>%
   dplyr::select(year, meantemp) %>%
   write_csv(paste0(o.name,"observation_temperature_NOBA_",survey.name,".csv"))
@@ -928,6 +942,7 @@ springcensus_bottomtemp <- surveyenv(truebottomtemp, survboxes = survboxes, surv
 springcensus_btempindex <- left_join(springcensus_bottomtemp, boxarea) %>%
   dplyr::group_by(time) %>%
   dplyr::summarise(meantemp = weighted.mean(atoutput, proparea)) %>%
+  dplyr::filter(time %in% fittimes) %>%
   dplyr::mutate(year = ceiling(time/stepperyr)) %>%
   dplyr::select(year, meantemp) %>%
   write_csv(paste0(o.name,"observation_temperature_NOBA_",survey.name,".csv"))

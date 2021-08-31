@@ -178,10 +178,27 @@ NOBAom_ms_diet <- om_diet(config = here("SkillAssessment/config", "NOBA2config.R
 
 Code here takes the saved atlantisom .rds output files and generates model input files. 
 
-We will use a subset of the full NOBA atlantis output, leaving out the model spin up period and the projection period at the end of the run. The goal will be a 60 year dataset for model testing, starting before the onset of fishing and including all of the F contrast built in.
+We will use a subset of the full NOBA atlantis output, leaving out the model spin up period and the projection period at the end of the run. The goal will be a 80 year dataset for model testing, starting before the onset of fishing and including all of the F contrast built in.
 
 ```{r modtime}
 
+fitstartyr <- 40
+fitendyr <- 120
+
+#Number of years of data to pull
+nyears <- NOBAom_ms$runpar$nyears
+total_sample <- NOBAom_ms$runpar$tstop/NOBAom_ms$runpar$outputstep
+stepperyr <- if(NOBAom_ms$runpar$outputstepunit=="days") 365/NOBAom_ms$runpar$toutinc
+
+atlantis_full <- c(0:total_sample)  
+mod_burnin <- fitstartyr*stepperyr+1
+fit_nyears <- fitendyr-fitstartyr
+fit_ntimes <- fit_nyears*stepperyr
+fittimes <- atlantis_full[mod_burnin:(mod_burnin+fit_ntimes-1)]
+#fit_timesteps <- seq(fittimes[stepperyr], max(fittimes), by=stepperyr) #last timestep
+fit_years <- unique(floor(fittimes/stepperyr)) #from Christine's new sardine_config.R
+
+  
 ```
 
 

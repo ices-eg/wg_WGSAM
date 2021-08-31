@@ -178,6 +178,13 @@ NOBAom_ms_diet <- om_diet(config = here("SkillAssessment/config", "NOBA2config.R
 
 Code here takes the saved atlantisom .rds output files and generates model input files. 
 
+We will use a subset of the full NOBA atlantis output, leaving out the model spin up period and the projection period at the end of the run. The goal will be a 60 year dataset for model testing, starting before the onset of fishing and including all of the F contrast built in.
+
+```{r modtime}
+
+```
+
+
 #### Length-structured multispecies model (Hydra)
 
 For the length-based model [hydra](https://github.com/thefaylab/hydra_sim), we can write .csv files to be used as input in the [hydradata](https://github.com/thefaylab/hydradata) package, which writes .dat and .pin files.
@@ -616,7 +623,7 @@ write_csv(allcatch, paste0(o.name,"observation_catch_NOBA_allfisheries.csv"))
 ```{r, eval=FALSE}
 
 #optional Atlantis check: print true B and catch time series
-NOBArun <- "sacc_30"
+NOBArun <- "sacc_38"
 
 biotrue <- ggplot(NOBAom_ms$truetotbio_ss, aes(x=time, y=atoutput)) +
   geom_line() +
@@ -701,6 +708,8 @@ write_csv(allsvlenbin, paste0(o.name,"observation_lengths_NOBA_allsurvs.csv"))
 
 #requires read_savedfisheries function, added to atlantisom 30 June
 catchlen_ss <- atlantisom::read_savedfisheries(d.name, "catchLen")
+
+# FISHERY IS SAMPLED 5x PER YEAR--NEED TO ACCOUNT FOR THIS
 
 allfishlenbin <- tibble()
 for(f in names(catchlen_ss)){

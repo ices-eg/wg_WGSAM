@@ -5,10 +5,10 @@ fishery.name="census"
 fishspp <- omlist_ss$species_ss 
 
 #Number of years of data to pull
-nyears <- 50
+nyears <- omlist_ss$runpar$nyears
 
 #Atlantis initialization period in years
-burnin <- 30
+burnin <- 0
 
 # fishery output: learned the hard way this can be different from ecosystem outputs
 fstepperyr <- if(omlist_ss$runpar$outputstepunit=="days") 365/omlist_ss$runpar$toutfinc

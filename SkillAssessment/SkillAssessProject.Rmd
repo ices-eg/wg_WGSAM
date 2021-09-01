@@ -180,7 +180,7 @@ Code here takes the saved atlantisom .rds output files and generates model input
 
 We will use a subset of the full NOBA atlantis output, leaving out the model spin up period and the projection period at the end of the run. The goal will be a 80 year dataset for model testing, starting before the onset of fishing and including all of the F contrast built in.
 
-```{r modtime}
+```{r modtime, eval=FALSE}
 
 fitstartyr <- 40
 fitendyr <- 120

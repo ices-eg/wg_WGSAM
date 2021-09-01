@@ -200,7 +200,7 @@ pre code {
 
 <h1 class="title toc-ignore">WGSAM Skill Assessment Project Page</h1>
 <h4 class="author">Sarah Gaichas, Valerio Bartolino, and WGSAM</h4>
-<h4 class="date">27 August, 2021</h4>
+<h4 class="date">01 September, 2021</h4>
 
 </div>
 
@@ -503,10 +503,10 @@ fishery.name=&quot;census&quot;
 fishspp &lt;- omlist_ss$species_ss 
 
 #Number of years of data to pull
-nyears &lt;- 50
+nyears &lt;- omlist_ss$runpar$nyears
 
 #Atlantis initialization period in years
-burnin &lt;- 30
+burnin &lt;- 0
 
 # fishery output: learned the hard way this can be different from ecosystem outputs
 fstepperyr &lt;- if(omlist_ss$runpar$outputstepunit==&quot;days&quot;) 365/omlist_ss$runpar$toutfinc
@@ -600,6 +600,23 @@ NOBAom_ms_diet &lt;- om_diet(config = here(&quot;SkillAssessment/config&quot;, &
 <div id="create-input-files-for-each-multispecies-model" class="section level3">
 <h3>Create input files for each multispecies model</h3>
 <p>Code here takes the saved atlantisom .rds output files and generates model input files.</p>
+<p>We will use a subset of the full NOBA atlantis output, leaving out the model spin up period and the projection period at the end of the run. The goal will be a 80 year dataset for model testing, starting before the onset of fishing and including all of the F contrast built in.</p>
+<pre class="r"><code>fitstartyr &lt;- 40
+fitendyr &lt;- 120
+
+#Number of years of data to pull
+nyears &lt;- NOBAom_ms$runpar$nyears
+total_sample &lt;- NOBAom_ms$runpar$tstop/NOBAom_ms$runpar$outputstep
+stepperyr &lt;- if(NOBAom_ms$runpar$outputstepunit==&quot;days&quot;) 365/NOBAom_ms$runpar$toutinc
+
+atlantis_full &lt;- c(0:total_sample)  
+mod_burnin &lt;- fitstartyr*stepperyr+1
+fit_nyears &lt;- fitendyr-fitstartyr
+fit_ntimes &lt;- fit_nyears*stepperyr
+fittimes &lt;- atlantis_full[mod_burnin:(mod_burnin+fit_ntimes-1)]
+#fit_timesteps &lt;- seq(fittimes[stepperyr], max(fittimes), by=stepperyr) #last timestep
+fit_years &lt;- unique(floor(fittimes/stepperyr)) #from Christine&#39;s new sardine_config.R
+fittimes.days &lt;- fittimes*73</code></pre>
 <div id="length-structured-multispecies-model-hydra" class="section level4">
 <h4>Length-structured multispecies model (Hydra)</h4>
 <p>For the length-based model <a href="https://github.com/thefaylab/hydra_sim">hydra</a>, we can write .csv files to be used as input in the <a href="https://github.com/thefaylab/hydradata">hydradata</a> package, which writes .dat and .pin files.</p>
@@ -763,7 +780,7 @@ len_comp_data &lt;- read_savedsurvs(d.name, &#39;survLen&#39;)
 
 annage_comp_data &lt;- read_savedsurvs(d.name, &#39;survAnnAge&#39;)
 
-
+vb1 &lt;- vbFuns()
 #multiple surveys named in list object, use as filename
 for(s in names(len_comp_data)){
   
@@ -774,6 +791,9 @@ for(s in names(len_comp_data)){
     
   # Figure out the groups that have multiple ages classes in each stage (or
   # cohort)
+  # line from omdiensions.R
+  sp_age &lt;- NOBAom_ms$funct.group_ss[, c(&quot;Name&quot;, &quot;NumCohorts&quot;, &quot;NumAgeClassSize&quot;)]
+
   multiple_ages &lt;- sp_age[sp_age$NumAgeClassSize&gt;1,]
   
   # finds the average age of each agecl each timestep based on truenatage
@@ -788,7 +808,7 @@ for(s in names(len_comp_data)){
   #arrange into long format: year, Species, agecl, length 
   svlenage &lt;- len_comp_data[[s]][[1]] %&gt;%
     dplyr::left_join(svlen_avgage) %&gt;%
-    dplyr::mutate(year = ceiling(time/stepperyr)) %&gt;%
+    dplyr::mutate(year = floor(time/stepperyr)) %&gt;%
     dplyr::select(species, agecl, avgage, year, upper.bins, atoutput) %&gt;%
     dplyr::mutate(avgage = coalesce(avgage,agecl)) %&gt;%
     dplyr::rename(length = upper.bins) %&gt;%
@@ -944,15 +964,16 @@ sizebins &lt;- as.data.frame(newbins) %&gt;%
 
 write_csv(sizebins, paste0(o.name,&quot;length_sizebins_NOBA.csv&quot;))</code></pre>
 <p>Survey biomass and catch datasets in long input format (all surveys together, all fleets together eventually). Fishery catch is not currently separated into fleets; lets do that in phase II:</p>
+<p>These datasets are filtered to the model fit start and end years defined above.</p>
 <pre class="r"><code>#read in survey biomass data
 survObsBiom &lt;- atlantisom::read_savedsurvs(d.name, &#39;survB&#39;) #reads in all surveys
 
 # get cvs from config files
-svcon &lt;- list.files(path=here(&quot;/SkillAssessment/config/&quot;), pattern = &quot;*survey*&quot;, full.names = TRUE)
-fishcon &lt;- list.files(path=here(&quot;/SkillAssessment/config/&quot;), pattern = &quot;*fishery*&quot;, full.names = TRUE)
+svcon &lt;- list.files(path=here(&quot;SkillAssessment/config/&quot;), pattern = &quot;*survey*&quot;, full.names = TRUE)
+fishcon &lt;- list.files(path=here(&quot;SkillAssessment/config/&quot;), pattern = &quot;*fishery*&quot;, full.names = TRUE)
 
 omlist_ss &lt;- NOBAom_ms
-source(here(&quot;/SkillAssessment/config/omdimensions.R&quot;))
+source(here(&quot;SkillAssessment/config/omdimensions.R&quot;))
 
 svcvlook &lt;- tibble()
 for(c in 1:length(svcon)){
@@ -976,7 +997,8 @@ allsvbio &lt;- tibble()
 for(s in names(survObsBiom)){
   #arrange into wide format: year, Species1, Species2 ... and write csv
   svbio &lt;- survObsBiom[[s]][[1]] %&gt;%
-    dplyr::mutate(year = ceiling(time/stepperyr)) %&gt;%
+    dplyr::filter(time %in% fittimes) %&gt;%
+    dplyr::mutate(year = floor(time/stepperyr)) %&gt;%
     dplyr::select(species, year, atoutput) %&gt;%
     dplyr::rename(biomass = atoutput) %&gt;%
     dplyr::mutate(survey = s) %&gt;%
@@ -994,7 +1016,8 @@ allcatch &lt;- tibble()
 
 for(f in names(catchbio_ss)){
   catchbio &lt;- catchbio_ss[[f]][[1]] %&gt;%
-    dplyr::filter(time&gt;0) %&gt;%
+    #dplyr::filter(time&gt;0) %&gt;%
+    dplyr::filter(time %in% fittimes.days) %&gt;%
     dplyr::mutate(year = time/365) %&gt;%
     dplyr::select(species, year, atoutput) %&gt;%
     dplyr::rename(catch = atoutput) %&gt;%
@@ -1010,7 +1033,7 @@ for(f in names(catchbio_ss)){
 write_csv(allcatch, paste0(o.name,&quot;observation_catch_NOBA_allfisheries.csv&quot;))</code></pre>
 <p>(Below some diagnostic B, catch, and F plots to see if Atlantis is doing what we meant. No peeking.)</p>
 <pre class="r"><code>#optional Atlantis check: print true B and catch time series
-NOBArun &lt;- &quot;sacc_30&quot;
+NOBArun &lt;- &quot;sacc_38&quot;
 
 biotrue &lt;- ggplot(NOBAom_ms$truetotbio_ss, aes(x=time, y=atoutput)) +
   geom_line() +
@@ -1064,7 +1087,8 @@ allsvlenbin &lt;- tibble()
 for(s in names(len_comp_data)){
   #arrange into long format: year, Species, agecl, length 
   svlenbin &lt;- len_comp_data[[s]][[1]] %&gt;%
-    dplyr::mutate(year = ceiling(time/stepperyr)) %&gt;%
+    dplyr::filter(time %in% fittimes) %&gt;%
+    dplyr::mutate(year = floor(time/stepperyr)) %&gt;%
     dplyr::select(species, agecl, year, upper.bins, atoutput) %&gt;%
     dplyr::left_join(modbins) %&gt;%
     dplyr::filter(modbin.min &lt; upper.bins &amp; upper.bins &lt;= modbin.max) %&gt;%
@@ -1089,11 +1113,15 @@ write_csv(allsvlenbin, paste0(o.name,&quot;observation_lengths_NOBA_allsurvs.csv
 #requires read_savedfisheries function, added to atlantisom 30 June
 catchlen_ss &lt;- atlantisom::read_savedfisheries(d.name, &quot;catchLen&quot;)
 
+# FISHERY IS SAMPLED 5x PER YEAR--NEED TO ACCOUNT FOR THIS?
+# This code sums lengths for all all fishery timesteps into year
+
 allfishlenbin &lt;- tibble()
 for(f in names(catchlen_ss)){
   #arrange into long format: year, Species, agecl, length 
   fishlenbin &lt;- catchlen_ss[[f]][[1]] %&gt;%
-    dplyr::mutate(year = ceiling(time/stepperyr)) %&gt;%
+    dplyr::filter(time %in% fittimes) %&gt;%
+    dplyr::mutate(year = floor(time/stepperyr)) %&gt;%
     dplyr::select(species, agecl, year, upper.bins, atoutput) %&gt;%
     dplyr::left_join(modbins) %&gt;%
     dplyr::filter(modbin.min &lt; upper.bins &amp; upper.bins &lt;= modbin.max) %&gt;%
@@ -1134,7 +1162,7 @@ modbins &lt;- sizebins %&gt;%
   arrange(species, sizebin)
 
 # get Dirichlet alphamults from config files
-svcon &lt;- list.files(path=here(&quot;/SkillAssessment/config/&quot;), pattern = &quot;*survey*&quot;, full.names = TRUE)
+svcon &lt;- list.files(path=here(&quot;SkillAssessment/config/&quot;), pattern = &quot;*survey*&quot;, full.names = TRUE)
 
 svalphamultlook &lt;- tibble()
 for(c in 1:length(svcon)){
@@ -1155,7 +1183,8 @@ allsvdietprop &lt;- tibble()
 for(s in names(all_diets)){
   #arrange into lookup for agecl to lengthbin in numbers of fish 
   svagelenbin &lt;- len_comp_data[[s]][[1]] %&gt;%
-    dplyr::mutate(year = ceiling(time/stepperyr)) %&gt;%
+    dplyr::filter(time %in% fittimes) %&gt;%
+    dplyr::mutate(year = floor(time/stepperyr)) %&gt;%
     dplyr::select(species, agecl, year, upper.bins, atoutput) %&gt;%
     dplyr::left_join(modbins) %&gt;%
     dplyr::filter(modbin.min &lt; upper.bins &amp; upper.bins &lt;= modbin.max) %&gt;%
@@ -1163,9 +1192,10 @@ for(s in names(all_diets)){
     dplyr::summarise(sumlen = sum(atoutput)) %&gt;%
     dplyr::group_by(species, year, sizebin) %&gt;%
     dplyr::mutate(propage = sumlen/sum(sumlen)) #proportion of each agecl contributing to lengthbin
-
+  
   svdietprop &lt;- all_diets[[s]][[1]] %&gt;%
-    dplyr::mutate(year = ceiling(time.days/365)) %&gt;%
+    dplyr::filter(time.days %in% fittimes.days) %&gt;%
+    dplyr::mutate(year = floor(time.days/365)) %&gt;%
     # join with agecl to length lookup
     dplyr::select(species, agecl, year, prey, dietSamp) %&gt;%
     dplyr::left_join(svagelenbin) %&gt;%
@@ -1264,7 +1294,8 @@ fallcensus_bottomtemp &lt;- surveyenv(truebottomtemp, survboxes = survboxes, sur
 fallcensus_btempindex &lt;- left_join(fallcensus_bottomtemp, boxarea) %&gt;%
   dplyr::group_by(time) %&gt;%
   dplyr::summarise(meantemp = weighted.mean(atoutput, proparea)) %&gt;%
-  dplyr::mutate(year = ceiling(time/stepperyr)) %&gt;%
+  dplyr::filter(time %in% fittimes) %&gt;%
+  dplyr::mutate(year = floor(time/stepperyr)) %&gt;%
   dplyr::select(year, meantemp) %&gt;%
   write_csv(paste0(o.name,&quot;observation_temperature_NOBA_&quot;,survey.name,&quot;.csv&quot;))
 
@@ -1275,7 +1306,8 @@ springcensus_bottomtemp &lt;- surveyenv(truebottomtemp, survboxes = survboxes, s
 springcensus_btempindex &lt;- left_join(springcensus_bottomtemp, boxarea) %&gt;%
   dplyr::group_by(time) %&gt;%
   dplyr::summarise(meantemp = weighted.mean(atoutput, proparea)) %&gt;%
-  dplyr::mutate(year = ceiling(time/stepperyr)) %&gt;%
+  dplyr::filter(time %in% fittimes) %&gt;%
+  dplyr::mutate(year = floor(time/stepperyr)) %&gt;%
   dplyr::select(year, meantemp) %&gt;%
   write_csv(paste0(o.name,&quot;observation_temperature_NOBA_&quot;,survey.name,&quot;.csv&quot;))</code></pre>
 <p>Code to plot survey temps to check against Atlantis inputs:</p>
@@ -1436,10 +1468,15 @@ write_csv(B0, paste0(o.name,&quot;B0_NOBA.csv&quot;))
 # properly dimension assessment thresholds and effort scaling
 
 #species column names with rowname additionalThreshold and 0s
-write.csv( , paste0(o.name,&quot;assessmentThresholdsSpecies_NOBA.csv&quot;))
+spthresh &lt;- matrix(0, 1, singletons$Nspecies, 
+                   dimnames = c(&quot;additionalThreshold&quot;, list(sort.default(sppsubset$Name))))
+                   
+write.csv(spthresh, paste0(o.name,&quot;assessmentThresholdsSpecies_NOBA.csv&quot;))
 
 #species column names no rowname all 1s
-write_csv( , paste0(o.name,&quot;observation_effortScaling_NOBA.csv&quot;))</code></pre>
+efscale &lt;- as.data.frame(matrix(1, 1, singletons$Nspecies, 
+                   dimnames = c(&quot;&quot;, list(sort.default(sppsubset$Name)))))
+write_csv(efscale, paste0(o.name,&quot;observation_effortScaling_NOBA.csv&quot;))</code></pre>
 <p>Create a pin file:</p>
 <p>Initial N at true age can be pulled directly from Atlantis, but we need N at length, which only comes from survey sampling. Here we will use the first survey observation. However this includes NA values and I don’t know how well this works with the initial values in the .pin file.</p>
 <p>The average recruitment value we will draw from atlantis (vector), and we’ll set the recdevs to 0 to start, but dimension the input as a matrix with year rows and species columns.</p>

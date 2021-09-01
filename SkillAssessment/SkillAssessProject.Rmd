@@ -407,7 +407,7 @@ for(s in names(len_comp_data)){
   #arrange into long format: year, Species, agecl, length 
   svlenage <- len_comp_data[[s]][[1]] %>%
     dplyr::left_join(svlen_avgage) %>%
-    dplyr::mutate(year = ceiling(time/stepperyr)) %>%
+    dplyr::mutate(year = floor(time/stepperyr)) %>%
     dplyr::select(species, agecl, avgage, year, upper.bins, atoutput) %>%
     dplyr::mutate(avgage = coalesce(avgage,agecl)) %>%
     dplyr::rename(length = upper.bins) %>%
@@ -608,7 +608,7 @@ for(s in names(survObsBiom)){
   #arrange into wide format: year, Species1, Species2 ... and write csv
   svbio <- survObsBiom[[s]][[1]] %>%
     dplyr::filter(time %in% fittimes) %>%
-    dplyr::mutate(year = ceiling(time/stepperyr)) %>%
+    dplyr::mutate(year = floor(time/stepperyr)) %>%
     dplyr::select(species, year, atoutput) %>%
     dplyr::rename(biomass = atoutput) %>%
     dplyr::mutate(survey = s) %>%
@@ -626,8 +626,8 @@ allcatch <- tibble()
 
 for(f in names(catchbio_ss)){
   catchbio <- catchbio_ss[[f]][[1]] %>%
-    dplyr::filter(time>0) %>%
-    dplyr::filter(time %in% fittimes) %>%
+    #dplyr::filter(time>0) %>%
+    dplyr::filter(time %in% fittimes.days) %>%
     dplyr::mutate(year = time/365) %>%
     dplyr::select(species, year, atoutput) %>%
     dplyr::rename(catch = atoutput) %>%
@@ -710,7 +710,7 @@ for(s in names(len_comp_data)){
   #arrange into long format: year, Species, agecl, length 
   svlenbin <- len_comp_data[[s]][[1]] %>%
     dplyr::filter(time %in% fittimes) %>%
-    dplyr::mutate(year = ceiling(time/stepperyr)) %>%
+    dplyr::mutate(year = floor(time/stepperyr)) %>%
     dplyr::select(species, agecl, year, upper.bins, atoutput) %>%
     dplyr::left_join(modbins) %>%
     dplyr::filter(modbin.min < upper.bins & upper.bins <= modbin.max) %>%
@@ -743,7 +743,7 @@ for(f in names(catchlen_ss)){
   #arrange into long format: year, Species, agecl, length 
   fishlenbin <- catchlen_ss[[f]][[1]] %>%
     dplyr::filter(time %in% fittimes) %>%
-    dplyr::mutate(year = ceiling(time/stepperyr)) %>%
+    dplyr::mutate(year = floor(time/stepperyr)) %>%
     dplyr::select(species, agecl, year, upper.bins, atoutput) %>%
     dplyr::left_join(modbins) %>%
     dplyr::filter(modbin.min < upper.bins & upper.bins <= modbin.max) %>%
@@ -812,7 +812,7 @@ for(s in names(all_diets)){
   #arrange into lookup for agecl to lengthbin in numbers of fish 
   svagelenbin <- len_comp_data[[s]][[1]] %>%
     dplyr::filter(time %in% fittimes) %>%
-    dplyr::mutate(year = ceiling(time/stepperyr)) %>%
+    dplyr::mutate(year = floor(time/stepperyr)) %>%
     dplyr::select(species, agecl, year, upper.bins, atoutput) %>%
     dplyr::left_join(modbins) %>%
     dplyr::filter(modbin.min < upper.bins & upper.bins <= modbin.max) %>%
@@ -823,7 +823,7 @@ for(s in names(all_diets)){
   
   svdietprop <- all_diets[[s]][[1]] %>%
     dplyr::filter(time.days %in% fittimes.days) %>%
-    dplyr::mutate(year = ceiling(time.days/365)) %>%
+    dplyr::mutate(year = floor(time.days/365)) %>%
     # join with agecl to length lookup
     dplyr::select(species, agecl, year, prey, dietSamp) %>%
     dplyr::left_join(svagelenbin) %>%
@@ -931,7 +931,7 @@ fallcensus_btempindex <- left_join(fallcensus_bottomtemp, boxarea) %>%
   dplyr::group_by(time) %>%
   dplyr::summarise(meantemp = weighted.mean(atoutput, proparea)) %>%
   dplyr::filter(time %in% fittimes) %>%
-  dplyr::mutate(year = ceiling(time/stepperyr)) %>%
+  dplyr::mutate(year = floor(time/stepperyr)) %>%
   dplyr::select(year, meantemp) %>%
   write_csv(paste0(o.name,"observation_temperature_NOBA_",survey.name,".csv"))
 
@@ -943,7 +943,7 @@ springcensus_btempindex <- left_join(springcensus_bottomtemp, boxarea) %>%
   dplyr::group_by(time) %>%
   dplyr::summarise(meantemp = weighted.mean(atoutput, proparea)) %>%
   dplyr::filter(time %in% fittimes) %>%
-  dplyr::mutate(year = ceiling(time/stepperyr)) %>%
+  dplyr::mutate(year = floor(time/stepperyr)) %>%
   dplyr::select(year, meantemp) %>%
   write_csv(paste0(o.name,"observation_temperature_NOBA_",survey.name,".csv"))
 

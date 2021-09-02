@@ -953,15 +953,17 @@ Code to plot survey temps to check against Atlantis inputs:
 
 ```{r, eval=FALSE}
 #optional temperature plots
-fallsacc30 <- ggplot(fallcensus_btempindex, aes(x=year, y=meantemp)) + 
-  geom_line() + 
-  labs(title = "Fall mean bottom temperature NOBA sacc_30")
+NOBArun <- "sacc_38"
 
-springsacc30 <- ggplot(springcensus_btempindex, aes(x=year, y=meantemp)) + 
+fallavgtemp <- ggplot(fallcensus_btempindex, aes(x=year, y=meantemp)) + 
   geom_line() + 
-  labs(title="Spring mean bottom temperature NOBA sacc_30")
+  labs(title = paste0("Fall mean bottom temperature NOBA", NOBArun)
 
-fallsacc30 + springsacc30
+springavgtemp <- ggplot(springcensus_btempindex, aes(x=year, y=meantemp)) + 
+  geom_line() + 
+  labs(title = paste0("Spring mean bottom temperature NOBA", NOBArun)
+
+fallavgtemp + springavgtemp
 
 ```
 
@@ -1131,6 +1133,13 @@ efscale <- as.data.frame(matrix(1, 1, singletons$Nspecies,
                    dimnames = c("", list(sort.default(sppsubset$Name)))))
 write_csv(efscale, paste0(o.name,"observation_effortScaling_NOBA.csv"))
 
+#same formats for residence time (1=efscale) and outside mortality (0=spthresh)
+write_csv(efscale, paste0(o.name,"restime_NOBA.csv"))
+
+outmort <- as.data.frame(matrix(0, 1, singletons$Nspecies, 
+                  dimnames = c("", list(sort.default(sppsubset$Name)))))
+write_csv(outmort, paste0(o.name,"outsidemort_NOBA.csv"))
+
 
 ```
 
@@ -1198,6 +1207,23 @@ avgrec <- NOBAom_ms$YOY_ss %>% #wide dataset with code as column headings and *d
 write.csv(avgrec, paste0(o.name,"AvgRecPinData_NOBA.csv"))
 write.csv(recdev, paste0(o.name,"RecDevsPinData_NOBA.csv"))
 
+# matrix q 1.00E-30 for species not caught in gear
+# species rows gears columns
+fishingq <- 
+
+write.csv(fishingq, paste0(o.name,"fishing_q_NOBA.csv"))
+
+# matrix 0 species rows gears columns  
+fishingerr <- 
+
+write.csv(fishingerr, paste0(o.name,"fishing_error_NOBA.csv"))
+
+# matrix species columns rows survey q and obs error
+surveyinf <- 
+  
+write.csv(surveyinf, paste0(o.name,"survey_info_NOBA.csv"))
+
+# will need to add fishery and survey selectivity pars to pin 
 
 ```
 

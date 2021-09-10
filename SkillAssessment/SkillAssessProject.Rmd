@@ -1327,12 +1327,12 @@ write_csv(recdev, paste0(o.name,"RecDevsPinData_NOBA.csv"))
 
 # matrix q 1.00E-30 for species not caught in gear
 # species rows gears columns
-fishingq <- 
+fishingq <- as.data.frame(matrix())
 
 write.csv(fishingq, paste0(o.name,"fishing_q_NOBA.csv"))
 
 # matrix 0 species rows gears columns  
-fishingerr <- 
+fishingerr <- as.data.frame(matrix(0,))
 
 write.csv(fishingerr, paste0(o.name,"fishing_error_NOBA.csv"))
 

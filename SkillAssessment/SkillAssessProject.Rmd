@@ -1300,16 +1300,30 @@ write.csv(modstartNlen, paste0(o.name,"observation_Y1N_NOBA.csv"))
   avgrec <- truerec %>%
     filter(Time %in% fittimes.days) %>%
     group_by(Name) %>%
-    summarize(AvgRec = log(mean(recnums)/1000000)) %>%
+    summarize(AvgRec = mean(log(recnums/1000000))) %>%
     ungroup() %>%
     pivot_wider(names_from = Name, values_from = AvgRec) 
   
   avgrec <- as.data.frame(avgrec, row.names = "AvgRec")
     
 
-
 write.csv(avgrec, paste0(o.name,"AvgRecPinData_NOBA.csv"))
-write.csv(recdev, paste0(o.name,"RecDevsPinData_NOBA.csv"))
+
+recdev <- truerec %>%
+  filter(Time %in% fittimes.days) %>%
+  mutate(logrec = log(recnums/1000000)) %>%
+  group_by(Name) %>%
+  mutate(meanrec = mean(logrec),
+         recdevs = logrec-meanrec) %>%
+  ungroup() %>%
+  dplyr::mutate(year = Time/365) %>%
+  dplyr::select(species=Name, year, recdevs) %>%
+  tidyr::pivot_wider(names_from = species, values_from = recdevs, names_sort = TRUE)
+  
+#visual check only works up to ungroup statement
+#ggplot(recdev, aes(x=Time, y=recdevs)) + geom_line() + facet_wrap(~Name)
+
+write_csv(recdev, paste0(o.name,"RecDevsPinData_NOBA.csv"))
 
 # matrix q 1.00E-30 for species not caught in gear
 # species rows gears columns

@@ -1145,59 +1145,61 @@ write_csv(outmort, paste0(o.name,"outsidemort_NOBA.csv"))
 
 Create a pin file: 
 
-Initial N at true age can be pulled directly from Atlantis, but we need N at length, which only comes from survey sampling. Here we will use the first survey observation. However this includes NA values and I don't know how well this works with the initial values in the .pin file. 
+Initial N at true age can be pulled directly from Atlantis, but we need N at length, which only comes from survey sampling. If we use the first survey observation, this includes NA values and also misses some species that leave the model domain. I don't think this works with the initial values in the .pin file. 
+
+An alternative is to use the modeling start time (after Atlantis spinup) but use the timestep within the year that has recruits coming in for each species. Otherwise we miss the smallest fish, but if we sum or average over the year we will double count fish that grow between length bins. The code below calculates lengths for each timestep within the first modeled year, then constructs the initial true N at age matrix using the timestep for each species with the smallest fish (recruitment time). There are still 2 species that we miss because they are apparently smallest when outside the model domain. 
+
+We also need recruitment at the timestep it happens to caculate average recruitment for all species. However, the `YOY.txt` output file simply repeats recruitment in a given year for each timestep so we just select the timestep equivalent to the end of each year to calculate the average and deviations. Log mean recruitment and deviations are hydra pin inputs. 
 
 The average recruitment value we will draw from atlantis (vector), and we'll set the recdevs to 0 to start, but dimension the input as a matrix with year rows and species columns.
 
 ```{r pin, eval=FALSE}
 
 #this is true N at age at time 0, but perhaps less relevant given atlantis spinup
-startN <- NOBAom_ms$truenumsage_ss %>%
-  filter(time==0) %>%
-  group_by(species, agecl) %>%
-  summarise(trueN = sum(atoutput)) %>%
-  pivot_wider(names_from = agecl, values_from = trueN)
+# startN <- NOBAom_ms$truenumsage_ss %>%
+#   filter(time==0) %>%
+#   group_by(species, agecl) %>%
+#   summarise(trueN = sum(atoutput)) %>%
+#   pivot_wider(names_from = agecl, values_from = trueN)
 
 #True N at model fit start
 #run this through atlantisom age2length? no equivalent wt info
-modstartN <- NOBAom_ms$truenumsage_ss %>%
-  filter(time %in% fittimes) %>%
-  filter(time == min(time)) %>%
-  group_by(species, agecl) %>%
-  summarise(trueN = sum(atoutput)) %>%
-  pivot_wider(names_from = agecl, values_from = trueN)
+# modstartN <- NOBAom_ms$truenumsage_ss %>%
+#   filter(time %in% fittimes) %>%
+#   filter(time == min(time)) %>%
+#   group_by(species, agecl) %>%
+#   summarise(trueN = sum(atoutput)) %>%
+#   pivot_wider(names_from = agecl, values_from = trueN)
 
 # true N at agecl at model fit start, can run through age2length
+# keep first 5 timesteps (1 yr) to filter later for time when each species recruits
 modstartN <- NOBAom_ms$truenums_ss %>%
-  filter(time %in% fittimes) %>%
-  group_by(species) %>%
-  filter(time == min(time)) %>%
-  group_by(species, agecl) %>%
+  filter(time %in% fittimes[1:5]) %>%
+  # group_by(species) %>%
+  # filter(time == min(time)) %>%
+  group_by(species, agecl, time) %>%
   summarise(atoutput = sum(atoutput)) %>%
-  mutate(time = 1,
-         polygon = "NA",
+  mutate(polygon = "NA",
          layer = "NA") %>%
   as.data.frame()
 
 modstartresn <- NOBAom_ms$trueresn_ss %>%
-  filter(time %in% fittimes) %>%
-  group_by(species) %>%
-  filter(time == min(time)) %>%
-  group_by(species, agecl) %>%
+  filter(time %in% fittimes[1:5]) %>%
+  #group_by(species) %>%
+  #filter(time == min(time)) %>%
+  group_by(species, agecl, time) %>%
   summarise(atoutput = median(atoutput)) %>%
-  mutate(time = 1,
-         polygon = "NA",
+  mutate(polygon = "NA",
          layer = "NA") %>%
   as.data.frame()
 
 modstartstructn <- NOBAom_ms$truestructn_ss %>%
-  filter(time %in% fittimes) %>%
-  group_by(species) %>%
-  filter(time == min(time)) %>%
-  group_by(species, agecl) %>%
+  filter(time %in% fittimes[1:5]) %>%
+  #group_by(species) %>%
+  #filter(time == min(time)) %>%
+  group_by(species, agecl, time) %>%
   summarise(atoutput = median(atoutput)) %>%
-  mutate(time = 1,
-         polygon = "NA",
+  mutate(polygon = "NA",
          layer = "NA") %>%
   as.data.frame()
 
@@ -1216,13 +1218,24 @@ modstartlen <- atlantisom::calc_age2length(structn = modstartstructn,
                                            CVlenage = lenage_cv,
                                            remove.zeroes=TRUE)
 
+#find the time with the smallest fish and use that for each spp
+smallest <- modstartlen$natlength %>%
+  group_by(species) %>%
+  filter(lower.bins == min(lower.bins)) %>%
+  filter(atoutput == max(atoutput)) %>%
+  select(species, rectime=time)
+
+#this should be in millions for hydra
   
 modstartNlen <- modstartlen$natlength %>%
-  dplyr::select(species, agecl, upper.bins, atoutput) %>%
+  dplyr::select(species, agecl, time, upper.bins, atoutput) %>%
+  dplyr::left_join(smallest) %>%
+  dplyr::filter(time == rectime) %>%
+  dplyr::select(-time, -rectime) %>%
   dplyr::left_join(modbins) %>%
   dplyr::filter(modbin.min < upper.bins & upper.bins <= modbin.max) %>%
   dplyr::group_by(species, sizebin) %>%
-  dplyr::summarise(sumlen = sum(atoutput)) %>%
+  dplyr::summarise(sumlen = sum(atoutput)/1000000) %>%
   tidyr::spread(sizebin, sumlen) %>%
   ungroup() %>%
   replace(is.na(.),0) # use 0 for missing value in pin file
@@ -1250,26 +1263,50 @@ write.csv(modstartNlen, paste0(o.name,"observation_Y1N_NOBA.csv"))
 #start with true recruitment, find single input for the year, average over years
 
 # rectiming is a dataframe with species code, time_spawn (day of year),
-  # recruit_time (number of days), and recruit period (number of days).
-  # we use these to calculate recstart (day of year) and recend (day of year)
-  rectiming <- merge(NOBAom_ms$biol$time_spawn, NOBAom_ms$biol$recruit_time, by = 1)
-  rectiming <- merge(rectiming, NOBAom_ms$biol$recruit_period, by = 1)
-  names(rectiming) <- c("Code", "time_spawn", "recruit_time", "recruit_period")
-  rectiming <- rectiming %>%
-    dplyr::mutate(recstart = time_spawn + recruit_time) %>%
-    dplyr::mutate(recend = recstart + recruit_period)
+# but I don't think we need it
+  # # recruit_time (number of days), and recruit period (number of days).
+  # # we use these to calculate recstart (day of year) and recend (day of year)
+  # rectiming <- merge(NOBAom_ms$biol$time_spawn, NOBAom_ms$biol$recruit_time, by = 1)
+  # rectiming <- merge(rectiming, NOBAom_ms$biol$recruit_period, by = 1)
+  # names(rectiming) <- c("Code", "time_spawn", "recruit_time", "recruit_period")
+  # rectiming <- rectiming %>%
+  #   dplyr::mutate(recstart = time_spawn + recruit_time) %>%
+  #   dplyr::mutate(recend = recstart + recruit_period)
+  # 
+  # #subset recpars to groups of interest
+  # recstart_temp <- rectiming[rectiming$Code %in% NOBAom_ms$code_ss,]
   
-  avgrec <- NOBAom_ms$YOY_ss %>% 
-    pivot_longer(-Time, names_to = "Code", values_to = "rec") %>%
+  nitro <- merge(NOBAom_ms$biol$kwsr, NOBAom_ms$biol$kwrr, by = "1")
+  names(nitro) <- c("Code", "KWSR", "KWRR")
+  
+  nitro <- nitro %>%
+    group_by(Code) %>%
+    mutate(Nsum = sum(KWSR, KWRR))
+
+  truerec <- NOBAom_ms$YOY_ss %>% 
+    pivot_longer(-Time, names_to = "Code", values_to = "recwt") %>%
     mutate(Code = gsub("\\.0", "", Code)) %>%
-    left_join(rectiming) %>%
-    ifelse(Time%%365==0, 
-            mutate(timerecstart = Time+recstart,
-                   timerecend = Time+recend), 
-            mutate(timerecstart = recstart,
-                   timerecend = recend))
-            
-   
+    filter(Time>0) %>% # this output not meaningful
+    filter(Time %in% seq(365, max(Time), by=365)) %>%
+    left_join(NOBAom_ms$funct.group_ss[, c("Code", "Name")]) %>%
+    left_join(nitro) %>%
+    mutate(recnums = (recwt * 50000000.0 / NOBAom_ms$biol$redfieldcn) / Nsum)
+  
+  ggplot(truerec, aes(x=Time, y=recnums)) + 
+    geom_line() + 
+    facet_wrap(~Name, scales = "free_y")
+  
+  #model input log(millions)
+  avgrec <- truerec %>%
+    filter(Time %in% fittimes.days) %>%
+    group_by(Name) %>%
+    summarize(AvgRec = log(mean(recnums)/1000000)) %>%
+    ungroup() %>%
+    pivot_wider(names_from = Name, values_from = AvgRec) 
+  
+  avgrec <- as.data.frame(avgrec, row.names = "AvgRec")
+    
+
 
 write.csv(avgrec, paste0(o.name,"AvgRecPinData_NOBA.csv"))
 write.csv(recdev, paste0(o.name,"RecDevsPinData_NOBA.csv"))

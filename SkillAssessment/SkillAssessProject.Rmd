@@ -285,7 +285,7 @@ sizepref <- as.data.frame(sizepref[-1,])
 # dimensions for singletons file
 singletons <- data.frame(
   debug=3,
-  Nyrs=NOBAom_ms$runpar$nyears, #may want to take from survey time series instead
+  Nyrs=fit_nyears, #may want to take from survey time series instead
   Nspecies=length(sppsubset$Name),
   Nsizebins=5,
   Nareas=1,

@@ -1327,17 +1327,37 @@ write_csv(recdev, paste0(o.name,"RecDevsPinData_NOBA.csv"))
 
 # matrix q 1.00E-30 for species not caught in gear
 # species rows gears columns
-fishingq <- as.data.frame(matrix())
+fleets <- unique(NOBAom_ms$truecatchage_ss$fleet)
 
-write.csv(fishingq, paste0(o.name,"fishing_q_NOBA.csv"))
+#which fisheries catch witch species?
+catchperfishery <- read.table(here("SkillAssessment/atlantisoutput/NOBA_sacc_38/nordic_runresults_01CatchPerFishery.txt"), header = TRUE) 
+
+fishingq <- catchperfishery %>%
+  pivot_longer(c(-Time, -Fishery), names_to = "species") %>%
+  filter(value>0) %>%
+  group_by(Fishery, species) %>%
+  summarise(totalcatch = sum(value)) %>%
+  left_join(NOBAom_ms$funct.group_ss, by = c("species"="Code")) %>%
+  select(Fishery, Name, totalcatch) %>%
+  mutate(totalcatch = 1) %>%
+  filter(!is.na(Name)) %>%
+  arrange(match(Fishery, fleets)) %>%
+  pivot_wider(names_from = Fishery, values_from = totalcatch) %>%
+  arrange(Name) %>%
+  replace(is.na(.),0)
+
+write_csv(fishingq, paste0(o.name,"fishing_q_NOBA.csv"))
 
 # matrix 0 species rows gears columns  
-fishingerr <- as.data.frame(matrix(0,))
+fishingerr <- matrix(0, singletons$Nspecies, singletons$Nfleets,
+                   dimnames = list(c(sort.default(sppsubset$Name)), fleets))
 
 write.csv(fishingerr, paste0(o.name,"fishing_error_NOBA.csv"))
 
 # matrix species columns rows survey q and obs error
-surveyinf <- 
+surveyinf <- matrix(c(1,0), 2, singletons$Nspecies,
+                   dimnames = list(c("q", "obs_error"), c(sort.default(sppsubset$Name))))
+
   
 write.csv(surveyinf, paste0(o.name,"survey_info_NOBA.csv"))
 

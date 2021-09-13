@@ -1343,6 +1343,7 @@ fishingq <- catchperfishery %>%
   filter(!is.na(Name)) %>%
   arrange(match(Fishery, fleets)) %>%
   pivot_wider(names_from = Fishery, values_from = totalcatch) %>%
+  add_row(Name = c("Long_rough_dab", "Polar_cod")) %>%
   arrange(Name) %>%
   replace(is.na(.),0)
 

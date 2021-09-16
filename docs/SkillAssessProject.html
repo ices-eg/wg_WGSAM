@@ -200,7 +200,7 @@ pre code {
 
 <h1 class="title toc-ignore">WGSAM Skill Assessment Project Page</h1>
 <h4 class="author">Sarah Gaichas, Valerio Bartolino, and WGSAM</h4>
-<h4 class="date">01 September, 2021</h4>
+<h4 class="date">16 September, 2021</h4>
 
 </div>
 
@@ -694,7 +694,7 @@ sizepref &lt;- as.data.frame(sizepref[-1,])
 # dimensions for singletons file
 singletons &lt;- data.frame(
   debug=3,
-  Nyrs=NOBAom_ms$runpar$nyears, #may want to take from survey time series instead
+  Nyrs=fit_nyears, #may want to take from survey time series instead
   Nspecies=length(sppsubset$Name),
   Nsizebins=5,
   Nareas=1,
@@ -1312,15 +1312,17 @@ springcensus_btempindex &lt;- left_join(springcensus_bottomtemp, boxarea) %&gt;%
   write_csv(paste0(o.name,&quot;observation_temperature_NOBA_&quot;,survey.name,&quot;.csv&quot;))</code></pre>
 <p>Code to plot survey temps to check against Atlantis inputs:</p>
 <pre class="r"><code>#optional temperature plots
-fallsacc30 &lt;- ggplot(fallcensus_btempindex, aes(x=year, y=meantemp)) + 
-  geom_line() + 
-  labs(title = &quot;Fall mean bottom temperature NOBA sacc_30&quot;)
+NOBArun &lt;- &quot;sacc_38&quot;
 
-springsacc30 &lt;- ggplot(springcensus_btempindex, aes(x=year, y=meantemp)) + 
+fallavgtemp &lt;- ggplot(fallcensus_btempindex, aes(x=year, y=meantemp)) + 
   geom_line() + 
-  labs(title=&quot;Spring mean bottom temperature NOBA sacc_30&quot;)
+  labs(title = paste0(&quot;Fall mean bottom temperature NOBA&quot;, NOBArun)
 
-fallsacc30 + springsacc30</code></pre>
+springavgtemp &lt;- ggplot(springcensus_btempindex, aes(x=year, y=meantemp)) + 
+  geom_line() + 
+  labs(title = paste0(&quot;Spring mean bottom temperature NOBA&quot;, NOBArun)
+
+fallavgtemp + springavgtemp</code></pre>
 <p><em>STILL NEEDS RESOLUTION–the per capita consumption from Atlantis seems low relative to actual data</em></p>
 <p>Stomach weights are needed as input to hydra. At present each species has a stomach weight for each size bin that is repeated for each year. We have total consumed weight for each predator age class at each timestep in the detailed diet atlantis output, so would need to map age classes to length bins, sum consumed weight by length bin and divide by total numbers in that length bin to get stomach weight.</p>
 <p>What we have saved so far is a diet comp in proportion that has had bias and observation error added to proportions. However, we need the stomach weight portion of the equation, which has the survey timing/area/efficiency/selectivity applied to true consumed weight. The hydra input is mean daily stomach weight in grams. From the Atlantis manual, “DetailedDietCheck.txt returns the total consumed biomass since the last output given for each cell (box and layer) of each age group of each functional group.” So daily per capita consumed biomass is this output, summed over prey for total consumption, divided by the numbers from the same survey design, divided by the output step <code>omlist_ss$runpar$outputstep</code>.</p>
@@ -1476,65 +1478,227 @@ write.csv(spthresh, paste0(o.name,&quot;assessmentThresholdsSpecies_NOBA.csv&quo
 #species column names no rowname all 1s
 efscale &lt;- as.data.frame(matrix(1, 1, singletons$Nspecies, 
                    dimnames = c(&quot;&quot;, list(sort.default(sppsubset$Name)))))
-write_csv(efscale, paste0(o.name,&quot;observation_effortScaling_NOBA.csv&quot;))</code></pre>
+write_csv(efscale, paste0(o.name,&quot;observation_effortScaling_NOBA.csv&quot;))
+
+#same formats for residence time (1=efscale) and outside mortality (0=spthresh)
+write_csv(efscale, paste0(o.name,&quot;restime_NOBA.csv&quot;))
+
+outmort &lt;- as.data.frame(matrix(0, 1, singletons$Nspecies, 
+                  dimnames = c(&quot;&quot;, list(sort.default(sppsubset$Name)))))
+write_csv(outmort, paste0(o.name,&quot;outsidemort_NOBA.csv&quot;))</code></pre>
 <p>Create a pin file:</p>
-<p>Initial N at true age can be pulled directly from Atlantis, but we need N at length, which only comes from survey sampling. Here we will use the first survey observation. However this includes NA values and I don’t know how well this works with the initial values in the .pin file.</p>
+<p>Initial N at true age can be pulled directly from Atlantis, but we need N at length, which only comes from survey sampling. If we use the first survey observation, this includes NA values and also misses some species that leave the model domain. I don’t think this works with the initial values in the .pin file.</p>
+<p>An alternative is to use the modeling start time (after Atlantis spinup) but use the timestep within the year that has recruits coming in for each species. Otherwise we miss the smallest fish, but if we sum or average over the year we will double count fish that grow between length bins. The code below calculates lengths for each timestep within the first modeled year, then constructs the initial true N at age matrix using the timestep for each species with the smallest fish (recruitment time). There are still 2 species that we miss because they are apparently smallest when outside the model domain.</p>
+<p>We also need recruitment at the timestep it happens to caculate average recruitment for all species. However, the <code>YOY.txt</code> output file simply repeats recruitment in a given year for each timestep so we just select the timestep equivalent to the end of each year to calculate the average and deviations. Log mean recruitment and deviations are hydra pin inputs.</p>
 <p>The average recruitment value we will draw from atlantis (vector), and we’ll set the recdevs to 0 to start, but dimension the input as a matrix with year rows and species columns.</p>
 <pre class="r"><code>#this is true N at age at time 0, but perhaps less relevant given atlantis spinup
-startN &lt;- NOBAom_ms$truenumsage_ss %&gt;%
-  filter(time==0) %&gt;%
-  group_by(species, agecl) %&gt;%
-  summarise(trueN = sum(atoutput)) %&gt;%
-  pivot_wider(names_from = agecl, values_from = trueN)
+# startN &lt;- NOBAom_ms$truenumsage_ss %&gt;%
+#   filter(time==0) %&gt;%
+#   group_by(species, agecl) %&gt;%
+#   summarise(trueN = sum(atoutput)) %&gt;%
+#   pivot_wider(names_from = agecl, values_from = trueN)
 
-#alternatively, use the first set of survey lengths
-surveylen &lt;- read_savedsurvs(d.name, &quot;survLen&quot;)
+#True N at model fit start
+#run this through atlantisom age2length? no equivalent wt info
+# modstartN &lt;- NOBAom_ms$truenumsage_ss %&gt;%
+#   filter(time %in% fittimes) %&gt;%
+#   filter(time == min(time)) %&gt;%
+#   group_by(species, agecl) %&gt;%
+#   summarise(trueN = sum(atoutput)) %&gt;%
+#   pivot_wider(names_from = agecl, values_from = trueN)
 
-#find earliest survey observation across all by time
-#keeps survey name in column_label if we need it
-#this hardcodes using the first replicate if there are replicate survey samples
-startNlen &lt;- pmap(surveylen, bind_rows, .id=&quot;column_label&quot;)[[1]] %&gt;%
-  dplyr::group_by(species) %&gt;% #not all species at all times
-  dplyr::filter(time == min(time)) %&gt;% #earliest data for each species
-  dplyr::select(species, agecl, upper.bins, atoutput) %&gt;%
+# true N at agecl at model fit start, can run through age2length
+# keep first 5 timesteps (1 yr) to filter later for time when each species recruits
+modstartN &lt;- NOBAom_ms$truenums_ss %&gt;%
+  filter(time %in% fittimes[1:5]) %&gt;%
+  # group_by(species) %&gt;%
+  # filter(time == min(time)) %&gt;%
+  group_by(species, agecl, time) %&gt;%
+  summarise(atoutput = sum(atoutput)) %&gt;%
+  mutate(polygon = &quot;NA&quot;,
+         layer = &quot;NA&quot;) %&gt;%
+  as.data.frame()
+
+modstartresn &lt;- NOBAom_ms$trueresn_ss %&gt;%
+  filter(time %in% fittimes[1:5]) %&gt;%
+  #group_by(species) %&gt;%
+  #filter(time == min(time)) %&gt;%
+  group_by(species, agecl, time) %&gt;%
+  summarise(atoutput = median(atoutput)) %&gt;%
+  mutate(polygon = &quot;NA&quot;,
+         layer = &quot;NA&quot;) %&gt;%
+  as.data.frame()
+
+modstartstructn &lt;- NOBAom_ms$truestructn_ss %&gt;%
+  filter(time %in% fittimes[1:5]) %&gt;%
+  #group_by(species) %&gt;%
+  #filter(time == min(time)) %&gt;%
+  group_by(species, agecl, time) %&gt;%
+  summarise(atoutput = median(atoutput)) %&gt;%
+  mutate(polygon = &quot;NA&quot;,
+         layer = &quot;NA&quot;) %&gt;%
+  as.data.frame()
+
+# both below from survey configs
+lenage_cv &lt;- 0.1
+
+# max size bin for length estimation, function defaults to 150 cm if not supplied
+maxbin &lt;- 200
+
+modstartlen &lt;- atlantisom::calc_age2length(structn = modstartstructn,
+                                           resn = modstartresn,
+                                           nums = modstartN,
+                                           biolprm = NOBAom_ms$biol,
+                                           fgs = NOBAom_ms$funct.group_ss,
+                                           maxbin = maxbin,
+                                           CVlenage = lenage_cv,
+                                           remove.zeroes=TRUE)
+
+#find the time with the smallest fish and use that for each spp
+smallest &lt;- modstartlen$natlength %&gt;%
+  group_by(species) %&gt;%
+  filter(lower.bins == min(lower.bins)) %&gt;%
+  filter(atoutput == max(atoutput)) %&gt;%
+  select(species, rectime=time)
+
+#this should be in millions for hydra
+  
+modstartNlen &lt;- modstartlen$natlength %&gt;%
+  dplyr::select(species, agecl, time, upper.bins, atoutput) %&gt;%
+  dplyr::left_join(smallest) %&gt;%
+  dplyr::filter(time == rectime) %&gt;%
+  dplyr::select(-time, -rectime) %&gt;%
   dplyr::left_join(modbins) %&gt;%
   dplyr::filter(modbin.min &lt; upper.bins &amp; upper.bins &lt;= modbin.max) %&gt;%
   dplyr::group_by(species, sizebin) %&gt;%
-  dplyr::summarise(sumlen = sum(atoutput)) %&gt;%
+  dplyr::summarise(sumlen = sum(atoutput)/1000000) %&gt;%
   tidyr::spread(sizebin, sumlen) %&gt;%
-  ungroup()
+  ungroup() %&gt;%
+  replace(is.na(.),0) # use 0 for missing value in pin file
 
-write.csv(startNlen, paste0(o.name,&quot;observation_Y1N_NOBA.csv&quot;))
+# #alternatively, use the first set of survey lengths
+# surveylen &lt;- read_savedsurvs(d.name, &quot;survLen&quot;)
+# 
+# #find earliest survey observation across all by time
+# #keeps survey name in column_label if we need it
+# #this hardcodes using the first replicate if there are replicate survey samples
+# startNlen &lt;- pmap(surveylen, bind_rows, .id=&quot;column_label&quot;)[[1]] %&gt;%
+#   dplyr::filter(time %in% fittimes) %&gt;%
+#   dplyr::group_by(species) %&gt;% #not all species at all times
+#   dplyr::filter(time == min(time)) %&gt;% #earliest data for each species
+#   dplyr::select(species, agecl, upper.bins, atoutput) %&gt;%
+#   dplyr::left_join(modbins) %&gt;%
+#   dplyr::filter(modbin.min &lt; upper.bins &amp; upper.bins &lt;= modbin.max) %&gt;%
+#   dplyr::group_by(species, sizebin) %&gt;%
+#   dplyr::summarise(sumlen = sum(atoutput)) %&gt;%
+#   tidyr::spread(sizebin, sumlen) %&gt;%
+#   ungroup()
+
+write.csv(modstartNlen, paste0(o.name,&quot;observation_Y1N_NOBA.csv&quot;))
 
 #start with true recruitment, find single input for the year, average over years
 
 # rectiming is a dataframe with species code, time_spawn (day of year),
-  # recruit_time (number of days), and recruit period (number of days).
-  # we use these to calculate recstart (day of year) and recend (day of year)
-  rectiming &lt;- merge(NOBAom_ms$biol$time_spawn, NOBAom_ms$biol$recruit_time, by = 1)
-  rectiming &lt;- merge(rectiming, NOBAom_ms$biol$recruit_period, by = 1)
-  names(rectiming) &lt;- c(&quot;Code&quot;, &quot;time_spawn&quot;, &quot;recruit_time&quot;, &quot;recruit_period&quot;)
-  rectiming &lt;- rectiming %&gt;%
-    dplyr::mutate(recstart = time_spawn + recruit_time) %&gt;%
-    dplyr::mutate(recend = recstart + recruit_period)
+# but I don&#39;t think we need it
+  # # recruit_time (number of days), and recruit period (number of days).
+  # # we use these to calculate recstart (day of year) and recend (day of year)
+  # rectiming &lt;- merge(NOBAom_ms$biol$time_spawn, NOBAom_ms$biol$recruit_time, by = 1)
+  # rectiming &lt;- merge(rectiming, NOBAom_ms$biol$recruit_period, by = 1)
+  # names(rectiming) &lt;- c(&quot;Code&quot;, &quot;time_spawn&quot;, &quot;recruit_time&quot;, &quot;recruit_period&quot;)
+  # rectiming &lt;- rectiming %&gt;%
+  #   dplyr::mutate(recstart = time_spawn + recruit_time) %&gt;%
+  #   dplyr::mutate(recend = recstart + recruit_period)
+  # 
+  # #subset recpars to groups of interest
+  # recstart_temp &lt;- rectiming[rectiming$Code %in% NOBAom_ms$code_ss,]
   
-avgrec &lt;- NOBAom_ms$YOY_ss %&gt;% #wide dataset with code as column headings and *duplicate entries*
-  #colMeans()/5 #approximation with 5 output timesteps per year
-  pivot_longer(-Time, names_to = &quot;Code&quot;, values_to = &quot;rec&quot;) %&gt;%
-  mutate(Code = gsub(&quot;\\.0&quot;, &quot;&quot;, Code)) %&gt;%
-  left_join(rectiming) %&gt;%
-  if(Time%%365==0){
-    mutate(timerecstart = Time+recstart,
-         timerecend = Time+recend)
-  }else{
-    mutate(timerecstart = recstart,
-         timerecend = recend)
-  }
+  nitro &lt;- merge(NOBAom_ms$biol$kwsr, NOBAom_ms$biol$kwrr, by = &quot;1&quot;)
+  names(nitro) &lt;- c(&quot;Code&quot;, &quot;KWSR&quot;, &quot;KWRR&quot;)
   
-   
+  nitro &lt;- nitro %&gt;%
+    group_by(Code) %&gt;%
+    mutate(Nsum = sum(KWSR, KWRR))
+
+  truerec &lt;- NOBAom_ms$YOY_ss %&gt;% 
+    pivot_longer(-Time, names_to = &quot;Code&quot;, values_to = &quot;recwt&quot;) %&gt;%
+    mutate(Code = gsub(&quot;\\.0&quot;, &quot;&quot;, Code)) %&gt;%
+    filter(Time&gt;0) %&gt;% # this output not meaningful
+    filter(Time %in% seq(365, max(Time), by=365)) %&gt;%
+    left_join(NOBAom_ms$funct.group_ss[, c(&quot;Code&quot;, &quot;Name&quot;)]) %&gt;%
+    left_join(nitro) %&gt;%
+    mutate(recnums = (recwt * 50000000.0 / NOBAom_ms$biol$redfieldcn) / Nsum)
+  
+  ggplot(truerec, aes(x=Time, y=recnums)) + 
+    geom_line() + 
+    facet_wrap(~Name, scales = &quot;free_y&quot;)
+  
+  #model input log(millions)
+  avgrec &lt;- truerec %&gt;%
+    filter(Time %in% fittimes.days) %&gt;%
+    group_by(Name) %&gt;%
+    summarize(AvgRec = mean(log(recnums/1000000))) %&gt;%
+    ungroup() %&gt;%
+    pivot_wider(names_from = Name, values_from = AvgRec) 
+  
+  avgrec &lt;- as.data.frame(avgrec, row.names = &quot;AvgRec&quot;)
+    
 
 write.csv(avgrec, paste0(o.name,&quot;AvgRecPinData_NOBA.csv&quot;))
-write.csv(recdev, paste0(o.name,&quot;RecDevsPinData_NOBA.csv&quot;))</code></pre>
+
+recdev &lt;- truerec %&gt;%
+  filter(Time %in% fittimes.days) %&gt;%
+  mutate(logrec = log(recnums/1000000)) %&gt;%
+  group_by(Name) %&gt;%
+  mutate(meanrec = mean(logrec),
+         recdevs = logrec-meanrec) %&gt;%
+  ungroup() %&gt;%
+  dplyr::mutate(year = Time/365) %&gt;%
+  dplyr::select(species=Name, year, recdevs) %&gt;%
+  tidyr::pivot_wider(names_from = species, values_from = recdevs, names_sort = TRUE)
+  
+#visual check only works up to ungroup statement
+#ggplot(recdev, aes(x=Time, y=recdevs)) + geom_line() + facet_wrap(~Name)
+
+write_csv(recdev, paste0(o.name,&quot;RecDevsPinData_NOBA.csv&quot;))
+
+# matrix q 1.00E-30 for species not caught in gear
+# species rows gears columns
+fleets &lt;- unique(NOBAom_ms$truecatchage_ss$fleet)
+
+#which fisheries catch witch species?
+catchperfishery &lt;- read.table(here(&quot;SkillAssessment/atlantisoutput/NOBA_sacc_38/nordic_runresults_01CatchPerFishery.txt&quot;), header = TRUE) 
+
+fishingq &lt;- catchperfishery %&gt;%
+  pivot_longer(c(-Time, -Fishery), names_to = &quot;species&quot;) %&gt;%
+  filter(value&gt;0) %&gt;%
+  group_by(Fishery, species) %&gt;%
+  summarise(totalcatch = sum(value)) %&gt;%
+  left_join(NOBAom_ms$funct.group_ss, by = c(&quot;species&quot;=&quot;Code&quot;)) %&gt;%
+  select(Fishery, Name, totalcatch) %&gt;%
+  mutate(totalcatch = 1) %&gt;%
+  filter(!is.na(Name)) %&gt;%
+  arrange(match(Fishery, fleets)) %&gt;%
+  pivot_wider(names_from = Fishery, values_from = totalcatch) %&gt;%
+  add_row(Name = c(&quot;Long_rough_dab&quot;, &quot;Polar_cod&quot;)) %&gt;%
+  arrange(Name) %&gt;%
+  replace(is.na(.),0)
+
+write_csv(fishingq, paste0(o.name,&quot;fishing_q_NOBA.csv&quot;))
+
+# matrix 0 species rows gears columns  
+fishingerr &lt;- matrix(0, singletons$Nspecies, singletons$Nfleets,
+                   dimnames = list(c(sort.default(sppsubset$Name)), fleets))
+
+write.csv(fishingerr, paste0(o.name,&quot;fishing_error_NOBA.csv&quot;))
+
+# matrix species columns rows survey q and obs error
+surveyinf &lt;- matrix(c(1,0), 2, singletons$Nspecies,
+                   dimnames = list(c(&quot;q&quot;, &quot;obs_error&quot;), c(sort.default(sppsubset$Name))))
+
+  
+write.csv(surveyinf, paste0(o.name,&quot;survey_info_NOBA.csv&quot;))
+
+# will need to add fishery and survey selectivity pars to pin </code></pre>
 <p>Write metadata on the surveys:</p>
 <pre class="r"><code>#write readme for metadata
 meta &lt;- c(&quot;Simulated data from Norweigan-Barents Atlantis Model by Hansen et al. \n\n&quot;,
@@ -1557,7 +1721,7 @@ meta &lt;- c(&quot;Simulated data from Norweigan-Barents Atlantis Model by Hanse
           )
 
 cat(as.character(meta), file=paste0(here(&quot;SkillAssessment/msinput/hydra/&quot;),&quot;README.txt&quot;))</code></pre>
-<p>Use <code>hydradata</code> package to create the .dat and .pin files. We are working from the forked <code>hydradata</code> repository at <a href="https://github.com/thefaylab/hydradata" class="uri">https://github.com/thefaylab/hydradata</a> for this project. All of the input .csv files created here have been copied to the <code>data-raw</code> foldr on thefaylab/hydradata repo. The <code>create_RData_NOBA.R</code> file was updated to read these inputs, sourced, and <code>create_RData()</code> was run to make a new hydraDataList.rda file in the package.</p>
+<p>Use <code>hydradata</code> package to create the .dat and .pin files. We are working from the forked <code>hydradata</code> repository at <a href="https://github.com/thefaylab/hydradata" class="uri">https://github.com/thefaylab/hydradata</a> for this project. All of the input .csv files created here have been copied to the <code>data-raw</code> folder on thefaylab/hydradata repo. The <code>create_RData_NOBA.R</code> file was updated to read these inputs, sourced, and <code>create_RData()</code> was run to make a new <code>hydraDataList.rda</code> file in the package. Then the package is built locally and the following code block is run to produce input files.</p>
 <pre class="r"><code>library(hydradata)
 inputs &lt;- setup_default_inputs()
 inputs$outDir &lt;- here(&quot;SkillAssessment/msinput/hydra&quot;)

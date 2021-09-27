@@ -327,7 +327,7 @@ sexratio <- matrix(0.5, 1, singletons$Nspecies,
 
 
 # placeholders for unused covariates dimensioned to the number of simulated years
-dummycovar <- data.frame(dummy1 = rep(1, NOBAom_ms$runpar$nyears))
+dummycovar <- data.frame(dummy1 = rep(1, singletons$Nyrs))
 
 # placeholder for effort data dimensioned by year and nfleets
 allfleets <- atlantisom::load_fisheries(d.name, fisheries.file)

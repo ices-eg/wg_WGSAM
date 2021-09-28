@@ -200,7 +200,7 @@ pre code {
 
 <h1 class="title toc-ignore">WGSAM Skill Assessment Project Page</h1>
 <h4 class="author">Sarah Gaichas, Valerio Bartolino, and WGSAM</h4>
-<h4 class="date">16 September, 2021</h4>
+<h4 class="date">28 September, 2021</h4>
 
 </div>
 
@@ -602,7 +602,7 @@ NOBAom_ms_diet &lt;- om_diet(config = here(&quot;SkillAssessment/config&quot;, &
 <p>Code here takes the saved atlantisom .rds output files and generates model input files.</p>
 <p>We will use a subset of the full NOBA atlantis output, leaving out the model spin up period and the projection period at the end of the run. The goal will be a 80 year dataset for model testing, starting before the onset of fishing and including all of the F contrast built in.</p>
 <pre class="r"><code>fitstartyr &lt;- 40
-fitendyr &lt;- 120
+fitendyr &lt;- 120  #use 110 for sacc30
 
 #Number of years of data to pull
 nyears &lt;- NOBAom_ms$runpar$nyears
@@ -623,6 +623,9 @@ fittimes.days &lt;- fittimes*73</code></pre>
 <p>Hydra needs survey biomass time series, catch time series, survey length composition, fishery length composition, and diet composition data. Hydra also needs temperature data for the consumption equation, input parameters for growth (von Bertalannfy or exponential function parameters), and size bin definitions.</p>
 <p>Hydra inputs will need to be in the same species order for each dataset, so first we make a species file and some of the other input data that can come straight from Atlantis.</p>
 <pre class="r"><code>source(here(&quot;SkillAssessment/config/NOBA2Config.R&quot;))
+
+#climate signal
+#source(here(&quot;SkillAssessment/config/NOBAsacc30Config.R&quot;))
 
 #all_diets &lt;- atlantisom::read_savedsurvs(d.name, &#39;survDiet&#39;)
 
@@ -736,7 +739,7 @@ sexratio &lt;- matrix(0.5, 1, singletons$Nspecies,
 
 
 # placeholders for unused covariates dimensioned to the number of simulated years
-dummycovar &lt;- data.frame(dummy1 = rep(1, NOBAom_ms$runpar$nyears))
+dummycovar &lt;- data.frame(dummy1 = rep(1, singletons$Nyrs))
 
 # placeholder for effort data dimensioned by year and nfleets
 allfleets &lt;- atlantisom::load_fisheries(d.name, fisheries.file)
@@ -1312,16 +1315,17 @@ springcensus_btempindex &lt;- left_join(springcensus_bottomtemp, boxarea) %&gt;%
   write_csv(paste0(o.name,&quot;observation_temperature_NOBA_&quot;,survey.name,&quot;.csv&quot;))</code></pre>
 <p>Code to plot survey temps to check against Atlantis inputs:</p>
 <pre class="r"><code>#optional temperature plots
-NOBArun &lt;- &quot;sacc_38&quot;
+NOBArun &lt;- &quot;sacc_38&quot; 
 
 fallavgtemp &lt;- ggplot(fallcensus_btempindex, aes(x=year, y=meantemp)) + 
   geom_line() + 
-  labs(title = paste0(&quot;Fall mean bottom temperature NOBA&quot;, NOBArun)
+  labs(title = paste0(&quot;Fall mean bottom temperature NOBA&quot;, NOBArun))
 
 springavgtemp &lt;- ggplot(springcensus_btempindex, aes(x=year, y=meantemp)) + 
   geom_line() + 
-  labs(title = paste0(&quot;Spring mean bottom temperature NOBA&quot;, NOBArun)
+  labs(title = paste0(&quot;Spring mean bottom temperature NOBA&quot;, NOBArun))
 
+library(patchwork)
 fallavgtemp + springavgtemp</code></pre>
 <p><em>STILL NEEDS RESOLUTION–the per capita consumption from Atlantis seems low relative to actual data</em></p>
 <p>Stomach weights are needed as input to hydra. At present each species has a stomach weight for each size bin that is repeated for each year. We have total consumed weight for each predator age class at each timestep in the detailed diet atlantis output, so would need to map age classes to length bins, sum consumed weight by length bin and divide by total numbers in that length bin to get stomach weight.</p>
@@ -1574,7 +1578,11 @@ modstartNlen &lt;- modstartlen$natlength %&gt;%
   dplyr::summarise(sumlen = sum(atoutput)/1000000) %&gt;%
   tidyr::spread(sizebin, sumlen) %&gt;%
   ungroup() %&gt;%
-  replace(is.na(.),0) # use 0 for missing value in pin file
+  replace(is.na(.),0) %&gt;% # use 0 for missing value in pin file
+  select(-species) %&gt;%
+  as.matrix()
+
+rownames(modstartNlen) = sort.default(sppsubset$Name)
 
 # #alternatively, use the first set of survey lengths
 # surveylen &lt;- read_savedsurvs(d.name, &quot;survLen&quot;)

@@ -1187,15 +1187,15 @@
 #Guild Membership guildMembership. 
   1 2 3 4 5 6 7 8 9 10 11
 #Fleet Membership fleetMembers(1,Nfleets) 
- 
+  1 2 3 4 5 6 7 8 9 10 11
 # AssessmentPeriod. Time period (yrs) to assess guild biomass level
   3
 # init_int flagLinearRamp. // 0 = step function, 1 = linear function
   1
 #init_vector minExploitation(1,Nfleets) minimum Exploitation rates imposed by each fleet
- 
+  1e-05 1e-05 1e-05 1e-05 1e-05 1e-05 1e-05 1e-05 1e-05 1e-05 1e-05
 #init_vector maxExploitation(1,Nfleets) maximum Exploitation rates imposed by each fleet
- 
+  1e-05 1e-05 1e-05 1e-05 1e-05 1e-05 1e-05 1e-05 1e-05 1e-05 1e-05
 # init_vector minMaxExploitation(1,2) - [MinExploitation, MaxExploitation
   0.05 0.05
 # init_vector minMaxThreshold(1,2) - [MinThreshold, MaxThreshold

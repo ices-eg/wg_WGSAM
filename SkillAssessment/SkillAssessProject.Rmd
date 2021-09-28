@@ -1238,7 +1238,11 @@ modstartNlen <- modstartlen$natlength %>%
   dplyr::summarise(sumlen = sum(atoutput)/1000000) %>%
   tidyr::spread(sizebin, sumlen) %>%
   ungroup() %>%
-  replace(is.na(.),0) # use 0 for missing value in pin file
+  replace(is.na(.),0) %>% # use 0 for missing value in pin file
+  select(-species) %>%
+  as.matrix()
+
+rownames(modstartNlen) = sort.default(sppsubset$Name)
 
 # #alternatively, use the first set of survey lengths
 # surveylen <- read_savedsurvs(d.name, "survLen")

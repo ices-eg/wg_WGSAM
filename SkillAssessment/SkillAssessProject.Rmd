@@ -183,7 +183,7 @@ We will use a subset of the full NOBA atlantis output, leaving out the model spi
 ```{r modtime, eval=FALSE}
 
 fitstartyr <- 40
-fitendyr <- 120
+fitendyr <- 120  #use 110 for sacc30
 
 #Number of years of data to pull
 nyears <- NOBAom_ms$runpar$nyears
@@ -214,6 +214,9 @@ Hydra inputs will need to be in the same species order for each dataset, so firs
 ```{r write-hydra, eval=FALSE}
 
 source(here("SkillAssessment/config/NOBA2Config.R"))
+
+#climate signal
+#source(here("SkillAssessment/config/NOBAsacc30Config.R"))
 
 #all_diets <- atlantisom::read_savedsurvs(d.name, 'survDiet')
 
@@ -953,16 +956,17 @@ Code to plot survey temps to check against Atlantis inputs:
 
 ```{r, eval=FALSE}
 #optional temperature plots
-NOBArun <- "sacc_38"
+NOBArun <- "sacc_38" 
 
 fallavgtemp <- ggplot(fallcensus_btempindex, aes(x=year, y=meantemp)) + 
   geom_line() + 
-  labs(title = paste0("Fall mean bottom temperature NOBA", NOBArun)
+  labs(title = paste0("Fall mean bottom temperature NOBA", NOBArun))
 
 springavgtemp <- ggplot(springcensus_btempindex, aes(x=year, y=meantemp)) + 
   geom_line() + 
-  labs(title = paste0("Spring mean bottom temperature NOBA", NOBArun)
+  labs(title = paste0("Spring mean bottom temperature NOBA", NOBArun))
 
+library(patchwork)
 fallavgtemp + springavgtemp
 
 ```

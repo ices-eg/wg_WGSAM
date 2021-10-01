@@ -1,0 +1,141 @@
+---
+title: "WGSAM 2021"
+author: "Chairs: Sarah Gaichas, Valerio Bartolino"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document: default
+  word_document: default
+link-citations: yes
+csl: plos.csl
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## WGSAM Terms of Reference (ToRs), 2019-2021
+
+ToR a, Regional updates: **Review further progress and deliver key updates on multispecies modelling and ecosystem data analysis contributing to modeling throughout the ICES region**
+
+ToR b, Key-runs:  **Update of key-runs (standardized model runs updated with recent data) of multispecies and ecosystem models for different ICES regions**
+
+ToR c, Skill assessment: **Establish and apply methods to assess the skill of multispecies models intended for operational advice**
+
+ToR d, Multi-model advice: **Evaluate methods for generating advice by comparing and/or combining multiple models**
+
+ToR e, MSE: **Management Strategy Evaluation (MSE) methods and applications for mutispecies and ecosystem advice, including evaluating management procedures and estimating biological reference points**
+
+# WGSAM 2021 Agenda
+
+WGSAM will be held online and by correspondence in 2021 due to the ongoing impacts of the Covid-19 pandemic. Meeting plenary sessions will be for 2 hours each day, 3-5 pm Central Europe, 2-4 pm Western Europe, 9-11 am US East Coast.
+
+If necessary, meetings may extend outside these times to finish work and discussions. We will update the group with any changes.
+
+## Connection information
+
+Join using computer
+
+Link: https://ices.webex.com/ices/j.php?MTID=m24b8f8f2ffa712020a0fc3d2931a780b
+
+password (if required): 123456
+
+ 
+
+Join by phone
+
+Global call-in numbers:
+
+https://ices.webex.com/ices/globalcallin.php?MTID=me593566fa1b2eb83716b12042b2a7078
+
+Meeting number (access code): 2741 733 3904 
+
+For some participants these times are well outside normal work hours (6-8 am on the US West Coast and 2-4 am in New Zealand). Sarah is happy to meet separately later in the day with interested members from those time zones to get your input on issues discussed earlier in the day; please contact Sarah at <Sarah.Gaichas@noaa.gov> if this is of interest and we can set something up.
+
+## Monday 11 October
+
+First hour
+
+* Introductions
+
+* ToR a **Regional Updates** *Please, maximum 10 minutes for ToR a presentations.*
+
+    - Pierre-Yves Hernvann: Ecopath with Ecosim and Ecospace model of the Celtic Sea  (ICES VIIe-j) 
+    - 
+    - Sarah Gaichas: [US updates](https://noaa-edab.github.io/presentations/20201012_WGSAM_USupdate_Gaichas.html)  
+
+Second hour
+
+* ToR b **Key-runs** 
+
+    - Morten Vinther/Anna Rindorf: North Sea SMS keyrun initial presentation  
+
+## Tuesday 12 October
+
+*(Morning meeting of SMS Key-run review subgroup)*
+
+Two hours
+
+* ToR b **Key-runs** continued: 
+
+    - Morten Vinther/Anna Rindorf: answer questions for North Sea SMS review
+    - Primary reviewers (additional volunteers welcome): Valerio, Sarah, Sigrid
+
+## Wednesday 13 October
+
+Two hours
+
+* ToR b **Key-runs** continued: Outline and agree on main points for North Sea SMS review
+
+    - Morten Vinther/Anna Rindorf: answer questions for North Sea SMS review
+    - Primary reviewers (additional volunteers welcome): Valerio, Sarah, Sigrid
+        - [additional M2 plots for review](https://ices-eg.github.io/wg_WGSAM/NorthSeaKeyRun_HerringM2.html)
+        - [additional comparisons with 2017 keyrun](https://ices-eg.github.io/wg_WGSAM/NorthSeaKeyRun_SuppPlots.html)
+
+
+## Thursday 14 October
+
+First hour
+
+* ToR d **Multi-model advice**
+
+    - Robert Thorpe: WKIRISH multispecies advice  
+  
+* ToR c **Skill assessment** 
+
+    - Alex Kempf: Review skill assessment paper
+    - Sarah Gaichas: Multispecies simulated dataset for skill assessment
+        - [Background](https://sgaichas.github.io/poseidon-dev/atlantisom_landingpage.html)
+        - [Single species example simulated data](https://sgaichas.github.io/poseidon-dev/NOBAcod.html)
+        - [Multispecies example simulated data](https://sgaichas.github.io/poseidon-dev/NOBAmsdiets.html)
+    - Valerio Bartolino: introduce group skill assessment effort and plans for the interim work 
+
+Second hour
+
+* ToRs c **Skill assessment**, d **Multi-model advice**, e **MSE** presentations continued
+
+    - Daniel Howell: ToR d--Feco (or Wednesday if better)
+    - Mike Spence: ToR c--Get fit quick – calibrating expensive computer models  in a day
+    - Sean Lucey: ToR e--Rpath MSE capabilities and example
+
+
+## Friday 15 October
+
+Two hours
+
+* ToR b **Key-runs** completion: any issues left for the keyrun
+    - Clarify responsibilities and deadlines for finishing report
+
+* ToR d **Multi-model advice**, e **MSE** presentations continued     
+    - Mike Spence: ToR d and e--Calculating multispecies MSY using a multi-model ensemble
+    
+
+* Plans for next year
+    - Interim meetings and work: 2021 is final year of these ToRs!
+        - Identify subgroup interested in multispecies model and ensemble skill assessment ToRs c and d
+        - Sketch workplan for project, schedule first meeting
+        - Interest in interim subgroup work on any additional ToRs?
+    - Timing of 2021 meeting
+    - Location of 2021 meeting 
+
+
+

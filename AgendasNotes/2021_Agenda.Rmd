@@ -67,7 +67,12 @@ Second hour
 
 * ToR b **Key-runs** 
 
-    - Morten Vinther/Anna Rindorf: North Sea SMS keyrun initial presentation  
+    - Discussion: timing of key-runs with ICES benchmark assessments
+        - Baltic Sea in 2022 for 2023 benchmarks?
+        - Other upcoming benchmarks?
+    - Other potential 2022 key-runs
+        - Georges Bank: multiple models
+        - Celtic Sea: EwE and ecospace
 
 ## Tuesday 12 October
 
@@ -75,21 +80,20 @@ Second hour
 
 Two hours
 
-* ToR b **Key-runs** continued: 
+* ToR c **Skill assessment** 
 
-    - Morten Vinther/Anna Rindorf: answer questions for North Sea SMS review
-    - Primary reviewers (additional volunteers welcome): Valerio, Sarah, Sigrid
+    - Mike Spence: skill metric: inverse of uncertainty
+    - Howard Townsend: skill in a multispecies production model
+    - 
+    
+    - Discussion: skill assessment project progess and work planning
 
 ## Wednesday 13 October
 
 Two hours
 
-* ToR b **Key-runs** continued: Outline and agree on main points for North Sea SMS review
+* ToR d **Multi-model advice** 
 
-    - Morten Vinther/Anna Rindorf: answer questions for North Sea SMS review
-    - Primary reviewers (additional volunteers welcome): Valerio, Sarah, Sigrid
-        - [additional M2 plots for review](https://ices-eg.github.io/wg_WGSAM/NorthSeaKeyRun_HerringM2.html)
-        - [additional comparisons with 2017 keyrun](https://ices-eg.github.io/wg_WGSAM/NorthSeaKeyRun_SuppPlots.html)
 
 
 ## Thursday 14 October
@@ -122,20 +126,17 @@ Second hour
 
 Two hours
 
-* ToR b **Key-runs** completion: any issues left for the keyrun
-    - Clarify responsibilities and deadlines for finishing report
+* Final report on 3 year ToRs
 
-* ToR d **Multi-model advice**, e **MSE** presentations continued     
-    - Mike Spence: ToR d and e--Calculating multispecies MSY using a multi-model ensemble
-    
+* Develop ToRs for upcoming 3 years
 
 * Plans for next year
     - Interim meetings and work: 2021 is final year of these ToRs!
         - Identify subgroup interested in multispecies model and ensemble skill assessment ToRs c and d
         - Sketch workplan for project, schedule first meeting
         - Interest in interim subgroup work on any additional ToRs?
-    - Timing of 2021 meeting
-    - Location of 2021 meeting 
+    - Timing of 2022 meeting
+    - Location of 2022 meeting 
 
 
 

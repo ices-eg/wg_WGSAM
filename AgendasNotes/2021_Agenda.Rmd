@@ -84,7 +84,9 @@ Two hours
         - [Multispecies simulated dataset for skill assessment in progress](https://ices-eg.github.io/wg_WGSAM/SkillAssessProject.html)
         - Overview of simulated dataset available in [mskeyrun R package](https://github.com/NOAA-EDAB/ms-keyrun/tree/dev_package)
     - Howard Townsend: skill in a multispecies production model using mskeyrun simulated data
-    - **Group Discussion:** skill assessment project work planning (schedule subgroup work)  
+    - **Group Discussion:** skill assessment project work planning
+        - Initiate model-specific subgroup work with dataset during this week if possible
+        - Plan 2021-2022 work in subgroup during this week  
     - Mike Spence: skill metric: inverse of uncertainty
     - Igor Celic: Testing uncertainty and goodness of fit of dynamic food web models before building scenarios
     - Robert Thorpe: Mizer hindcast
@@ -98,11 +100,11 @@ Two hours
 
 * ToR d **Multi-model advice**    *Please, maximum 15 minutes for presentations.*
 
+    - Mike Spence: Can we simultaneously adopt a precautionary approach for all fish?: a case study in the North Sea
     - James Martindale: R package for ensemble modeling
-    - Thomas Del Santo O'Neill: Nash equilibrium R package to get reference points for any ecosystem model, and how to adequately get the message of MS models across for decision makers  
+    - Thomas Del Santo O'Neill: Nash equilibrium R package to get reference points for any ecosystem model, and how to adequately get the message of MS models across for decision makers    
 
-
-* ToR e **MSE**
+* ToR e **MSE**  
 
     - Alfonso Perez-Rodriguez: How important is accuracy of natural mortality in stock assessment? the Flemish Cap case study  
 
@@ -112,7 +114,7 @@ Two hours
 Two hours
 
 * Reporting out on 2019-2021 ToRs: synthesize achievements for each ToR
-    - Identify needed summaries from previous years if not on sharepoint
+    - Identify needed summaries from previous years if not on sharepoint *(please provide these ASAP!)*
     - Collect summaries of this year's work
     - Assignments to draft a short summary for each ToR by Friday's plenary
     - List relevant publications 2019-2021  

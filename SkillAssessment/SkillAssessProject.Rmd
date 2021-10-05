@@ -1298,10 +1298,26 @@ write.csv(modstartNlen, paste0(o.name,"observation_Y1N_NOBA.csv"))
     filter(Time %in% seq(365, max(Time), by=365)) %>%
     left_join(NOBAom_ms$funct.group_ss[, c("Code", "Name")]) %>%
     left_join(nitro) %>%
-    mutate(recnums = (recwt * 50000000.0 / NOBAom_ms$biol$redfieldcn) / Nsum)
+    mutate(recnums = (recwt * 50000000.0 / NOBAom_ms$biol$redfieldcn) / Nsum) %>%
+    group_by(Name) %>%
+    mutate(meanrecnums = mean(recnums))
   
-  ggplot(truerec, aes(x=Time, y=recnums)) + 
+  trueage1 <- NOBAom_ms$truenumsage_ss %>%
+    filter(agecl==1) %>%
+    group_by(species, agecl, time) %>%
+    summarise(age1N = sum(atoutput)) %>%
+    ungroup() %>%
+    mutate(year = floor(time/stepperyr)) %>%
+    group_by(species, agecl, year) %>%
+    filter(age1N == max(age1N)) %>%
+    select(Name=species, Time=time, age1N, year) %>%
+    group_by(Name) %>%
+    mutate(meanage1N = mean(age1N))
+    
+  #check wither truerec and trueage1 have similar patterns
+  ggplot(truerec, aes(x=Time, y=recnums/meanrecnums)) + 
     geom_line() + 
+    geom_point(data=trueage1, aes(x=Time*73, y=age1N/meanage1N)) +
     facet_wrap(~Name, scales = "free_y")
   
   #model input log(millions)
@@ -1309,12 +1325,30 @@ write.csv(modstartNlen, paste0(o.name,"observation_Y1N_NOBA.csv"))
     filter(Time %in% fittimes.days) %>%
     group_by(Name) %>%
     summarize(AvgRec = mean(log(recnums/1000000))) %>%
-    ungroup() %>%
-    pivot_wider(names_from = Name, values_from = AvgRec) 
+    ungroup() 
   
-  avgrec <- as.data.frame(avgrec, row.names = "AvgRec")
-    
+  #sub these in if above is -Inf, scale will be off but starting value
+  avgage1N <- trueage1 %>%
+    filter(Time %in% fittimes) %>%
+    group_by(Name) %>%
+    summarize(Avgage1N = mean(log(age1N/1000000))) %>%
+    ungroup() 
 
+  avgrec1 <- merge(avgrec, avgage1N) %>%
+    filter(is.infinite(AvgRec)) %>%
+    select(Name, AvgRec=Avgage1N)
+
+  if(length(avgrec1)>0){
+    avgrec <- avgrec %>%
+      filter(is.finite(AvgRec)) %>%
+      full_join(avgrec1) %>%
+      arrange(Name)
+  }
+  
+  avgrec <- as.data.frame(avgrec  %>%
+                            pivot_wider(names_from = Name, values_from = AvgRec), 
+                          row.names = "AvgRec")
+    
 write.csv(avgrec, paste0(o.name,"AvgRecPinData_NOBA.csv"))
 
 recdev <- truerec %>%
@@ -1326,7 +1360,8 @@ recdev <- truerec %>%
   ungroup() %>%
   dplyr::mutate(year = Time/365) %>%
   dplyr::select(species=Name, year, recdevs) %>%
-  tidyr::pivot_wider(names_from = species, values_from = recdevs, names_sort = TRUE)
+  tidyr::pivot_wider(names_from = species, values_from = recdevs, names_sort = TRUE)%>%
+  replace(is.na(.),0) #for species with missing rec in YOY.txt
   
 #visual check only works up to ungroup statement
 #ggplot(recdev, aes(x=Time, y=recdevs)) + geom_line() + facet_wrap(~Name)

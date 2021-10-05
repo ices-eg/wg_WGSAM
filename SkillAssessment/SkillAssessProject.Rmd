@@ -846,8 +846,8 @@ for(s in names(all_diets)){
     dplyr::mutate(allotherprey = 1-rowSums(.[,-(1:3)], na.rm = TRUE)) %>%
     dplyr::mutate(survey = s) %>%
     dplyr::left_join(svalphamultlook) %>% #what is effective sample size for Dirichlet?
-    dplyr::rename(inpN = surv_alphamult_n) %>% #use this input for now
-    dplyr::select(survey, year, species, sizebin, inpN, everything())
+    dplyr::mutate(inpN = max(surv_alphamult_n/100000, 5)) %>% #rescale this input for now
+    dplyr::select(survey, year, species, sizebin, inpN, everything(), -surv_alphamult_n)
   
   allsvdietprop <- bind_rows(allsvdietprop, svdietprop)
 }

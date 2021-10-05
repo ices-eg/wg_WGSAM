@@ -39,8 +39,6 @@ Link: https://ices.webex.com/ices/j.php?MTID=m24b8f8f2ffa712020a0fc3d2931a780b
 
 password (if required): 123456
 
- 
-
 Join by phone
 
 Global call-in numbers:
@@ -57,11 +55,12 @@ First hour
 
 * Introductions
 
-* ToR a **Regional Updates** *Please, maximum 10 minutes for ToR a presentations.*
+* ToR a **Regional Updates** *Please, maximum 15 minutes for presentations.*
 
     - Pierre-Yves Hernvann: Ecopath with Ecosim and Ecospace model of the Celtic Sea  (ICES VIIe-j) 
-    - 
-    - Sarah Gaichas: [US updates](https://noaa-edab.github.io/presentations/20201012_WGSAM_USupdate_Gaichas.html)  
+    - Alexandra Silva: applications of Ecopath with Ecosim in Portugese continental waters
+    - Robert Thorpe: IBM model 
+    - Sean Lucey: Developing a common dataset for multispecies model keyruns using a reproducible workflow in R
 
 Second hour
 
@@ -76,65 +75,63 @@ Second hour
 
 ## Tuesday 12 October
 
-*(Morning meeting of SMS Key-run review subgroup)*
-
 Two hours
 
-* ToR c **Skill assessment** 
+* ToR c **Skill assessment**  *Please, maximum 15 minutes for presentations.*  
 
+    - Alex Kempf: Review near final skill assessment paper
+    - Sarah Gaichas and Valerio Bartolino: Skill assessment project update
+        - [Multispecies simulated dataset for skill assessment in progress](https://ices-eg.github.io/wg_WGSAM/SkillAssessProject.html)
+        - Overview of simulated dataset available in [mskeyrun R package](https://github.com/NOAA-EDAB/ms-keyrun/tree/dev_package)
+    - Howard Townsend: skill in a multispecies production model using mskeyrun simulated data
+    - **Group Discussion:** skill assessment project work planning (schedule subgroup work)  
     - Mike Spence: skill metric: inverse of uncertainty
-    - Howard Townsend: skill in a multispecies production model
-    - 
-    
-    - Discussion: skill assessment project progess and work planning
+    - Igor Celic: Testing uncertainty and goodness of fit of dynamic food web models before building scenarios
+    - Robert Thorpe: Mizer hindcast
+
 
 ## Wednesday 13 October
 
 Two hours
 
-* ToR d **Multi-model advice** 
+* Continue as needed to finish any remaining ToR c presentations  
 
+* ToR d **Multi-model advice**    *Please, maximum 15 minutes for presentations.*
+
+    - James Martindale: R package for ensemble modeling
+    - Thomas Del Santo O'Neill: Nash equilibrium R package to get reference points for any ecosystem model, and how to adequately get the message of MS models across for decision makers  
+
+
+* ToR e **MSE**
+
+    - Alfonso Perez-Rodriguez: How important is accuracy of natural mortality in stock assessment? the Flemish Cap case study  
 
 
 ## Thursday 14 October
 
-First hour
+Two hours
 
-* ToR d **Multi-model advice**
+* Reporting out on 2019-2021 ToRs: synthesize achievements for each ToR
+    - Identify needed summaries from previous years if not on sharepoint
+    - Collect summaries of this year's work
+    - Assignments to draft a short summary for each ToR by Friday's plenary
+    - List relevant publications 2019-2021  
 
-    - Robert Thorpe: WKIRISH multispecies advice  
-  
-* ToR c **Skill assessment** 
-
-    - Alex Kempf: Review skill assessment paper
-    - Sarah Gaichas: Multispecies simulated dataset for skill assessment
-        - [Background](https://sgaichas.github.io/poseidon-dev/atlantisom_landingpage.html)
-        - [Single species example simulated data](https://sgaichas.github.io/poseidon-dev/NOBAcod.html)
-        - [Multispecies example simulated data](https://sgaichas.github.io/poseidon-dev/NOBAmsdiets.html)
-    - Valerio Bartolino: introduce group skill assessment effort and plans for the interim work 
-
-Second hour
-
-* ToRs c **Skill assessment**, d **Multi-model advice**, e **MSE** presentations continued
-
-    - Daniel Howell: ToR d--Feco (or Wednesday if better)
-    - Mike Spence: ToR c--Get fit quick – calibrating expensive computer models  in a day
-    - Sean Lucey: ToR e--Rpath MSE capabilities and example
+* Draft ToRs for upcoming 3 years 2022-2024
 
 
 ## Friday 15 October
 
 Two hours
 
-* Final report on 3 year ToRs
+* Finalize report on 3 year ToRs
 
-* Develop ToRs for upcoming 3 years
+* Finalize proposed ToRs for upcoming 3 years
+
+* Elect new co-chair
 
 * Plans for next year
-    - Interim meetings and work: 2021 is final year of these ToRs!
-        - Identify subgroup interested in multispecies model and ensemble skill assessment ToRs c and d
-        - Sketch workplan for project, schedule first meeting
-        - Interest in interim subgroup work on any additional ToRs?
+    - Interim meetings and work on skill assessment project 
     - Timing of 2022 meeting
     - Location of 2022 meeting 
 

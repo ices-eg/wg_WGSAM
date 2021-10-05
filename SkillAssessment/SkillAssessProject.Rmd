@@ -833,10 +833,16 @@ for(s in names(all_diets)){
     dplyr::mutate(dietpropage = dietSamp*propage) %>% #reweight diets for lengthbins
     dplyr::group_by(species, year, sizebin, prey) %>%
     dplyr::summarise(dietsize = sum(dietpropage)) %>%
-    dplyr::filter(prey %in% unique(modbins$species)) %>% #drops predators that don't eat our modeled species
+    dplyr::filter(prey %in% unique(modbins$species)) %>% #drops prey that aren't our modeled species
     tidyr::spread(prey, dietsize) %>%
     ungroup() %>%
-    dplyr::filter(!is.na(sizebin)) %>% 
+    dplyr::filter(!is.na(sizebin)) 
+  
+   # add back any modeled species that weren't prey so they show up as columns
+  missedpreds <- setdiff(unique(modbins$species), names(svdietprop)[-(1:3)])
+  svdietprop[missedpreds] <- NA
+  svdietprop[,-(1:3)] <- svdietprop[unique(modbins$species)]
+  svdietprop <- svdietprop %>% 
     dplyr::mutate(allotherprey = 1-rowSums(.[,-(1:3)], na.rm = TRUE)) %>%
     dplyr::mutate(survey = s) %>%
     dplyr::left_join(svalphamultlook) %>% #what is effective sample size for Dirichlet?

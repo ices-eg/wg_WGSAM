@@ -200,7 +200,7 @@ pre code {
 
 <h1 class="title toc-ignore">WGSAM Skill Assessment Project Page</h1>
 <h4 class="author">Sarah Gaichas, Valerio Bartolino, and WGSAM</h4>
-<h4 class="date">28 September, 2021</h4>
+<h4 class="date">05 October, 2021</h4>
 
 </div>
 
@@ -1205,15 +1205,21 @@ for(s in names(all_diets)){
     dplyr::mutate(dietpropage = dietSamp*propage) %&gt;% #reweight diets for lengthbins
     dplyr::group_by(species, year, sizebin, prey) %&gt;%
     dplyr::summarise(dietsize = sum(dietpropage)) %&gt;%
-    dplyr::filter(prey %in% unique(modbins$species)) %&gt;% #drops predators that don&#39;t eat our modeled species
+    dplyr::filter(prey %in% unique(modbins$species)) %&gt;% #drops prey that aren&#39;t our modeled species
     tidyr::spread(prey, dietsize) %&gt;%
     ungroup() %&gt;%
-    dplyr::filter(!is.na(sizebin)) %&gt;% 
+    dplyr::filter(!is.na(sizebin)) 
+  
+   # add back any modeled species that weren&#39;t prey so they show up as columns
+  missedpreds &lt;- setdiff(unique(modbins$species), names(svdietprop)[-(1:3)])
+  svdietprop[missedpreds] &lt;- NA
+  svdietprop[,-(1:3)] &lt;- svdietprop[unique(modbins$species)]
+  svdietprop &lt;- svdietprop %&gt;% 
     dplyr::mutate(allotherprey = 1-rowSums(.[,-(1:3)], na.rm = TRUE)) %&gt;%
     dplyr::mutate(survey = s) %&gt;%
     dplyr::left_join(svalphamultlook) %&gt;% #what is effective sample size for Dirichlet?
-    dplyr::rename(inpN = surv_alphamult_n) %&gt;% #use this input for now
-    dplyr::select(survey, year, species, sizebin, inpN, everything())
+    dplyr::mutate(inpN = max(surv_alphamult_n/100000, 5)) %&gt;% #rescale this input for now
+    dplyr::select(survey, year, species, sizebin, inpN, everything(), -surv_alphamult_n)
   
   allsvdietprop &lt;- bind_rows(allsvdietprop, svdietprop)
 }
@@ -1634,10 +1640,26 @@ write.csv(modstartNlen, paste0(o.name,&quot;observation_Y1N_NOBA.csv&quot;))
     filter(Time %in% seq(365, max(Time), by=365)) %&gt;%
     left_join(NOBAom_ms$funct.group_ss[, c(&quot;Code&quot;, &quot;Name&quot;)]) %&gt;%
     left_join(nitro) %&gt;%
-    mutate(recnums = (recwt * 50000000.0 / NOBAom_ms$biol$redfieldcn) / Nsum)
+    mutate(recnums = (recwt * 50000000.0 / NOBAom_ms$biol$redfieldcn) / Nsum) %&gt;%
+    group_by(Name) %&gt;%
+    mutate(meanrecnums = mean(recnums))
   
-  ggplot(truerec, aes(x=Time, y=recnums)) + 
+  trueage1 &lt;- NOBAom_ms$truenumsage_ss %&gt;%
+    filter(agecl==1) %&gt;%
+    group_by(species, agecl, time) %&gt;%
+    summarise(age1N = sum(atoutput)) %&gt;%
+    ungroup() %&gt;%
+    mutate(year = floor(time/stepperyr)) %&gt;%
+    group_by(species, agecl, year) %&gt;%
+    filter(age1N == max(age1N)) %&gt;%
+    select(Name=species, Time=time, age1N, year) %&gt;%
+    group_by(Name) %&gt;%
+    mutate(meanage1N = mean(age1N))
+    
+  #check wither truerec and trueage1 have similar patterns
+  ggplot(truerec, aes(x=Time, y=recnums/meanrecnums)) + 
     geom_line() + 
+    geom_point(data=trueage1, aes(x=Time*73, y=age1N/meanage1N)) +
     facet_wrap(~Name, scales = &quot;free_y&quot;)
   
   #model input log(millions)
@@ -1645,12 +1667,30 @@ write.csv(modstartNlen, paste0(o.name,&quot;observation_Y1N_NOBA.csv&quot;))
     filter(Time %in% fittimes.days) %&gt;%
     group_by(Name) %&gt;%
     summarize(AvgRec = mean(log(recnums/1000000))) %&gt;%
-    ungroup() %&gt;%
-    pivot_wider(names_from = Name, values_from = AvgRec) 
+    ungroup() 
   
-  avgrec &lt;- as.data.frame(avgrec, row.names = &quot;AvgRec&quot;)
-    
+  #sub these in if above is -Inf, scale will be off but starting value
+  avgage1N &lt;- trueage1 %&gt;%
+    filter(Time %in% fittimes) %&gt;%
+    group_by(Name) %&gt;%
+    summarize(Avgage1N = mean(log(age1N/1000000))) %&gt;%
+    ungroup() 
 
+  avgrec1 &lt;- merge(avgrec, avgage1N) %&gt;%
+    filter(is.infinite(AvgRec)) %&gt;%
+    select(Name, AvgRec=Avgage1N)
+
+  if(length(avgrec1)&gt;0){
+    avgrec &lt;- avgrec %&gt;%
+      filter(is.finite(AvgRec)) %&gt;%
+      full_join(avgrec1) %&gt;%
+      arrange(Name)
+  }
+  
+  avgrec &lt;- as.data.frame(avgrec  %&gt;%
+                            pivot_wider(names_from = Name, values_from = AvgRec), 
+                          row.names = &quot;AvgRec&quot;)
+    
 write.csv(avgrec, paste0(o.name,&quot;AvgRecPinData_NOBA.csv&quot;))
 
 recdev &lt;- truerec %&gt;%
@@ -1662,7 +1702,8 @@ recdev &lt;- truerec %&gt;%
   ungroup() %&gt;%
   dplyr::mutate(year = Time/365) %&gt;%
   dplyr::select(species=Name, year, recdevs) %&gt;%
-  tidyr::pivot_wider(names_from = species, values_from = recdevs, names_sort = TRUE)
+  tidyr::pivot_wider(names_from = species, values_from = recdevs, names_sort = TRUE)%&gt;%
+  replace(is.na(.),0) #for species with missing rec in YOY.txt
   
 #visual check only works up to ungroup statement
 #ggplot(recdev, aes(x=Time, y=recdevs)) + geom_line() + facet_wrap(~Name)

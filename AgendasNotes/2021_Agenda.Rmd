@@ -55,6 +55,16 @@ First hour
 
 * Introductions
 
+* Plan for meeting, orientation to sharepoint
+
+* Reporting out on 2019-2021 ToRs: synthesize achievements for each ToR
+    - Identify needed summaries from previous years if not on sharepoint *(please provide these ASAP!)*
+    - Collect summaries of this year's work
+    - Assignments to draft a short summary for each ToR by Friday's plenary
+    - List relevant publications 2019-2021  
+
+* ICES Code of Conduct
+
 * ToR a **Regional Updates** *Please, maximum 15 minutes for presentations.*
 
     - Pierre-Yves Hernvann: Ecopath with Ecosim and Ecospace model of the Celtic Sea  (ICES VIIe-j) 
@@ -62,24 +72,27 @@ First hour
     - Robert Thorpe: IBM model 
     - Sean Lucey: Developing a common dataset for multispecies model keyruns using a reproducible workflow in R
 
-Second hour
+
+## Tuesday 12 October
+
+Two hours
 
 * ToR b **Key-runs** 
 
     - Discussion: timing of key-runs with ICES benchmark assessments
         - Baltic Sea in 2022 for 2023 benchmarks?
         - Other upcoming benchmarks?
+        - What is the process for keyruns?
+            - Update data only, leave model structure intact?
+            - Update multispecies model structure?
+            - Multiple models?
+            - Who is doing the work?
     - Other potential 2022 key-runs
         - Georges Bank: multiple models
-        - Celtic Sea: EwE and ecospace
-
-## Tuesday 12 October
-
-Two hours
+        - Celtic Sea: EwE and ecospace  
 
 * ToR c **Skill assessment**  *Please, maximum 15 minutes for presentations.*  
 
-    - Alex Kempf: Review near final skill assessment paper
     - Sarah Gaichas and Valerio Bartolino: Skill assessment project update
         - [Multispecies simulated dataset for skill assessment in progress](https://ices-eg.github.io/wg_WGSAM/SkillAssessProject.html)
         - Overview of simulated dataset available in [mskeyrun R package](https://github.com/NOAA-EDAB/ms-keyrun/tree/dev_package)
@@ -97,6 +110,7 @@ Two hours
 Two hours
 
 * Continue as needed to finish any remaining ToR c presentations  
+    - Alex Kempf: Review near final skill assessment paper
 
 * ToR d **Multi-model advice**    *Please, maximum 15 minutes for presentations.*
 
@@ -113,11 +127,11 @@ Two hours
 
 Two hours
 
-* Reporting out on 2019-2021 ToRs: synthesize achievements for each ToR
-    - Identify needed summaries from previous years if not on sharepoint *(please provide these ASAP!)*
-    - Collect summaries of this year's work
-    - Assignments to draft a short summary for each ToR by Friday's plenary
-    - List relevant publications 2019-2021  
+* Subgroups review 2019-2021 ToRs synthesis:
+    - Current status of each ToR synthesis
+    - What is still needed?
+    - Continue to draft a short summary for each ToR by Friday's plenary
+    - Continue compiling List relevant publications 2019-2021  
 
 * Draft ToRs for upcoming 3 years 2022-2024
 
@@ -126,9 +140,9 @@ Two hours
 
 Two hours
 
-* Finalize report on 3 year ToRs
+* Finalize report on 2019-2021 3 year ToRs
 
-* Finalize proposed ToRs for upcoming 3 years
+* Finalize proposed ToRs for upcoming 3 years 2022-2024
 
 * Elect new co-chair
 

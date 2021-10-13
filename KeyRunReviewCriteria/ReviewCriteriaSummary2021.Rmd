@@ -1,0 +1,31 @@
+---
+title: "Review Criteria Summary for 2021 Report"
+author: "Sarah Gaichas, Alexander Kempf, Valerio Bartolino, and WGSAM 2019-2021"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  word_document: default
+  html_document: default
+link-citations: yes
+csl: plos.csl
+bibliography: modreview.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Multispecies Model Review Criteria
+
+WGSAM applies key-run review standards developed for reviewing models used in environmental and regulatory decision making, which differ from purely academic models. The general standards are outlined in [@nrc_chapter_2007] and applied by ICES WGSAM [@ices_working_2019; @ices_working_2021]. There are three key attributes of “good” models spanning the range from stock specific through multispecies up to ecosystem models intended for decision making: they are based on generally accepted science and methods, they serve the intended purpose, and they behave similarly to the actual system. Review criteria are derived from these three attributes, and are modified for different phases of the model life cycle, from problem identification to conceptual model and constructed model, through model use. Different phases of the model life cycle align with different evaluation issues. Here we outline six general review criteria applied by WGSAM 2019-2021. These review critieria were also presented as multispecies modeling best practices at a multispecies modeling workshop in June 2021 [@karp_workshop_nodate], where this text was also contributed.
+
+The first criterion relates to problem identification, where early in the model life cycle we critically evaluate our objectives and why we need a model at all. WGSAM generally establishes that the problem is clear, and then determines whether the model is appropriate for the problem. For multispecies and ecosystem models, it is important to clearly specify the need for models of this level of complexity, and the key output(s) of interest.
+
+The second criterion evaluates whether the scientific basis of the model is sound and appropriate for the problem. This applies to model framework and constructed model phases of the life cycle, but is also important for model use. WGSAM generally follows the NRC criteria for soundness and has also used basic performance critiera outlined in @kaplan_guinea_2016 for general soundness of complex ecosystem models. 
+
+The third criterion evaluates whether input data quality and parameterization are adequate for the problem. WGSAM suggests best practice to facilitate review is for modelers to provide summary charts of data showing which types are available and used, time series length, gaps, and species comparisons across species. Data pedigree and uncertainty measures should also be provided. Assumptions behind modeled ecological, biological, and other processes must be clearly stated and appropriate, and basic diagnostics of model inputs/outputs evaluated for ecological soundness.
+
+The fourth review criterion is where we spend much of our time in evaluating stock assessment models. How does model output compare with observations? Best practices for comparing model output with observations include the usual evaluation done for stock assessment models of fits to surveys, catches, composition data, etc. However, there are other equally important considerations. Clear definition of the hindcast period, key species/groups/indicators, spatial patterns, and outputs of interest that are most critical to addressing the problem ensures that the model is working well enough, but not setting up unrealistic expectations to fit everything. WGSAM notes that fitting data well does not imply predictive ability! Fit diagnostics are not the same as skill assessment against a known dataset. 
+
+The fifth review criterion addresses model uncertainty and sensitivity. Has uncertainty been estimated in the output(s) of interest for the problem? Has sensitivity to key datasets and parameters been assessed? Model analyses should include retrospective analysis, forecast uncertainty (if forecast necessary for the problem), and it is recommended to retain multiple parameterizations of a model that all meet performance criteria to bracket parameter uncertainty in model applications. 
+
+WGSAM also reviews previous model peer reviews to evaluate model performance over time and whether suggested revisions have been incorporated. Peer review is most effective at each stage of model life cycle. In addition, peer review within a management process in association with a policy problem is a best practice to ensure that the model is most effective and likely to be used. Iterative feedback between modelers, managers, and stakeholders has been shown to be effective in building models useful to management [@townsend_progress_2019; @bentley_refining_2021].

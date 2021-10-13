@@ -51,7 +51,7 @@ For some participants these times are well outside normal work hours (6-8 am on 
 
 ## Monday 11 October
 
-First hour
+Two hours
 
 * Introductions
 
@@ -90,7 +90,7 @@ Two hours
     - Other potential 2022 key-runs
         - Georges Bank: multiple models
         - Celtic Sea: EwE and ecospace  
-
+        
 * ToR c **Skill assessment**  *Please, maximum 15 minutes for presentations.*  
 
     - Sarah Gaichas and Valerio Bartolino: Skill assessment project update
@@ -100,32 +100,37 @@ Two hours
     - **Group Discussion:** skill assessment project work planning
         - Initiate model-specific subgroup work with dataset during this week if possible
         - Plan 2021-2022 work in subgroup during this week  
-    - Mike Spence: skill metric: inverse of uncertainty
     - Igor Celic: Testing uncertainty and goodness of fit of dynamic food web models before building scenarios
-    - Robert Thorpe: Mizer hindcast
 
 
 ## Wednesday 13 October
 
 Two hours
 
-* Continue as needed to finish any remaining ToR c presentations  
+* Continue as needed to finish any remaining ToR c presentations
+    - Mike Spence: skill metric: inverse of uncertainty
+    - Robert Thorpe: Mizer hindcast
     - Alex Kempf: Review near final skill assessment paper
+    
 
 * ToR d **Multi-model advice**    *Please, maximum 15 minutes for presentations.*
 
-    - Mike Spence: Can we simultaneously adopt a precautionary approach for all fish?: a case study in the North Sea
     - James Martindale: R package for ensemble modeling
     - Thomas Del Santo O'Neill: Nash equilibrium R package to get reference points for any ecosystem model, and how to adequately get the message of MS models across for decision makers    
 
-* ToR e **MSE**  
-
-    - Alfonso Perez-Rodriguez: How important is accuracy of natural mortality in stock assessment? the Flemish Cap case study  
 
 
 ## Thursday 14 October
 
 Two hours
+
+* Continue as needed to finish remaining ToR d presentations
+    - Mike Spence: Can we simultaneously adopt a precautionary approach for all fish?: a case study in the North Sea
+    
+    
+* ToR e **MSE**  
+
+    - Alfonso Perez-Rodriguez: How important is accuracy of natural mortality in stock assessment? the Flemish Cap case study  
 
 * Subgroups review 2019-2021 ToRs synthesis:
     - Current status of each ToR synthesis

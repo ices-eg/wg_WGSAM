@@ -1,0 +1,78 @@
+---
+title: "ToR b Key-run Summary for 2021 Report"
+author: "Sarah Gaichas, Alexander Kempf, Valerio Bartolino, and WGSAM 2019-2021"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  word_document: default
+  html_document: default
+link-citations: yes
+csl: plos.csl
+bibliography: modreview.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# ToR b: key-runs
+
+WGSAM Term of Reference b for 2019-2021 reads:
+
+>Update of key-runs (standardized model runs updated with recent data, producing agreed output and agreed upon by WGSAM participants) of multispecies and ecosystem models for different ICES regions. The key-runs provide information on natural mortality for inclusion in various single species assessments. Deliverables: Report on output of multispecies models including stock biomass and numbers and natural mortalities for use by single species assessment groups and external users.
+
+To address this ToR, WGSAM developed a set of model review criteria^[https://ices-eg.github.io/wg_WGSAM/ReviewCriteria.html] and applied them to four multispecies model key-runs between 2019-2021: Baltic Sea SMS, Baltic Sea Gadget, Irish Sea EwE, and North Sea SMS. Reports from these model key-run reviews [@ices_working_2019; @ices_working_2021] supported advice processes in the Baltic Sea (WK....), Irish Sea (WKIRISH), and North Sea (WK....). We briefly review criteria and review results here, then discuss future approaches for WGSAM key-run reviews. 
+
+## Multispecies Model Review Criteria
+
+WGSAM applies key-run review standards developed for reviewing models used in environmental and regulatory decision making, which differ from purely academic models. The general standards are outlined in [@nrc_chapter_2007] and applied by ICES WGSAM [@ices_working_2019; @ices_working_2021]. There are three key attributes of “good” models spanning the range from stock specific through multispecies up to ecosystem models intended for decision making: they are based on generally accepted science and methods, they serve the intended purpose, and they behave similarly to the actual system. Review criteria are derived from these three attributes, and are modified for different phases of the model life cycle, from problem identification to conceptual model and constructed model, through model use. Different phases of the model life cycle align with different evaluation issues. Here we outline six general review criteria applied by WGSAM 2019-2021. These review critieria were also presented as multispecies modeling best practices at a multispecies modeling workshop in June 2021 [@karp_workshop_nodate], where this text was also contributed.
+
+The first criterion relates to problem identification, where early in the model life cycle we critically evaluate our objectives and why we need a model at all. WGSAM generally establishes that the problem is clear, and then determines whether the model is appropriate for the problem. For multispecies and ecosystem models, it is important to clearly specify the need for models of this level of complexity, and the key output(s) of interest.
+
+The second criterion evaluates whether the scientific basis of the model is sound and appropriate for the problem. This applies to model framework and constructed model phases of the life cycle, but is also important for model use. WGSAM generally follows the NRC criteria for soundness and has also used basic performance critiera outlined in @kaplan_guinea_2016 for general soundness of complex ecosystem models. 
+
+The third criterion evaluates whether input data quality and parameterization are adequate for the problem. WGSAM suggests best practice to facilitate review is for modelers to provide summary charts of data showing which types are available and used, time series length, gaps, and species comparisons across species. Data pedigree and uncertainty measures should also be provided. Assumptions behind modeled ecological, biological, and other processes must be clearly stated and appropriate, and basic diagnostics of model inputs/outputs evaluated for ecological soundness.
+
+The fourth review criterion is where we spend much of our time in evaluating stock assessment models. How does model output compare with observations? Best practices for comparing model output with observations include the usual evaluation done for stock assessment models of fits to surveys, catches, composition data, etc. However, there are other equally important considerations. Clear definition of the hindcast period, key species/groups/indicators, spatial patterns, and outputs of interest that are most critical to addressing the problem ensures that the model is working well enough, but not setting up unrealistic expectations to fit everything. WGSAM notes that fitting data well does not imply predictive ability! Fit diagnostics are not the same as skill assessment against a known dataset. 
+
+The fifth review criterion addresses model uncertainty and sensitivity. Has uncertainty been estimated in the output(s) of interest for the problem? Has sensitivity to key datasets and parameters been assessed? Model analyses should include retrospective analysis, forecast uncertainty (if forecast necessary for the problem), and it is recommended to retain multiple parameterizations of a model that all meet performance criteria to bracket parameter uncertainty in model applications. 
+
+WGSAM also reviews previous model peer reviews to evaluate model performance over time and whether suggested revisions have been incorporated. Peer review is most effective at each stage of model life cycle. In addition, peer review within a management process in association with a policy problem is a best practice to ensure that the model is most effective and likely to be used. Iterative feedback between modelers, managers, and stakeholders has been shown to be effective in building models useful to management [@townsend_progress_2019; @bentley_refining_2021].
+
+## Key-run review summaries
+
+### Baltic Sea SMS and Gadget
+
+For the Baltic Sea, multispecies model key-runs estimate predation mortality to provide time series of natural mortality (M) for use in single species stock assessments for herring and sprat. Therefore, the review of key-runs from an SMS model (used in the previous 2012 key-run) and from a newly developed Gadget model focused on the ability of the models to provide M time series for these species. Overall, both models provided consistent time series of M for herring and sprat when using the same assumptions regarding residual natural mortality, despite different representations of cod population dynamics. However, due to issues of stability in the historical part (prior 1990s), the Gadget model was not selected as a key-run. 
+
+WGSAM recommended the use of natural mortality estimates from the Baltic SMS key-run for use in single species stock assessment models of Baltic herring and sprat. While SMS results have shown some sensitivities to e.g., consumption rates, assumptions regarding the residual mortality M1 as well as the size selectivity of cod,, the very similar results from the Gadget model run and the absence of retrospective patterns are encouraging and increase the credibility of the provided M time series. The results of the SMS key-run depend to a large extent on the outcome of the ICES Eastern Baltic cod assessment. Any bias in this assessment directly influences the predation mortality estimates. WGSAM did not recommend use of the uncertainty estimates around M estimated by SMS as these are underestimated due to the assumption that the cod population is known without error.   
+
+### Irish Sea EwE
+
+For the Irish Sea, the ICES WKIRISH requested review of an Irish Sea Ecopath with Ecosim (EwE) model. An aim of the WKIRISH process is to suggest methods by which some of the outputs of the Irish Sea EwE can be used to influence quota setting. The aim of WKIRISH is not to use F values directly from the EwE, but rather to use the EwE output as a synthesized ecosystem indicator to help inform the choice of Ftarget within the pre-defined Fmsy ranges. This method would allow for the incorporation of ecosystem information within the quota setting process, while remaining within the existing precautionary fisheries management framework and the current reference point ranges used by ICES.
+
+WGSAM approved the Irish Sea EwE model as a key-run to provide a basis for producing indicator(s) which could be used to inform the selection of fishing mortality targets within a pre-defined range of F values evaluated as precautionary using the single species assessment models. WGSAM did not recommend directly transferring Fmsy values estimated by the EwE model into other models or for direct use in management. 
+
+### North Sea SMS
+
+WGSAM recommended the use of natural mortality estimates from the North Sea SMS key-run for use in single species stock assessment models of North sea cod, haddock, herring, Norway pout, southern North Sea sandeel, northern North Sea sandeel, sprat, and whiting. 
+
+WGSAM accepted the model output from SMS as key-run with the settings given in the Stock Annex. WGSAM considers the key-run as currently best possible run with SMS to provide natural mortality estimates. WGSAM recommends to use these values as input to single species stock assessments. The full time series should be used and not only an update for the years after the last key-run in 2017. 
+ 
+For further work WGSAM recommended the following:  
+
+1. There is a need for updated stomach sampling to understand how diets have changed with changes in species ranges. There are large proportions of other food in the diets of several species. Ideally, these need to be refined and it needs to be assessed whether this has changed.
+2. Need for better knowledge of the proportion of several stocks (hake, mackerel, N horse mackerel) that habituate the North Sea. 
+3. A future run with age 1 as recruits could be tried because the input for the 0 group is highly uncertain for many species. 
+4. Need of further investigations related to  the following issues:
+•	No size preference in predation is implemented in the model at the moment. With more stomach data it would be possible to test the impact of such an assumption
+•	Unclear why the M2 CV increases for a number of prey stocks
+•	Impact of the Dirichlet estimated parameter on the resulting predation mortality in general, and reason behind the need of a scaling factor for the hake Dirichlet parameter
+
+## Future of key-run reviews
+
+WGSAM discussed the need to balance requests for reviews of new model key-runs that represent potential scientific modeling advances versus operational model key-runs that include data updates but are otherwise routine previously reviewed model structures. The former advance science, while the latter support a component of EBM within ICES as single species assessment inputs capturing key ecosystem processes. 
+
+WGSAM intends to balance these needs by continuing to select a key-run for review within the annual working group meeting that represents a new model and or scientific advance and is feasible to review alongside work on other WGSAM ToRs. For operational model key-runs that have been previously reviewed and are needed for stock assessment inputs, WGSAM discussed reviews outside the annual working group meeting with a subgroup of reviewers who ideally would also include single species stock assesment experts and ecosystem experts within the key-run region. This would align the operational key-run with the timing and needs within the region and also better coordinate common data inputs needed by the multispecies model and single species models in the region. Finally, WGSAM may schedule more in-depth reviews for complex multi-model key-runs during special workshops dedicated to that task alone. For example, a key-run in progress for Georges Bank (USA) will include a multispecies surplus production model, a length structured multspecies model, an age structured multispecies model, and a food web model, all fitted to a common dataset. Adequate review of this suite of models will likely require several days in a separate workshop with WGSAM members. This workshop would also allow inclusion of experts outside WGSAM.
+
+
+

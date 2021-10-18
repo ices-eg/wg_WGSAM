@@ -1,6 +1,6 @@
 ---
 title: "ToR b Key-run Summary for 2021 Report"
-author: "Sarah Gaichas, Alexander Kempf, Valerio Bartolino, and WGSAM 2019-2021"
+author: "Sarah Gaichas, Alexander Kempf, Valerio Bartolino, Morten Vinther and WGSAM 2019-2021"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   word_document: default
@@ -20,7 +20,7 @@ WGSAM Term of Reference b for 2019-2021 reads:
 
 >Update of key-runs (standardized model runs updated with recent data, producing agreed output and agreed upon by WGSAM participants) of multispecies and ecosystem models for different ICES regions. The key-runs provide information on natural mortality for inclusion in various single species assessments. Deliverables: Report on output of multispecies models including stock biomass and numbers and natural mortalities for use by single species assessment groups and external users.
 
-To address this ToR, WGSAM developed a set of model review criteria^[https://ices-eg.github.io/wg_WGSAM/ReviewCriteria.html] and applied them to four multispecies model key-runs between 2019-2021: Baltic Sea SMS, Baltic Sea Gadget, Irish Sea EwE, and North Sea SMS. Reports from these model key-run reviews [@ices_working_2019; @ices_working_2021] supported advice processes in the Baltic Sea (WK....), Irish Sea (WKIRISH), and North Sea (WK....). We briefly review criteria and review results here, then discuss future approaches for WGSAM key-run reviews. 
+To address this ToR, WGSAM developed a set of model review criteria^[https://ices-eg.github.io/wg_WGSAM/ReviewCriteria.html] and applied them to four multispecies model key-runs between 2019-2021: Baltic Sea SMS, Baltic Sea Gadget, Irish Sea EwE, and North Sea SMS. Reports from these model key-run reviews [@ices_working_2019; @ices_working_2021] supported advice processes in the Baltic Sea (WGBFAS), Irish Sea (WKIRISH), and North Sea (WGNSSK, HAWG). We briefly review criteria and review results here, then discuss future approaches for WGSAM key-run reviews. 
 
 ## Multispecies Model Review Criteria
 
@@ -46,6 +46,8 @@ For the Baltic Sea, multispecies model key-runs estimate predation mortality to 
 
 WGSAM recommended the use of natural mortality estimates from the Baltic SMS key-run for use in single species stock assessment models of Baltic herring and sprat. While SMS results have shown some sensitivities to e.g., consumption rates, assumptions regarding the residual mortality M1 as well as the size selectivity of cod,, the very similar results from the Gadget model run and the absence of retrospective patterns are encouraging and increase the credibility of the provided M time series. The results of the SMS key-run depend to a large extent on the outcome of the ICES Eastern Baltic cod assessment. Any bias in this assessment directly influences the predation mortality estimates. WGSAM did not recommend use of the uncertainty estimates around M estimated by SMS as these are underestimated due to the assumption that the cod population is known without error.   
 
+The source code, input and results from the Baltic Sea SMS can be found at https://github.com/ices-eg/wg_WGSAM.
+
 ### Irish Sea EwE
 
 For the Irish Sea, the ICES WKIRISH requested review of an Irish Sea Ecopath with Ecosim (EwE) model. An aim of the WKIRISH process is to suggest methods by which some of the outputs of the Irish Sea EwE can be used to influence quota setting. The aim of WKIRISH is not to use F values directly from the EwE, but rather to use the EwE output as a synthesized ecosystem indicator to help inform the choice of Ftarget within the pre-defined Fmsy ranges. This method would allow for the incorporation of ecosystem information within the quota setting process, while remaining within the existing precautionary fisheries management framework and the current reference point ranges used by ICES.
@@ -60,13 +62,16 @@ WGSAM accepted the model output from SMS as key-run with the settings given in t
  
 For further work WGSAM recommended the following:  
 
-1. There is a need for updated stomach sampling to understand how diets have changed with changes in species ranges. There are large proportions of other food in the diets of several species. Ideally, these need to be refined and it needs to be assessed whether this has changed.
-2. Need for better knowledge of the proportion of several stocks (hake, mackerel, N horse mackerel) that habituate the North Sea. 
-3. A future run with age 1 as recruits could be tried because the input for the 0 group is highly uncertain for many species. 
-4. Need of further investigations related to  the following issues:
-•	No size preference in predation is implemented in the model at the moment. With more stomach data it would be possible to test the impact of such an assumption
-•	Unclear why the M2 CV increases for a number of prey stocks
-•	Impact of the Dirichlet estimated parameter on the resulting predation mortality in general, and reason behind the need of a scaling factor for the hake Dirichlet parameter
+1. There is a need for updated stomach sampling to understand how diets have changed with changes in species ranges. There are large proportions of other food in the diets of several species. Ideally, these need to be refined and it needs to be assessed whether this has changed.  
+1. Need for better knowledge of the proportion of several stocks (hake, mackerel, N horse mackerel) that habituate the North Sea.  
+1. A future run with age 1 as recruits could be tried because the input for the 0 group is highly uncertain for many species.  
+1. Need of further investigations related to  the following issues:   
+
+    -	 No size preference in predation is implemented in the model at the moment. With more stomach data it would be possible to test the impact of such an assumption
+    -  Unclear why the M2 CV increases for a number of prey stocks
+    -   Impact of the Dirichlet estimated parameter on the resulting predation mortality in general, and reason behind the need of a scaling factor for the hake Dirichlet parameter
+
+The source code, input and results from the North Sea SMS can be found at https://github.com/ices-eg/wg_WGSAM
 
 ## Future of key-run reviews
 

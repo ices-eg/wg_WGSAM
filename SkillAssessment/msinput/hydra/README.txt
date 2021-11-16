@@ -1,6 +1,6 @@
 Simulated data from Norweigan-Barents Atlantis Model by Hansen et al. 
 
- Atlantis outputs stored in /Users/sgaichas/Documents/0_Data/ICES_WGSAM/wg_WGSAM/SkillAssessment/atlantisoutput/NOBA_sacc_38 
+ Atlantis outputs stored in /Users/sarah.gaichas/Documents/0_Data/ICES_WGSAM/wg_WGSAM/SkillAssessment/atlantisoutput/NOBA_sacc_38 
 
  Biomass output for surveys BTS_fall_allbox_effic1 
 
@@ -9,6 +9,9 @@ Simulated data from Norweigan-Barents Atlantis Model by Hansen et al.
  Fishery catch output for fisheries census 
 
  Biomass and catch output units are annual tons.
+
+ Years are indexed 1:Nyrs in files, corresponding to Atlantis years:
+ 40 to 120 
 
  Survey specifications:
  ----------------------
@@ -162,10 +165,10 @@ fishery.name="census"
 fishspp <- omlist_ss$species_ss 
 
 #Number of years of data to pull
-nyears <- 50
+nyears <- omlist_ss$runpar$nyears
 
 #Atlantis initialization period in years
-burnin <- 30
+burnin <- 0
 
 # fishery output: learned the hard way this can be different from ecosystem outputs
 fstepperyr <- if(omlist_ss$runpar$outputstepunit=="days") 365/omlist_ss$runpar$toutfinc

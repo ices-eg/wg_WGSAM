@@ -1446,17 +1446,19 @@ meta <- c("Simulated data from Norweigan-Barents Atlantis Model by Hansen et al.
           paste("Biomass output for surveys", names(survObsBiom), '\n\n'),
           paste("Fishery catch output for fisheries", names(catchbio_ss), '\n\n'),
           "Biomass and catch output units are annual tons.\n\n",
+          "Years are indexed 1:Nyrs in files, corresponding to Atlantis years:\n",
+          paste(fitstartyr, "to", fitendyr, '\n\n'),
           "Survey specifications:\n",
           "----------------------\n",
-          read_file(here("/SkillAssessment/config/mssurvey_fall.R")),
+          read_file(here("SkillAssessment/config/mssurvey_fall.R")),
           "\n",
           "----------------------\n",
-          read_file(here("/SkillAssessment/config/mssurvey_spring.R")),
+          read_file(here("SkillAssessment/config/mssurvey_spring.R")),
           "\n",
           "\n\n",
           "Fishery specifications:\n",
           "----------------------\n",
-          read_file(here("/SkillAssessment/config/msfishery.R")),
+          read_file(here("SkillAssessment/config/msfishery.R")),
           "\n"
           )
 

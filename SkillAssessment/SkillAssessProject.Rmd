@@ -180,6 +180,18 @@ Code here takes the saved atlantisom .rds output files and generates model input
 
 We will use a subset of the full NOBA atlantis output, leaving out the model spin up period and the projection period at the end of the run. The goal will be a 80 year dataset for model testing, starting before the onset of fishing and including all of the F contrast built in.
 
+```{r}
+# if not your first rodeo, read in the existing NOBAom_ms 
+
+source(here("SkillAssessment/config/NOBA2Config.R"))
+
+#climate signal
+#source(here("SkillAssessment/config/NOBAsacc30Config.R"))
+
+NOBAom_ms <- readRDS(file.path(d.name, paste0(scenario.name, "omlist_ss.rds")))
+```
+
+
 ```{r modtime, eval=FALSE}
 
 fitstartyr <- 40
@@ -213,7 +225,7 @@ Hydra inputs will need to be in the same species order for each dataset, so firs
 
 ```{r write-hydra, eval=FALSE}
 
-source(here("SkillAssessment/config/NOBA2Config.R"))
+#source(here("SkillAssessment/config/NOBA2Config.R"))
 
 #climate signal
 #source(here("SkillAssessment/config/NOBAsacc30Config.R"))
@@ -223,9 +235,9 @@ source(here("SkillAssessment/config/NOBA2Config.R"))
 # divide time.days by runpar$toutinc to match time in biomass
 # aggregate over ages using true biomass at age (survey diet is in proportion by age)
 
-NOBAom_ms <- readRDS(file.path(d.name, paste0(scenario.name, "omlist_ss.rds")))
+#NOBAom_ms <- readRDS(file.path(d.name, paste0(scenario.name, "omlist_ss.rds")))
 
-stepperyr <- if(NOBAom_ms$runpar$outputstepunit=="days") 365/NOBAom_ms$runpar$toutinc
+#stepperyr <- if(NOBAom_ms$runpar$outputstepunit=="days") 365/NOBAom_ms$runpar$toutinc
 
 #read in survey biomass data
 survObsBiom <- read_savedsurvs(d.name, 'survB') #reads in all surveys
@@ -577,6 +589,8 @@ Survey biomass and catch datasets in long input format (all surveys together, al
 
 These datasets are filtered to the model fit start and end years defined above.
 
+However, we need to recode the years for input into Hydra, which expects years 1:Nyrs
+
 ```{r svcatchalt, eval=FALSE}
 #read in survey biomass data
 survObsBiom <- atlantisom::read_savedsurvs(d.name, 'survB') #reads in all surveys
@@ -612,6 +626,7 @@ for(s in names(survObsBiom)){
   svbio <- survObsBiom[[s]][[1]] %>%
     dplyr::filter(time %in% fittimes) %>%
     dplyr::mutate(year = floor(time/stepperyr)) %>%
+    dplyr::mutate(year = year-fitstartyr+1) %>% #year starts at 1
     dplyr::select(species, year, atoutput) %>%
     dplyr::rename(biomass = atoutput) %>%
     dplyr::mutate(survey = s) %>%
@@ -632,6 +647,7 @@ for(f in names(catchbio_ss)){
     #dplyr::filter(time>0) %>%
     dplyr::filter(time %in% fittimes.days) %>%
     dplyr::mutate(year = time/365) %>%
+    dplyr::mutate(year = year-fitstartyr+1) %>% #year starts at 1
     dplyr::select(species, year, atoutput) %>%
     dplyr::rename(catch = atoutput) %>%
     dplyr::mutate(fishery = f) %>%
@@ -714,6 +730,7 @@ for(s in names(len_comp_data)){
   svlenbin <- len_comp_data[[s]][[1]] %>%
     dplyr::filter(time %in% fittimes) %>%
     dplyr::mutate(year = floor(time/stepperyr)) %>%
+    dplyr::mutate(year = year-fitstartyr+1) %>% #year starts at 1
     dplyr::select(species, agecl, year, upper.bins, atoutput) %>%
     dplyr::left_join(modbins) %>%
     dplyr::filter(modbin.min < upper.bins & upper.bins <= modbin.max) %>%
@@ -747,6 +764,7 @@ for(f in names(catchlen_ss)){
   fishlenbin <- catchlen_ss[[f]][[1]] %>%
     dplyr::filter(time %in% fittimes) %>%
     dplyr::mutate(year = floor(time/stepperyr)) %>%
+    dplyr::mutate(year = year-fitstartyr+1) %>% #year starts at 1
     dplyr::select(species, agecl, year, upper.bins, atoutput) %>%
     dplyr::left_join(modbins) %>%
     dplyr::filter(modbin.min < upper.bins & upper.bins <= modbin.max) %>%
@@ -816,6 +834,7 @@ for(s in names(all_diets)){
   svagelenbin <- len_comp_data[[s]][[1]] %>%
     dplyr::filter(time %in% fittimes) %>%
     dplyr::mutate(year = floor(time/stepperyr)) %>%
+    dplyr::mutate(year = year-fitstartyr+1) %>% #year starts at 1
     dplyr::select(species, agecl, year, upper.bins, atoutput) %>%
     dplyr::left_join(modbins) %>%
     dplyr::filter(modbin.min < upper.bins & upper.bins <= modbin.max) %>%

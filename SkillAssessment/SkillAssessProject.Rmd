@@ -846,6 +846,7 @@ for(s in names(all_diets)){
   svdietprop <- all_diets[[s]][[1]] %>%
     dplyr::filter(time.days %in% fittimes.days) %>%
     dplyr::mutate(year = floor(time.days/365)) %>%
+    dplyr::mutate(year = year-fitstartyr+1) %>% #year starts at 1
     # join with agecl to length lookup
     dplyr::select(species, agecl, year, prey, dietSamp) %>%
     dplyr::left_join(svagelenbin) %>%

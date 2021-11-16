@@ -1465,7 +1465,7 @@ meta <- c("Simulated data from Norweigan-Barents Atlantis Model by Hansen et al.
 cat(as.character(meta), file=paste0(here("SkillAssessment/msinput/hydra/"),"README.txt"))
 ```
 
-Use `hydradata` package to create the .dat and .pin files. We are working from the forked `hydradata` repository at https://github.com/thefaylab/hydradata for this project. All of the input .csv files created here have been copied to the `data-raw` folder on thefaylab/hydradata repo. The `create_RData_NOBA.R` file was updated to read these inputs, sourced, and `create_RData()` was run to make a new `hydraDataList.rda` file in the package. Then the package is built locally and the following code block is run to produce input files.
+Use `hydradata` package to create the .dat and .pin files. We are working from the forked `hydradata` repository at https://github.com/thefaylab/hydradata for this project. All of the input .csv files created here have been copied to the `data-raw` folder on thefaylab/hydradata repo. The `create_RData_NOBA.R` file was updated to read these inputs, sourced, and `create_RData()` was run to make a new `hydraDataList.rda` file in the package. Then the package is built locally, R is restarted, and the following code block is run to produce input files.
 
 ```{r, writedatfile, eval=FALSE}
 

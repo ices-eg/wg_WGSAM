@@ -1256,6 +1256,7 @@ smallest <- modstartlen$natlength %>%
   select(species, rectime=time)
 
 #this should be in millions for hydra
+# January 2022 change to log(millions)
   
 modstartNlen <- modstartlen$natlength %>%
   dplyr::select(species, agecl, time, upper.bins, atoutput) %>%
@@ -1265,7 +1266,7 @@ modstartNlen <- modstartlen$natlength %>%
   dplyr::left_join(modbins) %>%
   dplyr::filter(modbin.min < upper.bins & upper.bins <= modbin.max) %>%
   dplyr::group_by(species, sizebin) %>%
-  dplyr::summarise(sumlen = sum(atoutput)/1000000) %>%
+  dplyr::summarise(sumlen = log(sum(atoutput)/1000000)) %>%
   tidyr::spread(sizebin, sumlen) %>%
   ungroup() %>%
   replace(is.na(.),0) %>% # use 0 for missing value in pin file

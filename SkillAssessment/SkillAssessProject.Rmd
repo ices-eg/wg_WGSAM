@@ -304,7 +304,7 @@ singletons <- data.frame(
   Nspecies=length(sppsubset$Name),
   Nsizebins=5,
   Nareas=1,
-  Nfleets=length(unique(NOBAom_ms$truecatchage_ss$fleet)),
+  Nfleets=1, #length(unique(NOBAom_ms$truecatchage_ss$fleet)), #Apr 2022
   Nsurveys=2,
   wtconv=1,
   yr1Nphase=1,
@@ -346,7 +346,10 @@ dummycovar <- data.frame(dummy1 = rep(1, singletons$Nyrs))
 
 # placeholder for effort data dimensioned by year and nfleets
 allfleets <- atlantisom::load_fisheries(d.name, fisheries.file)
-fleets <- unique(NOBAom_ms$truecatchage_ss$fleet)
+#fleets <- unique(NOBAom_ms$truecatchage_ss$fleet)
+
+# Apr 2021 lets just have one fleet for testing
+fleets <- "allcombined"
 
 dummyeffort <- data.frame(1:singletons$Nyrs,
                           matrix(1, singletons$Nyrs, singletons$Nfleets))
@@ -642,6 +645,8 @@ catchbio_ss <- read_savedfisheries(d.name, 'Catch')
 
 allcatch <- tibble()
 
+# remove species with no catch across whole time series Apr 2022
+# added lines 655-659
 for(f in names(catchbio_ss)){
   catchbio <- catchbio_ss[[f]][[1]] %>%
     #dplyr::filter(time>0) %>%
@@ -650,6 +655,11 @@ for(f in names(catchbio_ss)){
     dplyr::mutate(year = year-fitstartyr+1) %>% #year starts at 1
     dplyr::select(species, year, atoutput) %>%
     dplyr::rename(catch = atoutput) %>%
+    dplyr::group_by(species) %>%
+    dplyr::mutate(totcatch = sum(catch)) %>%
+    dplyr::ungroup() %>%
+    dplyr::filter(totcatch > 0) %>%
+    dplyr::select(-totcatch) %>%
     dplyr::mutate(fishery = f) %>%
     dplyr::mutate(area = 1) %>%
     dplyr::left_join(fcvlook) %>%
@@ -712,6 +722,8 @@ plotF
 Now write length composition input files in long format to have surveys together in one file. Also add fishery length comps:
 
 ```{r lengthfiles, eval=FALSE}
+
+sizebins <- read_csv(paste0(o.name,"length_sizebins_NOBA.csv"))
 
 modbins <- sizebins %>%
   rename(species = `commentField-notused`) %>%
@@ -776,7 +788,7 @@ for(f in names(catchlen_ss)){
     dplyr::mutate(type = 0) %>%
     dplyr::mutate(fishery = f,
                   area = 1) %>%
-    dplyr::mutate_at(vars(contains("sizebin")), ~./inpN) %>%
+    dplyr::mutate_at(vars(contains("sizebin")), ~./inpN) %>% #proportion
     dplyr::select(fishery, area, year, species, type, inpN, everything()) %>%
     dplyr::arrange(fishery, area, species, year)
   
@@ -1124,7 +1136,9 @@ maturity <- matrix(1, 2, singletons$Nspecies,
 write.csv(maturity, paste0(o.name,"maturity_species_NOBA.csv"))
 
 #fishsel dimensions species rows fleets columns, one matrix each c and d, not using?
-fleets <- unique(NOBAom_ms$truecatchage_ss$fleet)
+#fleets <- unique(NOBAom_ms$truecatchage_ss$fleet)
+# Apr 2021 lets just have one fleet for testing
+fleets <- "allcombined"
 
 fishseldummy <- matrix(1, singletons$Nspecies, singletons$Nfleets,
                    dimnames = list(c(sort.default(sppsubset$Name)), fleets))
@@ -1137,9 +1151,6 @@ discards <- matrix(0, singletons$Nspecies*singletons$Nfleets, singletons$Nsizebi
 
 write.csv(discards, paste0(o.name,"fishing_discards_NOBA.csv"))
 write.csv(discards, paste0(o.name,"fishing_discardsSurvival_NOBA.csv"))
-
-#q indicator dummy use fishsel
-write.csv(fishseldummy, paste0(o.name,"fishing_q_indicator_NOBA.csv"))
 
 #can we get away with not changing the sim parameters at the end of the dat file? no
 
@@ -1397,7 +1408,10 @@ write_csv(recdev, paste0(o.name,"RecDevsPinData_NOBA.csv"))
 
 # matrix q 1.00E-30 for species not caught in gear
 # species rows gears columns
-fleets <- unique(NOBAom_ms$truecatchage_ss$fleet)
+#fleets <- unique(NOBAom_ms$truecatchage_ss$fleet)
+
+# Apr 2021 lets just have one fleet for testing
+fleets <- "allcombined"
 
 #which fisheries catch witch species?
 catchperfishery <- read.table(here("SkillAssessment/atlantisoutput/NOBA_sacc_38/nordic_runresults_01CatchPerFishery.txt"), header = TRUE) 
@@ -1417,7 +1431,33 @@ fishingq <- catchperfishery %>%
   arrange(Name) %>%
   replace(is.na(.),0)
 
-write_csv(fishingq, paste0(o.name,"fishing_q_NOBA.csv"))
+# reformat for one combined fleet
+fishingq <- fishingq %>%
+  group_by(Name) %>%
+  mutate(allcombined = sum(across())) %>%
+  select(Name, allcombined)
+
+fishingq$allcombined[fishingq$allcombined > 1] <- 1
+
+write_csv(fishingq, paste0(o.name,"fishing_q_indicator_NOBA.csv")) #indicator in .dat file
+
+# actual fishing q  April 2022
+# from Gavin, additions to .pin
+# Fishing mortality
+# Average F by fleet and area
+# init_matrix avg_F(1,Nareas,1,Nfleets,avg_F_phase)  -1.6
+
+avgF <- 
+
+# Annual F deviations
+#init_3darray F_devs(1,Nareas,1,Nfleets,1,Nyrs,dev_F_phase)
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+# Fishery qs
+# init_vector ln_fishery_q(1,Nqpars) (= sum of fishery_indicator_q - Nfleet*Narea)
+
+initfishq <- matrix(0, )
+0 0 0 0 0 0 0 0
+
 
 # matrix 0 species rows gears columns  
 fishingerr <- matrix(0, singletons$Nspecies, singletons$Nfleets,
@@ -1433,6 +1473,7 @@ surveyinf <- matrix(c(1,0), 2, singletons$Nspecies,
 write.csv(surveyinf, paste0(o.name,"survey_info_NOBA.csv"))
 
 # will need to add fishery and survey selectivity pars to pin 
+
 
 ```
 

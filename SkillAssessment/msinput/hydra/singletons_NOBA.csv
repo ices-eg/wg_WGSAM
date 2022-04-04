@@ -1,4 +1,4 @@
-"debug",3
+"debug",4
 "Nyrs",80
 "Nspecies",11
 "Nsizebins",5
@@ -8,11 +8,12 @@
 "wtconv",1
 "yr1Nphase",1
 "recphase",-1
-"avg_rec_phase",-1
+"avg_rec_phase",1
+"recsigmaphase",-1
 "avg_F_phase",-1
 "dev_rec_phase",-1
 "dev_F_phase",-1
-"fqphase",-1
+"fqphase",1
 "sqphase",-1
 "ssig_phase",-1
 "csig_phase",-1

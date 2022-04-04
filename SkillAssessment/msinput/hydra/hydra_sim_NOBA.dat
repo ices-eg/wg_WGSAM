@@ -968,7 +968,7 @@
   -1
 #  init_int avg_rec_phase		//average recruitment estimation phase (could make species specific, currently global)
   1
-#  init_int recsigmaphase			//average fishing mort estimation phase (could make species specific, currently global)
+#  init_int recsigmaphase			//st dev of recruitment devs phase
   -1
 #  init_int avg_F_phase			//average fishing mort estimation phase (could make species specific, currently global)
   -1
@@ -1146,10 +1146,10 @@
 #  //fishery selectivity pars from dat file, for now not area specific
 #  init_matrix fishsel_c(1,Nfleets,1,Nspecies)  //fishery selectivity c par
   #benthic trawl and pelagic trawl and longline
- 
+  1 1 1 1 1 1 1 1 1 1 1
 #  init_matrix fishsel_d(1,Nfleets,1,Nspecies)  //fishery selectivity c par
   #benthic trawl and pelagic trawl and longline
- 
+  1 1 1 1 1 1 1 1 1 1 1
 # Following content added after ICES publication by Gaichas et al. 2014
 # Made by Andy Beet from Dec 2016 onward
 # Equilibrium Biomass. B0(1,Nspecies). Tthese values are obtained by running hydra_sim without any error and zero fishing effort

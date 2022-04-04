@@ -2,7 +2,7 @@
       #and used all inputs from csv files found in folder:
       #hydradata/data-raw
 # init_int debug
-  3
+  4
 # init_int Nyrs
   80
 # init_int Nspecies
@@ -967,6 +967,8 @@
 #  init_int recphase				//recruitment parameter estimation phas
   -1
 #  init_int avg_rec_phase		//average recruitment estimation phase (could make species specific, currently global)
+  1
+#  init_int recsigmaphase			//average fishing mort estimation phase (could make species specific, currently global)
   -1
 #  init_int avg_F_phase			//average fishing mort estimation phase (could make species specific, currently global)
   -1
@@ -975,7 +977,7 @@
 #  init_int dev_F_phase			//fishing mort deviation estimation phase (could make species specific, currently global)
   -1
 #  init_int fqphase              //fishery q estimation phase
-  -1
+  1
 #  init_int sqphase              //survey q estimation phase 
   -1
 #   init_int ssig_phase           //survey sigma (obs error) phase
@@ -1032,7 +1034,7 @@
   1 1 1 1 1 1 1 1 1 1 1
 #  init_ivector rectype(1,Nspecies)  //switch for alternate recruitment functions 1=gamma/Ricker, 2=Deriso-Schnute, 9=avg+devs
 # 3=SSB gamma, 4=SSB Ricker, 5=SSB Beverton Holt added April 2014,6=Shepherd (added Beet Mar 2017)
-  1 1 1 1 1 1 1 1 1 1 1
+  9 9 9 9 9 9 9 9 9 9 9
 #   init_ivector stochrec(1,Nspecies)  //switch for stochastic recruitment. 1 = add error, 0= no error
   1 1 1 1 1 1 1 1 1 1 1
 #  init_matrix sexratio(1,Nareas,1,Nspecies)  // this is proportion females
@@ -1105,7 +1107,7 @@
   0.138159125283827 0.336553335594056 0.26105391276969 0.329292003312627 0.543956919159763 0.353844412227963 0.655560366523494 0.353499227173444 0.109589724508586 0.366534849977077 0.477861087063331
 #  init_vector growthtype                           //switch for alternate growth types,
 #1 power, 2 power/covariates, 3 vonB, 4 vonB covariates
-  4 4 4 4 4 2 4 4 4 4 4
+  3 3 3 3 3 2 3 3 3 3 3
 #  init_number phimax
   1
 #  init_matrix intake_alpha(1,Nareas,1,Nspecies)
@@ -1142,32 +1144,12 @@
 #  init_vector sd_sizepref(1,Nspecies)              //pred sizebins
   2 2 2 2 2 2 2 2 2 2 2
 #  //fishery selectivity pars from dat file, for now not area specific
-#  init_matrix fishsel_c(1,Nspecies,1,Nfleets)  //fishery selectivity c par
+#  init_matrix fishsel_c(1,Nfleets,1,Nspecies)  //fishery selectivity c par
   #benthic trawl and pelagic trawl and longline
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-#  init_matrix fishsel_d(1,Nspecies,1,Nfleets)  //fishery selectivity d par
+ 
+#  init_matrix fishsel_d(1,Nfleets,1,Nspecies)  //fishery selectivity c par
   #benthic trawl and pelagic trawl and longline
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
-  1 1 1 1 1 1 1 1 1 1 1
+ 
 # Following content added after ICES publication by Gaichas et al. 2014
 # Made by Andy Beet from Dec 2016 onward
 # Equilibrium Biomass. B0(1,Nspecies). Tthese values are obtained by running hydra_sim without any error and zero fishing effort
@@ -1208,7 +1190,7 @@
 # init_number scaleInitialN.  used to scale initial yr1N abundances found in .pin file
   1
 # other food term
-  0
+  1e-07
 #init_matrix effortScaled(1,Nareas,1,Nspecies)
   1 1 1 1 1 1 1 1 1 1 1
 # init_4darray discard_Coef(1,Nareas,1,Nspecies,1,Nfleets,1,Nsizebins)
@@ -1266,6 +1248,7 @@
 # init_number baseline_threshold // value of threshold that we stop landing catch. Typically 0.2
   0.2
 # init_3darray indicator_fishery_q(1,Nareas,1,Nfleets,1,Nspecies)
+# which species represent targeted catch. These are used to estmate exploitation rate in assessment
   1 1 1 1 0 1 1 1 0 1 1
 # AR_parameters(1,3) Survey, recruitment, Catch 
   0 0 0

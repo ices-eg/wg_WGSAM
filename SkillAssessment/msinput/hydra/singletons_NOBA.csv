@@ -19,7 +19,7 @@
 "csig_phase",-1
 "phimax",1
 "scaleInitialN",1
-"otherFood",0
+"otherFood",1e-07
 "LFI_size",60
 "bandwidth_metric",5
 "assessmentPeriod",3

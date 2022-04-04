@@ -299,7 +299,7 @@ sizepref <- as.data.frame(sizepref[-1,])
 
 # dimensions for singletons file
 singletons <- data.frame(
-  debug=3,
+  debug=4,
   Nyrs=fit_nyears, #may want to take from survey time series instead
   Nspecies=length(sppsubset$Name),
   Nsizebins=5,
@@ -309,17 +309,18 @@ singletons <- data.frame(
   wtconv=1,
   yr1Nphase=1,
   recphase=-1,
-  avg_rec_phase=-1,
+  avg_rec_phase=1,
+  recsigmaphase=-1,
   avg_F_phase=-1,
   dev_rec_phase=-1,
   dev_F_phase=-1,
-  fqphase=-1,
+  fqphase=1,
   sqphase=-1,
   ssig_phase=-1,
   csig_phase=-1,
   phimax=1,
   scaleInitialN=1,
-  otherFood=0000,
+  otherFood=1e-7,
   LFI_size=60,
   bandwidth_metric=5,
   assessmentPeriod=3,
@@ -485,7 +486,7 @@ for(s in names(len_comp_data)){
   growthpars <- left_join(svexp3, vbout.2) %>%
     mutate(growthType = case_when(
       is.na(Linf) ~ 2,
-      TRUE ~ 4)) # vonB default, exponential if no vonB
+      TRUE ~ 3)) # vonB without covariates default, exponential if no vonB
   
   # sadly doesn't work so just make a csv for each era and use the one with most spp
   # maxera <- growthpars %>% 
@@ -762,6 +763,9 @@ for(s in names(len_comp_data)){
 allsvlenbin <- allsvlenbin %>%
   replace(is.na(.),-999)
 
+# cap inpN at 1000
+allsvlenbin$inpN[allsvlenbin$inpN > 1000] <- 1000
+
 write_csv(allsvlenbin, paste0(o.name,"observation_lengths_NOBA_allsurvs.csv"))
 
 #requires read_savedfisheries function, added to atlantisom 30 June
@@ -797,6 +801,9 @@ for(f in names(catchlen_ss)){
 # use -999 for missing value
 allfishlenbin <- allfishlenbin %>%
   replace(is.na(.),-999)
+
+# cap inpN at 1000
+allfishlenbin$inpN[allfishlenbin$inpN > 1000] <- 1000
 
 
 write_csv(allfishlenbin, paste0(o.name,"observation_lengths_NOBA_allfisheries.csv"))
@@ -1108,6 +1115,9 @@ recpars <- matrix(1, 27, singletons$Nspecies,
                                     "stochastic"
                   ), c(sort.default(sppsubset$Name))
                   ))
+
+# change rectype input to 9=avg+devs
+recpars[c("type"),] <- 9
                   
 write.csv(recpars, paste0(o.name,"recruitment_species_NOBA.csv"))
 

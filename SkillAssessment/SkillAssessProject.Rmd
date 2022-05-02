@@ -180,7 +180,7 @@ Code here takes the saved atlantisom .rds output files and generates model input
 
 We will use a subset of the full NOBA atlantis output, leaving out the model spin up period and the projection period at the end of the run. The goal will be a 80 year dataset for model testing, starting before the onset of fishing and including all of the F contrast built in.
 
-```{r}
+```{r, eval=FALSE}
 # if not your first rodeo, read in the existing NOBAom_ms 
 
 source(here("SkillAssessment/config/NOBA2Config.R"))
@@ -1421,6 +1421,7 @@ write_csv(recdev, paste0(o.name,"RecDevsPinData_NOBA.csv"))
 #fleets <- unique(NOBAom_ms$truecatchage_ss$fleet)
 
 # Apr 2021 lets just have one fleet for testing
+# see https://github.com/thefaylab/hydra_sim/issues/16
 fleets <- "allcombined"
 
 #which fisheries catch witch species?
@@ -1452,10 +1453,18 @@ fishingq$allcombined[fishingq$allcombined > 1] <- 1
 write_csv(fishingq, paste0(o.name,"fishing_q_indicator_NOBA.csv")) #indicator in .dat file
 
 # actual fishing q  April 2022
+
+
 # from Gavin, additions to .pin
 # Fishing mortality
 # Average F by fleet and area
 # init_matrix avg_F(1,Nareas,1,Nfleets,avg_F_phase)  -1.6
+
+# starting value sum all catch for all species/sum all B for all species
+# take mean and annual devs of that
+
+
+
 
 avgF <- 
 

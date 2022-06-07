@@ -13,6 +13,17 @@ timestep <- stepperyr #5
 # with 5 output steps per year, 0 is Jan-Feb-midMar, 1 is midMar-Apr-May, 
 # 2 is June-July-midAug, 3 is midAug-Sept-Oct, 4 is Nov-Dec (ish)
 
+# No, timestep 0 is initial condition and should be ignored to align 
+# snapshots (biomass, numbers) with
+# cumulative outputs (fishery catch, numbers)
+
+# with 5 output steps per (non leap) year:
+# 1 is day 73, or 14 March
+# 2 is day 146, or 26 May
+# 3 is day 219, or 7 August
+# 4 is day 292, or 19 October
+# 5 is day 365, or 31 December
+
 survey_sample_time <- 3 # fall survey
 
 #The last timestep to sample

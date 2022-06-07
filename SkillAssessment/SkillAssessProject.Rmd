@@ -208,8 +208,8 @@ fit_nyears <- fitendyr-fitstartyr
 fit_ntimes <- fit_nyears*stepperyr
 fittimes <- atlantis_full[mod_burnin:(mod_burnin+fit_ntimes-1)]
 #fit_timesteps <- seq(fittimes[stepperyr], max(fittimes), by=stepperyr) #last timestep
-fit_years <- unique(floor(fittimes/stepperyr)) #from Christine's new sardine_config.R
-fittimes.days <- fittimes*73
+#fit_years <- unique(floor(fittimes/stepperyr)) #from Christine's new sardine_config.R #don't use floor
+fittimes.days <- fittimes*NOBAom_ms$runpar$toutinc
 
   
 ```
@@ -302,9 +302,9 @@ singletons <- data.frame(
   debug=4,
   Nyrs=fit_nyears, #may want to take from survey time series instead
   Nspecies=length(sppsubset$Name),
-  Nsizebins=5,
+  Nsizebins=10, #5, try extending... June 2022
   Nareas=1,
-  Nfleets=1, #length(unique(NOBAom_ms$truecatchage_ss$fleet)), #Apr 2022
+  Nfleets=2, # cod vs others May 2022 #length(unique(NOBAom_ms$truecatchage_ss$fleet)), #Apr 2022
   Nsurveys=2,
   wtconv=1,
   yr1Nphase=1,
@@ -349,8 +349,11 @@ dummycovar <- data.frame(dummy1 = rep(1, singletons$Nyrs))
 allfleets <- atlantisom::load_fisheries(d.name, fisheries.file)
 #fleets <- unique(NOBAom_ms$truecatchage_ss$fleet)
 
-# Apr 2021 lets just have one fleet for testing
-fleets <- "allcombined"
+# Apr 2022 lets just have one fleet for testing
+#fleets <- "allcombined"
+
+# June 2022 one fleet for cod, one for all others
+fleets <- c("allbutcod", "codfleet")
 
 dummyeffort <- data.frame(1:singletons$Nyrs,
                           matrix(1, singletons$Nyrs, singletons$Nfleets))
@@ -380,6 +383,8 @@ write.csv(sexratio, paste0(o.name,"sexratio_NOBA.csv"))
 ```
 
 Decisions on size bins for hydra: keep 5 bins per species for now, build in flexibility to allocate size data to any number of bins with any definitions. 
+
+**June 2022, expanding size bins to 10 per species** Model not getting any info from 5 bins. Too aggregated. 
 
 First we'll get the growth parameters for each species using the length data generated from Atlantis. We estimate parameters for both von Bertalannfy and exponential growth functions. 
 
@@ -426,7 +431,7 @@ for(s in names(len_comp_data)){
   #arrange into long format: year, Species, agecl, length 
   svlenage <- len_comp_data[[s]][[1]] %>%
     dplyr::left_join(svlen_avgage) %>%
-    dplyr::mutate(year = floor(time/stepperyr)) %>%
+    dplyr::mutate(year = ceiling(time/stepperyr)) %>%
     dplyr::select(species, agecl, avgage, year, upper.bins, atoutput) %>%
     dplyr::mutate(avgage = coalesce(avgage,agecl)) %>%
     dplyr::rename(length = upper.bins) %>%
@@ -629,7 +634,7 @@ for(s in names(survObsBiom)){
   #arrange into wide format: year, Species1, Species2 ... and write csv
   svbio <- survObsBiom[[s]][[1]] %>%
     dplyr::filter(time %in% fittimes) %>%
-    dplyr::mutate(year = floor(time/stepperyr)) %>%
+    dplyr::mutate(year = ceiling(time/stepperyr)) %>%
     dplyr::mutate(year = year-fitstartyr+1) %>% #year starts at 1
     dplyr::select(species, year, atoutput) %>%
     dplyr::rename(biomass = atoutput) %>%
@@ -742,7 +747,7 @@ for(s in names(len_comp_data)){
   #arrange into long format: year, Species, agecl, length 
   svlenbin <- len_comp_data[[s]][[1]] %>%
     dplyr::filter(time %in% fittimes) %>%
-    dplyr::mutate(year = floor(time/stepperyr)) %>%
+    dplyr::mutate(year = ceiling(time/stepperyr)) %>%
     dplyr::mutate(year = year-fitstartyr+1) %>% #year starts at 1
     dplyr::select(species, agecl, year, upper.bins, atoutput) %>%
     dplyr::left_join(modbins) %>%
@@ -779,7 +784,7 @@ for(f in names(catchlen_ss)){
   #arrange into long format: year, Species, agecl, length 
   fishlenbin <- catchlen_ss[[f]][[1]] %>%
     dplyr::filter(time %in% fittimes) %>%
-    dplyr::mutate(year = floor(time/stepperyr)) %>%
+    dplyr::mutate(year = ceiling(time/stepperyr)) %>%
     dplyr::mutate(year = year-fitstartyr+1) %>% #year starts at 1
     dplyr::select(species, agecl, year, upper.bins, atoutput) %>%
     dplyr::left_join(modbins) %>%
@@ -852,7 +857,7 @@ for(s in names(all_diets)){
   #arrange into lookup for agecl to lengthbin in numbers of fish 
   svagelenbin <- len_comp_data[[s]][[1]] %>%
     dplyr::filter(time %in% fittimes) %>%
-    dplyr::mutate(year = floor(time/stepperyr)) %>%
+    dplyr::mutate(year = ceiling(time/stepperyr)) %>%
     dplyr::mutate(year = year-fitstartyr+1) %>% #year starts at 1
     dplyr::select(species, agecl, year, upper.bins, atoutput) %>%
     dplyr::left_join(modbins) %>%
@@ -864,7 +869,7 @@ for(s in names(all_diets)){
   
   svdietprop <- all_diets[[s]][[1]] %>%
     dplyr::filter(time.days %in% fittimes.days) %>%
-    dplyr::mutate(year = floor(time.days/365)) %>%
+    dplyr::mutate(year = ceiling(time.days/365)) %>%
     dplyr::mutate(year = year-fitstartyr+1) %>% #year starts at 1
     # join with agecl to length lookup
     dplyr::select(species, agecl, year, prey, dietSamp) %>%
@@ -979,7 +984,7 @@ fallcensus_btempindex <- left_join(fallcensus_bottomtemp, boxarea) %>%
   dplyr::group_by(time) %>%
   dplyr::summarise(meantemp = weighted.mean(atoutput, proparea)) %>%
   dplyr::filter(time %in% fittimes) %>%
-  dplyr::mutate(year = floor(time/stepperyr)) %>%
+  dplyr::mutate(year = ceiling(time/stepperyr)) %>%
   dplyr::select(year, meantemp) %>%
   write_csv(paste0(o.name,"observation_temperature_NOBA_",survey.name,".csv"))
 
@@ -991,7 +996,7 @@ springcensus_btempindex <- left_join(springcensus_bottomtemp, boxarea) %>%
   dplyr::group_by(time) %>%
   dplyr::summarise(meantemp = weighted.mean(atoutput, proparea)) %>%
   dplyr::filter(time %in% fittimes) %>%
-  dplyr::mutate(year = floor(time/stepperyr)) %>%
+  dplyr::mutate(year = ceiling(time/stepperyr)) %>%
   dplyr::select(year, meantemp) %>%
   write_csv(paste0(o.name,"observation_temperature_NOBA_",survey.name,".csv"))
 
@@ -1355,7 +1360,7 @@ write.csv(modstartNlen, paste0(o.name,"observation_Y1N_NOBA.csv"))
     group_by(species, agecl, time) %>%
     summarise(age1N = sum(atoutput)) %>%
     ungroup() %>%
-    mutate(year = floor(time/stepperyr)) %>%
+    mutate(year = ceiling(time/stepperyr)) %>%
     group_by(species, agecl, year) %>%
     filter(age1N == max(age1N)) %>%
     select(Name=species, Time=time, age1N, year) %>%

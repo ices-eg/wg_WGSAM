@@ -197,12 +197,15 @@ NOBAom_ms <- readRDS(file.path(d.name, paste0(scenario.name, "omlist_ss.rds")))
 fitstartyr <- 40
 fitendyr <- 120  #use 110 for sacc30
 
+fitstartyr <- fitstartyr - 1 #needed to start at year entered above
+
 #Number of years of data to pull
 nyears <- NOBAom_ms$runpar$nyears
 total_sample <- NOBAom_ms$runpar$tstop/NOBAom_ms$runpar$outputstep
 stepperyr <- if(NOBAom_ms$runpar$outputstepunit=="days") 365/NOBAom_ms$runpar$toutinc
 
-atlantis_full <- c(0:total_sample)  
+# also need to change atlantis_full to not include 0 timestep
+atlantis_full <- c(1:total_sample)  
 mod_burnin <- fitstartyr*stepperyr+1
 fit_nyears <- fitendyr-fitstartyr
 fit_ntimes <- fit_nyears*stepperyr
@@ -635,7 +638,7 @@ for(s in names(survObsBiom)){
   svbio <- survObsBiom[[s]][[1]] %>%
     dplyr::filter(time %in% fittimes) %>%
     dplyr::mutate(year = ceiling(time/stepperyr)) %>%
-    dplyr::mutate(year = year-fitstartyr+1) %>% #year starts at 1
+    dplyr::mutate(year = year-fitstartyr) %>% #year starts at 1
     dplyr::select(species, year, atoutput) %>%
     dplyr::rename(biomass = atoutput) %>%
     dplyr::mutate(survey = s) %>%
@@ -649,6 +652,12 @@ write_csv(allsvbio, paste0(o.name,"observation_biomass_NOBA_allsurvs.csv"))
 
 catchbio_ss <- read_savedfisheries(d.name, 'Catch')
 
+# map species to fleets
+# for now a cod fleet and an everyone else fleet
+# this is made in a code block below lines 1440- ish
+fleetdef <- read.csv(paste0(o.name, "fishing_q_indicator_NOBA.csv"))
+fleetdef$Name <- as.character(fleetdef$Name)
+
 allcatch <- tibble()
 
 # remove species with no catch across whole time series Apr 2022
@@ -658,7 +667,7 @@ for(f in names(catchbio_ss)){
     #dplyr::filter(time>0) %>%
     dplyr::filter(time %in% fittimes.days) %>%
     dplyr::mutate(year = time/365) %>%
-    dplyr::mutate(year = year-fitstartyr+1) %>% #year starts at 1
+    dplyr::mutate(year = year-fitstartyr) %>% #year starts at 1
     dplyr::select(species, year, atoutput) %>%
     dplyr::rename(catch = atoutput) %>%
     dplyr::group_by(species) %>%
@@ -666,10 +675,11 @@ for(f in names(catchbio_ss)){
     dplyr::ungroup() %>%
     dplyr::filter(totcatch > 0) %>%
     dplyr::select(-totcatch) %>%
-    dplyr::mutate(fishery = f) %>%
     dplyr::mutate(area = 1) %>%
     dplyr::left_join(fcvlook) %>%
-    dplyr::select(fishery, area, year, species, everything()) %>%
+    dplyr::left_join(fleetdef, by = c("species" = "Name")) %>%
+    dplyr::mutate(fishery = qind) %>%
+    dplyr::select(fishery, area, year, species, catch, cv) %>%
     dplyr::arrange(fishery, species, year)
       
   allcatch <- bind_rows(allcatch, catchbio)  
@@ -732,13 +742,15 @@ Now write length composition input files in long format to have surveys together
 sizebins <- read_csv(paste0(o.name,"length_sizebins_NOBA.csv"))
 
 modbins <- sizebins %>%
-  rename(species = `commentField-notused`) %>%
-  pivot_longer(!species, names_to = "sizebin", values_to = "binwidth") %>%
-  group_by(species) %>%
-  arrange(sizebin) %>%
-  mutate(modbin.min = pcumsum(binwidth),
+  dplyr::rename(species = `commentField-notused`) %>%
+  tidyr::pivot_longer(!species, names_to = "sizebin", values_to = "binwidth") %>%
+  dplyr::group_by(species) %>%
+  dplyr::mutate(modbin.min = pcumsum(binwidth),
          modbin.max = cumsum(binwidth)) %>%
-  arrange(species, sizebin)
+  dplyr::mutate(sizebin = factor(sizebin, levels = unique(sizebin))) 
+
+  #stringr::str_order(modbins$sizebin, numeric = TRUE)
+  #arrange(species, sizebin)
 
 allsvlenbin <- tibble()
 
@@ -748,7 +760,7 @@ for(s in names(len_comp_data)){
   svlenbin <- len_comp_data[[s]][[1]] %>%
     dplyr::filter(time %in% fittimes) %>%
     dplyr::mutate(year = ceiling(time/stepperyr)) %>%
-    dplyr::mutate(year = year-fitstartyr+1) %>% #year starts at 1
+    dplyr::mutate(year = year-fitstartyr) %>% #year starts at 1
     dplyr::select(species, agecl, year, upper.bins, atoutput) %>%
     dplyr::left_join(modbins) %>%
     dplyr::filter(modbin.min < upper.bins & upper.bins <= modbin.max) %>%
@@ -785,7 +797,7 @@ for(f in names(catchlen_ss)){
   fishlenbin <- catchlen_ss[[f]][[1]] %>%
     dplyr::filter(time %in% fittimes) %>%
     dplyr::mutate(year = ceiling(time/stepperyr)) %>%
-    dplyr::mutate(year = year-fitstartyr+1) %>% #year starts at 1
+    dplyr::mutate(year = year-fitstartyr) %>% #year starts at 1
     dplyr::select(species, agecl, year, upper.bins, atoutput) %>%
     dplyr::left_join(modbins) %>%
     dplyr::filter(modbin.min < upper.bins & upper.bins <= modbin.max) %>%
@@ -795,14 +807,22 @@ for(f in names(catchlen_ss)){
     ungroup() %>%
     dplyr::mutate(inpN = rowSums(.[,-(1:2)], na.rm = TRUE)) %>%
     dplyr::mutate(type = 0) %>%
-    dplyr::mutate(fishery = f,
-                  area = 1) %>%
+    dplyr::left_join(fleetdef, by = c("species" = "Name")) %>%
+    dplyr::rename(fishery = qind) %>%
+    dplyr::mutate(area = 1) %>%
     dplyr::mutate_at(vars(contains("sizebin")), ~./inpN) %>% #proportion
     dplyr::select(fishery, area, year, species, type, inpN, everything()) %>%
     dplyr::arrange(fishery, area, species, year)
   
   allfishlenbin <- bind_rows(allfishlenbin, fishlenbin)
 }
+
+#add back columns with no lengths as NAs
+missing <- setdiff(modbins$sizebin, names(allfishlenbin))
+allfishlenbin[missing] <- NA_real_ 
+colorder <- c("fishery", "area", "year", "species", "type", "inpN", levels(modbins$sizebin))
+allfishlenbin <- allfishlenbin[colorder]
+
 # use -999 for missing value
 allfishlenbin <- allfishlenbin %>%
   replace(is.na(.),-999)
@@ -1425,7 +1445,7 @@ write_csv(recdev, paste0(o.name,"RecDevsPinData_NOBA.csv"))
 # species rows gears columns
 #fleets <- unique(NOBAom_ms$truecatchage_ss$fleet)
 
-# Apr 2021 lets just have one fleet for testing
+# Apr 2022 lets just have one fleet for testing
 # see https://github.com/thefaylab/hydra_sim/issues/16
 fleets <- "allcombined"
 
@@ -1454,6 +1474,16 @@ fishingq <- fishingq %>%
   select(Name, allcombined)
 
 fishingq$allcombined[fishingq$allcombined > 1] <- 1
+
+# June 2022 add a separate fleet for cod--hack but oh well
+fishingq <- fishingq %>%
+  dplyr::mutate(allbutcod = case_when(Name=="North_atl_cod" ~ 0,
+                               TRUE ~ allcombined),
+                codfleet = case_when(Name=="North_atl_cod" ~ 2,
+                               TRUE ~ 0),
+                qind = sum(allbutcod, codfleet)) %>%
+  dplyr::select(Name, qind)
+
 
 write_csv(fishingq, paste0(o.name,"fishing_q_indicator_NOBA.csv")) #indicator in .dat file
 

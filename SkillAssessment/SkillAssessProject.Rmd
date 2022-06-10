@@ -846,13 +846,15 @@ all_diets <- atlantisom::read_savedsurvs(d.name, 'survDiet')
 sizebins <- read_csv(paste0(o.name,"length_sizebins_NOBA.csv"))
 
 modbins <- sizebins %>%
-  rename(species = `commentField-notused`) %>%
-  pivot_longer(!species, names_to = "sizebin", values_to = "binwidth") %>%
-  group_by(species) %>%
-  arrange(sizebin) %>%
-  mutate(modbin.min = pcumsum(binwidth),
+  dplyr::rename(species = `commentField-notused`) %>%
+  tidyr::pivot_longer(!species, names_to = "sizebin", values_to = "binwidth") %>%
+  dplyr::group_by(species) %>%
+  dplyr::mutate(modbin.min = pcumsum(binwidth),
          modbin.max = cumsum(binwidth)) %>%
-  arrange(species, sizebin)
+  dplyr::mutate(sizebin = factor(sizebin, levels = unique(sizebin))) 
+
+  #stringr::str_order(modbins$sizebin, numeric = TRUE)
+  #arrange(species, sizebin)
 
 # get Dirichlet alphamults from config files
 svcon <- list.files(path=here("SkillAssessment/config/"), pattern = "*survey*", full.names = TRUE)
@@ -878,7 +880,7 @@ for(s in names(all_diets)){
   svagelenbin <- len_comp_data[[s]][[1]] %>%
     dplyr::filter(time %in% fittimes) %>%
     dplyr::mutate(year = ceiling(time/stepperyr)) %>%
-    dplyr::mutate(year = year-fitstartyr+1) %>% #year starts at 1
+    dplyr::mutate(year = year-fitstartyr) %>% #year starts at 1
     dplyr::select(species, agecl, year, upper.bins, atoutput) %>%
     dplyr::left_join(modbins) %>%
     dplyr::filter(modbin.min < upper.bins & upper.bins <= modbin.max) %>%
@@ -890,7 +892,7 @@ for(s in names(all_diets)){
   svdietprop <- all_diets[[s]][[1]] %>%
     dplyr::filter(time.days %in% fittimes.days) %>%
     dplyr::mutate(year = ceiling(time.days/365)) %>%
-    dplyr::mutate(year = year-fitstartyr+1) %>% #year starts at 1
+    dplyr::mutate(year = year-fitstartyr) %>% #year starts at 1
     # join with agecl to length lookup
     dplyr::select(species, agecl, year, prey, dietSamp) %>%
     dplyr::left_join(svagelenbin) %>%
@@ -904,7 +906,7 @@ for(s in names(all_diets)){
   
    # add back any modeled species that weren't prey so they show up as columns
   missedpreds <- setdiff(unique(modbins$species), names(svdietprop)[-(1:3)])
-  svdietprop[missedpreds] <- NA
+  svdietprop[missedpreds] <- NA_real_
   svdietprop[,-(1:3)] <- svdietprop[unique(modbins$species)]
   svdietprop <- svdietprop %>% 
     dplyr::mutate(allotherprey = 1-rowSums(.[,-(1:3)], na.rm = TRUE)) %>%
@@ -928,7 +930,7 @@ Output temperature data from surveys using "Temp" variable in .nc file and the `
 
 We can get surface and bottom temp from Atlantis using the layers from each polygon, with layer 0 being the bottom and the maximum layer in the polygon being the surface (according to the [Atlantis wiki/Atlantis output files/Atlantis NetCDF structure](https://confluence.csiro.au/display/Atlantis/Atlantis+NetCDF+Structure). 
 
-The below needs to be formalized into an `atlantisom` function, and reformatted to have both surveys in one file to match other data inputs:
+The below has been formalized into an `atlantisom` function, and reformatted to have both surveys in one file to match other data inputs:
 
 ```{r surveytemp, eval=FALSE}
 

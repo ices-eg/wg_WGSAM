@@ -1044,11 +1044,13 @@ fallavgtemp + springavgtemp
 ```
 
 
-*STILL NEEDS RESOLUTION--the per capita consumption from Atlantis seems low relative to actual data*
-
 Stomach weights are needed as input to hydra. At present each species has a stomach weight for each size bin that is repeated for each year. We have total consumed weight for each predator age class at each timestep in the detailed diet atlantis output, so would need to map age classes to length bins, sum consumed weight by length bin and divide by total numbers in that length bin to get stomach weight.
 
 What we have saved so far is a diet comp in proportion that has had bias and observation error added to proportions. However, we need the stomach weight portion of the equation, which has the survey timing/area/efficiency/selectivity applied to true consumed weight. The hydra input is mean daily stomach weight in grams. From the Atlantis manual, "DetailedDietCheck.txt returns the total consumed biomass since the last output given for each cell (box and layer) of each age group of each functional group." So daily per capita consumed biomass is this output, summed over prey for total consumption, divided by the numbers from the same survey design, divided by the output step `omlist_ss$runpar$outputstep`.
+
+*STILL NEEDS RESOLUTION--the per capita consumption from Atlantis detailedDietCheck.txt seems low relative to actual data*
+
+See [here](https://sgaichas.github.io/poseidon-dev/PerCapitaConsumption.html) for the calculation above for NOBA and CCA.
 
 For now, we map existing Georges Bank species intake-at-size (average daily stomach weight) to the NOBA species as follows:
 
@@ -1072,7 +1074,7 @@ We will modify or subsitute intake-at-size for the rest of the NOBA species base
 
 Code to make intake csv for input; hardcoded based on these decisions.
 
-```{r intake, eval=FALSE}
+```{r intakeGB, eval=FALSE}
 
 # this is intake by species in current hydra_sim
 
@@ -1106,6 +1108,178 @@ stomwt["Saithe",] <- c(0.090189781,1.952671779,9.334322368,28.80493233,77.558853
 write.csv(stomwt, paste0(o.name,"intake_stomachContent_NOBA.csv"))
 
 ```
+
+JUNE 2022
+
+Now that we are expanding to 10 size bins, I either need to interpolate these proxies based on GB, or find another source for this input. *Alternative approach would be to use atlantisom biomass_eaten output to get total per capita consumption*
+
+This is output from a new [`atlantisom::calc_pred_cons()`](https://github.com/r4atlantis/atlantisom/blob/master/R/calc_pred_cons.R) function based on the Atlantis `PROD.nc` output. This will be incorporated into `atlantisom::run_truth()` when assumptions about output units etc, can be confirmed.
+
+```{r PRODcons, eval=FALSE}
+
+# here we have to rerun parts of atlantisom::run_truth() that weren't saved previously.
+# first redefine the file names etc as used within run_truth
+
+dir <- d.name
+
+file_fgs <- functional.groups.file #"nordic_groups_v04.csv"
+file_biolprm <- biol.prm.file #"nordic_biol_incl_harv_v_011_1skg.prm"
+file_bgm <- box.file #"Nordic02.bgm"
+file_init <- initial.conditions.file #"nordic_biol_v23.nc"
+file_runprm <- run.prm.file #"nordic_run_v01.xml"
+scenario <- scenario.name #"nordic_runresults_01"
+
+select_groups <- mskeyrun::simFocalSpecies$Name # 11 mskeyrun fish species
+
+verbose <- FALSE
+
+# run_truth snippets below
+
+  # Read in the functional groups csv since that is used by many functions
+  fgs <- load_fgs(dir = dir, file_fgs = file_fgs)
+  # Read in the biomass pools
+  bps <- load_bps(dir = dir, fgs = file_fgs, file_init = file_init)
+  # Read in the biological parameters
+  biol <- load_biolprm(dir = dir, file_biolprm = file_biolprm)
+  # Read in the run parameters
+  runprm <- load_runprm(dir = dir, file_runprm = file_runprm)
+
+  nc_out <- paste0(scenario, ".nc")
+  nc_prod <- paste0(scenario, "PROD.nc")
+  
+  # Get the boundary boxes
+  allboxes <- load_box(dir = dir, file_bgm = file_bgm)
+  boxes <- get_boundary(allboxes)
+
+
+
+  eat <- load_nc(dir = dir,
+                     file_nc = nc_prod,
+                     bps = bps,
+                     fgs = fgs,
+                     select_groups = select_groups,
+                     select_variable = "Eat",
+                     check_acronyms = TRUE,
+                     bboxes = boxes)
+  if(verbose) message("Eaten read in.")
+
+  grazing <- load_nc(dir = dir,
+                 file_nc = nc_prod,
+                 bps = bps,
+                 fgs = fgs,
+                 select_groups = select_groups,
+                 select_variable = "Grazing",
+                 check_acronyms = TRUE,
+                 bboxes = boxes)
+  if(verbose) message("Grazing read in.")
+
+  vol <- load_nc_physics(dir = dir,
+                         file_nc = nc_out,
+                         physic_variables = "volume",
+                         aggregate_layers = FALSE,
+                         bboxes = boxes)
+  if(verbose) message("Volume read in.")
+
+# now run atlantisom::calc_pred_cons() and save it
+  biomass_eaten <- atlantisom::calc_pred_cons(eat = eat, grazing = grazing, vol = vol, biolprm = biol, runprm = runprm)
+
+  saveRDS(biomass_eaten, file.path(d.name, paste0(scenario.name, "_", "biomass_eaten.rds")))
+
+```
+
+We have a preliminary true `biomass_eaten` (total consumption) output for each predator, so we take that, apply our surveys with a new atlantisom wrapper `om_consindex()`, and take the survey consumption at agecl result divided by total numbers at agecl from the survey to get per capita stomach weight (intake) at agecl. This needs to be converted to length bins, which follows a similar process to the agecl based diet. We'll take the average intake for the period being modeled (Atlantis year 40-80 ish) in each length bin as hydra input.
+
+```{r totconssurvey, eval=FALSE}
+
+omlist_ss <- NOBAom_ms
+
+omlist_ss$truecons_ss <- biomass_eaten
+
+cons_cv <- 0.1 # will need to add to survey files
+
+# test sample survey consumption
+sample_survey_consumption <- function(dat,cv) {
+
+	#sum over boxes and ages (the sampled boxes were already subset in create functions)
+	totconsB <- aggregate(dat$biomass,list(dat$species,dat$time),sum)
+	names(totconsB) <- c("species","time","constons")
+
+	#add observation error
+	totconsBobs <- merge(totconsB,cv,by="species",all.x=T)
+	totconsBobs$var <- log(totconsBobs$cv^2+1)
+	totconsBobs$obsConsB <- rlnorm(nrow(totconsBobs), log(totconsBobs$constons)-totconsBobs$var/2, sqrt(totconsBobs$var))
+
+
+	out <- data.frame(species=totconsBobs$species,
+		              agecl = NA,
+		              polygon=NA,
+		              layer=NA, time=totconsBobs$time,
+		              atoutput=totconsBobs$obsConsB)
+
+    return(out)
+}
+
+
+# test wrapper
+om_consindex <- function(usersurvey = usersurvey_file,
+                     omlist_ss,
+                     n_reps = n_reps,
+                     save = TRUE){
+
+  #one script for dimension parameters to be used in multiple functions
+  source("config/omdimensions.R", local = TRUE)
+
+  # user options for survey--default is a census with mid-year sample
+  # allows muliple surveys
+  survObsConsBs <- list()
+
+  for (s in usersurvey)
+  {
+    source(s, local = TRUE)
+    
+    # what form of survey efficiency and selectivity should be applied to consumption?
+    # create_survey function expects NatAge input so need to rename input to use this
+
+    survey_consB <- atlantisom::create_survey(dat = omlist_ss$truecons_ss, #from calc_pred_cons()
+                                          time = survtime,
+                                          species = survspp,
+                                          boxes = survboxes,
+                                          effic = surveffic,
+                                          selex = survselex)
+
+
+    # this is the step to repeat n_reps time if we want different realizations
+    # of the same survey design specified above; only observation error differs
+    # using the census cv of 0 will produce identical reps!
+    survObsConsB <- list()
+    for(i in 1:n_reps){
+      survObsConsB[[i]] <- sample_survey_consumption(survey_consB, cons_cv)
+    }
+
+    #save survey indices, takes a long time to generate with lots of reps/species
+    if(save){
+      saveRDS(survObsConsB, file.path(d.name, paste0(scenario.name, "_",
+                                                     survey.name, "survObsConsB.rds")))
+    }
+
+    survObsConsBs[[survey.name]] <- survObsConsB
+  }
+
+
+  indices <- list("survObsConsB" = survObsConsBs)
+
+  return(indices)
+}
+
+om_consindex(usersurvey = c(here("SkillAssessment/config/mssurvey_spring.R"), 
+                            here("SkillAssessment/config/mssurvey_fall.R")), 
+             omlist_ss = omlist_ss,
+             n_reps = 1,
+             save = TRUE)
+
+```
+
+
 
 Remaining unused parameters (recruitment, maturity, etc) need to be dimensioned correctly for the number of species and years:
 

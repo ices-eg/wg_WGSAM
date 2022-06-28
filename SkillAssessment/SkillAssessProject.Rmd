@@ -1196,13 +1196,13 @@ omlist_ss <- NOBAom_ms
 omlist_ss$truecons_ss <- biomass_eaten %>%
   dplyr::mutate(atoutput = bio_eaten) #needed for create_survey to work
 
-cons_cv <- 0.1 # will need to add to survey files
+cons_cv <- surv_cv # will need to add to survey files, use same format as surv_cv
 
 # test sample survey consumption
 sample_survey_consumption <- function(dat,cv) {
 
 	#sum over boxes and ages (the sampled boxes were already subset in create functions)
-	totconsB <- aggregate(dat$biomass,list(dat$species,dat$time),sum)
+	totconsB <- aggregate(dat$atoutput,list(dat$species,dat$time),sum)
 	names(totconsB) <- c("species","time","constons")
 
 	#add observation error
@@ -1280,6 +1280,58 @@ om_consindex(usersurvey = c(here("SkillAssessment/config/mssurvey_spring.R"),
 
 ```
 
+We have a total consumption index but not consumption at age, which we need for intake. 
+
+This is true consumption (blue) to compare with sampled total consumption above, (black and grey are fall and spring surveys, respectively--efficiency is 1 and there is no age selectivity, cv each species is 0.1). 
+
+```{r truecons, eval=FALSE}
+
+trueaggcons <- omlist_ss$truecons_ss %>%
+  dplyr::group_by(species, time) %>%
+  dplyr::summarise(totaggcons = sum(atoutput))
+
+survey.name <- c("BTS_fall_allbox_effic1", "BTS_spring_allbox_effic1")
+
+survcons1 <- readRDS(paste0(d.name, "/", scenario.name, "_",
+                           survey.name[1], "survObsConsB.rds"))
+
+survcons2 <- readRDS(paste0(d.name, "/", scenario.name, "_",
+                           survey.name[2], "survObsConsB.rds"))
+
+plotcons <- ggplot2::ggplot() +
+  geom_line(data = trueaggcons, aes(x=time, y=totaggcons), 
+            color = "blue", alpha = 0.5) +
+  geom_point(data = survcons1[[1]], aes(x=time, y=atoutput), color = "gray") +
+  geom_point(data = survcons2[[1]], aes(x=time, y=atoutput)) +
+  ggthemes::theme_tufte() +
+  facet_wrap(~species, scales = "free")
+  
+plotcons
+
+```
+
+We can compare true consumption at age with sampled if we can figure out how to sample it. This is true consumption for intake for now.
+
+```{r trueintake, eval=FALSE}
+
+truenumsagecl <- omlist_ss$truenums_ss %>%
+  dplyr::group_by(species, time, agecl) %>%
+  dplyr::mutate(totNagecl = sum(atoutput)) #over layer and polygon
+
+nums2 <- atlantistools::load_nc(nc = paste0(d.name,nc_out),
+                                bps = bps,
+                                fgs = file_fgs,
+                                select_groups = select_groups,
+                                select_variable = "Nums",
+                                check_acronyms = TRUE,
+                                prm_run = file_runprm,
+                                bboxes = boxes)
+)
+
+truenumsage <- omlist_ss$truenumsage_ss %>%
+  
+
+```
 
 
 Remaining unused parameters (recruitment, maturity, etc) need to be dimensioned correctly for the number of species and years:

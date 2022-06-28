@@ -1318,15 +1318,29 @@ truenumsagecl <- omlist_ss$truenums_ss %>%
   dplyr::group_by(species, time, agecl) %>%
   dplyr::mutate(totNagecl = sum(atoutput)) #over layer and polygon
 
-nums2 <- atlantistools::load_nc(nc = paste0(d.name,nc_out),
+nums1 <- atlantisom::load_nc(dir = dir,
+                 file_nc = nc_out,
+                 bps = bps,
+                 fgs = fgs,
+                 select_groups = select_groups,
+                 select_variable = "Nums",
+                 check_acronyms = TRUE,
+                 bboxes = boxes)
+
+nums2 <- atlantistools::load_nc(nc = file.path(d.name, nc_out),
                                 bps = bps,
-                                fgs = file_fgs,
-                                select_groups = select_groups,
+                                fgs = file.path(d.name,file_fgs),
+                                select_groups = "Long_rough_dab",
                                 select_variable = "Nums",
                                 check_acronyms = TRUE,
-                                prm_run = file_runprm,
+                                prm_run = file.path(d.name,file_runprm),
                                 bboxes = boxes)
-)
+
+# ncread <- tidync::tidync(paste0(d.name,"/", nc_out))
+# 
+# nums3 <- tidync::hyper_tibble(ncread) %>%
+#                 dplyr::filter(ncread$variable$name %in% "Long_rough_dab1_Nums")
+# 
 
 truenumsage <- omlist_ss$truenumsage_ss %>%
   

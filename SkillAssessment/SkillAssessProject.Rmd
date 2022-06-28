@@ -1193,7 +1193,8 @@ We have a preliminary true `biomass_eaten` (total consumption) output for each p
 
 omlist_ss <- NOBAom_ms
 
-omlist_ss$truecons_ss <- biomass_eaten
+omlist_ss$truecons_ss <- biomass_eaten %>%
+  dplyr::mutate(atoutput = bio_eaten) #needed for create_survey to work
 
 cons_cv <- 0.1 # will need to add to survey files
 
@@ -1227,7 +1228,7 @@ om_consindex <- function(usersurvey = usersurvey_file,
                      save = TRUE){
 
   #one script for dimension parameters to be used in multiple functions
-  source("config/omdimensions.R", local = TRUE)
+  source(here("SkillAssessment/config/omdimensions.R"), local = TRUE)
 
   # user options for survey--default is a census with mid-year sample
   # allows muliple surveys

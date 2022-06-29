@@ -1408,7 +1408,7 @@ for(s in names(len_comp_data)){
     dplyr::summarise(intakesize = (sum(conspropage)/sum(totNpropage))*1000000) %>%
     #tidyr::spread(intakesize) %>%
     #ungroup() %>%
-    #dplyr::filter(!is.na(sizebin)) 
+    dplyr::filter(!is.na(sizebin)) 
   
   intakeatlen <- bind_rows(intakeatlen, lenintake)
   
@@ -1416,7 +1416,10 @@ for(s in names(len_comp_data)){
 
 avgintake <- intakeatlen %>%
   dplyr::group_by(species, sizebin) %>%
-  dplyr::summarise(avgintake = mean(intakesize))
+  dplyr::summarise(avgintake = mean(intakesize)) %>%
+  tidyr::pivot_wider(names_from = sizebin, values_from = avgintake)
+
+# need to order sizebins
 
 write.csv(avgintake, paste0(o.name,"intake_stomachContent_NOBA.csv"))
 

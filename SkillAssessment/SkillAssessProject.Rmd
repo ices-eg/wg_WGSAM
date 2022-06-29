@@ -1187,7 +1187,7 @@ verbose <- FALSE
 
 ```
 
-We have a preliminary true `biomass_eaten` (total consumption) output for each predator, so we take that, apply our surveys with a new atlantisom wrapper `om_consindex()`, and take the survey consumption at agecl result divided by total numbers at agecl from the survey to get per capita stomach weight (intake) at agecl. This needs to be converted to length bins, which follows a similar process to the agecl based diet. We'll take the average intake for the period being modeled (Atlantis year 40-80 ish) in each length bin as hydra input.
+We have a preliminary true `biomass_eaten` (total consumption) output for each predator, so we take that, apply our surveys with a new atlantisom wrapper `om_consindex()`, and take the survey consumption at agecl result divided by total numbers at agecl from the survey to get per capita stomach weight (intake) at agecl. This needs to be converted to length bins, which follows a similar process to the agecl based diet. We'll take the average intake for the period being modeled (Atlantis year 40-80 ish) in each length bin as hydra input. **Actually survey agecl sampling isn't implemented yet so we'll use the true consumption at agecl below. We can do total consumption from the survey.**
 
 ```{r totconssurvey, eval=FALSE}
 
@@ -1310,13 +1310,21 @@ plotcons
 
 ```
 
-We can compare true consumption at age with sampled if we can figure out how to sample it. This is true consumption for intake for now.
+We can compare true consumption at age with sampled if we can figure out how to sample it. This is true consumption for intake for now. This is the easiest thing to include in the hydra .dat file. 
 
 ```{r trueintake, eval=FALSE}
 
 truenumsagecl <- omlist_ss$truenums_ss %>%
-  dplyr::group_by(species, time, agecl) %>%
-  dplyr::mutate(totNagecl = sum(atoutput)) #over layer and polygon
+  dplyr::group_by(species, time) %>%
+  dplyr::summarise(totN = sum(atoutput)) #over agecl, layer and polygon
+
+# Atlantis output rabbit hole # 2956294
+# are the numbers (Nums) consistent between nc files? I'm worried they aren't
+# duplicate numbers by layer for some species that don't add up to annage output?
+# ok we checked and they do add up in plot below, main difference is 
+# annagebio.nc has 0 for mackerel in timesteps where they migrate out of the
+# system and .nc has nothing.
+# initial condition (time 0) had repeated numbers per layer
 
 nums1 <- atlantisom::load_nc(dir = dir,
                  file_nc = nc_out,
@@ -1327,23 +1335,90 @@ nums1 <- atlantisom::load_nc(dir = dir,
                  check_acronyms = TRUE,
                  bboxes = boxes)
 
-nums2 <- atlantistools::load_nc(nc = file.path(d.name, nc_out),
-                                bps = bps,
-                                fgs = file.path(d.name,file_fgs),
-                                select_groups = "Long_rough_dab",
-                                select_variable = "Nums",
-                                check_acronyms = TRUE,
-                                prm_run = file.path(d.name,file_runprm),
-                                bboxes = boxes)
+# Andy confirmed that this gives same output as above, won't work on my machine?
+# nums2 <- atlantistools::load_nc(nc = file.path(d.name, nc_out),
+#                                 bps = bps,
+#                                 fgs = file.path(d.name,file_fgs),
+#                                 select_groups = "Long_rough_dab",
+#                                 select_variable = "Nums",
+#                                 check_acronyms = TRUE,
+#                                 prm_run = file.path(d.name,file_runprm),
+#                                 bboxes = boxes)
 
-# ncread <- tidync::tidync(paste0(d.name,"/", nc_out))
-# 
-# nums3 <- tidync::hyper_tibble(ncread) %>%
-#                 dplyr::filter(ncread$variable$name %in% "Long_rough_dab1_Nums")
-# 
 
 truenumsage <- omlist_ss$truenumsage_ss %>%
+    dplyr::group_by(species, time) %>%
+    dplyr::summarise(totN = sum(atoutput)) #over true age and polygon
+
+ 
+# check for agreement in Nums output between nc files, they agree 
+ggplot2::ggplot() +
+  geom_point(data=truenumsage, aes(x=time, y=totN), color = "blue", alpha = 0.2) +
+  geom_point(data=truenumsagecl, aes(x=time, y=totN), color = "yellow", alpha = 0.2) +
+  facet_wrap(~species, scales = "free")
+
+# so now can divide the cons at age class by the nums at age class and convert to lengths
+
+truenumsatagecl <- omlist_ss$truenums_ss %>%
+  dplyr::group_by(species, time, agecl) %>%
+  dplyr::summarise(totNagecl = sum(atoutput)) #over layer and polygon
+
+intake <- omlist_ss$truecons_ss %>%
+  dplyr::group_by(species, time, agecl) %>%
+  dplyr::summarise(totconsagecl = sum(atoutput)) %>%
+  dplyr::left_join(truenumsatagecl) %>%
+  dplyr::mutate(intakeg = (totconsagecl/totNagecl)*1000000)
+
+# for most species older ages have higher per capita intake as expected
+# these look more like the right scale for the species
+ggplot2::ggplot() +
+  geom_point(data=intake, aes(x=time, y=intakeg, colour = agecl)) +
+  facet_wrap(~species, scales = "free")
+
+# now make the intake at length bin for the .dat file  
+# this will be based on "real" intake for now rather than survey estimated
+# BUT! length comps are from surveys. so subset intake to survey times to match
+# then... average them?
+
+len_comp_data <- atlantisom::read_savedsurvs(d.name, 'survLen')
+
+intakeatlen <- tibble()
+
+#multiple surveys named in list object
+for(s in names(len_comp_data)){
+  #arrange into lookup for agecl to lengthbin in numbers of fish 
+  svagelenbin <- len_comp_data[[s]][[1]] %>%
+    dplyr::filter(time %in% fittimes) %>%
+    dplyr::select(species, agecl, time, upper.bins, atoutput) %>%
+    dplyr::left_join(modbins) %>%
+    dplyr::filter(modbin.min < upper.bins & upper.bins <= modbin.max) %>%
+    dplyr::group_by(species, time, agecl, sizebin) %>%
+    dplyr::summarise(sumlen = sum(atoutput)) %>%
+    dplyr::group_by(species, time, sizebin) %>%
+    dplyr::mutate(propage = sumlen/sum(sumlen)) #proportion of each agecl contributing to lengthbin
   
+  lenintake <- intake %>%
+    dplyr::mutate(time = as.integer(time)) %>%
+    dplyr::filter(time %in% unique(svagelenbin$time)) %>%
+    # join with agecl to length lookup
+    dplyr::left_join(svagelenbin) %>%
+    dplyr::mutate(conspropage = totconsagecl*propage) %>% #reweight cons for lengthbins
+    dplyr::mutate(totNpropage = totNagecl*propage) %>% #reweight nums for lengthbins
+    dplyr::group_by(species, time, sizebin) %>%
+    dplyr::summarise(intakesize = (sum(conspropage)/sum(totNpropage))*1000000) %>%
+    #tidyr::spread(intakesize) %>%
+    #ungroup() %>%
+    #dplyr::filter(!is.na(sizebin)) 
+  
+  intakeatlen <- bind_rows(intakeatlen, lenintake)
+  
+}
+
+avgintake <- intakeatlen %>%
+  dplyr::group_by(species, sizebin) %>%
+  dplyr::summarise(avgintake = mean(intakesize))
+
+write.csv(avgintake, paste0(o.name,"intake_stomachContent_NOBA.csv"))
 
 ```
 

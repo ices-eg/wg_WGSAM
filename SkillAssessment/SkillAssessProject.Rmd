@@ -1050,7 +1050,7 @@ What we have saved so far is a diet comp in proportion that has had bias and obs
 
 *STILL NEEDS RESOLUTION--the per capita consumption from Atlantis detailedDietCheck.txt seems low relative to actual data*
 
-See [here](https://sgaichas.github.io/poseidon-dev/PerCapitaConsumption.html) for the calculation above for NOBA and CCA.
+See [here](https://sgaichas.github.io/poseidon-dev/PerCapitaConsumption.html) for the calculation above for NOBA and CCA. And an update based on new calculations for total consumption based on PROD.nc below.
 
 For now, we map existing Georges Bank species intake-at-size (average daily stomach weight) to the NOBA species as follows:
 
@@ -1402,24 +1402,36 @@ for(s in names(len_comp_data)){
     dplyr::filter(time %in% unique(svagelenbin$time)) %>%
     # join with agecl to length lookup
     dplyr::left_join(svagelenbin) %>%
+    dplyr::filter(!is.na(sizebin)) %>% # see note below
     dplyr::mutate(conspropage = totconsagecl*propage) %>% #reweight cons for lengthbins
     dplyr::mutate(totNpropage = totNagecl*propage) %>% #reweight nums for lengthbins
     dplyr::group_by(species, time, sizebin) %>%
     dplyr::summarise(intakesize = (sum(conspropage)/sum(totNpropage))*1000000) %>%
-    #tidyr::spread(intakesize) %>%
-    #ungroup() %>%
-    dplyr::filter(!is.na(sizebin)) 
+    tidyr::complete(sizebin) %>% #adds back any missing sizebin factor levels
+    tidyr::spread(sizebin, intakesize) %>%
+    ungroup()  
   
   intakeatlen <- bind_rows(intakeatlen, lenintake)
   
 }
 
-avgintake <- intakeatlen %>%
-  dplyr::group_by(species, sizebin) %>%
-  dplyr::summarise(avgintake = mean(intakesize)) %>%
-  tidyr::pivot_wider(names_from = sizebin, values_from = avgintake)
+# NOTE we have some agecl consumption and numbers data with no equivalent size bin
+# this is because the lengths are estimated from a sample of true ages
+# and sampling doesn't get age classes that have very few numbers
+# for now I think this is ok, just recognize that the conversion to length
+# bins makes this not quite "true" consumption at length
+# most of the misses are for larger cod in this dataset, but its 0.8% of rows
 
-# need to order sizebins
+avgintake <- intakeatlen %>%
+  dplyr::group_by(species) %>%
+  dplyr::summarise(across(everything(), ~mean(.x, na.rm=T))) %>%
+  dplyr::select(-time) 
+
+# the last issue is we still have blanks in here, not ok for the .dat file
+# two possible ways to fill are to use the adjacent value or to interpolate
+# interpolate if increasing at length, carry over adjacent if not
+
+
 
 write.csv(avgintake, paste0(o.name,"intake_stomachContent_NOBA.csv"))
 

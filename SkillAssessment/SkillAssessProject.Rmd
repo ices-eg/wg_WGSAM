@@ -1425,15 +1425,24 @@ for(s in names(len_comp_data)){
 avgintake <- intakeatlen %>%
   dplyr::group_by(species) %>%
   dplyr::summarise(across(everything(), ~mean(.x, na.rm=T))) %>%
-  dplyr::select(-time) 
+  dplyr::select(-time) %>%
+  dplyr::rename_with(~gsub("bin", "class", .x))
 
 # the last issue is we still have blanks in here, not ok for the .dat file
 # two possible ways to fill are to use the adjacent value or to interpolate
+# below just fills with nearest available
+# could get fancier and try to 
 # interpolate if increasing at length, carry over adjacent if not
 
+avgintakefill <- avgintake %>%
+  dplyr::mutate_all(~ifelse(is.nan(.), NA, .)) %>%
+  tidyr::pivot_longer(-species) %>%
+  dplyr::group_by(species) %>%
+  tidyr::fill(value, .direction = "updown") %>%
+  tidyr::pivot_wider()
+  
 
-
-write.csv(avgintake, paste0(o.name,"intake_stomachContent_NOBA.csv"))
+write.csv(avgintakefill, paste0(o.name,"intake_stomachContent_NOBA.csv"))
 
 ```
 
@@ -1505,8 +1514,11 @@ write.csv(maturity, paste0(o.name,"maturity_species_NOBA.csv"))
 
 #fishsel dimensions species rows fleets columns, one matrix each c and d, not using?
 #fleets <- unique(NOBAom_ms$truecatchage_ss$fleet)
-# Apr 2021 lets just have one fleet for testing
-fleets <- "allcombined"
+# Apr 2022 lets just have one fleet for testing
+#fleets <- "allcombined"
+
+# June 2022 one fleet for cod, one for all others
+fleets <- c("allbutcod", "codfleet")
 
 fishseldummy <- matrix(1, singletons$Nspecies, singletons$Nfleets,
                    dimnames = list(c(sort.default(sppsubset$Name)), fleets))

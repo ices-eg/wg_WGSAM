@@ -1442,7 +1442,7 @@ avgintakefill <- avgintake %>%
   tidyr::pivot_wider()
   
 
-write.csv(avgintakefill, paste0(o.name,"intake_stomachContent_NOBA.csv"))
+write_csv(avgintakefill, paste0(o.name,"intake_stomachContent_NOBA.csv"))
 
 ```
 
@@ -1913,7 +1913,7 @@ Use `hydradata` package to create the .dat and .pin files. We are working from t
 library(hydradata)
 inputs <- setup_default_inputs()
 inputs$outDir <- here("SkillAssessment/msinput/hydra")
-inputs$outputFilename <- "hydra_sim_NOBA"
+inputs$outputFilename <- "hydra_sim_NOBA" 
 
 
 

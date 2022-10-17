@@ -39,3 +39,7 @@ vignettes/*.pdf
 
 # local large Atlantis files--not for github
 SkillAssessment/atlantisoutput/
+
+# local .docx for reporting
+WGSAM2022_Reporting/*.docx
+WGSAM2022_Reporting/Exported Items.bib

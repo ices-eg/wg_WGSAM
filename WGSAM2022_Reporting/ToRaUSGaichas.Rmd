@@ -1,0 +1,32 @@
+---
+title: "WGSAM 2022 US ToR a report"
+author: "Sarah Gaichas, Grant Adams, Kerim Aydin, Brandon Beltz, Pierre-Yves Hernvann Kirstin Holsman, Isaac Kaplan, Sean Lucey, Janet Nye, Jameal Samhouri, Andy Whitehouse, Sarah Weisberg"
+date: "2022-10-17"
+output:
+  word_document: default
+  html_document: default
+bibliography: references.bib
+link-citations: yes
+urlcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## ToR a US Report
+
+Sarah Gaichas presented a summary of ongoing multispecies and ecosystem modeling work from around the US.
+
+Two new publications from Alaska highlighted new applications of multispecies [@adams_ensemble_2022] and ecosystem [@whitehouse_bottomup_2021] models. The multispecies model CEATTLE [@holsman_comparison_2016; @holsman_ecosystem-based_2020] has been re-implemented in Template Model Builder (TMB, @kristensen_tmb_2016) as the R package `Rceattle`, available at https://github.com/grantdadams/Rceattle. The application of Rceattle in the Gulf of Alaska was used to compare consumption estimates for key groundfish species within an ensemble of differently parameterized models. MSE work is also ongoing with the Rceattle model in the Gulf of Alaska. It is likely that the Bering Sea 3 species model presented alongside the walleye pollock assessment will now be deployed in RCeattle.  The full food web model Rpath, available at https://github.com/NOAA-EDAB/Rpath was used with a suite of climate models to evaluate potential future food web impacts of climate change, and how these impacts would interact with Bering Sea fishery management [@whitehouse_bottomup_2021]. More information is available at [Alaska multispecies and ecosystem models](https://www.integratedecosystemassessment.noaa.gov/regions/alaska/ebs-integrated-modeling). 
+
+One new publication from the US Great Lakes implemented a multispecies assessment for two predators, Chinook salmon and lake trout, with their common prey Alewife in Lake Ontario [@fitzpatrick_balancing_2022]. This model linked Alewife (prey) biomass to predator growth, which has been of interest to WGSAM for many years. Each species was modeled as with typical catch at age dynamics equations, as well as bioenergetics models for predators that linked alewife consumption to predator growth. The feedback between prey and predator growth was important to explain dynamics and to provide insight into the effectiveness of potential management responses (e.g., reduce stocking of one or more predator species to maintain prey biomass). 
+
+On the US West Coast (California Current ecosystem) the FutureSeas project is ongoing to link climate projections to food web responses, including key forage and predator species. More information is available at [California Current Future Seas MSEs](https://www.integratedecosystemassessment.noaa.gov/regions/california-current/cc-projects-future-seas). Pierre-Yves Hernvann is in the process of combining results from several models into an ensemble using approaches presented at WGSAM previously [@spence_general_2018]. 
+
+![Ensemble modeling in FutureSeas project](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/WGSAM_CoolStuffFromUSWest.png)
+
+In the Northeast US, Georges Bank modeling efforts will be reported under ToRs b and c. There are also two new Rpath models for the Mid-Atlantic Bight and the Gulf of Maine. Mid-Atlantic Bight work by Brandon Beltz (MS thesis, 2022)  included building the initial model, then applying forced migration for spiny dogfish and other sharks to examine the impacts of climate-driven changes in predator migration and timing: simulations included changing the amount leaving the system (Range shift), changing the timing of migration  (Phenological shift), and a combined Range and Phenological shift. Sarah Weisberg (PhD thesis, ongoing) presented work based on the Gulf of Maine Rpath model at ICES WGCOMEDA in October 2022. Her work included building the initial model, code improvements to implement trophic network metrics related to resilience such as System Omnivory, Finn's Cycling, and Relative Efficiency and Redundancy. Ongoing work is using Ecosense to generate distributions of systems to classify systems into low and high efficiency, characterize biomass distributions in high and low efficiency systems, and to evaluate changes in low and high efficiency system states over time. 
+
+## References
+

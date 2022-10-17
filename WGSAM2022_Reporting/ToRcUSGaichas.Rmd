@@ -1,0 +1,80 @@
+---
+title: "WGSAM 2022 ToR c skill assessment"
+author: "Sarah Gaichas"
+date: "2022-10-17"
+output:
+  word_document: default
+  html_document: default
+bibliography: references.bib
+link-citations: yes
+urlcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(here)
+library(magrittr)
+library(dplyr)
+library(ggplot2)
+```
+
+## ToR c Skill assessment with simulated data
+
+Ecosystem models can be complex, which can lead to high uncertainty in predictions [@hill_model_2007]. Skill assessment compares model predictions of interest with the truth from a system [@stow_skill_2009; @olsen_ecosystem_2016]. Understanding model skill can help us develop better models, as well as understand which models are most effective in which management situations. We wish to conduct skill assessment using simulated data because observations in fisheries are noisy, incomplete, and sometimes incorrect. 
+
+## Simulating input data from an ecosystem model
+
+We use existing [Atlantis](https://github.com/Atlantis-Ecosystem-Model/Atlantis_example_and_instructions) ecosystem model output to generate input datasets for a variety of multispecies models, so that the performance of these models can be evaluated against known (simulated) ecosystem dynamics. Atlantis models simulate a wide range of physical and ecological processes, include a full food web, and can be run using different climate forcing, fishing, and other scenarios.  
+
+We extract simulated data using the R package [atlantisom](https://github.com/r4atlantis/atlantisom). The purpose of atlantisom is to use existing Atlantis model output to generate input datasets for a variety of models, so that the performance of these models can be evaluated against known (simulated) ecosystem dynamics. Atlantis models can be run using different climate forcing, fishing, and other scenarios. Users of atlantisom will be able to specify fishery independent and fishery dependent sampling in space and time, as well as species-specific catchability, selectivty, and other observation processes for any Atlantis scenario. Internally consistent multispecies and ecosystem datasets with known observation error characteristics will be the atlantisom outputs, for use in individual model performance testing, comparing performance of alternative models, and performance testing of model ensembles against "true" Atlantis outputs.
+
+## The ms-keyrun simulated dataset
+
+Our initial species selection includes 11 single species groups from the Norwegian Barents Sea (NOBA) Atlantis model [@hansen_set-up_2016; @hansen_sensitivity_2019]. These groups are fully age structured. All but two of them are fished. 
+
+```{r spp-table}
+
+fgs <- atlantisom::load_fgs(here("SkillAssessment/atlantisoutput/NOBA_sacc_38"), "nordic_groups_v04.csv")
+
+lname <- data.frame(Latin = c("*Hippoglossoides platessoides*",
+                              "*Reinhardtius hippoglossoides*",
+                              "*Scomber scombrus*",
+                              "*Melongrammus aeglefinus*",
+                              "*Pollachius virens*",
+                              "*Sebastes mentella*",
+                              "*Micromesistius poutassou*",
+                              "*Clupea harengus*",
+                              "*Gadus morhua*",
+                              "*Boreogadus saida*",
+                              "*Mallotus villosus*"),
+                    Code = c("LRD", "GRH", "MAC", "HAD", "SAI", "RED", 
+                             "BWH", "SSH", "NCO", "PCO", "CAP")
+)
+
+sppsubset <- merge(fgs, lname, all.y = TRUE)
+spptable <- sppsubset %>% 
+  arrange(Index) %>%
+  select(Name, Long.Name, Latin)
+
+#knitr::kable(spptable, col.names = c("Model name", "Full name", "Latin name"))
+
+flextable::flextable(spptable) %>%
+  flextable::set_header_labels(Name = "Model name", Long.Name = "Full name", Latin = "Latin name") %>%
+  flextable::set_caption("Simulated species from NOBA Atlantis used for multispecies model testing") %>%
+  flextable::autofit()
+
+
+```
+
+The full process for generating the simulated dataset is described on the `mskeyrun` R package documentation [at this link](https://noaa-edab.github.io/ms-keyrun/articles/SimData.html). 
+
+## Fitting a length-structured multispecies model (Hydra) to the data
+
+The model is still in development, and *these are not final fits,* but we can compare not just fits to data but also skill against true Atlantis biomass, and calculate skill metrics. This can serve as an example for future collaborative work within WGSAM.
+
+![A Hydra fit](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBA05bin_5klogs1Bfit.png)
+
+![Hydra skill](https://github.com/NOAA-EDAB/presentations/raw/master/docs/EDAB_images/NOBA05bin_5klogBskill.png)
+
+## References
+

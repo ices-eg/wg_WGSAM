@@ -1,0 +1,10 @@
+# Use central baltic cod consum data to find a general Consum=a(q)* W^(2/3)
+ X11()
+ dat<-Read.summary.data(extend=F,read.init.function=F)
+ dat<-subset(dat,Age>=1 & Species=='Cod')
+ dat$a<-dat$ration/(dat$west^0.66)
+ plot(dat$Year,dat$a,col=dat$Quarter)
+ plot(dat$Age,dat$a,col=dat$Quarter)
+
+ ftable(round(tapply(dat$a,list(dat$Age,dat$Quarter),mean),2))
+  tapply(dat$a,list(dat$Quarter),mean)

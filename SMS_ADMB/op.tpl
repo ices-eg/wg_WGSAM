@@ -28,7 +28,7 @@ GLOBALS_SECTION
  // いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい
 
 DATA_SECTION
-  !! cout<<"OP version October 2020 using ADMB version 12.2"<<endl;
+  !! cout<<"OP version February 2022 using ADMB version 12.2"<<endl;
 
  int i;
  int do_optim;
@@ -196,7 +196,10 @@ DATA_SECTION
  !!    //if (do_optim==1) SSB_R_s2(s)=0.0;
  !! }
  !! if (multi==0) ad_comm::change_datafile_name("just_one.in");
+ 
+ 
 
+ 
  init_int simple_ALK   // use age-size-key for calculation of M2 values
     //  0=Use only one sizegroup per age (file lsea.in or wsea.in)
     //  1=Use size distribution per age (file ALK_all.in)
@@ -344,8 +347,23 @@ DATA_SECTION
  init_vector recruit_adjust(first_VPA,nsp);          // factor for adjustment of future recruits
  !! if (test_output>=1) cout<<"recruit_adjust:"<<recruit_adjust<<endl;
 
- init_ivector recruit_adjust_CV(first_VPA,nsp);          // adjustment of future recruits by to take account of the diffrence between mean and median in a log-normal distribution
+ init_ivector recruit_adjust_CV(first_VPA,nsp);          // adjustment of future recruits by to take account of the diffefrence between mean and median in a log-normal distribution
  !! if (test_output>=1) cout<<"recruit_adjust_CV:"<<recruit_adjust_CV<<endl;
+
+  init_vector recruit_min(first_VPA,nsp);          // minimum recruitment in % of Stock recruitment value
+ !! if (test_output>=1) cout<<"recruit_min:"<<recruit_min<<endl;
+
+ 
+ vector recruit_max(first_VPA,nsp);
+ !! for (s=first_VPA;s<=nsp;s++) {
+ !!   if (SSB_Rec_model(s)==100) recruit_max(s)= exp(SSB_R_alfa(s))*SSB_R_beta(s);     // Hockey stick
+ !!   if (SSB_Rec_model(s)==1)   recruit_max(s)= SSB_R_alfa(s)/(SSB_R_beta(s)*exp(1.0));    // Ricker
+ !!   if (SSB_Rec_model(s)==2)   recruit_max(s)= SSB_R_alfa(s)/SSB_R_beta(s);     // B & H
+ !!   if (SSB_Rec_model(s)==3)   recruit_max(s)= exp(SSB_R_alfa(s));     // GM
+ !!   recruit_min(s)=recruit_max(s)*recruit_min(s)/100.0; 
+ !! }
+ !! if (test_output>=1) cout<<"recruit_min:"<<recruit_min<<endl<<"recruit_max:"<<endl<<recruit_max<<endl;
+ 
 
  init_ivector F_or_C(first_VPA,nsp)  // use F value or Catch at age to update N
  !! if (test_output==1) cout<<"F_or_C:"<< F_or_C<<endl;
@@ -844,10 +862,14 @@ PARAMETER_SECTION
   // in DATA section matrix M2bar(fy_op,ly_op_1,first_VPA,nsp)
   matrix yield_global(fy,ly,first_VPA,nsp)
   matrix CWsum_global(fy,ly,first_VPA,nsp)
+  matrix CWsum_global_core(fy,ly,first_VPA,nsp)
   //matrix yield_value(fy_op,ly_op,first_VPA,nsp)
   matrix yield_value(fy,ly,first_VPA,nsp)
   matrix deadM2w(fy,ly,first_VPA,nsp)
   matrix deadMw(fy,ly,first_VPA,nsp)
+  matrix deadM2w_core(fy,ly,first_VPA,nsp)
+  matrix deadMw_core(fy,ly,first_VPA,nsp)
+
 
   5darray    N(fy,ly_plus_1,fq,lq,1,no_areas,1,nsp,fa,max_a)
   5darray Nbar(fy,ly,fq,lq,1,no_areas,1,nsp,fa,max_a)
@@ -859,8 +881,10 @@ PARAMETER_SECTION
   5darray    C(fy,ly,fq,lq,1,no_areas,first_VPA,nsp,fa,max_a)
 
   4darray yield(fy,ly,fq,lq,1,no_areas,first_VPA,nsp)
+  4darray yield_core(fy,ly,fq,lq,1,no_areas,first_VPA,nsp)
   4darray CWsum(fy,ly,fq,lq,1,no_areas,first_VPA,nsp)
-
+  4darray CWsum_core(fy,ly,fq,lq,1,no_areas,first_VPA,nsp)
+     
   4darray    part_M2(1,npr,fa,max_a,first_VPA,nsp,fa,max_a)    // partial M2
   3darray   deadM1(fy,ly,first_VPA,nsp,fa,max_a)
   3darray   deadM2(fy,ly,first_VPA,nsp,fa,max_a)
@@ -1126,11 +1150,10 @@ PROCEDURE_SECTION
      avg_SSB(s)=avg_SSB(s)/(ly_op-fy_op+1);
    }
    
-   if (no_rep>1) {
-     print_OP_Fcombinations(r);
+   if (no_rep>=1) {
+     if (output==14 ) print_OP_Fcombinations(r);
       if (MSFD==1 ) {
         print_avg_indicators_system(r);
-        // print them
       }
     }   
  }  // end F combination loop
@@ -1275,6 +1298,8 @@ FUNCTION void calc_anno_mortality_and_weight(int my_fy, int my_ly);
  int y,q,d,s,a;
  
  deadM2w=0; deadMw=0;
+ deadM2w_core=0; deadMw_core=0;
+ 
  for (y=my_fy;y<=my_ly;y++) {
    deadM1(y)=0;
    deadM2(y)=0;
@@ -1286,12 +1311,15 @@ FUNCTION void calc_anno_mortality_and_weight(int my_fy, int my_ly);
 
    for(q=fq;q<=lq;q++) for (d=1;d<=no_areas;d++)  for (s=first_VPA;s<=nsp;s++) for (a=faq(q);a<=la(s);a++) {
      if (multi==2 ) {
-       deadM1(y,s,a)+=Nbar(y,q,d,s,a)*M1(  q,d,s,a);
-       deadM2(y,s,a)+=Nbar(y,q,d,s,a)*M2(y,q,d,s,a);
-       deadM2w(y,s)+=Nbar(y,q,d,s,a)*M2(y,q,d,s,a)*size_sea(y,q,d,s,a);
+       deadM1(y,s,a)+=    Nbar(y,q,d,s,a)*M1(  q,d,s,a);
+       deadM2(y,s,a)+=    Nbar(y,q,d,s,a)*M2(y,q,d,s,a);
+       deadM2w(y,s)+=     Nbar(y,q,d,s,a)*M2(y,q,d,s,a)*size_sea(y,q,d,s,a);
+       deadM2w_core(y,s)+=Nbar(y,q,d,s,a)*M2(y,q,d,s,a)*size_sea(y,q,d,s,a)*n_proportion_m2(q,s,a);
       }
-      deadM(y,s,a)+=Nbar(y,q,d,s,a)* M(y,q,d,s,a);
-      deadMw(y,s)+=Nbar(y,q,d,s,a)*M(y,q,d,s,a)*size_sea(y,q,d,s,a);
+      deadM(y,s,a)+=      Nbar(y,q,d,s,a)* M(y,q,d,s,a);
+      deadMw(y,s)+=       Nbar(y,q,d,s,a)*M(y,q,d,s,a)*size_sea(y,q,d,s,a);
+      deadMw_core(y,s)+=  Nbar(y,q,d,s,a)*M(y,q,d,s,a)*size_sea(y,q,d,s,a)*n_proportion_m2(q,s,a);
+        
       deadF(y,s,a)+=Nbar(y,q,d,s,a)* F(y,q,d,s,a);
       deadZ(y,s,a)+=Nbar(y,q,d,s,a)* Z(y,q,d,s,a);
 
@@ -1467,13 +1495,18 @@ FUNCTION void calc_C_yield(int y);
  int q,d,s;
  yield_global(y)=0.0;
  CWsum_global(y)=0.0;
-  
+ CWsum_global_core(y)=0.0; 
+ 
+   
  for (q=fq;q<=lq;q++) for (d=1;d<=no_areas;d++) for (s=first_VPA;s<=nsp;s++)  {
    C(y,q,d,s)=elem_prod(Nbar(y,q,d,s),F(y,q,d,s));
    CWsum(y,q,d,s)=sum(elem_prod(C(y,q,d,s),weca(y,q,d,s)));
-   CWsum_global(y,s)+=CWsum(y,q,d,s);
+   CWsum_core(y,q,d,s)=sum(elem_prod(elem_prod(C(y,q,d,s),weca(y,q,d,s)),n_proportion_m2(q,s)));
 
+   CWsum_global(y,s)+=CWsum(y,q,d,s);
+   CWsum_global_core(y,s)+=CWsum_core(y,q,d,s);
    yield(y,q,d,s)=sum(elem_prod(elem_prod(C(y,q,d,s),weca(y,q,d,s)),prop_landed(q,d,s)));
+   yield_core(y,q,d,s)=sum(elem_prod(elem_prod(elem_prod(C(y,q,d,s),weca(y,q,d,s)),prop_landed(q,d,s)),n_proportion_m2(q,s)));
    yield_global(y,s)+=yield(y,q,d,s);
  }
  
@@ -1575,7 +1608,7 @@ FUNCTION void distribute_stock(int y, int q);
  }
  else for (int d=1;d<=no_areas;d++) N(y,q,d)=elem_prod(N_global(y,q),N_dist(q,d));     // MANGLER OTHER PREd  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-FUNCTION dvariable suit(int y, int q, int d, int pred,int prey,dvariable pred_size,dvariable prey_size)
+FUNCTION dvariable suit(int y, int q, int d, int pred,int prey,dvariable pred_size,dvariable prey_size);
  dvariable tmp,size_sel,vul,ratio, log_ratio;
 
  //cout<<"suit  y:"<<y<<" q:"<<q<<" d:"<<d<<" pred:"<<pred<<" prey:"<<prey<<" ";
@@ -1675,9 +1708,12 @@ FUNCTION void SSB_recruit(int y);
        if (recruit_adjust_CV(s)==1) noiseFac(1,s)=noiseFac(1,s)*exp(-SSB_R_s2(s)/2.0);
     }  
   
-  if (stochastic_recruitment(s)<=3)  N_global(y,recq,s,fa)=calc_recruit(s,ssb, noiseFac(1,s), recruit_adjust(s));
-   
-  else if (stochastic_recruitment(s)==20) {  // Equisim, detetministic
+  if (stochastic_recruitment(s)<=3)  {
+    rec=calc_recruit(s,ssb, noiseFac(1,s), recruit_adjust(s));
+    if (rec < recruit_min(s)) N_global(y,recq,s,fa) =recruit_min(s);
+    else N_global(y,recq,s,fa) =rec;
+  }
+  else if (stochastic_recruitment(s)==20) {  // Equisim, detetmenistic
      N_global(y,recq,s,fa)=0.0;
      for (i=1;i<=3;i++){   // the three models
        if (i<=2) {
@@ -1792,7 +1828,7 @@ FUNCTION void print_summary_qd()
  int d;
 
  ofstream res("op_summary.out",ios::out);
- res <<"Year Quarter Area Species.n Age M1 M2 M F Z N Nbar NbarStom N_dist C west weca Yield CWsum propmat BIO SSB consum"<<endl;
+ res <<"Year Quarter Area Species.n Age M1 M2 M F Z N Nbar NbarStom N_dist N_prop_M2 C west weca Yield Yield.core CWsum CWsum.core propmat BIO SSB consum"<<endl;
   for (s=first_VPA;s<=nsp;s++)
     for (y=fy_out;y<=ly;y++)
       for (q=fq;q<=lq;q++)
@@ -1813,11 +1849,14 @@ FUNCTION void print_summary_qd()
              res <<NbarStom(y,q,d,s,a)<<" ";
              if (no_areas==1) res<<" 1 ";
              else res <<N_dist(q,d,s,a)<<" ";
+             res<< n_proportion_m2(q,s,a) <<" ";
              res <<C(y,q,d,s,a)<<" ";
              res <<west(y,q,s,a)<<" ";
              res <<weca(y,q,d,s,a)<<" ";
              res <<C(y,q,d,s,a)*weca(y,q,d,s,a)*prop_landed(q,d,s,a)<<" ";
+             res <<C(y,q,d,s,a)*weca(y,q,d,s,a)*prop_landed(q,d,s,a)*n_proportion_m2(q,s,a)<<" ";     //Yield.core 
              res <<C(y,q,d,s,a)*weca(y,q,d,s,a)<<" ";
+             res <<C(y,q,d,s,a)*weca(y,q,d,s,a)*n_proportion_m2(q,s,a) <<" ";       // CWsum.core
              res <<propmat(q,s,a)<<" ";
              res <<N(y,q,d,s,a)*west(y,q,s,a)<<" ";
              res <<N(y,q,d,s,a)*west(y,q,s,a)*propmat(q,s,a)<<" ";
@@ -1830,10 +1869,11 @@ FUNCTION void print_summary_qd()
 
 FUNCTION void print_summary_anno()
  int s,y;
+ dvariable w;
 
  ofstream res("op_summary_anno.out",ios::out);
- res <<"Year Species.n Age M1 M2 M F Z N C west weca  "<<endl;
- res <<"# N and west by 1 st January (except recruit by 3 quarter)"<<endl;
+ res <<"Year Species.n Age M1 M2 M F Z N C west weca TSB SSB "<<endl;
+ //res <<"# N and west by 1 st January (except recruit by 3 quarter)"<<endl;
   for (s=first_VPA;s<=nsp;s++)
     for (y=fy_out;y<=ly;y++)
      for (a=fa;a<=la(s);a++) {
@@ -1850,12 +1890,43 @@ FUNCTION void print_summary_anno()
              if (!(a==fa && q ==recq)) res <<N_global(y,recq,s,a)<<" ";
              else res <<N_global(y,fq,s,a)<<" ";
              res <<annoC(y,s,a)<<" ";
-             if (a>recq) res <<west(y,fq,s,a)<<" ";  else res <<west(y,recq,s,a)<<" ";
-             res <<mean_weca(y,s,a)<<" "<<endl;;
+             if (a>fa) w=west(y,fq,s,a);  else w=west(y,recq,s,a);
+             res <<w<<" ";         
+             res <<mean_weca(y,s,a)<<" ";
+             res <<N_global(y,fq,s,a)*w<<" ";
+             res <<N_global(y,recq,s,a)*w*propmat(recq,s,a)<<" " <<endl;;
            }
         }
   res.close();
   if (test_output==10) cout<<"file op_summary_anno.out is done"<<endl;
+
+FUNCTION void print_anno_M()
+ int s,y;
+ dvariable w;
+
+ ofstream res("op_anno_M.out",ios::out);
+ res <<"Year Species.n Age M1 M2 M F Z N  "<<endl;
+ //res <<"# N and west by 1 st January (except recruit by 3 quarter)"<<endl;
+  for (s=first_VPA;s<=nsp;s++)
+    for (y=fy_out;y<=ly;y++)
+     for (a=fa;a<=la(s);a++) {
+       if (!(a==fa && q <recq)) {
+         res <<y<<" " <<s<<" "<<a<<" ";
+             if (multi >=1 ) {
+               res <<annoM1(y,s,a)<<" ";
+               res <<annoM2(y,s,a)<<" ";
+             }
+             else res << "0 0 ";
+             res <<annoM(y,s,a)<<" ";
+             res <<annoF(y,s,a)<<" ";
+             res <<annoZ(y,s,a)<<" ";
+             if (!(a==fa && q ==recq)) res <<N_global(y,recq,s,a)<<" ";
+             else res <<N_global(y,fq,s,a)<<" ";
+             res<<endl;
+         }
+  }
+  res.close();
+  if (test_output==10) cout<<"file op_anno_M.out is done"<<endl;
 
 
 FUNCTION void calc_M2bar(int my_fy, int my_ly);
@@ -1914,13 +1985,42 @@ FUNCTION void print_OP_Fcombinations(int r);
 
 
 FUNCTION void print_condensed();
- int s,y,q,a;
+ int s,y,q,a,yy;
  double Fbarl;
  ofstream res("op_condensed.out",ios::out);
- res <<"Year Species.n yield CWsum Fbar SSB TSB recruit value";
+ res <<"Year Species.n yield CWsum CWsum.core Fbar.anno Fbar SSB TSB recruit value";
  if (do_optim==1) res <<" penalty";
  res<<endl;
+ if (output==20 || output==25 || output==26) yy=ly; else yy=fy_out;
+ for (s=first_VPA;s<=nsp;s++){
+   for (y=yy;y<=ly;y++){
+     if (s==first_VPA) calc_yield_value(y); 
+     if (do_optim==0) {
+       Fbarl=0;
+       for (a=avg_F_ages(s,1);a<=avg_F_ages(s,2);a++) Fbarl+=value(annoF(y,s,a));
+       Fbarl=Fbarl/ (avg_F_ages(s,2)-avg_F_ages(s,1)+1);
+       res<<y<<" "<<s<<" ";
+       res<<yield_global(y,s)<<" ";
+       res<<CWsum_global(y,s)<<" "<<CWsum_global_core(y,s)<<" "<<Fbarl<<" "<<Fbar(y,s)<<" ";
+       res<<SSB(y,s)<<" "<<TSB(y,s)<<" ";
+       res<<N_global(y,recq,s,fa)<<" ";
+       res<<yield_value(y,s)<<endl;
+     }
+     else res<<y<<" "<<s<<" "<<yield_global(y,s)<<" "<<CWsum_global(y,s)<<" "<<CWsum_global_core(y,s)<<" "<<Fbar(y,s)<<" "<<Fbar(y,s)<<" "<<SSB(y,s)<<" "<<TSB(y,s)<<" "<<N_global(y,recq,s,fa)<<" "<<yield_value(y,s)<<" "<<penalty_y(y,s)<<endl;
+   }
+ }
+ res.close();
+ if (test_output==10) cout<<"file print_condensed.out is done"<<endl;
+
  
+FUNCTION void print_condensed_long();
+ int s,y,q,a;
+ double Fbarl;
+ ofstream res("op_condensed_long.out",ios::out);
+ res <<"Year Species.n yield CWsum CWsum.core DeadM DeadM2 DeadM_core DeadM2_core Fbar.anno Fbar SSB TSB recruit value";
+ if (do_optim==1) res <<" penalty";
+ res<<endl;
+    
  for (s=first_VPA;s<=nsp;s++){
    for (y=fy_out;y<=ly;y++){
      if (s==first_VPA) calc_yield_value(y); 
@@ -1930,16 +2030,17 @@ FUNCTION void print_condensed();
        Fbarl=Fbarl/ (avg_F_ages(s,2)-avg_F_ages(s,1)+1);
        res<<y<<" "<<s<<" ";
        res<<yield_global(y,s)<<" ";
-       res<<CWsum_global(y,s)<<" "<<Fbarl<<" ";
+       res<<CWsum_global(y,s)<<" "<<CWsum_global_core(y,s)<<" "<<deadMw(y,s)<<" "<<deadM2w(y,s)<<" "<<deadMw_core(y,s)<<" "<<deadM2w_core(y,s)<<" "<<Fbarl<<" "<<Fbar(y,s)<<" ";
        res<<SSB(y,s)<<" "<<TSB(y,s)<<" ";
        res<<N_global(y,recq,s,fa)<<" ";
        res<<yield_value(y,s)<<endl;
      }
-     else res<<y<<" "<<s<<" "<<yield_global(y,s)<<" "<<CWsum_global(y,s)<<" "<<Fbar(y,s)<<" "<<SSB(y,s)<<" "<<TSB(y,s)<<" "<<N_global(y,recq,s,fa)<<" "<<yield_value(y,s)<<" "<<penalty_y(y,s)<<endl;
+     else res<<y<<" "<<s<<" "<<yield_global(y,s)<<" "<<CWsum_global(y,s)<<" "<<CWsum_global_core(y,s)<<" "<<Fbar(y,s)<<" "<<Fbar(y,s)<<" "<<SSB(y,s)<<" "<<TSB(y,s)<<" "<<N_global(y,recq,s,fa)<<" "<<yield_value(y,s)<<" "<<penalty_y(y,s)<<endl;
    }
  }
  res.close();
- if (test_output==10) cout<<"file print_condensed.out is done"<<endl;
+ if (test_output==10) cout<<"file print_condensed_long.out is done"<<endl;
+
 
 FUNCTION void calc_indicators_system();
  int s,y,q,a,d;
@@ -1960,7 +2061,6 @@ FUNCTION void calc_indicators_system();
          if  (do_bio_demer==1) if (a>=bio_demer_ages(1,s)  &&  a<=bio_demer_ages(2,s)) {
           
           bio_demer(y)+=nw;
-          // if (y==2012) cout<<"s:"<<s<<" a:"<<a<<" low:"<<bio_demer_ages(1,s)<<" high:"<<bio_demer_ages(2,s)<<" nw:"<<nw<<endl; 
           }
          if  (do_bio_small==1) {if (a>=bio_small_ages(1,s)  &&  a<=bio_small_ages(2,s)) bio_small(y)+=nw; }
          if  (do_bio_pelag==1) {if (a>=bio_pelag_ages(1,s)  &&  a<=bio_pelag_ages(2,s)) bio_pelag(y)+=nw; }
@@ -2252,6 +2352,29 @@ REPORT_SECTION
      write_var_other_sp();
    }
   }
+  else if (output==20 ) {   // 20 condensed output for last year only, AMOEBA, (file op_condensed.out)
+   calc_anno_mortality_and_weight(fy_out,ly);
+   print_condensed();
+  }
+   else if (output==21 ) {   // 21 condensed output for all years, AMOEBA, (file op_condensed_long.out)
+   calc_anno_mortality_and_weight(fy_out,ly);
+   print_condensed_long();
+  }
+  else if (output==22 ) {   // 22 output by year and age,  AMOEBA, (file op_M_anno.out) 
+   calc_anno_mortality_and_weight(fy_out,ly);  
+   print_anno_M();
+  }                     
+  else if (output==25  || output==26) {   //    20+21+22   ++
+   calc_anno_mortality_and_weight(fy_out,ly); 
+   print_condensed();
+   print_condensed_long();
+   print_anno_M();
+   if (output==26)  {
+     print_summary_qd();
+     if (multi==2) write_part_M2();
+    }
+  }
+
   else if (output==50 ) {   // Dll
      write_N_output_dll();
   }

@@ -35,12 +35,22 @@ GLOBALS_SECTION
  // char f_timeStr [9];
  time_t start_time,end_time;
 
+ // headers for output tables
+ vector<const char*> obj_tab = {"     Catch", 
+                                "      CPUE", 
+                                "     SSB/R", 
+                                "   stomach",
+                                " stomach n",
+                                " Oth_noise", 
+                                "   penalty", 
+                                "       Sum"};
+
  // 中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中
  // 中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中
                              
 DATA_SECTION
 
- !! cout<<"SMS version October 2020 using ADMB version 12.2"<<endl;
+ !! cout<<"SMS version August 2022 using ADMB version 12.2"<<endl;
 
  
 
@@ -173,12 +183,12 @@ DATA_SECTION
  
  init_matrix tmp(1,nsp,1,11)// various species information on "input" format
                             // 1. last age by species
-                            // 2. first age where catch data are used (else F=0 assumed) 
+                            // 2. first age where catch data are used (else F=0 assumed)   or first age for other predator
                             // 3. last age with age dependent fishing selection 
                             // 4. Esimate F year effect from effort data. 0=no, 1=yes
                             // 5. last age included in the catch at age likelihood
                             // 6. plus group, 0=no plus group, 1=plus group
-                            // 7. predator species, 0=no, 1=yes VPA, 2=yes "other predator"
+                            // 7. predator species, 0=no, 1=yes VPA, 2=yes "other predator" , 3=yes "other predator with noise"
                             // 8. prey species, 0=no, 1=yes
                             // 9. Stock Recruit relation, 1=Ricker, 2=Beverton & Holt, 3=log-normal, 4=hockey stick model
                             // 10-11. additional information for SR
@@ -188,9 +198,10 @@ DATA_SECTION
  // species information, re-organised
  ivector la(1,nsp)          // last age by species 
  ivector nplus(1,nsp)       // plus group, 0=no plus group, 1=plus group
- ivector is_pred(1,nsp)     // is the species a predator? 0=no, 1=yes, 2=yes "other predator"
+ ivector is_pred(1,nsp)     // is the species a predator? 0=no, 1=yes, 2=yes "other predator", 3=yes "Other predator with noise"
  ivector is_prey(1,nsp)     // is the species a prey? 0=no, 1=yes
-
+ ivector fa_other(1,nsp)    // first age other predators
+ 
  // Stock-recruitment model (1=Ricker, 2=Beverton&Holt, 3=Geometric mean,  
  //                          4=hockey stick model 
  //                         >100 Hockey stick model with known breakpoint
@@ -214,7 +225,7 @@ DATA_SECTION
  //int max_last_VPA         // last VPA species nummer; used to select a subset of speices (works only in single species mode)
  int max_a_VPA            // max age for VPA species
  !! max_a_VPA=0;
- 
+  
  int max_nsp
  int first_VPA_prey         // species number for the first species where the stock numbers are estimated and which is a prey
  int nprey; 
@@ -226,15 +237,20 @@ DATA_SECTION
  !!  if(do_effort(s)==1) any_do_effort=1;
  !!  nplus(s)=int(tmp(s,6));
  !!  is_pred(s)=int(tmp(s,7));
- !!  if (is_pred(s)==2) nOthPred=nOthPred+1;
+ !!  if (is_pred(s)==2)  nOthPred=nOthPred+1;
+ !!  if (is_pred(s)==2) fa_other(s)= int(tmp(s,2));
  !!  if (is_pred(s)==1 || is_pred(s)==2) npr=npr+1;
  !!  is_prey(s)=int(tmp(s,8));
- !!  if (is_pred(s)!=2 & max_a_VPA<la(s))  max_a_VPA=la(s);
+ !!  if (is_pred(s)!=2  & max_a_VPA<la(s))  max_a_VPA=la(s);
  !! }
  
  !! first_VPA=nOthPred+1;
  ivector F_y_species_index(first_VPA,nsp)
 
+    
+    
+    
+    
  matrix Rec_add_inf(first_VPA,nsp,1,2)
 
  !! for (s=first_VPA;s<=nsp;s++) {
@@ -332,6 +348,8 @@ DATA_SECTION
                                          // 4=stomach observations
                                          // 5= stomach number dist
  !! if (test_output==1) cout<<"objective.function.weight:"<<endl<<obj_weight<<endl;
+ 
+ ivector obj_out(1,7)    // include in output tabs (Catch, CPUE, SSB/R, stomach, stomach length dist,other_pred_noise, penalty) by species
  
  // 0= no technical creeping, 1=year specific creep, 2=age specific creep
  // ivector use_creep(first_VPA,nsp);
@@ -719,7 +737,7 @@ DATA_SECTION
  // the sms.dat file has now been read.
  
  
- // Read data for short term forecast, if requasted     
+ // Read data for short term forecast, if requested     
  !! if (do_short_term_forecast>0) ad_comm::change_datafile_name("short-term-configuration.dat");
  !! else ad_comm::change_datafile_name("just_one.in");
  init_int no_F_multipliers
@@ -904,9 +922,9 @@ DATA_SECTION
  !! check_yrpred(OP_consum)
 
  imatrix OP_n_proportion_M2(1,2,first_VPA,pnsp)    // first year and last year for calc of proportion of the stock within the model area (used for calc of M2)
- !! if (OP_output==1) if (test_output>=1) {
+ !! if (OP_output==1)  {
  !!   for (i=1;i<=2;i++) for (s=first_VPA;s<=pnsp;s++)  OP_n_proportion_M2(i,s)= lyModel;
- !!   cout<< "OP_n_proportion_M2:"<<endl<<OP_n_proportion_M2<<endl;
+ !!   if (test_output>=1) cout<< "OP_n_proportion_M2:"<<endl<<OP_n_proportion_M2<<endl;
  !! }
  
  init_matrix OP_growth_model(1,5,first_VPA,pnsp)    //  Growth model 0=no growth; food; 2=density dependent
@@ -919,7 +937,7 @@ DATA_SECTION
  !! if (OP_do_growth_all>1) OP_do_growth_all=1;
 
  // dummy values to get to Other predators
- init_matrix OP_dummy_parms(1,6,first_VPA,pnsp)    
+ init_matrix OP_dummy_parms(1,7,first_VPA,pnsp)    
  init_int OP_dummy1
  init_int OP_dummy2
  
@@ -2087,7 +2105,6 @@ DATA_SECTION
  !! if (test_output==2) cout<<"proportion mature from file propmat.in:"<<endl<<propmat_input<<endl;
  3darray propmat(1,yq2,first_VPA,v_last_sp2,vVPA_fa2,vVPA_la2)    // two extra years, used to make structure also useable for stochastic (single species) forecast
  
-  // !! cout<<"PROPMAT: lyData:"<<lyData<<" lastyear:"<<lastyear<<"  do_short_term_forecast:"<<do_short_term_forecast<<endl;
  !! MOVE(propmat_input,propmat,first_VPA,nsp,lastyear);
 
  //*********************************************************************************************
@@ -2224,17 +2241,17 @@ DATA_SECTION
  !! no_season_overlap_to_estimate=0;
  !! if (multi>=1) for (d=1;d<=no_areas;d++) for (p=1;p<=Mnpr;p++) for (q=fq;q<=Mlq; q++)  for (s=0;s<=Mnsp;s++){
  !!   if (season_overlap_input(d,p,q,s)<0) {
- !!     if (phase_season_overlap<=0) {
- !!       cout <<endl<<"You cannot have negative season overlap if overlap is not estimated ( phase.season.overlap<1 ) "<<endl;
- !!       exit(9); 
- !!      }
+ !!     //if (phase_season_overlap<=0) {
+ !!     //  cout <<endl<<"You cannot have negative season overlap if overlap is not estimated ( phase.season.overlap<1 ) "<<endl;
+ !!     //  exit(9); 
+ !!     // }
  !!     if (abs(int(season_overlap_input(d,p,q,s)))>no_season_overlap_to_estimate) no_season_overlap_to_estimate=int(-season_overlap_input(d,p,q,s));
  !!     season_overlap_index(d,p,q,s)=-season_overlap_input(d,p,q,s);
  !!   }
  !!   else { season_overlap_index(d,p,q,s)=0;}      
  !! }
  //!! if (no_season_overlap_to_estimate==0) no_season_overlap_to_estimate=1;        // for construction of data structure later on
- !! else
+ //!! else
  !! if (mceval==0 && multi>=1) {
  !!   cout <<"no_season_overlap_to_estimate:  "<<no_season_overlap_to_estimate<<endl;
  !!   cout <<"season_overlap_input:"<<endl<<season_overlap_input<<endl;
@@ -2625,16 +2642,16 @@ DATA_SECTION
  //*********************************************************************************************
  !! if (test_output==3 && multi>0) cout<<"starts reading file: stomcon_at_length.in"<<endl;
  !!  if (multi>=1) ad_comm::change_datafile_name("stomcon_at_length.in");
- init_matrix stl_stom_input(1,n_stl_yqdpl,1,l_stl_yqdplpl);  // input relative stomach contents weight per lenght group
+ init_matrix stl_stom_input(1,n_stl_yqdpl,1,l_stl_yqdplpl);  // input relative stomach contents weight per length group
  !! if (test_output==3 && multi>0) cout<<"Relaltive stomach contents from file stomcon_at_length.in:"<<endl<<stl_stom_input<<endl;
- matrix     stl_stom(1,n_stl_yqdpl,1,l_stl_yqdplpl);  // relative stomach contents weight per lenght group
- matrix log_stl_stom(1,n_stl_yqdpl,1,l_stl_yqdplpl);  // log of relative stomach contents weight per lenght group
+ matrix     stl_stom(1,n_stl_yqdpl,1,l_stl_yqdplpl);  // relative stomach contents weight per length group
+ matrix log_stl_stom(1,n_stl_yqdpl,1,l_stl_yqdplpl);  // log of relative stomach contents weight per length group
   init_number check22a;
  !! if (multi>0) checkSum(check22a,"stomcon_at_length.in");
  
  !! if (test_output==3 && multi>0) cout<<"starts reading file: stomtype_at_length.in"<<endl;
  !!  if (multi>=1) ad_comm::change_datafile_name("stomtype_at_length.in");
- init_imatrix stl_stom_type(1,n_stl_yqdpl,1,l_stl_yqdplpl);  // type of input per lenght group
+ init_imatrix stl_stom_type(1,n_stl_yqdpl,1,l_stl_yqdplpl);  // type of input per length group
  !! if (test_output==3 && multi>0) cout<<"Type of stomach content input from file stomtype_at_length.in:"<<endl<<stl_stom_type<<endl;
 
  imatrix  stl_stom_use_like(1,n_stl_yqdpl,1,l_stl_yqdplpl);   // make use of the particular stomach observation in the likelihood?
@@ -2643,13 +2660,13 @@ DATA_SECTION
  //********************************************************************************************* 
  !! if (test_output==3 && multi>0) cout<<"starts reading file: Stomlen_at_length.in"<<endl;
  !!  if (multi>=1) ad_comm::change_datafile_name("stomlen_at_length.in");
- init_matrix stl_lstom(1,n_stl_yqdpl,1,l_stl_yqdplpl); //mean length per lenght group
+ init_matrix stl_lstom(1,n_stl_yqdpl,1,l_stl_yqdplpl); //mean length per length group
  !! if (test_output==3 && multi>0) cout<<"Mean prey length from file Stomlen_at_length.in:"<<endl<<stl_lstom<<endl;                                                
 
  //********************************************************************************************* 
  !! if (test_output==3 && multi>0) cout<<"starts reading file: Stomnumber_at_length.in"<<endl;
  !!  if (multi>=1) ad_comm::change_datafile_name("stomnumber_at_length.in");
- init_matrix stl_nopreystom(1,n_stl_yqdpl,1,l_stl_yqdplpl); // number of preys per lenght group
+ init_matrix stl_nopreystom(1,n_stl_yqdpl,1,l_stl_yqdplpl); // number of preys per length group
  !! if (test_output==3 && multi>0) cout<<"Number of preys from file Stomnumber_at_length.in:"<<endl<<stl_nopreystom<<endl;
  !! if (test_output==3 && multi>0) cout<<"Number of prey from file Stomnumber_at_length.in:"<<endl<<stl_nopreystom<<endl;
  
@@ -2659,11 +2676,11 @@ DATA_SECTION
  //********************************************************************************************* 
  !! if (test_output==3 && multi>0) cout<<"starts reading file: stomweight_at_length.in"<<endl;
  !!  if (multi>=1) ad_comm::change_datafile_name("stomweight_at_length.in");
- init_matrix stl_wstom(1,n_stl_yqdpl,1,l_stl_yqdplpl); //mean weight of prey per lenght group
+ init_matrix stl_wstom(1,n_stl_yqdpl,1,l_stl_yqdplpl); //mean weight of prey per length group
  !! if (test_output==3 && multi>0) cout<<"Prey mean weight from file stomweight_at_length.in:"<<endl<<stl_wstom<<endl;
  init_number check24;
  !! if (multi>0) checkSum(check24,"stomweight_at_length.in"); 
- matrix prey_size(1,n_stl_yqdpl,1,l_stl_yqdplpl);     //size (length or weight) of prey per lenght class group
+ matrix prey_size(1,n_stl_yqdpl,1,l_stl_yqdplpl);     //size (length or weight) of prey per length class group
 
 
  //********************************************************************************************* 
@@ -2813,14 +2830,109 @@ DATA_SECTION
 
   
  //********************************************************************************************* 
+ !! if (multi>=1 && nOthPred>0) ad_comm::change_datafile_name("other_pred_n_noise.dat");
+ !! else ad_comm::change_datafile_name("just_one.in");
+ init_int other_pred_noise_model  // 1=no noise, 2=from scaling factors  with mean 1 and std of the mean at a level set at target, 3=from noise on observations
+ init_int phase_other_pred_noise_fac
+ init_number other_pred_noise_fac_lower
+ init_number other_pred_noise_fac_upper
+ init_vector obj_weight_other_pred_noise_fac(1,nOthPred)
+ init_int other_pred_noise_var
+ init_number other_pred_noise_var_lower
+ init_number other_pred_noise_var_upper
+  init_int nobs_other_pred_noise
+ init_ivector other_pred_noise_age_use(1,nOthPred)   // -1: no noise, 1: same noise for all ages, 2:age dependent noise 
+ imatrix other_pred_noise_index(1,nOthPred,fa_other,la)
+ 
+  
+ 
+ 
+ !! if (other_pred_noise_model==3)  for (s=1;s<=nOthPred;s++) if (other_pred_noise_age_use(s)==2) {
+ !!  cout<<"##############"<<endl<<"Model 2 for other predator noise does not work with noise by age. Program stopped ! "<<endl;
+ !!  exit(9);
+ !! } 
+
+ int no_other_pred_noise;
+ !! no_other_pred_noise=0;
+ !! for (s=1;s<=nOthPred;s++) for (a=fa_other(s);a<=la(s);a++) {
+ !!   other_pred_noise_index(s,a)= -1;
+ !!   if (other_pred_noise_age_use(s) ==1 && a==fa_other(s))  no_other_pred_noise=no_other_pred_noise+1; 
+ !!   if (other_pred_noise_age_use(s) ==2)  no_other_pred_noise=no_other_pred_noise+1; 
+ !!   if (other_pred_noise_age_use(s) ==1 || other_pred_noise_age_use(s) ==2) other_pred_noise_index(s,a)=no_other_pred_noise;
+ !! }
+ 
+ !! if (other_pred_noise_model>1) cout<<setfixed()<<setprecision(3)<< "other_pred_noise_model: "<<other_pred_noise_model<<endl<<
+ !! "  no_other_pred_noise:" <<no_other_pred_noise<<"  other_pred_noise_fac_lower:"<<other_pred_noise_fac_lower<<
+ !! "  other_pred_noise_fac_upper:"<<other_pred_noise_fac_upper<<endl<<
+ !! "  phase_other_pred_noise_fac:"<<phase_other_pred_noise_fac<< endl<<
+ !! "  other_pred_noise_var:"<<other_pred_noise_var<<
+ !! "  other_pred_noise_var_lower:"<<other_pred_noise_var_lower<<
+ !! "  other_pred_noise_var_upper:"<<other_pred_noise_var_upper<<endl ;
+
+  
+ ivector other_pred_noise_sp(1,no_other_pred_noise)
+ 
+ !! i=0;
+ !! for (s=1;s<=nOthPred;s++) for (a=fa_other(s);a<=la(s);a++) {
+ !!   if (other_pred_noise_age_use(s) ==1 && a==fa_other(s))  i++; 
+ !!   if (other_pred_noise_age_use(s) ==2)  i++; 
+ !!   other_pred_noise_sp(i)=s;
+ !! }
+ !! if (other_pred_noise_model>1) cout<<"other_pred_noise_sp:"<<endl<<other_pred_noise_sp<<endl;
+ 
+  
+ init_matrix other_pred_noise(1,no_other_pred_noise,1,nobs_other_pred_noise)
+ !! if (other_pred_noise_model>1) cout<<"other_pred_noise:"<<endl<<other_pred_noise<<endl;
+ 
+ ivector is_other_pred_noise(1,nOthPred)
+ !! is_other_pred_noise=0;
+ 
+ int any_other_pred_noise;
+ !! any_other_pred_noise=0;
+ 
+ !! for (s=1;s<=nOthPred;s++) {
+ !!   if ( other_pred_noise_model>=2 )  {
+ !!       any_other_pred_noise=1;
+ !!       is_other_pred_noise(s)=1;
+ !! }}    
+
+ !! if ( any_other_pred_noise==0) phase_other_pred_noise_fac= -1;
+ 
+ 
+ 
+ // ******************************************************************************************
+ 
  !! if (test_output==3 && multi>0) cout<<"starts reading file: other_pred_n.in"<<endl;
  !! if (multi>=1 && nOthPred>0) ad_comm::change_datafile_name("other_pred_n.in");
  !! else ad_comm::change_datafile_name("just_one.in");
  !! if (multi==0) Mindex=-1; else Mindex=max_a;
  init_4darray other_pred_N_input(1,Mnopr,fyData,Mly,fq,Mlq,fa,Mmax_a) 
  !! if (test_output==3 && multi>0 && nOthPred>0) cout<<"Other predator stock size from file other_pred_n.in:"<<endl<<other_pred_N_input<<endl;
- 3darray other_pred_N(1,yq,1,v_last_Osp,vOpr_fa,vOpr_la)
- !! if (multi>0) MOVE(other_pred_N_input,other_pred_N,1,nOthPred,lyData);
+ 3darray other_pred_N_ini(1,yq,1,v_last_Osp,vOpr_fa,vOpr_la)
+ !! if (multi>0) MOVE(other_pred_N_input,other_pred_N_ini,1,nOthPred,lyData);
+
+
+ 
+ !! if (test_output==3 && multi>0 && other_pred_noise_model==3) cout<<"starts reading file: other_pred_n_noise.in"<<endl;
+ !! if (multi>=1 && nOthPred>0 && other_pred_noise_model==3) ad_comm::change_datafile_name("other_pred_n_noise.in");
+ !! else ad_comm::change_datafile_name("just_one.in");
+ !! if (multi==0) Mindex=-1; else Mindex=max_a;
+ init_4darray other_pred_N_input_noise(1,Mnopr,fyData,Mly,fq,Mlq,fa,Mmax_a) 
+ !! if (test_output==3 && multi>0 && nOthPred>0 && other_pred_noise_model==3) cout<<"Other predator stock size from file other_pred_n.in:"<<endl<<other_pred_N_input_noise<<endl;
+ 3darray other_pred_N_noise(1,yq,1,v_last_Osp,vOpr_fa,vOpr_la)
+ !! if (multi>0) MOVE(other_pred_N_input_noise,other_pred_N_noise,1,nOthPred,lyData);
+
+
+ // *********************************************************************************** 
+ 
+ !! if (test_output==3 && multi>0) cout<<"starts reading file: other_catch.in"<<endl;
+ !! if (multi>=1 && nOthPred>0) ad_comm::change_datafile_name("other_catch.in");
+ !! else ad_comm::change_datafile_name("just_one.in");
+ !! if (multi==0) Mindex=-1; else Mindex=Mnopr;
+ init_matrix other_catch(1,Mindex,fyModel,lpy)
+ !! if (test_output==3 && multi>0 && nOthPred>0) cout<<"Other predator catch weight from file other_catch.in:"<<endl<<other_catch<<endl;
+
+
 
  //********************************************************************************************* 
  !! if (test_output==3 && multi>0) cout<<"starts reading file: other_food.in"<<endl;
@@ -2931,7 +3043,7 @@ DATA_SECTION
  !! }
 
  // !! cout <<"no. of Pred and prey species comb: "<< no_of_pred_prey_comb<<endl;
- //!! cout <<"pred_prey_comb(pred,prey):"<<endl<<pred_prey_comb<<endl;
+ // !! cout <<"pred_prey_comb(pred,prey):"<<endl<<pred_prey_comb<<endl;
 
  //********************************************************************************************* 
  !! if (multi==0) {
@@ -3028,10 +3140,15 @@ DATA_SECTION
   }
  END_CALCS
   
- init_matrix cons_multiplier_options(1,Mnpr,1,3)          // lower limit, upper limit and phase by species
+ init_matrix cons_multiplier_options(1,Mnpr,1,4)          // value lower limit, upper limit and phase by species
+ 
+ init_number checkcons_multiplier_options;
+ !! if (multi>0) checkSum(checkcons_multiplier_options,"cons_multiplier_options.in");
+
  vector lb_cons_multiplier_options(1,Mnpr);
  vector ub_cons_multiplier_options(1,Mnpr);
  ivector ph_cons_multiplier_options(1,Mnpr);
+ vector default_cons_multiplier_options(1,Mnpr);
  int cons_multiplier_Mnpr
  
  LOC_CALCS
@@ -3041,6 +3158,7 @@ DATA_SECTION
      ub_cons_multiplier_options(s)=cons_multiplier_options(s,2);
      if (multi>=2) ph_cons_multiplier_options(s)=cons_multiplier_options(s,3);
      else ph_cons_multiplier_options(s)= -1;
+     default_cons_multiplier_options(s)=cons_multiplier_options(s,4);
    }
  END_CALCS
  // END Consumption multiplier
@@ -3083,9 +3201,8 @@ PARAMETER_SECTION
  // file for attributes like year, species and age to estimated paramerter. 
  // Dessigned to be used together with the sms.std and sms.cor files
  !! ofstream parexp("par_exp.out",ios::out);
- !! parexp<<" par parNo species year quarter area age predator prey fleet idx1 idx2 idx3"<<endl;
-
-       
+ !! parexp<<"par parNo species year quarter area age predator prey fleet idx1 idx2 idx3 used"<<endl;
+      
  // Initial value guessed for recruitment all years
  vector log_rec_scale(first_VPA,nsp)  
 
@@ -3093,14 +3210,14 @@ PARAMETER_SECTION
  init_bounded_matrix log_rec(first_VPA,nsp,fyModel,lyModel,-15.,10.,phase_log_rec)
  !! if  (phase_log_rec>0) {
  !!   for (s=first_VPA;s<=nsp;s++) for (y=fyModel;y<=lyModel;y++)
- !!    {parNo++; parexp<<"log_rec "<<parNo<<" "<<s<<" "<<y<<" -1 -1 -1 -1 -1 -1 "<<s<<" "<<y<<" -1"<<endl;}
+ !!    {parNo++; parexp<<"log_rec "<<parNo<<" "<<s<<" "<<y<<" -1 -1 "<<fa<<" -1 -1 -1 "<<s<<" "<<y<<" -1"<<" used"<<endl;}
  !! }
 
  // "Recruits" first year
   init_bounded_matrix log_rec_older(first_VPA,nsp,fa+1,la_like,-20.,10.,phase_log_rec_older)
  !! if  (phase_log_rec_older>0) {
  !!   for (s=first_VPA;s<=nsp;s++) for (a=fa+1;a<=la_like(s);a++) {
- !!   parNo++; parexp<<"log_rec_older "<<parNo<<" "<<s<<" "<<fyModel<<" "<<fq<<" -1 "<<a<<" -1 -1 -1 "<<s<<" "<<a<<" -1"<<endl;} 
+ !!   parNo++; parexp<<"log_rec_older "<<parNo<<" "<<s<<" "<<fyModel<<" "<<fq<<" -1 "<<a<<" -1 -1 -1 "<<s<<" "<<a<<" -1"<<" used"<<endl;} 
  !! }
 
   3darray F_a(first_VPA,nsp,fyModel,lyModel,fa,la_VPA)             //age selection in separable model
@@ -3123,7 +3240,11 @@ PARAMETER_SECTION
  !! if (phase_F_y_ini>0 ) {           
  !!   for (s=first_VPA;s<=nsp;s++) if (do_effort(s)==0) for (y=fyModel+1;y<=lly(s);y++) {
  !!    parNo++;
- !!    parexp<<"F_y_ini "<<parNo<<" "<<s<<" "<<y<<" -1 -1 -1 -1 -1 -1 "<<s<<" "<<y<<" -1"<<endl;
+ !!    parexp<<"F_y_ini "<<parNo<<" "<<s<<" "<<y<<" -1 -1 -1 -1 -1 -1 "<<s<<" "<<y<<" -1";
+ !!    f=0;  // found year ?
+ !!    for (i=1;i<=n_catch_sep_year_group(s);i++) if (catch_sep_year(s,i)==y) f=1;
+ !!   if (sum(zero_catch_y_season(s,y))==0) f=1;
+ !!    if (f==0)  parexp<<" used"<<endl; else parexp<<" not_used"<<endl;
  !!   }
  !! }
 
@@ -3134,7 +3255,7 @@ PARAMETER_SECTION
  !! if (phase_F_y_spline>0 ) {
  !!   for (s=first_VPA;s<=nsp;s++) if (Nknots(s)>1) for (i=1;i<=Nknots(s);i++) {
  !!    parNo++;
- !!    parexp<<"F_y_spline "<<parNo<<" "<<s<<" "<<knotsX(s,i)<<" -1 -1 -1 -1 -1 -1 "<<s<<" "<<parNo<<" -1"<<endl;
+ !!    parexp<<"F_y_spline "<<parNo<<" "<<s<<" "<<knotsX(s,i)<<" -1 -1 -1 -1 -1 -1 "<<s<<" "<<parNo<<" -1"<<" used"<<endl;
  !!   }
  !! }
 
@@ -3179,7 +3300,8 @@ PARAMETER_SECTION
  !!       if ( seasonal_annual_catches_phase(no_sp_sag_syg2)>0 ) {
  !!         for (q=fcq(no_sp_sag_syg2);q<=lcq(no_sp_sag_syg2);q++) { 
  !!           parNo++;
- !!           parexp<<"F_q_ini "<<parNo<<" "<<s<<" "<<catch_sep_year(s,syg)<<" "<<q<<" -1 "<<catch_season_age(s,sag)<<" -1 -1 -1 "<<no_sp_sag_syg2<<" "<<q<<" -1"<<endl;
+ !!           parexp<<"F_q_ini "<<parNo<<" "<<s<<" "<<catch_sep_year(s,syg)<<" "<<q<<" -1 "<<catch_season_age(s,sag)<<" -1 -1 -1 "<<no_sp_sag_syg2<<" "<<q<<" -1";
+ !!           if (incl_catch_season_age(s,q,catch_season_age(s,sag))==1) parexp<<" used"<<endl; else parexp<<" not_used"<<endl;
  !!         } 
  !!       }
  !!      }
@@ -3187,21 +3309,25 @@ PARAMETER_SECTION
  !!  }
  !! }
   
+ 
+  
+  
   // age separability by group  (log values to get values >0, for a non bound 3darray)
   //!! cout<<"first_VPA: "<<first_VPA<<endl<<"nsp:"<<nsp<<endl<<"cfa: "<<cfa<<endl<<"las: "<<las<<endl<<"no_F_y_groups:"<<no_F_y_groups<<endl;
 
 
-
- // MV:log_F_a_ini (init_3darray) are not included in gradient.dat as the type is init_3darray  ?!
+ // MV:log_F_a_ini (init_3darray) are not included in gradient.dat as the type is init_3darray  ?! but I cannot make the init_bounded_matrix_vector to work
  //!! ivector phase_log_F_a_ini_vec(first_VPA,nsp);
  //!! for (s=first_VPA;s<=nsp;s++) phase_log_F_a_ini_vec(s)=phase_log_F_a_ini;  
- // init_matrix_vector log_F_a_ini(first_VPA,nsp,cfa,las,0,no_F_y_groups,phase_log_F_a_ini_vec)               
+ //init_matrix_vector log_F_a_ini(first_VPA,nsp,cfa,las,0,no_F_y_groups,phase_log_F_a_ini_vec)               
+ // init_bounded_matrix_vector log_F_a_ini(first_VPA,nsp,cfa,las,0,no_F_y_groups,0,3,phase_log_F_a_ini_vec)               
+ 
 
  init_3darray log_F_a_ini(first_VPA,nsp,cfa,las,0,no_F_y_groups,phase_log_F_a_ini)               
  !! if  (phase_log_F_a_ini>0) {
  !!   for (s=first_VPA;s<=nsp;s++) for (a=cfa(s);a<=las(s);a++) for (i=1;i<= n_catch_sep_year_group(s);i++) {
  !!     parNo++;
- !!     parexp<<"log_F_a_ini "<<parNo<<" "<<s<<" "<<catch_sep_year(s,i)<<" -1 -1 "<<a<<" -1 -1 -1 "<<s<<" "<<a<<" "<<i<<endl; 
+ !!     parexp<<"log_F_a_ini "<<parNo<<" "<<s<<" "<<catch_sep_year(s,i)<<" -1 -1 "<<a<<" -1 -1 -1 "<<s<<" "<<a<<" "<<i<<" used"<<endl; 
  !!   }
  !! }
   
@@ -3219,7 +3345,7 @@ PARAMETER_SECTION
  // !! if  (phase_log_F_a_ini>0) {
  // !!   for (s=first_VPA;s<=nsp;s++) if (use_creep(s)>0) for (a=cfa(s);a<=creep_option(s);a++) for (yy=1;yy<= n_catch_sep_year_group(s);yy++) {
  // !!     parNo++;
- // !!     parexp<<"creep "<<parNo<<" "<<s<<" "<<catch_sep_year(s,yy)<<" -1 -1 "<<a<<" -1 -1 -1 -1 -1 "<<endl; 
+ // !!     parexp<<"creep "<<parNo<<" "<<s<<" "<<catch_sep_year(s,yy)<<" -1 -1 "<<a<<" -1 -1 -1 -1 -1 "<<" used"<<endl; 
  // !!   }
  // !! }                                                        
  
@@ -3234,8 +3360,8 @@ PARAMETER_SECTION
 
  // other obj function book-keeping vars
  
- matrix no_obj_obs(1,nsp+1,1,5)  // Number of observations included in objective function contribution (Catch, CPUE, SSB/R, stomach) by species
- matrix obj_func(1,nsp,1,6)    // objective function contribution (Catch, CPUE, SSB/R, stomach, ,stomach length dist penalty) by species
+ matrix no_obj_obs(1,nsp+1,1,6)  // Number of observations included in objective function contribution (Catch, CPUE, SSB/R, stomach, other pred_noise) by species
+ matrix obj_func(1,nsp,1,7)    // objective function contribution (Catch, CPUE, SSB/R, stomach, stomach length dist,other_pred_noise, penalty) by species
 
  //catchability by species, fleet and age
  init_bounded_matrix qq_ini(1,no_sp_fl,v_first_fleet_age,v_last_fleet_age_q,1E-12,1E4,phase_qq_ini)
@@ -3246,7 +3372,7 @@ PARAMETER_SECTION
  !!     no_sp_fl++;
  !!     for (a=v_first_fleet_age(no_sp_fl);a<= v_last_fleet_age_q(no_sp_fl);a++) {
  !!        parNo++;
- !!        parexp<<"qq_ini "<<parNo<<" "<<s<<" -1 -1 -1 " <<a<<" -1 -1 "<<f<<" "<<no_sp_fl<<" "<<a<<" -1"<<endl;
+ !!        parexp<<"qq_ini "<<parNo<<" "<<s<<" -1 -1 -1 " <<a<<" -1 -1 "<<f<<" "<<no_sp_fl<<" "<<a<<" -1"<<" used"<<endl;
  !!     }
  !!   }
  !! }
@@ -3263,7 +3389,7 @@ PARAMETER_SECTION
 
  !! if (phase_qq_power_ini>0){
  !!   for (s=first_VPA;s<=nsp;s++) for (f=1;f<=n_fleet(s);f++) for (a=first_fleet_age(s,f);a<=last_fleet_age(s,f);a++) {
- !!     if (qq_power_index(s,f,a)>0) {parNo++; parexp<<"qq_power_ini "<<parNo<<" "<<s<<" -1 -1 -1 " <<a<<" -1 -1 "<<f<<endl;}
+ !!     if (qq_power_index(s,f,a)>0) {parNo++; parexp<<"qq_power_ini "<<parNo<<" "<<s<<" -1 -1 -1 " <<a<<" -1 -1 "<<f<<" used"<<endl;}
  !!   }
  !! } 
 
@@ -3272,7 +3398,7 @@ PARAMETER_SECTION
 
  //!! if (phase_year_effect_ini>0){
  //!!   for (s=first_VPA;s<=nsp;s++) for (f=1;f<=n_fleet(s);f++) for (y=first_fleet_year(s,f)+1;y<=last_fleet_year(s,f);y++) {
- //!!     if (log_year_effect_index(s,f,y)>0) {parNo++; parexp<<"log_year_effect_ini "<<parNo<<" "<<s<<" "<<y<<" -1 -1 -1 -1 -1 "<<f<<endl;}
+ //!!     if (log_year_effect_index(s,f,y)>0) {parNo++; parexp<<"log_year_effect_ini "<<parNo<<" "<<s<<" "<<y<<" -1 -1 -1 -1 -1 "<<f<<" used"<<endl;}
  //!!   }
  //!! }
 
@@ -3297,7 +3423,7 @@ PARAMETER_SECTION
  !!     spfl++;
  !!     for (i=1;i<= n_CPUE_s2_group(s,f);i++) {
  !!        parNo++;
- !!        parexp<<"qq_s2_ini "<<parNo<<" "<<s<<" -1 -1 -1 " <<CPUE_s2_group(s,f,i)<<" -1 -1 "<<f<<" "<<spfl<<" "<< i<<" -1"<<endl;
+ !!        parexp<<"qq_s2_ini "<<parNo<<" "<<s<<" -1 -1 -1 " <<CPUE_s2_group(s,f,i)<<" -1 -1 "<<f<<" "<<spfl<<" "<< i<<" -1"<<" used"<<endl;
  !!     }
  !!   }
  !! }
@@ -3318,7 +3444,7 @@ PARAMETER_SECTION
 
  // alfa in  SSB-recruit relation, or geometric mean factor
  init_bounded_vector SSB_R_alfa(first_VPA,nsp,0,1.0E4,phase_SSB_R_alfa)
- !! if (phase_SSB_R_alfa>0)  for (s=first_VPA;s<=nsp;s++)  {parNo++; parexp<<"SSB_R_alfa "<<parNo<<" "<<s<<" -1 -1 -1 -1 -1 -1 -1 "<<s<<" -1 -1"<<endl; }
+ !! if (phase_SSB_R_alfa>0)  for (s=first_VPA;s<=nsp;s++)  {parNo++; parexp<<"SSB_R_alfa "<<parNo<<" "<<s<<" -1 -1 -1 -1 -1 -1 -1 "<<s<<" -1 -1"<<" used"<<endl; }
  
  // beta in  SSB-recruit relation
  !! i=0;
@@ -3327,7 +3453,7 @@ PARAMETER_SECTION
  vector SSB_R_beta(first_VPA,nsp)
  !! if (phase_SSB_R_beta>0)  {
  !!   i=0;
- !!   for (s=first_VPA;s<=nsp;s++) if (use_beta_SSB_Rec(s)==1) {parNo++; i++;  parexp<<"SSB_R_beta_ini "<<parNo<<" "<<s<<" -1 -1 -1 -1 -1 -1 -1 "<<i<<" -1 -1"<<endl; }
+ !!   for (s=first_VPA;s<=nsp;s++) if (use_beta_SSB_Rec(s)==1) {parNo++; i++;  parexp<<"SSB_R_beta_ini "<<parNo<<" "<<s<<" -1 -1 -1 -1 -1 -1 -1 "<<i<<" -1 -1"<<" used"<<endl; }
  !!  }
 
  // Temperature dependent factor in Ricker
@@ -3335,7 +3461,7 @@ PARAMETER_SECTION
  !! for (s=first_VPA;s<=nsp;s++) if (SSB_Rec_model(s)==51) i=i+1;
  init_vector RecTempVar_ini(1,i,phase_SSB_R_beta)
  vector RecTempVar(first_VPA,nsp)
- !! if (phase_SSB_R_beta>0)  for (s=first_VPA;s<=nsp;s++) if (SSB_Rec_model(s)==51) {parNo++; parexp<<"RecTempVar "<<parNo<<" "<<s<<" -1 -1 -1 -1 -1 -1 -1 -1 -1"<<endl;}
+ !! if (phase_SSB_R_beta>0)  for (s=first_VPA;s<=nsp;s++) if (SSB_Rec_model(s)==51) {parNo++; parexp<<"RecTempVar "<<parNo<<" "<<s<<" -1 -1 -1 -1 -1 -1 -1 -1 -1"<<" used"<<endl;}
 
  // STN sprat model,opion 61
  //!! if (n_use_opt61_Rec>0) {                                                          //STN
@@ -3362,25 +3488,26 @@ PARAMETER_SECTION
  !! ivector phase_catch_s2_ini_vec(first_VPA,i) ;
  !!  for (s=first_VPA;s<=i;s++)  phase_catch_s2_ini_vec(s)=  phase_log_F_a_ini;
  !! xx=min_catch_CV*min_catch_CV;       
-init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2,1,n_catch_s2_group,xx,2.0,phase_catch_s2_ini_vec)
+ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2,1,n_catch_s2_group,xx,2.0,phase_catch_s2_ini_vec)
 
  !! if (phase_log_F_a_ini>0 && i>0)  for (s=first_VPA;s<=nsp;s++)  for (j=1;j<=seasonal_combined_catch_s2(s);j++) for (k=1;k<=n_catch_s2_group(s);k++) 
- !!             {parNo++; parexp<<"catch_s2_ini "<<parNo<<" "<<s<<" -1 "<< j <<" -1 "<< catch_s2_group(s,k)<<" -1 -1 -1 "<<s<<" "<<j<<" "<<k<<endl; }
+ !!             {parNo++; parexp<<"catch_s2_ini "<<parNo<<" "<<s<<" -1 "<< j <<" -1 "<< catch_s2_group(s,k)<<" -1 -1 -1 "<<s<<" "<<j<<" "<<k;
+ !!              if (seasonal_combined_catch_s2(s)== 1) parexp<<" used"<<endl;  else 
+ !!                { if (incl_catch_season_age(s,j,catch_s2_group(s,k))==0) parexp<<" not_used"<< endl; else parexp<<" used" << endl;}
+ !! }
    
  // variance in  SSB-recruit relation 
  vector SSB_R_s2(first_VPA,nsp)
  !! if (est_calc_sigma(3)==0) i=nsp; else i=-1; 
 
  init_bounded_vector SSB_R_s2_ini(first_VPA,i,min_SR_s2,2,phase_SSB_R_alfa) 
- !! if (phase_SSB_R_alfa>0 && est_calc_sigma(3)==0)  for (s=first_VPA;s<=nsp;s++) {parNo++; parexp<<"SSB_R_s2_ini "<<parNo<<" "<<s<<" -1 -1 -1 -1 -1 -1 -1 "<<s<<" -1 -1"<<endl; }
+ !! if (phase_SSB_R_alfa>0 && est_calc_sigma(3)==0)  for (s=first_VPA;s<=nsp;s++) {parNo++; parexp<<"SSB_R_s2_ini "<<parNo<<" "<<s<<" -1 -1 -1 -1 -1 -1 -1 "<<s<<" -1 -1"<<" used"<<endl; }
  
  3darray   C_hat_annual(fyData,lyData,first_VPA,vys2,vVPA_fay,vVPA_lay)   // Expected catch annual
   
  3darray         M2(1,yq,first_VPA,v_last_sp,vVPA_fa,vVPA_la)
- 3darray     old_M2(1,yq,first_VPA,v_last_sp,vVPA_fa,vVPA_la)
  3darray          F(1,yq1,1,v_last_sp1,vAll_fa1,vAll_la1)
  3darray          Z(1,yq1,1,v_last_sp1,vAll_fa1,vAll_la1)
- //3darray          N(1,yq2,first_VPA,v_last_sp2,vVPA_fa2,vVPA_la2)    // stock number at the start of the season
  3darray          N(1,yq2,1,v_last_sp2,vAll2_fa2,vAll2_la2)    // stock number at the start of the season
  3darray      N_bar(1,yq1,1,v_last_sp1,vAll_fa1,vAll_la1)   // average N within a season
  3darray N_bar_stom(1,yq1,1,v_last_sp1,vAll_fa1,vAll_la1)   // average N within a season or N in the beginning of a season, depending on input option use_Nbar 
@@ -3400,7 +3527,8 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
  !! ALKS_adjusted=ALKS_input;
 
  4darray    part_M2(1,npr,fa,max_a,first_VPA,nsp,fa,max_a)    // partial M2
-  
+ 
+ 3darray other_pred_N(1,yq,1,v_last_Osp,vOpr_fa,vOpr_la)  // abundance other predators
  3darray   other_bio(1,Mnopr,fyModel,lpy,fq,lq)      // Biomass of other predators
  
  matrix    TSB(first_VPA,nsp,fyModel,lpy)           // Total Stock Biomass, first season
@@ -3408,8 +3536,10 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
  matrix    SSB_percieved(first_VPA,nsp,lyModel+1,lpy)           // Percieved Spawning Stock Biomass, spawning season
  matrix    CWsum(first_VPA,nsp,fyModel,lpy)         // total catch weight
  matrix    CWsum_hat(first_VPA,nsp,fyModel,lpy)     // expected total catch weight
+ matrix    CWsum_core(first_VPA,nsp,fyModel,lpy)    // total catch weight in the core arae (area where predation mortality is calculated  
  matrix    yield(first_VPA,nsp,fyModel,lpy)         // Yield
  matrix    yield_hat(first_VPA,nsp,fyModel,lpy)     // expected Yield
+ matrix    yield_core(first_VPA,nsp,fyModel,lpy)    // Yield in the core arae (area where predation mortality is calculated  
 
  matrix    eaten_M2(first_VPA,nsp,fyModel,lpy)      // eaten biomass
  matrix    Mean_F(first_VPA,nsp,fyModel,lpy)        // Mean  F (real)
@@ -3419,13 +3549,13 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
                                                // for each variable the values 0=not applied, 1=lower constarints applied, 2=upper applied
                                                //  code in a 3based system
  // variables for stomachs and predation
- matrix          stl_E_stom(1,n_stl_yqdpl,1,l_stl_yqdplpl);    //Expected relative stomach contents weight per lenght group
+ matrix          stl_E_stom(1,n_stl_yqdpl,1,l_stl_yqdplpl);    //Expected relative stomach contents weight per length group
  matrix      stl_prey_avail(1,n_stl_yqdpl,1,l_stl_yqdplpl);   //Availeble food by prey
  matrix stl_prey_avail_part(1,n_stl_yqdpl,1,l_stl_yqdplpl);   //Availeble food by prey
  !! stl_prey_avail=0;
  !! stl_prey_avail_part=0;                
 
- matrix          stl_E_Nstom(1,n_stl_yqdpl,1,l_stl_yqdplpl);    //Expected relative stomach contents number (transformed into probability) per lenght group
+ matrix          stl_E_Nstom(1,n_stl_yqdpl,1,l_stl_yqdplpl);    //Expected relative stomach contents number (transformed into probability) per length group
  matrix      stl_Nprey_avail(1,n_stl_yqdpl,1,l_stl_yqdplpl);   //Availeble Number of food items by fish prey         // PL
  matrix      stl_NSumprey_avail(1,n_stl_yqdpl,1,l_stl_yqdplpl);   // sum of Availeble Number of food items by fish prey  (the structure does really not fit, I use only the first ll index by species)        // PL
 
@@ -3435,11 +3565,11 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
 
  
  init_bounded_number_vector cons_multiplier(1,cons_multiplier_Mnpr,lb_cons_multiplier_options,ub_cons_multiplier_options,ph_cons_multiplier_options)
- !! for (s=1;s<=cons_multiplier_Mnpr;s++)  cons_multiplier(s)=1.0;
- !! if (multi>0) cout<<"cons_multiplier:"<<endl<<cons_multiplier<<endl;
+ !! for (s=1;s<=cons_multiplier_Mnpr;s++)  cons_multiplier(s)=default_cons_multiplier_options(s);
+ !! if (test_output==1 && multi>0) cout<<"cons_multiplier:"<<endl<<cons_multiplier<<endl;
 
  !!  if (multi>0) for (s=1;s<=cons_multiplier_Mnpr;s++) if (ph_cons_multiplier_options(s)>0 ) {  
- !!     parNo++; parexp<<"cons_multiplier "<<parNo<<" -1 -1 -1 -1 -1 "<<s<<" -1 -1"<<s<<" -1 -1"<<endl; 
+ !!     parNo++; parexp<<"cons_multiplier "<<parNo<<" -1 -1 -1 -1 -1 "<<s<<" -1 -1 "<<s<<" -1 -1"<<" used"<<endl; 
  !! }
 
 
@@ -3451,7 +3581,7 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
  !!     for (pred=1;pred<=npr;pred++) {
  !!       for (prey=first_VPA;prey<=nsp;prey++) if (pred_prey_comb(d,pred,prey)>0) {
  !!          parNo++; i++; 
- !!          parexp<<"vulnera "<<parNo<<" -1 -1 -1 "<<d<<" -1 "<<pred<<" "<<prey<<" -1 "<<i<<" -1 -1"<<endl; 
+ !!          parexp<<"vulnera "<<parNo<<" -1 -1 -1 "<<d<<" -1 "<<pred<<" "<<prey<<" -1 "<<i<<" -1 -1"<<" used"<<endl; 
  !!       }
  !!     }
  !!   }
@@ -3462,7 +3592,7 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
  //!! if (phase_vulnera>0) {
  //!!   for (pred=1;pred<=npr;pred++) {
  //!!     for (prey=first_VPA;prey<=nsp;prey++) {
- //!!       if (pred_prey_comb(pred,prey)>0) {parNo++; parexp<<"vulnera_size "<<parNo<<" -1 -1 -1 -1 -1 "<<pred<<" "<<prey<<" -1 -1 -1 -1 "<<parNo<<" -1 -1"<<endl; }
+ //!!       if (pred_prey_comb(pred,prey)>0) {parNo++; parexp<<"vulnera_size "<<parNo<<" -1 -1 -1 -1 -1 "<<pred<<" "<<prey<<" -1 -1 -1 -1 "<<parNo<<" -1 -1"<<" used"<<endl; }
  //!!     }
  //!!   }
  //!! }
@@ -3473,7 +3603,7 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
  !! if (phase_stl_other_suit_slope>0) { 
  !!   i=0;                     
  !!   for (pred=1;pred<=npr;pred++) if (size_other_food_suit(pred)>0) 
- !!     {parNo++; i++; parexp<<"init_stl_other_suit_slope "<<parNo<<" -1 -1 -1 -1 -1 "<<pred<<" -1 -1 "<<i<<" -1 -1"<<endl; }
+ !!     {parNo++; i++; parexp<<"init_stl_other_suit_slope "<<parNo<<" -1 -1 -1 -1 -1 "<<pred<<" -1 -1 "<<i<<" -1 -1"<<" used"<<endl; }
  !! }
  
  
@@ -3512,9 +3642,13 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
  !! if(multi==0) n=0;
  init_bounded_number_vector  init_pref_size_ratio(1,n,spl,spu,phase_pref_size_ratio2)
  vector pref_size_ratio(1,npr)
- !!    if (multi>0) for (s=1;s<=npr;s++) if (phase_pref_size_ratio2(n)>0 && size_selection(s)>=1 && size_selection(s)!=4) {  
- !!     parNo++; parexp<<"init_pref_size_ratio "<<parNo<<" -1 -1 -1 -1 -1 "<<s<<" -1 -1 "<<parNo<<" -1 -1"<<endl; 
- !! }
+ !! if (multi>0) {
+ !!   i=0;
+ !!   for (s=1;s<=npr;s++) {
+ !!     if (phase_pref_size_ratio2(n)>0 && size_selection(s)>=1 && size_selection(s)!=4) {  
+ !!       i=i+1;
+ !!       parNo++; parexp<<"init_pref_size_ratio "<<parNo<<" -1 -1 -1 -1 -1 "<<s<<" -1 -1 "<<i<<" -1 -1"<<" used"<<endl; 
+ !!  }}}
 
  !! if (multi==0 || phase_prey_size_adjustment<=0 ) nn=first_VPA_prey-1;  // single species mode or option not in use
  !! else nn=nsp-1;
@@ -3522,7 +3656,7 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
  vector prey_size_adjustment(first_VPA,nsp)
  !!  if (phase_prey_size_adjustment>0) {
  !!   for (prey=first_VPA_prey;prey<=nn;prey++)  
- !!     {parNo++; parexp<<"init_prey_size_adjustment "<<parNo<<" -1 -1 -1 -1 -1 -1 "<<prey<<" -1 "<<parNo<<" -1 -1"<<endl; }
+ !!     {parNo++; parexp<<"init_prey_size_adjustment "<<parNo<<" -1 -1 -1 -1 -1 -1 "<<prey<<" -1 "<<parNo<<" -1 -1"<<" used"<<endl; }
  !! }
 
   
@@ -3535,7 +3669,7 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
  
  !! if (phase_pref_size_ratio_correction>0) {
  !!   for (pred=1;pred<=n;pred++)  
- !!     {parNo++; parexp<<"init_pref_size_ratio_correction "<<parNo<<" -1 -1 -1 -1 -1 "<<pred<<" -1 -1 "<<parNo<<" -1 -1"<<endl; }
+ !!     {parNo++; parexp<<"init_pref_size_ratio_correction "<<parNo<<" -1 -1 -1 -1 -1 "<<pred<<" -1 -1 "<<parNo<<" -1 -1"<<" used"<<endl; }
  !! }
 
  
@@ -3576,19 +3710,17 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
  init_bounded_number_vector  var_size_ratio_ini(1,n,vpl,vpu,phase_var_size_ratio2)   
  !! if (phase_var_size_ratio>0) {
  !!   if (multi>=1) for (p=1;p<=Mnpr;p++) if (size_selection(p)>0) {
- !!      parNo++; parexp<<"var_size_ratio_ini "<<parNo<<" -1 -1 -1 -1 -1 "<<p<<" -1 -1"<<endl; 
- !!       if (size_selection(p)==2) {  parNo++; parexp<<"var_size_ratio_ini "<<parNo<<" -1 -1 -1 -1 -1 -1 "<<p<<" -1 -1 "<<parNo<<" -1 -1"<<endl; }
+ !!      parNo++; parexp<<"var_size_ratio_ini "<<parNo<<" -1 -1 -1 -1 -1 "<<p<<" -1 -1 "<<p<< " -1 -1 "<<" used"<<endl; 
  !!  }
  !!  }
-  
- 
+   
  vector  var_size_ratio(1,npr)
  4darray     season_overlap(1,no_areas,1,npr,fq,lq,0,nsp)     //predator prey overlap
  init_bounded_vector init_season_overlap(1,no_season_overlap_to_estimate,0.05,20.0,phase_season_overlap);
 
  !! if (phase_season_overlap>0) {
  !!   if (multi>=1) for (i=1;i<=no_season_overlap_to_estimate;i++)  {
- !!      parNo++; parexp<<"init_season_overlap "<<parNo<<" -1 -1 -1 -1 -1 -1 -1 -1 "<<i<<" -1 -1"<<endl; 
+ !!      parNo++; parexp<<"init_season_overlap "<<parNo<<" -1 -1 -1 -1 -1 -1 -1 -1 "<<i<<" -1 -1"<<" used"<<endl;
  !!    }
  !!  }
 
@@ -3613,7 +3745,7 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
  //!!   Stom_var_u(s)= stomMaxSumP(s)*Stom_var_l(s);
  !!   Stom_var_u(s)=(stomMaxSumP(s)+1)/ max_no_samples(s)/Stom_var_fac(s);
  !!   if (Stom_var_u(s)<(1.1*Stom_var_l(s))) {
- !!     Stom_var_u(s)=1.1*Stom_var_l(s)  ;
+ !!     Stom_var_u(s)=1.1*Stom_var_l(s);
  !!     cout<<"option Stom_var_Max changed to:"<<Stom_var_u(s)<<" for species="<<s<<", "<<species_names[s]<<endl;
  !!   }
  !!  }
@@ -3632,12 +3764,47 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
  !! if (multi==0) n=0;
  init_bounded_number_vector Stom_var(1,n,Stom_var_l,Stom_var_u,phase_Stom_var2);
  !! if (multi>0) for (p=1;p<=n;p++) if (phase_Stom_var2(n)>0){
- !!      parNo++; parexp<<"Stom_var "<<parNo<<" -1 -1 -1 -1 -1 "<<p<<" -1  -1 "<<p<<" -1 -1"<<endl; 
+ !!      parNo++; parexp<<"Stom_var "<<parNo<<" -1 -1 -1 -1 -1 "<<p<<" -1  -1 "<<p<<" -1 -1"<<" used"<<endl; 
  !!  }
+  
+  
+ // other predator stock size noise factor
+ !! if (multi==0) no_other_pred_noise=0;
+ 
+ init_bounded_vector other_pred_noise_fac(1,no_other_pred_noise,other_pred_noise_fac_lower,other_pred_noise_fac_upper,phase_other_pred_noise_fac)
+ 
+ !! if (multi>0) {
+ !!  i=1; 
+ !!  j=0;
+ !!  for (p=1;p<=no_other_pred_noise;p++) {       
+ !!    s=other_pred_noise_sp(p);
+ !!    if (s != j) {j=s; a=fa_other(s)-1; }
+ !!    if (j==s) a=a+1; 
+ !!    parNo++; parexp<<"other_pred_noise_fac "<<parNo<<" -1 -1 -1 -1 "<<a<<" "<<s<<" -1  -1 "<<i<<" -1 -1"<<" used"<<endl; 
+ !!    i=i+1;
+ !!   }
+ !! }   
+
+ // variance as paramater
+ !! k=no_other_pred_noise;
+ !! if (other_pred_noise_var==0) k= -1;
+ init_bounded_vector other_pred_noise_fac_s2(1,k,other_pred_noise_var_lower,other_pred_noise_var_upper,phase_other_pred_noise_fac)  
+  
+ !! if (multi>0 && k>0) {
+ !!  i=1; 
+ !!  j=0;
+ !!  for (p=1;p<=no_other_pred_noise;p++) {       
+ !!    s=other_pred_noise_sp(p);
+ !!    if (s != j) {j=s; a=fa_other(s)-1; }
+ !!    if (j==s) a=a+1; 
+ !!    parNo++; parexp<<"other_pred_noise_fac_s2 "<<parNo<<" -1 -1 -1 -1 "<<a<<" "<<s<<" -1  -1 "<<i<<" -1 -1"<<" used"<<endl; 
+ !!    i=i+1;
+ !!   }
+ !! }   
+
  
  matrix stl_N_bar(1,n_stl_yqdpl,1,l_stl_yqdplpl)         //N-bar at length for prey species
  vector stl_avail_food(1,n_stl_yqdpl)                   // available food weightfor a predator-length
- 
 
  // mesh selection adjustment for stomach ALK
  // Selection = 1 /(1 + exp(s1 - s2*length))
@@ -3652,7 +3819,7 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
  init_bounded_vector init_L50(1,n,40,500,phase_mesh_adjust) 
  
  !! if (multi>0) for (p=1;p<=n;p++) if (phase_mesh_adjust>0){
- !!   parNo++; parexp<<"init_L50 "<<parNo<<" -1 -1 -1 "<<p<<" -1 -1  -1  -1 "<<parNo<<" -1 -1"<<endl; 
+ !!   parNo++; parexp<<"init_L50 "<<parNo<<" -1 -1 -1 "<<p<<" -1 -1  -1  -1 "<<parNo<<" -1 -1"<<" used"<<endl; 
  !! }
 
  vector s1(first_VPA,nsp)   // mesh selection parameter
@@ -3661,7 +3828,7 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
   init_bounded_vector init_s1(1,n,1,30,phase_mesh_adjust) 
  !! if (n==0  || multi==0) mesh_size_active=0; else mesh_size_active=1;
  !! if (multi>0) for (p=1;p<=n;p++) if (phase_mesh_adjust>0){
- !!   parNo++; parexp<<"init_s1 "<<parNo<<" -1 -1 -1 "<<p<<" -1 -1  -1  -1 "<<parNo<<" -1 -1"<<endl; 
+ !!   parNo++; parexp<<"init_s1 "<<parNo<<" -1 -1 -1 "<<p<<" -1 -1  -1  -1 "<<parNo<<" -1 -1"<<" used"<<endl; 
  !! }
 
  /////////////////////////////////////////////////////////////////////////////////////////// 
@@ -3669,12 +3836,16 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
 
  
  sdreport_matrix avg_F(first_VPA,nsp,lyModel-sdReportYear,lyModel)
- !! for (s=first_VPA;s<=nsp;s++) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"avg_F "<<parNo<<" "<<s<<" "<<y<<" -1 -1 -1 -1 -1 -1 "<<s<<" "<<y<<" -1"<<endl; }
+ !! for (s=first_VPA;s<=nsp;s++) for (y=lyModel-sdReportYear;y<=lyModel;y++) {
+ !!  parNo++;  parexp<<"avg_F "<<parNo<<" "<<s<<" "<<y<<" -1 -1 -1 -1 -1 -1 "<<s<<" "<<y<<" -1"; 
+ !!  f=0;
+ !!  for (q=fq;q<=lq;q++) if (zero_catch_y_season(s,y,q)>0) f=f+1;
+ !!  if (f>0)  parexp<<" used"<<endl; else parexp<<" not_used"<<endl;
+ !! }
  //matrix avg_F(first_VPA,nsp,lyModel-sdReportYear,lyModel)
   
-  
  sdreport_matrix hist_SSB(first_VPA,nsp,lyModel-sdReportYear,lyModel) 
- !! for (s=first_VPA;s<=nsp;s++) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"hist_SSB "<<parNo<<" "<<s<<" "<<y<<" -1 -1 -1 -1 -1 -1 "<<s<<" "<<y<<" -1"<<endl; }
+ !! for (s=first_VPA;s<=nsp;s++) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"hist_SSB "<<parNo<<" "<<s<<" "<<y<<" -1 -1 -1 -1 -1 -1 "<<s<<" "<<y<<" -1"<<" used"<<endl; }
  // matrix hist_SSB(first_VPA,nsp,lyModel-sdReportYear,lyModel)
 
  !! int na_sp=0;
@@ -3697,12 +3868,12 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
 
  // terminal population in the beginning og period following the last model year and last model season
  // sdreport_vector term_N_next(1,na_sp)
- // !! for (s=first_VPA;s<=nsp;s++) for (a=fa;a<=la_VPA(s);a++) {parNo++;  parexp<<"term_N_next "<<parNo<<" "<<s<<" "<<lyModel+1<<" "<<fq<<" -1 "<<a<<"  -1 -1 -1 "<<s<<" "<<a<<" -1"<<endl; }
+ // !! for (s=first_VPA;s<=nsp;s++) for (a=fa;a<=la_VPA(s);a++) {parNo++;  parexp<<"term_N_next "<<parNo<<" "<<s<<" "<<lyModel+1<<" "<<fq<<" -1 "<<a<<"  -1 -1 -1 "<<s<<" "<<a<<" -1"<<" used"<<endl; }
  vector term_N_next(1,na_sp)
    
  // log terminal population in the beginning og period following the last model year and last model season 
  //sdreport_vector term_logN_next(1,na_sp)
- // !! for (s=first_VPA;s<=nsp;s++) for (a=fa;a<=la_VPA(s);a++) {parNo++;  parexp<<"term_logN_next "<<parNo<<" "<<s<<" "<<lyModel+1<<" "<<fq<<" -1 "<<a<<"  -1 -1 -1 "<<s<<" "<<a<<" -1"<<endl; }
+ // !! for (s=first_VPA;s<=nsp;s++) for (a=fa;a<=la_VPA(s);a++) {parNo++;  parexp<<"term_logN_next "<<parNo<<" "<<s<<" "<<lyModel+1<<" "<<fq<<" -1 "<<a<<"  -1 -1 -1 "<<s<<" "<<a<<" -1"<<" used"<<endl; }
  vector term_logN_next(1,na_sp)
  
  // Fishing mortality at age, last assessment year 
@@ -3711,7 +3882,7 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
 
  
  //sdreport_vector term_F(1,na_spF)
- //!!  for (s=first_VPA;s<=nsp;s++) for (a=cfa(s);a<=la(s);a++) {parNo++;  parexp<<"term_F "<<parNo<<" "<<s<<" "<<lyModel<<" -1 -1 "<<a<<"  -1 -1 -1 "<<s<<" "<<a<<" -1"<<endl; }
+ //!!  for (s=first_VPA;s<=nsp;s++) for (a=cfa(s);a<=la(s);a++) {parNo++;  parexp<<"term_F "<<parNo<<" "<<s<<" "<<lyModel<<" -1 -1 "<<a<<"  -1 -1 -1 "<<s<<" "<<a<<" -1"<<" used"<<endl; }
  vector term_F(1,na_spF)
 
  !! int na_spFQ=0;
@@ -3719,36 +3890,36 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
   
  //sdreport_vector log_exploi_pattern(1,na_spFQ)
  // for (s=first_VPA;s<=nsp;s++) for (q=1;q<=lq;q++) for (a=faq(q);a<=las(s);a++) {
- // !!  if (a >=cfa(s))  parNo++;  parexp<<"log_exploi_pattern "<<parNo<<" "<<s<<" "<<lyModel<<" "<<q<<"  -1 "<<a<<"  -1 -1 -1 "<<s<<" "<<a<<" -1"<<endl; }
+ // !!  if (a >=cfa(s))  parNo++;  parexp<<"log_exploi_pattern "<<parNo<<" "<<s<<" "<<lyModel<<" "<<q<<"  -1 "<<a<<"  -1 -1 -1 "<<s<<" "<<a<<" -1"<<" used"<<endl; }
  vector  log_exploi_pattern(1,na_spFQ)
 
 
  //sdreport_vector log_term_F(1,na_spF)
- //  for (s=first_VPA;s<=nsp;s++) for (a=cfa(s);a<=la(s);a++) {parNo++;  parexp<<"log_term_F "<<parNo<<" "<<s<<" "<<lyModel<<" -1 -1 "<<a<<"  -1 -1 -1 "<<s<<" "<<a<<" -1"<<endl; }
+ //  for (s=first_VPA;s<=nsp;s++) for (a=cfa(s);a<=la(s);a++) {parNo++;  parexp<<"log_term_F "<<parNo<<" "<<s<<" "<<lyModel<<" -1 -1 "<<a<<"  -1 -1 -1 "<<s<<" "<<a<<" -1"<<" used"<<endl; }
  vector log_term_F(1,na_spF)
 
  // SSB in the first year after the last model year
  matrix next_SSB(first_VPA,nsp,lyModel+1,lyModel+1);
  //sdreport_matrix next_SSB(first_VPA,nsp,lyModel+1,lyModel+1);
- // !! for (s=first_VPA;s<=nsp;s++)  for (y=lyModel+1;y<=lyModel+1;y++) {parNo++;  parexp<<"next_SSB "<<parNo<<" "<<s<<" "<<y<<" "<<fq<<" -1 -1 -1 -1 -1 "<<s<<" "<<y<<" -1"<<endl; }
+ // !! for (s=first_VPA;s<=nsp;s++)  for (y=lyModel+1;y<=lyModel+1;y++) {parNo++;  parexp<<"next_SSB "<<parNo<<" "<<s<<" "<<y<<" "<<fq<<" -1 -1 -1 -1 -1 "<<s<<" "<<y<<" -1"<<" used"<<endl; }
 
  matrix short_term_SSB(first_VPA,nsp,1,no_F_multipliers);
  //sdreport_matrix short_term_SSB(first_VPA,nsp,1,no_F_multipliers);
- //!! for (s=first_VPA;s<=nsp;s++)  for (int i=1;i<=no_F_multipliers;i++) {parNo++;  parexp<<"short_term_SSB "<<parNo<<" "<<s<<" "<<y<<" "<<fq<<" "<<i<<" -1 -1 -1 -1 "<<s<<" "<<i<<" -1"<<endl; }
+ //!! for (s=first_VPA;s<=nsp;s++)  for (int i=1;i<=no_F_multipliers;i++) {parNo++;  parexp<<"short_term_SSB "<<parNo<<" "<<s<<" "<<y<<" "<<fq<<" "<<i<<" -1 -1 -1 -1 "<<s<<" "<<i<<" -1"<<" used"<<endl; }
  !! short_term_SSB=0;
  
  matrix log_short_term_SSB(first_VPA,nsp,1,no_F_multipliers);
  //sdreport_matrix log_short_term_SSB(first_VPA,nsp,1,no_F_multipliers);
- //!! for (s=first_VPA;s<=nsp;s++)  for (int i=1;i<=no_F_multipliers;i++) {parNo++;  parexp<<"log_short_term_SSB "<<parNo<<" "<<s<<" "<<y<<" "<<fq<<" "<<i<<" -1 -1 -1 -1 "<<s<<" "<<i<<" -1"<<endl; }
+ //!! for (s=first_VPA;s<=nsp;s++)  for (int i=1;i<=no_F_multipliers;i++) {parNo++;  parexp<<"log_short_term_SSB "<<parNo<<" "<<s<<" "<<y<<" "<<fq<<" "<<i<<" -1 -1 -1 -1 "<<s<<" "<<i<<" -1"<<" used"<<endl; }
  !! log_short_term_SSB=0;
  
  // likeprof_number SSB_likeprof;
- // !! parNo++; parexp<<"SSB_likeprof "<<parNo<<" "<<first_VPA<<" "<<lyModel+2<<" "<<fq<<" "<< -1<<" -1 -1 -1 -1  -1 -1 -1"<<endl;
+ // !! parNo++; parexp<<"SSB_likeprof "<<parNo<<" "<<first_VPA<<" "<<lyModel+2<<" "<<fq<<" "<< -1<<" -1 -1 -1 -1  -1 -1 -1"<<" used"<<endl;
  // !! SSB_likeprof=0;
  
  //likeprof_number stock_N_likeprof;
  //!! stock_N_likeprof=0;
- //!! parNo++; parexp<<"stock_N_likeprof "<<parNo<<" "<<first_VPA<<" "<<lyModel+1<<" "<<fq<<" "<< -1<<" -1 -1 -1 -1 -1 -1 -1"<<endl;
+ //!! parNo++; parexp<<"stock_N_likeprof "<<parNo<<" "<<first_VPA<<" "<<lyModel+1<<" "<<fq<<" "<< -1<<" -1 -1 -1 -1 -1 -1 -1"<<" used"<<endl;
 
 
  matrix short_term_yield(first_VPA,nsp,1,no_F_multipliers);
@@ -3759,24 +3930,24 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
  // TSB in the first year after the last model year
  //matrix next_TSB(first_VPA,nsp,lyModel+1,lyModel+1);
  //sdreport_matrix next_TSB(first_VPA,nsp,lyModel+1,lyModel+1);
- //!! for (s=first_VPA;s<=nsp;s++)  for (y=lyModel+1;y<=lyModel+1;y++) {parNo++;  parexp<<"next_TSB "<<parNo<<" "<<s<<" "<<y<<" "<<fq<<" -1 -1 -1 -1 -1 "<<s<<" "<<y<<" -1"<<endl; }
+ //!! for (s=first_VPA;s<=nsp;s++)  for (y=lyModel+1;y<=lyModel+1;y++) {parNo++;  parexp<<"next_TSB "<<parNo<<" "<<s<<" "<<y<<" "<<fq<<" -1 -1 -1 -1 -1 "<<s<<" "<<y<<" -1"<<" used"<<" used"<<endl; }
 
  //matrix M2_sd0(1,nprey,lyModel-sdReportYear,lyModel)
  sdreport_matrix M2_sd0(1,nprey,lyModel-sdReportYear,lyModel)
- !! for (s=first_VPA;s<=nsp;s++) if (is_prey(s)==1) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"M2_sd0 "<<parNo<<" "<<s<<" "<<y<<" -1 -1 0 -1 -1 -1 "<<s<<" "<<y<<" -1"<<endl; }
+ !! for (s=first_VPA;s<=nsp;s++) if (is_prey(s)==1) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"M2_sd0 "<<parNo<<" "<<s<<" "<<y<<" -1 -1 0 -1 -1 -1 "<<s<<" "<<y<<" -1"<<" used"<<endl; }
 
  //matrix M2_sd1(1,nprey,fyModel,lyModel)
  sdreport_matrix M2_sd1(1,nprey,lyModel-sdReportYear,lyModel)
- !! for (s=first_VPA;s<=nsp;s++) if (is_prey(s)==1) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"M2_sd1 "<<parNo<<" "<<s<<" "<<y<<" -1 -1 1 -1 -1 -1 "<<s<<" "<<y<<" -1"<<endl; }
+ !! for (s=first_VPA;s<=nsp;s++) if (is_prey(s)==1) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"M2_sd1 "<<parNo<<" "<<s<<" "<<y<<" -1 -1 1 -1 -1 -1 "<<s<<" "<<y<<" -1"<<" used"<<endl; }
 
  // matrix M2_sd2(1,nprey,lyModel-sdReportYear,lyModel)
  sdreport_matrix M2_sd2(1,nprey,lyModel-sdReportYear,lyModel)
- !! for (s=first_VPA;s<=nsp;s++) if (is_prey(s)==1) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"M2_sd2 "<<parNo<<" "<<s<<" "<<y<<" -1 -1 2 -1 -1 -1 "<<s<<" "<<y<<" -1"<<endl; }
+ !! for (s=first_VPA;s<=nsp;s++) if (is_prey(s)==1) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"M2_sd2 "<<parNo<<" "<<s<<" "<<y<<" -1 -1 2 -1 -1 -1 "<<s<<" "<<y<<" -1"<<" used"<<endl; }
 
  // recruitment
   matrix rec_sd(first_VPA,nsp,lyModel-sdReportYear,lyModel);
  //sdreport_matrix rec_sd(first_VPA,nsp,lyModel-sdReportYear,lyModel);
- // !!for (s=first_VPA;s<=nsp;s++) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"rec_sd "<<parNo<<" "<<s<<" "<<y<<" "<<recq<<" -1 "<<fa<<" -1 -1 -1 "<<s<<" "<<y<<" -1"<<endl; }
+ // !!for (s=first_VPA;s<=nsp;s++) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"rec_sd "<<parNo<<" "<<s<<" "<<y<<" "<<recq<<" -1 "<<fa<<" -1 -1 -1 "<<s<<" "<<y<<" -1"<<" used"<<endl; }
   
  objective_function_value obf
 
@@ -3784,6 +3955,9 @@ init_bounded_matrix_vector catch_s2_ini(first_VPA,i,1,seasonal_combined_catch_s2
  // 中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中中
 
 PRELIMINARY_CALCS_SECTION
+
+ cout << "PRELIMINARY_CALCS_SECTION initiated"<<endl;
+
  int s,y,q,a,sp_fl,sag,syg,pred_l,pred, prey,ri;
  int sy,sq,sp,spl,splp,ll,l;  //stomach index counters
  int nobs;
@@ -3797,15 +3971,12 @@ PRELIMINARY_CALCS_SECTION
  //stock_N_likeprof.set_stepnumber(16); // default value is 8
  //stock_N_likeprof.set_stepsize(0.2); // default value is 0.5
  
- 
- cout << "PRELIMINARY_CALCS_SECTION begins"<<endl;
-
-  ri=0;
+   ri=0;
   for (s=first_VPA;s<=nsp;s++) if (use_beta_SSB_Rec(s)==1) {
      ri=ri+1;
     SSB_R_beta(s)=SSB_R_beta_ini(ri);
   }
-  // Separable model, set first year (and all the remaning years) , year effect to 1 
+  // Separable model, set first year (and all the remaining years) , year effect to 1 
   F_y=1.0;
 
     
@@ -3817,7 +3988,7 @@ PRELIMINARY_CALCS_SECTION
          sp_sag_syg++;
          a=catch_season_age(s,sag);
          if (seasonal_annual_catches(s)==0) {
-            if (multi==0) for(q=fq_F(s,a);q<lq_F(s,a);q++) {  F_q_ini(sp_sag_syg,q)=fix_F_factor(s)/(lq_F(s,a)-fq_F(s,a)+1);}
+            if (multi==0) for(q=fq_F(s,a);q<lq_F(s,a);q++) { F_q_ini(sp_sag_syg,q)=fix_F_factor(s)/(lq_F(s,a)-fq_F(s,a)+1);}
          }
          else if (seasonal_annual_catches(s)==1){ for(q=fq_F(s,a);q<lq_F(s,a);q++) F_q(s,sag,syg,q)=F_q_ini_read(sp_sag_syg,q);}
         }
@@ -3835,11 +4006,11 @@ PRELIMINARY_CALCS_SECTION
   }
   
  if (sum(log_F_a_ini)>0) {    // do not overwrite estimates from parameter file
-    for (s=first_VPA;s<=nsp;s++) log_F_a_ini(s)=0.0;      
+   for (s=first_VPA;s<=nsp;s++) log_F_a_ini(s)=0.0;      
  }
  
   
-  // initialise number of observations used
+  // initialize number of observations used
   no_obj_obs=0;
    
    
@@ -3851,6 +4022,8 @@ PRELIMINARY_CALCS_SECTION
     sum_C_annual(s)=0.0;
     yield(s)=0.0;
     CWsum(s)=0.0;
+    CWsum_core(s,y)=0.0;
+    yield_core(s,y)=0.0;
 
     for (y=fyModel;y<=lyModel;y++){
       lqLocal=(y==lyModel)?lqly:lq;
@@ -3858,8 +4031,10 @@ PRELIMINARY_CALCS_SECTION
          CALC_yq
          for (a=cfa(s);a<=la(s);a++) if (!(a==fa && q<recq)) {
           log_obs_C_annual(y,s,a)+=obs_C(yq,s,a);
-          CWsum(s,y)+=weca(yq,s,a)*obs_C(yq,s,a);
-          yield(s,y)+=weca(yq,s,a)*obs_C(yq,s,a)*prop_landed(yq,s,a);
+          CWsum(s,y)+=      weca(yq,s,a)*obs_C(yq,s,a);
+          CWsum_core(s,y)+= weca(yq,s,a)*obs_C(yq,s,a)*N_prop_M2(yq,s,a);
+          yield(s,y)+=      weca(yq,s,a)*obs_C(yq,s,a)*prop_landed(yq,s,a);
+          yield_core(s,y)+= weca(yq,s,a)*obs_C(yq,s,a)*prop_landed(yq,s,a)*N_prop_M2(yq,s,a);
           sum_C(s,q,a)+=obs_C(yq,s,a);
           sum_C_annual(s,a)+=obs_C(yq,s,a);
           if (a<=la_like(s)) {
@@ -3871,6 +4046,8 @@ PRELIMINARY_CALCS_SECTION
     }  
     no_obj_obs(s,1)=nobs;
   }
+ 
+ 
   
   // number of obs for stock recruitment
   for (s=first_VPA;s<=nsp;s++) {
@@ -3960,7 +4137,7 @@ PRELIMINARY_CALCS_SECTION
   }
   }
 
-  // set 0 catches to minimum observed for the parcicular age in the particular survey
+  // set 0 catches to minimum observed for the particular age in the particular survey
  sp_fl=0;
   for (s=first_VPA;s<=nsp;s++) {
     for(f=1;f<=n_fleet(s);f++) {
@@ -4043,7 +4220,8 @@ PRELIMINARY_CALCS_SECTION
       CALC_yqd
       other_bio(s,y,q)=0.0;
       for (a=faq(q);a<=la(s);a++) {
-        other_bio(s,y,q)=other_bio(s,y,q)+other_pred_N(yq,s,a)*west(yq,s,a);
+        other_pred_N(yq,s,a)=other_pred_N_ini(yq,s,a); 
+        other_bio(s,y,q)=other_bio(s,y,q)+other_pred_N(yq,s,a)*west(yq,s,a);                                                                    
         if (mceval==0 ) {
          if (( (consum_op=0 && other_pred_N(yq,s,a)>0 && consum(yqd,s,a)==0) )&& test_output>=1 )
             cout<<"Warning. Stock number>0, but consumption are =0: pred:"<<species_names[s]<<" age:"<<a<<" y:"<<y<<" q:"<<q<<" N:"<<other_pred_N(yq,s,a)<<" consum:"<<consum(yqd,s,a)<<endl;
@@ -4173,7 +4351,7 @@ PRELIMINARY_CALCS_SECTION
 
  stl_stom=stl_stom_input;  // copy input data into used (and adjusted) variable
  stl_stom_use_like=1;      // use as default all observations in likelihood
- stl_stom_use_avail=1;      // use as default all observations for calculation of availeble food
+ stl_stom_use_avail=1;      // use as default all observations for calculation of available food
    
  // classifyModel each stomach observation: used or not used? and calculate fixed term for multinomial likelihood of prey numbers 
  if (mceval==0 || make_sim_data>0) for (sy=1;sy<=n_stl_y;sy++) { 
@@ -4304,7 +4482,7 @@ PRELIMINARY_CALCS_SECTION
             if (s>=first_VPA) size_sea_prey_w(yqd,s,a)=west(yq,s,a);
         }            
         else if (size_select_model==4 ) {
-           if (lsea(yqd,s,a)>0) size_sea(yqd,s,a)=L_W_ab(s,1)*pow(lsea(yqd,s,a),L_W_ab(s,2)); //weight of species at age in the sea from lenght an  length-weight relation
+           if (lsea(yqd,s,a)>0) size_sea(yqd,s,a)=L_W_ab(s,1)*pow(lsea(yqd,s,a),L_W_ab(s,2)); //weight of species at age in the sea from length an  length-weight relation
            if (s>=first_VPA) size_sea_prey_w(yqd,s,a)=size_sea(yqd,s,a);
         } 
         //else { //  size_select_model==5 and 6, not used  
@@ -4326,7 +4504,7 @@ PRELIMINARY_CALCS_SECTION
    }
  }
  
- // Check existente of ALK for stomach species (pred or prey) and age
+ // Check existence of ALK for stomach species (pred or prey) and age
  int found, sqd ,prey_l ,ALK_yi,ALK_yqi,ALK_yqdi,ALK_yqdsi,ALK_yqdsli,ALK_yqdsi_prey,ll;
  
  if (mceval==0) {
@@ -4457,7 +4635,7 @@ PRELIMINARY_CALCS_SECTION
         for (spl=stl_yqdp(sp,2);spl<=stl_yqdp(sp,3);spl++) {
           ll=0; 
           used_stom=0;
-         if (incl_stom(d,pred,stl_yq(sq,1),stl_yqdpl(spl,1),sy)>=1) { //Include stomach observations in likelihood 0=no inlusion, >=1 include data
+         if (incl_stom(d,pred,stl_yq(sq,1),stl_yqdpl(spl,1),sy)>=1) { //Include stomach observations in likelihood 0=no inclusion, >=1 include data
 
           for (splp=stl_yqdpl(spl,2);splp<=stl_yqdpl(spl,3);splp++) {
             prey=stl_yqdplp(splp,1);
@@ -4523,7 +4701,7 @@ PRELIMINARY_CALCS_SECTION
   }
 
   
- // for predators wih no size selection:
+ // for predators with no size selection:
  // add observed stomach contents within each prey species,
  //  use the first prey size of stl_stom for this sum
  //  and use max no of samples as samples for the group
@@ -4574,7 +4752,7 @@ PRELIMINARY_CALCS_SECTION
              }
             }
           }
-          stoms(2,pred)+=used_stom; // reset number of usede stomachs 
+          stoms(2,pred)+=used_stom; // reset number of used stomachs 
         }  
       }
     } 
@@ -4660,7 +4838,7 @@ PRELIMINARY_CALCS_SECTION
   //cout<<"%%%%%%%%%%% initial guess on M2:"<<endl<<setprecision(4)<<M2<<endl<<setprecision(0);
   
   
-   if (first_VPA>1) for (s=1;s<first_VPA;s++) for (y=fyModel;y<=lyModel;y++) for (q=fq;q<=lq;q++) {
+  if (first_VPA>1) for (s=1;s<first_VPA;s++) for (y=fyModel;y<=lyModel;y++) for (q=fq;q<=lq;q++) {
           CALC_yq
           N(yq,s)=other_pred_N(yq,s);  //move other predator stock size to N
           N_bar(yq,s)=other_pred_N(yq,s);
@@ -4724,7 +4902,7 @@ PRELIMINARY_CALCS_SECTION
   
    prey_size_adjustment=1.0;
    
-    //  mesh selction parameters
+    //  mesh selection parameters
    if (mesh_size_active==1) L50=L50_mesh;
    
   }  // end if (multi >=1)
@@ -4733,7 +4911,7 @@ PRELIMINARY_CALCS_SECTION
   MCMC_prediction=0;
  
   if (mceval==1) { 
-    //reset temporaty ASCII files
+    //reset temporary ASCII files
   
   
   ofstream res("SSB_dist.out",ios::out);
@@ -4747,35 +4925,35 @@ PRELIMINARY_CALCS_SECTION
  
     if (at_age_output(1)) {   
       ofstream mcout_F("mcout_f.out",ios::out);
-      mcout_F<< "Species.n Age Year Quarter Repetion Iteration F"<<endl;
+      mcout_F<< "Species.n Age Year Quarter Repetition Iteration F"<<endl;
     }
     if (at_age_output(2) && multi==2)  {   
       ofstream mcout_M2("mcout_m2.out",ios::out);
-      mcout_M2<< "Species.n Age Year Quarter Repetion Iteration M2"<<endl;
+      mcout_M2<< "Species.n Age Year Quarter Repetition Iteration M2"<<endl;
     }  
     if (at_age_output(3)) {   
       ofstream mcout_Z("mcout_z.out",ios::out);
-      mcout_Z<< "Species.n Age Year Quarter Repetion Iteration Z"<<endl;
+      mcout_Z<< "Species.n Age Year Quarter Repetition Iteration Z"<<endl;
     }   
     if (at_age_output(4)) {   
       ofstream mcout_F("mcout_n.out",ios::out);
-      mcout_F<< "Species.n Age Year Quarter Repetion Iteration N"<<endl;
+      mcout_F<< "Species.n Age Year Quarter Repetition Iteration N"<<endl;
     }
     if (at_age_output(5)) {   
       ofstream mcout_C("mcout_c.out",ios::out);
-      mcout_C<< "Species.n Age Year Quarter Repetion Iteration C"<<endl;
+      mcout_C<< "Species.n Age Year Quarter Repetition Iteration C"<<endl;
     }   
     if (at_age_output(7)) {   
       ofstream mcout_constraints("mcout_constraints.out",ios::out);
-      mcout_constraints<< "Species.n Year Repetion Iteration constraints"<<endl;
+      mcout_constraints<< "Species.n Year Repetition Iteration constraints"<<endl;
     }
      if (at_age_output(8)) {   
       ofstream mcout_closure("mcout_closure.out",ios::out);
-      mcout_closure<< "Species.n Year Repetion Iteration closure"<<endl;
+      mcout_closure<< "Species.n Year Repetition Iteration closure"<<endl;
     }
     
     ofstream obj_func_file("mcout_obj_func.out",ios::out);
-    obj_func_file<<"Repetion Species.n obj.catch obj.survey obj.SR obj.stom obj.stom.no obj.penalty obj.all"<<endl;
+    obj_func_file<<"Repetition Species.n obj.catch obj.survey obj.SR obj.stom obj.stom.no obj.other.noise obj.penalty obj.all"<<endl;
     
   }
   if (do_short_term_forecast==1) {
@@ -4799,12 +4977,12 @@ PRELIMINARY_CALCS_SECTION
   cout << "PRELIMINARY_CALCS_SECTION done"<<endl;
 
 
- // min_first_VPA=first_VPA; // used for testing; selects af sub-set of species
- // max_last_VPA=nsp;   // used for testing; selects af sub-set of species
+ // min_first_VPA=first_VPA; // used for testing; selects of sub-set of species
+ // max_last_VPA=nsp;   // used for testing; selects of sub-set of species
   
    // testing
-  //min_first_VPA=16; // used for testing; selects af sub-set of species
-  //max_last_VPA=20;   // used for testing; selects af sub-set of species
+  //min_first_VPA=16; // used for testing; selects sub-set of species
+  //max_last_VPA=20;   // used for testing; selects sub-set of species
 
   
 
@@ -4814,15 +4992,21 @@ PRELIMINARY_CALCS_SECTION
   
 PROCEDURE_SECTION 
 
- int iter,s,y,q,a;
+ if (test_output>=1) cout <<"PROCEDURE_SECTION initiated"<<endl;
+
+ int s,y,q,a;
  int yqMaster;
  dvariable tmp;
- //check_print_par();
+
+ // check_print_par();
   // for testing print_ALK();
+  
  Rec_parm_adm();
- predation_parm_adm();          // reorganise parameters for biological interaction
+ predation_parm_adm();          // reorganize parameters for biological interaction
  CPUE_parm_adm();
  get_initial_N_at_age();
+ if (multi>0) get_N_other_at_age();
+ 
  calc_F(0);
  //  testing !!nsp=first_VPA+4;
  for (y=fyModel;y<=lyModel;y++) {
@@ -4840,30 +5024,21 @@ PROCEDURE_SECTION
          calc_M2(y,q);
          calc_Z(y,q);
          get_N_bar_at_age(y,q);             // Calc N within the period
-       } 
-       else {                               // Use Nbar to calc M2
-         tmp=100.0; iter=0;
-         while ((tmp>max_M2_sum2) && (iter<=max_M2_iteration)) {
-           iter++;
-           calc_Z(y,q);     
-           get_N_bar_at_age(y,q);       // Calc N within the period   
-           get_N_bar_stom_at_age(y,q);  // Calc N_bar_stom (which in this case is Nbar) 
-
-           if ((current_phase()>=stom_phase) && (multi>=2)){
-             old_M2(yqMaster)=M2(yqMaster);
-             calc_M2(y,q);
-             tmp=sum(square(M2(yqMaster)-old_M2(yqMaster)));
-             //cout<<"tmp: "<<setprecision(5)<<tmp<<endl;
-           }    
-         } // end while loop
-         calc_Z(y,q);                       // update Z with the latest estimate of M2
-         get_N_bar_at_age(y,q);             // Calc N within the period   
-         get_N_bar_stom_at_age(y,q);        // Calc N_bar_stom (which in this case is Nbar) 
+       } else {                               // Use Nbar to calc M2
+         for (int iter=1;iter<=max_M2_iteration;iter++) {
+           get_N_bar_stom_at_age(y,q);        // Calc N_bar_stom (which in this case is Nbar) 
+           calc_M2(y,q);
+           calc_Z(y,q);
+           get_N_bar_at_age(y,q);             // Calc N within the period (Nbar) 
+         } // end for loop
        }   // end use_Nbar=1
      }     // End Multi species mode 
-     get_N_at_age(y,q); //calc N for the next period (q=q+1 or y=y+1 and q=1)
+ 
+   get_N_at_age(y,q); //calc N for the next period (q=q+1 or y=y+1 and q=1)
    } // end quarter loop
  }  // end year-loop 
+
+
 
  if (!mceval_phase()) evaluate_the_objective_function(); else get_biomass();
  // test_out_test();  // print test_output
@@ -5379,7 +5554,7 @@ FUNCTION dvariable suit(int y, int q, int d, int pred,int prey,double pred_size,
  else {           //  size selection
   if (ratio >= min_pred_prey_size_ratio(pred,prey) &&  ratio <= max_pred_prey_size_ratio(pred,prey)){    
       
-    if (size_selection(pred)==1  || size_selection(pred)==2 ) { //normal distribution or assymmetric normal distribution
+    if (size_selection(pred)==1  || size_selection(pred)==2 ) { //normal distribution or asymmetric normal distribution
       tmp=log(ratio)-(pref_size_ratio(pred)*prey_size_adjustment(prey)+pref_size_ratio_correction(pred)*log(pred_size));     
       return vul*exp(-square(tmp)/(2.0* var_size_ratio(pred)));
     }
@@ -5464,7 +5639,7 @@ FUNCTION N_at_length_like
  //cout<<"N_bar_stom:"<<endl<<N_bar_stom(25,8,1)<<endl;
  //cout <<"N_l_bar_like:"<<endl<<setw(7)<<setprecision(0)<<setfixed()<<N_l_bar_like(8,1981,1)<<endl;
  
- // reorganise data
+ // reorganize data
  stl_N_bar=0.0;
  for (sy=1;sy<=n_stl_y;sy++) { 
    y=stl_y(sy,1);
@@ -5543,12 +5718,12 @@ FUNCTION calc_expected_stomach_content
   
  
                    if (tmp==0) {
-                        cout<<"Something is wrong !!! (prey availeble food=0.0)  y:"<<y<<" q:"<<q<<" pred:"<<pred<<" pred_s:"<<pred_s;
+                        cout<<"Something is wrong !!! (prey available food=0.0)  y:"<<y<<" q:"<<q<<" pred:"<<pred<<" pred_s:"<<pred_s;
                         cout<<" prey:"<< prey<<" prey_s:"<<setprecision(5)<<prey_s<<setprecision(3)<<" log(pred size/prey size):"<<log(pred_s/prey_s)<<endl;
                         cout<<"Number prey in the sea at length:"<<stl_N_bar(spl,ll);
                         cout<<" mean weight:"<<setprecision(5)<<wstom<<" suitability "<<suit(y,q,d,pred, prey, pred_s,prey_s,observed)<<endl;;
                    }  else 
-                   {   // cout<<"OK (prey availeble food=0.0)  y:"<<y<<" q:"<<q<<" pred:"<<pred<<" pred_s:"<<pred_s;
+                   {   // cout<<"OK (prey available food=0.0)  y:"<<y<<" q:"<<q<<" pred:"<<pred<<" pred_s:"<<pred_s;
                        // cout<<" prey:"<< prey<<" prey_s:"<<setprecision(5)<<prey_s<<setprecision(3)<<" log(pred size/prey size):"<<log(pred_s/prey_s);
                        // cout<<" Number prey in the sea at length:"<<stl_N_bar(spl,ll);
                        // cout<<" mean weight:"<<setprecision(5)<<wstom<<" suitability "<<suit(y,q,d,pred, prey, pred_s,prey_s,observed)<<endl;;
@@ -5595,7 +5770,7 @@ FUNCTION calc_expected_stomach_content
               if (prey >0 && do_number_like(pred)==1) {
                 if (stl_NSumprey_avail(spl,first_prey_ll)>0) stl_E_Nstom(spl,ll)=stl_Nprey_avail(spl,ll)/stl_NSumprey_avail(spl,first_prey_ll); 
                 else {
-                  cout<<"something might be wrong, availeble prey number=0. y:"<<y<<" q:"<<q<<" pred:"<<pred<<" pred_s:"<<stl_yqdpl(spl,1)<<" prey:"<<stl_yqdplp(splp,1)<<" prey s:"<<iprey_l<<endl;
+                  cout<<"something might be wrong, available prey number=0. y:"<<y<<" q:"<<q<<" pred:"<<pred<<" pred_s:"<<stl_yqdpl(spl,1)<<" prey:"<<stl_yqdplp(splp,1)<<" prey s:"<<iprey_l<<endl;
                   stl_E_Nstom(spl,ll)=0;
                 }
               }
@@ -5657,7 +5832,7 @@ FUNCTION predation_parm_adm;
    
  if  (current_phase()>=stom_phase) {
    i=0; j=0;
-   // reorganise size selection parameters
+   // reorganize size selection parameters
    for (pred=1;pred<=npr;pred++){
      if (size_selection(pred)!=0 && size_selection(pred)!=4) {
        i++;
@@ -5672,14 +5847,14 @@ FUNCTION predation_parm_adm;
      prey_size_adjustment(prey)=init_prey_size_adjustment(prey);
    }
 
-   // reorganise season_overlap parameters
+   // reorganize season_overlap parameters
    for(prey=0;prey<=nsp;prey++) if (prey==0 || prey>=first_VPA) for(d=1;d<=no_areas;d++) for (pred=1;pred<=npr;pred++) for (q=fq;q<=lq;q++)  {
      if (season_overlap_index(d,pred,q,prey)>0) {
       season_overlap(d,pred,q,prey)=init_season_overlap(int(season_overlap_index(d,pred,q,prey)));
      }
    }
 
-  // reorganise Other food size dependency
+  // reorganize Other food size dependency
    i=0;
    for (pred=1;pred<=npr;pred++){
      if (size_other_food_suit(pred)>0) {
@@ -5689,7 +5864,7 @@ FUNCTION predation_parm_adm;
    }
 
    if (mesh_size_active==1) {
-     // reorganise mesh selction parameters
+     // reorganize mesh selection parameters
      i=0;
       for(prey=first_VPA;prey<=nsp;prey++) if (L50_mesh(prey)==0) {
        i++;
@@ -5792,7 +5967,7 @@ FUNCTION void calc_F(int do_exploitaion_pattern)
         for (y=catch_sep_year(s,syg);y<=ly_group;y++) {
             F_a(s,y,a)=exp(log_F_a_ini(s,a,syg-1));
             //if (do_effort(s)==1) if (y>catch_sep_year(s,syg)) {
-              // if (use_creep(s)==2)      F_a(s,y,a)=F_a(s,y,a) + log(creep(s,a,syg-1))* (y-catch_sep_year(s,syg));  // creep line, expotential growth, kan slettes
+              // if (use_creep(s)==2)      F_a(s,y,a)=F_a(s,y,a) + log(creep(s,a,syg-1))* (y-catch_sep_year(s,syg));  // creep line, exponential growth, kan slettes
               // else if (use_creep(s)==1) F_a(s,y,a)=F_a(s,y,a) + log(creep(s,cfa(s),syg-1)) * (y-catch_sep_year(s,syg));  // creep line, kan slettes
             //}
             //F_a(s,y,a)=exp(F_a(s,y,a));
@@ -5858,6 +6033,8 @@ FUNCTION void calc_Z(int y, int q)
  }
  //cout<<"y:"<<y<<" q:"<<q<<endl<<setprecision(3)<<"M1:"<<endl<<M1(yq)<<endl<<"M2:"<<endl<<M2(yq)<<endl<<"F:"<<endl<<F(yq)<<endl<<"Z"<<Z(yq)<<endl;
  //********************************************************************************************* 
+
+
 
 FUNCTION get_initial_N_at_age
  int s,y,a,q;
@@ -5948,7 +6125,7 @@ FUNCTION void get_N_bar_stom_at_age(int y,int q)
  // if (y==1974 & q==1) {
  //  cout<<endl<<endl<<setprecision(0)<<"##### get_N_bar_stom_at_age   N  y:"<<y<<" q:"<<q<<endl;
  //  for (s=first_VPA;s<=nsp;s++)  cout<<"s:"<<s<<endl<<N(yq,s)<<endl; 
- //
+ 
  //  cout<<endl<<"##### get_N_bar_stom_at_age   N_bar_stom  y:"<<y<<" q:"<<q<<endl;
  //  for (s=first_VPA;s<=nsp;s++)  cout<<"s:"<<s<<endl<<N_bar_stom(yq,s)<<endl; 
  // }
@@ -5958,6 +6135,33 @@ FUNCTION void get_N_bar_stom_at_age(int y,int q)
  
  //********************************************************************************************* 
  
+FUNCTION get_N_other_at_age
+ int s,yq,a,y,q,i;
+ int yqd, d;
+ if (any_other_pred_noise==1) {
+  for (s=1;s<=nOthPred;s++) if (is_other_pred_noise(s)==1) {
+   for (y=fyModel;y<=lyModel;y++) {
+     lqLocal=(y==lyModel)?lqly:lq;
+     for (q=fq;q<=lqLocal;q++) {
+      CALC_yq
+     // d=1; // skal 熡dres
+     // CALC_yqd  
+      for (a=faq(q);a<=la(s);a++) {
+        if (a>=fa_other(s)) other_pred_N(yq,s,a)=other_pred_N_ini(yq,s,a)*other_pred_noise_fac(other_pred_noise_index(s,a));                                                                                                                
+      }   
+      N(yq,s)=other_pred_N(yq,s);  //move other predator stock size to N
+      N_bar(yq,s)=other_pred_N(yq,s);
+      N_bar_stom(yq,s)=other_pred_N(yq,s);
+     } //yq
+    }
+   }
+   //cout<<setfixed()<<setprecision(2)<<endl;
+  // cout<<"get_N_other_at_age, other_pred_N_ini    :"<<other_pred_N_ini(1)<<endl; 
+  // cout<<"get_N_other_at_age, other_pred_N        :"<<other_pred_N(1)<<endl;  
+  // cout<<"get_N_other_at_age, other_pred_noise_fac:"<<other_pred_noise_fac<<endl;
+ }
+ 
+   
 FUNCTION get_biomass
  // calculate  TSB  and SSB
   int s,y,q,a;
@@ -6034,6 +6238,73 @@ FUNCTION catchability_move
      } 
  
  }
+ //********************************************************************************************* 
+
+
+FUNCTION evaluate_other_pred_contributions
+ int s, i, ii, no;
+ int y,q,a;
+ dvariable sum, tmp ;
+ dvariable x, sumx, sumx2, s2;
+ 
+ if (any_other_pred_noise==1 && active(other_pred_noise_fac)) { 
+                   
+  if (other_pred_noise_model==2) {
+   no=nobs_other_pred_noise;
+   for (ii=1;ii<= no_other_pred_noise; ii++) {
+    s=other_pred_noise_sp(ii);  
+    if (is_other_pred_noise(s)==1) { 
+     //if  (!sd_phase()) cout <<"s:"<<s<<" ######  ii:"  <<ii<<setfixed()<<setprecision(3)<<" other_pred_noise_fac:"<<other_pred_noise_fac(ii)<<endl; 
+     sumx=0.0; sumx2=0.0; sum=0;
+     for (i=1;i<= no;i++) {
+       x=other_pred_noise(ii,i)-other_pred_noise_fac(ii);  // expected value 1.0    
+       sumx2+=square(x);
+       sumx+=x;
+     }  
+     // sigma
+     if (other_pred_noise_var==0) s2=(sumx2- square(sumx)/no) / (no-1);     // empirical variance
+     else s2=other_pred_noise_fac_s2(ii);                                   // variance as paramater
+     // likelihood
+     
+      sum=no*log(sqrt(s2)) + sumx2*0.5/s2;  // likelihood
+     //sum= 0.5*no*log(sumx2);  //  concentrated likelihood
+     cout<<"s: "<<s<<" ii:"<<ii<<" s2:"<<setfixed()<<setprecision(3)<<s2<<" s:"<<sqrt(s2)<<" nl:"<<sum<<"  other_pred_noise_fac:"<<other_pred_noise_fac(ii)<<endl;
+     obf+=+obj_weight_other_pred_noise_fac(s)*sum;     // objective function
+     obj_func(s,6)+=sum;
+    } 
+   } // ii-loop 
+ } else  if (other_pred_noise_model==3) { 
+   for (s=1;s<=nOthPred;s++) if (is_other_pred_noise(s)==1) {
+     tmp=0.0; 
+     no=0;
+     sumx2=0.0;
+     sumx=0;
+     ii=other_pred_noise_index(s,1);  // FEJL, works only with common age  variance
+     for (y=fyModel;y<=lyModel;y++) { 
+       for (q=fq;q<=lq;q++) { 
+       //cout<<"#####  year:"<<y<< "  Quarter:"<<q<<endl;
+        CALC_yq
+        for (a=fa_other(s);a<=la(s);a++) { 
+           no=no+1;
+           x=log(other_pred_N_noise(yq,s,a)) - log(other_pred_N(yq,s,a));
+     
+           sumx2+=square(x);
+           sumx+=x;
+          // cout<<setfixed()<<setprecision(3)<<no<<" other_pred_N_noise: "<<other_pred_N_noise(yq,s,a)<<"   other_pred_N: "<<other_pred_N(yq,s,a)<<"  "<<x<<" "<<sumx<<" "<<sumx2<<endl;
+      }}}
+     
+     if (other_pred_noise_var==0) s2=(sumx2-square(sumx)/no)/(no-1);   // empirical variance  
+     else s2=other_pred_noise_fac_s2(ii);                              // variance as paramater
+     sum=no*log(sqrt(s2)) + sumx2*0.5/s2;  // likelihood
+     //sum= 0.5*no*log(sumx2);  //  concentrated likelihood 
+     tmp+=sum;
+     obf+= obj_weight_other_pred_noise_fac(s)*sum;     // objective function
+     obj_func(s,6)=tmp;
+     cout <<"s: "<<s<<"  #####################   method 2, empirical variance :"<<setfixed()<<setprecision(3)<<s2<< "  and s:" <<sqrt(s2)<< "   other_pred_noise_fac:"<<other_pred_noise_fac(ii) <<endl;
+   } // s-loop
+  }  // model 2
+  
+ }  //active
 
 
  //********************************************************************************************* 
@@ -6136,7 +6407,7 @@ FUNCTION evaluate_catch_contributions
    }  //s2_group
    //cout<<" obj function: species:"<<s<<" "<<tmp<<endl;
    obj_func(s,1)=tmp;
-   obj_func(s,6)=sum_penalty;  
+   obj_func(s,7)=sum_penalty;  
    
   } //species loop
  }  // if active
@@ -6243,7 +6514,7 @@ FUNCTION  evaluate_CPUE_contributions
    }  // fleet end
    obj_func(s,2)=tmp;
     
-   obj_func(s,6)=obj_func(s,6)+sum_penalty;
+   obj_func(s,7)=obj_func(s,7)+sum_penalty;
   }  // species end
  }
 
@@ -6255,7 +6526,7 @@ FUNCTION  evaluate_SSB_recruitment_contributions
  int no;
  double mins,epsilon;
 
-  gamma=10; // constant from Benoit Mesnil and Marie-Jo螔le Rochet, A continious hocky stick stock-recruit model for estimating MSY reference points. ICES Journal of Marine Science, 67: June 8, 2010
+  gamma=10; // constant from Benoit Mesnil and Marie-Jo螔le Rochet, A continuous hocky stick stock-recruit model for estimating MSY reference points. ICES Journal of Marine Science, 67: June 8, 2010
   gamma2div4=gamma*gamma/4;
   
  if (active(SSB_R_alfa) || (test_output==-1)) {
@@ -6292,7 +6563,7 @@ FUNCTION  evaluate_SSB_recruitment_contributions
        // }
        
        
-      // Speciial cod - Oxygen model, STN (Baltic Sea)
+      // Special cod - Oxygen model, STN (Baltic Sea)
        //else if (SSB_Rec_model(s)==71) {
        //   x=log_recruit-(-alfa_71*spawnersB + beta_71/SSB_R_beta_cor(s)*spawnersB*O_71(y)+R71Parms(3));
        // }
@@ -6361,7 +6632,7 @@ FUNCTION  evaluate_SSB_recruitment_contributions
          } else penalty=0.0; 
          sum=no*log(sqrt(SSB_R_s2(s)))+sumx2*0.5/SSB_R_s2(s);   // likelihood  
          if (selected_sp_like(s)==1) obf+=obj_weight(s,3)*(sum+penalty);
-         obj_func(s,6)+=penalty;
+         obj_func(s,7)+=penalty;
          obj_func(s,3)=sum;             
        }
      }  // end (NOT) save recruitment residual
@@ -6425,7 +6696,7 @@ FUNCTION  cacl_like_stom_number_multinomial;
           if (do_number_like(pred)==1) for (spl=stl_yqdp(sp,2);spl<=stl_yqdp(sp,3);spl++) {
             // cout<<"     pred_l:"<<stl_yqdpl(spl,1)<<endl;
 
-           //for the predator and predator length group, include stomach observations in likelihood 0=no inlusion, >=1 include data
+           //for the predator and predator length group, include stomach observations in likelihood 0=no inclusion, >=1 include data
            if (incl_stom(d,pred,q,stl_yqdpl(spl,1),sy)>=1) { 
              ll=0;
              for (splp=stl_yqdpl(spl,2);splp<=stl_yqdpl(spl,3);splp++) {
@@ -6483,7 +6754,7 @@ FUNCTION  evaluate_stomach_contributions
           for (spl=stl_yqdp(sp,2);spl<=stl_yqdp(sp,3);spl++) {
               //cout<<"     pred_l:"<<stl_yqdpl(spl,1)<<endl;
          
-           //for the predator and predator length group,include stomach observations in likelihood 0=no inlusion, >=1 include data
+           //for the predator and predator length group,include stomach observations in likelihood 0=no inclusion, >=1 include data
            if (incl_stom(d,pred,q,stl_yqdpl(spl,1),sy)>=1) { 
              ll=0;
              sum=0.0;
@@ -6589,7 +6860,11 @@ FUNCTION evaluate_the_objective_function
  // HEJ("evaluated_CPUE");
  evaluate_SSB_recruitment_contributions();
  // HEJ("evaluated_SSB_R");
- if  ((multi>=1 && current_phase()>=stom_phase) || (test_output==-1)) evaluate_stomach_contributions();
+  
+ if  ((multi>=1 && current_phase()>=stom_phase) || (test_output==-1)) {
+  evaluate_other_pred_contributions();
+  evaluate_stomach_contributions();
+ }
  //********************************************************************************************* 
 
 FUNCTION move_M2_to_sdreport
@@ -7153,7 +7428,7 @@ FUNCTION void calc_pred_M2(int yy, int q, d3_array& pred_M1,d3_array& pred_M2, d
    
            pred_avail_food_l(pred,pred_a,pred_l)+=AV_other_food(d,pred)*value(other_suit(pred,pred_size,y,q,d));  // add other food     SKAL RETTES
            tmp=pred_N_l_bar(pred,pred_a,pred_l)*consum_l(yqd,pred,pred_a,pred_l) /pred_avail_food_l(pred,pred_a,pred_l);  
-           //cout<<" availeble food: "<<avail_food_l(pred,pred_a,pred_l)<<endl;
+           //cout<<" available food: "<<avail_food_l(pred,pred_a,pred_l)<<endl;
            
            //calc M2 at age and size class
            for (prey=first_VPA;prey<=nsp;prey++) {
@@ -7353,7 +7628,7 @@ FUNCTION double find_Fscaling_from_target_SSB_rep(int s,int rep,int first_q,doub
   
   if (test_output==53) {
     cout<<"ind_Fscaling_from_target_SSB_rep"<<endl<<"input target SSB:"<<target_SSB<<endl; 
-    cout<<"no of repetions:"<<rep<<endl;
+    cout<<"no of repetitions:"<<rep<<endl;
     cout<<"Lower and upper limit for F:"<<setprecision(3)<<setw(6)<<setfixed()<<lower<<"  "<<upper<<endl; 
   }
 
@@ -7796,7 +8071,7 @@ FUNCTION double uncertanty(int s, dvector un, double noise);
 
  //********************************************************************************************* 
 
- // assessment uncertanties from age dependen CV
+ // assessment uncertainties from age dependent CV
              
      
 FUNCTION dvector age_uncertanty(int s, dvector un, dvector N, dvector CV);
@@ -7889,7 +8164,7 @@ FUNCTION void cov_uncertanty(int n,int s,int lastNindex, dvector mu , dmatrix co
 FUNCTION double real_time_estimate(int s, int TAC_year, d3_array N_true, d3_array Z, double noise);
  double N1;
  // estimate observed N(year, first season, first age+1) from true N(year-1,last season, first age)
- //   and real-time uncertanties
+ //   and real-time uncertainties
 
     N1=N_true(s,lq,fa)*exp(-Z(s,lq,fa));
     if (test_output==53) cout<<"Real time. N_true(first age), last season of "<<setprecision(0)<<TAC_year-1<<":"
@@ -7904,7 +8179,7 @@ FUNCTION double real_time_estimate(int s, int TAC_year, d3_array N_true, d3_arra
 FUNCTION double survey_estimate_last_year(int s, int q, d3_array N,  double noise);
  double index;
  // estimate observed N(year, first season, first age+1) from true N(year-1,last season, first age)
- //   and real-time uncertanties
+ //   and real-time uncertainties
 
     index=N(s,q,fa);  // example first age (recruitment) index
     index=index*uncertanty(s,survey_uncertanty(s),noise);
@@ -8077,7 +8352,7 @@ FUNCTION predict
        }
      } 
 
-     // adjust in case of annual cataches is used in likelihood option seasonal_annual_catches =1
+     // adjust in case of annual catches is used in likelihood option seasonal_annual_catches =1
      if (seasonal_annual_catches(s)==1) for (a=fa;a<=la(s);a++) for (q=fq+1;q<=lq;q++) pred_weca(s,q,a)=pred_weca(s,fq,a);    
    }  
 
@@ -8098,7 +8373,7 @@ FUNCTION predict
    }
 
   // adjust seasonal_annual_catches
-  // calc prediction mean weigth in the sea
+  // calc prediction mean weight in the sea
   for (s=1;s<=nsp;s++) {
    pred_west(s)=0.0;
    for (q=fq;q<=lq;q++) { 
@@ -8188,10 +8463,10 @@ FUNCTION predict
   //cout <<"SSB_Rec_model:" << SSB_Rec_model<<endl<<"SSB_R_alfa:"<<SSB_R_alfa<<endl<<"SSB_R_beta:"<<SSB_R_beta<<endl<<"SSB_R_beta_cor:"<<endl<<SSB_R_beta_cor<<endl;
   
   // repeat for each MCMC iteration
-  step=no_MCMC_iterations/10;    // counter for sceen output
+  step=no_MCMC_iterations/10;    // counter for screen output
   for (MCMC_iteration=1;MCMC_iteration<=no_MCMC_iterations;MCMC_iteration++) {
     if (MCMC_iteration<10 || MCMC_iteration==no_MCMC_iterations || MCMC_iteration % step==0) {
-      cout<<"start on predicion. MCMC="<<MCMC_prediction<<"  iterration="<<MCMC_iteration;
+      cout<<"start on prediction. MCMC="<<MCMC_prediction<<"  iteration="<<MCMC_iteration;
       if (read_SSB_R==1 && MCMC_iteration==1) cout<<" Using recruitment parameters from file"<<endl; else cout<<endl;
      
     }
@@ -8226,7 +8501,7 @@ FUNCTION void do_predict(int MCMC_iteration)
    
   dmatrix rn(first_VPA,nsp,lyModel,lpy+2);  // random numbers for SSB/R noise
 
-  dvector meanFsq(first_VPA,nsp);   // mean F stautus quo
+  dvector meanFsq(first_VPA,nsp);   // mean F status quo
   dvector meanFsq_copy(first_VPA,nsp);
   double meanFsq_tmp;
   
@@ -8297,7 +8572,7 @@ FUNCTION void do_predict(int MCMC_iteration)
   has_changed_exploitation_pattern=0;
   random_number_generator rng(seed);
   //cout<<"seed: "<<seed<<endl;
-  rn.fill_randn(rng);  // random numbers for SSB-recuit noise 
+  rn.fill_randn(rng);  // random numbers for SSB-recruit noise 
   // truncate noise
   for (s=first_VPA;s<=nsp;s++) if (rec_noise_input(s)==0 && !( rec_noise_trunc(s,1)==0 && rec_noise_trunc(s,2)==0)) {
     for (y=lyModel;y<=lpy+2;y++) {
@@ -8385,7 +8660,7 @@ FUNCTION void do_predict(int MCMC_iteration)
          }
         else { 
           // calculate F using most recent F-year factor and historical selection pattern 
-          //   and input adjusment factor
+          //   and input adjustment factor
           pred_F_sq(s,q,a)=value(F_y(s,lyModel)* F_q_last_year(s,q,a)*F_a(s,lyModel,a)
                            *last_year_season_F_adjustment(s));     
         }
@@ -8403,7 +8678,7 @@ FUNCTION void do_predict(int MCMC_iteration)
         // stock numbers
         if (q==fq) pred_N_assess(s,q,a)=value(N(yq,s,a));
         if ((q==recq) && (a==fa)) {    // recruits 
-          if (q>lqly) {  // no recruis in last year's assessment           
+          if (q>lqly) {  // no recruits in last year's assessment           
             // overwrite rec estimate if specified by input option 
             if (lyModel>=read_predict_N_first_year && lyModel<=read_predict_N_last_year && read_predict_N==1) {
                if (init_predict_N(s,y,init_pop,a)>=0) {
@@ -8672,7 +8947,7 @@ FUNCTION void do_predict(int MCMC_iteration)
    
     if (use_read_expl_pat==0 && y>=read_expl_pat_first_year && y<=read_expl_pat_last_year && read_expl_pat==1) {
 
-      // special case for overwriting input exploitaion pattern (and F)
+      // special case for overwriting input exploitation pattern (and F)
       // overwrite prediction F if  year is within specified years
       cout<<"F taken from input file for year: "<<y<<endl;
       for (s=first_VPA;s<=nsp;s++){
@@ -8764,7 +9039,7 @@ FUNCTION void do_predict(int MCMC_iteration)
           TAC_F_obs(s,y)=value(Mean_F(s,y));
           if (test_output==53) {
             if (nsp>1) cout<<species_names[s]<<" ";
-            cout<<"Special inital condition: TAC_F_obs("<<y<<") is set to: "<<setprecision(3)<<TAC_F_obs(s,y)<<endl;  
+            cout<<"Special initial condition: TAC_F_obs("<<y<<") is set to: "<<setprecision(3)<<TAC_F_obs(s,y)<<endl;  
           }
         }
 
@@ -8925,7 +9200,7 @@ FUNCTION void do_predict(int MCMC_iteration)
    
    
      
-    // estimate percieved F, used in some HCR
+    // estimate perceived F, used in some HCR
     for (s=first_VPA;s<=nsp;s++) {
       if (y-lyModel<=interYear(s)) {           // initial condition
         if (TAC_F_true(s,y+1)> -1.0) Mean_F_percieved(s,y+1)= TAC_F_true(s,y+1);
@@ -8944,7 +9219,7 @@ FUNCTION void do_predict(int MCMC_iteration)
            cout<<setprecision(3)<<"Mean_F_percieved("<<y+1<<"): "<<Mean_F_percieved(s,y+1)<<endl;
          }  
       }
-     } // end percieved F
+     } // end perceived F
     
     
 
@@ -8978,11 +9253,11 @@ FUNCTION void do_predict(int MCMC_iteration)
                  pred_M2_true(s), pred_F_sq(s), pred_N_obs(s), pred_weca(s),pred_prop_landed(s));
           pred_F_obs(s)=pred_F_sq(s)*Fscaling;
                     
-          if (test_output==53) cout<<"Intermidiate year F("<<y+1<<")="<<Fscaling*meanFsq(s)<<" is estimated from TAC_obs="<<setprecision(0)<<TAC_obs(s,y+1)<<endl;
+          if (test_output==53) cout<<"Intermediate year F("<<y+1<<")="<<Fscaling*meanFsq(s)<<" is estimated from TAC_obs="<<setprecision(0)<<TAC_obs(s,y+1)<<endl;
 
           if (y-lyModel<=interYear(s)) {
             TAC_F_obs(s,y+1)=Fscaling*meanFsq(s);
-            if (test_output==53) cout<<"Special inital condition: TAC_F_obs("<<y+1<<") set to "<< setprecision(3)<<TAC_F_obs(s,y+1)<<endl;
+            if (test_output==53) cout<<"Special initial condition: TAC_F_obs("<<y+1<<") set to "<< setprecision(3)<<TAC_F_obs(s,y+1)<<endl;
           }    
           //cout<<"pred_M2_true:"<<endl<<setprecision(3)<<pred_M2_true(s)<<endl;
         }
@@ -9002,7 +9277,7 @@ FUNCTION void do_predict(int MCMC_iteration)
         predict_year(-1,s,s,do_M2,do_catch,new_year, pred_N_obs, pred_N_other, pred_F_obs, pred_C, pred_M, pred_M1, pred_M2_true, pred_Z_obs);
 
         // estimate recruit in year y+2                                               
-        add_rec_noise=0;    // make a determenistic estimate of recruitment
+        add_rec_noise=0;    // make a deterministic estimate of recruitment
         true_N=0;            // update obs SSB and estimate Rec from obs SSB.
         estimate_recruits(y+2, s, s, add_rec_noise, true_N, pred_N_obs, recruit, SSB_obs, pred_west, 
                             pred_propmat,rn, hist_rec_noise);
@@ -9063,14 +9338,14 @@ FUNCTION void do_predict(int MCMC_iteration)
      case  20: // ICES Request, MSE Feb 2018: 
                //  TAC for 1 November-31 October (implemented as Q4 & Q1-Q3) from an assessment in September including new observed Q4, Q1-Q2  catches
                //     ,best estimate of Q3 catches and Q3 survey of the last assessment year. 
-               //  TAC for Q4 & Q1-Q3 is set by an adapted Escapement strategy, which target a probalbility of SSB <Blim(Q4))less than 5%. 
+               //  TAC for Q4 & Q1-Q3 is set by an adapted Escapement strategy, which target a probability of SSB <Blim(Q4))less than 5%. 
                //     Blim(Q4) is the  the SSB in the beginning of quarter 4 after the TAC has been taken
                //  
                // This MSE uses a "shifted assessment" such that the assessment year follows the TAC year. Calendar Q4,Q1,Q2,Q3 becomes assessment Q1,Q2,Q3,Q4. 
                //  This means that the MSE becomes
                // TAC for the whole year (Q1 to Q4) from an assessment in September  including Q1-Q3 (calendar October-July) observed catches
                //     ,best estimate of Q4 (July-September) catches and Q4 (August-September) survey of the last assessment year. 
-               //  TAC Q1-Q4 (1 Oct- 30 Sep) is set by an adapted Escapement strategy, which target a probalbility of SSB <Blim(Q1))less than 5%. 
+               //  TAC Q1-Q4 (1 Oct- 30 Sep) is set by an adapted Escapement strategy, which target a probability of SSB <Blim(Q1))less than 5%. 
                //     Blim(Q1) is the  the SSB in the beginning of Q1 (actually 1 October) in the next year
                
               //                 
@@ -9121,7 +9396,7 @@ FUNCTION void do_predict(int MCMC_iteration)
       if (Fmin>Fmax) Fmax=Fmin;
 
       if (test_output==53) cout<<"F_TAC("<<TAC_year<<") after basic HCR:"<<setprecision(3)<<Fmax<<endl
-                               <<"explotation pattern:"<<endl<<pred_F_sq(s)<<endl;;
+                               <<"explotaition pattern:"<<endl<<pred_F_sq(s)<<endl;;
         
       if (Fmax>0) yield1=calc_Yield_from_Fscaling(s,fq,Fmax/meanFsq(s),pred_M(s),pred_M1(s),pred_M2_true(s),pred_F_sq(s),
                     pred_N_obs(s),pred_weca(s),pred_prop_landed(s));
@@ -9187,7 +9462,7 @@ FUNCTION void do_predict(int MCMC_iteration)
 
        } // End "normal" Yield constraints 
 
-        // Islandic version. Let the final TAC be the average over X% previous years TAC and Y% this year TAC
+        // Icelandic version. Let the final TAC be the average over X% previous years TAC and Y% this year TAC
         if (TAC_constraint(s,1)<0.0 &&  TAC_constraint(s,2)<0.0) { 
           if (test_output==53) cout<<"F_TAC before constraints:"<<setprecision(3)<<Fmax<<endl;
           change=yield1/TAC_obs(s,TAC_year-1);    
@@ -9466,9 +9741,9 @@ FUNCTION print_input_par
   cout << "First season, last season:                 " << fq<<" " <<lq <<endl;
   cout << "Last season in last year:                  " << lqly <<endl;
   cout << "Number of species:                         " << nsp <<endl;
-  cout << "Number of preadtors:                       " << npr <<endl;
+  cout << "Number of predators:                       " << npr <<endl;
   cout << "First age all species:                     " << fa <<endl;
-  cout << "Recruiment season:                         " << recq <<endl;
+  cout << "Recruitment season:                        " << recq <<endl;
   cout << "Max age all species combined:              " << max_a <<endl;
   cout << "Last age by species:                       " << la <<endl;
   cout << "Last age for age indep. selec. by species: " << las <<endl;
@@ -9478,7 +9753,7 @@ FUNCTION print_input_par
   cout << "First age group in each catch s2 by species:       " << endl;
   cout << catch_s2_group << endl;
   cout << "No of separate seasonal catch groups by species:   " << endl << n_catch_season_age_group << endl;
-  cout << "First age group in each seasonal group by specis:  " << endl << catch_season_age << endl; 
+  cout << "First age group in each seasonal group by species: " << endl << catch_season_age << endl; 
   cout << "Weighting factor for objective function contribution:" << endl << obj_weight << endl;
   cout << "First and last ages in calculation of average F:   " << endl << avg_F_ages <<endl;
   cout << "Number of age selection group:            " << endl<< n_catch_sep_year_group << endl;
@@ -9542,7 +9817,7 @@ FUNCTION void print_summary()
  int d;
  d=1;  // SKAL LAVES OM
  ofstream res("summary.out",ios::out);
- res <<"Year Quarter Species.n Age M1 M2 M F Z N N.bar C.hat C.obs west weca Yield CWsum prop.landed prop.in propmat BIO SSB Lsea ration"<<endl;
+ res <<"Year Quarter Species.n Age M1 M2 M F Z N N.bar C.hat C.obs west weca Yield Yield.core CWsum CWsum.core prop.landed prop.in propmat BIO SSB Lsea ration"<<endl;
   for (s=first_VPA;s<=nsp;s++){
     for (y=fyModel;y<=lyModel;y++){
       lqLocal=(y==lyModel)?lqly:lq; 
@@ -9567,7 +9842,9 @@ FUNCTION void print_summary()
              res <<west(yq,s,a)<<" ";
              res <<weca(yq,s,a)<<" ";
              res <<obs_C(yq,s,a)*weca(yq,s,a)*prop_landed(yq,s,a)<<" ";
+             res <<obs_C(yq,s,a)*weca(yq,s,a)*prop_landed(yq,s,a)*N_prop_M2(yq,s,a)<<" ";    //Yield.core
              res <<obs_C(yq,s,a)*weca(yq,s,a)<<" ";
+             res <<obs_C(yq,s,a)*weca(yq,s,a)*N_prop_M2(yq,s,a)<<" ";  // CWsum.core
              res <<prop_landed(yq,s,a)<<" ";
              res <<N_prop_M2(yq,s,a)<<" ";          
              res <<propmat(yq,s,a)<<" ";
@@ -9599,7 +9876,7 @@ FUNCTION void print_summary()
              res <<N(yq,s,a)<<" ";  // Nbar
              res <<"-1 -1 ";  // C_hat obs_C
              res <<west(yq,s,a)<<" ";
-             res <<"-1 -1 -1 -1 -1 -1 "; // weca yield CWsum prop.landed prop.in propmat
+             res <<"-1 -1 -1 -1 "<<other_catch(s,y)<<" -1 -1 -1 "; //   weca Yield Yield.core CWsum CWsum.core prop.landed prop.in propmat
              res <<N(yq,s,a)*west(yq,s,a)<<" ";
              res <<"-1 ";  // SSB
              res <<lsea(yqd,s,a)<<" "; 
@@ -9636,7 +9913,7 @@ FUNCTION void print_summary()
            if (do_effort(s)==1) res <<west(yq,s,a)<<" ";
            else res <<west(yq-lq,s,a)<<" ";
            res <<" -1 ";        // weca
-           res <<"-1 -1 -1 -1 ";        // yield CWsum prop.landed   prop.in
+           res <<"-1 -1 -1 -1 -1 -1 ";        // Yield Yield.core CWsum CWsum.core prop.landed prop.in
            if (do_effort(s)==1) res <<propmat(yq,s,a)<<" ";
            else res <<" -1 ";
            res <<N(yq,s,a)*west(yq-lq,s,a)<<" ";
@@ -9670,7 +9947,7 @@ FUNCTION void print_summary()
            res <<" -1 ";        // obs_C
            res <<west(yq-lq,s,a)<<" ";
            res <<" -1 ";        // weca
-           res <<"-1 -1 ";        // yield CWsum
+           res <<"-1 -1 -1 -1 ";        // Yield Yield.core CWsum CWsum.core
            res <<"-1 -1 ";        // prop.landed   prop.in
            if (do_effort(s)==1) res <<propmat(yq,s,a)<<" ";
            else res <<" -1 ";
@@ -9827,7 +10104,7 @@ FUNCTION void print_summary_table()
  res.close();
  if (multi==2) calc_eaten_M2_hist();
  ofstream res2("summary_table_raw.out",ios::out);
- res2<<"Species.n Year  Rec SSB TSB SOP SOP.hat Yield Yield.hat mean.F Eaten"<<endl;
+ res2<<"Species.n Year  Rec SSB TSB SOP SOP.hat SOP.core Yield Yield.hat Yield.core mean.F Eaten"<<endl;
 
 
   for (s=first_VPA;s<=nsp;s++){
@@ -9840,7 +10117,6 @@ FUNCTION void print_summary_table()
         for (a=cfa(s);a<=la(s);a++)  if (!(a==fa && q<recq)) {
          CWsum_hat(s,y)+=weca(yq,s,a)*C_hat(yq,s,a);
          yield_hat(s,y)+=weca(yq,s,a)*C_hat(yq,s,a)*prop_landed(yq,s,a);
-
         }
       }
     }
@@ -9853,10 +10129,10 @@ FUNCTION void print_summary_table()
       q=recq;
       CALC_yq
       res2<<s<<" "<<y<<"  "<<N(yq,s,fa)<<" "<<SSB(s,y)<<" "<<
-            TSB(s,y)<<" "<<CWsum(s,y)<<" "<<CWsum_hat(s,y)<<" "<<yield(s,y)<<" "<<yield_hat(s,y)<<" "<<Mean_F(s,y)<<" "<<eaten_M2(s,y)<<endl;
+            TSB(s,y)<<" "<<CWsum(s,y)<<" "<<CWsum_hat(s,y)<<" "<<CWsum_core(s,y)<<" "<<yield(s,y)<<" "<<yield_hat(s,y)<<" "<<yield_core(s,y)<<" "<<Mean_F(s,y)<<" "<<eaten_M2(s,y)<<endl;
     }
 
-    if (fq==lq || lqly==lq) {  // annual assessment, calch SSB the year after the last assess. year
+    if (fq==lq || lqly==lq) {  // annual assessment, calc SSB the year after the last assess. year
      tmp=0.0;
     y=lyModel+1; q=fq;
       CALC_yq
@@ -9866,7 +10142,7 @@ FUNCTION void print_summary_table()
       if (any_do_effort==0) yq1=yq;
 
      for (a=fa+1;a<=la(s);a++) tmp+=N(yq+lq,s,a)*west(yq1,s,a)*propmat(yq1,s,a)*exp(-(prop_M(s)*M(yq,s,a)+prop_F(s)*F(yq,s,a)));
-     res2<<s<<" "<<lyModel+1<<"  NA "<<tmp<<" NA NA NA NA NA NA NA"<< endl;
+     res2<<s<<" "<<lyModel+1<<"  NA "<<tmp<<" NA NA NA NA NA NA NA NA NA"<< endl;
     }
  }
  res<<endl;
@@ -9928,7 +10204,7 @@ FUNCTION void print_summary_stom()
          pred_l=stl_yqdpl(spl,4);
          pred_l_class=stl_yqdpl(spl,1);    //length group 
          if (incl_stom(d,pred,q,stl_yqdpl(spl,1),sy)>=1) stom_used_all=1; else stom_used_all=0;
-         pred_l_mean=pred_length(spl); //mean length per lenght group 
+         pred_l_mean=pred_length(spl); //mean length per length group 
          pred_w=L_W_ab(pred,1)*pow(pred_length(spl),L_W_ab(pred,2));
          pred_siz=pred_size(spl);      //Predator size (weight or length)  
          avail_food_=stl_avail_food(spl);  //available food for a predator-length
@@ -9955,8 +10231,8 @@ FUNCTION void print_summary_stom()
              }  
              prey_N=stl_nopreystom(spl,ll);
              prey_l_class=prey_l;                  // prey length class          
-             prey_avail=stl_prey_avail(spl,ll);    // Availeble food of a prey, totally by species or by size
-             prey_avail_part=stl_prey_avail_part(spl,ll);    // Availeble food of a prey size
+             prey_avail=stl_prey_avail(spl,ll);    // Available food of a prey, totally by species or by size
+             prey_avail_part=stl_prey_avail_part(spl,ll);    // Available food of a prey size
 
              stomcon=stl_stom(spl,ll);             // stomach content weight (relative)
              stomcon_hat=stl_E_stom(spl,ll);       // Expected stomach content weight (relative)
@@ -9975,7 +10251,7 @@ FUNCTION void print_summary_stom()
                if(stomach_variance!=3){   // normal or log-normal distribution or test
                  if (samp_var>0) obj_con=log(sqrt(samp_var))+square(stl_stom(spl,ll)-stl_E_stom(spl,ll))*0.5/samp_var; else obj_con=0;
                } else obj_con=0;            
-              }  else {  // very low and not use stomach contents
+              }  else {  // very low and not used stomach contents
                 stomcon_hat=0; 
                 residual=0;
                 samp_var=0;
@@ -9985,7 +10261,7 @@ FUNCTION void print_summary_stom()
               if (stl_E_Nstom(spl,ll)>0) {
                   Obj_N_contrib=log(stl_E_Nstom(spl,ll))*stl_nopreystom(spl,ll);
               } else Obj_N_contrib=0;
-              prey_siz=prey_size(spl,ll);            //size (length or weight) of prey per lenght class group
+              prey_siz=prey_size(spl,ll);            //size (length or weight) of prey per length class group
               N_haul=stl_N_haul(spl,ll);             //Number of hauls per predator length,
               N_samples=stl_no_samples(spl,ll);      //Number of hauls including a specific prey or no of hauls
               
@@ -10200,7 +10476,7 @@ FUNCTION void print_catch_survey_residuals()
  dvariable N_survey,duration;
  int s2_fa,s2_la,s2_group;
  d3_array catch_var(first_VPA,nsp,fq,lq,fa,max_a);
- d3_array survey_var(first_VPA,nsp,1,10,fa,max_a);          // quick and dirty soulution for running by oone species at time in single species mode
+ d3_array survey_var(first_VPA,nsp,1,10,fa,max_a);          // quick and dirty solution for running by one species at time in single species mode
  // d3_array survey_var(first_VPA,nsp,1,n_fleet,fa,max_a);
  ofstream res("catch_survey_residuals.out",ios::out);
  fleet=-9;
@@ -10644,6 +10920,7 @@ FUNCTION void out_OP_growth()
    op<<"#Growth, minimum weight at age Q1"<<endl<<setprecision(2)<<endl<<growth_min_w<<endl;
    op<<"#Growth, maximum weight at age Q1"<<endl<<setprecision(2)<<endl<<growth_max_w<<endl;
    op.close();
+   if (OP_output==1) cout <<"Operating data file: op_growth_type1.in is done"<<endl;
   }
 
 
@@ -10658,17 +10935,18 @@ FUNCTION void out_OP(char fname[],char text1[],int fsp,int lsp, int precis,d3_ar
  strcat(txt2,txt);
  strcat(txt2,".in");
 
+
  for (s=fsp;s<=lsp;s++) {
    y=yrange(1,s);
    q=fq;
    CALC_yq
    yq2(s)=yq;  
-   
+    
    for (y=yrange(1,s)+1;y<=yrange(2,s);y++) for (q=fq;q<=lq;q++) {
      CALC_yq
      v(yq2(s)+q-1,s)+=v(yq,s);   // sum
    }
-   for (q=fq;q<=lq;q++) for (a=faq(q);a<=la(s);a++) v(yq2(s)+q-1,s,a)=v(yq2(s)+q-1,s,a)/(yrange(2,s)-yrange(1,s)+1);
+    for (q=fq;q<=lq;q++) for (a=faq(q);a<=la(s);a++) v(yq2(s)+q-1,s,a)=v(yq2(s)+q-1,s,a)/(yrange(2,s)-yrange(1,s)+1);
  }
  
  ofstream op (txt2,ios::out);
@@ -10728,6 +11006,7 @@ FUNCTION void print_Operating_input()
 
  if (multi==2) {
    strcpy(ftext,"n_proportion_m2");  strcpy(text,"Proportion of N, for calculation of M2, within model area at age");
+   // FUNCTION void out_OP(char fname[],char text1[],int fsp,int lsp, int precis,d3_array v, imatrix yrange, int nd)
    out_OP(ftext,text, first_VPA,nsp, 4,N_prop_M2,OP_n_proportion_M2,1);
  }
  
@@ -10738,13 +11017,12 @@ FUNCTION void print_Operating_input()
 
  strcpy(ftext,"prop_landed");  strcpy(text,"Proportion of the catch landed");
  out_OP(ftext,text, first_VPA,nsp, 4,prop_landed,OP_prop_landed,no_areas);
-
+ 
  if (multi==2) {
    out_OP_growth();
-    
    if (nOthPred >0) {
-     strcpy(ftext,"other_n");  strcpy(text,"Stock numbers of other predator");
-     out_OP(ftext,text, 1,nOthPred, 1,other_pred_N,OP_other_N,no_areas);
+     strcpy(ftext,"other_n");  strcpy(text,"Stock numbers of other predator");  
+     out_OP(ftext,text, 1,nOthPred, 1,other_pred_N_ini,OP_other_N,no_areas);
    }
  }
  
@@ -10827,7 +11105,7 @@ FUNCTION void print_Operating_input()
  op2a.close();
  if (test_output>4) cout <<"Operating data file: op_c.in is done"<<endl;
 
- // calc average F based un sum of seasonal F
+ // calc average F based on sum of seasonal F
  dvar_vector tmp(first_VPA,nsp);
   
  y=lyModel;
@@ -10922,7 +11200,7 @@ FUNCTION void print_Operating_input()
  if (multi==2) {
    ofstream op9("op_size.in",ios::out);
    op9<<"################################################"<<endl;
-   op9<<"# Size in the sea, for use in size selction model "<<setw(12) << setprecision(4)<< setfixed()<<endl;
+   op9<<"# Size in the sea, for use in size selection model "<<setw(12) << setprecision(4)<< setfixed()<<endl;
    y=lyModel;
    for (q=fq;q<=lq;q++) {
     op9<<"##### Quarter:"<<q<<endl;
@@ -11088,7 +11366,8 @@ FUNCTION void print_season_overlap()
 
  ofstream sv("season_overlap.out",ios::out);
 
-  if (phase_season_overlap>0) {
+  if (no_season_overlap_to_estimate>0) {
+  // if (phase_season_overlap>0) {
   sv<<"#Predator prey season overlap"<<endl;
   sv<<            "#----------------------"<<endl;
   for(d=1;d<=no_areas;d++) {
@@ -11206,12 +11485,24 @@ FUNCTION void write_predict_output()
   
                                            
 FUNCTION void  print_objective_func_file()
- int s;
+ int s ,sp_fl;
   ofstream obj("objective_function.out",ios::out);
-  obj<<"Species.n catch CPUE SSB.Rec  stomachs stomachs.N penalty all n.catch n.CPUE n.SSB.R n.stom n.all.obs n.par"<<endl;
+  obj<<"Species.n catch CPUE SSB.Rec  stomachs stomachs.N other.pred_noise penalty all n.catch n.CPUE n.SSB.R n.stom n.all.obs n.par"<<endl;
   for (s=1;s<=nsp;s++)  obj<<s<<"  "<<obj_func(s)<<" "<<obf<<" "<<no_obj_obs(s)<<" "<<initial_params::nvarcalc()<<endl;
   obj.close();
-   
+  
+ ofstream obj2("objective_function_fleet.out",ios::out);
+   obj2<<"Species.n sp_fl CPUE meanCPUE"<<endl;
+ sp_fl=0;
+ 
+ for (s=first_VPA;s<=nsp;s++){
+    for (f=1;f<=n_fleet(s);f++) {
+      sp_fl++;
+      obj2<<s<<" "<< sp_fl<<" "<<setw(8) << setprecision(3) << setfixed()<<fleet_contribution(sp_fl)<<" "<< fleet_contribution_mean(sp_fl)<<endl;
+    }  
+   }
+ obj2.close();
+ 
    
 FUNCTION void print_survey_data_noise(int no_set,int methode)
  int s, y, q, a, f, i, s2_fa, s2_la, s2_group, no, sp_fl,localMaxFleetYear;
@@ -11409,7 +11700,7 @@ FUNCTION void print_stomach_data_sim(int no)
  
 FUNCTION void print_catch_data_noise(int no_set,int methode)
   // method=1  use var estimated within SMS
-  // mathod=2 use var from file catach_noise.data, data store in catch_s2_input
+  // method=2 use var from file catach_noise.data, data store in catch_s2_input
   
   d3_array   C_hat_noise(fyModel,lyModel,fq,lq,fa,max_a);       // catch and noise
   int s, y, q, a, s2_fa, s2_la, s2_group,no,i;
@@ -11498,7 +11789,7 @@ REPORT_SECTION
  dvariable tmp;
  dvar_matrix out(1,nsp,1,4);
  dvar_matrix out2(fyModel,lyModel,first_VPA,nsp);
- dvar_vector out3(1,7);
+ dvar_vector out3(1,10);
  
  if (test_output>=1) cout <<"REPORT_SECTION initiated"<<endl;
 
@@ -11523,7 +11814,13 @@ REPORT_SECTION
  report<<"Akaike information criterion (AIC):   "<< 2*initial_params::nvarcalc()+2*obf <<endl;
  // WRONG NUMBER OF OBSERVATIONS report<<"Bayesian information criterion (BIC): " << 2*obf+initial_params::nvarcalc()*log(sum(no_obj_obs))<<endl<<endl;
 
-                                                              
+ 
+ for (i=1;i<=7;i++) {
+   obj_out(i)=0;
+   for (s=1;s<=nsp;s++) if (obj_func(s,i) !=0.0 ) obj_out(i)=1;
+ }  
+
+  
  
  report<<"Number of observations used in the likelihood:";
  report<<endl<<"                            Catch    CPUE     S/R Stomach     Sum";
@@ -11537,6 +11834,7 @@ REPORT_SECTION
    report<<endl<<"Sum                      ";
    report<<setw(7)<<setfixed()<<setprecision(0)<<no_obj_obs(nsp+1)<<endl;
  }
+ 
  
  report<<endl<<endl<<"objective function weight:";
  report<<endl<<"                          Catch  CPUE   S/R";
@@ -11554,28 +11852,28 @@ REPORT_SECTION
  report<<endl<<endl;
  out3=0.0;
    
- report << "unweighted objective function contributions (total): " <<endl
-    <<"                Catch    CPUE    S/R   Stom.  Stom N.  Penalty     Sum"<< endl;
-  for (s=1;s<=nsp;s++) {
+ report << endl<<"unweighted objective function contributions: " <<endl;
+ report<<"            ";
+ for (i=1;i<=7;i++) if (obj_out(i)==1) report<< obj_tab[i-1];
+ report<<obj_tab[7]<<endl;   // sum
+ out3=0.0;
+ for (s=1;s<=nsp;s++) {
   tmp=0.0;
-    if (nsp>1) report <<species_names[s]<<" ";
-    else report        << "           ";
-    for (i=1;i<=6;i++) {
-       out3(i)=out3(i)+obj_func(s,i);
-       tmp=tmp+obj_func(s,i);
-       report.setf(ios::right);
-       if (i<6) report<< setw(8) << setfixed()<<setprecision(1)<<obj_func(s,i);
-       else  report<< setw(10) << setfixed()<<setprecision(2)<<obj_func(s,i);
-    }
-    out3(7)=out3(7)+tmp;
-   report<< setw(8) << setfixed()<<setprecision(0)<<tmp << endl;
+  if (nsp>1) report <<species_names[s]<<" ";
+  else report        << "           ";
+  for (i=1;i<=7;i++)  if (obj_out(i)==1){
+    out3(i)=out3(i)+obj_func(s,i);
+    tmp=tmp+obj_func(s,i);
+    report.setf(ios::right);
+    report<< setw(10) << setfixed()<<setprecision(1)<<obj_func(s,i);
+  }
+  out3(8)=out3(8)+tmp;
+  report<< setw(10) << setfixed()<<setprecision(0)<<tmp << endl;
  }
-
  if (nsp>1) {
-    report << "Sum         ";
-    for (i=1;i<6;i++) report<< setw(8) << setfixed()<<setprecision(1)<<out3(i);
-    report<< setw(10) << setfixed()<<setprecision(2)<<out3(6);
-    report<< setw(8) << setfixed()<<setprecision(0)<<out3(7);
+    report << "Sum         ";  // sum
+    for (i=1;i<=7;i++) if (obj_out(i)==1) report<< setw(10) << setfixed()<<setprecision(1)<<out3(i);
+    report<< setw(10) << setfixed()<<setprecision(0)<<out3(8);
  }
  
  //for (s=1;s<=nsp;s++) no_obj_obs(s,3)=lyModel-fyModel+1;
@@ -11716,7 +12014,7 @@ REPORT_SECTION
  for (a=fa;a<=max_a_VPA;a++) report<<setw(7)<<a;
      
  for (s=first_VPA;s<=nsp;s++){
-   if (nsp>1)report <<endl<<species_names[s];
+   if (nsp>1)report <<endl<<species_names[s];   
 
    for(syg=1;syg<=n_catch_sep_year_group(s);syg++) {
      y=catch_sep_year(s,syg); 
@@ -11873,7 +12171,7 @@ REPORT_SECTION
  }
  
  if (lq>fq && 1==2) { 
-   report<<endl<<endl<<"Average F (sum of sesonal F):"<<endl;
+   report<<endl<<endl<<"Average F (sum of seasonal F):"<<endl;
    report<<      "-------------------------------"<<endl<<"         ";
    for (s=first_VPA;s<=nsp;s++) report<<"sp."<<setw(2)<<s<<"    ";
    report<<endl;
@@ -12097,6 +12395,7 @@ REPORT_SECTION
          } 
        }
      }
+      
      
      if (mesh_size_active==1 && active(init_s1)) {
        report<<endl<<endl<<"Mesh size selection:"<<endl;
@@ -12135,7 +12434,7 @@ REPORT_SECTION
 
  if (test_output>=1) cout <<"Output file sms.rep is done"<<endl;
 
- if (do_prediction_mean!=1) { //retrospecive analysis
+ if (do_prediction_mean!=1) { //retrospective analysis
   if (multi!=1) {
      print_vars("Observed catches","obs_C");
      //print_vars("Obs.used catches","log_obs_C");  
@@ -12280,5 +12579,5 @@ FINAL_SECTION
    
  if (do_prediction_mean==1) write_predict_output();
 
- cout << endl <<"Successfull completion, HURRAH - HURRAH " << endl;
+ cout << endl <<"Successful completion, HURRAH - HURRAH " << endl;
  

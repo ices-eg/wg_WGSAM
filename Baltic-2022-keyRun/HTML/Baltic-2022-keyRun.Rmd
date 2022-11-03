@@ -1,0 +1,1029 @@
+---
+title: "SMS Baltic Sea key run 2022"
+author: "Morten Vinther, mv@aqua.dtu.dk"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+ html_document:
+    code_folding: "hide"
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+    toc_depth: 4
+    css: "style.css"
+---
+ ```{r setup, include=FALSE}
+ knitr::opts_chunk$set(echo = FALSE)
+ suppressMessages(library(tidyverse))
+ suppressMessages(library(here))
+ suppressMessages(library(ggthemes))
+ suppressMessages(library(FLCore))
+ 
+ ```
+```{r ini, echo=FALSE }
+load(file='C:/_C_drev/SMS-git/Baltic-2022-keyRun/SMS.Rdata');
+```
+# Input
+## Weight at age in the sea {.tabset .tabset-fade .tabset-pills}
+###   Cod {.tabset .tabset-fade .tabset-pills}
+#### young {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Mean weight (kg) at age in the sea.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/west/Compare_west_Cod_young.png')
+```
+#### older {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Mean weight (kg) at age in the sea.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/west/Compare_west_Cod_older.png')
+```
+###   Herring {.tabset .tabset-fade .tabset-pills}
+#### young {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Mean weight (kg) at age in the sea.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/west/Compare_west_Herring_young.png')
+```
+#### older {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Mean weight (kg) at age in the sea.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/west/Compare_west_Herring_older.png')
+```
+###   Sprat {.tabset .tabset-fade .tabset-pills}
+#### young {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Mean weight (kg) at age in the sea.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/west/Compare_west_Sprat_young.png')
+```
+#### older {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Mean weight (kg) at age in the sea.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/west/Compare_west_Sprat_older.png')
+```
+### {-}
+## Catch numbers {.tabset .tabset-fade .tabset-pills}
+###   Herring {.tabset .tabset-fade .tabset-pills}
+#### young {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Catch number (thousands) at age.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/c.obs/Compare_c.obs_Herring_young.png')
+```
+#### 0lder {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Catch number (thousands) at age.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/c.obs/Compare_c.obs_Herring_older.png')
+```
+###   Sprat {.tabset .tabset-fade .tabset-pills}
+#### young {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Catch number (thousands) at age.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/c.obs/Compare_c.obs_Sprat_young.png')
+```
+#### 0lder {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Catch number (thousands) at age.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/c.obs/Compare_c.obs_Sprat_older.png')
+```
+### {-}
+## Other predators abundance {.tabset .tabset-fade .tabset-pills}
+###   Cod {.tabset .tabset-fade .tabset-pills}
+#### numbers {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Abundance or biomass.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/OtherPredators/Compare_OtherPred_Cod_N.png')
+```
+#### biomass {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Abundance or biomass.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/OtherPredators/Compare_OtherPred_Cod_BIO.png')
+```
+### {-}
+## Stomach contents {.tabset .tabset-fade .tabset-pills}
+###   Cod {.tabset .tabset-fade .tabset-pills}
+#### 2014 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-2014.png')
+```
+#### 2013 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-2013.png')
+```
+#### 2012 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-2012.png')
+```
+#### 2011 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-2011.png')
+```
+#### 2010 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-2010.png')
+```
+#### 2009 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-2009.png')
+```
+#### 2008 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-2008.png')
+```
+#### 2007 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-2007.png')
+```
+#### 2006 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-2006.png')
+```
+#### 2005 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-2005.png')
+```
+#### 2004 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-2004.png')
+```
+#### 2003 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-2003.png')
+```
+#### 2002 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-2002.png')
+```
+#### 2001 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-2001.png')
+```
+#### 2000 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-2000.png')
+```
+#### 1999 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1999.png')
+```
+#### 1997 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1997.png')
+```
+#### 1996 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1996.png')
+```
+#### 1995 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1995.png')
+```
+#### 1994 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1994.png')
+```
+#### 1993 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1993.png')
+```
+#### 1991 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1991.png')
+```
+#### 1990 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1990.png')
+```
+#### 1989 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1989.png')
+```
+#### 1988 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1988.png')
+```
+#### 1987 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1987.png')
+```
+#### 1986 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1986.png')
+```
+#### 1985 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1985.png')
+```
+#### 1984 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1984.png')
+```
+#### 1983 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1983.png')
+```
+#### 1982 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1982.png')
+```
+#### 1981 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1981.png')
+```
+#### 1980 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1980.png')
+```
+#### 1979 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1979.png')
+```
+#### 1978 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1978.png')
+```
+#### 1977 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1977.png')
+```
+#### 1976 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1976.png')
+```
+#### 1975 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1975.png')
+```
+#### 1974 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs/stom-Cod-LABEL-1974.png')
+```
+### {-}
+## Stom. cont. old and new {.tabset .tabset-fade .tabset-pills}
+###   Cod {.tabset .tabset-fade .tabset-pills}
+#### 2014 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-2014.png')
+```
+#### 2013 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-2013.png')
+```
+#### 2012 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-2012.png')
+```
+#### 2011 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-2011.png')
+```
+#### 2010 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-2010.png')
+```
+#### 2009 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-2009.png')
+```
+#### 2008 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-2008.png')
+```
+#### 2007 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-2007.png')
+```
+#### 2006 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-2006.png')
+```
+#### 2005 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-2005.png')
+```
+#### 2004 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-2004.png')
+```
+#### 2003 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-2003.png')
+```
+#### 2002 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-2002.png')
+```
+#### 2001 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-2001.png')
+```
+#### 2000 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-2000.png')
+```
+#### 1999 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1999.png')
+```
+#### 1998 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1998.png')
+```
+#### 1997 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1997.png')
+```
+#### 1996 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1996.png')
+```
+#### 1995 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1995.png')
+```
+#### 1994 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1994.png')
+```
+#### 1993 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1993.png')
+```
+#### 1991 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1991.png')
+```
+#### 1990 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1990.png')
+```
+#### 1989 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1989.png')
+```
+#### 1988 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1988.png')
+```
+#### 1987 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1987.png')
+```
+#### 1986 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1986.png')
+```
+#### 1985 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1985.png')
+```
+#### 1984 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1984.png')
+```
+#### 1983 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1983.png')
+```
+#### 1982 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1982.png')
+```
+#### 1981 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1981.png')
+```
+#### 1980 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1980.png')
+```
+#### 1979 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1979.png')
+```
+#### 1978 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1978.png')
+```
+#### 1977 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1977.png')
+```
+#### 1976 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1976.png')
+```
+#### 1975 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1975.png')
+```
+#### 1974 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Relative stomach contents weight by predator size class for the two key runs.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Input/Stomachs_old_new/comp_stmch_-Cod-1974.png')
+```
+### {-}
+# Parameters
+## F, Year effect
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Year effect in separable model for F. Years without uncertainty values have the (input) value 1, or catches are missing from that year.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Parameters/Figures/uncertanty_F_year_effect.png')
+```
+## N first year
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Stock number (N) at age in the first year.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Parameters/Figures/uncertanty_N_first_year.png')
+```
+## N first age
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Recruitment, N at the first age.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Parameters/Figures/uncertanty_recruit.png')
+```
+## Survey catchability  {.tabset .tabset-fade .tabset-pills}
+###   Herring {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Survey catchabiliy by fleet. Ages shown with no error bar have the same catchability and error bar as the previous age.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Parameters/Figures/Catchability/uncertanty_catchability_Herring.png')
+```
+###   Sprat {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Survey catchabiliy by fleet. Ages shown with no error bar have the same catchability and error bar as the previous age.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Parameters/Figures/Catchability/uncertanty_catchability_Sprat.png')
+```
+### {-}
+## Survey obs. s2 {.tabset .tabset-fade .tabset-pills}
+###   Herring {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Survey observation variance by fleet. Ages shown with no error bar have the same variance and error bar as the previous age.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Parameters/Figures/Survey_observations/surv_variance_Herring.png')
+```
+###   Sprat {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Survey observation variance by fleet. Ages shown with no error bar have the same variance and error bar as the previous age.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Parameters/Figures/Survey_observations/surv_variance_Sprat.png')
+```
+### {-}
+# Output
+## Stock summary {.tabset .tabset-fade .tabset-pills}
+###   Herring {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Catch weight, Recruitment, F, SSB, Biomass removed due to fishery (F), predation by SMS species (M2) and residual natural mortality (M1). The predation mortality (M2) presented by the 0-group (black solid line) is for the second half of the year. The M2 for the rest of the ages are annual values.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/StockSummary/plot_summary_Herring.png')
+```
+###   Sprat {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Catch weight, Recruitment, F, SSB, Biomass removed due to fishery (F), predation by SMS species (M2) and residual natural mortality (M1). The predation mortality (M2) presented by the 0-group (black solid line) is for the second half of the year. The M2 for the rest of the ages are annual values.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/StockSummary/plot_summary_Sprat.png')
+```
+### {-}
+##  Predation mortality (M2)
+###  Annual M2. {.tabset .tabset-fade .tabset-pills}
+####   Herring {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Annual predation mortality (sum of quarterly M2)**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/PartialM2/Annually/Partial_M2_annual_Herring.png')
+```
+####   Sprat {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Annual predation mortality (sum of quarterly M2)**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/PartialM2/Annually/Partial_M2_annual_Sprat.png')
+```
+#### {-}
+### Quarterly M2. {.tabset .tabset-fade .tabset-pills}
+####   Herring {.tabset .tabset-fade .tabset-pills}
+##### Q:1 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Quarterly predation mortality (M2)**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/PartialM2/Quarterly/Partial_M2_Herring_Q1.png')
+```
+##### Q:2 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Quarterly predation mortality (M2)**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/PartialM2/Quarterly/Partial_M2_Herring_Q2.png')
+```
+##### Q:3 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Quarterly predation mortality (M2)**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/PartialM2/Quarterly/Partial_M2_Herring_Q3.png')
+```
+##### Q:4 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Quarterly predation mortality (M2)**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/PartialM2/Quarterly/Partial_M2_Herring_Q4.png')
+```
+####   Sprat {.tabset .tabset-fade .tabset-pills}
+##### Q:1 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Quarterly predation mortality (M2)**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/PartialM2/Quarterly/Partial_M2_Sprat_Q1.png')
+```
+##### Q:2 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Quarterly predation mortality (M2)**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/PartialM2/Quarterly/Partial_M2_Sprat_Q2.png')
+```
+##### Q:3 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Quarterly predation mortality (M2)**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/PartialM2/Quarterly/Partial_M2_Sprat_Q3.png')
+```
+##### Q:4 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Quarterly predation mortality (M2)**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/PartialM2/Quarterly/Partial_M2_Sprat_Q4.png')
+```
+#### {-}
+##  Size selection
+###  by predator
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod size selection, Observed and estimated.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/Stom_size_selection/size_all-Cod.png')
+```
+###  by predator and prey
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod size selection by prey, Observed and estimated.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/Stom_size_selection/size_prey-Cod.png')
+```
+###  M (M1+M2) smoothed {.tabset .tabset-fade .tabset-pills}
+####   Herring {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Annual natural mortalities (M) values smoothed (sum of quarterly M1+M2)**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/M2_smooth/M2_smooth_Herring.png')
+```
+####   Sprat {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Annual natural mortalities (M) values smoothed (sum of quarterly M1+M2)**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/M2_smooth/M2_smooth_Sprat.png')
+```
+#### {-}
+##  Who eats whom
+###  All preys eaten by predator
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Biomass of all preys eaten by predator**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/WhoEatsWhom/WhoEats_All_Comb_Predators.png')
+```
+###  Preys eaten by all predator
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Biomass eaten by prey **'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/WhoEatsWhom/WhoEats_All_Comb_Preys.png')
+```
+###  Preys eaten by predator {.tabset .tabset-fade .tabset-pills}
+####   Herring {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Who eats this prey.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/WhoEatsWhom/WhoEatsOne_Herring.png')
+```
+####   Sprat {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Who eats this prey.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/WhoEatsWhom/WhoEatsOne_Sprat.png')
+```
+#### {-}
+## Exploitation pattern {.tabset .tabset-fade .tabset-pills}
+###   Herring {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Exploitation pattern, scaled to Fbar.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/ExploiPattern/expl_Herring.png')
+```
+###   Sprat {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Exploitation pattern, scaled to Fbar.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/ExploiPattern/expl_Sprat.png')
+```
+### {-}
+## Uncertanties {.tabset .tabset-fade .tabset-pills}
+### SSB
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Uncertanties (1 sd / value) of Spawning stock biomass.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/Uncertainties/CV_SSB.png')
+```
+### Recruit
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Uncertanties (1 sd / value) of Recruitment.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/Uncertainties/CV_Recruit.png')
+```
+### mean F
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Uncertanties (1 sd / value) of mean F.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/Uncertainties/CV_avg_F.png')
+```
+## {-}
+# Diagnostics
+## Residuals
+### Catch residuals {.tabset .tabset-fade .tabset-pills}
+####   Herring {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Catch observations Residuals, log(Survey observed CPUE) - log(expected CPUE). Red is positive, White is negative. Q:9 means annual data.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Catch/catch Herring 1 1.png')
+```
+####   Sprat {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Catch observations Residuals, log(Survey observed CPUE) - log(expected CPUE). Red is positive, White is negative. Q:9 means annual data.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Catch/catch Sprat 1 4.png')
+```
+#### {-}
+### Survey residuals {.tabset .tabset-fade .tabset-pills}
+####   Herring {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Survey observations Residuals, log(Survey observed CPUE) - log(expected CPUE). Red is positive, White is negative.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Survey/Survey Herring 1 1.png')
+```
+####   Sprat {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Survey observations Residuals, log(Survey observed CPUE) - log(expected CPUE). Red is positive, White is negative.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Survey/Survey Sprat 1 2.png')
+```
+#### {-}
+### Stomach residuals (Raw) {.tabset .tabset-fade .tabset-pills}
+####   Cod {.tabset .tabset-fade .tabset-pills}
+##### QQ plot {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Stomach observation residuals (raw = (observed proportion) - (expected proportion)). For residual plots, White is positive, green is negative.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/raw_resid/QQ_resid_1_Cod.png')
+```
+##### by year quarter {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Stomach observation residuals (raw = (observed proportion) - (expected proportion)). For residual plots, White is positive, green is negative.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/raw_resid/ar1_Cod_yq_stom_resid_1.png')
+```
+##### by quarter year {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Stomach observation residuals (raw = (observed proportion) - (expected proportion)). For residual plots, White is positive, green is negative.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/raw_resid/ar1_Cod_qy_stom_resid_1.png')
+```
+##### box plots {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Stomach observation residuals (raw = (observed proportion) - (expected proportion)). For residual plots, White is positive, green is negative.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/raw_resid/aa_stom_box_Cod.png')
+```
+#### {-}
+### Stomach residuals (Standardised) {.tabset .tabset-fade .tabset-pills}
+####   Cod {.tabset .tabset-fade .tabset-pills}
+##### QQ plot {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Stomach observation residuals (Standardised = (observed-expected)/sd(expected)). For residual plots, White is positive, green is negative.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/stan_resid/QQ_resid_2_Cod.png')
+```
+##### by year quarter {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Stomach observation residuals (Standardised = (observed-expected)/sd(expected)). For residual plots, White is positive, green is negative.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/stan_resid/ar1_Cod_yq_stom_resid_2.png')
+```
+##### by quarter year {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Stomach observation residuals (Standardised = (observed-expected)/sd(expected)). For residual plots, White is positive, green is negative.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/stan_resid/ar1_Cod_qy_stom_resid_2.png')
+```
+#### {-}
+### Stomach resid. (compResidual) {.tabset .tabset-fade .tabset-pills}
+####   Cod {.tabset .tabset-fade .tabset-pills}
+##### QQ plot {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Stomach observation residuals (Residual calculation for compositional observations, see R Package compResidual). For residual plots, White is positive, green is negative.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/comp_resid/QQ_resid_4_Cod.png')
+```
+##### by year quarter {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Stomach observation residuals (Residual calculation for compositional observations, see R Package compResidual). For residual plots, White is positive, green is negative.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/comp_resid/ar1_Cod_yq_stom_resid_4.png')
+```
+##### by quarter year {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Stomach observation residuals (Residual calculation for compositional observations, see R Package compResidual). For residual plots, White is positive, green is negative.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/comp_resid/ar1_Cod_qy_stom_resid_4.png')
+```
+#### {-}
+## Retrospective analysis
+### Retro. summary {.tabset .tabset-fade .tabset-pills}
+####   Herring {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Model retrospective analysis.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Retrospective/Summary/compare_retro_Herring.png')
+```
+####   Sprat {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Model retrospective analysis.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Retrospective/Summary/compare_retro_Sprat.png')
+```
+#### {-}
+### Retro. M2 {.tabset .tabset-fade .tabset-pills}
+####   Herring {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Model retrospective analysis of M2.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Retrospective/M2/compareM2_retro_M2_Herring.png')
+```
+####   Sprat {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Model retrospective analysis of M2.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Retrospective/M2/compareM2_retro_M2_Sprat.png')
+```
+#### {-}
+## Stomach contents {.tabset .tabset-fade .tabset-pills}
+###   Cod {.tabset .tabset-fade .tabset-pills}
+#### 2014 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-2014.png')
+```
+#### 2013 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-2013.png')
+```
+#### 2012 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-2012.png')
+```
+#### 2011 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-2011.png')
+```
+#### 2010 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-2010.png')
+```
+#### 2009 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-2009.png')
+```
+#### 2008 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-2008.png')
+```
+#### 2007 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-2007.png')
+```
+#### 2006 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-2006.png')
+```
+#### 2005 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-2005.png')
+```
+#### 2004 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-2004.png')
+```
+#### 2003 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-2003.png')
+```
+#### 2002 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-2002.png')
+```
+#### 2001 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-2001.png')
+```
+#### 2000 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-2000.png')
+```
+#### 1999 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1999.png')
+```
+#### 1997 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1997.png')
+```
+#### 1996 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1996.png')
+```
+#### 1995 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1995.png')
+```
+#### 1994 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1994.png')
+```
+#### 1993 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1993.png')
+```
+#### 1991 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1991.png')
+```
+#### 1990 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1990.png')
+```
+#### 1989 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1989.png')
+```
+#### 1988 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1988.png')
+```
+#### 1987 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1987.png')
+```
+#### 1986 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1986.png')
+```
+#### 1985 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1985.png')
+```
+#### 1984 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1984.png')
+```
+#### 1983 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1983.png')
+```
+#### 1982 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1982.png')
+```
+#### 1981 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1981.png')
+```
+#### 1980 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1980.png')
+```
+#### 1979 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1979.png')
+```
+#### 1978 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1978.png')
+```
+#### 1977 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1977.png')
+```
+#### 1976 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1976.png')
+```
+#### 1975 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1975.png')
+```
+#### 1974 {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Cod. Observed and estimated stomach contents weight by predator size class.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Diagnostics/Residuals/Stomachs/obs_est/obs_est_st_-Cod-1974.png')
+```
+### {-}
+## Comparison, key-runs
+### Key-runs, summary {.tabset .tabset-fade .tabset-pills}
+####   Herring {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Stock summary.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/Comparisons/summary/compare_summary_Herring.png')
+```
+####   Sprat {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Stock summary.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/Comparisons/summary/compare_summary_Sprat.png')
+```
+#### {-}
+### Key-runs M2 {.tabset .tabset-fade .tabset-pills}
+####   Herring {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. M2.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/Comparisons/M2/compareM2_summary_Herring.png')
+```
+####   Sprat {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. M2.**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/Comparisons/M2/compareM2_summary_Sprat.png')
+```
+#### {-}
+### Key-runs SSB/R {.tabset .tabset-fade .tabset-pills}
+####   Herring {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Herring. Stock-recruitment. Values of SSB and recruits, and fitted stock recruitment relation (median, mean, +-1SD, +-2 SD). "Red" values are not used in the fit**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/Comparisons/SSB_R/compare_SBB_rec_Herring.png')
+```
+####   Sprat {.tabset .tabset-fade .tabset-pills}
+
+```{r, fig.align='left',out.width = "100%", fig.cap='**Sprat. Stock-recruitment. Values of SSB and recruits, and fitted stock recruitment relation (median, mean, +-1SD, +-2 SD). "Red" values are not used in the fit**'}
+knitr::include_graphics('C:/_C_drev/SMS-git/Baltic-2022-keyRun/Input_Output/Output/Comparisons/SSB_R/compare_SBB_rec_Sprat.png')
+```
+#### {-}

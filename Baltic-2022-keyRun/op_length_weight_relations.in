@@ -1,0 +1,8 @@
+# length weight relation W=a * Power(L,b),
+ # L in mm, W in kg
+# Cod        
+ 8.7e-09 3
+# Herring    
+ 2.99765e-09 3.13696
+# Sprat      
+ 3.67089e-09 3.10797

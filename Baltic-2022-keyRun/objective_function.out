@@ -1,0 +1,4 @@
+Species.n catch CPUE SSB.Rec  stomachs stomachs.N other.pred_noise penalty all n.catch n.CPUE n.SSB.R n.stom n.all.obs n.par
+1   0 0 0 -337.623 0 0 0 -1646.5  0 0 0 1599 3198 0 329
+2   -857.559 -144.254 -6.50841 0 0 0 0 -1646.5  1536 300 48 0 3768 0 329
+3   -187.887 -118.472 -7.56397 0 0 0 0 -1646.5  1344 363 48 0 3510 0 329

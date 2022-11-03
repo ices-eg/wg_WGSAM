@@ -1,0 +1,110 @@
+########################################
+# Single/Multispecies mode (option VPA.mode)
+# 0=single species mode
+# 2=multi species mode, Z=F+M1+M2
+2
+########################################
+##  N in the beginning of the period or N bar for calculation of M2 (option use.Nbar)
+#  0=use N in the beginning of the time step (default)
+#  1=use N bar
+0
+########################################
+# Area explicit options for M2 and F (option area.FM)
+# 1=Both F and M2 are calculated for the entire stock area
+# 2=M2 is calculated by area, but F (or C) is assumed global
+# 3=Both M2 and F (or C) are assumed by area
+1
+######
+1  # Number of areas
+######
+3  # number of species
+######
+0  # first age, all species
+######
+11  # max age, all species
+######
+4  # no of seasons
+######
+3  # recruitment seasons
+########################################
+## various information by species
+# 1. last age
+# 2. first age where catch data are used (else F=0 assumed)
+# 3. plus group, 0=no plus group, 1=plus group
+# 4. predator species, 0=no, 1=VPA predator, 2=Other predator
+# 5. prey species, 0=no, 1=yes
+##
+11 0 0 2  0  # Cod        
+8 1 1 0 1 # Herring    
+7 1 0 0 1 # Sprat      
+########################################
+## first and last age in calculation of average F by species
+3 6 # Herring    
+3 5 # Sprat      
+################################################
+# Stock recruitment parameters
+#model alfa  beta std info1 info2
+3 1.845192e+01 0.000000e+00  9.982257e-01 0.000000e+00 0.000000e+00 # Herring    
+3 2.014618e+01 0.000000e+00  1.006016e+00 0.000000e+00 0.000000e+00 # Sprat      
+##
+############### Multi species ###################
+0  # Usage of age-length-keys for calc of M2 (option simple.ALK))
+0   # Usage of food-rations from input values (option=0) or from size and regression parameters (option=1)(option consum)
+## Variance of size selection (option size.selection) by predator
+ 1
+## Max prey size/ pred size factor for inclusion in M2 calc by predator
+ 0.300
+################################################
+# Predator prey vulnerability
+# Area 1
+ 9.26001 3.72489
+################################################
+# Seasonal overlap
+# Area 1
+ 1.00000 1.00000 1.00000 1.00000
+ 0.44358 1.00000 0.27367 1.00000
+ 0.44358 1.00000 0.27367 0.31257
+ 1.80712 1.00000 1.00000 0.90296
+################################################
+# Size selection parameters
+# size model
+ 1
+# preferred size
+ 5.70006
+# variance of preferred size
+ 2.73446
+# adjustment of preferred size
+ 0.00000
+# prey_size_adjustment
+ 1.00000 1.00000
+################################################
+# Other food size dependency
+ 0.32359
+################################################
+# minimum predator prey size ratio
+ 3.33333 4.48881
+# maximum predator prey size ratio
+ 1969.17517 2279.98425
+################################################
+# Constraint uniform size selection
+# Intercept, minimum
+ 1.00000 1.00000
+# Slope, minimum
+ 1.00000 1.00000
+# Intercept, maximum
+ 1.00000 1.00000
+# Slope, maximum
+ 1.00000 1.00000
+################################################
+# Predator presence (0=absent, 1=present) in an area
+ 1 # Cod        
+################################################
+# Prey eaten by predator (0=no, >=1 means yes) in an area
+# Area 1
+ 1 2
+################################################
+# Other food by area and predator
+ 1000000
+################################################
+# Size of predator for constant available other food
+ 0.037677

@@ -1,0 +1,10 @@
+# Proportion of M and F befor spawning by species
+#   Can only be diffrent from 0 for annual time steps
+# cod
+#0 0
+# herring 
+0 0
+# sprat
+0 0
+#####
+-999 # check value

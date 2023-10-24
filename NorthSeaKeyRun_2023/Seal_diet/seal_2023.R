@@ -32,7 +32,9 @@ for (k in 1:3){
   total_cons[[k]] <- read_xlsx(path=file.path(dir, "Total Hg consumption North Sea by quarter.xlsx"),sheet=k)
 }
 
+
 ## Loop through files
+s <- c() # for final output
 for (fil in files){
   
   ## Extract total consumption per quarter
@@ -103,6 +105,7 @@ for (fil in files){
   marrangeGrob(p, nrow=1, ncol=1)
   dev.off()
   
+  
   # ## Keep regions in til the end
   # fishWperLengthBin<-fishLength %>% group_by(quarter,region,latin,prey,lowpreyl,higpreyl) %>% 
   #   summarize(meanW=mean(w),meanL=mean(l),w=sum(w), nfish=n()) %>% ungroup()
@@ -125,19 +128,70 @@ for (fil in files){
   # cons.q.area[[3]]["Sandeel",5]
   # problem if samples are missing!
   
+  ## Sprat not eaten much so remove here and will be added automatically to other food
+  species <- as.vector(unique(fishLength$prey))
+  species <- species[-which(species=="SPR")]
+  fishLength <- subset(fishLength, prey %in% species)
+  fishLength$prey <- factor(fishLength$prey) # reset factor
+  cons.q.area <- lapply(cons.q.area, function(x) x[-which(rownames(x)=="Sprat"),])
+  nameCons <- lapply(cons.q.area, rownames)[[1]]
+  # Change naming so same as SMS
+  nameCons[which(nameCons %in% sps$Species)] <- sort(sps[which(sps$Species %in% nameCons),]$SMS)
+  nameCons[which(nameCons=="Norway pout")] <- "NOP"
+  nameCons[which(nameCons=="Sandeel")] <- "SAN"
+  for (k in 1:length(cons.q.area)) rownames(cons.q.area[[k]])=nameCons
+  
+  
+  ## Borrow fish length distributions if not enough samples in a quarter (<5)
+  ## Keep borrowing between Q1-2 and Q3-4
+  numSample <- list()
+  fishWperLengthBin<-fishLength %>% group_by(quarter,latin,prey,lowpreyl,higpreyl) %>% 
+    summarize(meanW=mean(w),meanL=mean(l),w=sum(w), nfish=n()) %>% ungroup()
+  for (sp in unique(fishWperLengthBin$prey)){
+    tmp <- c()
+    for (q in 1:4) tmp[q] <- nrow(subset(fishWperLengthBin, prey==sp & quarter==q))
+    numSample[[sp]] <- tmp
+  }
+  for (sp in unique(fishLength$prey)){
+    q=which(numSample[[sp]]<5)
+    borrowq <- q
+    if (length(borrowq)!=0) {
+      borrowq = sapply(borrowq, function(x) as.numeric(switch(as.character(x), "1" = "2", "2" = "1", "3" = "4", "4" = "3")))
+      tmp2 <- c()
+      for (i in 1:length(borrowq)){
+        tmp <- subset(fishLength, quarter==borrowq[i] & prey==sp)
+        tmp$quarter <- q[i]
+        tmp2 <- rbind(tmp2,tmp)
+      }
+      fishLength <- rbind(fishLength, tmp2) # here we keep the original data in and add the borrowed samples
+    }
+  }
+  
+  p <- list()
+  for (sp in seq(unique(fishLength$prey))){
+    p[[sp]] <- ggplot(data=subset(fishLength, prey==unique(fishLength$prey)[sp]), aes(x=lowpreyl)) +
+      geom_histogram() +
+      #geom_vline(aes(xintercept=lowpreyl)) + 
+      facet_grid(~quarter) +
+      labs(title=unique(fishLength$prey)[sp])
+  }
+  pdf(paste0("NorthSeaKeyRun_2023/Seal_diet/Length_distribution_diet_perQuarter_with_borrowing_", unique(fishLength$year)[1], ".pdf"), onefile = TRUE)
+  marrangeGrob(p, nrow=1, ncol=1)
+  dev.off()
   
   
   ## Aggregate weight consumed by quarter so that we have more samples (no more regions)
   fishWperLengthBin<-fishLength %>% group_by(quarter,latin,prey,lowpreyl,higpreyl) %>% 
     summarize(meanW=mean(w),meanL=mean(l),w=sum(w), nfish=n()) %>% ungroup()
   
+
   ## Estimate weight consumed in terms of proportion per length bin (W_percent)
   propFishPerLengthBin <- fishWperLengthBin %>% group_by(quarter,prey, lowpreyl, higpreyl) %>% summarize(w=sum(w)) %>% group_by(quarter, prey) %>% mutate(W_percent=w/sum(w))
   
   ## Estimate total weight of prey consumed by all grey seals per length bin (preyw) 
   propFishPerLengthBin$preyw <- NA
   for (k in 1:nrow(propFishPerLengthBin)){
-    propFishPerLengthBin$preyw[k] <- propFishPerLengthBin$W_percent[k]* cons.q.area[[propFishPerLengthBin$quarter[k]]][propFishPerLengthBin$prey[k], 5]
+    propFishPerLengthBin$preyw[k] <- propFishPerLengthBin$W_percent[k]* cons.q.area[[as.character(propFishPerLengthBin$quarter[k])]][as.character(propFishPerLengthBin$prey[k]), 5]
   }
   
   ## Check all is correct
@@ -145,20 +199,75 @@ for (fil in files){
     a<-xtabs(preyw~prey,data=x)
     #"TotalNS"=round(cbind(a,rowSums(a)),2)
   }) # in tonnes
-  round(unlist(tmp)-unlist(lapply(cons.q.area, function(x) x[,5])))
-  # No samples HER quarter 2 in 2010
-  # No samples NOP quarter 3 in 2010
-  
+  if(sum(round(unlist(tmp)-unlist(lapply(cons.q.area, function(x) x[,5])))) !=0) stop ("PROBLEM IN RAISING DATA")
+
   ## Add other food
   y <- which(files==fil)
+  year <- as.numeric(switch(as.character(y), "1" = "1985", "2" = "2002", "3" = "2010"))
   for (q in 1:4){
     tmp <- propFishPerLengthBin[1,]
     tmp$quarter <- q
-    tmp$prey <- "OTHER"
+    tmp$prey <- "OTH"
     tmp$lowpreyl <- tmp$higpreyl <- tmp$w <- tmp$W_percent <- 0
     tmp$preyw <- unlist(total_cons[[y]][as.character(q),"Sum of cons.t"])-apply(cons.q.area[[q]],2,sum)[5]
     propFishPerLengthBin <- rbind(propFishPerLengthBin, tmp)
   }
+  propFishPerLengthBin$year <- year
   
   
+  ## Make the output for Morten to use (same as before)
+  propFishPerLengthBin$dataset='seal data'
+  propFishPerLengthBin$record_type='PS'
+  propFishPerLengthBin$country='All'
+  propFishPerLengthBin$area='1'
+  propFishPerLengthBin$lat=55
+  propFishPerLengthBin$lon=0
+  propFishPerLengthBin$month=(propFishPerLengthBin$quarter-1)*3+1
+  propFishPerLengthBin$day=1
+  propFishPerLengthBin$haul=propFishPerLengthBin$quarter
+  propFishPerLengthBin$station=propFishPerLengthBin$quarter
+  propFishPerLengthBin$sample_id=paste('Seal',propFishPerLengthBin$year,propFishPerLengthBin$quarter,sep='_')
+  propFishPerLengthBin$ship='xxx'
+  propFishPerLengthBin$rectangle='40F0'
+  propFishPerLengthBin$pred_name='Halichoerus grypus'
+  propFishPerLengthBin$pred_nodc=8111111111
+  propFishPerLengthBin$pred_l=1100
+  propFishPerLengthBin$pred_ll=1000
+  propFishPerLengthBin$pred_lu=1200
+  propFishPerLengthBin$CPUE=1
+  propFishPerLengthBin$fish_id=paste(propFishPerLengthBin$year,propFishPerLengthBin$quarter,sep='_')
+  propFishPerLengthBin$n_food=10
+  propFishPerLengthBin$n_regur=0
+  propFishPerLengthBin$n_empty=0
+  propFishPerLengthBin$n_skel=0
+  propFishPerLengthBin$n_tot=propFishPerLengthBin$n_food+propFishPerLengthBin$n_empty+propFishPerLengthBin$n_regur+propFishPerLengthBin$n_skel
+  propFishPerLengthBin$digest=1
+  propFishPerLengthBin$prey_name=propFishPerLengthBin$prey
+  propFishPerLengthBin$prey=NULL
+  propFishPerLengthBin$prey_w=propFishPerLengthBin$preyw
+  propFishPerLengthBin$preyw=NULL
+  propFishPerLengthBin$prey_n=NA
+  propFishPerLengthBin$nprey=NULL
+  propFishPerLengthBin$prey_l=NA
+  propFishPerLengthBin$prey_w_meth='r'
+  propFishPerLengthBin$prey_ll=propFishPerLengthBin$lowpreyl*10
+  propFishPerLengthBin$lowpreyl=NULL
+  propFishPerLengthBin$prey_lu=propFishPerLengthBin$higpreyl*10
+  propFishPerLengthBin$higpreyl=NULL
+  propFishPerLengthBin$w=NULL
+  propFishPerLengthBin$W_percent=NULL
+  
+  propFishPerLengthBin[propFishPerLengthBin$prey_name=='OTH','prey_ll']<-NA
+  propFishPerLengthBin[propFishPerLengthBin$prey_name=='OTH','prey_lu']<-NA
+  
+  save(propFishPerLengthBin, file=paste0("NorthSeaKeyRun_2023/Seal_diet/propFishPerLengthBin_", year, ".RData"))
+  
+  ## Merge all years
+  s <- rbind(s, propFishPerLengthBin)
+  
+  rm(fishLength, fishWperLengthBin, propFishPerLengthBin, cons.q.area, ss, numSample, tmp, tmp2, p); gc()
+
 }
+
+write.csv(s,file='NorthSeaKeyRun_2023/Seal_diet/adjusted_seal_diet.csv')
+

@@ -1,0 +1,70 @@
+---
+title: "Seal diet analysis"
+author: "Vanessa Trijoulet"
+output: bookdown::word_document2  
+bibliography: biblio.bib
+---
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(dplyr)
+library(readxl)
+
+sps<-  matrix(c(
+  "COD",	"Gadus morhua",	'cod',"Cod",
+  "WHG",	"Merlangius merlangus", 'whiting',"Whiting",
+  "HAD",	"Melanogrammus aeglefinus", "haddock","Haddock",
+  "POK",	"Pollachius virens","saithe","Saithe",
+  "MAC",	"Scomber scombrus","mackerel","Mackerel",
+  "HER",	"Clupea harengus","herring","Herring",
+  "SAN",	"Ammodytidae","sandeel",'N.sandeel',
+  "NOP",	"Trisopterus esmarkii","norway pout","Nor.pout",
+  "SPR",	"Sprattus sprattus","sprat",'Sprat',
+  "PLE",  "Pleuronectes platessa","plaice","Plaice",
+  "SOL",	"Solea solea","sole","Sole"),
+  byrow=T,ncol=4)
+colnames(sps)<-c('SMS','latin','species',"Species")
+sps<-as.data.frame(sps)
+
+## Diet files
+files <- list.files()
+files <- files[grep("Hg cons ", files)]
+
+cons.q.area <- list()
+for (fil in files){
+## Extract total consumption per quarter
+  ss<-read_xlsx(path=file.path(fil),sheet="cons") %>% rename(prey=species.name)
+  ss
+  cons.q.area[[fil]] <- by(ss,ss$quarter,function(x){
+    a<-xtabs(cons.t~prey+region,data=x)
+    round(cbind(a,rowSums(a)),2)
+  }) # in tonnes
+nameCons <- lapply(cons.q.area[[fil]], rownames)[[1]]
+  # Change naming so same as SMS
+  nameCons[which(nameCons %in% sps$Species)] <- sort(sps[which(sps$Species %in% nameCons),]$SMS)
+  nameCons[which(nameCons=="Norway pout")] <- "NOP"
+  nameCons[which(nameCons=="Sandeel")] <- "SAN"
+  for (k in 1:length(cons.q.area[[fil]])) rownames(cons.q.area[[fil]][[k]])=nameCons
+}
+
+
+```
+
+
+# Data available
+
+Grey seal diet was made available for the years 1985, 2002, and 2010-2011 by the SMRU (Phil Hammond pers. comm.).
+This includes seal consumption per fish stock included in SMS (`r paste(sps[which(sps$SMS %in% nameCons),"species"], collapse=", ")`) in tonnes per year, quarter (Q1-4), and regions of the North Sea (regions 1-4, Shetland, Orkney and northern North Sea, central North Sea, and southern North Sea respectively). It also includes  outputs from otolith experiments as estimated fish length of fish in the diet given otolith size (per year, region, and quarter). The analysis of seal diet is described in detail in @hammond2016. These data allow to allocate total consumption to length class of fish prey.
+
+# Method to allocate length distribution to grey seal consumption estimates
+
+Each fish length sample is converted to weight using length-weight relationship parameters from @coull1989 (used also in the previous keyruns). The fish weights are summed across regions so that the weight consumed is given per species, length bins, quarters, and year. Weights are then converted to proportion consumed per length bin, and these proportions are multiplied by the total grey seal consumption per species and quarter to obtained the weight of prey consumed per length bin. The biomass of other food eaten by grey seals is derived from the total grey seal consumption per quarter and year.
+
+Two assumptions were made while handling grey seal diet, as follows:  
+- Sprat, which was present in the seal diet was added to other food because of the small total consumption in each year and the lack of length samples.  
+- If there is less than 5 length bins for a prey in one quarter and year, the length distribution from the adjacent quarter is added to these samples. The borrowing is made between quarters 1-2 and quarters 3-4.
+
+The code  for the analysis is available on the [WGSAM GitHub repository](https://github.com/ices-eg/wg_WGSAM/blob/master/NorthSeaKeyRun_2023/Seal_diet/seal_2023.R). The script creates figures of the length distribution before and after borrowing.
+
+
+# References

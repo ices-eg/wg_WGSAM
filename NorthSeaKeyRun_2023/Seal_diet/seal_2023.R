@@ -2,6 +2,9 @@
 ## Analysis grey seal diet data, Vanessa Trijoulet and Morten Vinther ##
 ########################################################################
 
+library(dplyr)
+library(readxl)
+
 source("SMS_r_prog/function/read_l-w_relation.r")
 
 dir <- "NorthSeaKeyRun_2023/Seal_diet/"
@@ -24,7 +27,7 @@ sps<-as.data.frame(sps)
 
 ## Diet files
 files <- list.files(dir)
-files <- files[grep("Hg cons", files)]
+files <- files[grep("Hg cons ", files)]
 
 ## Total consumption per year (including other food), 1=1985, 2=2002, 3=2010-2011
 total_cons <- list()

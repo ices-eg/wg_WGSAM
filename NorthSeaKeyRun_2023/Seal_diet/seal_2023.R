@@ -8,6 +8,10 @@ library(readxl)
 source("SMS_r_prog/function/read_l-w_relation.r")
 
 dir <- "NorthSeaKeyRun_2023/Seal_diet/"
+datadir <- paste0(dir, "data/")
+figdir <- paste0(dir, "figs/")
+dir.create(figdir)
+
 
 sps<-  matrix(c(
   "COD",	"Gadus morhua",	'cod',"Cod",
@@ -26,13 +30,17 @@ colnames(sps)<-c('SMS','latin','species',"Species")
 sps<-as.data.frame(sps)
 
 ## Diet files
-files <- list.files(dir)
-files <- files[grep("Hg cons ", files)]
+filesALL <- list.files(datadir)
+files <- filesALL[grep("Hg cons ", filesALL)]
+
+## Scat number files
+filesScat <- filesALL[grep("OtosScatsQuarterRegion", filesALL)]
+
 
 ## Total consumption per year (including other food), 1=1985, 2=2002, 3=2010-2011
 total_cons <- list()
 for (k in 1:3){
-  total_cons[[k]] <- read_xlsx(path=file.path(dir, "Total Hg consumption North Sea by quarter.xlsx"),sheet=k)
+  total_cons[[k]] <- read_xlsx(path=file.path(datadir, "Total Hg consumption North Sea by quarter.xlsx"),sheet=k)
 }
 
 
@@ -41,7 +49,7 @@ s <- c() # for final output
 for (fil in files){
   
   ## Extract total consumption per quarter
-  ss<-read_xlsx(path=file.path(dir, fil),sheet="cons") %>% rename(prey=species.name)
+  ss<-read_xlsx(path=file.path(datadir, fil),sheet="cons") %>% rename(prey=species.name)
   ss
   cons.q.area <- by(ss,ss$quarter,function(x){
     a<-xtabs(cons.t~prey+region,data=x)
@@ -50,7 +58,7 @@ for (fil in files){
   
   
   ## Extract fish length
-  fishLength<-read_xlsx(path=file.path(dir, fil),sheet="Fish_lengths") %>%
+  fishLength<-read_xlsx(path=file.path(datadir, fil),sheet="Fish_lengths") %>%
     select(region,year,quarter,species=sp.name,l=`fish length`)
   
   fishLength<-left_join(fishLength,sps)
@@ -58,7 +66,7 @@ for (fil in files){
   nsp <- length(sp.names)
   
   ## Attach the length-weight relationship parameters (here same as 2020 keyrun but could be changed if needed, see "Otoliths_porpoise.xlsx")
-  fishLength<-left_join(fishLength,Read.length.weight.relation(dir=dir))
+  fishLength<-left_join(fishLength,Read.length.weight.relation(dir=datadir))
   # length weight relation W=a * Power(L,b)
   # L in mm, W in kg
   # Source Coull, K.K et al. Length/weight relationships for 88 species
@@ -92,8 +100,8 @@ for (fil in files){
       facet_grid(quarter~region) +
       labs(title=unique(fishLength$prey)[sp])
   }
-  pdf(paste0("NorthSeaKeyRun_2023/Seal_diet/Length_distribution_diet_perQuarter&Region_", unique(fishLength$year)[1], ".pdf"), onefile = TRUE)
-    marrangeGrob(p, nrow=1, ncol=1)
+  pdf(paste0(figdir, "Length_distribution_diet_perQuarter&Region_", unique(fishLength$year)[1], ".pdf"), onefile = TRUE)
+    marrangeGrob(print(p), nrow=1, ncol=1)
   dev.off()
   
   p <- list()
@@ -104,8 +112,8 @@ for (fil in files){
       facet_grid(~quarter) +
       labs(title=unique(fishLength$prey)[sp])
   }
-  pdf(paste0("NorthSeaKeyRun_2023/Seal_diet/Length_distribution_diet_perQuarter_", unique(fishLength$year)[1], ".pdf"), onefile = TRUE)
-  marrangeGrob(p, nrow=1, ncol=1)
+  pdf(paste0(figdir, "Length_distribution_diet_perQuarter_", unique(fishLength$year)[1], ".pdf"), onefile = TRUE)
+  marrangeGrob(print(p), nrow=1, ncol=1)
   dev.off()
   
   
@@ -178,8 +186,8 @@ for (fil in files){
       facet_grid(~quarter) +
       labs(title=unique(fishLength$prey)[sp])
   }
-  pdf(paste0("NorthSeaKeyRun_2023/Seal_diet/Length_distribution_diet_perQuarter_with_borrowing_", unique(fishLength$year)[1], ".pdf"), onefile = TRUE)
-  marrangeGrob(p, nrow=1, ncol=1)
+  pdf(paste0(figdir, "Length_distribution_diet_perQuarter_with_borrowing_", unique(fishLength$year)[1], ".pdf"), onefile = TRUE)
+  marrangeGrob(print(p), nrow=1, ncol=1)
   dev.off()
   
   
@@ -239,7 +247,14 @@ for (fil in files){
   propFishPerLengthBin$pred_lu=1200
   propFishPerLengthBin$CPUE=1
   propFishPerLengthBin$fish_id=paste(propFishPerLengthBin$year,propFishPerLengthBin$quarter,sep='_')
-  propFishPerLengthBin$n_food=10
+  ## Extract number of scat samples per quarter (to use as information for uncertainty in stomachs)
+  scatfil <- filesScat[grep(year, filesScat)]
+  numScat <- read.csv(paste0(datadir, scatfil))
+  numScat <- subset(numScat, region %in% 1:4)
+  numScatPerQ <- xtabs(no.scats~quarter, data=numScat)
+  propFishPerLengthBin$n_food=NA
+  for (q in 1:4) propFishPerLengthBin$n_food[which(propFishPerLengthBin$quarter==q)] <- numScatPerQ[as.character(q)]
+  ## 
   propFishPerLengthBin$n_regur=0
   propFishPerLengthBin$n_empty=0
   propFishPerLengthBin$n_skel=0
@@ -263,7 +278,7 @@ for (fil in files){
   propFishPerLengthBin[propFishPerLengthBin$prey_name=='OTH','prey_ll']<-NA
   propFishPerLengthBin[propFishPerLengthBin$prey_name=='OTH','prey_lu']<-NA
   
-  save(propFishPerLengthBin, file=paste0("NorthSeaKeyRun_2023/Seal_diet/propFishPerLengthBin_", year, ".RData"))
+  save(propFishPerLengthBin, file=paste0(dir, "propFishPerLengthBin_", year, ".RData"))
   
   ## Merge all years
   s <- rbind(s, propFishPerLengthBin)
@@ -272,5 +287,5 @@ for (fil in files){
 
 }
 
-write.csv(s,file='NorthSeaKeyRun_2023/Seal_diet/adjusted_seal_diet.csv')
+write.csv(s,file=paste0(dir, 'adjusted_seal_diet.csv'), row.names = FALSE)
 

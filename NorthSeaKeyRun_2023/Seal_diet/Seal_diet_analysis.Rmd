@@ -27,13 +27,14 @@ colnames(sps)<-c('SMS','latin','species',"Species")
 sps<-as.data.frame(sps)
 
 ## Diet files
-files <- list.files()
+datadir <-"data/"
+files <- list.files(datadir)
 files <- files[grep("Hg cons ", files)]
 
 cons.q.area <- list()
 for (fil in files){
 ## Extract total consumption per quarter
-  ss<-read_xlsx(path=file.path(fil),sheet="cons") %>% rename(prey=species.name)
+  ss<-read_xlsx(path=file.path(datadir, fil),sheet="cons") %>% rename(prey=species.name)
   ss
   cons.q.area[[fil]] <- by(ss,ss$quarter,function(x){
     a<-xtabs(cons.t~prey+region,data=x)
@@ -46,8 +47,6 @@ nameCons <- lapply(cons.q.area[[fil]], rownames)[[1]]
   nameCons[which(nameCons=="Sandeel")] <- "SAN"
   for (k in 1:length(cons.q.area[[fil]])) rownames(cons.q.area[[fil]][[k]])=nameCons
 }
-
-
 ```
 
 
@@ -59,9 +58,11 @@ This includes seal consumption per fish stock included in SMS (`r paste(sps[whic
 # Method to allocate length distribution to grey seal consumption estimates
 
 Each fish length sample is converted to weight using length-weight relationship parameters from @coull1989 (used also in the previous keyruns). The fish weights are summed across regions so that the weight consumed is given per species, length bins, quarters, and year. Weights are then converted to proportion consumed per length bin, and these proportions are multiplied by the total grey seal consumption per species and quarter to obtained the weight of prey consumed per length bin. The biomass of other food eaten by grey seals is derived from the total grey seal consumption per quarter and year.
+The output csv file ("adjusted_seal_diet.csv") contains the biomass of prey eaten by all grey seals (column "prey_w") per length bin, quarter, and year.
+The number of scat samples per quarter and year is used to give information on uncertainty in the diet data, those are added to the column "n_food" in the output diet file.
 
 Two assumptions were made while handling grey seal diet, as follows:  
-- Sprat, which was present in the seal diet was added to other food because of the small total consumption in each year and the lack of length samples.  
+- Sprat was added to other food because of the small total consumption in each year and the lack of length samples (was already other food in the 2020 keyrun).  
 - If there is less than 5 length bins for a prey in one quarter and year, the length distribution from the adjacent quarter is added to these samples. The borrowing is made between quarters 1-2 and quarters 3-4.
 
 The code  for the analysis is available on the [WGSAM GitHub repository](https://github.com/ices-eg/wg_WGSAM/blob/master/NorthSeaKeyRun_2023/Seal_diet/seal_2023.R). The script creates figures of the length distribution before and after borrowing.

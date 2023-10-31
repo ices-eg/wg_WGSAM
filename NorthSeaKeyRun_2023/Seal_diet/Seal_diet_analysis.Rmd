@@ -1,7 +1,8 @@
 ---
 title: "Seal diet analysis"
 author: "Vanessa Trijoulet"
-output: bookdown::word_document2  
+output: bookdown::word_document2
+#always_allow_html: true
 bibliography: biblio.bib
 ---
 
@@ -66,6 +67,26 @@ Two assumptions were made while handling grey seal diet, as follows:
 - If there is less than 5 length bins for a prey in one quarter and year, the length distribution from the adjacent quarter is added to these samples. The borrowing is made between quarters 1-2 and quarters 3-4.
 
 The code  for the analysis is available on the [WGSAM GitHub repository](https://github.com/ices-eg/wg_WGSAM/blob/master/NorthSeaKeyRun_2023/Seal_diet/seal_2023.R). The script creates figures of the length distribution before and after borrowing.
+
+
+# Method to split sandeel diet per area (northern or southern North Sea)
+
+Sandeel in the North Sea area managed as six individually assessed stocks. Given the lack of input data at the correct spatial scale, two sandeel stocks are considered in SMS and split into northern and southern North Sea stocks. In the previous SMS keyruns, the total grey seal predation was attributed to the northern sandeel stock. In the 2023 keyrun, proportion of sandeel consumed by grey seals was extracted from the diet data with the assumption that the northern areas correspond to Shetland, Orkney and northern North Sea, and the southern area to the central North Sea, and the southern North Sea. This resulted in the proportions in Table \@ref(tab:propSandeel). These proportions are used to split the diet data between northern and southern sandeel.
+
+```{r propSandeel, echo=FALSE, warning=FALSE, message=FALSE}
+# From consumption of sandeel
+# Assumption North = Shetland, Orkney and northern North Sea, South = central North Sea, and southern North Sea
+tmp <- lapply(cons.q.area, function(y) sapply(y, function(x) x["SAN", c("1","2","3","4")])) # row=region, col=quarter
+tmp2 <- lapply(tmp, function(x) cbind("North" = apply(x[c("1","2"),],2,sum)/apply(x,2,sum), "South" = apply(x[c("3","4"),],2,sum)/apply(x,2,sum)))
+propSandeel <-cbind(tmp2[[1]], tmp2[[2]], tmp2[[3]])
+colnames(propSandeel) <- paste(c(rep("1985 ",2), rep("2002 ",2), rep("2010 ",2)), colnames(propSandeel))
+rownames(propSandeel) <- paste("Quarter ", 1:4)
+
+knitr::kable(propSandeel, digits=3, caption = "Proportion of sandeel consumed per area")
+#x %>% add_header_above(c('1985'=2,'2002'=2,'2010'=2))
+#x %>% as_image()
+```
+
 
 
 # References

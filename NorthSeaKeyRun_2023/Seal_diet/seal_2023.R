@@ -80,14 +80,13 @@ for (fil in files){
   fishLength<-fishLength %>% mutate(lowpreyl=round(trunc(l)),higpreyl=round(trunc(l)+1))
 
   
-  # ## For 1985, no samples in region 1, Phil Hammond extrapolated them by assuming diet composition was the same as in region 2
-  # ## So need to assume the same length distribution as region 2 here, right? Or not needed because we sum across regions?
-  # ## NEEDS CHECKING!!!!!!!!!!!!!!!!!
-  # if (length(grep("1985", fil))>0){
-  #   tmp <- subset(fishLength, region==2)
-  #   tmp$region <- 1
-  #   fishLength <- rbind(fishLength, tmp)
-  # }
+  ## For 1985, no samples in region 1, Phil Hammond extrapolated them by assuming diet composition was the same as in region 2
+  ## So need to assume the same length distribution as region 2 here, right? Or not needed because we sum across regions?
+  if (length(grep("1985", fil))>0){
+    tmp <- subset(fishLength, region==2)
+    tmp$region <- 1
+    fishLength <- rbind(fishLength, tmp)
+  }
   
   ## Make plot of length distribution per quarter
   library(gridExtra)
@@ -190,10 +189,19 @@ for (fil in files){
   marrangeGrob(print(p), nrow=1, ncol=1)
   dev.off()
   
+  ## Random sampling of the otoliths (scats) so we weight the length/weight distribution with consumption per quarter and region aggregated across prey
+  ## Weights by consum per quarter and region
+  weightsConsum=sapply(cons.q.area, function(x) apply(x[,1:4],2,sum)/sum(x[,1:4])) # col=quarter, row=region
+  
+  ## Calculate weighted w
+  fishLength$weightedW <- NA
+  for (k in 1:nrow(fishLength)){
+    fishLength$weightedW[k] <- fishLength$w[k]*weightsConsum[as.character(fishLength$region[k]),as.character(fishLength$quarter[k])]
+  }
   
   ## Aggregate weight consumed by quarter so that we have more samples (no more regions)
   fishWperLengthBin<-fishLength %>% group_by(quarter,latin,prey,lowpreyl,higpreyl) %>% 
-    summarize(meanW=mean(w),meanL=mean(l),w=sum(w), nfish=n()) %>% ungroup()
+    summarize(meanW=mean(weightedW),meanL=mean(l),w=sum(weightedW), nfish=n()) %>% ungroup()
   
 
   ## Estimate weight consumed in terms of proportion per length bin (W_percent)

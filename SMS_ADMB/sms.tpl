@@ -33,7 +33,7 @@ GLOBALS_SECTION
  // date and time
  char dateStr [40];
  // char f_timeStr [9];
- time_t start_time,end_time;
+ time_t startTime,end_time;
 
  // headers for output tables
  vector<const char*> obj_tab = {"     Catch", 
@@ -50,7 +50,7 @@ GLOBALS_SECTION
                              
 DATA_SECTION
 
- !! cout<<"SMS version August 2022 using ADMB version 12.2"<<endl;
+ !! cout<<"SMS version October 2023 using ADMB version 13.1"<<endl;
 
  
 
@@ -60,7 +60,7 @@ DATA_SECTION
   !! cout<<dateStr<<endl;
 
 
- !! time(&start_time);
+ // !! time(&startTime);       moved to TOP_OF_MAIN_SECTION
 
  !! int par_file=0;
  int mceval
@@ -351,13 +351,13 @@ DATA_SECTION
  
  ivector obj_out(1,7)    // include in output tabs (Catch, CPUE, SSB/R, stomach, stomach length dist,other_pred_noise, penalty) by species
  
- // 0= no technical creeping, 1=year specific creep, 2=age specific creep
- // ivector use_creep(first_VPA,nsp);
- // ivector creep_option(first_VPA,nsp)
- // !!  for (s=first_VPA;s<=nsp;s++) {
- // !!   use_creep(s)= -obj_weight(s,4);
- // !!   obj_weight(s,4)=0;
- // !! }
+ // # 0= no technical creeping, 1=year specific creep, 2=age specific creep
+ ivector use_creep(first_VPA,nsp);
+ ivector creep_option(first_VPA,nsp)
+ !!  for (s=first_VPA;s<=nsp;s++) {
+ !!   use_creep(s)= -obj_weight(s,5);
+ !!   obj_weight(s,5)=0;
+ !! }
   
  // phases for single species parameter estimation
  int phase_single_species_fixed;
@@ -556,7 +556,7 @@ DATA_SECTION
  !! if (multi==0) ad_comm::change_datafile_name("just_one.in");
 
  init_int incl_stom_all; 
- !! if (test_output==1 && multi>0) cout<<"Include selected stomachs option (option incl.stom.all):"<<endl<<incl_stom_all<<endl;
+ !! if (test_output==1 && multi>0) cout<<"Include selected stomachs option (option incl.stom.all): "<<incl_stom_all<<endl;
    
  init_int use_Nbar          // Stock numbers used in fitting suitability paramters.
                             // (0: Use N; 1 Use mean N) 
@@ -575,19 +575,22 @@ DATA_SECTION
  //#  3 =Gamma distribution for prey absolute weight and size selection from prey numbers
  !! if (test_output==1 && multi>0) cout <<"stom.likelihood: "<<stom_likelihood<<endl;
  
- init_int stomach_variance  // stomach variance model, 1=log normal distributed; 2=normal distributed; 3= Dirichlet, 
+ init_int stomach_variance  // stomach variance model, 1=log normal distributed; 2=normal distributed; 3= Dirichlet;  4= Dirichlet with input alfa0  5= Dirichlet with input max alfa0
  !! if (test_output==1 && multi>0) cout <<"stomach.variance: "<<stomach_variance<<endl;
+
+ ivector diri_alpha0(1,npr);
+ !! if (stomach_variance==4) {stomach_variance=3; diri_alpha0=1;}
+ !! else if (stomach_variance==5) {stomach_variance=3; diri_alpha0=2;} else diri_alpha0=0;     // may be changed if there are no input alpha0
  
- 
-  init_int simple_ALK   // use age-size-key for calculation of M2 values
+ init_int simple_ALK   // use age-size-key for calculation of M2 values
     //  0=Use only one sizegroup per age (file lsea.in or west.in)
     //  1=Use size distribution per age (file ALK_all.in)
-   !! if (test_output==1 && multi>0) cout <<"simple.ALK: "<<simple_ALK<<endl;
+ !! if (test_output==1 && multi>0) cout <<"simple.ALK: "<<simple_ALK<<endl;
 
-  init_int consum_op   // Use food-rations from input values or from size and regression parameters (option consum)
+ init_int consum_op   // Use food-rations from input values or from size and regression parameters (option consum)
      //  0=Use input values by age (consum.in)
      // 1=use weight at size and regression parameters (consum_ab.in)
-   !! if (test_output==1 && multi>0) cout <<"consum: "<<consum_op<<endl;
+ !! if (test_output==1 && multi>0) cout <<"consum: "<<consum_op<<endl;
 
 
  init_int size_select_model // Use length or weight proportion in size selection model; 
@@ -735,16 +738,13 @@ DATA_SECTION
  !! if (test_output==1 && multi>0) cout<<"phase.mesh.adjust: "<<phase_mesh_adjust<<endl;
 
  // the sms.dat file has now been read.
- 
- 
+
  // Read data for short term forecast, if requested     
  !! if (do_short_term_forecast>0) ad_comm::change_datafile_name("short-term-configuration.dat");
  !! else ad_comm::change_datafile_name("just_one.in");
  init_int no_F_multipliers
  init_matrix F_multipliers(first_VPA,nsp,1,no_F_multipliers)
  init_vector rec_TAC_year(first_VPA,nsp)
-
-
 
     // season with no fishery and no F
  !! if (zero_catch_year_season==1) ad_comm::change_datafile_name("zero_catch_year_season.in");
@@ -816,7 +816,7 @@ DATA_SECTION
  !! }
 
 
- // read quaterly distribution of F
+ // read quarterly distribution of F
  !! if (seasonal_annual_catches_any==1) ad_comm::change_datafile_name("f_q_ini.in"); 
  !! else ad_comm::change_datafile_name("just_one.in");
  
@@ -1735,6 +1735,18 @@ DATA_SECTION
  //!! cout<<"Normalised total effort:"<<endl<<effort<<endl;
 
 
+ //*********************************************************************************************
+ // read options for skill assessment
+ // !! if (do_short_term_forecast>0) ad_comm::change_datafile_name("skill_options.dat");
+ // init_int skill_cpue_use
+ // !! if (skill_cpue_use==1) ad_comm::change_datafile_name("skill_cpue.in");
+ // !! else ad_comm::change_datafile_name("just_one.in");
+ // init_3darray skill_cpue_year(first_VPA,nsp,1,n_fleet,fyData,lyData+1)
+ // !! cout<<"n_fleet: "<<endl<<n_fleet<<endl;
+ // !!cout<<"skill_cpue_year:"<<endl<< skill_cpue_year<<endl;
+ // init_number checkSkill;
+ // !! if (skill_cpue_use==1) checkSum(checkSkill,"skill_cpue.in");
+
  //********************************************************************************************* 
  //
  
@@ -2252,7 +2264,7 @@ DATA_SECTION
  !! }
  //!! if (no_season_overlap_to_estimate==0) no_season_overlap_to_estimate=1;        // for construction of data structure later on
  //!! else
- !! if (mceval==0 && multi>=1) {
+ !! if (mceval==0 && multi>=1 && test_output>=1) {
  !!   cout <<"no_season_overlap_to_estimate:  "<<no_season_overlap_to_estimate<<endl;
  !!   cout <<"season_overlap_input:"<<endl<<season_overlap_input<<endl;
  !!   cout <<"season_overlap_index:"<<endl<<season_overlap_index<<endl; 
@@ -2682,6 +2694,14 @@ DATA_SECTION
  !! if (multi>0) checkSum(check24,"stomweight_at_length.in"); 
  matrix prey_size(1,n_stl_yqdpl,1,l_stl_yqdplpl);     //size (length or weight) of prey per length class group
 
+  //*********************************************************************************************
+  // known uncertanty of Dirichlet distributed stomach contents   April 2023
+ !! if (test_output==3 && multi>0) cout<<"starts reading file: stom_dirichlet_at sizecl.in"<<endl;
+ !!  if (multi>=1 & sum(diri_alpha0)>=1) ad_comm::change_datafile_name("stom_pred_dirchlet.in");
+ init_vector Dirichlet_p0(1,n_stl_yqdpl); // "Concentration parameter" (a0 or p0) for the Dirichlet distribution
+ !! if (test_output==3 && multi>0) cout<<"Dirichlet concentration parameter from file  stom_dirichlet_at sizecl.in:"<<endl<<Dirichlet_p0<<endl;
+ matrix stl_stom_diri_var(1,n_stl_yqdpl,1,l_stl_yqdplpl);  // variance of stomach contents derived from  Dirichlet_p0 and  stl_stom
+
 
  //********************************************************************************************* 
  !! if (test_output==3 && multi>0) cout<<"starts reading file: stom_pred_length_at_sizecl.in"<<endl; 
@@ -2732,7 +2752,7 @@ DATA_SECTION
  !! if (test_output==3 && multi>0) cout<<"starts reading file: n_haul_at_length.in"<<endl;
  !!  if (multi>=1) ad_comm::change_datafile_name("n_haul_at_length.in");
  init_matrix stl_N_haul(1,n_stl_yqdpl,1,l_stl_yqdplpl); //Number of hauls per predator length, including copies to fit structure
- !! if (test_output==3 && multi>0) cout<<"Number of hauls from file N_haul_at_length.in:"<<endl<<stl_N_haul<<endl;
+ !! if (test_output==3 && multi>0) cout<<"Number of hauls from file N_haul_at_length.in:"<<endl<<stl_N_haul<<endl<<"done!"<<endl;
  
  //********************************************************************************************* 
  matrix stl_no_samples(1,n_stl_yqdpl,1,l_stl_yqdplpl); //Number no of hauls
@@ -2761,9 +2781,12 @@ DATA_SECTION
           //cout<<"area: "<< stl_yqd(sd,1)<<endl;
           for (sp=stl_yqd(sd,2);sp<=stl_yqd(sd,3);sp++) {
              s=stl_yqdp(sp,1);
-             //cout<<"predator: "<<s<<"  ";
+              //cout<<"predator: "<<s<<"  ";
              for (spl=stl_yqdp(sp,2);spl<=stl_yqdp(sp,3);spl++) {
                 //cout<<"predator length:"<<stl_yqdpl(spl,1)<<endl;
+                if (stomach_variance==3) {
+                   if (Dirichlet_p0(spl)<=0) diri_alpha0(s)=0;
+                }
                 int ll=0; 
                 //cout<<incl_stom_out(d,stl_yqdp(sp,1),stl_yq(sq,1),stl_yqdpl(spl,1),sy)<<" "<< stl_no_samples(spl,1)<<"  "<<incl_stom_out(d,stl_yqdp(sp,1),stl_yq(sq,1),stl_yqdpl(spl,1),sy)-stl_no_samples(spl,1) <<endl;
                 if ((incl_stom_out(d,stl_yqdp(sp,1),stl_yq(sq,1),stl_yqdpl(spl,1),sy)==0) && (stl_no_samples(spl,1)!=0) && (incl_stom_all==1)) {
@@ -2832,19 +2855,31 @@ DATA_SECTION
  //********************************************************************************************* 
  !! if (multi>=1 && nOthPred>0) ad_comm::change_datafile_name("other_pred_n_noise.dat");
  !! else ad_comm::change_datafile_name("just_one.in");
+ 
  init_int other_pred_noise_model  // 1=no noise, 2=from scaling factors  with mean 1 and std of the mean at a level set at target, 3=from noise on observations
+ !!  if (test_output==1 && multi>=1 && nOthPred>0  && other_pred_noise_model>1) cout <<"other_pred_noise_model: "<<other_pred_noise_model<<endl;
  init_int phase_other_pred_noise_fac
+ !!  if (test_output==1 && multi>=1 && nOthPred>0 && other_pred_noise_model>1) cout <<"phase_other_pred_noise_fac: "<<phase_other_pred_noise_fac<<endl;
  init_number other_pred_noise_fac_lower
+ !!  if (test_output==1 && multi>=1 && nOthPred>0 && other_pred_noise_model>1) cout <<"other_pred_noise_fac_lower: "<<other_pred_noise_fac_lower<<endl;
  init_number other_pred_noise_fac_upper
+ !!  if (test_output==1 && multi>=1 && nOthPred>0 && other_pred_noise_model>1) cout <<"other_pred_noise_fac_upper: "<<other_pred_noise_fac_upper<<endl;
  init_vector obj_weight_other_pred_noise_fac(1,nOthPred)
+ !!  if (test_output==1 && multi>=1 && nOthPred>0 && other_pred_noise_model>1) cout <<"obj_weight_other_pred_noise_fac: "<<endl<<obj_weight_other_pred_noise_fac<<endl;
  init_int other_pred_noise_var
+ !!  if (test_output==1 && multi>=1 && nOthPred>0 && other_pred_noise_model>1) cout <<"other_pred_noise_var: "<<other_pred_noise_var<<endl;
  init_number other_pred_noise_var_lower
+ !!  if (test_output==1 && multi>=1 && nOthPred>0 && other_pred_noise_model>1) cout <<"other_pred_noise_var_lower: "<<other_pred_noise_var_lower<<endl;
  init_number other_pred_noise_var_upper
-  init_int nobs_other_pred_noise
+ !!  if (test_output==1 && multi>=1 && nOthPred>0  && other_pred_noise_model>1) cout <<"other_pred_noise_var_upper: "<<other_pred_noise_var_upper<<endl;
+ init_int nobs_other_pred_noise
+ !!  if (test_output==1 && multi>=1 && nOthPred>0  && other_pred_noise_model>1) cout <<"nobs_other_pred_noise: "<<nobs_other_pred_noise<<endl;
  init_ivector other_pred_noise_age_use(1,nOthPred)   // -1: no noise, 1: same noise for all ages, 2:age dependent noise 
+ !!  if (test_output==1 && multi>=1 && nOthPred>0  && other_pred_noise_model>1) cout <<"other_pred_noise_age_use: "<<endl<<other_pred_noise_age_use<<endl;
+
  imatrix other_pred_noise_index(1,nOthPred,fa_other,la)
  
-  
+
  
  
  !! if (other_pred_noise_model==3)  for (s=1;s<=nOthPred;s++) if (other_pred_noise_age_use(s)==2) {
@@ -2853,6 +2888,8 @@ DATA_SECTION
  !! } 
 
  int no_other_pred_noise;
+  !!  if (test_output==1 && multi>=1 && nOthPred>0  && other_pred_noise_model>1) cout <<"no_other_pred_noise: "<<endl<<no_other_pred_noise<<endl;
+
  !! no_other_pred_noise=0;
  !! for (s=1;s<=nOthPred;s++) for (a=fa_other(s);a<=la(s);a++) {
  !!   other_pred_noise_index(s,a)= -1;
@@ -2861,15 +2898,18 @@ DATA_SECTION
  !!   if (other_pred_noise_age_use(s) ==1 || other_pred_noise_age_use(s) ==2) other_pred_noise_index(s,a)=no_other_pred_noise;
  !! }
  
- !! if (other_pred_noise_model>1) cout<<setfixed()<<setprecision(3)<< "other_pred_noise_model: "<<other_pred_noise_model<<endl<<
- !! "  no_other_pred_noise:" <<no_other_pred_noise<<"  other_pred_noise_fac_lower:"<<other_pred_noise_fac_lower<<
- !! "  other_pred_noise_fac_upper:"<<other_pred_noise_fac_upper<<endl<<
+ !! if (other_pred_noise_model>1) {
+ !! cout<<setfixed()<<setprecision(3)<<
+ !! "other_pred_noise_model: "<<other_pred_noise_model<<endl<<
  !! "  phase_other_pred_noise_fac:"<<phase_other_pred_noise_fac<< endl<<
- !! "  other_pred_noise_var:"<<other_pred_noise_var<<
- !! "  other_pred_noise_var_lower:"<<other_pred_noise_var_lower<<
- !! "  other_pred_noise_var_upper:"<<other_pred_noise_var_upper<<endl ;
-
-  
+ !! "  other_pred_noise_fac_lower:"<<other_pred_noise_fac_lower<<
+ !! "  other_pred_noise_fac_upper:"<<other_pred_noise_fac_upper<<endl<<
+ !! "  obj_weight_other_pred_noise_fac: "<<obj_weight_other_pred_noise_fac<<endl<<
+ !! "  other_pred_noise_var:"<<other_pred_noise_var<< endl<<
+ !! "    other_pred_noise_var_lower:"<<other_pred_noise_var_lower<<
+ !! "  other_pred_noise_var_upper:"<<other_pred_noise_var_upper<<
+ !! "  nobs_other_pred_noise: "<<nobs_other_pred_noise<<endl;
+ !! }
  ivector other_pred_noise_sp(1,no_other_pred_noise)
  
  !! i=0;
@@ -2898,7 +2938,7 @@ DATA_SECTION
 
  !! if ( any_other_pred_noise==0) phase_other_pred_noise_fac= -1;
  
- 
+ //!! cout<<"phase_other_pred_noise_fac:  "<<phase_other_pred_noise_fac<<endl;
  
  // ******************************************************************************************
  
@@ -3045,6 +3085,8 @@ DATA_SECTION
  // !! cout <<"no. of Pred and prey species comb: "<< no_of_pred_prey_comb<<endl;
  // !! cout <<"pred_prey_comb(pred,prey):"<<endl<<pred_prey_comb<<endl;
 
+  !! if (test_output>=1) cout << endl << "Preprocessing of multispecies data completed" << endl;
+
  //********************************************************************************************* 
  !! if (multi==0) {
  !!  phase_vulnera=phase_stl_other_suit_slope=phase_pref_size_ratio=phase_pref_size_ratio_correction=phase_prey_size_adjustment=phase_var_size_ratio=phase_season_overlap=phase_Stom_var=phase_mesh_adjust=-1;
@@ -3115,7 +3157,7 @@ DATA_SECTION
  4darray          tmp_recruit(1,ndim,1,no_MCMC_iterations,first_VPA,nsp,fyModel,lpy);
 
  int sdReportYear;
- !! sdReportYear=min(30,lyModel-fyModel);        // number of years in SD report for mean F and SSB
+ !! sdReportYear=min(20,lyModel-fyModel);        // number of years in SD report for mean F and SSB
  !! sdReportYear=lyModel-fyModel;        // number of years in SD report for mean F and SSB
  
   // !! cout <<"sdReportYear"<<sdReportYear<<endl;
@@ -3139,7 +3181,7 @@ DATA_SECTION
      Mnpr=0;
   }
  END_CALCS
-  
+
  init_matrix cons_multiplier_options(1,Mnpr,1,4)          // value lower limit, upper limit and phase by species
  
  init_number checkcons_multiplier_options;
@@ -3162,8 +3204,11 @@ DATA_SECTION
    }
  END_CALCS
  // END Consumption multiplier
+
+ ivector trans_diri(1,npr);
   
-  
+ !! if (test_output>=1) cout<<endl<< "DATA_SECTION completed"<<endl;
+
 
 
  // ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤
@@ -3184,19 +3229,17 @@ INITIALIZATION_SECTION
   //qq_efficiency 0.0
   qq_power_ini 1.0
   init_s1 10.0
-  // creep 1.0             // technical creep
+  creep 1.0             // technical creep
   //init_L50 100
 
- 
- 
-  
- 
-// ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤
+ // ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤
  // ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤
 
 
 PARAMETER_SECTION
   
+   !! if (test_output>=1) cout << "PARAMETER SECTION initiated"<<endl;
+
 
  // file for attributes like year, species and age to estimated paramerter. 
  // Dessigned to be used together with the sms.std and sms.cor files
@@ -3318,12 +3361,11 @@ PARAMETER_SECTION
 
  // MV:log_F_a_ini (init_3darray) are not included in gradient.dat as the type is init_3darray  ?! but I cannot make the init_bounded_matrix_vector to work
  //!! ivector phase_log_F_a_ini_vec(first_VPA,nsp);
- //!! for (s=first_VPA;s<=nsp;s++) phase_log_F_a_ini_vec(s)=phase_log_F_a_ini;  
- //init_matrix_vector log_F_a_ini(first_VPA,nsp,cfa,las,0,no_F_y_groups,phase_log_F_a_ini_vec)               
- // init_bounded_matrix_vector log_F_a_ini(first_VPA,nsp,cfa,las,0,no_F_y_groups,0,3,phase_log_F_a_ini_vec)               
- 
+ //!! for (s=first_VPA;s<=nsp;s++) phase_log_F_a_ini_vec(s)=phase_log_F_a_ini;
+ //init_matrix_vector log_F_a_ini(first_VPA,nsp,cfa,las,0,no_F_y_groups,phase_log_F_a_ini_vec)
+ //init_matrix_vector log_F_a_ini(first_VPA,nsp,cfa,las,0,no_F_y_groups,1)
 
- init_3darray log_F_a_ini(first_VPA,nsp,cfa,las,0,no_F_y_groups,phase_log_F_a_ini)               
+ init_3darray log_F_a_ini(first_VPA,nsp,cfa,las,0,no_F_y_groups,phase_log_F_a_ini)
  !! if  (phase_log_F_a_ini>0) {
  !!   for (s=first_VPA;s<=nsp;s++) for (a=cfa(s);a<=las(s);a++) for (i=1;i<= n_catch_sep_year_group(s);i++) {
  !!     parNo++;
@@ -3333,21 +3375,21 @@ PARAMETER_SECTION
   
   
  // technical creep factor by age (or common for all ages)  and separability group 
- // !! int phase_creep;
- // !! phase_creep=2;          
- // !! for (s=first_VPA;s<=nsp;s++) {
- // !!   if (use_creep(s)==2) creep_option(s)= las(s);
- // !!   else if (use_creep(s)==1) creep_option(s)=cfa(s);
- // !!   else {creep_option(s)=-1;  phase_creep=-1; }
- // !! }
+ !! int phase_creep;
+ !! phase_creep=2;
+ !! for (s=first_VPA;s<=nsp;s++) {
+ !!   if (use_creep(s)==2 && do_effort(s)==1) creep_option(s)= las(s);
+ !!   else if (use_creep(s)==1 && do_effort(s)==1) creep_option(s)=cfa(s);
+ !!   else {creep_option(s)=-1;  phase_creep=-1; }
+ !! }
  //
- // init_3darray creep(first_VPA,nsp,cfa,creep_option,0,no_F_y_groups,phase_creep)               
- // !! if  (phase_log_F_a_ini>0) {
- // !!   for (s=first_VPA;s<=nsp;s++) if (use_creep(s)>0) for (a=cfa(s);a<=creep_option(s);a++) for (yy=1;yy<= n_catch_sep_year_group(s);yy++) {
- // !!     parNo++;
- // !!     parexp<<"creep "<<parNo<<" "<<s<<" "<<catch_sep_year(s,yy)<<" -1 -1 "<<a<<" -1 -1 -1 -1 -1 "<<" used"<<endl; 
- // !!   }
- // !! }                                                        
+ init_3darray creep(first_VPA,nsp,cfa,creep_option,0,no_F_y_groups,phase_creep)
+ !! if  (phase_log_F_a_ini>0) {
+ !!   for (s=first_VPA;s<=nsp;s++) if (use_creep(s)>0) for (a=cfa(s);a<=creep_option(s);a++) for (int yy=1;yy<= n_catch_sep_year_group(s);yy++) {
+ !!     parNo++;
+ !!     parexp<<"creep "<<parNo<<" "<<s<<" "<<catch_sep_year(s,yy)<<" -1 -1 "<<a<<" -1 -1 -1 -1 -1 "<<" used"<<endl;
+ !!   }
+ !! }
  
     
  // variance at age for catch at age observations
@@ -3734,12 +3776,14 @@ PARAMETER_SECTION
  !! phase_Stom_var2=phase_Stom_var;  
  //!! cout<<"phase_Stom_var2:"<<phase_Stom_var2<<endl;
  // !! cout<<"n:"<<n<<endl;  
- !! for (s=1;s<=n;s++) { 
+
+ // !! cout<<" &&&&&&&&&&&&&&&&&&&&&&&&& stomach_variance:  " << stomach_variance<<endl;
+ !! for (s=1;s<=n;s++) {
  //  !!  if ( max_no_samples(s) > max_stom_sampl(s))  max_no_samples(s)= max_stom_sampl(s);  // NY
  !!  if (stomach_variance==1 || stomach_variance==2) {
  !!   Stom_var_l(s)= 0.0001;
  !!   Stom_var_u(s)= 1000.0;
- !!  }      
+ !!  }
  !!  else if (stomach_variance==3) {  // Dirichlet
  !!   Stom_var_l(s)=1.00000001/min_no_samples(s)/Stom_var_fac(s);  // to ensure p >0
  //!!   Stom_var_u(s)= stomMaxSumP(s)*Stom_var_l(s);
@@ -3762,7 +3806,26 @@ PARAMETER_SECTION
  !! }
  
  !! if (multi==0) n=0;
- init_bounded_number_vector Stom_var(1,n,Stom_var_l,Stom_var_u,phase_Stom_var2);
+ !! cout<<endl<<"diri_alpha0: "<<diri_alpha0<<"  sum:"<<sum(diri_alpha0)<<endl;
+ !! int n_diri_used;
+ !! n_diri_used=0; for (p=1;p<=n;p++) if (diri_alpha0(p)==0  || diri_alpha0(p)==2 ) n_diri_used++;
+ !! dvector Stom_var_l2(1,n_diri_used);
+ !! dvector Stom_var_u2(1,n_diri_used);
+ !! ivector phase_Stom_var3(1,n_diri_used);
+ !! // defined in DATA_SECTION !! ivector trans_diri(1,n);
+ !! n_diri_used=0; trans_diri=0;
+ !! for (p=1;p<=n;p++) {
+ !!   if (diri_alpha0(p)==0  || diri_alpha0(p)==2 ) {
+ !!      n_diri_used++;
+ !!      trans_diri(p)= n_diri_used;
+ !!      Stom_var_l2(n_diri_used) =  Stom_var_l(p);
+ !!      Stom_var_u2(n_diri_used) =  Stom_var_u(p);
+ !!      phase_Stom_var3(n_diri_used) =  phase_Stom_var2(p);
+ !!   }
+ !! }
+ //!! cout<<"ÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆÆ"<<endl<<" trans_diri: "<<endl<<trans_diri<<endl<<"n_diri_used: "<<n_diri_used<<endl;;
+
+ init_bounded_number_vector Stom_var(1,n_diri_used,Stom_var_l2,Stom_var_u2,phase_Stom_var3);
  !! if (multi>0) for (p=1;p<=n;p++) if (phase_Stom_var2(n)>0){
  !!      parNo++; parexp<<"Stom_var "<<parNo<<" -1 -1 -1 -1 -1 "<<p<<" -1  -1 "<<p<<" -1 -1"<<" used"<<endl; 
  !!  }
@@ -3932,17 +3995,17 @@ PARAMETER_SECTION
  //sdreport_matrix next_TSB(first_VPA,nsp,lyModel+1,lyModel+1);
  //!! for (s=first_VPA;s<=nsp;s++)  for (y=lyModel+1;y<=lyModel+1;y++) {parNo++;  parexp<<"next_TSB "<<parNo<<" "<<s<<" "<<y<<" "<<fq<<" -1 -1 -1 -1 -1 "<<s<<" "<<y<<" -1"<<" used"<<" used"<<endl; }
 
- //matrix M2_sd0(1,nprey,lyModel-sdReportYear,lyModel)
- sdreport_matrix M2_sd0(1,nprey,lyModel-sdReportYear,lyModel)
- !! for (s=first_VPA;s<=nsp;s++) if (is_prey(s)==1) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"M2_sd0 "<<parNo<<" "<<s<<" "<<y<<" -1 -1 0 -1 -1 -1 "<<s<<" "<<y<<" -1"<<" used"<<endl; }
+ matrix M2_sd0(1,nprey,lyModel-sdReportYear,lyModel)
+ //sdreport_matrix M2_sd0(1,nprey,lyModel-sdReportYear,lyModel)
+ //!! for (s=first_VPA;s<=nsp;s++) if (is_prey(s)==1) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"M2_sd0 "<<parNo<<" "<<s<<" "<<y<<" -1 -1 0 -1 -1 -1 "<<s<<" "<<y<<" -1"<<" used"<<endl; }
 
- //matrix M2_sd1(1,nprey,fyModel,lyModel)
- sdreport_matrix M2_sd1(1,nprey,lyModel-sdReportYear,lyModel)
- !! for (s=first_VPA;s<=nsp;s++) if (is_prey(s)==1) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"M2_sd1 "<<parNo<<" "<<s<<" "<<y<<" -1 -1 1 -1 -1 -1 "<<s<<" "<<y<<" -1"<<" used"<<endl; }
+ matrix M2_sd1(1,nprey,fyModel,lyModel)
+ //sdreport_matrix M2_sd1(1,nprey,lyModel-sdReportYear,lyModel)
+ //!! for (s=first_VPA;s<=nsp;s++) if (is_prey(s)==1) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"M2_sd1 "<<parNo<<" "<<s<<" "<<y<<" -1 -1 1 -1 -1 -1 "<<s<<" "<<y<<" -1"<<" used"<<endl; }
 
- // matrix M2_sd2(1,nprey,lyModel-sdReportYear,lyModel)
- sdreport_matrix M2_sd2(1,nprey,lyModel-sdReportYear,lyModel)
- !! for (s=first_VPA;s<=nsp;s++) if (is_prey(s)==1) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"M2_sd2 "<<parNo<<" "<<s<<" "<<y<<" -1 -1 2 -1 -1 -1 "<<s<<" "<<y<<" -1"<<" used"<<endl; }
+ matrix M2_sd2(1,nprey,lyModel-sdReportYear,lyModel)
+ //sdreport_matrix M2_sd2(1,nprey,lyModel-sdReportYear,lyModel)
+ //!! for (s=first_VPA;s<=nsp;s++) if (is_prey(s)==1) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"M2_sd2 "<<parNo<<" "<<s<<" "<<y<<" -1 -1 2 -1 -1 -1 "<<s<<" "<<y<<" -1"<<" used"<<endl; }
 
  // recruitment
   matrix rec_sd(first_VPA,nsp,lyModel-sdReportYear,lyModel);
@@ -3950,7 +4013,8 @@ PARAMETER_SECTION
  // !!for (s=first_VPA;s<=nsp;s++) for (y=lyModel-sdReportYear;y<=lyModel;y++) {parNo++;  parexp<<"rec_sd "<<parNo<<" "<<s<<" "<<y<<" "<<recq<<" -1 "<<fa<<" -1 -1 -1 "<<s<<" "<<y<<" -1"<<" used"<<endl; }
   
  objective_function_value obf
-
+ 
+ !! if (test_output>=1) cout << "PARAMETER SECTION ended"<<endl;
  // ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤
  // ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤
 
@@ -4004,11 +4068,14 @@ PRELIMINARY_CALCS_SECTION
       }
     }
   }
-  
+
+ // does not work if  log_F_a_ini is a matrix_vector
  if (sum(log_F_a_ini)>0) {    // do not overwrite estimates from parameter file
-   for (s=first_VPA;s<=nsp;s++) log_F_a_ini(s)=0.0;      
+   for (s=first_VPA;s<=nsp;s++) log_F_a_ini(s)=0.0;
  }
- 
+ // tmp=0.0;
+ // for (s=first_VPA;s<=nsp;s++) for (a=cfa(s);a<=las(s);a++) for (i=0;i<n_catch_sep_year_group(s);i++)  tmp=tmp+value(log_F_a_ini(s,a,i));
+ // if (tmp>0)  for (s=first_VPA;s<=nsp;s++) log_F_a_ini(s)=0.0;
   
   // initialize number of observations used
   no_obj_obs=0;
@@ -4172,8 +4239,9 @@ PRELIMINARY_CALCS_SECTION
       CPUE_residuals(sp_fl)=-99.9;
       for (a=v_first_fleet_age(sp_fl);a<=v_last_fleet_age(sp_fl);a++) {
         for(y=first_fleet_year(s,f);y<=last_fleet_year(s,f);y++) {
-          if ((fleet_catch(sp_fl,y,a)>0) && (fleet_effort(sp_fl,y)>0)) { 
-            nobs++;  
+          if ((fleet_catch(sp_fl,y,a)>0) && (fleet_effort(sp_fl,y)>0)) {
+            //if (skill_cpue_year(s,f,y)==1) nobs++;
+             nobs++;
             log_CPUE(sp_fl,y,a)=log(fleet_catch(sp_fl,y,a)/fleet_effort(sp_fl,y));
           }  
         }
@@ -4354,6 +4422,7 @@ PRELIMINARY_CALCS_SECTION
  stl_stom_use_avail=1;      // use as default all observations for calculation of available food
    
  // classifyModel each stomach observation: used or not used? and calculate fixed term for multinomial likelihood of prey numbers 
+ // and caculate Dirichlet variance
  if (mceval==0 || make_sim_data>0) for (sy=1;sy<=n_stl_y;sy++) { 
    for (sq=stl_y(sy,2);sq<=stl_y(sy,3);sq++) { 
     for (sd=stl_yq(sq,2);sd<=stl_yq(sq,3);sd++) { 
@@ -4383,11 +4452,15 @@ PRELIMINARY_CALCS_SECTION
                     if (stl_nopreystom(spl,ll) <100) for (n=1; n<=stl_nopreystom(spl,ll);n++) Prey_number_fac_term(spl,first_ll_prey)-=log(n); //  exact factorial function
                     else Prey_number_fac_term(spl,first_ll_prey)-=stl_nopreystom(spl,ll)*log(stl_nopreystom(spl,ll))-stl_nopreystom(spl,ll);  // Stirlings approximation  
                 } 
+                
+                if ( Dirichlet_p0(spl) >0 ) {
+                   stl_stom_diri_var(spl,ll)= stl_stom(spl,ll)*(1.0 - stl_stom(spl,ll))/ (Dirichlet_p0(spl) +1.0);
+                }
+                
               }
             }
             
-
-             if (nTot>0) {
+            if (nTot>0) {
               if (nTot <100) for (n=1; n<=nTot;n++) Prey_number_fac_term(spl,first_ll_prey)+=log(n); //  exact factorial function
               else Prey_number_fac_term(spl,first_ll_prey)+=nTot*log(nTot)-nTot;  // Stirlings approximation  
               Prey_number_fac_term(spl,first_ll_prey)=-Prey_number_fac_term(spl,first_ll_prey); // negative log likelihood
@@ -4799,7 +4872,7 @@ PRELIMINARY_CALCS_SECTION
    ofstream res("summary_stom_start.out",ios::out);
    res<<"Year Quarter.no Area Predator.no Size.model Predator.length.class Predator.length ";
    res<<"Predator.length.mean  Predator.size Prey.no ";
-   res<<"Prey.length.class Prey.length.mean Prey.weight Prey.size size.ratio N.haul stomcon stomcon.input use_like use_avail stom.type  ";
+   res<<"Prey.length.class Prey.length.mean Prey.weight Prey.size size.ratio N.haul alfa0 stomcon stomcon.input use_like use_avail stom.type  ";
    res<<"Y YQ YQP YQPL YQPLP YQPLPL"<<endl;
   
    for (sy=1;sy<=n_stl_y;sy++) {
@@ -4818,7 +4891,7 @@ PRELIMINARY_CALCS_SECTION
                ll++;
                res<<y<<" "<<q<<" "<<d<<" "<<pred<<" "<<size_selection(pred)<<" "<<stl_yqdpl(spl,1)<<" "<<stl_yqdpl(spl,4)<<" "<<pred_length(spl)<<" ";
                res<<pred_size(spl)<<" "<<prey<<" "<<prey_l<<" "<<stl_lstom(spl,ll)<<" ";
-               res<<stl_wstom(spl,ll)<<" "<<prey_size(spl,ll)<<" "<<prey_size(spl,ll)/pred_size(spl)<<" "<<stl_N_haul(spl,ll)<<" ";
+               res<<stl_wstom(spl,ll)<<" "<<prey_size(spl,ll)<<" "<<prey_size(spl,ll)/pred_size(spl)<<" "<<stl_N_haul(spl,ll)<<" "<< Dirichlet_p0(spl)<<" ";
                res <<stl_stom(spl,ll)<<" "<<stl_stom_input(spl,ll)<<" "<<stl_stom_use_like(spl,ll)<<" "<<stl_stom_use_avail(spl,ll)<<" "<<stl_stom_type(spl,ll)<<" ";
                res<<sy<<" "<<sq<<" "<<sp<<" "<<spl<<" "<<splp<<" "<< prey_l<<endl;
               }
@@ -4849,8 +4922,8 @@ PRELIMINARY_CALCS_SECTION
     if (no_size_other_food_suit>0) init_stl_other_suit_slope=0.0; 
     //cout<<"init_stl_other_suit_slope:"<<init_stl_other_suit_slope<<endl;
    
-    if (stomach_variance==1 || stomach_variance==2) for (s=1;s<=npr;s++) if (StomObsVar(s)==1) Stom_var(s)=1.05; 
-    else if (stomach_variance==3 || stomach_variance==4) for (s=1;s<=npr;s++)  if (StomObsVar(s)==1) Stom_var(s)=(Stom_var_l_save(s)+Stom_var_u_save(s))/2;
+    if (stomach_variance==1 || stomach_variance==2) for (s=1;s<=npr;s++) if (StomObsVar(s)==1) Stom_var(trans_diri(s))=1.05;
+    else if (stomach_variance==3 || stomach_variance==4) for (s=1;s<=npr;s++)  if (StomObsVar(s)==1) Stom_var(trans_diri(s))=(Stom_var_l_save(s)+Stom_var_u_save(s))/2;
     int n;
     n=0;        
     for (s=1;s<=npr;s++) { 
@@ -4984,7 +5057,6 @@ PRELIMINARY_CALCS_SECTION
   //min_first_VPA=16; // used for testing; selects sub-set of species
   //max_last_VPA=20;   // used for testing; selects sub-set of species
 
-  
 
  // ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤
  // ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤
@@ -4992,25 +5064,24 @@ PRELIMINARY_CALCS_SECTION
   
 PROCEDURE_SECTION 
 
- if (test_output>=1) cout <<"PROCEDURE_SECTION initiated"<<endl;
+ //cout <<"PROCEDURE_SECTION initiated"<<endl;
 
  int s,y,q,a;
  int yqMaster;
  dvariable tmp;
 
- // check_print_par();
+ //check_print_par();
   // for testing print_ALK();
-  
  Rec_parm_adm();
  predation_parm_adm();          // reorganize parameters for biological interaction
  CPUE_parm_adm();
  get_initial_N_at_age();
  if (multi>0) get_N_other_at_age();
- 
+
  calc_F(0);
  //  testing !!nsp=first_VPA+4;
  for (y=fyModel;y<=lyModel;y++) {
-   lqLocal=(y==lyModel)?lqly:lq; 
+   lqLocal=(y==lyModel)?lqly:lq;
    for (q=fq;q<=lqLocal;q++) {
      CALC_yq
      yqMaster=yq;    // master counter on year quarter index
@@ -5020,7 +5091,7 @@ PROCEDURE_SECTION
      } 
      else {                                 // Multi species mode
       if (use_Nbar==0) {                    // Use N in the beginning of a period to calc M2
-         get_N_bar_stom_at_age(y,q);        // Calc N_bar_stom (which in this case is N) 
+         get_N_bar_stom_at_age(y,q);        // Calc N_bar_stom (which in this case is N)
          calc_M2(y,q);
          calc_Z(y,q);
          get_N_bar_at_age(y,q);             // Calc N within the period
@@ -5033,11 +5104,9 @@ PROCEDURE_SECTION
          } // end for loop
        }   // end use_Nbar=1
      }     // End Multi species mode 
- 
    get_N_at_age(y,q); //calc N for the next period (q=q+1 or y=y+1 and q=1)
    } // end quarter loop
  }  // end year-loop 
-
 
 
  if (!mceval_phase()) evaluate_the_objective_function(); else get_biomass();
@@ -5599,6 +5668,7 @@ FUNCTION N_at_length_like
  int sy,sq,sp,spl,splp; //stomach index counters
  int Ly,Lq,Ld,Ls,La,Ll;    //ALK index counters
  int yq;
+
  //if (y==2005 & q==3) cout<<"N_at_length_like"<<endl;
  for (Ly=1;Ly<=n_ALK_y;Ly++) {
    y=ALK_y(Ly,1);
@@ -5615,13 +5685,13 @@ FUNCTION N_at_length_like
          // if (y==2005 & q==3) cout<<" s:"<<s;
          for (La=ALK_yqds(Ls,2);La<=ALK_yqds(Ls,3);La++) {
            a=ALK_yqdsa(La,1);
-             //cout<<" a:"<<a<<" tot N_bar_stom:"<<setprecision(3)<<setfixed()<<N_bar_stom(yq,s,a)<<" tot N_bar:"<<N_bar(yq,s,a)<<setprecision(0)<<endl;
+           //  cout<<" a:"<<a<<" tot N_bar_stom:"<<setprecision(3)<<setfixed()<<N_bar_stom(yq,s,a)<<" tot N_bar:"<<N_bar(yq,s,a)<<setprecision(0)<<endl;
            if (L50(s)>0 && active(init_s1) ) {  
              for (Ll=ALK_yqdsa(La,2);Ll<=ALK_yqdsa(La,3);Ll++) ALK_adjusted(La,Ll)=ALK(La,Ll)*(1+exp(s1(s)-s1(s)/L50(s)*ALK_length(La,Ll)));
              ALK_adjusted(La)/=sum(ALK_adjusted(La));  //adjust proportion at size to sum up to 1
              //cout <<"sp:"<<s<<" age:"<<a<<" Q:"<<q<<" s1:"<<s1(s)<<endl<<setfixed()<<setprecision(3)<< ALK(La)<<endl<<ALK_adjusted(La)<<endl<<endl;;
            }
-           //cout<<"y:"<<y<<" q:"<<q<<" d:"<<d<<" s:"<<s<<" a:"<<a<<" minl:"<<ALK_yqdsa(La,2)<<" maxl:"<<ALK_yqdsa(La,3)<<endl;
+           // cout<<"y:"<<y<<" q:"<<q<<" d:"<<d<<" s:"<<s<<" a:"<<a<<" minl:"<<ALK_yqdsa(La,2)<<" maxl:"<<ALK_yqdsa(La,3)<<endl;
            for (Ll=max(ALK_yqdsa(La,2),min_prey_length(d,s));Ll<=min(ALK_yqdsa(La,3),max_prey_length(d,s));Ll++) {     // CHECK BRUG AF min og max ????
              //cout<<" Ll:"<<Ll;
              N_l_bar_like(yqd,s,Ll)+= ALK_adjusted(La,Ll)*N_bar_stom(yq,s,a);
@@ -5678,6 +5748,7 @@ FUNCTION calc_expected_stomach_content
  int sy,sq,sp,spl,splp,ll,first_ll;  //stomach index counters
  dvariable tmp,wstom;
  N_at_length_like();
+
  //calculate available food
  for (sy=1;sy<=n_stl_y;sy++) { 
    y=stl_y(sy,1);
@@ -5892,9 +5963,9 @@ FUNCTION predation_parm_adm;
      cout<<"prey_size_adjustment:"<<active(init_prey_size_adjustment)<<endl<<prey_size_adjustment<<endl;
      cout <<setprecision(4) << setfixed()<<setw(12)<<endl; 
      cout <<"init_season_overlap:" <<active(init_season_overlap)<< endl<<init_season_overlap;
-     for (pred=1;pred<=npr;pred++) { if (active(Stom_var(pred))) cout<<" 1 "; else cout<<" 0 ";}
-     cout <<endl<<Stom_var;
-     cout <<endl;
+     for (pred=1;pred<=npr;pred++) { if (active(Stom_var(trans_diri(pred)))) cout<<" 1 "; else cout<<" 0 ";}
+     cout<<endl;
+     cout <<endl<<"Stom_var:  "<<Stom_var<<endl;
     }
      if (1==3) {
       cout << "Vulnerability pred - prey"<<endl;;
@@ -5965,12 +6036,10 @@ FUNCTION void calc_F(int do_exploitaion_pattern)
         else ly_group=catch_sep_year(s,syg+1)-1;
         //cout<<"s:"<<s<<" ly_group: "<<ly_group<<"  catch_sep_year(s,syg):"<<catch_sep_year(s,syg)<<endl;  
         for (y=catch_sep_year(s,syg);y<=ly_group;y++) {
-            F_a(s,y,a)=exp(log_F_a_ini(s,a,syg-1));
-            //if (do_effort(s)==1) if (y>catch_sep_year(s,syg)) {
-              // if (use_creep(s)==2)      F_a(s,y,a)=F_a(s,y,a) + log(creep(s,a,syg-1))* (y-catch_sep_year(s,syg));  // creep line, exponential growth, kan slettes
-              // else if (use_creep(s)==1) F_a(s,y,a)=F_a(s,y,a) + log(creep(s,cfa(s),syg-1)) * (y-catch_sep_year(s,syg));  // creep line, kan slettes
-            //}
-            //F_a(s,y,a)=exp(F_a(s,y,a));
+          if (creep_option(s)>0) {
+             if (use_creep(s)==2)      F_a(s,y,a)=exp(log_F_a_ini(s,a,syg-1)+  log(creep(s,a,syg-1))* (y-catch_sep_year(s,syg)));  // creep line, exponential growth, kan slettes
+             else if (use_creep(s)==1) F_a(s,y,a)=exp(log_F_a_ini(s,a,syg-1) + log(creep(s,cfa(s),syg-1)) * (y-catch_sep_year(s,syg)));  // creep line, kan slettes
+          }  else F_a(s,y,a)=exp(log_F_a_ini(s,a,syg-1));
          }
        }
      }
@@ -6469,12 +6538,14 @@ FUNCTION  evaluate_CPUE_contributions
                   //x=log(N_survey)*qq_power(s,f,a)+log(qq(s,f,a))+log_year_effect(s,f,y)-log_CPUE(sp_fl,y,a);
                   //x=log(N_survey)*qq_power(s,f,a)+log(qq(s,f,a))+ log(qq_efficiency(s,f))*(y-first_fleet_year(s,f))-log_CPUE(sp_fl,y,a);
                   //cout<<"x: "<<x<<endl;
-                  nobs++; 
-                  no++;
-                  sumx2+=square(x);
-                  //cout <<"CPUE Y:"<<y<<" q:"<<q<<" a:"<<a<<" fleet:"<<f<<" "<<"  N_survey:"<<N_survey<<" qq:"<<qq(s,f,a)<< " qq_power:"<< qq_power(s,f,a)<<" log_CPUE:"<<log_CPUE(sp_fl,y,a)<<endl;;
-                  //cout<<"s:"<<s<<" f:"<<f<<" sp_fl:"<<sp_fl<<" s2_group:"<<s2_group<<" age:"<<a<<" y:"<<y<<endl;
-                  sumx+=x; 
+                  //if (skill_cpue_year(s,f,y)==1) {   // the observation is used in the likelihood
+                    nobs++;
+                    no++;
+                    sumx2+=square(x);
+                    sumx+=x;
+                  // }
+                  //cout <<"CPUE Y:"<<y<<" q:"<<q<<" a:"<<a<<" fleet:"<<f<<" "<<"  N_survey:"<<N_survey<<" qq:"<<qq(s,f,a)<< " qq_power:"<< qq_power(s,f,a)<<" log_CPUE:"<<log_CPUE(sp_fl,y,a)<<endl;
+                  //cout<<"s:"<<s<<" f:"<<f<<" sp_fl:"<<sp_fl<<" s2_group:"<<s2_group<<" age:"<<a<<" y:"<<y<<endl
                   CPUE_residuals(sp_fl,y,a)=-x;
                }
              }
@@ -6643,29 +6714,38 @@ FUNCTION  evaluate_SSB_recruitment_contributions
   
 FUNCTION dvariable calc_stom_var(int pred,int spl,int ll)
  dvariable tmp,stom;
- stom=stl_E_stom(spl,ll);
+ stom=stl_E_stom(spl,ll);       //Expected relative stomach contents weight per length group
  if (stom>0.99) stom=0.99;
 
  if (stomach_variance==1) {         // log-normal error
-   //cout<<" stom:"<<stom<<" Stom_var:"<<Stom_var(pred)<<"  Stom_var_fac:"<<Stom_var_fac(pred)<<"  no samples:"<<stl_no_samples(spl,ll)<<endl;
-   if (StomObsVar(pred)==1)         tmp=log(0.5+sqrt(0.25+(1.0/stom-1.0)/(Stom_var(pred)*Stom_var_fac(pred)*stl_no_samples(spl,ll))));
+   //cout<<" stom:"<<stom<<" Stom_var:"<<Stom_var(trans_diri(pred))<<"  Stom_var_fac:"<<Stom_var_fac(pred)<<"  no samples:"<<stl_no_samples(spl,ll)<<endl;
+   if (StomObsVar(pred)==1)         tmp=log(0.5+sqrt(0.25+(1.0/stom-1.0)/(Stom_var(trans_diri(pred))*Stom_var_fac(pred)*stl_no_samples(spl,ll))));
    else if (StomObsVar(pred)==0)    tmp=log(0.5+sqrt(0.25+(1.0/stom-1.0)/(                                  stl_no_samples(spl,ll))));
    else if (StomObsVar(pred)==2)    tmp=log(0.5+sqrt(0.25+(1.0/stom-1.0)));
 
  }
  else if (stomach_variance==2) {    //normal distributed error
-   if (StomObsVar(pred)==1)        tmp=Stom_var(pred)*Stom_var_fac(pred)*stom*(1.0-stom)/stl_no_samples(spl,ll);
+   if (StomObsVar(pred)==1)        tmp=Stom_var(trans_diri(pred))*Stom_var_fac(pred)*stom*(1.0-stom)/stl_no_samples(spl,ll);
    else if (StomObsVar(pred)==0)   tmp=                                  stom*(1.0-stom)/stl_no_samples(spl,ll);
    else if (StomObsVar(pred)==2)   tmp=                                  stom*(1.0-stom);
  }
  else if (stomach_variance==3) {    //structure suitable for Dirichlet
-   if (StomObsVar(pred)==1)       tmp=Stom_var(pred)*Stom_var_fac(pred)*stl_no_samples(spl,ll)-1;
-   else if (StomObsVar(pred)==0)  tmp=                                  stl_no_samples(spl,ll)-1;
+   //cout<<"dirchlet  ";
+   if (diri_alpha0(pred)==1) {        // Known variance derived from known input "concentration parameter" (p0)
+      tmp=Dirichlet_p0(spl);
+      //cout<<"input alpha0=" <<tmp+1<<" pred="<<pred<<endl;
+   } else if (StomObsVar(pred)==1)  {
+     tmp=Stom_var(trans_diri(pred))*Stom_var_fac(pred)*stl_no_samples(spl,ll)-1;
+     if (diri_alpha0(pred)==2 && tmp > Dirichlet_p0(spl)) {
+       tmp=Dirichlet_p0(spl);
+       //cout<<"hit max, pred: "<<pred<<" max: "<<Dirichlet_p0(spl)<<endl;
+     }
+   } else if (StomObsVar(pred)==0)  tmp=               stl_no_samples(spl,ll)-1;
    else if (StomObsVar(pred)==2)  tmp=                                                         1;
   
    if (tmp<=0) {
      cout<<"ERROR: Negative variance in Dirichlet distributions."<<endl;
-     cout<<"pred:"<<pred<<" spl:" <<spl<<" no of samples:"<<stl_no_samples(spl,ll)<<" Stom_var:"<<setprecision(4)<<Stom_var(pred)<<" product:"<<Stom_var(pred)*stl_no_samples(spl,ll)<<endl;
+     cout<<"pred:"<<pred<<" spl:" <<spl<<" no of samples:"<<stl_no_samples(spl,ll)<<" Stom_var:"<<setprecision(4)<<Stom_var(trans_diri(pred))<<" product:"<<Stom_var(trans_diri(pred))*stl_no_samples(spl,ll)<<endl;
      exit(9);
    }  
  }
@@ -6736,12 +6816,10 @@ FUNCTION  evaluate_stomach_contributions
  int sy,sq,sp,spl,splp,ll,pred,prey_l;  //stomach index counters
 
  dvariable sum,samp_var,sum_of_squares,p;
-
  calc_expected_stomach_content();
- 
  // allready done. for (s=1;s<=nsp;s++) obj_func(s,4)=0.0;
   for (sy=1;sy<=n_stl_y;sy++) {       
-    // cout<<"Year:"<<stl_y(sy,1)<<endl;
+    //cout<<"Year:"<<stl_y(sy,1)<<endl;
     if (stl_y(sy,1)>=fyModel) for (sq=stl_y(sy,2);sq<=stl_y(sy,3);sq++) {
        q=stl_yq(sq,1); 
        //cout<<" quarter:"<<q<<endl;
@@ -6773,7 +6851,7 @@ FUNCTION  evaluate_stomach_contributions
                  if (stl_stom_use_like(spl,ll)==1) {
                    if (stomach_variance==1){ 
                      samp_var=calc_stom_var(pred,spl,ll); 
-                     // cout<<"Observed stom: "<<setprecision(10)<<exp(log_stl_stom(spl,ll))<<" Expected stom:"<<stl_E_stom(spl,ll)<<" samp_var:"<<samp_var;
+                      cout<<"Observed stom: "<<setprecision(10)<<exp(log_stl_stom(spl,ll))<<" Expected stom:"<<stl_E_stom(spl,ll)<<" samp_var:"<<samp_var;
                      
                      sum_of_squares=square(log_stl_stom(spl,ll)-log(stl_E_stom(spl,ll)));
                      sum+=log(sqrt(samp_var))+sum_of_squares*0.5/samp_var;
@@ -6785,15 +6863,16 @@ FUNCTION  evaluate_stomach_contributions
                      sum+=log(sqrt(samp_var))+sum_of_squares*0.5/samp_var;
                    }
                    else if (stomach_variance==3){   //Dirichlet
-                      if (stl_E_stom(spl,ll)<1E-7) {
-                     //   cout<<"Something might be wrong (Expected stomach contents<1E-7) !!! Year:"<<stl_y(sy,1)<<
-                     //    " quarter:"<<q<<" pred:"<<pred<<" pred_l:"<<stl_yqdpl(spl,1)<<" Prey:"<<stl_yqdplp(splp,1)<<" Len:"<<prey_l<<endl;
-                      //  cout<<"  min no of samples: "<<setprecision(0)<<min_no_samples(pred)<<"  no of stomachs:"<<stl_no_samples(spl,ll)<<setprecision(6);
-                      //  cout<<" Stom_var_fac: "<<Stom_var_fac(pred);
-                      //  cout <<" Observed stom: "<<setprecision(10)<<exp(log_stl_stom(spl,ll))<<" Expected stom:"<<
-                      //     stl_E_stom(spl,ll)<<" samp_var:"<<setprecision(5)<<samp_var<<endl;
-                       stl_E_stom(spl,ll)=1E-6;
-                       }
+                     if (stl_E_stom(spl,ll)<1E-7) {
+                       //   cout<<"Something might be wrong (Expected stomach contents<1E-7) !!! Year:"<<stl_y(sy,1)<<
+                       //    " quarter:"<<q<<" pred:"<<pred<<" pred_l:"<<stl_yqdpl(spl,1)<<" Prey:"<<stl_yqdplp(splp,1)<<" Len:"<<prey_l<<endl;
+                        //  cout<<"  min no of samples: "<<setprecision(0)<<min_no_samples(pred)<<"  no of stomachs:"<<stl_no_samples(spl,ll)<<setprecision(6);
+                        //  cout<<" Stom_var_fac: "<<Stom_var_fac(pred);
+                        //  cout <<" Observed stom: "<<setprecision(10)<<exp(log_stl_stom(spl,ll))<<" Expected stom:"<<
+                        //     stl_E_stom(spl,ll)<<" samp_var:"<<setprecision(5)<<samp_var<<endl;
+                         stl_E_stom(spl,ll)=1E-6;
+                      }
+
                       p=samp_var*stl_E_stom(spl,ll);
                       sum+=gammln(p)-(p-1)*log_stl_stom(spl,ll);
                       if (p==0) {
@@ -6855,15 +6934,20 @@ FUNCTION evaluate_the_objective_function
  obj_func=0.0;
  //HEJ("evaluate_the_objective_function");
  evaluate_catch_contributions();
- // HEJ("evaluated_catch");
+  //HEJ("evaluated_catch");
  evaluate_CPUE_contributions();
- // HEJ("evaluated_CPUE");
+  //HEJ("evaluated_CPUE");
  evaluate_SSB_recruitment_contributions();
- // HEJ("evaluated_SSB_R");
+  //HEJ("evaluated_SSB_R");
   
  if  ((multi>=1 && current_phase()>=stom_phase) || (test_output==-1)) {
+   //HEJ("start_evaluated_stomach");
   evaluate_other_pred_contributions();
+     //HEJ("evaluate_other_pred_contributions");
   evaluate_stomach_contributions();
+     //HEJ("evaluate_other_pred_contributions");
+
+
  }
  //********************************************************************************************* 
 
@@ -9665,7 +9749,7 @@ FUNCTION check_print_par
       }
       cout<<endl;
     }
-    cout << endl << "log_F_a_ini"<<endl<<log_F_a_ini<<endl;
+    // does not work if log_F_a_ini is a matrix_vector   cout << endl << "log_F_a_ini"<<endl<<log_F_a_ini<<endl;
     cout << setw(12) << setprecision(5) <<  setfixed() ;
     cout << endl <<  "log rec scale:  " <<log_rec_scale<< endl;
     cout << endl << "log_rec"<<endl<<log_rec<<endl;
@@ -10480,7 +10564,7 @@ FUNCTION void print_catch_survey_residuals()
  // d3_array survey_var(first_VPA,nsp,1,n_fleet,fa,max_a);
  ofstream res("catch_survey_residuals.out",ios::out);
  fleet=-9;
- res <<"data Species.n Quarter Year fleet Age observed model residual stand.residual"<<endl;
+ res <<"data Species.n Quarter Year fleet Age observed model residual stand.residual s2"<<endl;
 
  for (s=first_VPA;s<=nsp;s++){
     survey_var(s)=0;
@@ -10492,11 +10576,17 @@ FUNCTION void print_catch_survey_residuals()
        for (q=fq;q<=seasonal_combined_catch_s2(s);q++) {
           if (catch_s2(s,q,s2_group)>0) catch_var(s,q,a)=value(catch_s2(s,q,s2_group));
        }
+       for (q=seasonal_combined_catch_s2(s)+1;q<=lq;q++) {
+          if (catch_s2(s,1,s2_group)>0) catch_var(s,q,a)=value(catch_s2(s,1,s2_group));
+       }
      }
    }
  }
 
- for (s=first_VPA;s<=nsp;s++) if (seasonal_annual_catches(s)==0) {
+ //cout<<"catch_var(s,q,a):"<<endl<<catch_var<<endl;
+ 
+ 
+ for (s=first_VPA;s<=nsp;s++) if (seasonal_annual_catches(s)==0) {   // same timestep in catches as in model
    for (q=fq;q<=lq;q++){
      for (y=fyModel;y<=lyModel;y++){
         CALC_yq
@@ -10506,21 +10596,23 @@ FUNCTION void print_catch_survey_residuals()
          if ((a>=cfa(s)) && (C_hat(yq,s,a)>=0) && (y<=lyModel) && (q<=lqLocal) && (log_obs_C(yq,s,a)> 1e-10)
                  && (incl_catch_season_age(s,q,a)==1) && zero_catch_y_season(s,y,q)==1 )
          res <<' '<<setscientific()<<exp(log_obs_C(yq,s,a)) <<' '<<C_hat(yq,s,a)<<' '<<
-               log_obs_C(yq,s,a)-log(C_hat(yq,s,a))<<" " <<(log_obs_C(yq,s,a)-log(C_hat(yq,s,a)))/sqrt(catch_var(s,q,a))<<endl;
-         else res <<" -99.9 -99.9 -99.9  -99.9"<<endl;
+               log_obs_C(yq,s,a)-log(C_hat(yq,s,a))<<" " <<(log_obs_C(yq,s,a)-log(C_hat(yq,s,a)))/sqrt(catch_var(s,q,a))<<" "<<catch_var(s,q,a)<<endl;
+         else res <<" -99.9 -99.9 -99.9  -99.9 -99.9"<<endl;
        }
      }
    }
  }
+
  for (s=first_VPA;s<=nsp;s++) if (seasonal_annual_catches(s)==1) {
    for (y=fyModel;y<=lyModel;y++){
       for (a=fa;a<=la(s);a++) {
        res << setfixed()<<"catch " << s<< " " <<" 9 " <<y <<' '<<fleet<<' '<<a<<' ';
+       //cout<<"catch_var(s,1,a)): "<<" s:"<<s<<" a:"<<a<<" var:"<<catch_var(s,1,a)<<endl;
  //       if ((a>=cfa(s)) && (y<=lyModel) && sum(zero_catch_y_season(s,y))>=1 &&  (C_hat_annual(y,s,a)>0))
         if ((a>=cfa(s)) && (y<=lyModel) &&  (C_hat_annual(y,s,a)>0))
           res <<' '<<setscientific()<<exp(log_obs_C_annual(y,s,a)) <<' '<<C_hat_annual(y,s,a)<<' '<< log_obs_C_annual(y,s,a)-log(C_hat_annual(y,s,a))<<
-          ' '<< -1<<endl;
-       else res <<" -99.9 -99.9 -99.9 -99.9 "<<endl;;
+          " " << (log_obs_C_annual(y,s,a) - log(C_hat_annual(y,s,a)))/sqrt(catch_var(s,1,a))<<" "<<catch_var(s,1,a)<<endl;
+       else res <<" -99.9 -99.9 -99.9 -99.9 -99.9"<<endl;;
      }
    }
  }
@@ -10543,7 +10635,8 @@ FUNCTION void print_catch_survey_residuals()
       }
     }
  }
-
+  //cout<<" survey_var(s,f,a):"<<endl<<survey_var<<endl;
+ 
  sp_fl=0;
  for (s=first_VPA;s<=nsp;s++){
    for (f=1;f<=n_fleet(s);f++) {
@@ -10561,10 +10654,11 @@ FUNCTION void print_catch_survey_residuals()
                           res <<" "<<setscientific()<<exp(log_CPUE(sp_fl,y,a))<<' '<<
                           exp(-CPUE_residuals(sp_fl,y,a)+log_CPUE(sp_fl,y,a) )<<' '<<
                           CPUE_residuals(sp_fl,y,a)<<' ';
-                          if (CPUE_residuals(sp_fl,y,a)>-99) res<<CPUE_residuals(sp_fl,y,a)/sqrt(survey_var(s,f,a))<<endl;
-                          else res<<" -99.9"<<endl;
+                          if (CPUE_residuals(sp_fl,y,a)>-99) res<<CPUE_residuals(sp_fl,y,a)/sqrt(survey_var(s,f,a))<<
+                          " "<< survey_var(s,f,a)<<endl;
+                          else res<<" -99.9 -99.9"<<endl;
                       }
-                   else res <<" -99.9 -99.9 -99.9 -99.9"<<endl;;
+                   else res <<" -99.9 -99.9 -99.9 -99.9 -99.9"<<endl;;
             } 
         }
     }
@@ -11487,7 +11581,7 @@ FUNCTION void write_predict_output()
 FUNCTION void  print_objective_func_file()
  int s ,sp_fl;
   ofstream obj("objective_function.out",ios::out);
-  obj<<"Species.n catch CPUE SSB.Rec  stomachs stomachs.N other.pred_noise penalty all n.catch n.CPUE n.SSB.R n.stom n.all.obs n.par"<<endl;
+  obj<<"Species.n catch CPUE SSB.Rec  stomachs stomachs.N other.pred_noise penalty all n.catch n.CPUE n.SSB.R n.stom n.all.obs  other.noise n.par"<<endl;
   for (s=1;s<=nsp;s++)  obj<<s<<"  "<<obj_func(s)<<" "<<obf<<" "<<no_obj_obs(s)<<" "<<initial_params::nvarcalc()<<endl;
   obj.close();
   
@@ -11800,9 +11894,9 @@ REPORT_SECTION
 
  cout<<"report file: "<<(adprogram_name + ad_tmp)<<endl;
  
- time (&end_time);
+ time(&end_time);
 
- report<<dateStr<<"   run time:"<<difftime(end_time,start_time)<<" seconds"<<endl;
+ report<<dateStr<<"   run time:"<<difftime(end_time,startTime)<<" seconds"<<endl;
  
  
  report << endl<< "objective function (negative log likelihood):  " << obf << endl;
@@ -11927,12 +12021,13 @@ REPORT_SECTION
    report<<endl;
    for (y=fyModel;y<=lyModel;y++) report<<y<<':'<< setw(6) << setprecision(3) << setfixed()<<out2(y)<<endl;
  }
- // if (use_creep(1)>0){ 
- //   report<<endl<<endl<<"Technical creep:"<<endl;
- //  report<<            "---------------"<<endl;
- //  report<<creep<<endl<<endl;
- // }
-  
+
+ if (use_creep(first_VPA)>0){
+   report<<endl<<endl<<"Technical creep:"<<endl;
+   report<<            "---------------"<<endl;
+   report<<creep<<endl<<endl;
+ }
+
  if (lq-fq>=1) {
  report << endl << "F, season effect:";
  report << endl << "-----------------";
@@ -12249,6 +12344,7 @@ REPORT_SECTION
      if (stomach_variance==1) report<<"log normal distribution";
      else if (stomach_variance==2) report<<"normal distribution";
      else if (stomach_variance==3) report<<"Dirichlet distribution";
+
      else report <<"test distribution:"<<stomach_variance;
      report <<endl<<endl; 
      
@@ -12335,18 +12431,15 @@ REPORT_SECTION
 
      }
     
-       
-     // if (stomach_variance==3 ) {
-     //   for (pred=1;pred<=npr;pred++) report <<"stomach variance lower:"<< Stom_var_l_save(pred) << "  upper:"<< Stom_var_u_save(pred)<<endl;
-     // }
-     // report<<endl;
- 
-     report<<endl<<endl<<"Stomach variance:    value    internal     ";
+
+
+     report<<endl<<endl;
+     report<<"Stomach variance:    value    internal     ";
      if (stomach_variance==3 ) report<<"max alfa0"<<endl; else report<<endl;
      
      
      // start to find max alfa0 (equal sumP) 
-      if (stomach_variance==3) {  // Dirichlet 
+      if (stomach_variance==3 ) {  // Dirichlet
         for (sy=1;sy<=n_stl_y;sy++) { 
          for (sq=stl_y(sy,2);sq<=stl_y(sy,3);sq++) { 
           for (sd=stl_yq(sq,2);sd<=stl_yq(sq,3);sd++) { 
@@ -12355,20 +12448,32 @@ REPORT_SECTION
              for (spl=stl_yqdp(sp,2);spl<=stl_yqdp(sp,3);spl++) {
               if (sum_p_Dirichlet(spl) > max_sumP(pred)) max_sumP(pred)=value(sum_p_Dirichlet(spl));
       }}}}}}
-      
+
      for (pred=1;pred<=npr;pred++) {
-        report <<species_names(pred)<<setprecision(3)<<setfixed()<<setw(15)<<Stom_var(pred)*Stom_var_fac(pred)<<"    "<<Stom_var(pred);
-         if (stomach_variance==3 ) {
-           if (Stom_var_u_save(pred)/Stom_var(pred)<1.02 && Stom_var_u_save(pred)/Stom_var(pred)>0.98) report<<" limit";
-           else report<<"      ";
-           report<<"  "<<max_sumP(pred)<<endl;
+        report <<species_names(pred)<<setprecision(3);
+        if (diri_alpha0(pred)==0 || diri_alpha0(pred)==2) report<<setfixed()<<setw(15)<<Stom_var(trans_diri(pred))*Stom_var_fac(pred)<<"    "<<Stom_var(trans_diri(pred));
+        else   report<<setfixed()<<setw(15)<<0.0<<"    "<<0.0;
+        if (stomach_variance==3 ) {
+           if (diri_alpha0(pred)==0  || diri_alpha0(pred)==2) {
+             if (Stom_var_u_save(pred)/Stom_var(trans_diri(pred))<1.02 && Stom_var_u_save(pred)/Stom_var(trans_diri(pred))>0.98) report<<" limit";
+             else report<<"      ";
+           } else report<<"      ";
+           report<<"  "<<max_sumP(pred);
+           if (diri_alpha0(pred)==1)   report<<" input";
+           if (diri_alpha0(pred)==2)   report<<" max_input";
+           report<<endl;
          } else report<<endl;
      } 
-     
-     if (cons_multiplier_Mnpr>0 ){
-       report <<endl<<endl<<"consumption multipliers:"<<endl;
-       for (pred=1;pred<=npr;pred++) {
+
+    
+     if (cons_multiplier_Mnpr>0){
+       i=0;
+       for (pred=1;pred<=npr;pred++) if (cons_multiplier(pred)!=1.0) i++;
+       if (i>0) {
+         report <<endl<<endl<<"consumption multipliers:"<<endl;
+         for (pred=1;pred<=npr;pred++) {
             report<<species_names(pred)<<setw(15)<<setprecision(2)<<setfixed()<<cons_multiplier(pred)<<endl;
+         }
        }
      }
      
@@ -12559,6 +12664,7 @@ TOP_OF_MAIN_SECTION
  gradient_structure::set_MAX_NVAR_OFFSET(2000);
  gradient_structure::set_NUM_DEPENDENT_VARIABLES(3000);
 
+ time(&startTime);
  // ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤
  // ¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤
 

@@ -1,0 +1,102 @@
+# paramter a and b for consumption=a*weight^b
+#  Fulmar 
+34.42 0   # quarter  1 
+28.72 0   # quarter  2 
+27.091 0   # quarter  3 
+34.42 0   # quarter  4 
+#  Guillemot 
+32.456 0   # quarter  1 
+32.258 0   # quarter  2 
+32.828 0   # quarter  3 
+32.148 0   # quarter  4 
+#  Her.Gull 
+28.55 0   # quarter  1 
+33.688 0   # quarter  2 
+36.829 0   # quarter  3 
+62.3 0   # quarter  4 
+#  Kittiwake 
+21.865 0   # quarter  1 
+20.971 0   # quarter  2 
+20.971 0   # quarter  3 
+21.865 0   # quarter  4 
+#  GBB.Gull 
+42.956 0   # quarter  1 
+43.412 0   # quarter  2 
+44.178 0   # quarter  3 
+48.95 0   # quarter  4 
+#  Gannet 
+84.2 0   # quarter  1 
+89.9 0   # quarter  2 
+89.9 0   # quarter  3 
+84.2 0   # quarter  4 
+#  Puffin 
+14.95 0   # quarter  1 
+15.084 0   # quarter  2 
+15.084 0   # quarter  3 
+14.95 0   # quarter  4 
+#  Razorbill 
+20.116 0   # quarter  1 
+20.916 0   # quarter  2 
+21.159 0   # quarter  3 
+20.116 0   # quarter  4 
+#  A.radiata 
+0.19833 0.54803   # quarter  1 
+0.18646 0.50854   # quarter  2 
+0.23594 0.46264   # quarter  3 
+0.42044 0.59316   # quarter  4 
+#  G.gurnards 
+0.42257 0.86664   # quarter  1 
+0.70225 0.79016   # quarter  2 
+0.78602 0.70194   # quarter  3 
+0.59188 0.77091   # quarter  4 
+#  W.horse.mac 
+0 0   # quarter  1 
+0 0   # quarter  2 
+4.50718 1.76474   # quarter  3 
+1.57282 1.03542   # quarter  4 
+#  N.horse.mac 
+0 0   # quarter  1 
+3.15503 1.76474   # quarter  2 
+4.50718 1.76474   # quarter  3 
+1.57282 1.03542   # quarter  4 
+#  Grey.seal 
+477.855 0   # quarter  1 
+438.48 0   # quarter  2 
+382.284 0   # quarter  3 
+708.882 0   # quarter  4 
+#  H.porpoise 
+219 0   # quarter  1 
+219 0   # quarter  2 
+219 0   # quarter  3 
+219 0   # quarter  4 
+#  Hake 
+0.77156 0.76101   # quarter  1 
+2.17957 0.80186   # quarter  2 
+1.30165 0.82521   # quarter  3 
+1.52742 0.76573   # quarter  4 
+#  Cod 
+0.9004 0.78595   # quarter  1 
+1.21211 0.78595   # quarter  2 
+1.24653 0.78595   # quarter  3 
+1.38951 0.78595   # quarter  4 
+#  Whiting 
+0.42637 0.68266   # quarter  1 
+0.45491 0.68266   # quarter  2 
+0.67914 0.68266   # quarter  3 
+0.57439 0.68266   # quarter  4 
+#  Haddock 
+0.32311 0.71443   # quarter  1 
+0.44561 0.71443   # quarter  2 
+0.59414 0.71443   # quarter  3 
+0.58802 0.71443   # quarter  4 
+#  Saithe 
+0.39357 1.04466   # quarter  1 
+1.13916 1.04466   # quarter  2 
+0.60354 1.04466   # quarter  3 
+0.7059 1.04466   # quarter  4 
+#  Mackerel 
+0.10098 1.44286   # quarter  1 
+1.28307 1.44286   # quarter  2 
+1.44423 1.44286   # quarter  3 
+0.22008 1.44286   # quarter  4 
+-999 # check 

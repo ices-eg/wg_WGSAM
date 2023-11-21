@@ -1,0 +1,74 @@
+# Cod
+# age 0 1 2 3 4 5 6 7 8 9 10
+      0 1 1 1 1 1 1 1 1 1 1   # quarter 1
+      0 1 1 1 1 1 1 1 1 1 1   # quarter 2
+      0 1 1 1 1 1 1 1 1 1 1   # quarter 3
+      0 1 1 1 1 1 1 1 1 1 1   # quarter 4
+# whiting
+# age 0 1 2 3 4 5 6 7 8 9 10
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 1
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 2
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 3
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 4
+# Haddock
+# age 0 1 2 3 4 5 6 7 8 9 10
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 1
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 2
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 3
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 4
+# Saithe
+# age 0 1 2 3 4 5 6 7 8 9 10
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 1
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 2
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 3
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 4
+# Mackerel
+# age 0 1 2 3 4 5 6 7 8 9 10
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 1
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 2
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 3
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 4
+# Herring
+# age 0 1 2 3 4 5 6 7 8 9 10
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 1
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 2
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 3
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 4
+# Northern Sandeel
+# age 0 1 2 3 4 5 6 7 8 9 10
+      0 0 0 0 0 0 0 0 0 0 0   # quarter 1
+      0 1 1 1 1 1 1 1 1 1 1   # quarter 2
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 3
+      0 0 0 0 0 0 0 0 0 0 0   # quarter 4
+# Southern Sandeel
+# age 0 1 2 3 4 5 6 7 8 9 10
+      0 0 0 0 0 0 0 0 0 0 0   # quarter 1
+      0 1 1 1 1 1 1 1 1 1 1   # quarter 2
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 3
+      0 0 0 0 0 0 0 0 0 0 0   # quarter 4
+# Norway pout
+# age 0 1 2 3 4 5 6 7 8 9 10
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 1
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 2
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 3
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 4
+# Sprat
+# age 0 1 2 3 4 5 6 7 8 9 10
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 1
+      0 0 0 0 0 0 0 0 0 0 0   # quarter 2
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 3
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 4
+# Plaice
+# age 0 1 2 3 4 5 6 7 8 9 10
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 1
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 2
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 3
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 4
+# Sole
+# age 0 1 2 3 4 5 6 7 8 9 10
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 1
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 2
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 3
+      1 1 1 1 1 1 1 1 1 1 1   # quarter 4
+-999   # check value
+

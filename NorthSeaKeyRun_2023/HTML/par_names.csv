@@ -1,0 +1,15 @@
+par,par_text,group
+catch_s2_ini,Catch observation uncertanty,Catch
+qq_s2_ini,Survey observation uncertanty,Survey
+log_rec_older,N first year,N-initial
+log_rec,N first age,N-initial
+log_F_a_ini,F-age effect,Catch
+qq_ini,Survey catchability,Survey
+F_q_ini,F-season effect,Catch
+F_y_ini,F-year effect,Catch
+init_season_overlap,Spatial overlap,Predation
+vulnera,Vulnerability,Predation
+SSB_R_alfa,SSB-Rec parameter,N-initial
+init_stl_other_suit_slope,Other food,Predation
+SSB_R_beta_ini,SSB-Rec parameter,N-initial
+SSB_R_s2_ini,SSB-Rec uncertanty,N-initial

@@ -1,0 +1,29 @@
+"old" "new" "newno"
+"M1" "M1" 0
+"Fulmar" "Birds" 1
+"Guillemot" "Birds" 1
+"Her.Gull" "Birds" 1
+"Kittiwake" "Birds" 1
+"GBB.Gull" "Birds" 1
+"Gannet" "Birds" 1
+"Puffin" "Birds" 1
+"Razorbill" "Birds" 1
+"A.radiata" "Amblyraja radiata" 2
+"G.gurnards" "Grey gurnard" 3
+"W.horse.mac" "Horse mackerel" 4
+"N.horse.mac" "Horse mackerel" 4
+"Grey.seal" "Grey seal" 5
+"H.porpoise" "Harbour porpoise" 6
+"Hake" "Hake" 7
+"Cod" "Cod" 8
+"Whiting" "Whiting" 9
+"Haddock" "Haddock" 10
+"Saithe" "Saithe" 11
+"Mackerel" "Mackerel" 12
+"Herring" "Herring" 99
+"S.sandeel" "Sandeel" 99
+"N.sandeel" "Sandeel" 99
+"Nor.pout" "Norway pout" 99
+"Sprat" "Sprat" 99
+"Plaice" "Plaice" 99
+"Sole" "Sole" 99

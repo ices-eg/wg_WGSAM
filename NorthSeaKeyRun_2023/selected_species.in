@@ -1,0 +1,14 @@
+# 0= do not include the species in the likelihood; 1=include the species in the likelihood
+# active if number of species (option no.species) is set to a negative value in sms.dat
+1  # 16 Cod
+0  # 17 Whiting 
+0  # 18 Haddock 
+0  # 19 Saithe 
+0  # 20 Mackerel 
+0  # 21 Herring 
+0  # 22 N. sandeel 
+0  # 23 S. sandeel 
+0  # 24 Nor. pout 
+0  # 25 Sprat 
+0  # 26 Plaice 
+0  # 27 Sole 

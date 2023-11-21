@@ -1,0 +1,294 @@
+SMS version October 2023 using ADMB version 13.1
+November 20, 2023 18:51:19
+no. of species: 27  no. of predators: 20  no. of other predators:15
+first VPA species no.:16  first VPA species as prey:16
+
+diri_alpha0:  0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 1 1 1 1 1  sum:9
+PRELIMINARY_CALCS_SECTION initiated
+
+observed min predator prey size ratio: 
+                  Cod        Whiting    Haddock    Saithe     Mackerel   Herring    N.sandeel  S.sandeel  Nor.pout   Sprat      Plaice     Sole       
+Fulmar           280.1      357.1      364.2          .          .      111.3      402.3      402.3      277.0      311.3          .          .
+Guillemot            .       66.5      142.7          .          .      156.2      383.1      383.1          .      283.4          .          .
+Her.Gull         280.1      357.1      364.2          .          .       28.6      435.5      435.5      277.0      311.3          .          .
+Kittiwake        280.1      357.1      364.2          .          .       49.4      402.3      402.3          .      547.0          .          .
+GBB.Gull         280.1      357.1      364.2          .          .       28.6      402.3      402.3      277.0      311.3          .          .
+Gannet            12.6          .          .          .          .       17.6      402.3      402.3          .      156.2          .          .
+Puffin               .          .          .          .          .      547.0      402.3      402.3          .      547.0          .          .
+Razorbill            .       79.3          .          .          .      547.0      950.6      950.6      252.5      461.3          .          .
+A.radiata         46.5       46.5          .          .          .          .       53.8       59.2       37.0          .          .          .
+G.gurnards         9.0        5.3       19.8          .          .        8.3       11.6       11.6        8.3       35.1          .          .
+W.horse.mac          .          .          .          .          .          .       69.3          .       72.6          .          .          .
+N.horse.mac          .       53.5          .          .          .       15.9       94.0          .          .       40.0          .          .
+Grey.seal          3.3       16.0       10.8          .          .       31.5      261.3      261.3      112.8          .       15.9          .
+H.porpoise         4.9       16.0          .          .          .       31.5      261.3      261.3     1803.3          .          .          .
+Hake                 .      283.2          .          .          .        7.8          .          .        4.9          .          .          .
+Cod                3.6        4.5        7.0          .          .        2.7        5.5        2.7        4.2       11.3          .          .
+Whiting            4.4        2.7        3.0          .          .        2.3        2.3        2.2        1.8        2.5          .          .
+Haddock              .          .          .          .          .          .        4.2      132.3        8.7          .          .          .
+Saithe               .       13.1       13.0          .          .        4.3       26.6          .        4.7          .          .          .
+Mackerel             .          .          .          .          .       24.2       36.5        6.1       27.5       15.1          .          .
+
+observed max predator prey size ratio: 
+                  Cod        Whiting    Haddock    Saithe     Mackerel   Herring    N.sandeel  S.sandeel  Nor.pout   Sprat      Plaice     Sole       
+Fulmar            1305        984        472          .          .        453       8621       8621       1416       4673          .          .
+Guillemot            .        541        466          .          .       1645       5263       5263          .       4673          .          .
+Her.Gull          2033       2747        929          .          .        119       2825       2825       2262       4673          .          .
+Kittiwake         1305       1748        821          .          .        453       8621       8621          .       4673          .          .
+GBB.Gull          2033       2747        929          .          .        119       5263       5263       2262       4673          .          .
+Gannet              39          .          .          .          .        118       8621       8621          .        758          .          .
+Puffin               .          .          .          .          .       1645       8621       8621          .       4673          .          .
+Razorbill            .        512          .          .          .       1645       8621       8621        728       4673          .          .
+A.radiata         1028        178          .          .          .          .       3526        791       1431          .          .          .
+G.gurnards         308        422         97          .          .         25       1056        939        429        391          .          .
+W.horse.mac          .          .          .          .          .          .        517          .        321          .          .          .
+N.horse.mac          .        243          .          .          .         80        308          .          .        101          .          .
+Grey.seal          789       1017        276          .          .        896       7534       4314       1803          .       1657          .
+H.porpoise        2355       7857          .          .          .       1667       7534       5140       7971          .          .          .
+Hake                 .        283          .          .          .         78          .          .       1489          .          .          .
+Cod                720       3103       1645          .          .       1502       6481       6481       4394       4278          .          .
+Whiting            103        377        133          .          .        124        717        542        384        708          .          .
+Haddock              .          .          .          .          .          .       1814        132        736          .          .          .
+Saithe               .       1014        953          .          .        535       2370          .       1653          .          .          .
+Mackerel             .          .          .          .          .        226       1332        595        700        454          .          .
+
+                  Cod        Whiting    Haddock    Saithe     Mackerel   Herring    N.sandeel  S.sandeel  Nor.pout   Sprat      Plaice     Sole       
+Fulmar     
+Guillemot  
+Her.Gull   
+Kittiwake  
+GBB.Gull   
+Gannet     
+Puffin     
+Razorbill  
+A.radiata  
+G.gurnards 
+W.horse.mac
+N.horse.mac
+Grey.seal  
+H.porpoise 
+Hake       
+Cod        
+Whiting    
+Haddock    
+Saithe     
+Mackerel    ALK exist for all prey length classes
+
+Adjusted min predator prey size ratio (according to option max.prey.pred.size.fac), to be used for calculation of M2: 
+                  Cod        Whiting    Haddock    Saithe     Mackerel   Herring    N.sandeel  S.sandeel  Nor.pout   Sprat      Plaice     Sole       
+Fulmar           280.1      357.1      364.2          .          .      111.3      402.3      402.3      277.0      311.3          .          .      111.3
+Guillemot            .       66.5      142.7          .          .      156.2      383.1      383.1          .      283.4          .          .       66.5
+Her.Gull         280.1      357.1      364.2          .          .       28.6      435.5      435.5      277.0      311.3          .          .       28.6
+Kittiwake        280.1      357.1      364.2          .          .       49.4      402.3      402.3          .      547.0          .          .       49.4
+GBB.Gull         280.1      357.1      364.2          .          .       28.6      402.3      402.3      277.0      311.3          .          .       28.6
+Gannet            12.6          .          .          .          .       17.6      402.3      402.3          .      156.2          .          .       12.6
+Puffin               .          .          .          .          .      547.0      402.3      402.3          .      547.0          .          .      402.3
+Razorbill            .       79.3          .          .          .      547.0      950.6      950.6      252.5      461.3          .          .       79.3
+A.radiata         46.5       46.5          .          .          .          .       53.8       59.2       37.0          .          .          .       37.0
+G.gurnards         9.0        5.3       19.8          .          .        8.3       11.6       11.6        8.3       35.1          .          .        5.3
+W.horse.mac          .          .          .          .          .          .       69.3          .       72.6          .          .          .       69.3
+N.horse.mac          .       53.5          .          .          .       15.9       94.0          .          .       40.0          .          .       15.9
+Grey.seal          3.3       16.0       10.8          .          .       31.5      261.3      261.3      112.8          .       15.9          .        3.3
+H.porpoise         4.9       16.0          .          .          .       31.5      261.3      261.3     1803.3          .          .          .        4.9
+Hake                 .      283.2          .          .          .        7.8          .          .        4.9          .          .          .        4.9
+Cod                3.6        4.5        7.0          .          .        2.7        5.5        2.7        4.2       11.3          .          .        2.7
+Whiting            4.4        2.7        3.0          .          .        2.3        2.3        2.2        1.8        2.5          .          .        1.8
+Haddock              .          .          .          .          .          .        4.2      132.3        8.7          .          .          .        4.2
+Saithe               .       13.1       13.0          .          .        4.3       26.6          .        4.7          .          .          .        4.3
+Mackerel             .          .          .          .          .       24.2       36.5        6.1       27.5       15.1          .          .        6.1
+
+
+Min observed stomach contents observations to be used:  9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-09 9.000e-09 9.000e-09 9.000e-09 9.000e-05 9.000e-05
+
+Species, number of stomachs observations totally, and used
+Fulmar                             363    342
+Guillemot                          428    424
+Her.Gull                           419    406
+Kittiwake                          334    334
+GBB.Gull                           519    510
+Gannet                             306    306
+Puffin                             276    276
+Razorbill                          300    288
+A.radiata                          138    125
+G.gurnards                         332    306
+W.horse.mac                         21    19
+N.horse.mac                         40    40
+Grey.seal                          630    491
+H.porpoise                         112    106
+Hake                                50    50
+Cod                               2328    2328
+Whiting                           1460    1460
+Haddock                            254    254
+Saithe                             464    447
+Mackerel                           222    205
+
+Number of predator-prey interaction observation used
+                  Cod        Whiting    Haddock    Saithe     Mackerel   Herring    N.sandeel  S.sandeel  Nor.pout   Sprat      Plaice     Sole       
+Fulmar              32         30          8          0          0         40         50         50         44         64          0          0
+Guillemot            0         78         14          0          0         56         84         84          0         84          0          0
+Her.Gull            30         54         44          0          0         72         20         20         64         78          0          0
+Kittiwake           24         24         22          0          0         40         78         78          0         44          0          0
+GBB.Gull            54         52         44          0          0         72         60         60         66         78          0          0
+Gannet              46          0          0          0          0         96         50         50          0         40          0          0
+Puffin               0          0          0          0          0         28         94         94          0         36          0          0
+Razorbill            0         40          0          0          0         28         56         56         28         62          0          0
+A.radiata            6          4          0          0          0          0         57         12         24          0          0          0
+G.gurnards          19         47          7          0          0          2         75         63         47         12          0          0
+W.horse.mac          0          0          0          0          0          0          7          0          6          0          0          0
+N.horse.mac          0          7          0          0          0          7          2          0          0          5          0          0
+Grey.seal           93         73         69          0          0         37         51         47         38          0         71          0
+H.porpoise          30         30          0          0          0         12         14         13          4          0          0          0
+Hake                 0          1          0          0          0          7          0          0         27          0          0          0
+Cod                178        346        297          0          0        316        359        206        347        151          0          0
+Whiting             28        140        100          0          0        136        263        212        265        218          0          0
+Haddock              0          0          0          0          0          0        124          2         76          0          0          0
+Saithe               0         39         70          0          0         48         45          0        189          0          0          0
+Mackerel             0          0          0          0          0         22         40         41         30         37          0          0
+
+PRELIMINARY_CALCS_SECTION done
+Starting optimization of 'sms' in phase 2 of 2 at Mon Nov 20 18:51:22 2023
+variable out of bounds in boundpin: variable = 1; min = 0.02; max = 0.12
+variable out of bounds in boundpin: variable = 1; min = 0.02; max = 0.12
+variable out of bounds in boundpin: variable = 1; min = 0.02; max = 0.12
+variable out of bounds in boundpin: variable = 1; min = 0.02; max = 0.12
+variable out of bounds in boundpin: variable = 1; min = 0.02; max = 0.12
+variable out of bounds in boundpin: variable = 1; min = 0.02; max = 0.12
+variable out of bounds in boundpin: variable = 1; min = 0.02; max = 0.12
+variable out of bounds in boundpin: variable = 1; min = 0.02; max = 0.12
+variable out of bounds in boundpin: variable = 1; min = 1; max = 101
+phase= 2 | nvar=137 | iter=  0 | nll=1.03e+04 | mag=1.81e+05 | par[ 94]=vulnera[94]
+phase= 2 | nvar=137 | iter= 20 | nll=-1.63e+03 | mag=4.87e+04 | par[ 93]=vulnera[93]
+phase= 2 | nvar=137 | iter= 40 | nll=-2.09e+03 | mag=4.42e+04 | par[ 96]=vulnera[96]
+phase= 2 | nvar=137 | iter= 60 | nll=-2.24e+03 | mag=4.53e+04 | par[ 93]=vulnera[93]
+phase= 2 | nvar=137 | iter= 80 | nll=-2.26e+03 | mag=4.25e+04 | par[ 93]=vulnera[93]
+phase= 2 | nvar=137 | iter=100 | nll=-2.33e+03 | mag=3.83e+04 | par[ 93]=vulnera[93]
+phase= 2 | nvar=137 | iter=120 | nll=-2.60e+03 | mag=2.64e+04 | par[ 96]=vulnera[96]
+phase= 2 | nvar=137 | iter=140 | nll=-2.98e+03 | mag=1.86e+04 | par[ 94]=vulnera[94]
+phase= 2 | nvar=137 | iter=160 | nll=-3.42e+03 | mag=2.74e+03 | par[ 96]=vulnera[96]
+phase= 2 | nvar=137 | iter=180 | nll=-3.49e+03 | mag=1.07e+03 | par[ 94]=vulnera[94]
+phase= 2 | nvar=137 | iter=200 | nll=-3.50e+03 | mag=7.22e+01 | par[ 94]=vulnera[94]
+phase= 2 | nvar=137 | iter=220 | nll=-3.50e+03 | mag=4.56e+00 | par[ 96]=vulnera[96]
+phase= 2 | nvar=137 | iter=240 | nll=-3.50e+03 | mag=2.38e-02 | par[ 94]=vulnera[94]
+phase= 2 | nvar=137 | iter=253 | nll=-3.50e+03 | mag=1.96e-03 | par[ 94]=vulnera[94]
+Optimization completed after 5.4 s with final statistics:
+  nll=-3500.735133 | mag=1.95833e-03 | par[ 94]=vulnera[94]
+
+Warning: the following parameters had issues
+  vulnera[2] is within 1% of lower bound: 0.001 < 6 < 1e+03
+  vulnera[4] is within 0.1% of lower bound: 0.001 < 0.2 < 1e+03
+  vulnera[5] is within 0.1% of lower bound: 0.001 < 0.03 < 1e+03
+  vulnera[6] is within 0.1% of lower bound: 0.001 < 0.01 < 1e+03
+  vulnera[7] is within 0.1% of lower bound: 0.001 < 0.4 < 1e+03
+  vulnera[8] is within 0.1% of lower bound: 0.001 < 0.6 < 1e+03
+  vulnera[9] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[10] is within 1% of lower bound: 0.001 < 4 < 1e+03
+  vulnera[11] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[12] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[13] is within 0.1% of lower bound: 0.001 < 0.7 < 1e+03
+  vulnera[14] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[15] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[16] is within 0.1% of lower bound: 0.001 < 0.6 < 1e+03
+  vulnera[17] is within 0.1% of lower bound: 0.001 < 0.8 < 1e+03
+  vulnera[18] is within 0.1% of lower bound: 0.001 < 0.006 < 1e+03
+  vulnera[19] is within 0.1% of lower bound: 0.001 < 0.01 < 1e+03
+  vulnera[20] is within 0.1% of lower bound: 0.001 < 0.007 < 1e+03
+  vulnera[21] is within 0.1% of lower bound: 0.001 < 0.05 < 1e+03
+  vulnera[22] is within 0.1% of lower bound: 0.001 < 0.04 < 1e+03
+  vulnera[26] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[27] is within 1% of lower bound: 0.001 < 3 < 1e+03
+  vulnera[28] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[33] is within 0.1% of lower bound: 0.001 < 0.7 < 1e+03
+  vulnera[34] is within 1% of lower bound: 0.001 < 4 < 1e+03
+  vulnera[35] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[36] is within 1% of lower bound: 0.001 < 5 < 1e+03
+  vulnera[37] is within 1% of lower bound: 0.001 < 5 < 1e+03
+  vulnera[39] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[40] is within 0.1% of lower bound: 0.001 < 0.7 < 1e+03
+  vulnera[41] is within 0.1% of lower bound: 0.001 < 0.3 < 1e+03
+  vulnera[43] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[44] is within 0.1% of lower bound: 0.001 < 0.7 < 1e+03
+  vulnera[45] is within 0.1% of lower bound: 0.001 < 0.3 < 1e+03
+  vulnera[46] is within 0.1% of lower bound: 0.001 < 0.5 < 1e+03
+  vulnera[47] is within 0.1% of lower bound: 0.001 < 0.1 < 1e+03
+  vulnera[48] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[49] is within 0.1% of lower bound: 0.001 < 0.4 < 1e+03
+  vulnera[50] is within 0.1% of lower bound: 0.001 < 0.1 < 1e+03
+  vulnera[51] is within 0.1% of lower bound: 0.001 < 0.08 < 1e+03
+  vulnera[52] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[54] is within 1% of lower bound: 0.001 < 6 < 1e+03
+  vulnera[55] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[56] is within 0.1% of lower bound: 0.001 < 0.3 < 1e+03
+  vulnera[57] is within 0.1% of lower bound: 0.001 < 0.9 < 1e+03
+  vulnera[59] is within 1% of lower bound: 0.001 < 8 < 1e+03
+  vulnera[60] is within 1% of lower bound: 0.001 < 5 < 1e+03
+  vulnera[61] is within 0.1% of lower bound: 0.001 < 0.4 < 1e+03
+  vulnera[62] is within 0.1% of lower bound: 0.001 < 0.5 < 1e+03
+  vulnera[63] is within 0.1% of lower bound: 0.001 < 0.4 < 1e+03
+  vulnera[64] is within 0.1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[65] is within 0.1% of lower bound: 0.001 < 0.4 < 1e+03
+  vulnera[66] is within 1% of lower bound: 0.001 < 4 < 1e+03
+  vulnera[67] is within 1% of lower bound: 0.001 < 9 < 1e+03
+  vulnera[68] is within 1% of lower bound: 0.001 < 5 < 1e+03
+  vulnera[69] is within 0.1% of lower bound: 0.001 < 0.3 < 1e+03
+  vulnera[70] is within 0.1% of lower bound: 0.001 < 0.1 < 1e+03
+  vulnera[71] is within 0.1% of lower bound: 0.001 < 0.08 < 1e+03
+  vulnera[72] is within 1% of lower bound: 0.001 < 8 < 1e+03
+  vulnera[73] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[74] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[75] is within 0.1% of lower bound: 0.001 < 0.04 < 1e+03
+  vulnera[76] is within 0.1% of lower bound: 0.001 < 0.9 < 1e+03
+  vulnera[77] is within 0.1% of lower bound: 0.001 < 0.6 < 1e+03
+  vulnera[78] is within 0.1% of lower bound: 0.001 < 0.6 < 1e+03
+  vulnera[79] is within 0.1% of lower bound: 0.001 < 0.5 < 1e+03
+  vulnera[80] is within 1% of lower bound: 0.001 < 9 < 1e+03
+  vulnera[81] is within 1% of lower bound: 0.001 < 3 < 1e+03
+  vulnera[82] is within 0.1% of lower bound: 0.001 < 0.3 < 1e+03
+  vulnera[83] is within 0.1% of lower bound: 0.001 < 0.2 < 1e+03
+  vulnera[84] is within 0.1% of lower bound: 0.001 < 0.1 < 1e+03
+  vulnera[85] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[87] is within 0.1% of lower bound: 0.001 < 0.2 < 1e+03
+  vulnera[88] is within 1% of lower bound: 0.001 < 3 < 1e+03
+  vulnera[89] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[90] is within 0.1% of lower bound: 0.001 < 0.6 < 1e+03
+  vulnera[91] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[92] is within 0.1% of lower bound: 0.001 < 0.1 < 1e+03
+  vulnera[93] is within 0.1% of lower bound: 0.001 < 0.09 < 1e+03
+  vulnera[94] is within 0.1% of lower bound: 0.001 < 0.01 < 1e+03
+  vulnera[95] is within 0.1% of lower bound: 0.001 < 0.4 < 1e+03
+  vulnera[96] is within 0.1% of lower bound: 0.001 < 0.1 < 1e+03
+  vulnera[97] is within 0.1% of lower bound: 0.001 < 0.6 < 1e+03
+  vulnera[98] is within 0.1% of lower bound: 0.001 < 0.6 < 1e+03
+  vulnera[99] is within 0.1% of lower bound: 0.001 < 0.9 < 1e+03
+  vulnera[100] is within 0.1% of lower bound: 0.001 < 0.1 < 1e+03
+  vulnera[101] is within 0.1% of lower bound: 0.001 < 0.08 < 1e+03
+  vulnera[102] is within 0.1% of lower bound: 0.001 < 0.02 < 1e+03
+  vulnera[103] is within 0.1% of lower bound: 0.001 < 0.3 < 1e+03
+  vulnera[104] is within 0.1% of lower bound: 0.001 < 0.2 < 1e+03
+  vulnera[105] is within 1% of lower bound: 0.001 < 7 < 1e+03
+  vulnera[106] is within 1% of lower bound: 0.001 < 4 < 1e+03
+  vulnera[107] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[108] is within 0.1% of lower bound: 0.001 < 0.8 < 1e+03
+  vulnera[109] is within 1% of lower bound: 0.001 < 3 < 1e+03
+  vulnera[110] is within 0.1% of lower bound: 0.001 < 0.3 < 1e+03
+  vulnera[111] is within 0.1% of lower bound: 0.001 < 0.1 < 1e+03
+  vulnera[112] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[113] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[114] is within 0.1% of lower bound: 0.001 < 0.9 < 1e+03
+  vulnera[115] is within 0.1% of lower bound: 0.001 < 0.8 < 1e+03
+  vulnera[116] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[117] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  Stom_var[1] is within 0.1% of upper bound: 0.02 < 0.1 < 0.1
+  Stom_var[2] is within 0.1% of upper bound: 0.02 < 0.1 < 0.1
+  Stom_var[3] is within 0.1% of upper bound: 0.02 < 0.1 < 0.1
+  Stom_var[4] is within 0.1% of upper bound: 0.02 < 0.1 < 0.1
+  Stom_var[5] is within 0.1% of upper bound: 0.02 < 0.1 < 0.1
+  Stom_var[6] is within 0.1% of upper bound: 0.02 < 0.1 < 0.1
+  Stom_var[7] is within 0.1% of upper bound: 0.02 < 0.1 < 0.1
+  Stom_var[8] is within 0.1% of upper bound: 0.02 < 0.1 < 0.1
+
+report file: sms.rep
+
+
+Successful completion, HURRAH - HURRAH 
+
+Finished running model 'sms' after 6.1 s.

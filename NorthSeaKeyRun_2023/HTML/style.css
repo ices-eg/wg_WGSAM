@@ -1,0 +1,43 @@
+<style>
+p.caption {
+  font-size: 2.0em;
+  font-style: italic;
+  color: blue;
+  margin-right: 10%;
+  margin-left: 1%;  
+  text-align: justify;
+}
+
+h1 {
+  color: black;
+  font-family: verdana;
+  font-size: 200%;
+}
+
+
+h2 {
+  color: black;
+  font-family: verdana;
+  font-size: 150%;
+}
+
+
+h3 {
+  color: black;
+  font-family: verdana;
+  font-size: 130%;
+}
+
+h4 {
+  color: black;
+  font-family: verdana;
+  font-size: 100%;
+}
+
+.nav-pills>li>a {
+  color: red;
+  font-size: 90%
+}
+
+
+</style>

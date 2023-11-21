@@ -1,0 +1,24 @@
+## parameter setting for estimation of multiplier for consumption estimate
+##  lower limit in multplier, upper limit for multiplier, phase for estimation of parameter and default value
+##
+0.01 2 -1  1  # 1 Fulmar 
+0.01 2 -1  1  # 2 Guillemot 
+0.01 2 -1  1  # 3 Her. Gull 
+0.01 2 -1  1  # 4 Kittiwake 
+0.01 2 -1  1  # 5 GBB. Gull 
+0.01 2 -1  1  # 6 Gannet 
+0.01 2 -1  1  # 7 Puffin 
+0.01 2 -1  1  # 8 Razorbill 
+0.01 2 -1  1  # 9 R. radiata 
+0.1  2 -1  1  # 10 G. gurnards 
+0.01 2 -1  1  # 11 W.horse mac 
+0.01 2 -1  1  # 12 N.horse mac 
+0.01 2 -1  1  # 13 Grey seal 
+0.01 2 -1  1  # 14 H. porpoise 
+0.01 2 -1  1  # 15 Hake 
+0.01 2 -1  1  # 16 Cod 
+0.01 2 -1  1  # 17 Whiting 
+0.01 2 -1  1  # 18 Haddock 
+0.01 2 -1  1  # 19 Saithe 
+0.01 2 -1  1  # 20 Mackerel 
+-999 # checksum

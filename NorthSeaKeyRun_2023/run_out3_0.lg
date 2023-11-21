@@ -1,0 +1,533 @@
+SMS version October 2023 using ADMB version 13.1
+November 20, 2023 18:59:01
+no. of species: 27  no. of predators: 20  no. of other predators:15
+first VPA species no.:16  first VPA species as prey:16
+
+diri_alpha0:  0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 1 1 1 1 1  sum:9
+PRELIMINARY_CALCS_SECTION initiated
+
+observed min predator prey size ratio: 
+                  Cod        Whiting    Haddock    Saithe     Mackerel   Herring    N.sandeel  S.sandeel  Nor.pout   Sprat      Plaice     Sole       
+Fulmar           280.1      357.1      364.2          .          .      111.3      402.3      402.3      277.0      311.3          .          .
+Guillemot            .       66.5      142.7          .          .      156.2      383.1      383.1          .      283.4          .          .
+Her.Gull         280.1      357.1      364.2          .          .       28.6      435.5      435.5      277.0      311.3          .          .
+Kittiwake        280.1      357.1      364.2          .          .       49.4      402.3      402.3          .      547.0          .          .
+GBB.Gull         280.1      357.1      364.2          .          .       28.6      402.3      402.3      277.0      311.3          .          .
+Gannet            12.6          .          .          .          .       17.6      402.3      402.3          .      156.2          .          .
+Puffin               .          .          .          .          .      547.0      402.3      402.3          .      547.0          .          .
+Razorbill            .       79.3          .          .          .      547.0      950.6      950.6      252.5      461.3          .          .
+A.radiata         46.5       46.5          .          .          .          .       53.8       59.2       37.0          .          .          .
+G.gurnards         9.0        5.3       19.8          .          .        8.3       11.6       11.6        8.3       35.1          .          .
+W.horse.mac          .          .          .          .          .          .       69.3          .       72.6          .          .          .
+N.horse.mac          .       53.5          .          .          .       15.9       94.0          .          .       40.0          .          .
+Grey.seal          3.3       16.0       10.8          .          .       31.5      261.3      261.3      112.8          .       15.9          .
+H.porpoise         4.9       16.0          .          .          .       31.5      261.3      261.3     1803.3          .          .          .
+Hake                 .      283.2          .          .          .        7.8          .          .        4.9          .          .          .
+Cod                3.6        4.5        7.0          .          .        2.7        5.5        2.7        4.2       11.3          .          .
+Whiting            4.4        2.7        3.0          .          .        2.3        2.3        2.2        1.8        2.5          .          .
+Haddock              .          .          .          .          .          .        4.2      132.3        8.7          .          .          .
+Saithe               .       13.1       13.0          .          .        4.3       26.6          .        4.7          .          .          .
+Mackerel             .          .          .          .          .       24.2       36.5        6.1       27.5       15.1          .          .
+
+observed max predator prey size ratio: 
+                  Cod        Whiting    Haddock    Saithe     Mackerel   Herring    N.sandeel  S.sandeel  Nor.pout   Sprat      Plaice     Sole       
+Fulmar            1305        984        472          .          .        453       8621       8621       1416       4673          .          .
+Guillemot            .        541        466          .          .       1645       5263       5263          .       4673          .          .
+Her.Gull          2033       2747        929          .          .        119       2825       2825       2262       4673          .          .
+Kittiwake         1305       1748        821          .          .        453       8621       8621          .       4673          .          .
+GBB.Gull          2033       2747        929          .          .        119       5263       5263       2262       4673          .          .
+Gannet              39          .          .          .          .        118       8621       8621          .        758          .          .
+Puffin               .          .          .          .          .       1645       8621       8621          .       4673          .          .
+Razorbill            .        512          .          .          .       1645       8621       8621        728       4673          .          .
+A.radiata         1028        178          .          .          .          .       3526        791       1431          .          .          .
+G.gurnards         308        422         97          .          .         25       1056        939        429        391          .          .
+W.horse.mac          .          .          .          .          .          .        517          .        321          .          .          .
+N.horse.mac          .        243          .          .          .         80        308          .          .        101          .          .
+Grey.seal          789       1017        276          .          .        896       7534       4314       1803          .       1657          .
+H.porpoise        2355       7857          .          .          .       1667       7534       5140       7971          .          .          .
+Hake                 .        283          .          .          .         78          .          .       1489          .          .          .
+Cod                720       3103       1645          .          .       1502       6481       6481       4394       4278          .          .
+Whiting            103        377        133          .          .        124        717        542        384        708          .          .
+Haddock              .          .          .          .          .          .       1814        132        736          .          .          .
+Saithe               .       1014        953          .          .        535       2370          .       1653          .          .          .
+Mackerel             .          .          .          .          .        226       1332        595        700        454          .          .
+
+                  Cod        Whiting    Haddock    Saithe     Mackerel   Herring    N.sandeel  S.sandeel  Nor.pout   Sprat      Plaice     Sole       
+Fulmar     
+Guillemot  
+Her.Gull   
+Kittiwake  
+GBB.Gull   
+Gannet     
+Puffin     
+Razorbill  
+A.radiata  
+G.gurnards 
+W.horse.mac
+N.horse.mac
+Grey.seal  
+H.porpoise 
+Hake       
+Cod        
+Whiting    
+Haddock    
+Saithe     
+Mackerel    ALK exist for all prey length classes
+
+Adjusted min predator prey size ratio (according to option max.prey.pred.size.fac), to be used for calculation of M2: 
+                  Cod        Whiting    Haddock    Saithe     Mackerel   Herring    N.sandeel  S.sandeel  Nor.pout   Sprat      Plaice     Sole       
+Fulmar           280.1      357.1      364.2          .          .      111.3      402.3      402.3      277.0      311.3          .          .      111.3
+Guillemot            .       66.5      142.7          .          .      156.2      383.1      383.1          .      283.4          .          .       66.5
+Her.Gull         280.1      357.1      364.2          .          .       28.6      435.5      435.5      277.0      311.3          .          .       28.6
+Kittiwake        280.1      357.1      364.2          .          .       49.4      402.3      402.3          .      547.0          .          .       49.4
+GBB.Gull         280.1      357.1      364.2          .          .       28.6      402.3      402.3      277.0      311.3          .          .       28.6
+Gannet            12.6          .          .          .          .       17.6      402.3      402.3          .      156.2          .          .       12.6
+Puffin               .          .          .          .          .      547.0      402.3      402.3          .      547.0          .          .      402.3
+Razorbill            .       79.3          .          .          .      547.0      950.6      950.6      252.5      461.3          .          .       79.3
+A.radiata         46.5       46.5          .          .          .          .       53.8       59.2       37.0          .          .          .       37.0
+G.gurnards         9.0        5.3       19.8          .          .        8.3       11.6       11.6        8.3       35.1          .          .        5.3
+W.horse.mac          .          .          .          .          .          .       69.3          .       72.6          .          .          .       69.3
+N.horse.mac          .       53.5          .          .          .       15.9       94.0          .          .       40.0          .          .       15.9
+Grey.seal          3.3       16.0       10.8          .          .       31.5      261.3      261.3      112.8          .       15.9          .        3.3
+H.porpoise         4.9       16.0          .          .          .       31.5      261.3      261.3     1803.3          .          .          .        4.9
+Hake                 .      283.2          .          .          .        7.8          .          .        4.9          .          .          .        4.9
+Cod                3.6        4.5        7.0          .          .        2.7        5.5        2.7        4.2       11.3          .          .        2.7
+Whiting            4.4        2.7        3.0          .          .        2.3        2.3        2.2        1.8        2.5          .          .        1.8
+Haddock              .          .          .          .          .          .        4.2      132.3        8.7          .          .          .        4.2
+Saithe               .       13.1       13.0          .          .        4.3       26.6          .        4.7          .          .          .        4.3
+Mackerel             .          .          .          .          .       24.2       36.5        6.1       27.5       15.1          .          .        6.1
+
+
+Min observed stomach contents observations to be used:  9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-05 9.000e-09 9.000e-09 9.000e-09 9.000e-09 9.000e-05 9.000e-05
+
+Species, number of stomachs observations totally, and used
+Fulmar                             363    342
+Guillemot                          428    424
+Her.Gull                           419    406
+Kittiwake                          334    334
+GBB.Gull                           519    510
+Gannet                             306    306
+Puffin                             276    276
+Razorbill                          300    288
+A.radiata                          138    125
+G.gurnards                         332    306
+W.horse.mac                         21    19
+N.horse.mac                         40    40
+Grey.seal                          630    491
+H.porpoise                         112    106
+Hake                                50    50
+Cod                               2328    2328
+Whiting                           1460    1460
+Haddock                            254    254
+Saithe                             464    447
+Mackerel                           222    205
+
+Number of predator-prey interaction observation used
+                  Cod        Whiting    Haddock    Saithe     Mackerel   Herring    N.sandeel  S.sandeel  Nor.pout   Sprat      Plaice     Sole       
+Fulmar              32         30          8          0          0         40         50         50         44         64          0          0
+Guillemot            0         78         14          0          0         56         84         84          0         84          0          0
+Her.Gull            30         54         44          0          0         72         20         20         64         78          0          0
+Kittiwake           24         24         22          0          0         40         78         78          0         44          0          0
+GBB.Gull            54         52         44          0          0         72         60         60         66         78          0          0
+Gannet              46          0          0          0          0         96         50         50          0         40          0          0
+Puffin               0          0          0          0          0         28         94         94          0         36          0          0
+Razorbill            0         40          0          0          0         28         56         56         28         62          0          0
+A.radiata            6          4          0          0          0          0         57         12         24          0          0          0
+G.gurnards          19         47          7          0          0          2         75         63         47         12          0          0
+W.horse.mac          0          0          0          0          0          0          7          0          6          0          0          0
+N.horse.mac          0          7          0          0          0          7          2          0          0          5          0          0
+Grey.seal           93         73         69          0          0         37         51         47         38          0         71          0
+H.porpoise          30         30          0          0          0         12         14         13          4          0          0          0
+Hake                 0          1          0          0          0          7          0          0         27          0          0          0
+Cod                178        346        297          0          0        316        359        206        347        151          0          0
+Whiting             28        140        100          0          0        136        263        212        265        218          0          0
+Haddock              0          0          0          0          0          0        124          2         76          0          0          0
+Saithe               0         39         70          0          0         48         45          0        189          0          0          0
+Mackerel             0          0          0          0          0         22         40         41         30         37          0          0
+
+PRELIMINARY_CALCS_SECTION done
+Starting optimization of 'sms' in phase 2 of 2 at Mon Nov 20 18:59:03 2023
+phase= 2 | nvar=1893 | iter=  0 | nll=-6.39e+03 | mag=1.54e+02 | par[1891]=Stom_var[9]
+phase= 2 | nvar=1893 | iter= 20 | nll=-6.40e+03 | mag=1.58e+03 | par[1652]=SSB_R_alfa[5]
+phase= 2 | nvar=1893 | iter= 40 | nll=-6.40e+03 | mag=1.84e+03 | par[1500]=qq_ini[26]
+phase= 2 | nvar=1893 | iter= 60 | nll=-6.41e+03 | mag=2.91e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter= 80 | nll=-6.42e+03 | mag=2.90e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=100 | nll=-6.42e+03 | mag=2.90e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=120 | nll=-6.42e+03 | mag=2.90e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=140 | nll=-6.42e+03 | mag=2.89e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=160 | nll=-6.43e+03 | mag=2.88e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=180 | nll=-6.43e+03 | mag=2.88e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=200 | nll=-6.43e+03 | mag=2.87e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=220 | nll=-6.43e+03 | mag=2.84e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=240 | nll=-6.43e+03 | mag=2.80e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=260 | nll=-6.43e+03 | mag=2.77e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=280 | nll=-6.43e+03 | mag=2.74e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=300 | nll=-6.43e+03 | mag=2.72e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=320 | nll=-6.43e+03 | mag=2.67e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=340 | nll=-6.43e+03 | mag=2.58e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=360 | nll=-6.43e+03 | mag=2.32e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=380 | nll=-6.43e+03 | mag=2.00e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=400 | nll=-6.43e+03 | mag=1.72e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=420 | nll=-6.43e+03 | mag=1.39e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=440 | nll=-6.44e+03 | mag=1.03e+03 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=460 | nll=-6.44e+03 | mag=6.60e+02 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=480 | nll=-6.44e+03 | mag=4.57e+02 | par[1845]=vulnera[89]
+phase= 2 | nvar=1893 | iter=500 | nll=-6.44e+03 | mag=5.25e+02 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=520 | nll=-6.44e+03 | mag=5.77e+02 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=540 | nll=-6.44e+03 | mag=6.71e+02 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=560 | nll=-6.44e+03 | mag=7.05e+02 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=580 | nll=-6.44e+03 | mag=7.24e+02 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=600 | nll=-6.44e+03 | mag=7.35e+02 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=620 | nll=-6.44e+03 | mag=7.34e+02 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=640 | nll=-6.44e+03 | mag=7.19e+02 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=660 | nll=-6.44e+03 | mag=6.90e+02 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=680 | nll=-6.44e+03 | mag=6.44e+02 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=700 | nll=-6.44e+03 | mag=5.89e+02 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=720 | nll=-6.44e+03 | mag=5.33e+02 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=740 | nll=-6.44e+03 | mag=4.94e+02 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=760 | nll=-6.44e+03 | mag=4.44e+02 | par[1574]=qq_ini[100]
+phase= 2 | nvar=1893 | iter=780 | nll=-6.44e+03 | mag=4.19e+02 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=800 | nll=-6.44e+03 | mag=4.35e+02 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=820 | nll=-6.44e+03 | mag=4.37e+02 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=840 | nll=-6.44e+03 | mag=4.22e+02 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=860 | nll=-6.44e+03 | mag=3.94e+02 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=880 | nll=-6.44e+03 | mag=3.56e+02 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=900 | nll=-6.44e+03 | mag=2.86e+02 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=920 | nll=-6.44e+03 | mag=2.13e+02 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=940 | nll=-6.44e+03 | mag=1.57e+02 | par[1660]=SSB_R_beta_ini[1]
+phase= 2 | nvar=1893 | iter=960 | nll=-6.44e+03 | mag=1.32e+02 | par[1652]=SSB_R_alfa[5]
+phase= 2 | nvar=1893 | iter=980 | nll=-6.44e+03 | mag=1.18e+02 | par[1652]=SSB_R_alfa[5]
+phase= 2 | nvar=1893 | iter=1000 | nll=-6.44e+03 | mag=9.61e+01 | par[1652]=SSB_R_alfa[5]
+phase= 2 | nvar=1893 | iter=1020 | nll=-6.44e+03 | mag=1.11e+02 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1040 | nll=-6.44e+03 | mag=1.08e+02 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1060 | nll=-6.44e+03 | mag=8.38e+01 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1080 | nll=-6.44e+03 | mag=6.10e+01 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1100 | nll=-6.44e+03 | mag=3.71e+01 | par[1853]=vulnera[97]
+phase= 2 | nvar=1893 | iter=1120 | nll=-6.44e+03 | mag=3.39e+01 | par[1853]=vulnera[97]
+phase= 2 | nvar=1893 | iter=1140 | nll=-6.44e+03 | mag=2.84e+01 | par[1853]=vulnera[97]
+phase= 2 | nvar=1893 | iter=1160 | nll=-6.44e+03 | mag=2.90e+01 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1180 | nll=-6.44e+03 | mag=2.43e+01 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1200 | nll=-6.44e+03 | mag=1.35e+01 | par[1853]=vulnera[97]
+phase= 2 | nvar=1893 | iter=1220 | nll=-6.44e+03 | mag=1.06e+01 | par[1853]=vulnera[97]
+phase= 2 | nvar=1893 | iter=1240 | nll=-6.44e+03 | mag=8.41e+00 | par[1853]=vulnera[97]
+phase= 2 | nvar=1893 | iter=1260 | nll=-6.44e+03 | mag=8.22e+00 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1280 | nll=-6.44e+03 | mag=5.73e+00 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1300 | nll=-6.44e+03 | mag=2.26e+00 | par[1853]=vulnera[97]
+phase= 2 | nvar=1893 | iter=1320 | nll=-6.44e+03 | mag=3.59e+00 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1340 | nll=-6.44e+03 | mag=3.76e+00 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1360 | nll=-6.44e+03 | mag=1.85e+00 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1380 | nll=-6.44e+03 | mag=1.29e+00 | par[1649]=SSB_R_alfa[2]
+phase= 2 | nvar=1893 | iter=1400 | nll=-6.44e+03 | mag=1.31e+00 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1420 | nll=-6.44e+03 | mag=1.22e+00 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1440 | nll=-6.44e+03 | mag=6.25e-01 | par[1853]=vulnera[97]
+phase= 2 | nvar=1893 | iter=1460 | nll=-6.44e+03 | mag=8.78e-01 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1480 | nll=-6.44e+03 | mag=5.69e-01 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1500 | nll=-6.44e+03 | mag=2.82e-01 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1520 | nll=-6.44e+03 | mag=4.09e-01 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1540 | nll=-6.44e+03 | mag=7.97e-02 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1560 | nll=-6.44e+03 | mag=1.82e-01 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1580 | nll=-6.44e+03 | mag=1.19e-01 | par[1651]=SSB_R_alfa[4]
+phase= 2 | nvar=1893 | iter=1600 | nll=-6.44e+03 | mag=6.39e-03 | par[1853]=vulnera[97]
+phase= 2 | nvar=1893 | iter=1610 | nll=-6.44e+03 | mag=4.93e-02 | par[1651]=SSB_R_alfa[4]
+Optimization completed after 4 m 48 s with final statistics:
+  nll=-6439.226053 | mag=4.93262e-02 | par[1651]=SSB_R_alfa[4]
+
+Warning: the following parameters had issues
+  F_y_ini[23][2012] is within 1% of lower bound: 0.01 < 0.09 < 1e+01
+  F_y_ini[23][2016] is within 1% of lower bound: 0.01 < 0.06 < 1e+01
+  F_y_ini[23][2022] is within 1% of lower bound: 0.01 < 0.04 < 1e+01
+  F_y_ini[24][2011] is within 1% of lower bound: 0.01 < 0.04 < 1e+01
+  F_y_ini[24][2012] is within 1% of lower bound: 0.01 < 0.09 < 1e+01
+  F_q_ini[47][3] is within 0.1% of lower bound: 0.0001 < 0.9 < 3e+03
+  F_q_ini[48][3] is within 0.1% of lower bound: 0.0001 < 1 < 3e+03
+  F_q_ini[49][3] is within 0.1% of lower bound: 0.0001 < 0.6 < 3e+03
+  F_q_ini[50][1] is within 0.1% of lower bound: 0.0001 < 0.08 < 3e+03
+  F_q_ini[50][2] is within 0.1% of lower bound: 0.0001 < 0.05 < 3e+03
+  F_q_ini[50][3] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[51][1] is within 0.1% of lower bound: 0.0001 < 0.08 < 3e+03
+  F_q_ini[51][2] is within 0.1% of lower bound: 0.0001 < 0.09 < 3e+03
+  F_q_ini[51][3] is within 0.1% of lower bound: 0.0001 < 0.2 < 3e+03
+  F_q_ini[52][1] is within 0.1% of lower bound: 0.0001 < 0.07 < 3e+03
+  F_q_ini[52][2] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[52][3] is within 0.1% of lower bound: 0.0001 < 0.4 < 3e+03
+  F_q_ini[55][2] is within 1% of lower bound: 0.0001 < 4 < 3e+03
+  F_q_ini[56][2] is within 1% of lower bound: 0.0001 < 1e+01 < 3e+03
+  F_q_ini[57][2] is within 1% of lower bound: 0.0001 < 6 < 3e+03
+  F_q_ini[58][2] is within 1% of lower bound: 0.0001 < 1e+01 < 3e+03
+  F_q_ini[61][2] is within 1% of lower bound: 0.0001 < 3 < 3e+03
+  F_q_ini[62][2] is within 1% of lower bound: 0.0001 < 8 < 3e+03
+  F_q_ini[63][2] is within 1% of lower bound: 0.0001 < 3 < 3e+03
+  F_q_ini[64][2] is within 1% of lower bound: 0.0001 < 1e+01 < 3e+03
+  F_q_ini[65][3] is within 0.1% of lower bound: 0.0001 < 0.03 < 3e+03
+  F_q_ini[66][3] is within 0.1% of lower bound: 0.0001 < 0.04 < 3e+03
+  F_q_ini[67][1] is within 0.1% of lower bound: 0.0001 < 0.07 < 3e+03
+  F_q_ini[67][2] is within 0.1% of lower bound: 0.0001 < 0.05 < 3e+03
+  F_q_ini[67][3] is within 0.1% of lower bound: 0.0001 < 0.2 < 3e+03
+  F_q_ini[68][1] is within 0.1% of lower bound: 0.0001 < 0.002 < 3e+03
+  F_q_ini[68][2] is within 0.1% of lower bound: 0.0001 < 0.02 < 3e+03
+  F_q_ini[68][3] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[69][1] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[69][2] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[69][3] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[70][1] is within 0.1% of lower bound: 0.0001 < 0.005 < 3e+03
+  F_q_ini[70][2] is within 0.1% of lower bound: 0.0001 < 0.04 < 3e+03
+  F_q_ini[70][3] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[71][1] is within 0.1% of lower bound: 0.0001 < 0.02 < 3e+03
+  F_q_ini[71][2] is within 1% of lower bound: 0.0001 < 1e+01 < 3e+03
+  F_q_ini[71][3] is within 0.1% of lower bound: 0.0001 < 0.3 < 3e+03
+  F_q_ini[72][1] is within 0.1% of lower bound: 0.0001 < 0.04 < 3e+03
+  F_q_ini[72][2] is within 1% of lower bound: 0.0001 < 1e+01 < 3e+03
+  F_q_ini[72][3] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[73][1] is within 0.1% of lower bound: 0.0001 < 0.06 < 3e+03
+  F_q_ini[73][2] is within 1% of lower bound: 0.0001 < 1e+01 < 3e+03
+  F_q_ini[73][3] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  qq_ini[1][1] is within 0.1% of lower bound: 1e-12 < 0.8 < 1e+04
+  qq_ini[1][2] is within 0.1% of lower bound: 1e-12 < 4 < 1e+04
+  qq_ini[1][3] is within 0.1% of lower bound: 1e-12 < 7 < 1e+04
+  qq_ini[1][4] is within 0.1% of lower bound: 1e-12 < 1e+01 < 1e+04
+  qq_ini[2][0] is within 0.1% of lower bound: 1e-12 < 0.1 < 1e+04
+  qq_ini[2][1] is within 0.1% of lower bound: 1e-12 < 2 < 1e+04
+  qq_ini[2][2] is within 0.1% of lower bound: 1e-12 < 4 < 1e+04
+  qq_ini[2][3] is within 0.1% of lower bound: 1e-12 < 6 < 1e+04
+  qq_ini[2][4] is within 0.1% of lower bound: 1e-12 < 8 < 1e+04
+  qq_ini[3][1] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[3][2] is within 0.1% of lower bound: 1e-12 < 4 < 1e+04
+  qq_ini[3][3] is within 0.1% of lower bound: 1e-12 < 4 < 1e+04
+  qq_ini[3][4] is within 0.1% of lower bound: 1e-12 < 3 < 1e+04
+  qq_ini[4][0] is within 0.1% of lower bound: 1e-12 < 0.8 < 1e+04
+  qq_ini[4][1] is within 0.1% of lower bound: 1e-12 < 4 < 1e+04
+  qq_ini[4][2] is within 0.1% of lower bound: 1e-12 < 4 < 1e+04
+  qq_ini[4][3] is within 0.1% of lower bound: 1e-12 < 3 < 1e+04
+  qq_ini[4][4] is within 0.1% of lower bound: 1e-12 < 3 < 1e+04
+  qq_ini[5][1] is within 1% of lower bound: 1e-12 < 4e+01 < 1e+04
+  qq_ini[5][2] is within 1% of lower bound: 1e-12 < 6e+01 < 1e+04
+  qq_ini[5][3] is within 1% of lower bound: 1e-12 < 7e+01 < 1e+04
+  qq_ini[5][4] is within 1% of lower bound: 1e-12 < 5e+01 < 1e+04
+  qq_ini[6][0] is within 1% of lower bound: 1e-12 < 2e+01 < 1e+04
+  qq_ini[6][1] is within 1% of lower bound: 1e-12 < 7e+01 < 1e+04
+  qq_ini[6][2] is within 1% of lower bound: 1e-12 < 6e+01 < 1e+04
+  qq_ini[7][3] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[8][1] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[9][1] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[9][2] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[9][3] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[10][1] is within 1% of lower bound: 1e-12 < 1e+01 < 1e+04
+  qq_ini[11][0] is within 0.1% of lower bound: 1e-12 < 0.4 < 1e+04
+  qq_ini[12][0] is within 1% of lower bound: 1e-12 < 4e+01 < 1e+04
+  qq_ini[12][1] is within 1% of lower bound: 1e-12 < 5e+01 < 1e+04
+  qq_ini[13][1] is within 0.1% of lower bound: 1e-12 < 0.9 < 1e+04
+  qq_ini[13][2] is within 0.1% of lower bound: 1e-12 < 0.9 < 1e+04
+  qq_ini[13][3] is within 0.1% of lower bound: 1e-12 < 0.6 < 1e+04
+  qq_ini[14][1] is within 0.1% of lower bound: 1e-12 < 2 < 1e+04
+  qq_ini[14][2] is within 0.1% of lower bound: 1e-12 < 3 < 1e+04
+  qq_ini[14][3] is within 0.1% of lower bound: 1e-12 < 3 < 1e+04
+  qq_ini[15][0] is within 0.1% of lower bound: 1e-12 < 2 < 1e+04
+  qq_ini[16][1] is within 0.1% of lower bound: 1e-12 < 3 < 1e+04
+  qq_ini[16][2] is within 0.1% of lower bound: 1e-12 < 8 < 1e+04
+  qq_ini[16][3] is within 1% of lower bound: 1e-12 < 1e+01 < 1e+04
+  qq_ini[17][0] is within 0.1% of lower bound: 1e-12 < 0.2 < 1e+04
+  qq_ini[17][1] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[18][1] is within 0.1% of lower bound: 1e-12 < 0.5 < 1e+04
+  qq_ini[18][2] is within 0.1% of lower bound: 1e-12 < 0.9 < 1e+04
+  qq_ini[18][3] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[19][1] is within 0.1% of lower bound: 1e-12 < 0.8 < 1e+04
+  qq_ini[19][2] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[19][3] is within 0.1% of lower bound: 1e-12 < 2 < 1e+04
+  qq_ini[20][0] is within 0.1% of lower bound: 1e-12 < 0.4 < 1e+04
+  qq_ini[20][1] is within 0.1% of lower bound: 1e-12 < 3 < 1e+04
+  qq_ini[21][1] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[21][2] is within 0.1% of lower bound: 1e-12 < 3 < 1e+04
+  qq_ini[21][3] is within 0.1% of lower bound: 1e-12 < 8 < 1e+04
+  qq_ini[22][2] is within 0.1% of lower bound: 1e-12 < 5 < 1e+04
+  qq_ini[22][3] is within 0.1% of lower bound: 1e-12 < 7 < 1e+04
+  qq_ini[23][0] is within 0.1% of lower bound: 1e-12 < 0.9 < 1e+04
+  qq_ini[23][1] is within 0.1% of lower bound: 1e-12 < 3 < 1e+04
+  qq_ini[24][1] is within 1% of lower bound: 1e-12 < 1e+01 < 1e+04
+  qq_ini[24][2] is within 1% of lower bound: 1e-12 < 2e+01 < 1e+04
+  qq_ini[24][3] is within 1% of lower bound: 1e-12 < 3e+01 < 1e+04
+  qq_ini[25][1] is within 0.1% of lower bound: 1e-12 < 4 < 1e+04
+  qq_ini[25][2] is within 1% of lower bound: 1e-12 < 1e+01 < 1e+04
+  qq_ini[25][3] is within 1% of lower bound: 1e-12 < 1e+01 < 1e+04
+  qq_ini[26][1] is within 0.1% of lower bound: 1e-12 < 8 < 1e+04
+  qq_ini[26][2] is within 0.1% of lower bound: 1e-12 < 9 < 1e+04
+  qq_ini[26][3] is within 0.1% of lower bound: 1e-12 < 5 < 1e+04
+  qq_ini[27][1] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[27][2] is within 0.1% of lower bound: 1e-12 < 2 < 1e+04
+  qq_ini[27][3] is within 0.1% of lower bound: 1e-12 < 0.9 < 1e+04
+  qq_ini[27][4] is within 0.1% of lower bound: 1e-12 < 0.2 < 1e+04
+  qq_ini[28][1] is within 0.1% of lower bound: 1e-12 < 3 < 1e+04
+  qq_ini[28][2] is within 0.1% of lower bound: 1e-12 < 5 < 1e+04
+  qq_ini[28][3] is within 0.1% of lower bound: 1e-12 < 6 < 1e+04
+  qq_ini[28][4] is within 0.1% of lower bound: 1e-12 < 7 < 1e+04
+  qq_ini[29][1] is within 0.1% of lower bound: 1e-12 < 0.07 < 1e+04
+  qq_ini[29][2] is within 0.1% of lower bound: 1e-12 < 0.5 < 1e+04
+  qq_ini[29][3] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[29][4] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[29][5] is within 0.1% of lower bound: 1e-12 < 2 < 1e+04
+  qq_ini[30][1] is within 1% of lower bound: 1e-12 < 2e+01 < 1e+04
+  qq_ini[30][2] is within 1% of lower bound: 1e-12 < 1e+01 < 1e+04
+  qq_ini[30][3] is within 0.1% of lower bound: 1e-12 < 4 < 1e+04
+  qq_ini[30][4] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[30][5] is within 0.1% of lower bound: 1e-12 < 0.2 < 1e+04
+  qq_ini[31][1] is within 0.1% of lower bound: 1e-12 < 8 < 1e+04
+  qq_ini[31][2] is within 0.1% of lower bound: 1e-12 < 2 < 1e+04
+  qq_ini[31][3] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[31][4] is within 0.1% of lower bound: 1e-12 < 0.4 < 1e+04
+  qq_ini[32][0] is within 0.1% of lower bound: 1e-12 < 0.7 < 1e+04
+  qq_ini[33][1] is within 1% of lower bound: 1e-12 < 3e+01 < 1e+04
+  qq_ini[33][2] is within 1% of lower bound: 1e-12 < 2e+01 < 1e+04
+  qq_ini[33][3] is within 1% of lower bound: 1e-12 < 2e+01 < 1e+04
+  qq_ini[33][4] is within 1% of lower bound: 1e-12 < 2e+01 < 1e+04
+  qq_ini[34][1] is within 0.1% of lower bound: 1e-12 < 2 < 1e+04
+  qq_ini[34][2] is within 0.1% of lower bound: 1e-12 < 0.8 < 1e+04
+  qq_ini[34][3] is within 0.1% of lower bound: 1e-12 < 0.2 < 1e+04
+  qq_s2_ini[9][2] is within 1% of lower bound: 0.04 < 0.06 < 2
+  qq_s2_ini[28][2] is within 1% of lower bound: 0.04 < 0.06 < 2
+  qq_s2_ini[29][2] is within 1% of lower bound: 0.04 < 0.05 < 2
+  SSB_R_alfa[16] is within 0.1% of lower bound: 0 < 4 < 1e+04
+  SSB_R_alfa[17] is within 0.1% of lower bound: 0 < 5 < 1e+04
+  SSB_R_alfa[18] is within 1% of lower bound: 0 < 1e+01 < 1e+04
+  SSB_R_alfa[19] is within 1% of lower bound: 0 < 1e+01 < 1e+04
+  SSB_R_alfa[20] is within 1% of lower bound: 0 < 2e+01 < 1e+04
+  SSB_R_alfa[21] is within 1% of lower bound: 0 < 5e+01 < 1e+04
+  SSB_R_alfa[24] is within 0.1% of lower bound: 0 < 7 < 1e+04
+  SSB_R_alfa[25] is within 0.1% of lower bound: 0 < 7 < 1e+04
+  SSB_R_alfa[26] is within 0.1% of lower bound: 0 < 9 < 1e+04
+  SSB_R_alfa[27] is within 0.1% of lower bound: 0 < 7 < 1e+04
+  SSB_R_beta_ini[1] is within 0.1% of lower bound: 1e-05 < 0.08 < 1e+05
+  SSB_R_beta_ini[2] is within 0.1% of lower bound: 1e-05 < 0.2 < 1e+05
+  SSB_R_beta_ini[3] is within 0.1% of lower bound: 1e-05 < 2 < 1e+05
+  SSB_R_beta_ini[4] is within 0.1% of lower bound: 1e-05 < 1 < 1e+05
+  SSB_R_beta_ini[5] is within 0.1% of lower bound: 1e-05 < 2 < 1e+05
+  catch_s2_ini[16][1][2] is within 1% of lower bound: 0.01 < 0.02 < 2
+  catch_s2_ini[22][3][1] is within 0.1% of upper bound: 0.01 < 2 < 2
+  catch_s2_ini[22][3][3] is within 0.1% of upper bound: 0.01 < 2 < 2
+  catch_s2_ini[23][3][1] is within 0.1% of upper bound: 0.01 < 2 < 2
+  catch_s2_ini[24][3][1] is within 0.1% of upper bound: 0.01 < 2 < 2
+  catch_s2_ini[24][4][3] is within 0.1% of upper bound: 0.01 < 2 < 2
+  catch_s2_ini[25][1][2] is within 0.1% of upper bound: 0.01 < 2 < 2
+  catch_s2_ini[27][1][1] is within 0.1% of upper bound: 0.01 < 2 < 2
+  vulnera[2] is within 1% of lower bound: 0.001 < 6 < 1e+03
+  vulnera[4] is within 0.1% of lower bound: 0.001 < 0.3 < 1e+03
+  vulnera[5] is within 0.1% of lower bound: 0.001 < 0.02 < 1e+03
+  vulnera[6] is within 0.1% of lower bound: 0.001 < 0.02 < 1e+03
+  vulnera[7] is within 0.1% of lower bound: 0.001 < 0.3 < 1e+03
+  vulnera[8] is within 0.1% of lower bound: 0.001 < 0.5 < 1e+03
+  vulnera[9] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[10] is within 1% of lower bound: 0.001 < 4 < 1e+03
+  vulnera[11] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[12] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[13] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[14] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[15] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[16] is within 0.1% of lower bound: 0.001 < 0.5 < 1e+03
+  vulnera[17] is within 0.1% of lower bound: 0.001 < 0.6 < 1e+03
+  vulnera[18] is within 0.1% of lower bound: 0.001 < 0.007 < 1e+03
+  vulnera[19] is within 0.1% of lower bound: 0.001 < 0.01 < 1e+03
+  vulnera[20] is within 0.1% of lower bound: 0.001 < 0.02 < 1e+03
+  vulnera[21] is within 0.1% of lower bound: 0.001 < 0.03 < 1e+03
+  vulnera[22] is within 0.1% of lower bound: 0.001 < 0.04 < 1e+03
+  vulnera[26] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[27] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[28] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[33] is within 0.1% of lower bound: 0.001 < 0.8 < 1e+03
+  vulnera[34] is within 1% of lower bound: 0.001 < 3 < 1e+03
+  vulnera[35] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[36] is within 1% of lower bound: 0.001 < 3 < 1e+03
+  vulnera[37] is within 1% of lower bound: 0.001 < 5 < 1e+03
+  vulnera[39] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[40] is within 0.1% of lower bound: 0.001 < 0.6 < 1e+03
+  vulnera[41] is within 0.1% of lower bound: 0.001 < 0.5 < 1e+03
+  vulnera[43] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[44] is within 0.1% of lower bound: 0.001 < 0.5 < 1e+03
+  vulnera[45] is within 0.1% of lower bound: 0.001 < 0.4 < 1e+03
+  vulnera[46] is within 0.1% of lower bound: 0.001 < 0.5 < 1e+03
+  vulnera[47] is within 0.1% of lower bound: 0.001 < 0.1 < 1e+03
+  vulnera[48] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[49] is within 0.1% of lower bound: 0.001 < 0.3 < 1e+03
+  vulnera[50] is within 0.1% of lower bound: 0.001 < 0.3 < 1e+03
+  vulnera[51] is within 0.1% of lower bound: 0.001 < 0.05 < 1e+03
+  vulnera[52] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[54] is within 1% of lower bound: 0.001 < 4 < 1e+03
+  vulnera[55] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[56] is within 0.1% of lower bound: 0.001 < 0.4 < 1e+03
+  vulnera[57] is within 0.1% of lower bound: 0.001 < 0.5 < 1e+03
+  vulnera[58] is within 1% of lower bound: 0.001 < 7 < 1e+03
+  vulnera[59] is within 1% of lower bound: 0.001 < 3 < 1e+03
+  vulnera[60] is within 1% of lower bound: 0.001 < 3 < 1e+03
+  vulnera[61] is within 0.1% of lower bound: 0.001 < 0.3 < 1e+03
+  vulnera[62] is within 0.1% of lower bound: 0.001 < 0.4 < 1e+03
+  vulnera[63] is within 0.1% of lower bound: 0.001 < 0.7 < 1e+03
+  vulnera[64] is within 0.1% of lower bound: 0.001 < 0.5 < 1e+03
+  vulnera[65] is within 0.1% of lower bound: 0.001 < 0.5 < 1e+03
+  vulnera[66] is within 0.1% of lower bound: 0.001 < 0.3 < 1e+03
+  vulnera[67] is within 1% of lower bound: 0.001 < 4 < 1e+03
+  vulnera[68] is within 1% of lower bound: 0.001 < 3 < 1e+03
+  vulnera[69] is within 0.1% of lower bound: 0.001 < 0.1 < 1e+03
+  vulnera[70] is within 0.1% of lower bound: 0.001 < 0.06 < 1e+03
+  vulnera[71] is within 0.1% of lower bound: 0.001 < 0.06 < 1e+03
+  vulnera[72] is within 1% of lower bound: 0.001 < 5 < 1e+03
+  vulnera[73] is within 0.1% of lower bound: 0.001 < 0.4 < 1e+03
+  vulnera[74] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[75] is within 0.1% of lower bound: 0.001 < 0.02 < 1e+03
+  vulnera[76] is within 1% of lower bound: 0.001 < 5 < 1e+03
+  vulnera[77] is within 0.1% of lower bound: 0.001 < 0.5 < 1e+03
+  vulnera[78] is within 0.1% of lower bound: 0.001 < 0.1 < 1e+03
+  vulnera[79] is within 0.1% of lower bound: 0.001 < 0.3 < 1e+03
+  vulnera[80] is within 1% of lower bound: 0.001 < 8 < 1e+03
+  vulnera[81] is within 1% of lower bound: 0.001 < 3 < 1e+03
+  vulnera[82] is within 0.1% of lower bound: 0.001 < 0.2 < 1e+03
+  vulnera[83] is within 0.1% of lower bound: 0.001 < 0.3 < 1e+03
+  vulnera[84] is within 0.1% of lower bound: 0.001 < 0.2 < 1e+03
+  vulnera[85] is within 0.1% of lower bound: 0.001 < 0.3 < 1e+03
+  vulnera[86] is within 1% of lower bound: 0.001 < 4 < 1e+03
+  vulnera[87] is within 0.1% of lower bound: 0.001 < 0.04 < 1e+03
+  vulnera[88] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[89] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[90] is within 0.1% of lower bound: 0.001 < 0.6 < 1e+03
+  vulnera[91] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[92] is within 0.1% of lower bound: 0.001 < 0.1 < 1e+03
+  vulnera[93] is within 0.1% of lower bound: 0.001 < 0.07 < 1e+03
+  vulnera[94] is within 0.1% of lower bound: 0.001 < 0.02 < 1e+03
+  vulnera[95] is within 0.1% of lower bound: 0.001 < 0.3 < 1e+03
+  vulnera[96] is within 0.1% of lower bound: 0.001 < 0.1 < 1e+03
+  vulnera[97] is within 0.1% of lower bound: 0.001 < 0.5 < 1e+03
+  vulnera[98] is within 0.1% of lower bound: 0.001 < 0.4 < 1e+03
+  vulnera[99] is within 0.1% of lower bound: 0.001 < 0.7 < 1e+03
+  vulnera[100] is within 0.1% of lower bound: 0.001 < 0.1 < 1e+03
+  vulnera[101] is within 0.1% of lower bound: 0.001 < 0.05 < 1e+03
+  vulnera[102] is within 0.1% of lower bound: 0.001 < 0.02 < 1e+03
+  vulnera[103] is within 0.1% of lower bound: 0.001 < 0.2 < 1e+03
+  vulnera[104] is within 0.1% of lower bound: 0.001 < 0.2 < 1e+03
+  vulnera[105] is within 1% of lower bound: 0.001 < 4 < 1e+03
+  vulnera[106] is within 1% of lower bound: 0.001 < 4 < 1e+03
+  vulnera[107] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[108] is within 0.1% of lower bound: 0.001 < 0.5 < 1e+03
+  vulnera[109] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[110] is within 0.1% of lower bound: 0.001 < 0.2 < 1e+03
+  vulnera[111] is within 0.1% of lower bound: 0.001 < 0.1 < 1e+03
+  vulnera[112] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[113] is within 1% of lower bound: 0.001 < 2 < 1e+03
+  vulnera[114] is within 0.1% of lower bound: 0.001 < 0.7 < 1e+03
+  vulnera[115] is within 1% of lower bound: 0.001 < 1 < 1e+03
+  vulnera[116] is within 0.1% of lower bound: 0.001 < 0.7 < 1e+03
+  vulnera[117] is within 1% of lower bound: 0.001 < 3 < 1e+03
+  Stom_var[1] is within 0.1% of upper bound: 0.02 < 0.1 < 0.1
+  Stom_var[2] is within 0.1% of upper bound: 0.02 < 0.1 < 0.1
+  Stom_var[3] is within 0.1% of upper bound: 0.02 < 0.1 < 0.1
+  Stom_var[4] is within 0.1% of upper bound: 0.02 < 0.1 < 0.1
+  Stom_var[5] is within 0.1% of upper bound: 0.02 < 0.1 < 0.1
+  Stom_var[6] is within 0.1% of upper bound: 0.02 < 0.1 < 0.1
+  Stom_var[7] is within 0.1% of upper bound: 0.02 < 0.1 < 0.1
+  Stom_var[8] is within 0.1% of upper bound: 0.02 < 0.1 < 0.1
+
+report file: sms.rep
+
+Calculating Hessian (1893 variables): 20%, 40%, 60%, 80%, 100% done (19 m 0.86 s) 
+Differentiating 2 derived quantities: 1, 2 done (38 s) 
+Inverting Hessian (1893 variables): 20%, 40%, 60%, 80%, 100% done (1 m 43 s) 
+Starting standard error calculations...  done (1 m 21 s) 
+
+Successful completion, HURRAH - HURRAH 
+
+Finished running model 'sms' after 27 m 34 s.

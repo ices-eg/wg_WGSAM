@@ -1,0 +1,152 @@
+# op.dat option file
+# the character "#" is used as comment character, such that all text and numbers after # are skipped
+#
+########################################
+# Produce TEST output (option test.output)
+#  0 no test output
+#  1 output file op.dat  as read in
+#  2 output op_config.in as read in
+#  3 output all data files as read in
+#  4 output file op_trigger.in as read in
+0
+########################################
+# Produce output (option output)
+# 10 stock N by year and age (file op_n.out) 
+# 11 as 10 plus output by year and age (file op_summary_anno.out) 
+# 12 as 10 plus output by Year, quarter, areas and age (file op_summary.out)
+# 13 condensed output (file op_condensed.out)
+# 14 condensed from F-combinations (file op_Fcombinations.out)
+# 15 10 + 11 + 12 + 13
+# 20 condensed output for last year only, AMOEBA, (file op_condensed.out)
+# 21 condensed output for all years, AMOEBA, (file op_condensed_long.out)
+# 22 M, F and N by output by year and age,  AMOEBA, (file op_anno_M.out)
+# 25 20 + 21 + 22
+# 26 25 + output by Year, quarter, areas and age (file op_summary.out) and partial M2 (file op_part_m2.out)
+26
+########################################
+# Produce output MSFD indicator output, defined from file op_msfd.dat (option indicator)
+# 0=no, 1=yes 
+0
+########################################
+## first year of input data (option first.year)
+2020
+########################################
+## first year for output data (option first.year.out)
+2020
+########################################
+## last year (option last.year)
+2060
+########################################
+# first and last year for calculation of mean weight in the sea (file op_wsea.in) 
+#      Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+       2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017 
+       2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019 
+########################################
+# first and last year for calculation of natural mortalities (file op_m.in & op_m1.in)
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+       2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017 
+       2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019 
+########################################
+# first and last year for calculation of proportion mature (file op_propmat.in)
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+       2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017 
+       2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019 
+########################################
+# first and last year for calculation of F at age and exploitation pattern in the catch (file op_f.in & op_exploitation.in)
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+       2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019 
+       2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019 
+########################################
+# first and last year for calculation of mean weight in the catch file op_wcatch.in)
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+       2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017 
+       2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019 
+########################################
+# first and last year for calculation of proportion landed of the catch (file op_prop_landed.in)
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+       2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019 
+       2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019 
+########################################
+# first and last year for calculation of stock distribution (file op_stock_distribution.in)
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+       2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019 
+       2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019 
+########################################
+# first and last year for calculation of food ration (file op_consum.in)
+#      Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake         Cod     Whiting     Haddock      Saithe    Mackerel 
+       2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017        2017 
+       2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019 
+########################################
+# Species names, for information only. See file species_names.in 
+#  Fulmar Guillemot Her.Gull Kittiwake GBB.Gull Gannet Puffin Razorbill A.radiata G.gurnards W.horse.mac N.horse.mac Grey.seal H.porpoise Hake Cod Whiting Haddock Saithe Mackerel Herring N.sandeel S.sandeel Nor.pout Sprat Plaice Sole 
+########################################
+# Growth model:
+#   1  : Type  0=no growth;  1=density dependent, 10=Saithe special (Xochitl Cormon)
+#   2-3: First and last age for growth
+#   4-5: Additional info1 and info2 
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0           0 
+          0           0           0           0           0           0           0           0           0           0           0           0 
+########################################
+# Stochastic recruitment.
+# 0=No,   S-R parameters from op_config.dat
+# 1=Yes   S-R parameters and variance from op_config.dat
+# 2=Yes,  S-R parameters from op_config.dat and variance-covariance matrix from file covariance_Rec.in
+# 3=Yes,  S-R parameters from op_config.dat and residuals from op_ssb_rec_residuals.in
+# 20=No,  S-R parameters from EquiSim results, file op_eqsim.in
+# 21=Yes, S-R parameters from EquiSim results, file op_eqsim_stoch.in
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1           1 
+########################################
+# truncation of standardised normal distribution used to produce noise on recruitment
+# lower and upper   (values -15.0 and 15.0 give no truncation, -2 and 2 give approximately 95% of the distribution)
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+         -3          -2          -2          -2          -4          -2          -2          -2        -1.5          -1          -2          -4 
+          3           2           2           2           2           2           2           2           2           2           2           3 
+########################################
+# factor to adjust expected recruits (option adjust.recruits)
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1           1 
+########################################
+# adjust recruitment with half of the variance (factor exp(-(CV^2)/2) option adjust.recruit.CV
+# 0=no adjustment
+# 1=stochastic recruitment, do adjustment such that average recruitment becomes equal to the median (downward adjustment)
+# 2=determenistic recruitment, do ajustment such that recruitment becomes equal to the mean of the log-normal distribution (upward adjustment)
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+          0           0           2           0           0           0           0           0           0           0           0           0 
+########################################
+# minimum recruitment in percentage of recruitment from S/R relation. (0 means that the S/R values are always used))
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+         10          10          10          10          10          10          10          10          10          10          10          10 
+########################################
+# Update N by:
+#     1=F at age or 2=Catch at age (option F.or.C)
+#    11=as 1 but re-use input F, 22=as 2 but re-use catch
+#    31= as 1 but get target F values from file op_mulTargetf.in
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+         31          31          31          31          31          31          31          31          31          31          31          31 
+########################################
+## Maximum M2 iterations (option M2.iterations)
+4
+########################################
+## convergence criteria (option max.M2.sum2)
+#  use max.M2.sum2=0.0 and M2.iterations=7 (or another high number) to make Hessian
+1e-06
+########################################
+# first and last year for calculation of mean stock numbers of other predators (file op_other_n.in) 
+#      Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake 
+       2019        2019        2019        2019        2019        2019        2019        2019        2015        2018        2019        2019        2019        2019        2015 
+       2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019        2019 
+########################################
+#### %%%%%%%%%%%%% various for other predators %%%%%%%%%%%%%%%%%%% ###
+# annual change factor for population number
+# first year year of change  (-1 is no change)
+# last year  of change (-1 is no change)
+# other predator stock numbers  
+#      Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake 
+          1           1           1           1           1           1           1           1           1           1           1           1           1           1           1 
+         -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1 
+         -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1          -1 

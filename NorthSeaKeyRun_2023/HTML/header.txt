@@ -1,0 +1,14 @@
+---
+title: "SMS North Sea key run 2023"
+author: "Morten Vinther, mv@aqua.dtu.dk"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+ html_document:
+    code_folding: "hide"
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+    toc_depth: 4
+    css: "style.css"
+---

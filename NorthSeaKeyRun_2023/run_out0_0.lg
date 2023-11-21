@@ -1,0 +1,331 @@
+SMS version October 2023 using ADMB version 13.1
+November 20, 2023 18:49:46
+no. of species: 27  no. of predators: 20  no. of other predators:15
+first VPA species no.:16  first VPA species as prey:0
+
+diri_alpha0:  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0  sum:0
+PRELIMINARY_CALCS_SECTION initiated
+PRELIMINARY_CALCS_SECTION done
+Starting optimization of 'sms' in phase 1 of 1 at Mon Nov 20 18:49:47 2023
+phase= 1 | nvar=1756 | iter=  0 | nll=7.96e+04 | mag=2.59e+06 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter= 20 | nll=5.67e+04 | mag=2.14e+06 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter= 40 | nll=3.95e+04 | mag=6.44e+05 | par[1259]=F_q_ini[51][1]
+phase= 1 | nvar=1756 | iter= 60 | nll=3.22e+04 | mag=8.00e+05 | par[1261]=F_q_ini[51][3]
+phase= 1 | nvar=1756 | iter= 80 | nll=2.34e+04 | mag=2.19e+05 | par[1287]=F_q_ini[71][1]
+phase= 1 | nvar=1756 | iter=100 | nll=1.85e+04 | mag=6.06e+05 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=120 | nll=1.53e+04 | mag=1.43e+06 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=140 | nll=1.32e+04 | mag=1.99e+06 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=160 | nll=1.10e+04 | mag=1.36e+06 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=180 | nll=9.32e+03 | mag=1.35e+06 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=200 | nll=8.04e+03 | mag=1.19e+06 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=220 | nll=7.39e+03 | mag=1.28e+06 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=240 | nll=7.07e+03 | mag=1.19e+06 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=260 | nll=6.79e+03 | mag=1.16e+06 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=280 | nll=6.47e+03 | mag=1.04e+06 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=300 | nll=6.17e+03 | mag=1.02e+06 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=320 | nll=5.86e+03 | mag=8.93e+05 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=340 | nll=5.51e+03 | mag=9.44e+05 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=360 | nll=5.01e+03 | mag=8.65e+05 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=380 | nll=4.57e+03 | mag=5.95e+05 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=400 | nll=4.11e+03 | mag=3.28e+05 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=420 | nll=3.70e+03 | mag=2.56e+05 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=440 | nll=3.41e+03 | mag=1.78e+05 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=460 | nll=3.19e+03 | mag=1.04e+05 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=480 | nll=3.03e+03 | mag=1.15e+05 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=500 | nll=2.91e+03 | mag=1.19e+05 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=520 | nll=2.76e+03 | mag=1.27e+05 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=540 | nll=2.60e+03 | mag=1.15e+05 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=560 | nll=2.46e+03 | mag=1.14e+05 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=580 | nll=2.32e+03 | mag=1.04e+05 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=600 | nll=2.19e+03 | mag=9.45e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=620 | nll=2.02e+03 | mag=7.93e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=640 | nll=1.85e+03 | mag=6.84e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=660 | nll=1.70e+03 | mag=6.17e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=680 | nll=1.61e+03 | mag=5.86e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=700 | nll=1.50e+03 | mag=5.40e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=720 | nll=1.36e+03 | mag=5.52e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=740 | nll=1.22e+03 | mag=4.66e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=760 | nll=1.10e+03 | mag=4.25e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=780 | nll=1.01e+03 | mag=4.05e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=800 | nll=9.37e+02 | mag=3.83e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=820 | nll=8.54e+02 | mag=3.72e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=840 | nll=7.25e+02 | mag=3.36e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=860 | nll=6.16e+02 | mag=3.19e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=880 | nll=5.46e+02 | mag=2.91e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=900 | nll=4.81e+02 | mag=2.85e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=920 | nll=4.04e+02 | mag=2.83e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=940 | nll=3.26e+02 | mag=2.80e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=960 | nll=2.67e+02 | mag=2.81e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=980 | nll=2.10e+02 | mag=2.71e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1000 | nll=1.23e+02 | mag=2.44e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1020 | nll=5.95e+01 | mag=2.37e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1040 | nll=-2.15e+00 | mag=2.24e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1060 | nll=-7.87e+01 | mag=2.13e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1080 | nll=-1.54e+02 | mag=2.07e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1100 | nll=-2.20e+02 | mag=1.91e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1120 | nll=-2.84e+02 | mag=1.93e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1140 | nll=-3.40e+02 | mag=1.93e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1160 | nll=-3.90e+02 | mag=1.83e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1180 | nll=-4.37e+02 | mag=1.78e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1200 | nll=-4.79e+02 | mag=1.71e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1220 | nll=-5.19e+02 | mag=1.67e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1240 | nll=-5.64e+02 | mag=1.59e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1260 | nll=-5.95e+02 | mag=1.69e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1280 | nll=-6.39e+02 | mag=1.65e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1300 | nll=-6.69e+02 | mag=1.58e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1320 | nll=-7.07e+02 | mag=1.48e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1340 | nll=-7.29e+02 | mag=1.45e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1360 | nll=-7.57e+02 | mag=1.39e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1380 | nll=-7.79e+02 | mag=1.32e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1400 | nll=-8.02e+02 | mag=1.28e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1420 | nll=-8.30e+02 | mag=1.21e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1440 | nll=-8.52e+02 | mag=1.16e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1460 | nll=-8.89e+02 | mag=1.07e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1480 | nll=-9.51e+02 | mag=1.15e+04 | par[1504]=qq_ini[30]
+phase= 1 | nvar=1756 | iter=1500 | nll=-1.04e+03 | mag=1.40e+04 | par[1504]=qq_ini[30]
+phase= 1 | nvar=1756 | iter=1520 | nll=-1.11e+03 | mag=1.28e+04 | par[1504]=qq_ini[30]
+phase= 1 | nvar=1756 | iter=1540 | nll=-1.18e+03 | mag=1.15e+04 | par[1292]=F_q_ini[72][3]
+phase= 1 | nvar=1756 | iter=1560 | nll=-1.25e+03 | mag=1.03e+04 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1580 | nll=-1.31e+03 | mag=9.64e+03 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1600 | nll=-1.36e+03 | mag=9.41e+03 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1620 | nll=-1.42e+03 | mag=8.65e+03 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1640 | nll=-1.47e+03 | mag=8.16e+03 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1660 | nll=-1.51e+03 | mag=7.88e+03 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1680 | nll=-1.55e+03 | mag=1.52e+04 | par[1504]=qq_ini[30]
+phase= 1 | nvar=1756 | iter=1700 | nll=-1.59e+03 | mag=1.61e+04 | par[1504]=qq_ini[30]
+phase= 1 | nvar=1756 | iter=1720 | nll=-1.62e+03 | mag=1.37e+04 | par[1504]=qq_ini[30]
+phase= 1 | nvar=1756 | iter=1740 | nll=-1.65e+03 | mag=1.62e+04 | par[1504]=qq_ini[30]
+phase= 1 | nvar=1756 | iter=1760 | nll=-1.68e+03 | mag=1.02e+04 | par[1504]=qq_ini[30]
+phase= 1 | nvar=1756 | iter=1780 | nll=-1.72e+03 | mag=7.14e+03 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1800 | nll=-2.03e+03 | mag=8.20e+03 | par[1261]=F_q_ini[51][3]
+phase= 1 | nvar=1756 | iter=1820 | nll=-2.42e+03 | mag=4.39e+03 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=1840 | nll=-2.49e+03 | mag=2.83e+03 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=1860 | nll=-2.51e+03 | mag=2.74e+03 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1880 | nll=-2.52e+03 | mag=1.98e+03 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1900 | nll=-2.54e+03 | mag=1.91e+03 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1920 | nll=-2.56e+03 | mag=1.99e+03 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1940 | nll=-2.56e+03 | mag=2.00e+03 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1960 | nll=-2.56e+03 | mag=1.33e+03 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=1980 | nll=-2.57e+03 | mag=8.81e+02 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=2000 | nll=-2.57e+03 | mag=5.55e+02 | par[1255]=F_q_ini[49]
+phase= 1 | nvar=1756 | iter=2020 | nll=-2.57e+03 | mag=3.13e+02 | par[1292]=F_q_ini[72][3]
+phase= 1 | nvar=1756 | iter=2040 | nll=-2.57e+03 | mag=2.66e+02 | par[1263]=F_q_ini[52][2]
+phase= 1 | nvar=1756 | iter=2060 | nll=-2.57e+03 | mag=1.54e+02 | par[1261]=F_q_ini[51][3]
+phase= 1 | nvar=1756 | iter=2080 | nll=-2.57e+03 | mag=9.66e+01 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=2100 | nll=-2.57e+03 | mag=1.41e+02 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=2120 | nll=-2.57e+03 | mag=2.12e+02 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=2140 | nll=-2.57e+03 | mag=3.69e+02 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=2160 | nll=-2.57e+03 | mag=5.19e+02 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=2180 | nll=-2.57e+03 | mag=6.31e+02 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=2200 | nll=-2.57e+03 | mag=9.02e+02 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=2220 | nll=-2.57e+03 | mag=2.55e+03 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=2240 | nll=-2.57e+03 | mag=3.04e+03 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=2260 | nll=-2.57e+03 | mag=1.97e+03 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=2280 | nll=-2.57e+03 | mag=9.07e+02 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=2300 | nll=-2.57e+03 | mag=6.92e+02 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=2320 | nll=-2.57e+03 | mag=5.35e+02 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=2340 | nll=-2.57e+03 | mag=3.89e+02 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=2360 | nll=-2.57e+03 | mag=2.52e+02 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=2380 | nll=-2.57e+03 | mag=1.00e+02 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=2400 | nll=-2.57e+03 | mag=5.37e+01 | par[1287]=F_q_ini[71][1]
+phase= 1 | nvar=1756 | iter=2420 | nll=-2.57e+03 | mag=3.79e+00 | par[1257]=F_q_ini[50][2]
+phase= 1 | nvar=1756 | iter=2440 | nll=-2.57e+03 | mag=2.21e+00 | par[1287]=F_q_ini[71][1]
+phase= 1 | nvar=1756 | iter=2460 | nll=-2.57e+03 | mag=2.32e+00 | par[1287]=F_q_ini[71][1]
+phase= 1 | nvar=1756 | iter=2480 | nll=-2.57e+03 | mag=5.84e-01 | par[1660]=SSB_R_beta_ini[1]
+phase= 1 | nvar=1756 | iter=2500 | nll=-2.57e+03 | mag=5.08e-01 | par[1287]=F_q_ini[71][1]
+phase= 1 | nvar=1756 | iter=2520 | nll=-2.57e+03 | mag=2.38e-01 | par[1287]=F_q_ini[71][1]
+phase= 1 | nvar=1756 | iter=2540 | nll=-2.57e+03 | mag=4.17e-02 | par[1287]=F_q_ini[71][1]
+phase= 1 | nvar=1756 | iter=2560 | nll=-2.57e+03 | mag=1.21e-02 | par[1661]=SSB_R_beta_ini[2]
+phase= 1 | nvar=1756 | iter=2580 | nll=-2.57e+03 | mag=4.07e-03 | par[1264]=F_q_ini[52][3]
+phase= 1 | nvar=1756 | iter=2600 | nll=-2.57e+03 | mag=2.16e-02 | par[1257]=F_q_ini[50][2]
+phase= 1 | nvar=1756 | iter=2620 | nll=-2.57e+03 | mag=2.97e-01 | par[1287]=F_q_ini[71][1]
+phase= 1 | nvar=1756 | iter=2640 | nll=-2.57e+03 | mag=3.96e-02 | par[1263]=F_q_ini[52][2]
+phase= 1 | nvar=1756 | iter=2660 | nll=-2.57e+03 | mag=4.81e-03 | par[1273]=F_q_ini[65]
+phase= 1 | nvar=1756 | iter=2670 | nll=-2.57e+03 | mag=2.74e-04 | par[1504]=qq_ini[30]
+Optimization completed after 1 m 31 s with final statistics:
+  nll=-2571.180533 | mag=2.73980e-04 | par[1504]=qq_ini[30]
+
+Warning: the following parameters had issues
+  F_y_ini[23][2012] is within 1% of lower bound: 0.01 < 0.108814 < 10
+  F_y_ini[23][2016] is within 1% of lower bound: 0.01 < 0.0692425 < 10
+  F_y_ini[23][2022] is within 1% of lower bound: 0.01 < 0.0446192 < 10
+  F_y_ini[24][2011] is within 1% of lower bound: 0.01 < 0.0540126 < 10
+  F_y_ini[24][2012] is within 1% of lower bound: 0.01 < 0.0827152 < 10
+  F_q_ini[47][3] is within 0.1% of lower bound: 0.0001 < 1.07902 < 3000
+  F_q_ini[48][3] is within 0.1% of lower bound: 0.0001 < 1.58319 < 3000
+  F_q_ini[49][3] is within 0.1% of lower bound: 0.0001 < 0.67185 < 3000
+  F_q_ini[50][1] is within 0.1% of lower bound: 0.0001 < 0.0837783 < 3000
+  F_q_ini[50][2] is within 0.1% of lower bound: 0.0001 < 0.0552073 < 3000
+  F_q_ini[50][3] is within 0.1% of lower bound: 0.0001 < 0.135044 < 3000
+  F_q_ini[51][1] is within 0.1% of lower bound: 0.0001 < 0.0846057 < 3000
+  F_q_ini[51][2] is within 0.1% of lower bound: 0.0001 < 0.0943515 < 3000
+  F_q_ini[51][3] is within 0.1% of lower bound: 0.0001 < 0.238728 < 3000
+  F_q_ini[52][1] is within 0.1% of lower bound: 0.0001 < 0.0665 < 3000
+  F_q_ini[52][2] is within 0.1% of lower bound: 0.0001 < 0.135021 < 3000
+  F_q_ini[52][3] is within 0.1% of lower bound: 0.0001 < 0.352582 < 3000
+  F_q_ini[55][2] is within 1% of lower bound: 0.0001 < 3.78877 < 3000
+  F_q_ini[56][2] is within 1% of lower bound: 0.0001 < 13.5197 < 3000
+  F_q_ini[57][2] is within 1% of lower bound: 0.0001 < 5.07876 < 3000
+  F_q_ini[58][2] is within 1% of lower bound: 0.0001 < 21.1733 < 3000
+  F_q_ini[61][2] is within 1% of lower bound: 0.0001 < 3.62173 < 3000
+  F_q_ini[62][2] is within 1% of lower bound: 0.0001 < 8.01342 < 3000
+  F_q_ini[63][2] is within 1% of lower bound: 0.0001 < 3.5811 < 3000
+  F_q_ini[64][2] is within 1% of lower bound: 0.0001 < 11.335 < 3000
+  F_q_ini[65][3] is within 0.1% of lower bound: 0.0001 < 0.031726 < 3000
+  F_q_ini[66][3] is within 0.1% of lower bound: 0.0001 < 0.0505993 < 3000
+  F_q_ini[67][1] is within 0.1% of lower bound: 0.0001 < 0.0745614 < 3000
+  F_q_ini[67][2] is within 0.1% of lower bound: 0.0001 < 0.0623837 < 3000
+  F_q_ini[67][3] is within 0.1% of lower bound: 0.0001 < 0.183538 < 3000
+  F_q_ini[68][1] is within 0.1% of lower bound: 0.0001 < 0.00332312 < 3000
+  F_q_ini[68][2] is within 0.1% of lower bound: 0.0001 < 0.0249096 < 3000
+  F_q_ini[68][3] is within 0.1% of lower bound: 0.0001 < 0.116271 < 3000
+  F_q_ini[69][1] is within 0.1% of lower bound: 0.0001 < 0.103106 < 3000
+  F_q_ini[69][2] is within 0.1% of lower bound: 0.0001 < 0.137329 < 3000
+  F_q_ini[69][3] is within 0.1% of lower bound: 0.0001 < 0.137956 < 3000
+  F_q_ini[70][1] is within 0.1% of lower bound: 0.0001 < 0.0042588 < 3000
+  F_q_ini[70][2] is within 0.1% of lower bound: 0.0001 < 0.0327045 < 3000
+  F_q_ini[70][3] is within 0.1% of lower bound: 0.0001 < 0.087319 < 3000
+  F_q_ini[71][1] is within 0.1% of lower bound: 0.0001 < 0.0161639 < 3000
+  F_q_ini[71][2] is within 1% of lower bound: 0.0001 < 12.3438 < 3000
+  F_q_ini[71][3] is within 0.1% of lower bound: 0.0001 < 0.264745 < 3000
+  F_q_ini[72][1] is within 0.1% of lower bound: 0.0001 < 0.0356549 < 3000
+  F_q_ini[72][2] is within 1% of lower bound: 0.0001 < 12.3438 < 3000
+  F_q_ini[72][3] is within 0.1% of lower bound: 0.0001 < 0.133289 < 3000
+  F_q_ini[73][1] is within 0.1% of lower bound: 0.0001 < 0.062095 < 3000
+  F_q_ini[73][2] is within 1% of lower bound: 0.0001 < 12.3438 < 3000
+  F_q_ini[73][3] is within 0.1% of lower bound: 0.0001 < 0.118286 < 3000
+  qq_ini[1][1] is within 0.1% of lower bound: 1e-12 < 0.828343 < 10000
+  qq_ini[1][2] is within 0.1% of lower bound: 1e-12 < 4.61531 < 10000
+  qq_ini[1][3] is within 0.1% of lower bound: 1e-12 < 7.66357 < 10000
+  qq_ini[1][4] is within 1% of lower bound: 1e-12 < 10.2118 < 10000
+  qq_ini[2][0] is within 0.1% of lower bound: 1e-12 < 0.243949 < 10000
+  qq_ini[2][1] is within 0.1% of lower bound: 1e-12 < 2.35493 < 10000
+  qq_ini[2][2] is within 0.1% of lower bound: 1e-12 < 4.81307 < 10000
+  qq_ini[2][3] is within 0.1% of lower bound: 1e-12 < 6.82373 < 10000
+  qq_ini[2][4] is within 0.1% of lower bound: 1e-12 < 7.90693 < 10000
+  qq_ini[3][1] is within 0.1% of lower bound: 1e-12 < 1.46753 < 10000
+  qq_ini[3][2] is within 0.1% of lower bound: 1e-12 < 4.63662 < 10000
+  qq_ini[3][3] is within 0.1% of lower bound: 1e-12 < 4.90812 < 10000
+  qq_ini[3][4] is within 0.1% of lower bound: 1e-12 < 3.8681 < 10000
+  qq_ini[4][0] is within 0.1% of lower bound: 1e-12 < 1.44933 < 10000
+  qq_ini[4][1] is within 0.1% of lower bound: 1e-12 < 4.20887 < 10000
+  qq_ini[4][2] is within 0.1% of lower bound: 1e-12 < 4.96401 < 10000
+  qq_ini[4][3] is within 0.1% of lower bound: 1e-12 < 3.97727 < 10000
+  qq_ini[4][4] is within 0.1% of lower bound: 1e-12 < 3.51511 < 10000
+  qq_ini[5][1] is within 1% of lower bound: 1e-12 < 35.4213 < 10000
+  qq_ini[5][2] is within 1% of lower bound: 1e-12 < 64.9013 < 10000
+  qq_ini[5][3] is within 1% of lower bound: 1e-12 < 69.3616 < 10000
+  qq_ini[5][4] is within 1% of lower bound: 1e-12 < 47.4301 < 10000
+  qq_ini[6][0] is within 1% of lower bound: 1e-12 < 30.9182 < 10000
+  qq_ini[6][1] is within 1% of lower bound: 1e-12 < 61.2935 < 10000
+  qq_ini[6][2] is within 1% of lower bound: 1e-12 < 61.7412 < 10000
+  qq_ini[7][3] is within 0.1% of lower bound: 1e-12 < 0.95159 < 10000
+  qq_ini[8][1] is within 0.1% of lower bound: 1e-12 < 1.08334 < 10000
+  qq_ini[9][1] is within 0.1% of lower bound: 1e-12 < 0.938857 < 10000
+  qq_ini[9][2] is within 0.1% of lower bound: 1e-12 < 0.942141 < 10000
+  qq_ini[9][3] is within 0.1% of lower bound: 1e-12 < 1.19379 < 10000
+  qq_ini[10][1] is within 1% of lower bound: 1e-12 < 10.801 < 10000
+  qq_ini[11][0] is within 0.1% of lower bound: 1e-12 < 0.471942 < 10000
+  qq_ini[12][0] is within 0.1% of lower bound: 1e-12 < 6.30883 < 10000
+  qq_ini[12][1] is within 0.1% of lower bound: 1e-12 < 4.99251 < 10000
+  qq_ini[13][1] is within 0.1% of lower bound: 1e-12 < 1.05047 < 10000
+  qq_ini[13][2] is within 0.1% of lower bound: 1e-12 < 1.23036 < 10000
+  qq_ini[13][3] is within 0.1% of lower bound: 1e-12 < 0.953858 < 10000
+  qq_ini[14][1] is within 0.1% of lower bound: 1e-12 < 0.287673 < 10000
+  qq_ini[14][2] is within 0.1% of lower bound: 1e-12 < 0.295668 < 10000
+  qq_ini[14][3] is within 0.1% of lower bound: 1e-12 < 0.159016 < 10000
+  qq_ini[15][0] is within 0.1% of lower bound: 1e-12 < 2.48606 < 10000
+  qq_ini[16][1] is within 0.1% of lower bound: 1e-12 < 0.460365 < 10000
+  qq_ini[16][2] is within 0.1% of lower bound: 1e-12 < 0.652867 < 10000
+  qq_ini[16][3] is within 0.1% of lower bound: 1e-12 < 0.431011 < 10000
+  qq_ini[17][0] is within 0.1% of lower bound: 1e-12 < 0.28917 < 10000
+  qq_ini[17][1] is within 0.1% of lower bound: 1e-12 < 1.29273 < 10000
+  qq_ini[18][1] is within 0.1% of lower bound: 1e-12 < 0.374493 < 10000
+  qq_ini[18][2] is within 0.1% of lower bound: 1e-12 < 0.782122 < 10000
+  qq_ini[18][3] is within 0.1% of lower bound: 1e-12 < 0.910162 < 10000
+  qq_ini[19][1] is within 0.1% of lower bound: 1e-12 < 1.10478 < 10000
+  qq_ini[19][2] is within 0.1% of lower bound: 1e-12 < 1.82489 < 10000
+  qq_ini[19][3] is within 0.1% of lower bound: 1e-12 < 2.59524 < 10000
+  qq_ini[20][0] is within 0.1% of lower bound: 1e-12 < 1.20049 < 10000
+  qq_ini[20][1] is within 0.1% of lower bound: 1e-12 < 3.49824 < 10000
+  qq_ini[21][1] is within 0.1% of lower bound: 1e-12 < 1.83425 < 10000
+  qq_ini[21][2] is within 0.1% of lower bound: 1e-12 < 2.97779 < 10000
+  qq_ini[21][3] is within 0.1% of lower bound: 1e-12 < 5.55739 < 10000
+  qq_ini[22][2] is within 0.1% of lower bound: 1e-12 < 4.14974 < 10000
+  qq_ini[22][3] is within 0.1% of lower bound: 1e-12 < 5.30622 < 10000
+  qq_ini[23][0] is within 0.1% of lower bound: 1e-12 < 3.22551 < 10000
+  qq_ini[23][1] is within 0.1% of lower bound: 1e-12 < 3.66099 < 10000
+  qq_ini[24][1] is within 1% of lower bound: 1e-12 < 13.1061 < 10000
+  qq_ini[24][2] is within 1% of lower bound: 1e-12 < 24.9065 < 10000
+  qq_ini[24][3] is within 1% of lower bound: 1e-12 < 44.3316 < 10000
+  qq_ini[25][1] is within 0.1% of lower bound: 1e-12 < 4.78144 < 10000
+  qq_ini[25][2] is within 1% of lower bound: 1e-12 < 13.7593 < 10000
+  qq_ini[25][3] is within 1% of lower bound: 1e-12 < 19.8017 < 10000
+  qq_ini[26][1] is within 0.1% of lower bound: 1e-12 < 9.36721 < 10000
+  qq_ini[26][2] is within 1% of lower bound: 1e-12 < 11.5837 < 10000
+  qq_ini[26][3] is within 0.1% of lower bound: 1e-12 < 8.69955 < 10000
+  qq_ini[27][1] is within 0.1% of lower bound: 1e-12 < 1.48092 < 10000
+  qq_ini[27][2] is within 0.1% of lower bound: 1e-12 < 1.67626 < 10000
+  qq_ini[27][3] is within 0.1% of lower bound: 1e-12 < 0.856442 < 10000
+  qq_ini[27][4] is within 0.1% of lower bound: 1e-12 < 0.177424 < 10000
+  qq_ini[28][1] is within 0.1% of lower bound: 1e-12 < 3.18278 < 10000
+  qq_ini[28][2] is within 0.1% of lower bound: 1e-12 < 4.57258 < 10000
+  qq_ini[28][3] is within 0.1% of lower bound: 1e-12 < 5.575 < 10000
+  qq_ini[28][4] is within 0.1% of lower bound: 1e-12 < 7.16537 < 10000
+  qq_ini[29][1] is within 0.1% of lower bound: 1e-12 < 0.0693828 < 10000
+  qq_ini[29][2] is within 0.1% of lower bound: 1e-12 < 0.517246 < 10000
+  qq_ini[29][3] is within 0.1% of lower bound: 1e-12 < 1.12802 < 10000
+  qq_ini[29][4] is within 0.1% of lower bound: 1e-12 < 1.44846 < 10000
+  qq_ini[29][5] is within 0.1% of lower bound: 1e-12 < 1.75082 < 10000
+  qq_ini[30][1] is within 1% of lower bound: 1e-12 < 16.9484 < 10000
+  qq_ini[30][2] is within 1% of lower bound: 1e-12 < 10.8713 < 10000
+  qq_ini[30][3] is within 0.1% of lower bound: 1e-12 < 3.55835 < 10000
+  qq_ini[30][4] is within 0.1% of lower bound: 1e-12 < 0.976213 < 10000
+  qq_ini[30][5] is within 0.1% of lower bound: 1e-12 < 0.174823 < 10000
+  qq_ini[31][1] is within 0.1% of lower bound: 1e-12 < 7.57219 < 10000
+  qq_ini[31][2] is within 0.1% of lower bound: 1e-12 < 2.2591 < 10000
+  qq_ini[31][3] is within 0.1% of lower bound: 1e-12 < 1.09522 < 10000
+  qq_ini[31][4] is within 0.1% of lower bound: 1e-12 < 0.398633 < 10000
+  qq_ini[32][0] is within 0.1% of lower bound: 1e-12 < 0.68054 < 10000
+  qq_ini[33][1] is within 1% of lower bound: 1e-12 < 25.4909 < 10000
+  qq_ini[33][2] is within 1% of lower bound: 1e-12 < 23.116 < 10000
+  qq_ini[33][3] is within 1% of lower bound: 1e-12 < 17.7615 < 10000
+  qq_ini[33][4] is within 1% of lower bound: 1e-12 < 15.3161 < 10000
+  qq_ini[34][1] is within 0.1% of lower bound: 1e-12 < 1.85942 < 10000
+  qq_ini[34][2] is within 0.1% of lower bound: 1e-12 < 0.762143 < 10000
+  qq_ini[34][3] is within 0.1% of lower bound: 1e-12 < 0.245242 < 10000
+  qq_s2_ini[16][2] is within 0.1% of upper bound: 0.04 < 2 < 2
+  qq_s2_ini[28][2] is within 1% of lower bound: 0.04 < 0.0556044 < 2
+  qq_s2_ini[29][2] is within 1% of lower bound: 0.04 < 0.0535223 < 2
+  SSB_R_alfa[16] is within 0.1% of lower bound: 0 < 2.87037 < 10000
+  SSB_R_alfa[17] is within 0.1% of lower bound: 0 < 4.0244 < 10000
+  SSB_R_alfa[18] is within 1% of lower bound: 0 < 14.2327 < 10000
+  SSB_R_alfa[19] is within 1% of lower bound: 0 < 12.1167 < 10000
+  SSB_R_alfa[20] is within 1% of lower bound: 0 < 15.2349 < 10000
+  SSB_R_alfa[21] is within 1% of lower bound: 0 < 41.7085 < 10000
+  SSB_R_alfa[24] is within 0.1% of lower bound: 0 < 5.72166 < 10000
+  SSB_R_alfa[25] is within 0.1% of lower bound: 0 < 6.80813 < 10000
+  SSB_R_alfa[26] is within 0.1% of lower bound: 0 < 9.29361 < 10000
+  SSB_R_alfa[27] is within 0.1% of lower bound: 0 < 6.60661 < 10000
+  SSB_R_beta_ini[1] is within 0.1% of lower bound: 1e-05 < 0.0778034 < 100000
+  SSB_R_beta_ini[2] is within 0.1% of lower bound: 1e-05 < 0.0660156 < 100000
+  SSB_R_beta_ini[3] is within 0.1% of lower bound: 1e-05 < 1.61222 < 100000
+  SSB_R_beta_ini[4] is within 0.1% of lower bound: 1e-05 < 1.02782 < 100000
+  SSB_R_beta_ini[5] is within 0.1% of lower bound: 1e-05 < 2.40005 < 100000
+  catch_s2_ini[16][1][2] is within 1% of lower bound: 0.01 < 0.0188491 < 2
+  catch_s2_ini[22][3][1] is within 0.1% of upper bound: 0.01 < 2 < 2
+  catch_s2_ini[22][3][2] is within 0.1% of upper bound: 0.01 < 2 < 2
+  catch_s2_ini[22][3][3] is within 0.1% of upper bound: 0.01 < 2 < 2
+  catch_s2_ini[23][3][1] is within 0.1% of upper bound: 0.01 < 2 < 2
+  catch_s2_ini[23][3][3] is within 0.1% of upper bound: 0.01 < 1.99998 < 2
+  catch_s2_ini[24][3][1] is within 0.1% of upper bound: 0.01 < 2 < 2
+  catch_s2_ini[24][4][3] is within 0.1% of upper bound: 0.01 < 2 < 2
+  catch_s2_ini[25][1][2] is within 0.1% of upper bound: 0.01 < 2 < 2
+  catch_s2_ini[27][1][1] is within 0.1% of upper bound: 0.01 < 2 < 2
+
+report file: sms.rep
+
+
+Successful completion, HURRAH - HURRAH 
+
+Finished running model 'sms' after 1 m 32 s.

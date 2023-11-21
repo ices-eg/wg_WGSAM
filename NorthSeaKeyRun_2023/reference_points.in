@@ -1,0 +1,58 @@
+# refernec points Flim Fpa blim Bpa. -1 means no reference point defined
+# FUL, Fulmar no. 1
+-1 -1 -1 -1 
+# GLT no. 2
+-1 -1 -1 -1  
+# HEG no. 3
+-1 -1 -1 -1  
+# KTW no. 4
+-1 -1 -1 -1  
+# GBG no. 5
+-1 -1 -1 -1 
+# GNT no. 6
+-1 -1 -1 -1  
+# PUF no. 7
+-1 -1 -1 -1 
+# RAZ no. 8
+-1 -1 -1 -1  
+# RAJ no. 9
+-1 -1 -1 -1  
+# GUR no. 10
+-1 -1 -1 -1 
+# W_H no. 13
+-1 -1 -1 -1  
+# N_H no. 14
+-1 -1 -1 -1  
+# GES no. 15
+-1 -1 -1 -1  
+# HBP no. 16
+-1 -1 -1 -1 
+# Hake no. 17
+-1 -1 -1 -1 
+# -------------- VPA species, predator and prey ---------
+# COD, Cod no. 18
+0.54 0.39 107000 150000  #updated Oct 2020
+# WHG, Whiting no. 19
+0.46 0.33 119970 166708   #updated Oct 2020
+# HAD, Haddock no. 20
+0.384 0.274 94000 132000  #updated Oct 2020
+# POK, Saithe no. 21
+0.62 0.446 107297 149098   #updated Oct 2020
+# MAC, Mackerel no.22
+0.46 0.36 2000000 2580000  #updated Oct 2020
+# -------------- VPA species and prey (but not a predator)--------------
+# HER, Herring no. 23
+0.34 0.30 800000 900000    #updated Oct 2020
+# SAN, Northen Sandeel no. 24
+-1 0.6 200000 280000
+# SAN, South Sandeel no. 25
+-1 0.6 175000 245000
+# NOP, Norway pout no. 26
+-1 0.7 -1 -1 #updated Oct 2020
+# Sprat no 27
+-1 0.69 94000 125000  #updated Oct 2020
+# -------------- VPA species (but not a predator or prey) --------------
+# PLE, Plaice no. 28 
+0.516 0.369 207288 290203  #updated Oct 2020
+# SOL, Sole no. 29
+0.42 0.302 30828 42838   #updated Oct 2020

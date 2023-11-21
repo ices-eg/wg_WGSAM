@@ -1,0 +1,88 @@
+#options and data for optimationzation
+# the character "#" is used as comment character, such that all text and numbers after # are skipped
+#
+########################################
+## first year of input data (option first.year)
+2020
+## last year (option last.year)
+2060
+########################################
+## First run number (option first.run.no). Default=1
+1
+########################################
+## First iteration number (option first.iter.no). Default=1
+1
+########################################
+## number of iterations (option no.iter)
+1
+########################################
+# HCR by species
+# 1: Target F
+#      F=Ftarget
+# 2: Target F, and known trigger T1 and T2
+#      F=0                        for     SSB<T1
+#      F=Ftarget*(SSB-T1)/(T2-T1) for  T1<SSB<T2
+#      F=Ftarget                  for  T2<SSB
+# 3: Target F and Fslope, and known trigger T1 and T2
+#      F=0                          for     SSB<T1
+#      F=Ftarget*(SSB-T1)/(T2-T1)   for  T1<SSB<T2
+#      F=Ftarget+(SSB-T2)/T2*Fslope for  T2<SSB
+#  4: Logistic curve
+#      F=Ftarget / (1+exp(S1 - S1/SSB50%*SSB)
+#  22, 33 and 44 is the same rule as 2,3 and 4 but TSB is used
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+          2           2           2           2           2           2          22          22          22          22           2           2 
+########################################
+# T1 and T2 trigger by species
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0     9.4e+04    3.94e+04       2e+05    1.75e+05           0           0 
+    1.5e+05   1.667e+05    1.32e+05   1.491e+05    2.58e+06     1.4e+06       1e+06       8e+05     3.5e+05       4e+05   5.646e+05   4.284e+04 
+########################################
+# Values for Ftarget
+# 1) lower limit, 2) higher limit, 3) initialization, 4) estimation phase
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+          0           0           0           0           0           0           0           0           0           0           0           0 
+          3           3           3           3           3           3           3           3           3           3           3           3 
+        0.4        0.17         0.2        0.45         0.4        0.26         0.3         0.6         0.7         0.9        0.21       0.207 
+          1           1           1           1           1           1           1           1           1           1           1           1 
+########################################
+# Values for Fslope
+# 1) lower limit, 2) higher limit, 3) initialization, 4) estimation phase
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+        0.1         0.1         0.1         0.1         0.1         0.1         0.1         0.1         0.1         0.1         0.1         0.1 
+        0.1         0.1         0.1         0.1         0.1         0.1         0.1         0.1         0.1         0.1         0.1         0.1 
+        0.1         0.1         0.1         0.1         0.1         0.1         0.1         0.1         0.1         0.1         0.1         0.1 
+          1           1           1           1           1           1           1           1           1           1           1           1 
+########################################
+# Values for logistic curve, SSB50% of Ftarget (HCR=4)
+# 1) lower limit of SSB50% in 1000 tonnes , 2) higher limit, 3) initialization, 4) estimation phase
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+        100         100         100         800         100         430          90          90         100         160          25         100 
+        300         140         200        1600         200         600         150         150         200         230          35         150 
+        200         120         150        1000         150         500         100         100         100         200          30         100 
+          1           1           1           1           1           1           1           1           1           1           1           1 
+########################################
+# Values for logistic curve, S1 (HCR=4)
+# 1) lower limit of S1 in 1000 tonnes , 2) higher limit, 3) initialization, 4) estimation phase
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+          1           1           1           8           1         4.3         0.9         0.9           1         1.6        0.25          10 
+         30          14          20         160          20          60          15          15          20          23         3.5          15 
+         20          12          15         100          15          50          10          10          10          20           3          10 
+          1           1           1           1           1           1           1           1           1           1           1           1 
+########################################
+# Values for penalty function for SSB below limit (HCR=4)
+# 1) use penalty 0=no, 1=logistic, 2=simple power function 
+# 2) limit (SSB50%), 3) steepnes (SSB75%), 4) factor
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           0           0           0 
+      2e+05       1e+05    1.06e+05       8e+05       8e+05     4.3e+05       9e+04           1     1.1e+05     1.6e+05     2.5e+04    7.14e+04 
+   2.04e+05    1.02e+05   1.081e+05    8.16e+05       1e+06   4.386e+05    9.18e+04           1   1.122e+05   1.632e+05    2.55e+04       1e+07 
+      1e+07       1e+07       1e+07       1e+07       1e+07       1e+07       1e+07           1       1e+07       1e+07       1e+07           1 
+########################################
+# relative weighting (e.g. price/kg, all sizes combined) of yield used in objective function
+#         Cod     Whiting     Haddock      Saithe    Mackerel     Herring   N.sandeel   S.sandeel    Nor.pout       Sprat      Plaice        Sole 
+          1           1           1           1           1           1           1           1           1           1           1           1 
+########################################
+# use weighting factor by age (e.g. price) from file op_price.in
+# 0=no use; 1=use
+0

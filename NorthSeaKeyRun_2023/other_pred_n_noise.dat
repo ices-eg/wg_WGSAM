@@ -1,0 +1,59 @@
+# File, noise_other_pred.dat, with data for simulating uncertanties in abundance of other predators 
+1   # other_pred_noise_model, 1=no noise, 2=from scaling factors  with mean 1 and std of the mean at a level set at target, 3=from noise on observations
+3  # phase for estimating noise
+0.5   1.5  # Lower and upper bound for the parameters
+ # Weighting factor for likelihood contributions for noise factor
+#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake 
+             1           1           1           1           1           1           1           1           1           1           1           1           1           1           1 
+1  # 1=estimate variance as a parameter ; 0=use empirical variance
+0.01 1  # lower and upper bounds on variance (if estimated as parameter)
+1  # model type: 0=no noise, 1=from scaling factors  with mean 1 and std of the mean at a level set at target, 2=from noise on observations
+ # Usage of age dependent noise factor. -1: no noise, 1: same noise for all ages, 2:age dependent noise 
+#       Fulmar   Guillemot    Her.Gull   Kittiwake    GBB.Gull      Gannet      Puffin   Razorbill   A.radiata  G.gurnards W.horse.mac N.horse.mac   Grey.seal  H.porpoise        Hake 
+             1           1           1           1           1           1           1           1           1           1           1           1           1           1           1 
+20   # Number of "observations" used used to fit uncertanty for each other predator. 
+########  Fulmar 
+# "observations" used to mimic a factor with mean 1 and wanted std the mean at  0.4472136  
+0.5999321 0.9966306 0.4975007 1.687899 1.068059 0.5049246 1.145392 1.268254 1.188658 0.7571554 1.64701 1.097605 0.6024849 -0.1778203 1.457572 0.8846982 0.8987736 1.368891 1.308848 1.197531 
+########  Guillemot 
+# "observations" used to mimic a factor with mean 1 and wanted std the mean at  0.4472136  
+0.538498 0.9955168 1.588248 0.4398664 0.8835181 0.9733668 1.216516 0.8161559 1.755814 0.8587884 1.09387 1.332189 0.7515183 0.4781877 1.670371 -0.05894776 1.288611 0.93255 1.345318 1.100044 
+########  Her.Gull 
+# "observations" used to mimic a factor with mean 1 and wanted std the mean at  0.4472136  
+0.545673 0.9283502 1.243517 0.4369431 1.207499 1.112798 1.144407 1.733904 0.3987984 1.820088 0.6698111 0.4488985 0.6860596 1.24001 1.182496 0.9197005 0.55077 0.724999 1.795475 1.209802 
+########  Kittiwake 
+# "observations" used to mimic a factor with mean 1 and wanted std the mean at  0.4472136  
+0.9109584 0.4872152 1.287342 1.122608 1.702839 1.174677 0.07490952 0.6710275 1.848462 1.78167 1.106213 0.7987586 1.003773 0.764794 0.8091576 0.8843209 1.440198 0.7653148 0.7339689 0.6317923 
+########  GBB.Gull 
+# "observations" used to mimic a factor with mean 1 and wanted std the mean at  0.4472136  
+0.7303942 1.80113 0.5308782 1.168751 1.958516 0.8448905 0.9078012 0.8292697 0.9974902 1.201455 1.725715 0.7491969 0.615133 1.059197 0.6192869 1.068122 0.8475827 0.08411178 1.250877 1.010202 
+########  Gannet 
+# "observations" used to mimic a factor with mean 1 and wanted std the mean at  0.4472136  
+1.032044 0.6522848 1.284933 1.647361 0.9284418 1.073592 0.3655549 1.230038 0.937174 0.4756537 1.647638 0.4206892 1.19398 0.762642 0.6651311 0.9412824 1.639121 0.4562452 0.7961117 1.850083 
+########  Puffin 
+# "observations" used to mimic a factor with mean 1 and wanted std the mean at  0.4472136  
+1.666122 0.4075646 0.5890787 0.6909474 0.4892397 0.4976902 1.110139 0.7976344 0.8950286 1.630984 0.9688396 1.821275 1.664028 0.9569312 1.524813 1.008827 0.5170089 0.7288645 0.8381409 1.196845 
+########  Razorbill 
+# "observations" used to mimic a factor with mean 1 and wanted std the mean at  0.4472136  
+1.051164 1.458114 0.884468 0.8460372 1.412201 1.040916 1.013459 0.6095644 -0.2363404 0.82741 0.7541054 1.216866 1.273773 0.518865 1.11886 0.7306803 1.753081 0.9688834 1.773935 0.9839557 
+########  A.radiata 
+# "observations" used to mimic a factor with mean 1 and wanted std the mean at  0.4472136  
+0.7206822 0.6980356 1.005808 0.9437589 1.269311 0.5291225 1.61391 1.062055 0.9572206 0.9048466 1.652937 0.8565275 1.102752 0.9490334 1.911809 0.6875513 1.035033 -0.1233539 1.475235 0.7477258 
+########  G.gurnards 
+# "observations" used to mimic a factor with mean 1 and wanted std the mean at  0.4472136  
+1.044323 0.9308306 0.2671586 0.6988597 1.198517 1.251769 0.358431 0.8305185 0.1244019 0.8904506 1.649826 1.456385 0.9006509 1.585904 1.448339 1.083795 0.4999523 0.9247379 1.551283 1.303866 
+########  W.horse.mac 
+# "observations" used to mimic a factor with mean 1 and wanted std the mean at  0.4472136  
+0.8726464 1.198438 0.3844427 0.4656233 1.806051 0.6916539 1.882598 1.514047 1.160291 0.6547458 0.7474191 1.000657 0.3729749 1.049601 0.5778248 1.190912 1.066795 1.6527 0.8720534 0.8385246 
+########  N.horse.mac 
+# "observations" used to mimic a factor with mean 1 and wanted std the mean at  0.4472136  
+0.4070579 1.984513 0.6772928 0.6962462 0.1403046 1.030393 1.008182 0.846757 1.115944 1.391676 0.7696499 0.5033669 0.7686971 1.177033 1.092237 0.8079574 1.784198 1.346534 1.432407 1.019554 
+########  Grey.seal 
+# "observations" used to mimic a factor with mean 1 and wanted std the mean at  0.4472136  
+1.178345 0.7805546 1.760225 1.00342 1.458695 1.112189 1.500152 1.026946 0.7399887 1.440877 0.3929056 1.134278 0.2654608 0.02951145 0.7044932 0.8216992 1.579712 0.9621175 0.8595946 1.248836 
+########  H.porpoise 
+# "observations" used to mimic a factor with mean 1 and wanted std the mean at  0.4472136  
+0.2778237 1.544575 1.758846 1.426562 0.610744 1.285453 0.5954523 1.198752 0.4294018 1.185019 0.4262857 0.7892862 0.9887153 0.4741749 0.8896513 1.099685 1.621084 1.487522 0.7020577 1.20891 
+########  Hake 
+# "observations" used to mimic a factor with mean 1 and wanted std the mean at  0.4472136  
+1.106806 1.907042 0.802223 1.431713 1.223456 0.3361343 0.9866735 1.530235 0.9078302 0.4279428 1.410241 0.789315 1.059336 0.3425477 1.717794 0.9732365 0.9644465 0.9914159 0.3809777 0.7106342 

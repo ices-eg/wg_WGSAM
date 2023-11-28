@@ -1,0 +1,711 @@
+---
+title: "North Sea SMS Keyrun Supplemental Plots"
+author: "Sarah Gaichas, Valerio Bartolino, Xochitl Cormon"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+   html_document:
+     code_fold: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+library(ggthemes)
+library(RColorBrewer)
+
+```
+
+```{r spplist}
+# load the species list (checked that they are the same for the 2020 and 2017 runs)
+spp <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/NorthSeaKeyRun_2023/species_names.in", nrows=27)
+spp <- gsub("_","",spp$V1)
+spp <- data.frame(Species.n=1:length(spp), stkName=spp)
+
+```
+
+## Observed Data vs SMS Predicted
+
+### Catch {.tabset}
+
+#### 2023 SMS KeyRun
+```{r, message=FALSE, warning=FALSE, fig.width=9, fig.height=8}
+# plot Obs vs Pred catch (here only 2023 run)
+dat <- read.table("https://github.com/ices-eg/wg_WGSAM/raw/master/NorthSeaKeyRun_2023/summary_table_raw.out", sep="", header=T , na.strings="", stringsAsFactors=F)
+#dat[1:3,]
+
+dat <- left_join(dat,spp) %>%
+     mutate(Yield = as.numeric(as.character(SOP)),
+            Yield.hat = as.numeric(as.character(SOP.hat)),
+            Year = as.numeric(as.character(Year))) %>%
+     gather("Source","Yield",9:10)
+
+#postscript(paste(dirFigs,"catch_obsVSpre.ps",sep="/"))
+ggplot(dat) +
+    geom_point(aes(Year,Yield,col=Source)) +
+    geom_line(aes(Year,Yield,col=Source,lty=Source)) +
+    facet_wrap(~stkName, scales="free_y")+
+    xlim(1973,2023)+
+    theme_tufte() +
+    theme(legend.position="bottom")
+#dev.off()
+
+```
+
+
+#### 2020 SMS KeyRun
+```{r, message=FALSE, warning=FALSE, fig.width=9, fig.height=8}
+# plot Obs vs Pred catch (here only 2020 run)
+dat <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/KeyRunComparisons/NorthSeaSMS2020/summary_table_raw.out", sep="", header=T , na.strings="", stringsAsFactors=F)
+#dat[1:3,]
+
+dat <- left_join(dat,spp) %>%
+    mutate(Yield = as.numeric(as.character(SOP)),
+           Yield.hat = as.numeric(as.character(SOP.hat)),
+           Year = as.numeric(as.character(Year))) %>%
+    gather("Source","Yield",8:9)
+
+#postscript(paste(dirFigs,"catch_obsVSpre.ps",sep="/"))
+ggplot(dat) +
+    geom_point(aes(Year,Yield,col=Source)) +
+    geom_line(aes(Year,Yield,col=Source,lty=Source)) +
+    facet_wrap(~stkName, scales="free_y")+
+    xlim(1973,2023)+
+    theme_tufte() +
+    theme(legend.position="bottom")
+#dev.off()
+
+```
+
+#### 2017 SMS KeyRun
+```{r, message=FALSE, warning=FALSE, fig.width=9, fig.height=8}
+# plot Obs vs Pred catch (here only 2020 run)
+dat <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/NorthSeaKeyRun_2017/summary_table_raw.out", sep="", header=T , na.strings="", stringsAsFactors=F)
+#dat[1:3,]
+
+dat <- left_join(dat,spp) %>%
+    mutate(Yield = as.numeric(as.character(Yield)),
+           Yield.hat = as.numeric(as.character(Yield.hat)),
+           Year = as.numeric(as.character(Year))) %>%
+    gather("Source","Yield",8:9)
+
+#postscript(paste(dirFigs,"catch_obsVSpre.ps",sep="/"))
+ggplot(dat) +
+    geom_point(aes(Year,Yield,col=Source)) +
+    geom_line(aes(Year,Yield,col=Source,lty=Source)) +
+    facet_wrap(~stkName, scales="free_y")+
+    xlim(1973,2023)+
+    theme_tufte() +
+    theme(legend.position="bottom")
+#dev.off()
+
+```
+
+### {-}
+
+### Diet proportion 2023 
+
+```{r, message=FALSE, warning=FALSE}
+# plot Obs vs Pred stomachs (here only 2020 run)
+dat <- read.table("https://github.com/ices-eg/wg_WGSAM/raw/master/NorthSeaKeyRun_2023/summary_stom.out", header=T)
+#dat[1:4,]
+
+sppPred <- spp %>% mutate(Predator.no = Species.n) %>% rename(PredName=stkName)
+sppPrey <- spp %>% mutate(Prey.no = Species.n) %>% rename(PreyName=stkName)
+
+dat <- dat %>%
+    left_join(sppPred) %>%
+    mutate(Species.n = NULL) %>%
+    left_join(sppPrey) %>%
+    mutate(PreyName = as.character(PreyName),
+           PreyName = ifelse(is.na(PreyName), "otherfood", PreyName))
+
+tmp <- dat %>%
+    group_by(Year,PredName,PreyName) %>%
+    summarise(stomcon = sum(stomcon,na.rm=T),
+              stomcon.hat = sum(stomcon.hat,na.rm=T))
+
+# pie plot Obs and Pred
+preys <- as.character(unique(tmp$PreyName))
+preds <- as.character(unique(tmp$PredName))
+#plList <- vector("list",length(preds))
+nb.cols <- 14
+colPalette <- colorRampPalette(brewer.pal(12, "Paired"))(nb.cols)
+
+plist2 = lapply(split(tmp, tmp$PredName), function(d) {
+#for(i in 1:length(preds)){
+    ggplot(d %>% gather("source","stomcon",4:5)) +
+    geom_bar(aes(x="",stomcon,fill=PreyName), width = 1, stat = "identity", position="fill") +
+    scale_fill_manual(values=colPalette) +
+    facet_grid(source~Year) +
+    #ggtitle(preds[[i]]) +
+    coord_polar("y")
+})
+# for(i in 1:length(plList)){
+#     postscript(paste(dirFigs,"/stomachs_fitting_",preds[i],"_v1.ps",sep=""))
+#     print(plList[[i]])
+#     dev.off()
+# }
+
+# same thing as barplot plot Obs and Pred
+#for(i in 1:length(preds)){
+plist3 = lapply(split(tmp, tmp$PredName), function(d) {
+  ggplot(d) +
+    geom_col(aes(Year-0.2,stomcon,fill=PreyName), width=0.35, stat="identity", position="stack") +
+    geom_col(aes(Year+0.2,stomcon.hat,fill=PreyName), width=0.35, stat="identity", position="stack") +
+    scale_fill_manual(values=colPalette) +
+    #ggtitle(preds[[i]]) +
+    xlab("Year") +
+    theme_bw()
+})
+# for(i in 1:length(plList)){
+#     postscript(paste(dirFigs,"/stomachs_fitting_",preds[i],"_v2.ps",sep=""))
+#     print(plList[[i]])
+#     dev.off()
+# }
+
+```
+
+### Pie charts {.tabset}
+
+```{r pieloop23, fig.width=9, message=FALSE, results="asis"}
+
+for(i in 1:length(preds)) {
+  cat("  \n####",  preds[i],"  \n")
+  print(plist2[preds[i]]) 
+  cat("  \n")
+}
+```
+
+### {-}
+
+### Bar charts {.tabset}
+
+```{r barloop23, fig.width=9, message=FALSE, results="asis"}
+
+for(i in 1:length(preds)) {
+  cat("  \n####",  preds[i],"  \n")
+  print(plist3[preds[i]]) 
+  cat("  \n")
+}
+```
+
+
+### {-}
+
+
+### Diet proportion 2020 
+
+```{r, message=FALSE, warning=FALSE}
+# plot Obs vs Pred stomachs (here only 2020 run)
+dat <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/KeyRunComparisons/NorthSeaSMS2020/summary_stom.out", header=T)
+#dat[1:4,]
+
+sppPred <- spp %>% mutate(Predator.no = Species.n) %>% rename(PredName=stkName)
+sppPrey <- spp %>% mutate(Prey.no = Species.n) %>% rename(PreyName=stkName)
+
+dat <- dat %>%
+    left_join(sppPred) %>%
+    mutate(Species.n = NULL) %>%
+    left_join(sppPrey) %>%
+    mutate(PreyName = as.character(PreyName),
+           PreyName = ifelse(is.na(PreyName), "otherfood", PreyName))
+
+tmp <- dat %>%
+    group_by(Year,PredName,PreyName) %>%
+    summarise(stomcon = sum(stomcon,na.rm=T),
+              stomcon.hat = sum(stomcon.hat,na.rm=T))
+
+# pie plot Obs and Pred
+preys <- as.character(unique(tmp$PreyName))
+preds <- as.character(unique(tmp$PredName))
+#plList <- vector("list",length(preds))
+nb.cols <- 14
+colPalette <- colorRampPalette(brewer.pal(12, "Paired"))(nb.cols)
+
+plist2 = lapply(split(tmp, tmp$PredName), function(d) {
+#for(i in 1:length(preds)){
+    ggplot(d %>% gather("source","stomcon",4:5)) +
+    geom_bar(aes(x="",stomcon,fill=PreyName), width = 1, stat = "identity", position="fill") +
+    scale_fill_manual(values=colPalette) +
+    facet_grid(source~Year) +
+    #ggtitle(preds[[i]]) +
+    coord_polar("y")
+})
+# for(i in 1:length(plList)){
+#     postscript(paste(dirFigs,"/stomachs_fitting_",preds[i],"_v1.ps",sep=""))
+#     print(plList[[i]])
+#     dev.off()
+# }
+
+# same thing as barplot plot Obs and Pred
+#for(i in 1:length(preds)){
+plist3 = lapply(split(tmp, tmp$PredName), function(d) {
+  ggplot(d) +
+    geom_col(aes(Year-0.2,stomcon,fill=PreyName), width=0.35, stat="identity", position="stack") +
+    geom_col(aes(Year+0.2,stomcon.hat,fill=PreyName), width=0.35, stat="identity", position="stack") +
+    scale_fill_manual(values=colPalette) +
+    #ggtitle(preds[[i]]) +
+    xlab("Year") +
+    theme_bw()
+})
+# for(i in 1:length(plList)){
+#     postscript(paste(dirFigs,"/stomachs_fitting_",preds[i],"_v2.ps",sep=""))
+#     print(plList[[i]])
+#     dev.off()
+# }
+
+```
+
+### Pie charts {.tabset}
+
+```{r pieloop, fig.width=9, message=FALSE, results="asis"}
+
+for(i in 1:length(preds)) {
+  cat("  \n####",  preds[i],"  \n")
+  print(plist2[preds[i]]) 
+  cat("  \n")
+}
+```
+
+### {-}
+
+### Bar charts {.tabset}
+
+```{r barloop, fig.width=9, message=FALSE, results="asis"}
+
+for(i in 1:length(preds)) {
+  cat("  \n####",  preds[i],"  \n")
+  print(plist3[preds[i]]) 
+  cat("  \n")
+}
+```
+
+
+### {-}
+
+## SMS output comparisons
+
+### Numbers at age in Q1 {.tabset}
+
+```{r Nagecomp, message=FALSE, warning=FALSE, fig.width=9, fig.height=8}
+# plot Num@age from 2017 and 2020 runs
+dat17 <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/NorthSeaKeyRun_2017/summary.out", sep="", header=T , na.strings="", stringsAsFactors=F)
+dat20 <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/KeyRunComparisons/NorthSeaSMS2020/summary.out", sep="", header=T , na.strings="", stringsAsFactors=F)
+dat23 <- read.table("https://github.com/ices-eg/wg_WGSAM/raw/master/NorthSeaKeyRun_2023/summary.out", sep="", header=T , na.strings="", stringsAsFactors=F)
+
+
+dat17 <- left_join(dat17,spp) %>% mutate(run="r17")
+dat20 <- left_join(dat20,spp) %>% mutate(run="r20")
+dat23 <- left_join(dat23,spp) %>% mutate(run="r23")
+dat <- bind_rows(dat17,dat20, dat23)
+
+# select Herring in Q1
+#i <- spp$stkName[21] # 21 is herring
+#postscript(paste(dirFigs,"/numAtAge_",i,".ps",sep=""))
+plist = lapply(split(dat, dat$stkName), function(d) {
+  ggplot(d %>% filter(Quarter == 1)) +
+    geom_point(aes(Year,N, col=run)) +
+    geom_line(aes(Year,N, col=run)) +
+    facet_wrap(~Age, scale="free_y")+
+    theme_tufte() +
+    theme(legend.position="bottom")
+})
+#dev.off()
+
+```
+
+#### Cod
+```{r,  fig.width=9, fig.height=8}
+plist$Cod
+```
+
+#### Haddock
+```{r,  fig.width=9, fig.height=8}
+plist$Haddock
+```
+
+#### Herring
+```{r,  fig.width=9, fig.height=8}
+plist$Herring
+```
+
+#### Mackerel
+```{r,  fig.width=9, fig.height=8}
+plist$Mackerel
+```
+
+#### N. Sandeel
+```{r,  fig.width=9, fig.height=6}
+plist$'N.sandeel'
+```
+
+#### Norway pout
+```{r,  fig.width=9, fig.height=3}
+plist$'Nor.pout'
+```
+
+#### Saithe
+```{r,  fig.width=9, fig.height=8}
+plist$'Saithe'
+```
+
+#### S. Sandeel
+```{r,  fig.width=9, fig.height=6}
+plist$'S.sandeel'
+```
+
+#### Sprat
+```{r,  fig.width=9, fig.height=3}
+plist$Sprat
+```
+
+#### Whiting
+```{r,  fig.width=9, fig.height=8}
+plist$Whiting
+```
+
+### {-}
+
+```{r dietcolor}
+# plot part M2 per predator
+dat23 <- read.table("https://github.com/ices-eg/wg_WGSAM/raw/master/NorthSeaKeyRun_2023/Input_Output/Output/WhoEatsWhom/who_eats_whom_level1.csv", sep=",", header=T)
+
+dat20 <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/KeyRunComparisons/NorthSeaSMS2020/who_eats_whom_level1.csv", sep=",", header=T)
+#dat20 <- read.csv("C://Users//xocor//Documents//Work//Projects//WGSAM//who_eats_whom_level1.csv", sep=",", header=T, dec=".",stringsAsFactors=FALSE)
+#head(dat20)
+
+dat17 <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/Input_Output/Output/WhoEatsWhom/who_eats_whom_level1.csv", sep=",", header=T)
+dat17 <- dat17 %>% mutate(run="r17")
+dat20 <- dat20 %>% mutate(run="r20")
+dat23 <- dat23 %>% mutate(run="r23")
+dat2 <- bind_rows(dat17,dat20, dat23)
+
+# aggregate birds
+dat3 <- dat2 %>%
+    mutate(Predator = as.character(Predator),
+           Predator = ifelse(Predator %in% c("Fulmar","Gannet","GBB. Gull","GBB.Gull","Guillemot","Her. Gull","Her.Gull","Kittiwake","Puffin","Razorbill"), "Birds", Predator),
+           Predator = ifelse(Predator %in% c("A. radiata", "A.radiata"), "A.radiata", Predator),
+           Predator = ifelse(Predator %in% c("G. gurnards", "G.gurnards"), "G.gurnards", Predator),
+           Predator = ifelse(Predator %in% c("Grey seal" , "Grey.seal"), "Grey.seal", Predator),
+           Predator = ifelse(Predator %in% c("H. porpoise", "H.porpoise"), "H.porpoise", Predator),
+           Predator = ifelse(Predator %in% c("N.horse mac", "N.horse.mac"), "N.horse.mac", Predator),
+           Predator = ifelse(Predator %in% c("W.horse mac", "W.horse.mac"), "W.horse.mac", Predator),
+           Prey = ifelse(Prey %in% c("N. sandeel", "N.sandeel"), "N.sandeel", Prey),
+           Prey = ifelse(Prey %in% c("Nor. pout",  "Nor.pout"), "Nor.pout", Prey),
+           Prey = ifelse(Prey %in% c("S. sandeel", "S.sandeel"), "S.sandeel", Prey)
+           ) %>%
+    group_by(Year,Quarter,Predator, Predator.age,Prey, Prey.age, run) %>%
+    summarise(M2 = sum(Part.M2, na.rm=T)) %>%
+	ungroup()
+	
+# length(unique(dat3$Predator)) #http://medialab.github.io/iwanthue/
+col <- c("#000047","#858a00","#ff2b47","#00d3c9", "#0188d2", "#7426d6","#e37b00","#ffa0ee","#930025","#00bd3b","yellow","black","#005144")
+names(col) <- as.factor(unique(dat3$Predator))
+
+preycol <- c("#da62e7", "#549700", "#00609a", "#8dd971", "#535622", "lightgray")
+names(preycol) <- as.factor(c("N.sandeel","Nor.pout","S.sandeel","Herring","Sprat","Plaice"))
+
+col <- c(col, preycol)
+
+```
+
+### Modeled Q1 predator diet {.tabset}
+
+#### 2023 SMS KeyRun
+
+```{r, warning=FALSE, message=FALSE, fig.width=9, fig.height=8}
+# plot predators model diet (here only 2020 run)
+dat23 <- read.table("https://github.com/ices-eg/wg_WGSAM/raw/master/NorthSeaKeyRun_2023/Input_Output/Output/WhoEatsWhom/who_eats_whom_level2.csv", sep=",", header=T)
+#dat[1:4,]
+
+# aggregate birds
+datQ23 <- dat23 %>%
+    mutate(Predator = as.character(Predator),
+           Predator = ifelse(Predator %in% c("Fulmar","Gannet","GBB. Gull","Guillemot","Her. Gull","Kittiwake","Puffin","Razorbill"), "Birds", Predator)) %>%
+    group_by(Year,Quarter,Predator,Prey) %>%
+    summarise(eatenW = sum(eatenW, na.rm=T))
+
+# All predators diet in Q1
+#postscript(paste(dirFigs,"diet_byPredator_Q1.ps",sep="/"))
+ggplot(datQ23 %>% filter(Quarter == 1)) +
+    geom_bar(aes(Year,eatenW,fill=Prey), stat="identity", position="fill") +
+    facet_wrap(~Predator)+
+    scale_fill_manual(values=col) +
+    xlim(1973,2023)+
+    theme(legend.position="bottom")
+#dev.off()
+
+```
+
+
+#### 2020 SMS KeyRun
+
+```{r, warning=FALSE, message=FALSE, fig.width=9, fig.height=8}
+# plot predators model diet (here only 2020 run)
+dat20 <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/KeyRunComparisons/NorthSeaSMS2020/who_eats_whom_level2.csv", sep=",", header=T)
+#dat[1:4,]
+
+# aggregate birds
+datQ20 <- dat20 %>%
+    mutate(Predator = as.character(Predator),
+           Predator = ifelse(Predator %in% c("Fulmar","Gannet","GBB. Gull","Guillemot","Her. Gull","Kittiwake","Puffin","Razorbill"), "Birds", Predator)) %>%
+    group_by(Year,Quarter,Predator,Prey) %>%
+    summarise(eatenW = sum(eatenW, na.rm=T))
+
+# All predators diet in Q1
+#postscript(paste(dirFigs,"diet_byPredator_Q1.ps",sep="/"))
+ggplot(datQ20 %>% filter(Quarter == 1)) +
+    geom_bar(aes(Year,eatenW,fill=Prey), stat="identity", position="fill") +
+    facet_wrap(~Predator)+
+    scale_fill_manual(values=col) +
+    xlim(1973,2023)+
+    theme(legend.position="bottom")
+#dev.off()
+
+```
+
+#### 2017 SMS KeyRun
+
+```{r, warning=FALSE, message=FALSE, fig.width=9, fig.height=8}
+# plot predators model diet **check to make sure this is 2017 output**
+dat17 <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/Input_Output/Output/WhoEatsWhom/who_eats_whom_level2.csv", sep=",", header=T)
+#dat[1:4,]
+
+# aggregate birds
+datQ17 <- dat17 %>%
+    mutate(Predator = as.character(Predator),
+           Predator = ifelse(Predator %in% c("Fulmar","Gannet","GBB. Gull","Guillemot","Her. Gull","Kittiwake","Puffin","Razorbill"), "Birds", Predator)) %>%
+    group_by(Year,Quarter,Predator,Prey) %>%
+    summarise(eatenW = sum(eatenW, na.rm=T))
+
+# All predators diet in Q1
+#postscript(paste(dirFigs,"diet_byPredator_Q1.ps",sep="/"))
+ggplot(datQ17 %>% filter(Quarter == 1)) +
+    geom_bar(aes(Year,eatenW,fill=Prey), stat="identity", position="fill") +
+    facet_wrap(~Predator)+
+    scale_fill_manual(values=col) +
+    xlim(1973,2023)+
+    theme(legend.position="bottom")
+#dev.off()
+
+```
+
+### {-}
+
+### Modeled predators contributing to predation by prey {.tabset}
+
+#### 2023 SMS proportion by weight
+
+```{r, warning=FALSE, message=FALSE, fig.width=9, fig.height=8}
+# ------------------------
+# plot predators contributing to predation by prey
+preys <- as.character(unique(datQ23$Prey))
+plList <- vector("list",length(preys))
+#nb.cols <- 14
+#colPalette <- colorRampPalette(brewer.pal(12, "Paired"))(nb.cols)
+
+
+# # by quarter
+# for(i in 1:length(plList)){
+# plList[[i]] <- ggplot(datQ %>% filter(Prey == preys[i])) +
+#     geom_bar(aes(Year,eatenW,fill=Predator), stat="identity", position="fill") +
+#     scale_fill_manual(values=colPalette) +
+#     facet_wrap(~Quarter) +
+#     ggtitle(preys[i])
+# }
+# for(i in 1:length(plList)){
+# postscript(paste(dirFigs,"/predators_on_",preys[i],".ps",sep=""))
+# print(plList[[i]])
+# dev.off()
+# }
+
+# by year
+datY <- datQ23 %>%
+    group_by(Year,Predator,Prey) %>%
+    summarise(eatenW = sum(eatenW, na.rm=T))
+
+#postscript(paste(dirFigs,"predators_on_eachprey.ps",sep="/"))
+ggplot(datY) +
+    geom_bar(aes(Year,eatenW,fill=Predator), stat="identity", position="fill") +
+    #scale_fill_manual(values=colPalette) +
+    scale_fill_manual(values=col) +
+    facet_wrap(~Prey)+
+    xlim(1973,2023)+
+    theme(legend.position="bottom")
+#dev.off()
+```
+
+#### 2023 SMS weight
+
+```{r, warning=FALSE, message=FALSE, fig.width=9, fig.height=8}
+ggplot(datY) +
+    geom_bar(aes(Year,eatenW,fill=Predator), stat="identity") +
+    #scale_fill_manual(values=colPalette) +
+    scale_fill_manual(values=col) +
+    facet_wrap(~Prey)+
+    xlim(1973,2023)+
+    #ylim(0,2e+06)+
+    theme(legend.position="bottom")
+
+
+```
+
+#### 2020 SMS proportion by weight
+
+```{r, warning=FALSE, message=FALSE, fig.width=9, fig.height=8}
+# ------------------------
+# plot predators contributing to predation by prey
+preys <- as.character(unique(datQ20$Prey))
+plList <- vector("list",length(preys))
+#nb.cols <- 14
+#colPalette <- colorRampPalette(brewer.pal(12, "Paired"))(nb.cols)
+
+
+# # by quarter
+# for(i in 1:length(plList)){
+# plList[[i]] <- ggplot(datQ %>% filter(Prey == preys[i])) +
+#     geom_bar(aes(Year,eatenW,fill=Predator), stat="identity", position="fill") +
+#     scale_fill_manual(values=colPalette) +
+#     facet_wrap(~Quarter) +
+#     ggtitle(preys[i])
+# }
+# for(i in 1:length(plList)){
+# postscript(paste(dirFigs,"/predators_on_",preys[i],".ps",sep=""))
+# print(plList[[i]])
+# dev.off()
+# }
+
+# by year
+datY <- datQ20 %>%
+    group_by(Year,Predator,Prey) %>%
+    summarise(eatenW = sum(eatenW, na.rm=T))
+
+#postscript(paste(dirFigs,"predators_on_eachprey.ps",sep="/"))
+ggplot(datY) +
+    geom_bar(aes(Year,eatenW,fill=Predator), stat="identity", position="fill") +
+    #scale_fill_manual(values=colPalette) +
+    scale_fill_manual(values=col) +
+    facet_wrap(~Prey)+
+    xlim(1973,2023)+
+    theme(legend.position="bottom")
+#dev.off()
+```
+
+#### 2020 SMS weight
+
+```{r, warning=FALSE, message=FALSE, fig.width=9, fig.height=8}
+ggplot(datY) +
+    geom_bar(aes(Year,eatenW,fill=Predator), stat="identity") +
+    #scale_fill_manual(values=colPalette) +
+    scale_fill_manual(values=col) +
+    facet_wrap(~Prey)+
+    xlim(1973,2023)+
+    #ylim(0,2e+06)+
+    theme(legend.position="bottom")
+
+
+```
+
+#### 2017 SMS proportion by weight
+
+```{r, warning=FALSE, message=FALSE, fig.width=9, fig.height=8}
+# ------------------------
+# plot predators contributing to predation by prey
+preys <- as.character(unique(datQ17$Prey))
+plList <- vector("list",length(preys))
+#nb.cols <- 14
+#colPalette <- colorRampPalette(brewer.pal(12, "Paired"))(nb.cols)
+
+# # by quarter
+# for(i in 1:length(plList)){
+# plList[[i]] <- ggplot(datQ %>% filter(Prey == preys[i])) +
+#     geom_bar(aes(Year,eatenW,fill=Predator), stat="identity", position="fill") +
+#     scale_fill_manual(values=colPalette) +
+#     facet_wrap(~Quarter) +
+#     ggtitle(preys[i])
+# }
+# for(i in 1:length(plList)){
+# postscript(paste(dirFigs,"/predators_on_",preys[i],".ps",sep=""))
+# print(plList[[i]])
+# dev.off()
+# }
+
+# by year
+datY <- datQ17 %>%
+    group_by(Year,Predator,Prey) %>%
+    summarise(eatenW = sum(eatenW, na.rm=T))
+
+#postscript(paste(dirFigs,"predators_on_eachprey.ps",sep="/"))
+ggplot(datY) +
+    geom_bar(aes(Year,eatenW,fill=Predator), stat="identity", position="fill") +
+    #scale_fill_manual(values=colPalette) +
+    scale_fill_manual(values=col) +
+    facet_wrap(~Prey)+
+    xlim(1973,2023)+
+    theme(legend.position="bottom")
+#dev.off()
+```
+
+#### 2017 SMS weight
+
+```{r, warning=FALSE, message=FALSE, fig.width=9, fig.height=8}
+ggplot(datY) +
+    geom_bar(aes(Year,eatenW,fill=Predator), stat="identity") +
+    #scale_fill_manual(values=colPalette) +
+    scale_fill_manual(values=col) +
+    facet_wrap(~Prey)+
+    xlim(1973,2023)+
+    #ylim(0,2e+06)+
+    theme(legend.position="bottom")
+
+
+```
+
+
+### {-}
+
+### Modeled M2 by predator on prey {.tabset}
+
+```{r, fig.width=9, fig.height=8, message=FALSE, results="asis"}
+# plot part M2 per predator
+#dat20 <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/KeyRunComparisons/NorthSeaSMS2020/who_eats_whom_level1.csv", sep=",", header=T)
+#dat20 <- read.csv("C://Users//xocor//Documents//Work//Projects//WGSAM//who_eats_whom_level1.csv", sep=",", header=T, dec=".",stringsAsFactors=FALSE)
+#head(dat20)
+
+#dat17 <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/Input_Output/Output/WhoEatsWhom/who_eats_whom_level1.csv", sep=",", header=T)
+#dat17 <- dat17 %>% mutate(run="r17")
+#dat20 <- dat20 %>% mutate(run="r20")
+#dat2 <- bind_rows(dat17,dat20)
+
+# aggregate birds
+#dat3 <- dat2 %>%
+#    mutate(Predator = as.character(Predator),
+#           Predator = ifelse(Predator %in% c("Fulmar","Gannet","GBB. Gull","Guillemot","Her. Gull","Kittiwake","Puffin","Razorbill"), "Birds", Predator)) %>%
+#    group_by(Year,Quarter,Predator, Predator.age,Prey, Prey.age, run) %>%
+#    summarise(M2 = sum(Part.M2, na.rm=T)) %>%
+#	ungroup()
+	
+# length(unique(dat3$Predator)) #http://medialab.github.io/iwanthue/
+#col <- c("#000047","#858a00","#ff2b47","#00d3c9", "#0188d2", "#7426d6","#e37b00","#ffa0ee","#930025","#00bd3b","yellow","black","#005144")
+#names(col) <- as.factor(unique(dat3$Predator))
+
+dat3 <- subset(dat3, Year <=2017)
+
+#pdf("C://Users//xocor//Documents//Work//Projects//WGSAM//M2.pdf", pointsize=10)
+for (s in c("Herring", "Whiting", "Sprat")){
+  for(x in c(1:max(dat3[dat3$Prey==s,"Prey.age"]))){
+    g <- ggplot(dat3 %>% subset(Prey==s&Prey.age==x)) +
+      geom_bar(aes(Year,M2,fill=Predator), stat="identity", position="fill") +
+      facet_grid(Quarter~run)+ scale_fill_manual(values=col) + ggtitle(paste(s, "Age", x, sep=" "))
+    #windows()
+    cat("  \n####",  s, " Age ",x,"  \n")
+    print(g) 
+    cat("  \n")
+  }}
+#dev.off()
+
+
+```
+
+### {-}

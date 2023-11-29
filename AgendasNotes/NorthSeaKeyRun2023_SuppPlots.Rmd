@@ -34,6 +34,8 @@ spp <- data.frame(Species.n=1:length(spp), stkName=spp)
 dat <- read.table("https://github.com/ices-eg/wg_WGSAM/raw/master/NorthSeaKeyRun_2023/summary_table_raw.out", sep="", header=T , na.strings="", stringsAsFactors=F)
 #dat[1:3,]
 
+dat <- read.table("/Users/sarah.gaichas/Documents/0_Data/ICES_WGSAM/2023/summary_table_raw.out", header = TRUE) 
+
 dat <- left_join(dat,spp) %>%
      mutate(Yield = as.numeric(as.character(SOP)),
             Yield.hat = as.numeric(as.character(SOP.hat)),

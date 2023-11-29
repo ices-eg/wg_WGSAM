@@ -375,13 +375,13 @@ dat20 <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/K
 #dat20 <- read.csv("C://Users//xocor//Documents//Work//Projects//WGSAM//who_eats_whom_level1.csv", sep=",", header=T, dec=".",stringsAsFactors=FALSE)
 #head(dat20)
 
-dat17 <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/Input_Output/Output/WhoEatsWhom/who_eats_whom_level1.csv", sep=",", header=T)
+dat17 <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/KeyRunComparisons/NorthSeaSMS2017/who_eats_whom_level1.csv", sep=",", header=T)
 dat17 <- dat17 %>% mutate(run="r17")
 dat20 <- dat20 %>% mutate(run="r20")
 dat23 <- dat23 %>% mutate(run="r23")
 dat2 <- bind_rows(dat17,dat20, dat23)
 
-# aggregate birds
+# aggregate birds, standardize names
 dat3 <- dat2 %>%
     mutate(Predator = as.character(Predator),
            Predator = ifelse(Predator %in% c("Fulmar","Gannet","GBB. Gull","GBB.Gull","Guillemot","Her. Gull","Her.Gull","Kittiwake","Puffin","Razorbill"), "Birds", Predator),
@@ -422,7 +422,17 @@ dat23 <- read.table("https://github.com/ices-eg/wg_WGSAM/raw/master/NorthSeaKeyR
 # aggregate birds
 datQ23 <- dat23 %>%
     mutate(Predator = as.character(Predator),
-           Predator = ifelse(Predator %in% c("Fulmar","Gannet","GBB. Gull","Guillemot","Her. Gull","Kittiwake","Puffin","Razorbill"), "Birds", Predator)) %>%
+           Predator = ifelse(Predator %in% c("Fulmar","Gannet","GBB. Gull","GBB.Gull","Guillemot","Her. Gull","Her.Gull","Kittiwake","Puffin","Razorbill"), "Birds", Predator),
+           Predator = ifelse(Predator %in% c("A. radiata", "A.radiata"), "A.radiata", Predator),
+           Predator = ifelse(Predator %in% c("G. gurnards", "G.gurnards"), "G.gurnards", Predator),
+           Predator = ifelse(Predator %in% c("Grey seal" , "Grey.seal"), "Grey.seal", Predator),
+           Predator = ifelse(Predator %in% c("H. porpoise", "H.porpoise"), "H.porpoise", Predator),
+           Predator = ifelse(Predator %in% c("N.horse mac", "N.horse.mac"), "N.horse.mac", Predator),
+           Predator = ifelse(Predator %in% c("W.horse mac", "W.horse.mac"), "W.horse.mac", Predator),
+           Prey = ifelse(Prey %in% c("N. sandeel", "N.sandeel"), "N.sandeel", Prey),
+           Prey = ifelse(Prey %in% c("Nor. pout",  "Nor.pout"), "Nor.pout", Prey),
+           Prey = ifelse(Prey %in% c("S. sandeel", "S.sandeel"), "S.sandeel", Prey)
+           ) %>%
     group_by(Year,Quarter,Predator,Prey) %>%
     summarise(eatenW = sum(eatenW, na.rm=T))
 
@@ -449,7 +459,17 @@ dat20 <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/K
 # aggregate birds
 datQ20 <- dat20 %>%
     mutate(Predator = as.character(Predator),
-           Predator = ifelse(Predator %in% c("Fulmar","Gannet","GBB. Gull","Guillemot","Her. Gull","Kittiwake","Puffin","Razorbill"), "Birds", Predator)) %>%
+           Predator = ifelse(Predator %in% c("Fulmar","Gannet","GBB. Gull","GBB.Gull","Guillemot","Her. Gull","Her.Gull","Kittiwake","Puffin","Razorbill"), "Birds", Predator),
+           Predator = ifelse(Predator %in% c("A. radiata", "A.radiata"), "A.radiata", Predator),
+           Predator = ifelse(Predator %in% c("G. gurnards", "G.gurnards"), "G.gurnards", Predator),
+           Predator = ifelse(Predator %in% c("Grey seal" , "Grey.seal"), "Grey.seal", Predator),
+           Predator = ifelse(Predator %in% c("H. porpoise", "H.porpoise"), "H.porpoise", Predator),
+           Predator = ifelse(Predator %in% c("N.horse mac", "N.horse.mac"), "N.horse.mac", Predator),
+           Predator = ifelse(Predator %in% c("W.horse mac", "W.horse.mac"), "W.horse.mac", Predator),
+           Prey = ifelse(Prey %in% c("N. sandeel", "N.sandeel"), "N.sandeel", Prey),
+           Prey = ifelse(Prey %in% c("Nor. pout",  "Nor.pout"), "Nor.pout", Prey),
+           Prey = ifelse(Prey %in% c("S. sandeel", "S.sandeel"), "S.sandeel", Prey)
+           ) %>%
     group_by(Year,Quarter,Predator,Prey) %>%
     summarise(eatenW = sum(eatenW, na.rm=T))
 
@@ -465,31 +485,6 @@ ggplot(datQ20 %>% filter(Quarter == 1)) +
 
 ```
 
-#### 2017 SMS KeyRun
-
-```{r, warning=FALSE, message=FALSE, fig.width=9, fig.height=8}
-# plot predators model diet **check to make sure this is 2017 output**
-dat17 <- read.table("https://raw.githubusercontent.com/ices-eg/wg_WGSAM/master/Input_Output/Output/WhoEatsWhom/who_eats_whom_level2.csv", sep=",", header=T)
-#dat[1:4,]
-
-# aggregate birds
-datQ17 <- dat17 %>%
-    mutate(Predator = as.character(Predator),
-           Predator = ifelse(Predator %in% c("Fulmar","Gannet","GBB. Gull","Guillemot","Her. Gull","Kittiwake","Puffin","Razorbill"), "Birds", Predator)) %>%
-    group_by(Year,Quarter,Predator,Prey) %>%
-    summarise(eatenW = sum(eatenW, na.rm=T))
-
-# All predators diet in Q1
-#postscript(paste(dirFigs,"diet_byPredator_Q1.ps",sep="/"))
-ggplot(datQ17 %>% filter(Quarter == 1)) +
-    geom_bar(aes(Year,eatenW,fill=Prey), stat="identity", position="fill") +
-    facet_wrap(~Predator)+
-    scale_fill_manual(values=col) +
-    xlim(1973,2023)+
-    theme(legend.position="bottom")
-#dev.off()
-
-```
 
 ### {-}
 
@@ -606,62 +601,6 @@ ggplot(datY) +
 
 
 ```
-
-#### 2017 SMS proportion by weight
-
-```{r, warning=FALSE, message=FALSE, fig.width=9, fig.height=8}
-# ------------------------
-# plot predators contributing to predation by prey
-preys <- as.character(unique(datQ17$Prey))
-plList <- vector("list",length(preys))
-#nb.cols <- 14
-#colPalette <- colorRampPalette(brewer.pal(12, "Paired"))(nb.cols)
-
-# # by quarter
-# for(i in 1:length(plList)){
-# plList[[i]] <- ggplot(datQ %>% filter(Prey == preys[i])) +
-#     geom_bar(aes(Year,eatenW,fill=Predator), stat="identity", position="fill") +
-#     scale_fill_manual(values=colPalette) +
-#     facet_wrap(~Quarter) +
-#     ggtitle(preys[i])
-# }
-# for(i in 1:length(plList)){
-# postscript(paste(dirFigs,"/predators_on_",preys[i],".ps",sep=""))
-# print(plList[[i]])
-# dev.off()
-# }
-
-# by year
-datY <- datQ17 %>%
-    group_by(Year,Predator,Prey) %>%
-    summarise(eatenW = sum(eatenW, na.rm=T))
-
-#postscript(paste(dirFigs,"predators_on_eachprey.ps",sep="/"))
-ggplot(datY) +
-    geom_bar(aes(Year,eatenW,fill=Predator), stat="identity", position="fill") +
-    #scale_fill_manual(values=colPalette) +
-    scale_fill_manual(values=col) +
-    facet_wrap(~Prey)+
-    xlim(1973,2023)+
-    theme(legend.position="bottom")
-#dev.off()
-```
-
-#### 2017 SMS weight
-
-```{r, warning=FALSE, message=FALSE, fig.width=9, fig.height=8}
-ggplot(datY) +
-    geom_bar(aes(Year,eatenW,fill=Predator), stat="identity") +
-    #scale_fill_manual(values=colPalette) +
-    scale_fill_manual(values=col) +
-    facet_wrap(~Prey)+
-    xlim(1973,2023)+
-    #ylim(0,2e+06)+
-    theme(legend.position="bottom")
-
-
-```
-
 
 ### {-}
 

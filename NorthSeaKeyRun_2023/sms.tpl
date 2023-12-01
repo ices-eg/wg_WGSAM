@@ -50,7 +50,7 @@ GLOBALS_SECTION
                              
 DATA_SECTION
 
- !! cout<<"SMS version October 2023 using ADMB version 13.1"<<endl;
+ !! cout<<"SMS version 2023-11-29, using ADMB version 13.1"<<endl;
 
  
 
@@ -3361,12 +3361,11 @@ PARAMETER_SECTION
 
  // MV:log_F_a_ini (init_3darray) are not included in gradient.dat as the type is init_3darray  ?! but I cannot make the init_bounded_matrix_vector to work
  //!! ivector phase_log_F_a_ini_vec(first_VPA,nsp);
- //!! for (s=first_VPA;s<=nsp;s++) phase_log_F_a_ini_vec(s)=phase_log_F_a_ini;  
- //init_matrix_vector log_F_a_ini(first_VPA,nsp,cfa,las,0,no_F_y_groups,phase_log_F_a_ini_vec)               
- // init_bounded_matrix_vector log_F_a_ini(first_VPA,nsp,cfa,las,0,no_F_y_groups,0,3,phase_log_F_a_ini_vec)               
- 
+ //!! for (s=first_VPA;s<=nsp;s++) phase_log_F_a_ini_vec(s)=phase_log_F_a_ini;
+ //init_matrix_vector log_F_a_ini(first_VPA,nsp,cfa,las,0,no_F_y_groups,phase_log_F_a_ini_vec)
+ //init_matrix_vector log_F_a_ini(first_VPA,nsp,cfa,las,0,no_F_y_groups,1)
 
- init_3darray log_F_a_ini(first_VPA,nsp,cfa,las,0,no_F_y_groups,phase_log_F_a_ini)               
+ init_3darray log_F_a_ini(first_VPA,nsp,cfa,las,0,no_F_y_groups,phase_log_F_a_ini)
  !! if  (phase_log_F_a_ini>0) {
  !!   for (s=first_VPA;s<=nsp;s++) for (a=cfa(s);a<=las(s);a++) for (i=1;i<= n_catch_sep_year_group(s);i++) {
  !!     parNo++;
@@ -4069,11 +4068,14 @@ PRELIMINARY_CALCS_SECTION
       }
     }
   }
-  
+
+ // does not work if  log_F_a_ini is a matrix_vector
  if (sum(log_F_a_ini)>0) {    // do not overwrite estimates from parameter file
-   for (s=first_VPA;s<=nsp;s++) log_F_a_ini(s)=0.0;      
+   for (s=first_VPA;s<=nsp;s++) log_F_a_ini(s)=0.0;
  }
- 
+ // tmp=0.0;
+ // for (s=first_VPA;s<=nsp;s++) for (a=cfa(s);a<=las(s);a++) for (i=0;i<n_catch_sep_year_group(s);i++)  tmp=tmp+value(log_F_a_ini(s,a,i));
+ // if (tmp>0)  for (s=first_VPA;s<=nsp;s++) log_F_a_ini(s)=0.0;
   
   // initialize number of observations used
   no_obj_obs=0;
@@ -6037,7 +6039,7 @@ FUNCTION void calc_F(int do_exploitaion_pattern)
           if (creep_option(s)>0) {
              if (use_creep(s)==2)      F_a(s,y,a)=exp(log_F_a_ini(s,a,syg-1)+  log(creep(s,a,syg-1))* (y-catch_sep_year(s,syg)));  // creep line, exponential growth, kan slettes
              else if (use_creep(s)==1) F_a(s,y,a)=exp(log_F_a_ini(s,a,syg-1) + log(creep(s,cfa(s),syg-1)) * (y-catch_sep_year(s,syg)));  // creep line, kan slettes
-          } else F_a(s,y,a)=exp(log_F_a_ini(s,a,syg-1));
+          }  else F_a(s,y,a)=exp(log_F_a_ini(s,a,syg-1));
          }
        }
      }
@@ -9747,7 +9749,7 @@ FUNCTION check_print_par
       }
       cout<<endl;
     }
-    cout << endl << "log_F_a_ini"<<endl<<log_F_a_ini<<endl;
+    // does not work if log_F_a_ini is a matrix_vector   cout << endl << "log_F_a_ini"<<endl<<log_F_a_ini<<endl;
     cout << setw(12) << setprecision(5) <<  setfixed() ;
     cout << endl <<  "log rec scale:  " <<log_rec_scale<< endl;
     cout << endl << "log_rec"<<endl<<log_rec<<endl;
@@ -10197,8 +10199,10 @@ FUNCTION void print_summary_table()
       for (q=fq;q<=lqLocal;q++){
         CALC_yq
         for (a=cfa(s);a<=la(s);a++)  if (!(a==fa && q<recq)) {
-         CWsum_hat(s,y)+=weca(yq,s,a)*C_hat(yq,s,a);
-         yield_hat(s,y)+=weca(yq,s,a)*C_hat(yq,s,a)*prop_landed(yq,s,a);
+         if (weca(yq,s,a) >0) {
+           CWsum_hat(s,y)+=weca(yq,s,a)*C_hat(yq,s,a);
+           yield_hat(s,y)+=weca(yq,s,a)*C_hat(yq,s,a)*prop_landed(yq,s,a);
+         }
         }
       }
     }

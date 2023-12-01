@@ -50,7 +50,7 @@ GLOBALS_SECTION
                              
 DATA_SECTION
 
- !! cout<<"SMS version October 2023 using ADMB version 13.1"<<endl;
+ !! cout<<"SMS version 2023-11-29, using ADMB version 13.1"<<endl;
 
  
 
@@ -10199,8 +10199,10 @@ FUNCTION void print_summary_table()
       for (q=fq;q<=lqLocal;q++){
         CALC_yq
         for (a=cfa(s);a<=la(s);a++)  if (!(a==fa && q<recq)) {
-         CWsum_hat(s,y)+=weca(yq,s,a)*C_hat(yq,s,a);
-         yield_hat(s,y)+=weca(yq,s,a)*C_hat(yq,s,a)*prop_landed(yq,s,a);
+         if (weca(yq,s,a) >0) {
+           CWsum_hat(s,y)+=weca(yq,s,a)*C_hat(yq,s,a);
+           yield_hat(s,y)+=weca(yq,s,a)*C_hat(yq,s,a)*prop_landed(yq,s,a);
+         }
         }
       }
     }

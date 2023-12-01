@@ -1,5 +1,5 @@
-SMS version October 2023 using ADMB version 13.1
-November 20, 2023 18:51:29
+SMS version 2023-11-29, using ADMB version 13.1
+November 30, 2023 16:28:57
 no. of species: 27  no. of predators: 20  no. of other predators:15
 first VPA species no.:16  first VPA species as prey:16
 
@@ -146,7 +146,7 @@ Saithe               0         39         70          0          0         48   
 Mackerel             0          0          0          0          0         22         40         41         30         37          0          0
 
 PRELIMINARY_CALCS_SECTION done
-Starting optimization of 'sms' in phase 2 of 2 at Mon Nov 20 18:51:32 2023
+Starting optimization of 'sms' in phase 2 of 2 at Thu Nov 30 16:29:01 2023
 phase= 2 | nvar=1882 | iter=  0 | nll=9.21e+04 | mag=1.70e+06 | par[1819]=vulnera[63]
 phase= 2 | nvar=1882 | iter= 20 | nll=1.08e+04 | mag=1.51e+06 | par[1263]=F_q_ini[52][2]
 phase= 2 | nvar=1882 | iter= 40 | nll=2.91e+03 | mag=1.68e+06 | par[1263]=F_q_ini[52][2]
@@ -273,7 +273,7 @@ phase= 2 | nvar=1882 | iter=2440 | nll=-6.41e+03 | mag=1.12e+01 | par[1859]=vuln
 phase= 2 | nvar=1882 | iter=2460 | nll=-6.41e+03 | mag=1.14e+01 | par[1859]=vulnera[103]
 phase= 2 | nvar=1882 | iter=2480 | nll=-6.41e+03 | mag=1.17e+01 | par[1859]=vulnera[103]
 phase= 2 | nvar=1882 | iter=2491 | nll=-6.41e+03 | mag=1.17e+01 | par[1859]=vulnera[103]
-Optimization completed after 7 m 26 s with final statistics:
+Optimization completed after 11 m 20 s with final statistics:
   nll=-6407.693045 | mag=1.17088e+01 | par[1859]=vulnera[103]
 
 Warning: the following parameters had issues
@@ -562,4 +562,4 @@ report file: sms.rep
 
 Successful completion, HURRAH - HURRAH 
 
-Finished running model 'sms' after 7 m 29 s.
+Finished running model 'sms' after 11 m 24 s.

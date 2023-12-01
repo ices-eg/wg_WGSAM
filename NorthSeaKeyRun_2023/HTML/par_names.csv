@@ -9,6 +9,7 @@ F_q_ini,F-season effect,Catch
 F_y_ini,F-year effect,Catch
 init_season_overlap,Spatial overlap,Predation
 vulnera,Vulnerability,Predation
+Stom_var,Stomach variance,Predation
 SSB_R_alfa,SSB-Rec parameter,N-initial
 init_stl_other_suit_slope,Other food,Predation
 SSB_R_beta_ini,SSB-Rec parameter,N-initial

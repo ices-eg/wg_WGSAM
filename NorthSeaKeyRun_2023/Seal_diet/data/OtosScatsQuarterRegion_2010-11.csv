@@ -1,0 +1,25 @@
+"region","reg.name","quarter","no.scats","tot.otos","meas.otos"
+"1","Shetland","1",143,2899,1879
+"1","Shetland","2",60,560,531
+"1","Shetland","3",3,35,34
+"1","Shetland","4",63,748,593
+"2","Orkney & Northern North Sea","1",406,13432,7023
+"2","Orkney & Northern North Sea","2",57,1332,767
+"2","Orkney & Northern North Sea","3",30,2763,888
+"2","Orkney & Northern North Sea","4",249,6853,3756
+"3","Central North Sea","1",151,11071,4086
+"3","Central North Sea","2",25,293,176
+"3","Central North Sea","3",102,4500,1944
+"3","Central North Sea","4",105,4051,1638
+"4","Southern North Sea","1",71,3325,1583
+"4","Southern North Sea","2",81,4334,1832
+"4","Southern North Sea","3",31,1319,820
+"4","Southern North Sea","4",21,618,362
+"5","Inner Hebrides","1",125,2373,1927
+"5","Inner Hebrides","2",18,104,103
+"5","Inner Hebrides","3",1,24,24
+"5","Inner Hebrides","4",189,2531,2129
+"6","Outer Hebrides","1",136,2117,1474
+"6","Outer Hebrides","2",0,NA,NA
+"6","Outer Hebrides","3",0,NA,NA
+"6","Outer Hebrides","4",138,3183,1945

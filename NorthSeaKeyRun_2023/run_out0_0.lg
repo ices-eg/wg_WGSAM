@@ -1,12 +1,12 @@
-SMS version October 2023 using ADMB version 13.1
-November 20, 2023 18:49:46
+SMS version 2023-11-29, using ADMB version 13.1
+November 30, 2023 16:26:46
 no. of species: 27  no. of predators: 20  no. of other predators:15
 first VPA species no.:16  first VPA species as prey:0
 
 diri_alpha0:  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0  sum:0
 PRELIMINARY_CALCS_SECTION initiated
 PRELIMINARY_CALCS_SECTION done
-Starting optimization of 'sms' in phase 1 of 1 at Mon Nov 20 18:49:47 2023
+Starting optimization of 'sms' in phase 1 of 1 at Thu Nov 30 16:26:47 2023
 phase= 1 | nvar=1756 | iter=  0 | nll=7.96e+04 | mag=2.59e+06 | par[1660]=SSB_R_beta_ini[1]
 phase= 1 | nvar=1756 | iter= 20 | nll=5.67e+04 | mag=2.14e+06 | par[1660]=SSB_R_beta_ini[1]
 phase= 1 | nvar=1756 | iter= 40 | nll=3.95e+04 | mag=6.44e+05 | par[1259]=F_q_ini[51][1]
@@ -142,7 +142,7 @@ phase= 1 | nvar=1756 | iter=2620 | nll=-2.57e+03 | mag=2.97e-01 | par[1287]=F_q_
 phase= 1 | nvar=1756 | iter=2640 | nll=-2.57e+03 | mag=3.96e-02 | par[1263]=F_q_ini[52][2]
 phase= 1 | nvar=1756 | iter=2660 | nll=-2.57e+03 | mag=4.81e-03 | par[1273]=F_q_ini[65]
 phase= 1 | nvar=1756 | iter=2670 | nll=-2.57e+03 | mag=2.74e-04 | par[1504]=qq_ini[30]
-Optimization completed after 1 m 31 s with final statistics:
+Optimization completed after 1 m 54 s with final statistics:
   nll=-2571.180533 | mag=2.73980e-04 | par[1504]=qq_ini[30]
 
 Warning: the following parameters had issues
@@ -328,4 +328,4 @@ report file: sms.rep
 
 Successful completion, HURRAH - HURRAH 
 
-Finished running model 'sms' after 1 m 32 s.
+Finished running model 'sms' after 1 m 55 s.

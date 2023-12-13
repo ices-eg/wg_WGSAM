@@ -1,5 +1,5 @@
-SMS version October 2023 using ADMB version 13.1
-November 20, 2023 18:51:19
+SMS version 2023-11-29, using ADMB version 13.1
+November 30, 2023 16:28:43
 no. of species: 27  no. of predators: 20  no. of other predators:15
 first VPA species no.:16  first VPA species as prey:16
 
@@ -146,7 +146,7 @@ Saithe               0         39         70          0          0         48   
 Mackerel             0          0          0          0          0         22         40         41         30         37          0          0
 
 PRELIMINARY_CALCS_SECTION done
-Starting optimization of 'sms' in phase 2 of 2 at Mon Nov 20 18:51:22 2023
+Starting optimization of 'sms' in phase 2 of 2 at Thu Nov 30 16:28:47 2023
 variable out of bounds in boundpin: variable = 1; min = 0.02; max = 0.12
 variable out of bounds in boundpin: variable = 1; min = 0.02; max = 0.12
 variable out of bounds in boundpin: variable = 1; min = 0.02; max = 0.12
@@ -170,7 +170,7 @@ phase= 2 | nvar=137 | iter=200 | nll=-3.50e+03 | mag=7.22e+01 | par[ 94]=vulnera
 phase= 2 | nvar=137 | iter=220 | nll=-3.50e+03 | mag=4.56e+00 | par[ 96]=vulnera[96]
 phase= 2 | nvar=137 | iter=240 | nll=-3.50e+03 | mag=2.38e-02 | par[ 94]=vulnera[94]
 phase= 2 | nvar=137 | iter=253 | nll=-3.50e+03 | mag=1.96e-03 | par[ 94]=vulnera[94]
-Optimization completed after 5.4 s with final statistics:
+Optimization completed after 8.5 s with final statistics:
   nll=-3500.735133 | mag=1.95833e-03 | par[ 94]=vulnera[94]
 
 Warning: the following parameters had issues
@@ -291,4 +291,4 @@ report file: sms.rep
 
 Successful completion, HURRAH - HURRAH 
 
-Finished running model 'sms' after 6.1 s.
+Finished running model 'sms' after 9.5 s.

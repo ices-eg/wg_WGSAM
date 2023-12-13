@@ -1,5 +1,5 @@
-SMS version October 2023 using ADMB version 13.1
-November 20, 2023 18:59:01
+SMS version 2023-11-29, using ADMB version 13.1
+November 30, 2023 16:40:25
 no. of species: 27  no. of predators: 20  no. of other predators:15
 first VPA species no.:16  first VPA species as prey:16
 
@@ -146,7 +146,7 @@ Saithe               0         39         70          0          0         48   
 Mackerel             0          0          0          0          0         22         40         41         30         37          0          0
 
 PRELIMINARY_CALCS_SECTION done
-Starting optimization of 'sms' in phase 2 of 2 at Mon Nov 20 18:59:03 2023
+Starting optimization of 'sms' in phase 2 of 2 at Thu Nov 30 16:40:28 2023
 phase= 2 | nvar=1893 | iter=  0 | nll=-6.39e+03 | mag=1.54e+02 | par[1891]=Stom_var[9]
 phase= 2 | nvar=1893 | iter= 20 | nll=-6.40e+03 | mag=1.58e+03 | par[1652]=SSB_R_alfa[5]
 phase= 2 | nvar=1893 | iter= 40 | nll=-6.40e+03 | mag=1.84e+03 | par[1500]=qq_ini[26]
@@ -229,7 +229,7 @@ phase= 2 | nvar=1893 | iter=1560 | nll=-6.44e+03 | mag=1.82e-01 | par[1651]=SSB_
 phase= 2 | nvar=1893 | iter=1580 | nll=-6.44e+03 | mag=1.19e-01 | par[1651]=SSB_R_alfa[4]
 phase= 2 | nvar=1893 | iter=1600 | nll=-6.44e+03 | mag=6.39e-03 | par[1853]=vulnera[97]
 phase= 2 | nvar=1893 | iter=1610 | nll=-6.44e+03 | mag=4.93e-02 | par[1651]=SSB_R_alfa[4]
-Optimization completed after 4 m 48 s with final statistics:
+Optimization completed after 6 m 21 s with final statistics:
   nll=-6439.226053 | mag=4.93262e-02 | par[1651]=SSB_R_alfa[4]
 
 Warning: the following parameters had issues
@@ -523,11 +523,11 @@ Warning: the following parameters had issues
 
 report file: sms.rep
 
-Calculating Hessian (1893 variables): 20%, 40%, 60%, 80%, 100% done (19 m 0.86 s) 
-Differentiating 2 derived quantities: 1, 2 done (38 s) 
-Inverting Hessian (1893 variables): 20%, 40%, 60%, 80%, 100% done (1 m 43 s) 
-Starting standard error calculations...  done (1 m 21 s) 
+Calculating Hessian (1893 variables): 20%, 40%, 60%, 80%, 100% done (27 m 29 s) 
+Differentiating 2 derived quantities: 1, 2 done (48 s) 
+Inverting Hessian (1893 variables): 20%, 40%, 60%, 80%, 100% done (2 m 23 s) 
+Starting standard error calculations...  done (1 m 46 s) 
 
 Successful completion, HURRAH - HURRAH 
 
-Finished running model 'sms' after 27 m 34 s.
+Finished running model 'sms' after 38 m 51 s.

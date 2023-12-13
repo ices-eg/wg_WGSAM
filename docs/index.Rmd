@@ -14,9 +14,9 @@ ToR b
 
 Final SMS North Sea Keyrun inputs, outputs, diagnostics
 
-<a href="https://ices-eg.github.io/wg_WGSAM/NS_2023_key_run.html" target="_blank"> North Sea SMS 2023 from HTML - 21 November 2023 </a>
+<a href="https://ices-eg.github.io/wg_WGSAM/NS_2023_key_run.html" target="_blank"> North Sea SMS 2023 from HTML - 1 December 2023 </a>
 
-<a href="https://ices-eg.github.io/wg_WGSAM/NorthSeaKeyRun2023_SuppPlots.html" target="_blank"> SMS keyrun comparison plots - 28 November 2023 </a>
+<a href="https://ices-eg.github.io/wg_WGSAM/NorthSeaKeyRun2023_SuppPlots.html" target="_blank"> SMS keyrun comparison plots - 12 December 2023 </a>
 
 
 ## WGSAM 2021

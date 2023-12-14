@@ -133,15 +133,25 @@ preds <- as.character(unique(tmp$PredName))
 #plList <- vector("list",length(preds))
 nb.cols <- 14
 colPalette <- colorRampPalette(brewer.pal(12, "Paired"))(nb.cols)
+names(colPalette) <- as.factor(preys)
+
+sourcelab  <-  c('observed', 'predicted')
+names(sourcelab) <- c('stomcon', 'stomcon.hat')
 
 plist2 = lapply(split(tmp, tmp$PredName), function(d) {
 #for(i in 1:length(preds)){
     ggplot(d %>% gather("source","stomcon",4:5)) +
     geom_bar(aes(x="",stomcon,fill=PreyName), width = 1, stat = "identity", position="fill") +
     scale_fill_manual(values=colPalette) +
-    facet_grid(source~Year) +
+    facet_grid(source~Year,
+               labeller = labeller(source = sourcelab)) +
     #ggtitle(preds[[i]]) +
-    coord_polar("y")
+    coord_polar("y") +
+    ylab("Stomach contents proportion") +
+    xlab("") +
+    theme(axis.ticks = element_blank(), 
+        axis.text.y = element_blank(),
+        axis.text.x = element_blank())
 })
 # for(i in 1:length(plList)){
 #     postscript(paste(dirFigs,"/stomachs_fitting_",preds[i],"_v1.ps",sep=""))
@@ -224,15 +234,25 @@ preds <- as.character(unique(tmp$PredName))
 #plList <- vector("list",length(preds))
 nb.cols <- 14
 colPalette <- colorRampPalette(brewer.pal(12, "Paired"))(nb.cols)
+names(colPalette) <- as.factor(preys)
+
+sourcelab  <-  c('observed', 'predicted')
+names(sourcelab) <- c('stomcon', 'stomcon.hat')
 
 plist2 = lapply(split(tmp, tmp$PredName), function(d) {
 #for(i in 1:length(preds)){
     ggplot(d %>% gather("source","stomcon",4:5)) +
     geom_bar(aes(x="",stomcon,fill=PreyName), width = 1, stat = "identity", position="fill") +
     scale_fill_manual(values=colPalette) +
-    facet_grid(source~Year) +
+    facet_grid(source~Year,
+               labeller = labeller(source = sourcelab)) +
     #ggtitle(preds[[i]]) +
-    coord_polar("y")
+    coord_polar("y") +
+    ylab("Stomach contents proportion") +
+    xlab("") +
+    theme(axis.ticks = element_blank(), 
+        axis.text.y = element_blank(),
+        axis.text.x = element_blank())
 })
 # for(i in 1:length(plList)){
 #     postscript(paste(dirFigs,"/stomachs_fitting_",preds[i],"_v1.ps",sep=""))

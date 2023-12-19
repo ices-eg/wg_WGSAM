@@ -1,0 +1,17 @@
+order,from_species,to_species
+1,Clupeidae,Clupea harengus
+1,Clupeidae,Sprattus sprattus
+2,Gadidae,Gadus morhua
+2,Gadidae,Melanogrammus aeglefinus
+2,Gadidae,Merlangius merlangus
+2,Gadidae,Trisopterus esmarkii
+3,unknown,Clupea harengus 
+3,unknown,Sprattus sprattus
+3,unknown,Gadus morhua
+3,unknown,Melanogrammus aeglefinus
+3,unknown,Merlangius merlangus
+3,unknown,Trisopterus esmarkii
+3,unknown,N Ammodytidae
+3,unknown,S Ammodytidae
+3,unknown,Other fish
+3,unknown,other 

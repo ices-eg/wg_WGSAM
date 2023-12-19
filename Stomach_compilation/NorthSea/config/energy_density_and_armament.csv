@@ -1,0 +1,217 @@
+species_group,quarter,lower,upper,E,Armer
+Gadus morhua,1,10,120,3.6,1
+Gadus morhua,1,150,250,3.8,1
+Gadus morhua,1,300,500,4,1
+Gadus morhua,2,10,120,3.9,1
+Gadus morhua,2,150,500,4.1,1
+Gadus morhua,3,10,80,3.9,1
+Gadus morhua,3,100,150,4.1,1
+Gadus morhua,3,200,500,4.4,1
+Gadus morhua,3,10,80,3.9,1
+Gadus morhua,3,100,150,4.1,1
+Gadus morhua,3,200,500,4.4,1
+Gadus morhua,4,100,150,4.1,1
+Gadus morhua,4,200,500,4.4,1
+Gadus morhua,4,10,80,3.9,1
+Gadus morhua,4,100,150,4.1,1
+Gadus morhua,4,200,500,4.4,1
+Melanogrammus aeglefinus,1,10,120,3.6,1
+Melanogrammus aeglefinus,1,150,150,3.7,1
+Melanogrammus aeglefinus,1,200,200,4.3,1
+Melanogrammus aeglefinus,1,250,500,4.7,1
+Melanogrammus aeglefinus,2,10,200,3.9,1
+Melanogrammus aeglefinus,2,250,250,4,1
+Melanogrammus aeglefinus,2,300,500,4.5,1
+Melanogrammus aeglefinus,3,10,100,3.9,1
+Melanogrammus aeglefinus,3,120,200,4.2,1
+Melanogrammus aeglefinus,3,250,250,4.6,1
+Melanogrammus aeglefinus,3,300,300,5,1
+Melanogrammus aeglefinus,3,350,500,5.5,1
+Melanogrammus aeglefinus,4,10,200,3.9,1
+Melanogrammus aeglefinus,4,250,250,4.6,1
+Melanogrammus aeglefinus,4,300,300,5.2,1
+Melanogrammus aeglefinus,4,350,500,5.5,1
+Merlangius merlangus,1,10,80,3.9,1
+Merlangius merlangus,1,100,100,4.1,1
+Merlangius merlangus,1,120,120,4,1
+Merlangius merlangus,1,150,150,4.3,1
+Merlangius merlangus,1,200,200,4.8,1
+Merlangius merlangus,1,250,500,5,1
+Merlangius merlangus,2,10,150,3.9,1
+Merlangius merlangus,2,200,200,4,1
+Merlangius merlangus,2,250,500,4.3,1
+Merlangius merlangus,3,10,120,3.9,1
+Merlangius merlangus,3,150,150,4.7,1
+Merlangius merlangus,3,200,200,5.3,1
+Merlangius merlangus,3,250,500,5.4,1
+Merlangius merlangus,4,10,120,3.9,1
+Merlangius merlangus,4,150,150,4.2,1
+Merlangius merlangus,4,200,500,5.3,1
+Pollachius virens,1,10,350,4.2,1
+Pollachius virens,1,400,400,4.8,1
+Pollachius virens,1,500,500,5.5,1
+Pollachius virens,2,10,350,4.5,1
+Pollachius virens,2,400,400,4.2,1
+Pollachius virens,2,500,500,4,1
+Pollachius virens,3,10,200,4.1,1
+Pollachius virens,3,250,300,4.7,1
+Pollachius virens,3,350,350,4.8,1
+Pollachius virens,3,400,400,5.2,1
+Pollachius virens,3,500,500,5.6,1
+Pollachius virens,4,10,350,4.9,1
+Pollachius virens,4,400,400,4.8,1
+Pollachius virens,4,500,500,5.2,1
+Trisopterus esmarki,1,10,70,3.9,1
+Trisopterus esmarki,1,80,80,4.3,1
+Trisopterus esmarki,1,100,100,6.2,1
+Trisopterus esmarki,1,120,120,6.4,1
+Trisopterus esmarki,1,150,500,4.7,1
+Trisopterus esmarki,2,10,70,3.9,1
+Trisopterus esmarki,2,80,80,4.5,1
+Trisopterus esmarki,2,100,100,4.2,1
+Trisopterus esmarki,2,120,150,4,1
+Trisopterus esmarki,2,200,500,4.4,1
+Trisopterus esmarki,3,10,70,3.9,1
+Trisopterus esmarki,3,80,80,4.6,1
+Trisopterus esmarki,3,100,100,5.7,1
+Trisopterus esmarki,3,120,120,6.3,1
+Trisopterus esmarki,3,150,150,5.7,1
+Trisopterus esmarki,3,200,500,6,1
+Trisopterus esmarki,4,10,70,3.9,1
+Trisopterus esmarki,4,80,80,4.8,1
+Trisopterus esmarki,4,100,100,5.2,1
+Trisopterus esmarki,4,120,500,7,1
+Clupea harengus,1,10,70,4.4,1.08
+Clupea harengus,1,80,80,4.6,1.08
+Clupea harengus,1,100,100,4.7,1.08
+Clupea harengus,1,120,150,4.4,1.08
+Clupea harengus,1,200,200,6.5,1.08
+Clupea harengus,1,250,500,8.5,1.08
+Clupea harengus,2,10,80,4.5,1.08
+Clupea harengus,2,100,100,4.6,1.08
+Clupea harengus,2,120,120,4.5,1.08
+Clupea harengus,2,150,150,4.4,1.08
+Clupea harengus,2,200,200,5.7,1.08
+Clupea harengus,2,250,500,4.9,1.08
+Clupea harengus,3,10,40,4.1,1.08
+Clupea harengus,3,50,50,4.2,1.08
+Clupea harengus,3,60,70,3.9,1.08
+Clupea harengus,3,80,80,4.5,1.08
+Clupea harengus,3,100,100,4.4,1.08
+Clupea harengus,3,120,120,5.2,1.08
+Clupea harengus,3,150,150,10.1,1.08
+Clupea harengus,3,200,200,11,1.08
+Clupea harengus,3,250,500,11.9,1.08
+Clupea harengus,4,10,100,4.6,1.08
+Clupea harengus,4,120,120,6.3,1.08
+Clupea harengus,4,150,150,7.1,1.08
+Clupea harengus,4,200,200,8.5,1.08
+Clupea harengus,4,250,500,8.8,1.08
+Sprattus sprattus,1,10,40,4.4,1.08
+Sprattus sprattus,1,50,50,4.6,1.08
+Sprattus sprattus,1,60,60,4.7,1.08
+Sprattus sprattus,1,70,70,6.5,1.08
+Sprattus sprattus,1,80,500,8.5,1.08
+Sprattus sprattus,2,10,40,4.5,1.08
+Sprattus sprattus,2,50,50,4.6,1.08
+Sprattus sprattus,2,60,60,5.1,1.08
+Sprattus sprattus,2,70,70,6.7,1.08
+Sprattus sprattus,2,80,80,8.6,1.08
+Sprattus sprattus,2,100,100,10.5,1.08
+Sprattus sprattus,2,120,500,10.9,1.08
+Sprattus sprattus,3,10,50,4.7,1.08
+Sprattus sprattus,3,60,60,5.2,1.08
+Sprattus sprattus,3,70,70,6.7,1.08
+Sprattus sprattus,3,80,80,8.1,1.08
+Sprattus sprattus,3,100,100,11.4,1.08
+Sprattus sprattus,3,120,500,11,1.08
+Sprattus sprattus,4,10,50,4.6,1.08
+Sprattus sprattus,4,60,60,6.7,1.08
+Sprattus sprattus,4,70,70,7.8,1.08
+Sprattus sprattus,4,80,80,11.4,1.08
+Sprattus sprattus,4,100,100,11,1.08
+Sprattus sprattus,4,120,500,11.5,1.08
+Ammodytidae,1,1,70,4,1
+Ammodytidae,1,80,80,4.4,1
+Ammodytidae,1,100,100,5,1
+Ammodytidae,1,120,120,5,1
+Ammodytidae,1,150,500,5.5,1
+Ammodytidae,2,1,60,4,1
+Ammodytidae,2,70,70,4.6,1
+Ammodytidae,2,80,80,5,1
+Ammodytidae,2,100,100,5.4,1
+Ammodytidae,2,120,120,5.8,1
+Ammodytidae,2,150,500,6.1,1
+Ammodytidae,3,1,50,4,1
+Ammodytidae,3,60,69,3.7,1
+Ammodytidae,3,70,70,4.6,1
+Ammodytidae,3,80,80,4.2,1
+Ammodytidae,3,100,100,5.6,1
+Ammodytidae,3,120,120,6.2,1
+Ammodytidae,3,150,500,6.1,1
+Ammodytidae,4,1,60,4,1
+Ammodytidae,4,70,70,4.6,1
+Ammodytidae,4,80,80,5,1
+Ammodytidae,4,100,100,5.4,1
+Ammodytidae,4,120,120,5.8,1
+Ammodytidae,4,150,500,6.1,1
+Pleuronectes platessa,1,10,500,4,0.94
+Pleuronectes platessa,2,10,500,4,0.94
+Pleuronectes platessa,3,10,500,4,0.94
+Pleuronectes platessa,4,10,500,4,0.94
+Solea solea,1,10,500,4,0.94
+Solea solea,2,10,500,4,0.94
+Solea solea,3,10,500,4,0.94
+Solea solea,4,10,500,4,0.94
+Limanda limanda,1,10,500,4,0.94
+Limanda limanda,2,10,500,4,0.94
+Limanda limanda,3,10,500,4,0.94
+Limanda limanda,4,10,500,4,0.94
+Maurolicus,1,5,500,4,1.08
+Maurolicus,2,5,500,4,1.08
+Maurolicus,3,5,500,4,1.08
+Maurolicus,4,5,500,4,1.08
+Other fish,1,0,500,4,1
+Other fish,2,0,500,4,1
+Other fish,3,0,500,4,1
+Other fish,4,0,500,4,1
+Astacidea,1,0,500,5,0.3
+Astacidea,2,0,500,5,0.3
+Astacidea,3,0,500,5,0.3
+Astacidea,4,0,500,5,0.3
+Anomura mm,1,0,500,5,0.3
+Anomura mm,2,0,500,5,0.3
+Anomura mm,3,0,500,5,0.3
+Anomura mm,4,0,500,5,0.3
+Caridea,1,0,500,4,0.6
+Caridea,2,0,500,4,0.6
+Caridea,3,0,500,4,0.6
+Caridea,4,0,500,4,0.6
+Euphausiacea,1,0,500,4,1
+Euphausiacea,2,0,500,4,1
+Euphausiacea,3,0,500,4,1
+Euphausiacea,4,0,500,4,1
+Other Crustaceans,1,0,500,4,1
+Other Crustaceans,2,0,500,4,1
+Other Crustaceans,3,0,500,4,1
+Other Crustaceans,4,0,500,4,1
+Cephalopoda,1,0,500,4.5,1
+Cephalopoda,2,0,500,4.5,1
+Cephalopoda,3,0,500,4.5,1
+Cephalopoda,4,0,500,4.5,1
+Echinodermata,1,0,500,2.5,0.25
+Echinodermata,2,0,500,2.5,0.25
+Echinodermata,3,0,500,2.5,0.25
+Echinodermata,4,0,500,2.5,0.25
+Annelida,1,0,500,2.7,1
+Annelida,2,0,500,2.7,1
+Annelida,3,0,500,2.7,1
+Annelida,4,0,500,2.7,1
+Other Inv.,1,0,500,4,1
+Other Inv.,2,0,500,4,1
+Other Inv.,3,0,500,4,1
+Other Inv.,4,0,500,4,1
+Other,1,0,500,4,1
+Other,2,0,500,4,1
+Other,3,0,500,4,1
+Other,4,0,500,4,1

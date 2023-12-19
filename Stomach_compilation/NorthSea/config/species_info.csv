@@ -1,0 +1,29 @@
+number,code,species,SMS_species,short,predator_sp,other_predator_sp,prey_sp,nodc,first_age,last_age,lw_a,lw_b,n_boot,group_boot
+0,OTH,other,other,Other,F,F,F,-9,1,1,-9,-9,0,notUsed
+1,FUL,Fulmar,Fulmar,Fulmar,T,T,F,-9,1,1,-9,-9,1,no_boot
+2,GLT,Guillemot,Guillemot,Guillemot,T,T,F,-9,1,1,-9,-9,1,no_boot
+3,HEG,Her. Gull,Her. Gull,Her. Gull,T,T,F,-9,1,1,-9,-9,1,no_boot
+4,KTW,Kittiwake,Kittiwake,Kittiwake,T,T,F,-9,1,1,-9,-9,1,no_boot
+5,GBG,GBB. Gull,GBB. Gull,GBB. Gull,T,T,F,-9,1,1,-9,-9,1,no_boot
+6,GNT,Gannet,Gannet,Gannet,T,T,F,-9,1,1,-9,-9,1,no_boot
+7,PUF,Puffin,Puffin,Puffin,T,T,F,-9,1,1,-9,-9,1,no_boot
+8,RAZ,Razorbill,Razorbill,Razorbill,T,T,F,-9,1,1,-9,-9,1,no_boot
+9,RAJ,Amblyraja radiata,Amblyraja radiata,A.radiata,T,T,F,-9,1,3,4.09E-08,2.896,500,otherRound
+10,GUR,Eutrigla gurnardus,Eutrigla gurnardus,G. gurnards,T,T,F,-9,1,4,6.20E-09,3.1,500,otherRound
+11,W_H,Trachurus trachurus,W Trachurus trachurus,W.horse mac,T,T,F,8835280103,1,3,1.05E-08,2.9622,500,horseMackerel
+12,N_H,Trachurus trachurus,N Trachurus trachurus,N.horse mac,T,T,F,8835280103,1,6,1.05E-08,2.9622,500,horseMackerel
+13,GSE,Halichoerus grypus,Halichoerus grypus,Grey seal,T,T,F,-9,1,1,-9,-9,1,mammals
+14,HBP,Phocoena phocoena,Phocoena phocoena,H. porpoise,T,T,F,-9,1,1,-9,-9,1,mammals
+15,HKE,Merluccius merluccius,Merluccius merluccius,Hake,T,T,F,8791040105,1,9,6.59E-09,3.017,500,Hake
+16,COD,Gadus morhua,Gadus morhua,Cod,T,F,T,8791030402,0,10,2.05E-08,2.8571,500,otherRound
+17,WHG,Merlangius merlangus,Merlangius merlangus,Whiting,T,F,T,8791031801,0,6,1.05E-08,2.9456,500,otherRound
+18,HAD,Melanogrammus aeglefinus,Melanogrammus aeglefinus,Haddock,T,F,T,8791031301,0,10,1.82E-08,2.8268,500,otherRound
+19,POK,Pollachius virens,Pollachius virens,Saithe,T,F,F,8791030901,0,10,2.83E-08,2.7374,500,Saithe
+20,MAC,Scomber scombrus,Scomber scombrus,Mackerel,T,F,F,8850030302,0,10,3.81E-09,3.21,500,otherRound
+21,HER,Clupea harengus,Clupea harengus,Herring,F,F,T,8747010201,0,8,6.03E-09,3.0904,0,notUsed
+22,NSA,Ammodytidae,N Ammodytidae,N. sandeel,F,F,T,8845010000,0,4,2.67E-09,3.06,0,notUsed
+23,SSA,Ammodytidae,S Ammodytidae,S. sandeel,F,F,T,8845010000,0,4,2.67E-09,3.06,0,notUsed
+24,NOP,Trisopterus esmarkii,Trisopterus esmarkii,Nor. Pout,F,F,T,8791031703,0,3,7.50E-09,3.0244,0,notUsed
+25,SPR,Sprattus sprattus,Sprattus sprattus,Sprat,F,F,T,8747011701,0,3,8.73E-10,3.4746,0,notUsed
+26,PLE,Pleuronectes platessa,Pleuronectes platessa,Plaice,F,F,T,8857041502,0,10,1.51E-08,2.8876,0,notUsed
+27,SOL,Solea solea,Solea solea,Sole,F,F,F,8858010601,0,10,8.00E-09,3.04999,0,notUsed

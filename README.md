@@ -16,6 +16,7 @@ WGSAM, covers both model development and integration into practical management a
 * NortSeaKeyRun_2023: The SMS North Sea key run made at the 2023 WGSAM, including data for the period 1974-2022. 
 * input_output: Detailed presentation of input and output file for the 2020 North Sea key run. Similar files are included in the NortSeaKeyRun_2023 directory.
 * Baltic-2019-keyrun: The Baltic Sea key run made at the 2019 WGSAM, including data for the period 1974-2018.
+* Baltic-2022-keyrun: The Baltic Sea key run made at the 2022 WGSAM, including data for the period 1974-2021.
 * SMS_ADMB: AD Model Builder source code for the SMS program
 * SMS_R_prog: R scripts for preparing, running and presenting results from a SMS run
  

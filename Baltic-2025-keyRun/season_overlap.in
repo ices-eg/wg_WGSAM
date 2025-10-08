@@ -1,0 +1,15 @@
+# Predator prey overlap
+# a negative interger indicates that the factor will be estimated
+#  start using -1 for the first parameter, -2 for the next etc.
+#  you can use the same negative number to show that parameter to be estimated is the same
+# for each pred prey combination, you have to fix at least one overlap factor
+################################################################################################################################################
+# area 1
+# Pedator no 1, Cod
+# Other-food Cod Herring  Sprat   by quarter 1 to quarter 4
+    1          1      1       1        # quarter 1
+   -1          1     -2       1        # quarter 2
+   -1          1     -2      -3        # quarter 3
+   -4          1      1      -5        # quarter 4
+#####
+-999 # check value

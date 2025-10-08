@@ -1,0 +1,233 @@
+SMS version 2025-04-02, using ADMB version 13.1
+September 11, 2025 12:50:12
+Constant log(sqrt(2*pi)): 0.918939 er benyttet.
+test.output: 1
+ms.mode: 0
+op.output: 0
+op.output: 0
+no.areas: 1
+first.year: 1974
+first.year.model: 1974
+last.year: 2024
+last.year.model: 2024
+last.quarter: 4
+last.quarter.last.year: 4
+no.species: 3
+first.age: 0
+rec.season: 3
+max.age: 11
+species.info:
+ 11 0 0 0 0 0 2 0 0 0 0
+ 8 1 5 0 8 1 0 1 3 0 0
+ 7 1 4 0 7 0 0 1 3 0 0
+no. of species: 3  no. of predators: 1  no. of other predators:1
+first VPA species no.:2  first VPA species as prey:0
+known.recruitment: 0
+SSB.R.beta.cor:
+ 1e+06 1e+06
+First year recruitment: 1974 1990
+Last year recruitment:  2024 2024
+objective.function.weight:
+ 0 0 0 1 0
+ 1 1 0.05 0 0
+ 1 1 0.05 0 0
+phase.log.rec: 1
+phase.log.rec_older: 1
+phase.F.y: 1
+phase.F.y.spline: -1
+phase.F.q: 1
+phase.F.a: 1
+phase.catchability: 1
+phase.SSB.R.alfa: 1
+phase.SSB.R.beta: 1
+min.catch.CV: 0.1
+min.SR.CV: 0.1
+calc.discard:  0 0
+combined.catches:  0 0
+seasonal.combined.catch.s2:  1 0
+n.catch.s2.group:  2 4
+catch.s2.group: 
+ 1 2
+ 1 2 3 6
+n.catch.season.age.group: 
+ 3 2
+catch.season.age: 
+ 1 2 3
+ 1 2
+avg.F.ages: 
+ 3 6
+ 3 5
+min.catch: 
+ 0 0
+n.catch.sep.year.group: 
+ 3 2
+catch.sep.year: 
+ 1974 1989 2005
+ 1974 2000
+Nknots: 
+ 1 1
+Years for nodes: 
+ 1974
+ 1974
+zero.catch.year.season: 0
+zero.catch.season.ages: 0
+fix.F.factor:
+ 1 1
+est.calc.sigma:
+ 0 0 0
+read.HCR.File: 0
+recruitment years:
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+Start to read file: fleet_info.dat
+fleet.CPUE.CV:
+0.3
+n.fleet:
+ 1 4
+Fleet_info:
+ 2000 2024 0 0 1 7 4 -1 4 3
+ 2000 2024 0 1 1 7 5 -1 4 1
+ 2001 2024 0 0 1 7 5 -1 2 1
+ 1991 2008 0 0 1 7 5 -1 4 1
+ 2010 2025 0 0 1 1 1 -1 1 1
+processing fleet_info.in, species Herring    
+processing fleet_info.in, species Sprat      
+processing fleet_info.in, species Sprat      
+processing fleet_info.in, species Sprat      
+processing fleet_info.in, species Sprat      
+CPUE_s2_group:
+ 1 2 6
+ 1
+ 1
+ 1
+ 1
+
+ Input of single species input data completed
+
+Input of multispecies data completed
+
+Preprocessing of multispecies data completed
+
+DATA_SECTION completed
+PARAMETER SECTION initiated
+PARAMETER SECTION ended
+PRELIMINARY_CALCS_SECTION initiated
+PRELIMINARY_CALCS_SECTION done
+Starting optimization of 'sms' in phase 1 of 1 at Thu Sep 11 12:50:13 2025
+phase= 1 | nvar=325 | iter=  0 | nll=1.78e+04 | mag=3.13e+05 | par[253]=F_q_ini[13][3]
+phase= 1 | nvar=325 | iter= 20 | nll=1.31e+04 | mag=3.79e+05 | par[251]=F_q_ini[13][1]
+phase= 1 | nvar=325 | iter= 40 | nll=1.11e+04 | mag=3.81e+05 | par[251]=F_q_ini[13][1]
+phase= 1 | nvar=325 | iter= 60 | nll=9.71e+03 | mag=2.38e+05 | par[251]=F_q_ini[13][1]
+phase= 1 | nvar=325 | iter= 80 | nll=8.23e+03 | mag=1.58e+05 | par[241]=F_q_ini[9][3]
+phase= 1 | nvar=325 | iter=100 | nll=7.50e+03 | mag=1.43e+05 | par[246]=F_q_ini[11][2]
+phase= 1 | nvar=325 | iter=120 | nll=7.26e+03 | mag=1.69e+05 | par[246]=F_q_ini[11][2]
+phase= 1 | nvar=325 | iter=140 | nll=6.56e+03 | mag=8.31e+04 | par[242]=F_q_ini[10][1]
+phase= 1 | nvar=325 | iter=160 | nll=5.77e+03 | mag=9.67e+04 | par[245]=F_q_ini[11][1]
+phase= 1 | nvar=325 | iter=180 | nll=5.35e+03 | mag=6.99e+04 | par[221]=F_q_ini[3][1]
+phase= 1 | nvar=325 | iter=200 | nll=5.05e+03 | mag=8.77e+04 | par[244]=F_q_ini[10][3]
+phase= 1 | nvar=325 | iter=220 | nll=4.85e+03 | mag=5.76e+04 | par[242]=F_q_ini[10][1]
+phase= 1 | nvar=325 | iter=240 | nll=4.57e+03 | mag=4.75e+04 | par[253]=F_q_ini[13][3]
+phase= 1 | nvar=325 | iter=260 | nll=3.88e+03 | mag=5.33e+04 | par[243]=F_q_ini[10][2]
+phase= 1 | nvar=325 | iter=280 | nll=3.54e+03 | mag=4.04e+04 | par[253]=F_q_ini[13][3]
+phase= 1 | nvar=325 | iter=300 | nll=3.22e+03 | mag=2.73e+04 | par[244]=F_q_ini[10][3]
+phase= 1 | nvar=325 | iter=320 | nll=2.98e+03 | mag=2.29e+04 | par[242]=F_q_ini[10][1]
+phase= 1 | nvar=325 | iter=340 | nll=2.75e+03 | mag=1.57e+04 | par[242]=F_q_ini[10][1]
+phase= 1 | nvar=325 | iter=360 | nll=2.43e+03 | mag=8.60e+03 | par[243]=F_q_ini[10][2]
+phase= 1 | nvar=325 | iter=380 | nll=2.15e+03 | mag=8.75e+03 | par[243]=F_q_ini[10][2]
+phase= 1 | nvar=325 | iter=400 | nll=2.08e+03 | mag=4.60e+03 | par[251]=F_q_ini[13][1]
+phase= 1 | nvar=325 | iter=420 | nll=2.02e+03 | mag=7.00e+03 | par[242]=F_q_ini[10][1]
+phase= 1 | nvar=325 | iter=440 | nll=1.96e+03 | mag=3.22e+03 | par[219]=F_q_ini[2][2]
+phase= 1 | nvar=325 | iter=460 | nll=1.94e+03 | mag=2.43e+03 | par[221]=F_q_ini[3][1]
+phase= 1 | nvar=325 | iter=480 | nll=1.93e+03 | mag=1.03e+03 | par[244]=F_q_ini[10][3]
+phase= 1 | nvar=325 | iter=500 | nll=1.93e+03 | mag=3.12e+02 | par[248]=F_q_ini[12][1]
+phase= 1 | nvar=325 | iter=520 | nll=1.93e+03 | mag=2.08e+02 | par[242]=F_q_ini[10][1]
+phase= 1 | nvar=325 | iter=540 | nll=1.93e+03 | mag=9.74e+01 | par[242]=F_q_ini[10][1]
+phase= 1 | nvar=325 | iter=560 | nll=1.93e+03 | mag=1.58e+01 | par[242]=F_q_ini[10][1]
+phase= 1 | nvar=325 | iter=580 | nll=1.93e+03 | mag=2.27e+00 | par[218]=F_q_ini[2][1]
+phase= 1 | nvar=325 | iter=600 | nll=1.93e+03 | mag=6.32e-01 | par[219]=F_q_ini[2][2]
+phase= 1 | nvar=325 | iter=620 | nll=1.93e+03 | mag=3.81e-02 | par[243]=F_q_ini[10][2]
+phase= 1 | nvar=325 | iter=640 | nll=1.93e+03 | mag=9.49e-04 | par[246]=F_q_ini[11][2]
+phase= 1 | nvar=325 | iter=641 | nll=1.93e+03 | mag=9.49e-04 | par[246]=F_q_ini[11][2]
+Optimization completed after 3.6 s with final statistics:
+  nll=1931.336804 | mag=9.49138e-04 | par[246]=F_q_ini[11][2]
+
+Warning: the following parameters had issues
+  F_q_ini[1][1] is within 0.1% of lower bound: 0.0001 < 0.03 < 3e+03
+  F_q_ini[1][2] is within 0.1% of lower bound: 0.0001 < 0.07 < 3e+03
+  F_q_ini[1][3] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[2][1] is within 0.1% of lower bound: 0.0001 < 0.07 < 3e+03
+  F_q_ini[2][2] is within 0.1% of lower bound: 0.0001 < 0.05 < 3e+03
+  F_q_ini[2][3] is within 0.1% of lower bound: 0.0001 < 0.08 < 3e+03
+  F_q_ini[3][1] is within 0.1% of lower bound: 0.0001 < 0.2 < 3e+03
+  F_q_ini[3][2] is within 0.1% of lower bound: 0.0001 < 0.08 < 3e+03
+  F_q_ini[3][3] is within 0.1% of lower bound: 0.0001 < 0.05 < 3e+03
+  F_q_ini[4][1] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[4][2] is within 0.1% of lower bound: 0.0001 < 0.4 < 3e+03
+  F_q_ini[4][3] is within 0.1% of lower bound: 0.0001 < 0.2 < 3e+03
+  F_q_ini[5][1] is within 0.1% of lower bound: 0.0001 < 0.2 < 3e+03
+  F_q_ini[5][2] is within 0.1% of lower bound: 0.0001 < 0.2 < 3e+03
+  F_q_ini[5][3] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[6][1] is within 0.1% of lower bound: 0.0001 < 0.3 < 3e+03
+  F_q_ini[6][2] is within 0.1% of lower bound: 0.0001 < 0.2 < 3e+03
+  F_q_ini[6][3] is within 0.1% of lower bound: 0.0001 < 0.04 < 3e+03
+  F_q_ini[7][1] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[7][2] is within 0.1% of lower bound: 0.0001 < 0.6 < 3e+03
+  F_q_ini[7][3] is within 0.1% of lower bound: 0.0001 < 0.3 < 3e+03
+  F_q_ini[8][1] is within 0.1% of lower bound: 0.0001 < 0.2 < 3e+03
+  F_q_ini[8][2] is within 0.1% of lower bound: 0.0001 < 0.4 < 3e+03
+  F_q_ini[8][3] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[9][1] is within 0.1% of lower bound: 0.0001 < 0.4 < 3e+03
+  F_q_ini[9][2] is within 0.1% of lower bound: 0.0001 < 0.2 < 3e+03
+  F_q_ini[9][3] is within 0.1% of lower bound: 0.0001 < 0.09 < 3e+03
+  F_q_ini[10][1] is within 0.1% of lower bound: 0.0001 < 0.07 < 3e+03
+  F_q_ini[10][2] is within 0.1% of lower bound: 0.0001 < 0.04 < 3e+03
+  F_q_ini[10][3] is within 0.1% of lower bound: 0.0001 < 0.03 < 3e+03
+  F_q_ini[11][1] is within 0.1% of lower bound: 0.0001 < 0.3 < 3e+03
+  F_q_ini[11][2] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[11][3] is within 0.1% of lower bound: 0.0001 < 0.05 < 3e+03
+  F_q_ini[12][1] is within 0.1% of lower bound: 0.0001 < 0.4 < 3e+03
+  F_q_ini[12][2] is within 0.1% of lower bound: 0.0001 < 0.3 < 3e+03
+  F_q_ini[12][3] is within 0.1% of lower bound: 0.0001 < 0.07 < 3e+03
+  F_q_ini[13][1] is within 0.1% of lower bound: 0.0001 < 0.7 < 3e+03
+  F_q_ini[13][2] is within 0.1% of lower bound: 0.0001 < 0.3 < 3e+03
+  F_q_ini[13][3] is within 0.1% of lower bound: 0.0001 < 0.06 < 3e+03
+  qq_ini[1][1] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[1][2] is within 0.1% of lower bound: 1e-12 < 2 < 1e+04
+  qq_ini[1][3] is within 0.1% of lower bound: 1e-12 < 3 < 1e+04
+  qq_ini[1][4] is within 0.1% of lower bound: 1e-12 < 4 < 1e+04
+  qq_ini[2][1] is within 0.1% of lower bound: 1e-12 < 0.8 < 1e+04
+  qq_ini[2][2] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[2][3] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[2][4] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[2][5] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[3][1] is within 0.1% of lower bound: 1e-12 < 0.3 < 1e+04
+  qq_ini[3][2] is within 0.1% of lower bound: 1e-12 < 0.6 < 1e+04
+  qq_ini[3][3] is within 0.1% of lower bound: 1e-12 < 0.9 < 1e+04
+  qq_ini[3][4] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[3][5] is within 0.1% of lower bound: 1e-12 < 0.8 < 1e+04
+  qq_ini[4][1] is within 0.1% of lower bound: 1e-12 < 0.4 < 1e+04
+  qq_ini[4][2] is within 0.1% of lower bound: 1e-12 < 0.9 < 1e+04
+  qq_ini[4][3] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[4][4] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[4][5] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[5][1] is within 0.1% of lower bound: 1e-12 < 0.6 < 1e+04
+  qq_s2_ini[1][3] is within 1% of lower bound: 0.09 < 0.1 < 2
+  SSB_R_alfa[2] is within 1% of lower bound: 0 < 2e+01 < 1e+04
+  SSB_R_alfa[3] is within 1% of lower bound: 0 < 2e+01 < 1e+04
+
+REPORT_SECTION initiated
+report file: sms.rep
+Output file sms.rep is done
+Output file details.out is done
+Output file summary_table.out is done
+Output file rec_scale.out is done
+Output file survey_residuals.out is done
+Output file catch_residuals.out is done
+Output file summary.out is done
+
+REPORT SECTION completed
+FINAL_SECTION initiated
+
+Successful completion, HURRAH - HURRAH 
+
+Finished running model 'sms' after 4 s.

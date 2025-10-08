@@ -1,0 +1,11 @@
+# Quantile regression parameters for predator/prey size ratio as a function of predator size
+# size select.model used for parameter estimate = 2 
+# intercept values for 2.5 % Quantile 
+     2.1107      3.4492
+# slope values for 2.5 % Quantile 
+     0.6533      1.0000
+# intercept values for 97.5 % Quantile 
+     5.8601      6.0836
+# slope values for 97.5 % Quantile 
+     0.6178      1.0000
+-999  #checksum

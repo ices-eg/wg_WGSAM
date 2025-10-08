@@ -1,0 +1,387 @@
+SMS version 2025-04-02, using ADMB version 13.1
+September 11, 2025 14:12:11
+Constant log(sqrt(2*pi)): 0.918939 er benyttet.
+test.output: 1
+ms.mode: 2
+op.output: 0
+op.output: 0
+no.areas: 1
+first.year: 1974
+first.year.model: 1974
+last.year: 2024
+last.year.model: 2024
+last.quarter: 4
+last.quarter.last.year: 4
+no.species: 3
+first.age: 0
+rec.season: 3
+max.age: 11
+species.info:
+ 11 0 0 0 0 0 2 0 0 0 0
+ 8 1 5 0 8 1 0 1 3 0 0
+ 7 1 4 0 7 0 0 1 3 0 0
+no. of species: 3  no. of predators: 1  no. of other predators:1
+first VPA species no.:2  first VPA species as prey:2
+known.recruitment: 0
+SSB.R.beta.cor:
+ 1e+06 1e+06
+First year recruitment: 1974 1990
+Last year recruitment:  2024 2024
+objective.function.weight:
+ 0 0 0 1 0
+ 1 1 0.05 0 0
+ 1 1 0.05 0 0
+phase.log.rec: 1
+phase.log.rec_older: 1
+phase.F.y: 1
+phase.F.y.spline: -1
+phase.F.q: 1
+phase.F.a: 1
+phase.catchability: 1
+phase.SSB.R.alfa: 1
+phase.SSB.R.beta: 1
+min.catch.CV: 0.1
+min.SR.CV: 0.1
+calc.discard:  0 0
+combined.catches:  0 0
+seasonal.combined.catch.s2:  1 0
+n.catch.s2.group:  2 4
+catch.s2.group: 
+ 1 2
+ 1 2 3 6
+n.catch.season.age.group: 
+ 3 2
+catch.season.age: 
+ 1 2 3
+ 1 2
+avg.F.ages: 
+ 3 6
+ 3 5
+min.catch: 
+ 0 0
+n.catch.sep.year.group: 
+ 3 2
+catch.sep.year: 
+ 1974 1989 2005
+ 1974 2000
+Nknots: 
+ 1 1
+Years for nodes: 
+ 1974
+ 1974
+zero.catch.year.season: 0
+zero.catch.season.ages: 0
+fix.F.factor:
+ 1 1
+est.calc.sigma:
+ 0 0 0
+read.HCR.File: 0
+Include selected stomachs option (option incl.stom.all): 1
+use.Nbar: 0
+max.M2.iteration: 5
+max.M2.sum2: 0
+stom.likelihood: 1
+stomach.variance: 3
+simple.ALK: 0
+consum: 0
+size.select.model: 2
+L50_mesh:  -1 -1
+size.selection: 
+ 1
+sum.stom.like: 
+ 1
+stom.obs.var: 
+ 1
+stom.max.sumP: 
+ 1e+03
+var.scale.stom: 
+ 1
+size.other.food.suit: 
+ 1
+min.stom.cont:   0.001
+max.stom.sampl:   500
+max.prey.pred.size.fac: 
+ 0.3
+stom.type.input: 
+ 1
+use.overlap: 0
+phase.vulnera: 2
+phase.other.suit.slope: 2
+phase.pref.size.ratio: 2
+phase.pref.size.ratio.correction: -1
+phase_prey_size_adjustment: -1
+phase.var.size.ratio: 2
+phase.season.overlap: 3
+phase.Stom.var: 2
+phase.mesh.adjust: -1
+recruitment years:
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+Start to read file: fleet_info.dat
+fleet.CPUE.CV:
+0.3
+n.fleet:
+ 1 4
+Fleet_info:
+ 2000 2024 0 0 1 7 4 -1 4 3
+ 2000 2024 0 1 1 7 5 -1 4 1
+ 2001 2024 0 0 1 7 5 -1 2 1
+ 1991 2008 0 0 1 7 5 -1 4 1
+ 2010 2025 0 0 1 1 1 -1 1 1
+processing fleet_info.in, species Herring    
+processing fleet_info.in, species Sprat      
+processing fleet_info.in, species Sprat      
+processing fleet_info.in, species Sprat      
+processing fleet_info.in, species Sprat      
+CPUE_s2_group:
+ 1 2 6
+ 1
+ 1
+ 1
+ 1
+
+ Input of single species input data completed
+no_season_overlap_to_estimate:  5
+season_overlap_input:
+ 1 1 1 1
+ -1 1 -2 1
+ -1 1 -2 -3
+ -4 1 1 -5
+
+season_overlap_index:
+ 0 0 0 0
+ 1 0 2 0
+ 1 0 2 3
+ 4 0 0 5
+
+
+Input of multispecies data completed
+
+Preprocessing of multispecies data completed
+
+DATA_SECTION completed
+PARAMETER SECTION initiated
+cons_multiplier:
+ 1
+PARAMETER SECTION ended
+PRELIMINARY_CALCS_SECTION initiated
+
+observed min predator prey size ratio: 
+                  Herring    Sprat      
+Cod                2.2        4.5
+
+observed max predator prey size ratio: 
+                  Herring    Sprat      
+Cod               1969       2280
+
+                  Herring    Sprat      
+Cod         ALK exist for all prey length classes
+
+Adjusted min predator prey size ratio (according to option max.prey.pred.size.fac), to be used for calculation of M2: 
+                  Herring    Sprat      
+Cod                3.3        4.5        3.3
+
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:3 pred length group:150 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:9 pred length group:500 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:10 pred length group:600 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:1 pred length class:11 pred length group:700 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:9 pred length group:500 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:10 pred length group:600 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1974 Q:2 pred length class:11 pred length group:700 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1975 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1975 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1975 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1976 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1976 Q:4 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1976 Q:4 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1977 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1978 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:1 pred length class:9 pred length group:500 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1979 Q:2 pred length class:9 pred length group:500 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1981 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1982 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1984 Q:3 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1988 Q:1 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1988 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1988 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1988 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1991 Q:2 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1991 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1993 Q:2 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1993 Q:2 pred length class:9 pred length group:500 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1993 Q:2 pred length class:10 pred length group:600 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1993 Q:2 pred length class:11 pred length group:700 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1998 Q:2 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1998 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1998 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1999 Q:2 pred length class:4 pred length group:200 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1999 Q:2 pred length class:5 pred length group:250 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1999 Q:2 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1999 Q:2 pred length class:9 pred length group:500 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:1999 Q:4 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2001 Q:4 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2001 Q:4 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2005 Q:1 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2012 Q:3 pred length class:6 pred length group:300 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2012 Q:3 pred length class:7 pred length group:350 not included, as exclusion specified in input file incl_stom.in
+Area:1 pred:1, Cod         year:2012 Q:3 pred length class:8 pred length group:400 not included, as exclusion specified in input file incl_stom.in
+
+Min observed stomach contents observations to be used:  1.000e-03
+
+Species, number of stomachs observations totally, and used
+Cod                               5322    4597
+
+Number of predator-prey interaction observation used
+                  Herring    Sprat      
+Cod               1709       2220
+
+PRELIMINARY_CALCS_SECTION done
+Starting optimization of 'sms' in phase 2 of 3 at Thu Sep 11 14:12:11 2025
+phase= 2 | nvar=331 | iter=  0 | nll=1.62e+03 | mag=2.02e+02 | par[331]=Stom_var[1]
+phase= 2 | nvar=331 | iter= 20 | nll=1.62e+03 | mag=1.66e+02 | par[328]=init_stl_other_suit_slope
+phase= 2 | nvar=331 | iter= 40 | nll=1.62e+03 | mag=1.85e+02 | par[328]=init_stl_other_suit_slope
+phase= 2 | nvar=331 | iter= 60 | nll=1.62e+03 | mag=1.98e+02 | par[328]=init_stl_other_suit_slope
+phase= 2 | nvar=331 | iter= 80 | nll=1.62e+03 | mag=2.24e+02 | par[328]=init_stl_other_suit_slope
+phase= 2 | nvar=331 | iter=100 | nll=1.62e+03 | mag=3.93e+02 | par[328]=init_stl_other_suit_slope
+phase= 2 | nvar=331 | iter=120 | nll=1.62e+03 | mag=3.12e+02 | par[328]=init_stl_other_suit_slope
+phase= 2 | nvar=331 | iter=140 | nll=1.62e+03 | mag=2.31e+02 | par[328]=init_stl_other_suit_slope
+phase= 2 | nvar=331 | iter=160 | nll=1.62e+03 | mag=2.16e+02 | par[328]=init_stl_other_suit_slope
+phase= 2 | nvar=331 | iter=180 | nll=1.62e+03 | mag=2.26e+02 | par[328]=init_stl_other_suit_slope
+phase= 2 | nvar=331 | iter=200 | nll=1.62e+03 | mag=1.88e+02 | par[328]=init_stl_other_suit_slope
+phase= 2 | nvar=331 | iter=220 | nll=1.62e+03 | mag=1.56e+02 | par[328]=init_stl_other_suit_slope
+phase= 2 | nvar=331 | iter=240 | nll=1.62e+03 | mag=8.43e+01 | par[328]=init_stl_other_suit_slope
+phase= 2 | nvar=331 | iter=260 | nll=1.62e+03 | mag=1.08e+02 | par[328]=init_stl_other_suit_slope
+phase= 2 | nvar=331 | iter=280 | nll=1.62e+03 | mag=6.75e+01 | par[328]=init_stl_other_suit_slope
+phase= 2 | nvar=331 | iter=300 | nll=1.62e+03 | mag=4.17e+01 | par[328]=init_stl_other_suit_slope
+phase= 2 | nvar=331 | iter=320 | nll=1.62e+03 | mag=2.51e+01 | par[328]=init_stl_other_suit_slope
+phase= 2 | nvar=331 | iter=340 | nll=1.62e+03 | mag=1.99e-02 | par[328]=init_stl_other_suit_slope
+phase= 2 | nvar=331 | iter=344 | nll=1.62e+03 | mag=9.39e-05 | par[328]=init_stl_other_suit_slope
+REPORT_SECTION initiated
+report file: sms.r02
+Output file sms.rep is done
+Output file details.out is done
+Output file summary_table.out is done
+Output file rec_scale.out is done
+Output file survey_residuals.out is done
+Output file catch_residuals.out is done
+Output file summary_stom.out is done
+Output file part_m2.out is done
+Output file summary.out is done
+
+REPORT SECTION completed
+phase= 3 | nvar=336 | iter=  0 | nll=1.62e+03 | mag=8.49e+00 | par[335]=init_season_overlap[5]
+phase= 3 | nvar=336 | iter= 20 | nll=1.62e+03 | mag=1.23e+02 | par[250]=F_q_ini[12][3]
+phase= 3 | nvar=336 | iter= 40 | nll=1.62e+03 | mag=1.20e+02 | par[250]=F_q_ini[12][3]
+phase= 3 | nvar=336 | iter= 60 | nll=1.62e+03 | mag=1.20e+02 | par[250]=F_q_ini[12][3]
+phase= 3 | nvar=336 | iter= 80 | nll=1.62e+03 | mag=1.20e+02 | par[250]=F_q_ini[12][3]
+phase= 3 | nvar=336 | iter=100 | nll=1.62e+03 | mag=1.20e+02 | par[250]=F_q_ini[12][3]
+phase= 3 | nvar=336 | iter=120 | nll=1.62e+03 | mag=1.18e+02 | par[250]=F_q_ini[12][3]
+phase= 3 | nvar=336 | iter=140 | nll=1.62e+03 | mag=1.11e+02 | par[250]=F_q_ini[12][3]
+phase= 3 | nvar=336 | iter=160 | nll=1.62e+03 | mag=9.88e+01 | par[250]=F_q_ini[12][3]
+phase= 3 | nvar=336 | iter=180 | nll=1.62e+03 | mag=9.07e+01 | par[250]=F_q_ini[12][3]
+phase= 3 | nvar=336 | iter=200 | nll=1.62e+03 | mag=7.61e+01 | par[250]=F_q_ini[12][3]
+phase= 3 | nvar=336 | iter=220 | nll=1.62e+03 | mag=3.97e+01 | par[250]=F_q_ini[12][3]
+phase= 3 | nvar=336 | iter=240 | nll=1.62e+03 | mag=2.46e+01 | par[250]=F_q_ini[12][3]
+phase= 3 | nvar=336 | iter=260 | nll=1.62e+03 | mag=1.64e+01 | par[250]=F_q_ini[12][3]
+phase= 3 | nvar=336 | iter=280 | nll=1.62e+03 | mag=4.23e-01 | par[250]=F_q_ini[12][3]
+phase= 3 | nvar=336 | iter=300 | nll=1.62e+03 | mag=2.53e-01 | par[328]=init_stl_other_suit_slope
+phase= 3 | nvar=336 | iter=320 | nll=1.62e+03 | mag=3.95e-02 | par[328]=init_stl_other_suit_slope
+phase= 3 | nvar=336 | iter=340 | nll=1.62e+03 | mag=2.39e-03 | par[328]=init_stl_other_suit_slope
+phase= 3 | nvar=336 | iter=343 | nll=1.62e+03 | mag=7.00e-07 | par[253]=F_q_ini[13][3]
+Optimization completed after 24 s with final statistics:
+  nll=1623.078522 | mag=7.00064e-07 | par[253]=F_q_ini[13][3]
+
+Warning: the following parameters had issues
+  F_q_ini[1][1] is within 0.1% of lower bound: 0.0001 < 0.03 < 3e+03
+  F_q_ini[1][2] is within 0.1% of lower bound: 0.0001 < 0.07 < 3e+03
+  F_q_ini[1][3] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[2][1] is within 0.1% of lower bound: 0.0001 < 0.07 < 3e+03
+  F_q_ini[2][2] is within 0.1% of lower bound: 0.0001 < 0.06 < 3e+03
+  F_q_ini[2][3] is within 0.1% of lower bound: 0.0001 < 0.08 < 3e+03
+  F_q_ini[3][1] is within 0.1% of lower bound: 0.0001 < 0.2 < 3e+03
+  F_q_ini[3][2] is within 0.1% of lower bound: 0.0001 < 0.08 < 3e+03
+  F_q_ini[3][3] is within 0.1% of lower bound: 0.0001 < 0.05 < 3e+03
+  F_q_ini[4][1] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[4][2] is within 0.1% of lower bound: 0.0001 < 0.4 < 3e+03
+  F_q_ini[4][3] is within 0.1% of lower bound: 0.0001 < 0.2 < 3e+03
+  F_q_ini[5][1] is within 0.1% of lower bound: 0.0001 < 0.2 < 3e+03
+  F_q_ini[5][2] is within 0.1% of lower bound: 0.0001 < 0.2 < 3e+03
+  F_q_ini[5][3] is within 0.1% of lower bound: 0.0001 < 0.09 < 3e+03
+  F_q_ini[6][1] is within 0.1% of lower bound: 0.0001 < 0.3 < 3e+03
+  F_q_ini[6][2] is within 0.1% of lower bound: 0.0001 < 0.2 < 3e+03
+  F_q_ini[6][3] is within 0.1% of lower bound: 0.0001 < 0.04 < 3e+03
+  F_q_ini[7][1] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[7][2] is within 0.1% of lower bound: 0.0001 < 0.6 < 3e+03
+  F_q_ini[7][3] is within 0.1% of lower bound: 0.0001 < 0.3 < 3e+03
+  F_q_ini[8][1] is within 0.1% of lower bound: 0.0001 < 0.2 < 3e+03
+  F_q_ini[8][2] is within 0.1% of lower bound: 0.0001 < 0.4 < 3e+03
+  F_q_ini[8][3] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[9][1] is within 0.1% of lower bound: 0.0001 < 0.4 < 3e+03
+  F_q_ini[9][2] is within 0.1% of lower bound: 0.0001 < 0.2 < 3e+03
+  F_q_ini[9][3] is within 0.1% of lower bound: 0.0001 < 0.09 < 3e+03
+  F_q_ini[10][1] is within 0.1% of lower bound: 0.0001 < 0.07 < 3e+03
+  F_q_ini[10][2] is within 0.1% of lower bound: 0.0001 < 0.04 < 3e+03
+  F_q_ini[10][3] is within 0.1% of lower bound: 0.0001 < 0.03 < 3e+03
+  F_q_ini[11][1] is within 0.1% of lower bound: 0.0001 < 0.3 < 3e+03
+  F_q_ini[11][2] is within 0.1% of lower bound: 0.0001 < 0.1 < 3e+03
+  F_q_ini[11][3] is within 0.1% of lower bound: 0.0001 < 0.05 < 3e+03
+  F_q_ini[12][1] is within 0.1% of lower bound: 0.0001 < 0.4 < 3e+03
+  F_q_ini[12][2] is within 0.1% of lower bound: 0.0001 < 0.3 < 3e+03
+  F_q_ini[12][3] is within 0.1% of lower bound: 0.0001 < 0.07 < 3e+03
+  F_q_ini[13][1] is within 0.1% of lower bound: 0.0001 < 0.6 < 3e+03
+  F_q_ini[13][2] is within 0.1% of lower bound: 0.0001 < 0.3 < 3e+03
+  F_q_ini[13][3] is within 0.1% of lower bound: 0.0001 < 0.06 < 3e+03
+  qq_ini[1][1] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[1][2] is within 0.1% of lower bound: 1e-12 < 2 < 1e+04
+  qq_ini[1][3] is within 0.1% of lower bound: 1e-12 < 3 < 1e+04
+  qq_ini[1][4] is within 0.1% of lower bound: 1e-12 < 4 < 1e+04
+  qq_ini[2][1] is within 0.1% of lower bound: 1e-12 < 0.8 < 1e+04
+  qq_ini[2][2] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[2][3] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[2][4] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[2][5] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[3][1] is within 0.1% of lower bound: 1e-12 < 0.3 < 1e+04
+  qq_ini[3][2] is within 0.1% of lower bound: 1e-12 < 0.7 < 1e+04
+  qq_ini[3][3] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[3][4] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[3][5] is within 0.1% of lower bound: 1e-12 < 0.8 < 1e+04
+  qq_ini[4][1] is within 0.1% of lower bound: 1e-12 < 0.4 < 1e+04
+  qq_ini[4][2] is within 0.1% of lower bound: 1e-12 < 0.9 < 1e+04
+  qq_ini[4][3] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[4][4] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[4][5] is within 0.1% of lower bound: 1e-12 < 1 < 1e+04
+  qq_ini[5][1] is within 0.1% of lower bound: 1e-12 < 0.6 < 1e+04
+  qq_s2_ini[1][3] is within 1% of lower bound: 0.09 < 0.1 < 2
+  SSB_R_alfa[2] is within 1% of lower bound: 0 < 2e+01 < 1e+04
+  SSB_R_alfa[3] is within 1% of lower bound: 0 < 2e+01 < 1e+04
+  vulnera[1] is within 1% of lower bound: 0.001 < 8 < 1e+03
+  vulnera[2] is within 1% of lower bound: 0.001 < 3 < 1e+03
+
+REPORT_SECTION initiated
+report file: sms.rep
+Output file sms.rep is done
+Output file details.out is done
+Output file summary_table.out is done
+Output file rec_scale.out is done
+Output file survey_residuals.out is done
+Output file catch_residuals.out is done
+Output file summary_stom.out is done
+Output file part_m2.out is done
+Output file summary.out is done
+
+REPORT SECTION completed
+FINAL_SECTION initiated
+
+Successful completion, HURRAH - HURRAH 
+
+Finished running model 'sms' after 25 s.

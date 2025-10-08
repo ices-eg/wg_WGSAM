@@ -1,0 +1,18 @@
+# File, noise_other_pred.dat, with data for simulating uncertanties in abundance of other predators 
+0  # model type: 1=no noise, 
+   #             2=from scaling factors  with mean 1 and std of the mean at a level set at target, 
+   #             3=from noise on observations
+3  # phase for estimating noise
+0.5   1.5  # Lower and upper bound for the parameters
+ # Weighting factor for likelihood contributions for noise factor
+#  Cod 
+             1 
+1  # 1=estimate variance as a parameter ; 0=use empirical variance
+0.01 1  # lower and upper bounds on variance (if estimated as parameter)
+20   # Number of "observations" used used to fit uncertanty for each other predator. 
+ # Usage of age dependent noise factor. -1: no noise, 1: same noise for all ages, 2:age dependent noise 
+#  Cod 
+             1 
+########  Cod 
+# "observations" used to mimic a factor with mean 1 and wanted std the mean at  0.4472136  
+0.5999321 0.9966306 0.4975007 1.687899 1.068059 0.5049246 1.145392 1.268254 1.188658 0.7571554 1.64701 1.097605 0.6024849 -0.1778203 1.457572 0.8846982 0.8987736 1.368891 1.308848 1.197531 

@@ -1,0 +1,8 @@
+# refernec points Flim Fpa blim Bpa. -1 means no reference point defined
+# -------------- VPA species, predator and prey ---------
+# COD, Cod no. 1
+0.96 0.60 100000 150000
+# HER, Herring no. 2
+-1 -1 -1 -1
+# SPR, SPRAT no. 3
+-1  0.35 459000 541000  

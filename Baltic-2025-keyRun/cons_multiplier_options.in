@@ -1,0 +1,5 @@
+## parameter setting for estimation of multiplier for consumption estimate
+##  1:lower limit in multiplier, 2:upper limit for multiplier, 3:phase for estimation of parameter and 4:default value
+##
+0.1 2 -2  1 # Cod 
+-999 # checksum

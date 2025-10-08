@@ -1,0 +1,9 @@
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+suppressMessages(library(tidyverse))
+suppressMessages(library(here))
+suppressMessages(library(ggthemes))
+suppressMessages(library(FLCore))
+
+```

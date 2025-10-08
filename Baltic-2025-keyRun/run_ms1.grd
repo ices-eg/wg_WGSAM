@@ -1,0 +1,12 @@
+ParName   Value   Gradient
+vulnera(1)      49.4218  3.53323e-05
+vulnera(2)      17.1958  -4.7227e-05
+init_stl_other_suit_slope(1)     0.617958 -8.51656e-05
+init_pref_size_ratio[1]      6.39005  -1.9126e-05
+var_size_ratio_ini[1]      2.35202  2.35971e-05
+init_season_overlap(1)     0.331304  5.34663e-06
+init_season_overlap(2)      0.23412 -5.32798e-05
+init_season_overlap(3)     0.236222 -1.57517e-05
+init_season_overlap(4)      1.60695 -3.64733e-05
+init_season_overlap(5)     0.753483 -5.73929e-06
+Stom_var[1]     0.408509 -6.76925e-06

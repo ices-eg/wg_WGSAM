@@ -1,0 +1,157 @@
+Set current phase to 2
+
+Initial statistics: 331 variables; iteration 0; function evaluation 0; phase 2
+Function value 1.6237455e+03; maximum gradient component mag -2.0177e+02
+
+Intermediate statistics: 331 variables; iteration 20; function evaluation 22; phase 2
+Function value 1.6235315e+03; maximum gradient component mag 1.6553e+02
+331 variables; iteration 40; function evaluation 43; phase 2
+Function value 1.6235215e+03; maximum gradient component mag 1.8547e+02
+331 variables; iteration 60; function evaluation 66; phase 2
+Function value 1.6235178e+03; maximum gradient component mag 1.9765e+02
+331 variables; iteration 80; function evaluation 92; phase 2
+Function value 1.6235109e+03; maximum gradient component mag 2.2380e+02
+331 variables; iteration 100; function evaluation 114; phase 2
+Function value 1.6234765e+03; maximum gradient component mag 3.9324e+02
+331 variables; iteration 120; function evaluation 134; phase 2
+Function value 1.6234166e+03; maximum gradient component mag 3.1202e+02
+331 variables; iteration 140; function evaluation 155; phase 2
+Function value 1.6233844e+03; maximum gradient component mag 2.3081e+02
+331 variables; iteration 160; function evaluation 175; phase 2
+Function value 1.6233743e+03; maximum gradient component mag 2.1591e+02
+331 variables; iteration 180; function evaluation 198; phase 2
+Function value 1.6233056e+03; maximum gradient component mag 2.2621e+02
+331 variables; iteration 200; function evaluation 224; phase 2
+Function value 1.6231967e+03; maximum gradient component mag 1.8776e+02
+331 variables; iteration 220; function evaluation 249; phase 2
+Function value 1.6231599e+03; maximum gradient component mag 1.5636e+02
+331 variables; iteration 240; function evaluation 271; phase 2
+Function value 1.6231386e+03; maximum gradient component mag 8.4300e+01
+331 variables; iteration 260; function evaluation 291; phase 2
+Function value 1.6231154e+03; maximum gradient component mag 1.0789e+02
+331 variables; iteration 280; function evaluation 312; phase 2
+Function value 1.6230940e+03; maximum gradient component mag 6.7461e+01
+331 variables; iteration 300; function evaluation 334; phase 2
+Function value 1.6230926e+03; maximum gradient component mag 4.1700e+01
+331 variables; iteration 320; function evaluation 358; phase 2
+Function value 1.6230913e+03; maximum gradient component mag 2.5116e+01
+331 variables; iteration 340; function evaluation 383; phase 2
+Function value 1.6230910e+03; maximum gradient component mag 1.9903e-02
+
+ - final statistics:
+331 variables; iteration 344; function evaluation 387
+Function value 1.6231e+03; maximum gradient component mag 9.3887e-05
+Exit code = 1;  converg criter 1.0000e-04
+
+Initial statistics: 336 variables; iteration 0; function evaluation 0; phase 3
+Function value 1.6230910e+03; maximum gradient component mag 8.4881e+00
+
+Intermediate statistics: 336 variables; iteration 20; function evaluation 22; phase 3
+Function value 1.6230838e+03; maximum gradient component mag 1.2269e+02
+336 variables; iteration 40; function evaluation 45; phase 3
+Function value 1.6230816e+03; maximum gradient component mag 1.2021e+02
+336 variables; iteration 60; function evaluation 68; phase 3
+Function value 1.6230813e+03; maximum gradient component mag 1.2022e+02
+336 variables; iteration 80; function evaluation 94; phase 3
+Function value 1.6230811e+03; maximum gradient component mag 1.2032e+02
+336 variables; iteration 100; function evaluation 114; phase 3
+Function value 1.6230810e+03; maximum gradient component mag 1.2002e+02
+336 variables; iteration 120; function evaluation 134; phase 3
+Function value 1.6230809e+03; maximum gradient component mag 1.1837e+02
+336 variables; iteration 140; function evaluation 154; phase 3
+Function value 1.6230807e+03; maximum gradient component mag 1.1062e+02
+336 variables; iteration 160; function evaluation 174; phase 3
+Function value 1.6230804e+03; maximum gradient component mag 9.8763e+01
+336 variables; iteration 180; function evaluation 196; phase 3
+Function value 1.6230802e+03; maximum gradient component mag 9.0689e+01
+336 variables; iteration 200; function evaluation 218; phase 3
+Function value 1.6230799e+03; maximum gradient component mag 7.6104e+01
+336 variables; iteration 220; function evaluation 240; phase 3
+Function value 1.6230791e+03; maximum gradient component mag 3.9713e+01
+336 variables; iteration 240; function evaluation 261; phase 3
+Function value 1.6230789e+03; maximum gradient component mag 2.4628e+01
+336 variables; iteration 260; function evaluation 281; phase 3
+Function value 1.6230787e+03; maximum gradient component mag 1.6419e+01
+336 variables; iteration 280; function evaluation 302; phase 3
+Function value 1.6230785e+03; maximum gradient component mag 4.2324e-01
+336 variables; iteration 300; function evaluation 322; phase 3
+Function value 1.6230785e+03; maximum gradient component mag 2.5325e-01
+336 variables; iteration 320; function evaluation 346; phase 3
+Function value 1.6230785e+03; maximum gradient component mag 3.9495e-02
+336 variables; iteration 340; function evaluation 375; phase 3
+Function value 1.6230785e+03; maximum gradient component mag 2.3919e-03
+Warning: the following parameters had issues
+  F_q_ini[1][1] is within 0.1% of lower bound: 1.0000e-04 < 3.3437e-02 < 3.0000e+03
+  F_q_ini[1][2] is within 0.1% of lower bound: 1.0000e-04 < 7.1014e-02 < 3.0000e+03
+  F_q_ini[1][3] is within 0.1% of lower bound: 1.0000e-04 < 1.1452e-01 < 3.0000e+03
+  F_q_ini[2][1] is within 0.1% of lower bound: 1.0000e-04 < 6.9859e-02 < 3.0000e+03
+  F_q_ini[2][2] is within 0.1% of lower bound: 1.0000e-04 < 5.5391e-02 < 3.0000e+03
+  F_q_ini[2][3] is within 0.1% of lower bound: 1.0000e-04 < 7.8452e-02 < 3.0000e+03
+  F_q_ini[3][1] is within 0.1% of lower bound: 1.0000e-04 < 1.8773e-01 < 3.0000e+03
+  F_q_ini[3][2] is within 0.1% of lower bound: 1.0000e-04 < 7.8562e-02 < 3.0000e+03
+  F_q_ini[3][3] is within 0.1% of lower bound: 1.0000e-04 < 4.7022e-02 < 3.0000e+03
+  F_q_ini[4][1] is within 0.1% of lower bound: 1.0000e-04 < 1.1176e-01 < 3.0000e+03
+  F_q_ini[4][2] is within 0.1% of lower bound: 1.0000e-04 < 4.0608e-01 < 3.0000e+03
+  F_q_ini[4][3] is within 0.1% of lower bound: 1.0000e-04 < 1.7584e-01 < 3.0000e+03
+  F_q_ini[5][1] is within 0.1% of lower bound: 1.0000e-04 < 1.7552e-01 < 3.0000e+03
+  F_q_ini[5][2] is within 0.1% of lower bound: 1.0000e-04 < 2.1031e-01 < 3.0000e+03
+  F_q_ini[5][3] is within 0.1% of lower bound: 1.0000e-04 < 9.4983e-02 < 3.0000e+03
+  F_q_ini[6][1] is within 0.1% of lower bound: 1.0000e-04 < 2.8248e-01 < 3.0000e+03
+  F_q_ini[6][2] is within 0.1% of lower bound: 1.0000e-04 < 1.5853e-01 < 3.0000e+03
+  F_q_ini[6][3] is within 0.1% of lower bound: 1.0000e-04 < 4.4752e-02 < 3.0000e+03
+  F_q_ini[7][1] is within 0.1% of lower bound: 1.0000e-04 < 1.3880e-01 < 3.0000e+03
+  F_q_ini[7][2] is within 0.1% of lower bound: 1.0000e-04 < 6.2121e-01 < 3.0000e+03
+  F_q_ini[7][3] is within 0.1% of lower bound: 1.0000e-04 < 3.0689e-01 < 3.0000e+03
+  F_q_ini[8][1] is within 0.1% of lower bound: 1.0000e-04 < 2.2199e-01 < 3.0000e+03
+  F_q_ini[8][2] is within 0.1% of lower bound: 1.0000e-04 < 3.6571e-01 < 3.0000e+03
+  F_q_ini[8][3] is within 0.1% of lower bound: 1.0000e-04 < 1.3733e-01 < 3.0000e+03
+  F_q_ini[9][1] is within 0.1% of lower bound: 1.0000e-04 < 3.6531e-01 < 3.0000e+03
+  F_q_ini[9][2] is within 0.1% of lower bound: 1.0000e-04 < 2.4901e-01 < 3.0000e+03
+  F_q_ini[9][3] is within 0.1% of lower bound: 1.0000e-04 < 8.7060e-02 < 3.0000e+03
+  F_q_ini[10][1] is within 0.1% of lower bound: 1.0000e-04 < 7.2644e-02 < 3.0000e+03
+  F_q_ini[10][2] is within 0.1% of lower bound: 1.0000e-04 < 4.3846e-02 < 3.0000e+03
+  F_q_ini[10][3] is within 0.1% of lower bound: 1.0000e-04 < 3.4599e-02 < 3.0000e+03
+  F_q_ini[11][1] is within 0.1% of lower bound: 1.0000e-04 < 3.2216e-01 < 3.0000e+03
+  F_q_ini[11][2] is within 0.1% of lower bound: 1.0000e-04 < 1.2877e-01 < 3.0000e+03
+  F_q_ini[11][3] is within 0.1% of lower bound: 1.0000e-04 < 5.0730e-02 < 3.0000e+03
+  F_q_ini[12][1] is within 0.1% of lower bound: 1.0000e-04 < 4.2607e-01 < 3.0000e+03
+  F_q_ini[12][2] is within 0.1% of lower bound: 1.0000e-04 < 2.7900e-01 < 3.0000e+03
+  F_q_ini[12][3] is within 0.1% of lower bound: 1.0000e-04 < 6.8229e-02 < 3.0000e+03
+  F_q_ini[13][1] is within 0.1% of lower bound: 1.0000e-04 < 6.4402e-01 < 3.0000e+03
+  F_q_ini[13][2] is within 0.1% of lower bound: 1.0000e-04 < 3.2860e-01 < 3.0000e+03
+  F_q_ini[13][3] is within 0.1% of lower bound: 1.0000e-04 < 5.8169e-02 < 3.0000e+03
+  qq_ini[1][1] is within 0.1% of lower bound: 1.0000e-12 < 1.1249e+00 < 1.0000e+04
+  qq_ini[1][2] is within 0.1% of lower bound: 1.0000e-12 < 1.7534e+00 < 1.0000e+04
+  qq_ini[1][3] is within 0.1% of lower bound: 1.0000e-12 < 2.7191e+00 < 1.0000e+04
+  qq_ini[1][4] is within 0.1% of lower bound: 1.0000e-12 < 4.1696e+00 < 1.0000e+04
+  qq_ini[2][1] is within 0.1% of lower bound: 1.0000e-12 < 8.4865e-01 < 1.0000e+04
+  qq_ini[2][2] is within 0.1% of lower bound: 1.0000e-12 < 1.0418e+00 < 1.0000e+04
+  qq_ini[2][3] is within 0.1% of lower bound: 1.0000e-12 < 1.3496e+00 < 1.0000e+04
+  qq_ini[2][4] is within 0.1% of lower bound: 1.0000e-12 < 1.3864e+00 < 1.0000e+04
+  qq_ini[2][5] is within 0.1% of lower bound: 1.0000e-12 < 1.2071e+00 < 1.0000e+04
+  qq_ini[3][1] is within 0.1% of lower bound: 1.0000e-12 < 2.8102e-01 < 1.0000e+04
+  qq_ini[3][2] is within 0.1% of lower bound: 1.0000e-12 < 6.6488e-01 < 1.0000e+04
+  qq_ini[3][3] is within 0.1% of lower bound: 1.0000e-12 < 9.6295e-01 < 1.0000e+04
+  qq_ini[3][4] is within 0.1% of lower bound: 1.0000e-12 < 1.1918e+00 < 1.0000e+04
+  qq_ini[3][5] is within 0.1% of lower bound: 1.0000e-12 < 8.2038e-01 < 1.0000e+04
+  qq_ini[4][1] is within 0.1% of lower bound: 1.0000e-12 < 4.2549e-01 < 1.0000e+04
+  qq_ini[4][2] is within 0.1% of lower bound: 1.0000e-12 < 8.7477e-01 < 1.0000e+04
+  qq_ini[4][3] is within 0.1% of lower bound: 1.0000e-12 < 1.1146e+00 < 1.0000e+04
+  qq_ini[4][4] is within 0.1% of lower bound: 1.0000e-12 < 9.9448e-01 < 1.0000e+04
+  qq_ini[4][5] is within 0.1% of lower bound: 1.0000e-12 < 9.7853e-01 < 1.0000e+04
+  qq_ini[5][1] is within 0.1% of lower bound: 1.0000e-12 < 5.8466e-01 < 1.0000e+04
+  qq_s2_ini[1][3] is within 1% of lower bound: 9.0000e-02 < 1.0458e-01 < 2.0000e+00
+  SSB_R_alfa[2] is within 1% of lower bound: 0.0000e+00 < 1.6807e+01 < 1.0000e+04
+  SSB_R_alfa[3] is within 1% of lower bound: 0.0000e+00 < 1.8475e+01 < 1.0000e+04
+  vulnera[1] is within 1% of lower bound: 1.0000e-03 < 8.1113e+00 < 1.0000e+03
+  vulnera[2] is within 1% of lower bound: 1.0000e-03 < 3.3068e+00 < 1.0000e+03
+
+
+ - final statistics:
+336 variables; iteration 343; function evaluation 378
+Function value 1.6231e+03; maximum gradient component mag -7.0006e-07
+Exit code = 1;  converg criter 1.0000e-04
+size of file gradfil1.tmp = 0
+size of file gradfil2.tmp = 0
+size of file varssave.tmp = 0
+size of file cmpdiff.tmp = 0

@@ -1,0 +1,15 @@
+# relative F by quarter 1 - 4 by species, first age in separable season age group and first year in separable year group
+#
+0.25  0.25  0.25 	# 0.25 HER,  age: 1  year: 1974 
+0.25  0.25  0.25 	# 0.25 HER,  age: 2  year: 1974 
+0.25  0.25  0.25 	# 0.25 HER,  age: 3  year: 1974 
+0.25  0.25  0.25 	# 0.25 HER,  age: 4  year: 1974 
+0.25  0.25  0.25 	# 0.25 HER,  age: 5  year: 1974 
+
+0.25  0.25  0.25 	# 0.25 SPR,  age: 1  year: 1974 
+0.25  0.25  0.25 	# 0.25 SPR,  age: 2  year: 1974 
+0.25  0.25  0.25 	# 0.25 SPR,  age: 3  year: 1974 
+0.25  0.25  0.25 	# 0.25 SPR,  age: 4  year: 1974 
+
+#
+-999 # check value

@@ -9,7 +9,11 @@ WGSAM, covers both model development and integration into practical management a
 * providing a scientific forum for establishing best practice in multi-species assessment methods through review, evaluation and comparison
 * aligning ToR with emerging policy needs to support implementation of the Common Fisheries Policy CFP and MSFD.
 
-### This repository includes several directories
+Meeting notes, visualizations, and project plans are available here: https://ices-eg.github.io/wg_WGSAM/
+
+## This repository includes several directories
+
+### KeyRuns
 * NortSeaKeyRun_2014: The SMS North Sea key run made at  the 2014 WGSAM, including data for the period 1974-2013. The version here has been corrected in 2015 for an input error.  
 * NortSeaKeyRun_2017: The SMS North Sea key run made at the 2017 WGSAM, including data for the period 1974-2016. 
 * NortSeaKeyRun_2020: The SMS North Sea key run made at the 2020 WGSAM, including data for the period 1974-2019.
@@ -20,3 +24,5 @@ WGSAM, covers both model development and integration into practical management a
 * SMS_ADMB: AD Model Builder source code for the SMS program
 * SMS_R_prog: R scripts for preparing, running and presenting results from a SMS run
  
+### Skill assessment 
+* SkillAssessment: contains initial project plans and notes

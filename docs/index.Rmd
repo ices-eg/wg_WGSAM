@@ -8,6 +8,21 @@ output: html_document
 
 <a href="https://ices-eg.github.io/wg_WGSAM/ReviewCriteria.html" target="_blank"> Model and Key Run Review Criteria - 20 November 2019 </a>
 
+## WGSAM 2025
+
+### Skill Assessment project
+
+<a href="https://ices-eg.github.io/wg_WGSAM/SkillAssessProject.html" target="_blank"> Project overview with initial dataset generation code, 16 November 2021, updated April 2022 </a>
+
+Skill Assessment project simulated datasets are available here: https://noaa-edab.github.io/ms-keyrun/
+
+Install the data package using `remotes::install_github("NOAA-EDAB/ms-keyrun")` 
+
+Then see documentation of simulated datasets here: https://noaa-edab.github.io/ms-keyrun/reference/index.html#simulated-data-products
+
+And further documentation here: https://noaa-edab.github.io/ms-keyrun/articles/SimData.html
+
+
 ## WGSAM 2023
 
 ToR b
@@ -23,13 +38,6 @@ Final SMS North Sea Keyrun inputs, outputs, diagnostics
 
 <a href="https://ices-eg.github.io/wg_WGSAM/2021_Agenda.html" target="_blank"> Draft 2021 Meeting Agenda - updated 13 October 2021 </a>
 
-
-
-## Interim work 2020-2021
-
-Skill Assessment project
-
-<a href="https://ices-eg.github.io/wg_WGSAM/SkillAssessProject.html" target="_blank"> Project overview with initial dataset generation code, 16 November 2021, updated April 2022 </a>
 
 
 ## WGSAM 2020

@@ -297,23 +297,17 @@ overflow-y: auto;
 border: 1px solid #ddd;
 border-radius: 4px;
 }
-.tabset-dropdown > .nav-tabs > li.active:before {
-content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+content: "\e259";
 font-family: 'Glyphicons Halflings';
 display: inline-block;
 padding: 10px;
 border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-content: "";
-border: none;
-}
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-content: "";
+content: "\e258";
 font-family: 'Glyphicons Halflings';
-display: inline-block;
-padding: 10px;
-border-right: 1px solid #ddd;
+border: none;
 }
 .tabset-dropdown > .nav-tabs > li.active {
 display: block;
@@ -362,6 +356,20 @@ display: none;
 <p><!-- ADD LINKS BELOW, note, using the RMD link syntax will open the presentation in the same tab, which is annoying. Use the html with the "_blank" to fix that behavior --></p>
 <p><a href="https://ices-eg.github.io/wg_WGSAM/ReviewCriteria.html" target="_blank">
 Model and Key Run Review Criteria - 20 November 2019 </a></p>
+<div id="wgsam-2025" class="section level2">
+<h2>WGSAM 2025</h2>
+<div id="skill-assessment-project" class="section level3">
+<h3>Skill Assessment project</h3>
+<p><a href="https://ices-eg.github.io/wg_WGSAM/SkillAssessProject.html" target="_blank">
+Project overview with initial dataset generation code, 16 November 2021,
+updated April 2022 </a></p>
+<p>Skill Assessment project simulated datasets are available here: <a href="https://noaa-edab.github.io/ms-keyrun/" class="uri">https://noaa-edab.github.io/ms-keyrun/</a></p>
+<p>Install the data package using
+<code>remotes::install_github(&quot;NOAA-EDAB/ms-keyrun&quot;)</code></p>
+<p>Then see documentation of simulated datasets here: <a href="https://noaa-edab.github.io/ms-keyrun/reference/index.html#simulated-data-products" class="uri">https://noaa-edab.github.io/ms-keyrun/reference/index.html#simulated-data-products</a></p>
+<p>And further documentation here: <a href="https://noaa-edab.github.io/ms-keyrun/articles/SimData.html" class="uri">https://noaa-edab.github.io/ms-keyrun/articles/SimData.html</a></p>
+</div>
+</div>
 <div id="wgsam-2023" class="section level2">
 <h2>WGSAM 2023</h2>
 <p>ToR b</p>
@@ -375,13 +383,6 @@ SMS keyrun comparison plots - 12 December 2023 </a></p>
 <h2>WGSAM 2021</h2>
 <p><a href="https://ices-eg.github.io/wg_WGSAM/2021_Agenda.html" target="_blank">
 Draft 2021 Meeting Agenda - updated 13 October 2021 </a></p>
-</div>
-<div id="interim-work-2020-2021" class="section level2">
-<h2>Interim work 2020-2021</h2>
-<p>Skill Assessment project</p>
-<p><a href="https://ices-eg.github.io/wg_WGSAM/SkillAssessProject.html" target="_blank">
-Project overview with initial dataset generation code, 16 November 2021,
-updated April 2022 </a></p>
 </div>
 <div id="wgsam-2020" class="section level2">
 <h2>WGSAM 2020</h2>
